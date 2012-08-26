@@ -1,0 +1,7 @@
+<% if object && object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      <%= I18n.t("#{scope}.message.error") %>
+    </div>
+  </div>
+<% end %>

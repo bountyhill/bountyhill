@@ -1,0 +1,19 @@
+<% provide(:title, I18n.t(:sign_in)) %>
+<div class="hero-unit">
+  <h1><%= I18n.t(:sign_in) %></h1>
+</div
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span5">
+    <%= form_for :session, :url => sessions_path, :html => {:class => "form-horizontal"} do |f| %>
+      <%= render :partial => "form", :locals => { :form => f } %>
+    <% end %>
+    <p><%= I18n.t("signin.new_user", :link => link_to(I18n.t("sign_up"), signup_path)).html_safe %></p>
+  </div>
+  <div class="span1">&nbsp;</div>
+  <div class="span5">
+    <fieldset>
+      <legend><%= I18n.t(:"signin.twitter")%></legend>
+    </fieldset>
+  </div>
+</div>

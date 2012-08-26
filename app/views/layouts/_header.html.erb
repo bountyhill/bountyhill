@@ -1,0 +1,31 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <%= link_to 'bountyhill', root_path, :class => "brand" %>
+      <%= render_navigation(:context => :service, :expand_all => true) %>
+      <ul class="nav pull-right">
+        <% if signed_in? %>          
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to I18n.t(:profile), current_user %></li>
+              <li><%= link_to I18n.t(:settings), '#' %></li>
+              <li class="divider"></li>
+              <li><%= link_to I18n.t(:sign_out), signout_path, method: "delete" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to I18n.t(:sign_in), signin_path %></li>
+        <% end %>      
+      </ul>
+    </div>
+  </div>
+</div>
+<% flash.each do |key, value| %>
+  <div class="flash alert alert-<%= key %>">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <%= value %>
+  </div>
+<% end %>

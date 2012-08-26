@@ -1,0 +1,20 @@
+/*
+ * application.scss
+ *
+ * Important! Do *not* use Sprockets "require" syntax.
+ * Use @import to include other stylesheets and Compass mixins.
+ */
+
+// Include some nice mixins
+@import "compass/css3";
+@import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap_responsive";
+// @import "sassybuttons";
+
+// import partial stylesheet from basics
+@import "basics/page";
+@import "basics/form";
+
+// import partial stylesheet from widgets
+@import "widgets/static";
+@import "widgets/users";

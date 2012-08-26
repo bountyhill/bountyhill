@@ -1,0 +1,32 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  cancel: Cancel
+  error: 
+    one: error
+    other: errors
+  home: Home
+  about: About
+  help: Help
+  terms: Terms
+  privacy: Privacy
+  profile: Profile
+  sign_up: "Sign up"
+  sign_in: "Sign in"
+  sign_out: "Sign out"
+  profile: Profile
+  settings: Settings
+  signup:
+    bountyhill: "Sign up with your name and email"
+    twitter: "Sign in with twitter"
+    message:
+      error: Please correct the errors below and then resubmit the form!
+      success: "Welcome on bountyhill!"
+  signin:
+    bountyhill: "Sign in with your email and password"
+    twitter: "Sign in with twitter"
+    new_user: "If you are a new user, please %{link} first!"
+    message:
+      error: Your email and/or password are not valid. Please try again!
+      success: "Welcome on bountyhill!"

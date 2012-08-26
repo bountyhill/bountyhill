@@ -1,0 +1,15 @@
+div.form-actions {
+  float:right;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.span5 {
+  .form-horizontal {
+    .form-actions {
+      padding-right: 30px;
+    }
+  }
+}
