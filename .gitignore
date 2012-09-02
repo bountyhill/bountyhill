@@ -7,6 +7,12 @@
 # Ignore bundler config
 /.bundle
 
+# Ignore pow config
+.powrc
+
+# Ignore rvm config
+.rvmrc
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
