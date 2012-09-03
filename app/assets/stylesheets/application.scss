@@ -4,9 +4,17 @@
  * Important! Do *not* use Sprockets "require" syntax.
  * Use @import to include other stylesheets and Compass mixins.
  */
-
 // Include some nice mixins
 @import "compass/css3";
+
+//
+// Temporary fix for compass_twitter_bootstrap; see
+// https://github.com/vwall/compass-twitter-bootstrap/issues/40
+// The issue is closed, yet the bug is still present in the gem...
+@function e($raw-css) {
+    @return #{$raw-css}
+}
+
 @import "compass_twitter_bootstrap";
 @import "compass_twitter_bootstrap_responsive";
 // @import "sassybuttons";
