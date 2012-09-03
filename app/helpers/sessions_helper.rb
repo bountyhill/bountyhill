@@ -23,7 +23,7 @@ module SessionsHelper
   end
 
   def user_from_remember_token
-    User.find_by_remember_token(session[:remember_token])
+    Identity::Email.find_by_remember_token(session[:remember_token])
   end
 
 end

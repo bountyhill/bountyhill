@@ -1,4 +1,8 @@
-class User < ActiveRecord::Base
+class Identity::Email < Identity
+  def self.model_name
+    Identity.model_name
+  end
+   
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
   

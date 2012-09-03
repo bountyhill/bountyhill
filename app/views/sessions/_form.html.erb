@@ -2,19 +2,19 @@
   <legend><%= I18n.t(:"signin.bountyhill")%></legend>
   <%= render 'shared/error_messages', :object => nil, :scope => "signin" %>
   
-  <div class="control-group <%#= error_class_for(@user, :email) %>">
+  <div class="control-group <%#= error_class_for(@identity, :email) %>">
     <%= form.label :email, :class => "control-label" %> 
     <div class="controls">
       <%= form.text_field :email, :class => "input-xlarge" %>
-      <%#= error_message_for(@user, :email) %>
+      <%#= error_message_for(@identity, :email) %>
     </div>
   </div>
   
-  <div class="control-group <%#= error_class_for(@user, :password) %>">
+  <div class="control-group <%#= error_class_for(@identity, :password) %>">
     <%= form.label :password, :class => "control-label" %> 
     <div class="controls">
       <%= form.password_field :password, :class => "input-xlarge" %>
-      <%#= error_message_for(@user, :password) %>
+      <%#= error_message_for(@identity, :password) %>
     </div>
   </div>
     

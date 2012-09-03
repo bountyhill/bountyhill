@@ -1,36 +1,36 @@
 <fieldset>
   <legend><%= I18n.t(:"signup.bountyhill")%></legend>
-  <%= render 'shared/error_messages', :object => @user, :scope => "signup" %>
+  <%= render 'shared/error_messages', :object => @identity, :scope => "signup" %>
 
-  <div class="control-group <%= error_class_for(@user, :name) %>">
+  <div class="control-group <%= error_class_for(@identity, :name) %>">
     <%= form.label :name, :class => "control-label" %> 
     <div class="controls">
       <%= form.text_field :name, :class => "input-xlarge" %> 
-      <%= error_message_for(@user, :name) %>
+      <%= error_message_for(@identity, :name) %>
     </div>
   </div>
   
-  <div class="control-group <%= error_class_for(@user, :email) %>">
+  <div class="control-group <%= error_class_for(@identity, :email) %>">
     <%= form.label :email, :class => "control-label" %> 
     <div class="controls">
       <%= form.text_field :email, :class => "input-xlarge" %>
-      <%= error_message_for(@user, :email) %>
+      <%= error_message_for(@identity, :email) %>
     </div>
   </div>
   
-  <div class="control-group <%= error_class_for(@user, :password) %>">
+  <div class="control-group <%= error_class_for(@identity, :password) %>">
     <%= form.label :password, :class => "control-label" %> 
     <div class="controls">
       <%= form.password_field :password, :class => "input-xlarge" %>
-      <%= error_message_for(@user, :password) %>
+      <%= error_message_for(@identity, :password) %>
     </div>
   </div>
   
-  <div class="control-group <%= error_class_for(@user, :password_confirmation) %>">
+  <div class="control-group <%= error_class_for(@identity, :password_confirmation) %>">
     <%= form.label :password_confirmation, :class => "control-label" %> 
     <div class="controls">
       <%= form.password_field :password_confirmation, :class => "input-xlarge" %>
-      <%= error_message_for(@user, :password_confirmation) %>
+      <%= error_message_for(@identity, :password_confirmation) %>
     </div>
   </div>
   

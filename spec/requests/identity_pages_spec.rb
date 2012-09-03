@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "User pages" do
+describe "Identity pages" do
 
   subject { page }
 
@@ -16,8 +16,8 @@ describe "User pages" do
       before { click_button I18n.t(:sign_up) }      
       it { should have_content('error') }
       it { should have_selector('div.alert.alert-error', text: I18n.t("signup.message.error")) }
-      it "should not create user" do
-        expect { click_button I18n.t(:sign_up) }.not_to change(User, :count)  
+      it "should not create identity" do
+        expect { click_button I18n.t(:sign_up) }.not_to change(Identity, :count)  
       end
 
     end
@@ -26,24 +26,24 @@ describe "User pages" do
       let(:email) { 'foo@bar.net' }
 
       before do
-        fill_in User.human_attribute_name(:name),                   :with => "Foo Bar"
-        fill_in User.human_attribute_name(:email),                  :with => email
-        fill_in User.human_attribute_name(:password),               :with => "foobar"
-        fill_in User.human_attribute_name(:password_confirmation),  :with => "foobar"
+        fill_in Identity.human_attribute_name(:name),                   :with => "Foo Bar"
+        fill_in Identity.human_attribute_name(:email),                  :with => email
+        fill_in Identity.human_attribute_name(:password),               :with => "foobar"
+        fill_in Identity.human_attribute_name(:password_confirmation),  :with => "foobar"
       end
 
-      it "should create user" do
-        expect { click_button I18n.t(:sign_up) }.to change(User, :count)  
+      it "should create identity" do
+        expect { click_button I18n.t(:sign_up) }.to change(Identity, :count)  
       end
 
-      describe "after creating a user" do
+      describe "after creating a identity" do
         before { click_button I18n.t(:sign_up) }
-        let(:user) { User.find_by_email(email) }
+        let(:identity) { Identity.find_by_email(email) }
 
-        it { should have_selector('h1', text: user.name) }
+        it { should have_selector('h1', text: identity.name) }
         it { should have_selector('div.alert.alert-success', text: I18n.t("signup.message.success")) }
 
-        describe "after saving the user" do
+        describe "after saving the identity" do
           it { should have_link(I18n.t(:sign_out)) }
         end
       end
@@ -51,11 +51,11 @@ describe "User pages" do
   end
 
   describe "profile" do
-    let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
+    let(:identity) { FactoryGirl.create(:identity) }
+    before { visit identity_path(identity) }
 
     describe "page" do
-      it { should have_selector('h1',    text: user.name) }
+      it { should have_selector('h1',    text: identity.name) }
       it { should have_selector('title', text: I18n.t(:profile)) }
     end
   end
