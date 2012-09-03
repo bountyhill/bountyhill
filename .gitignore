@@ -26,3 +26,4 @@ doc/
 *~
 .project
 .DS_Store
+vendor/bountybased

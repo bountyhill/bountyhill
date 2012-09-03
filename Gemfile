@@ -8,6 +8,12 @@ gem 'bcrypt-ruby', '3.0.1'
 # gem 'jbuilder' # To use Jbuilder templates for JSON
 # gem 'capistrano' # Deploy with Capistrano
 
+gem "expectation"
+gem "resque"
+gem "fnordmetric"
+gem "neography"
+gem "curb"
+gem "twitter"
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
