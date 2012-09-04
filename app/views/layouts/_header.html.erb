@@ -9,7 +9,11 @@
         <span class="icon-bar"></span>
       </a>
       <div class="nav-collapse">
-        <%= render_navigation(:context => :service, :expand_all => true) %>
+        <ul class="nav" id="service">
+          <% %w(about help terms privacy).each do |nav_item| %>
+            <li><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
+          <% end %>
+        </ul>
         <ul class="nav pull-right">
           <% if signed_in? %>          
             <li id="fat-menu" class="dropdown">
