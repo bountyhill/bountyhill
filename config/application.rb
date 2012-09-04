@@ -64,3 +64,5 @@ module Bountyhill
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
   end
 end
+
+Money.default_currency = "CAD"
