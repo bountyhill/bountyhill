@@ -32,27 +32,13 @@ class Identity < ActiveRecord::Base
 
   public
   
-  # Creates an Identity object. This method chooses the right implementation
-  # class, depending on the values passed in, instantiates and saves it, and 
-  # builds a corresponding user object.
-  #
-  # The create method returns the newly built (and probably saved) object.
-  #
-  #   Identity.create { :email => "Whatever"}
-  def self.create(attributes)
-    if attributes[:email]
-      klass = Identity::Email
-    end
+  after_create :create_user_if_missing
 
-    expect! klass => Class
-    
-    transaction do
-      klass.new(attributes).tap do |identity|
-        next unless identity.save
-        user = User.new 
-        user.identities << identity
-        user.save!
-      end
-    end
+  def create_user_if_missing
+    return if self.user
+  
+    user = User.new 
+    user.identities << self
+    user.save!
   end
 end

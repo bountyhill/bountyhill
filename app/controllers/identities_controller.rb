@@ -6,7 +6,7 @@ class IdentitiesController < ApplicationController
   end
 
   def create
-    identity = Identity.create(params[:identity])
+    identity = Identity::Email.create(params[:identity])
 
     # If identity was valid and could be saved.
     if identity.id
