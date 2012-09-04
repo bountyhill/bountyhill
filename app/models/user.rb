@@ -1,9 +1,24 @@
+require_dependency "identity"
+require_dependency "identity/twitter"
+require_dependency "identity/email"
+
 # The User model.
 #
 # A User model reflects a single user. This is separate from a user identity;
 # which collects information about a user's account from an identity provider
 # (say Twitter or Facebook).
 class User < ActiveRecord::Base
+
+  before_create :create_remember_token
+
+  private
+
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
+  
+  public
+
   #
   # Each user has at least a single identity, but can probably have more
   # than one. Each identity should be from a different identity provider
@@ -15,7 +30,7 @@ class User < ActiveRecord::Base
   # Match identity symbol to class.
   IDENTITY_MODES = {
     :twitter => Identity::Twitter,
-    :email => Identity::Email
+    :email   => Identity::Email
   }
   
   # returns a user's identity in a specific mode, which is needed to
@@ -52,10 +67,39 @@ class User < ActiveRecord::Base
     identity(mode) || raise(MissingIdentity, "No #{mode} identity")
   end
 
-  # atomatic pseudo attributes: these methods try to return a sensible
-  # attribute value from one of the user's identities.
+  # -- automatic pseudo "attributes" : these methods try to return
+  # a sensible attribute value from one of the user's identities.
+
+  # return the user's name
   def name
     identity_for_name = identity(:email) || identity(:twitter)
     identity_for_name.name
+  end
+
+  # return the user's email
+  def email
+    if identity = self.identity(:email)
+      identity.email
+    end
+  end
+
+  # returns a user's avatar URL
+  def avatar(options = {})
+    expect! options => { :default => [ String, nil ]}
+
+    url = (identity = self.identity(:twitter)) && identity.avatar(options)
+    url ||= (identity = self.identity(:email)) && identity.avatar(options)
+    url || options[:default]
+  end
+
+  private
+  
+  before_create :set_random_id
+  
+  def set_random_id
+    while true do
+      self.id = SecureRandom.random_number(0x80000000)
+      break if self.class.first(:conditions => { :id => self.id }).nil?
+    end
   end
 end

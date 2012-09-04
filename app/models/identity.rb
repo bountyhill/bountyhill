@@ -21,10 +21,38 @@ class Identity < ActiveRecord::Base
   
   after_destroy :delete_user_if_deleted_last_identity
   
+  serialize :options, Hash
+  
   private
   
   def delete_user_if_deleted_last_identity
-    return unless user.identities.blank?
+    return if user.identities.any? { |identity| identity.id != self.id }
     user.destroy
+  end
+
+  public
+  
+  # Creates an Identity object. This method chooses the right implementation
+  # class, depending on the values passed in, instantiates and saves it, and 
+  # builds a corresponding user object.
+  #
+  # The create method returns the newly built (and probably saved) object.
+  #
+  #   Identity.create { :email => "Whatever"}
+  def self.create(attributes)
+    if attributes[:email]
+      klass = Identity::Email
+    end
+
+    expect! klass => Class
+    
+    transaction do
+      klass.new(attributes).tap do |identity|
+        next unless identity.save
+        user = User.new 
+        user.identities << identity
+        user.save!
+      end
+    end
   end
 end

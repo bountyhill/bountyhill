@@ -1,6 +1,8 @@
 module SessionsHelper
 
   def sign_in(user)
+    expect! user => User
+    
     session[:remember_token] = user.remember_token
     current_user = user
   end
@@ -19,11 +21,8 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= user_from_remember_token
+    @current_user ||= if remember_token = session[:remember_token]
+      User.find_by_remember_token(remember_token)
+    end
   end
-
-  def user_from_remember_token
-    Identity::Email.find_by_remember_token(session[:remember_token])
-  end
-
 end

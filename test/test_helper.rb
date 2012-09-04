@@ -4,6 +4,7 @@ require 'rails/test_help'
 
 require 'test/unit'
 require 'test/unit/ui/console/testrunner'   
+require 'mocha'
 
 class Test::Unit::UI::Console::TestRunner
   def guess_color_availability; true; end

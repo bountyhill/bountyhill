@@ -4,6 +4,8 @@ Bountyhill::Application.routes.draw do
     match static_page => "static##{static_page}"    
   end
 
+  resources :users
+
   resources :identities
   match 'signup'  => 'identities#new'
   match 'profile' => 'identities#show'

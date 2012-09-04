@@ -1,21 +1,22 @@
 class IdentitiesController < ApplicationController
+  #
+  # /signup - create an identity by email.
   def new
     @identity = Identity::Email.new
   end
 
-  def show
-    @identity = Identity::Email.find(params[:id])
-  end
-
   def create
-    @identity = Identity::Email.new(params[:identity])
-    if @identity.save
-      sign_in @identity
-      flash[:success] = I18n.t("signin.message.success", :default => "Welcome on bountyhill!", :name => @identity.name)
-      redirect_to @identity
+    identity = Identity.create(params[:identity])
+
+    # If identity was valid and could be saved.
+    if identity.id
+      flash[:success] = I18n.t("signin.message.success", 
+                          :default => "Welcome on bountyhill!", :name => identity.name)
+      sign_in identity.user
+      redirect_to identity.user
     else
+      @identity = identity
       render :new
     end
   end
-
 end

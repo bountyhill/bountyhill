@@ -3,10 +3,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if (user = Identity::Email.find_by_email(params[:session][:email])) && user.authenticate(params[:session][:password])
+    email, password = *params[:session].values_at(:email, :password)
+    if identity = Identity::Email.authenticate(email, password)
       flash[:success] = I18n.t("signin.message.success")
-      sign_in user
-      redirect_to user
+      
+      sign_in identity.user
+      redirect_to identity.user
     else
       flash.now[:error] = I18n.t("signin.message.error")
       render 'new'

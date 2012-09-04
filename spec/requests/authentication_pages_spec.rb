@@ -25,15 +25,16 @@ describe "Authentication pages" do
     end
 
     describe "with valid information" do
-      let(:user) { FactoryGirl.create(:identity) }
+      let(:identity) do Factory(:identity) end
+      
       before do
-        fill_in "Email",    with: user.email
-        fill_in "Password", with: user.password
+        fill_in "Email",    with: identity.email
+        fill_in "Password", with: identity.password
         click_button I18n.t(:sign_in)
       end
 
       it { should have_selector('title', text: I18n.t(:profile)) }
-      it { should     have_link(I18n.t(:profile),   href: identity_path(user)) }
+      it { should     have_link(I18n.t(:profile),   href: user_path(identity.user)) }
       it { should     have_link(I18n.t(:sign_out),  href: signout_path) }
       it { should_not have_link(I18n.t(:sign_in),   href: signin_path) }
 

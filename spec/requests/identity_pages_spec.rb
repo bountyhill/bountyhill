@@ -49,14 +49,4 @@ describe "Identity pages" do
       end
     end
   end
-
-  describe "profile" do
-    let(:identity) { FactoryGirl.create(:identity) }
-    before { visit identity_path(identity) }
-
-    describe "page" do
-      it { should have_selector('h1',    text: identity.name) }
-      it { should have_selector('title', text: I18n.t(:profile)) }
-    end
-  end
 end

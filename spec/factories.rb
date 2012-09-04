@@ -1,11 +1,11 @@
 FactoryGirl.define do
-  factory :identity, :class => "Identity::Email" do
+  factory :identity, :class => "Identity::Email" do |i|
     name     "Foo Bar"
     email    "foo.bar@example.com"
     password "foobar"
-  end
 
-  factory :user do |u|
-    u.after_build { |user| user.identities << Factory(:identity, :user => user) }
+    i.after_build do |identity| 
+      identity.user = User.create! { |user| user.identities << identity }
+    end
   end
 end

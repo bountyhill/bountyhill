@@ -13,7 +13,7 @@ describe Identity do
 
   subject { @identity }
 
-  %w(name email password password_confirmation password_digest authenticate remember_token).each do |attribute|
+  %w(name email password password_confirmation password_digest authenticate).each do |attribute|
     it { should respond_to(attribute) }
   end
 
@@ -24,11 +24,6 @@ describe Identity do
       before { @identity.send("#{attribute}=", " ") }
       it { should_not be_valid }
     end
-  end
-
-  describe "remember token is present" do
-    before { @identity.save }
-    its(:remember_token) { should_not be_blank }
   end
 
   describe "when name is too long" do

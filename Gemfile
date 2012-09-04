@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rspec-rails', '2.8.1'
   gem 'capybara', '1.1.2'
   gem 'test-unit'
+  gem 'mocha'
 end
 
 group :development do
