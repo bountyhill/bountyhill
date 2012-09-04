@@ -14,6 +14,7 @@ require_relative "../vendor/bountybase/setup"
 module Bountyhill
   class Application < Rails::Application
     require "middleware/twitter_auth_middleware"
+    require "middleware/auto_title_middleware"
     require "app"
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -73,6 +74,9 @@ module Bountyhill
     twitter_auth_config[:path] ||= "tw"
     
     config.middleware.use ::TwitterAuthMiddleware, twitter_auth_config
+
+    # Configure and install AutoTitleMiddleware
+    config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
 end
 
