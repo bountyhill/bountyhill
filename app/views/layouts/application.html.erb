@@ -11,6 +11,21 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container-fluid">
+    <% if current_user %>
+    <div class="content">
+      <% if current_user.identity?(:twitter) %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Thanks!</strong> You are logged in using twitter, too.
+      </div>
+      <% else %>
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Warning!</strong> Best check yo self, you're not looking too good.
+      </div>
+      <% end %>
+    </div>
+    <% end %>
     <div class="content">
       <%= yield %>
     </div>

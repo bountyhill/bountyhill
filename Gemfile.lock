@@ -31,6 +31,7 @@ GEM
     addressable (2.3.2)
     archive-tar-minitar (0.5.2)
     arel (3.0.2)
+    awesome_print (1.0.2)
     bcrypt-ruby (3.0.1)
     bson (1.7.0)
     bson_ext (1.7.0)
@@ -151,6 +152,7 @@ GEM
       rubyzip
     netrc (0.7.7)
     nokogiri (1.5.5)
+    oauth (0.4.7)
     os (0.9.6)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -248,6 +250,10 @@ GEM
       faraday (~> 0.8)
       multi_json (~> 1.3)
       simple_oauth (~> 0.1.6)
+    twitter_oauth (0.4.3)
+      json (>= 1.1.9)
+      mime-types (>= 1.16)
+      oauth (>= 0.4.1)
     tzinfo (0.3.33)
     vegas (0.1.11)
       rack (>= 1.0.0)
@@ -264,6 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bcrypt-ruby (= 3.0.1)
   capybara
   coffee-rails
@@ -287,3 +294,4 @@ DEPENDENCIES
   sass-rails
   test-unit
   twitter
+  twitter_oauth

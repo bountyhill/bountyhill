@@ -19,7 +19,7 @@ en:
   settings: Settings
   signup:
     bountyhill: "Sign up with your name and email"
-    twitter: "Sign in with twitter"
+    twitter: "Sign up with twitter"
     message:
       error: Please correct the errors below and then resubmit the form!
       success: "Welcome on bountyhill!"

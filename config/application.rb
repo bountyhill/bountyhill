@@ -9,8 +9,13 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+require_relative "../vendor/bountybase/setup"
+
 module Bountyhill
   class Application < Rails::Application
+    require "middleware/twitter_auth_middleware"
+    require "app"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -62,6 +67,12 @@ module Bountyhill
 
     # Precompile *all* assets, except those that start with underscore
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+
+    # Configure and install TwitterAuthMiddleware 
+    twitter_auth_config = App.config["twitter-oauth"]
+    twitter_auth_config[:path] ||= "tw"
+    
+    config.middleware.use ::TwitterAuthMiddleware, twitter_auth_config
   end
 end
 
