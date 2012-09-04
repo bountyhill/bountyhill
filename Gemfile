@@ -6,6 +6,7 @@ gem "heroku"
 gem 'bcrypt-ruby', '3.0.1'
 gem "money"
 
+gem "rdiscount"
 gem "awesome_print"
 gem "twitter_oauth"
 # gem 'jbuilder' # To use Jbuilder templates for JSON
