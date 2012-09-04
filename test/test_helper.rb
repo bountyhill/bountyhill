@@ -2,6 +2,13 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'test/unit'
+require 'test/unit/ui/console/testrunner'   
+
+class Test::Unit::UI::Console::TestRunner
+  def guess_color_availability; true; end
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #

@@ -5,3 +5,7 @@
 require File.expand_path('../config/application', __FILE__)
 
 Bountyhill::Application.load_tasks
+
+#
+# This makes sure that the default rake task runs the "test:units" task also.
+task :default => "test:units"

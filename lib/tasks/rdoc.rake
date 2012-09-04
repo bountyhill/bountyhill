@@ -8,7 +8,7 @@ RDoc::Task.new do |rdoc|
   rdoc.title = "Bountyhill #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-  rdoc.rdoc_files.include('app/**/*.rb')
+  rdoc.rdoc_files.include('app/models/**/*.rb')
 end
 
 
