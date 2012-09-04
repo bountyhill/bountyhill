@@ -8,6 +8,7 @@ require_dependency "identity/email"
 # which collects information about a user's account from an identity provider
 # (say Twitter or Facebook).
 class User < ActiveRecord::Base
+  include ActiveRecord::RandomID
 
   before_create :create_remember_token
 
@@ -90,16 +91,5 @@ class User < ActiveRecord::Base
     url = (identity = self.identity(:twitter)) && identity.avatar(options)
     url ||= (identity = self.identity(:email)) && identity.avatar(options)
     url || options[:default]
-  end
-
-  private
-  
-  before_create :set_random_id
-  
-  def set_random_id
-    while true do
-      self.id = SecureRandom.random_number(0x80000000)
-      break if self.class.first(:conditions => { :id => self.id }).nil?
-    end
   end
 end
