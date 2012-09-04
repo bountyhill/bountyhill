@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 2) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,21 @@ ActiveRecord::Schema.define(:version => 2) do
     t.text     "options"
   end
 
-  add_index "identities", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "identities", ["email"], :name => "index_identities_on_email", :unique => true
   add_index "identities", ["user_id", "id", "type"], :name => "index_identities_on_user_id_and_id_and_type", :unique => true
+
+  create_table "quests", :force => true do |t|
+    t.string   "title",           :null => false
+    t.text     "description",     :null => false
+    t.integer  "bounty_in_cents", :null => false
+    t.integer  "user_id"
+    t.datetime "started_at"
+    t.datetime "ends_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "quests", ["user_id"], :name => "index_quests_on_user_id"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",     :null => false

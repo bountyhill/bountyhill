@@ -12,9 +12,9 @@ class CreateUsersAndIdentities < ActiveRecord::Migration
       t.text     "options"
     end
 
-    add_index "identities", ["email"], :name => "index_users_on_email", :unique => true
-    add_index "identities", ["remember_token"], :name => "index_users_on_remember_token"
-    add_index "identities", ["user_id", "id", "type"], :name => "index_identities_on_user_id_and_id_and_type", :unique => true
+    add_index "identities", ["email"], :unique => true
+    add_index "identities", ["remember_token"]
+    add_index "identities", ["user_id", "id", "type"], :unique => true
 
     create_table "users", :force => true do |t|
       t.datetime "created_at", :null => false
