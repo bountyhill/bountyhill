@@ -4,6 +4,17 @@ class ActiveModel::Errors
   end
 end
 
+module ActiveRecord::Base
+  # returns the first error message for a given attribute
+  def error_message_for(attribute)
+    errors = self.errors || {}
+    error_messages = errors[attribute] || []
+    error_messages.first
+  end
+end
+
+# -- included RandomID to have newly created models have a random ID.
+
 module ActiveRecord::RandomID
   def self.included(klass)
     klass.before_create :set_random_id

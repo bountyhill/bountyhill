@@ -1,19 +1,13 @@
 module ApplicationHelper
-
-  # Returns the full title on a per-page basis
-  def page_title(title)
-    main_title = "bountyhill"
-    return main_title if title.blank?
-    "#{main_title} | #{title}"
+  def error_message_for(object, attribute)
+    if error_message = object.error_message_for(attribute)
+      content_tag(:span, error_message, :class => "help-inline")
+    end
   end
 
-  def error_message_for(object, attribue)
-    return if (error_messages = object.errors[attribue]).blank?
-    content_tag(:span, error_messages.first, :class => "help-inline")
+  def error_class_for(object, attribute)
+    if object.error_message_for(attribute)
+      "error"
+    end
   end
-
-  def error_class_for(object, attribue)
-    return "error" unless object.errors[attribue].size.zero?
-  end
-
 end
