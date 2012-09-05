@@ -18,3 +18,14 @@ module ActiveRecord::RandomID
     end
   end
 end
+
+module ActiveRecord::Base::MoneySupport
+  def money(column)
+    composed_of column,
+      :class_name => "Money",
+      :mapping => [["#{column}_cents", "#{column}_cents"]],
+      :constructor => Proc.new { |cents| Money.new(cents || 0, Money.default_currency) }
+  end
+end
+
+ActiveRecord::Base.extend ActiveRecord::Base::MoneySupport
