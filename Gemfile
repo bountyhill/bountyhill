@@ -41,3 +41,4 @@ group :development, :test do
 end
 
 gem 'pg'
+gem 'transloadit-rails'

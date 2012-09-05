@@ -1,0 +1,42 @@
+auth:
+  key:      '266cb911e56946729f63cb8ca72ff614'
+  secret:   '335ba676790fbb55add3797a4d20acf70c6f6461'
+  duration: 1800
+  # 30 minute validity period for signed upload forms
+
+templates:
+  
+  # template identified by template_id
+  # s3_store: '4d2e...'
+
+  image_resize:
+    steps:
+      resize:
+        robot : '/image/resize'
+        format: 'jpg'
+        width : 320
+        height: 200
+  
+  # template defined inline
+  upload:
+    steps:
+      thumbnail:
+        robot: /image/resize
+        use: ':original'
+        width: 50
+        height: 50
+      fullsize:
+        robot: /image/resize
+        use: ':original'
+        width: 320
+        height: 1000
+      export:
+        use:
+        - ':original'
+        - fullsize
+        - thumbnail
+        robot: /s3/store
+        key: 183DWY3TS8SWQQJAAY82
+        secret: NndG7WPbbBb3cE/X7MB797U/vIZJnxhHjYcvaH1g
+        bucket: bountyhill-dev
+        path: ${assembly.id}/${previous_step.name}_${file.url_name}

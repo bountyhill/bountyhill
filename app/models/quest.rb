@@ -10,6 +10,8 @@ class Quest < ActiveRecord::Base
   
   belongs_to :user
 
+  serialize :image, Hash
+
   # received offers
   # has_many :received_hints, :class_name => "Hint"
 end

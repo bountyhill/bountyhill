@@ -5,8 +5,32 @@
   <%= form.control_group :title %>
   <%= form.control_group :description, :text_area, :rows => 5 %>
   <%= form.control_group :bounty %>
-    
+
+  <div class="control-group <%= error_class_for(form.object, :image_url) %>">
+    <% if nil %>
+      <%= image_tag params[:transloadit][:results][:resize].first[:url] %>
+    <% end %>
+
+    <%= transloadit :upload %>
+    <%= form.label      :image_url, 'File to upload' %>
+    <%= form.file_field :image_url %>
+  </div>
+
   <div class="form-actions">
     <%= form.submit I18n.t(:update), :class => "btn btn-primary" %>
   </div>
 </fieldset>
+
+
+<script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
+<script type="text/javascript">
+   // We call .transloadit() after the DOM is initialized:
+   $(document).ready(function() {
+     $('#quest_form').transloadit({
+        wait: true
+     });
+     console.log("transloaded it!");
+   });
+</script>
+
+<!-- <%= debug transloadit_jquerify :quest_form, :wait => true %>     -->

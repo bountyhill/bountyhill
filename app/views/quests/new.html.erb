@@ -1,11 +1,14 @@
-<div class="hero-unit">
-  <h1>New quest</h1>
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span11">
+    <h1>New quest</h1>
+  </div>
 </div
 
 <div class="row">
   <div class="span1">&nbsp;</div>
   <div class="span5">
-    <%= form_for @quest, :html => {:class => "form-horizontal"} do |f| %>
+    <%= form_for @quest, :html => {:class => "form-horizontal", :id => "quest_form"} do |f| %>
       <%= render :partial => "form", :locals => { :form => f } %>
     <% end %>
   </div>
@@ -13,6 +16,8 @@
     "Hey ho, lets go"
   </div>
 </div>
+
+<%= transloadit_jquerify :quest_form, :wait => true %>
 
 <div class="row">
   <div class="span1">

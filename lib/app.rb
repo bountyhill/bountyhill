@@ -3,7 +3,7 @@ module App
     configs = YAML.load File.read(path)
 
     config, env_setting = *configs.values_at("default", Rails.env)
-    (config || {}).update(env_setting || {})
+    (config || {}).deep_merge(env_setting || {})
   rescue Errno::ENOENT
     W "Missing config file: #{path}"
     {}
@@ -14,7 +14,7 @@ module App
       config = load_config_from_yaml_file("config/app.defaults.yml")
       local_config = load_config_from_yaml_file("config/app.local.yml")
 
-      config.merge local_config
+      config.deep_merge local_config
     end
   end
 end

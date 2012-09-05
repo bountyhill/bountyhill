@@ -7,3 +7,15 @@ default:
   # User roles for specific users.
   roles:
     "@radiospiel":  "admin"
+
+  # 
+  aws:
+    key:          "183DWY3TS8SWQQJAAY82"
+    secret:       "NndG7WPbbBb3cE/X7MB797U/vIZJnxhHjYcvaH1g"
+  transloadit:
+    key:          266cb911e56946729f63cb8ca72ff614
+    secret:       335ba676790fbb55add3797a4d20acf70c6f6461
+
+development:
+  transloadit:
+    bucket:       "bountyhill-dev"
