@@ -70,10 +70,7 @@ module Bountyhill
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
     # Configure and install TwitterAuthMiddleware 
-    twitter_auth_config = App.config["twitter-oauth"]
-    twitter_auth_config[:path] ||= "tw"
-    
-    config.middleware.use ::TwitterAuthMiddleware, twitter_auth_config
+    config.middleware.use ::TwitterAuthMiddleware, App.config.twitter_oauth.merge(:path => "tw")
 
     # Configure and install AutoTitleMiddleware
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
