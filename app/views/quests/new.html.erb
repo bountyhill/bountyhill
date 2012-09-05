@@ -1,0 +1,26 @@
+<div class="hero-unit">
+  <h1>New quest</h1>
+</div
+
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span5">
+    <%= form_for @quest, :html => {:class => "form-horizontal"} do |f| %>
+      <%= render :partial => "form", :locals => { :form => f } %>
+    <% end %>
+  </div>
+  <div class="span6">
+    "Hey ho, lets go"
+  </div>
+</div>
+
+<div class="row">
+  <div class="span1">
+    &nbsp;
+  </div>
+  <div class="span5">
+    <%= link_to 'Back', quests_path %>
+  </div>
+  <div class="span6">&nbsp;
+  </div>
+</div>

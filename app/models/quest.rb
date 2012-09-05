@@ -4,18 +4,12 @@ class Quest < ActiveRecord::Base
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }
   
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :bounty
   
   money :bounty
-  validates_numericality_of :bounty_in_cents, :greater_than_or_equal_to => 0
   
-  # Attributes
-  # returns the bounty in ""
-  def bounty
-    bounty_in_cents * 0.01
-  end
+  belongs_to :user
 
-  def bounty=(bounty)
-    self.bounty_in_cents = bounty * 100
-  end
+  # received offers
+  # has_many :received_hints, :class_name => "Hint"
 end

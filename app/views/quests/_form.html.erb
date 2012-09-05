@@ -1,0 +1,12 @@
+<fieldset>
+  <legend><%= I18n.t(:"quest.bountyhill")%></legend>
+  <%= render 'shared/error_messages', :object => nil, :scope => "quest" %>
+  
+  <%= form.control_group :title %>
+  <%= form.control_group :description, :text_area, :rows => 5 %>
+  <%= form.control_group :bounty %>
+    
+  <div class="form-actions">
+    <%= form.submit I18n.t(:update), :class => "btn btn-primary" %>
+  </div>
+</fieldset>

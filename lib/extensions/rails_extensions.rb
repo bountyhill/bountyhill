@@ -95,7 +95,8 @@ class ActionView::Helpers::FormBuilder
 
   DEFAULT_INPUT_FIELD_OPTIONS = {
     :text_field =>      { :class => "input-xlarge" },
-    :password_field =>  { :class => "input-xlarge" }
+    :password_field =>  { :class => "input-xlarge" },
+    :text_area =>      { :class => "input-xlarge" }
   }
   
   # Creating a control_group.
