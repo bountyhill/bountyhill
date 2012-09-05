@@ -40,3 +40,60 @@ module ActiveRecord::Base::MoneySupport
 end
 
 ActiveRecord::Base.extend ActiveRecord::Base::MoneySupport
+
+# -- extend FormBuilder with a control_group method which renders
+#    a default control group for Twitter Bootstrap forms. 
+
+ActionView::Helpers::FormBuilder
+
+class ActionView::Helpers::FormBuilder
+  extend Forwardable
+  delegate [:error_class_for, :error_message_for] => :@template
+
+  # content_tag reimplementation for FormBuilder.
+  #
+  # It would be nice to just use @template.content_tag, but
+  # Rails' HTML escaping messes up things.
+  def content_tag(name, *args, &block)
+    attrs = args.extract_options!
+    args.push yield if block_given?
+    
+    opening_tag = if args.empty?
+      name
+    else
+      escaped_attrs = attrs.map { |k, v| "#{k}='#{CGI.escapeHTML(v)}'" }
+      "#{name} #{escaped_attrs.join(" ")}"
+    end
+
+    "<#{opening_tag}>#{args.join("\n")}</#{name}>".html_safe
+  end
+
+  # Shortcut for a div block.
+  def div_tag(*args, &block)
+    content_tag :div, *args, &block
+  end
+
+  DEFAULT_INPUT_FIELD_OPTIONS = {
+    :text_field =>      { :class => "input-xlarge" },
+    :password_field =>  { :class => "input-xlarge" }
+  }
+  
+  # Creating a control_group.
+  def control_group(name, field_type = :text_field, input_field_options = {})
+    expect! respond_to?(field_type)
+    
+    if default_input_field_options = DEFAULT_INPUT_FIELD_OPTIONS[field_type]
+      input_field_options = default_input_field_options.merge(input_field_options)
+    end
+
+    div_tag :class => "control-group #{error_class_for(object, name)}" do
+      label = self.label name, :class => "control-label"
+      controls = div_tag :class => "controls" do
+        text_field = self.send field_type, name, input_field_options
+        errors = error_message_for(object, name)
+        "#{text_field}\n#{errors}\n"
+      end
+      "#{label}\n#{controls}"
+    end
+  end
+end
