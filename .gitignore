@@ -28,3 +28,4 @@ doc/
 .DS_Store
 vendor/bountybased
 rdoc
+config/app.local.yml
