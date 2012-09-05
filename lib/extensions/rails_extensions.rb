@@ -4,7 +4,7 @@ class ActiveModel::Errors
   end
 end
 
-module ActiveRecord::Base
+class ActiveRecord::Base
   # returns the first error message for a given attribute
   def error_message_for(attribute)
     errors = self.errors || {}
@@ -30,12 +30,32 @@ module ActiveRecord::RandomID
   end
 end
 
+# -- add a ActiveRecord::Base.money method to help set up money columns.
+
 module ActiveRecord::Base::MoneySupport
+  M = ActiveRecord::Base::MoneySupport
+  
   def money(column)
+    cents_column = "#{column}_in_cents"
+    
+    validates_numericality_of cents_column, :greater_than_or_equal_to => 0
+
     composed_of column,
-      :class_name => "Money",
-      :mapping => [["#{column}_cents", "#{column}_cents"]],
-      :constructor => Proc.new { |cents| Money.new(cents || 0, Money.default_currency) }
+      :class_name   => "Money",
+      :mapping      => [ [ cents_column, "cents" ] ],
+      :constructor  => M.method(:construct_money),
+      :converter    => M.method(:convert_to_money)
+  end
+  
+  def self.construct_money(cents)
+    Money.new(cents || 0, Money.default_currency)
+  end
+  
+  def self.convert_to_money(value)
+    unless value.respond_to?(:to_money)
+      raise(ArgumentError, "Can't convert #{value.class} to Money")
+    end
+    value.to_money
   end
 end
 

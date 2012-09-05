@@ -80,4 +80,4 @@ module Bountyhill
   end
 end
 
-Money.default_currency = "CAD"
+Money.default_currency = "EUR"
