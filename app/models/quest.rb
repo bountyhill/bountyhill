@@ -4,14 +4,17 @@ class Quest < ActiveRecord::Base
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }
   
-  attr_accessible :title, :description, :bounty
+  serialize :image, Hash
   
   money :bounty
   
   belongs_to :user
+  attr_accessible :title, :description, :bounty, :image
 
-  serialize :image, Hash
-
-  # received offers
-  # has_many :received_hints, :class_name => "Hint"
+  def ui_mode
+    if readonly?      then "show"
+    elsif new_record? then "create" 
+    else "edit"
+    end
+  end
 end

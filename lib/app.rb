@@ -14,7 +14,27 @@ module App
       config = load_config_from_yaml_file("config/app.defaults.yml")
       local_config = load_config_from_yaml_file("config/app.local.yml")
 
-      config.deep_merge local_config
+      config = config.deep_merge(local_config)
+      config.extend Structly
+    end
+  end
+  
+  module Structly
+    def fetch(key)
+      value = super(key)
+      value.extend(Structly) if value.is_a?(Hash)
+      value
+    end
+    
+    def method_missing(sym)
+      if (key = sym.to_s) =~ /(.*)!$/
+        key, super_if_missing = $1, true
+      end
+      
+      return fetch(key) if key?(key)
+      return fetch(key.to_sym) if key?(key.to_sym)
+      
+      super if super_if_missing
     end
   end
 end

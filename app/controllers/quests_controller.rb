@@ -1,3 +1,9 @@
+class Money
+  def to_full_string
+    "#{self} #{currency_as_string}"
+  end
+end
+
 class QuestsController < ApplicationController
   include Transloadit::Rails::ParamsDecoder
   
@@ -16,7 +22,8 @@ class QuestsController < ApplicationController
   # GET /quests/1.json
   def show
     @quest = Quest.find(params[:id])
-
+    @quest.readonly!
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @quest }
@@ -67,9 +74,6 @@ class QuestsController < ApplicationController
   # POST /quests.json
   def create
     params[:quest][:image] = image_param
-    raise params[:quest].inspect
-    params[:quest][:image] = image_param
-
     @quest = Quest.new(params[:quest])
 
     respond_to do |format|

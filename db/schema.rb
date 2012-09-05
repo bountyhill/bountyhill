@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 4) do
     t.datetime "ends_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.text     "image"
   end
 
   add_index "quests", ["user_id"], :name => "index_quests_on_user_id"

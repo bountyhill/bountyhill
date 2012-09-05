@@ -1,36 +1,24 @@
-<fieldset>
-  <legend><%= I18n.t(:"quest.bountyhill")%></legend>
-  <%= render 'shared/error_messages', :object => nil, :scope => "quest" %>
-  
-  <%= form.control_group :title %>
-  <%= form.control_group :description, :text_area, :rows => 5 %>
-  <%= form.control_group :bounty %>
+<%= form_for @quest, :html => {:class => "form-horizontal"}, :id => "quest_form" do |form| %>
+  <fieldset>
+    <legend><%= I18n.t(:"quest.legend")%></legend>
+    <%= render 'shared/error_messages', :object => nil, :scope => "quest" %>
 
-  <div class="control-group <%= error_class_for(form.object, :image_url) %>">
-    <% if nil %>
-      <%= image_tag params[:transloadit][:results][:resize].first[:url] %>
-    <% end %>
+    <%= form.control_group :title %>
+    <%= form.control_group :description, :text_area, :rows => 5 %>
+    <%= form.control_group :bounty %>
+    <%= form.control_group :image, :transloadit %>
 
-    <%= transloadit :upload %>
-    <%= form.label      :image_url, 'File to upload' %>
-    <%= form.file_field :image_url %>
-  </div>
-
-  <div class="form-actions">
-    <%= form.submit I18n.t(:update), :class => "btn btn-primary" %>
-  </div>
-</fieldset>
-
+    <%= 
+      if @quest.readonly?
+        form.actions :edit => edit_quest_path(@quest), :all => quests_path
+      elsif @quest.new_record?
+        form.actions :all => quests_path
+      else
+        form.actions :show => @quest, :all => quests_path
+      end
+     %>
+  </fieldset>
+<% end %>
 
 <script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
-<script type="text/javascript">
-   // We call .transloadit() after the DOM is initialized:
-   $(document).ready(function() {
-     $('#quest_form').transloadit({
-        wait: true
-     });
-     console.log("transloaded it!");
-   });
-</script>
-
-<!-- <%= debug transloadit_jquerify :quest_form, :wait => true %>     -->
+<%= transloadit_jquerify :quest_form, :wait => true %>

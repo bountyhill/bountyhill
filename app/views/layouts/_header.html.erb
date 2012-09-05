@@ -10,7 +10,7 @@
       </a>
       <div class="nav-collapse">
         <ul class="nav" id="service">
-          <% %w(about help terms privacy).each do |nav_item| %>
+          <% %w(about help quests).each do |nav_item| %>
             <li><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
           <% end %>
         </ul>

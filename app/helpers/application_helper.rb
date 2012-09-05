@@ -10,4 +10,23 @@ module ApplicationHelper
       "error"
     end
   end
+
+  def xmp(s)
+    content_tag :xmp, s
+  end
+
+  def markdown(name)
+    html = render :partial => name
+    html.html_safe
+  end
+
+  def image_for(quest, size = "thumbnail")
+    expect! size.to_s => [ "thumbnail", "fullsize", "original" ]
+
+    hash = quest.image[size.to_s] || {}
+
+    url = hash["url"] #.gsub(/^(http|https):/, "")
+
+    image_tag url, :title => quest.title, :width => hash["width"], :height => hash["height"]
+  end
 end

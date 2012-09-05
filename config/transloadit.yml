@@ -1,7 +1,7 @@
 <% config = App.config %>
 
 auth:
-  key:      <%= config.transloadit.key! %>
+  key:      <%= App.config.transloadit.key! %>
   secret:   <%= config.transloadit.secret! %>
   duration: 1800
   # 30 minute validity period for signed upload forms
