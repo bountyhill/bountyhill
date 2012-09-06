@@ -3,7 +3,9 @@ $(function() {
   $('.etip a').tooltip({ 'placement':'left' });
   $('.wtip a').tooltip({ 'placement':'right' });
   $('.tip a').tooltip();
-  
+
+  if(false) {
+    
   // TWITTER //
   $("#twitter span").tweet({
     username: "ziceinclude",
@@ -200,6 +202,9 @@ $(function() {
              $('.bg-alpha').hide();
           }  
   }
+  
+  }
+  
   // Check browser fixbug
   var mybrowser=navigator.userAgent;
   if(mybrowser.indexOf('MSIE')>0){$('#scroller  ').css('padding-top', '20px'); $('#imglist li ').css('margin-top', '25px');}
@@ -209,6 +214,7 @@ $(function() {
   if(mybrowser.indexOf('Safari')>0){}    
 
 });  
+
   // Contact Submiting form
   function Contact_form(form, options){
     // text on load you change , 0: No Overlay , 1 loading with  Overlay 
@@ -249,12 +255,16 @@ $(function() {
       $('#preloader').fadeOut(400,function(){ $('#overlay').fadeOut(); $.fancybox.close(); }).remove();
      }
 
+if(false) {
+
 $(window).load(function() {
-               
+
   // BlackAndWhite
   $('.bwWrapper').BlackAndWhite({
     hoverEffect:true,
     webworkerPath: 'components/BlackAndWhite/'
   });
-  
+
 });
+    
+}
