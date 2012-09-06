@@ -1,8 +1,13 @@
 @charset "utf-8";
-@import url("theme-changer.css");
-@import url("ui.custom.css");
-@import url("../components/flexslider/flexslider.css");
-@import url("../components/fancybox/jquery.fancybox.css");
+@import url("inception/css/theme-changer.css");
+@import url("inception/css/ui.custom.css");
+/*
+@import url("inception/css/style1.css");
+@import url("inception/css/style2.css");
+*/
+@import url("inception/css/style3.css");
+@import url("inception/components/flexslider/flexslider.css");
+@import url("inception/components/fancybox/jquery.fancybox.css");
 
 /*
 ------------------------------------------------------------
@@ -11,50 +16,50 @@
 */
  @font-face {
  font-family: 'socialicoz';
- src: url('fonts/socialicoz/socialicoz.eot');
- src: url('fonts/socialicoz/socialicoz.eot?#iefix') format('embedded-opentype'), url('fonts/socialicoz/socialicoz.woff') format('woff'), url('fonts/socialicoz/socialicoz.ttf') format('truetype'), url('fonts/socialicoz/socialicoz.svg#SocialIconsMedium') format('svg');
+ src: url('inception/fonts/socialicoz/socialicoz.eot');
+ src: url('inception/fonts/socialicoz/socialicoz.eot?#iefix') format('embedded-opentype'), url('inception/fonts/socialicoz/socialicoz.woff') format('woff'), url('inception/fonts/socialicoz/socialicoz.ttf') format('truetype'), url('inception/fonts/socialicoz/socialicoz.svg#SocialIconsMedium') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'WebSymbolsRegular';
- src: url('fonts/websymbols/websymbols-regular-webfont.eot');
- src: url('fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/websymbols/websymbols-regular-webfont.woff') format('woff'), url('fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'), url('fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+ src: url('inception/fonts/websymbols/websymbols-regular-webfont.eot');
+ src: url('inception/fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/websymbols/websymbols-regular-webfont.woff') format('woff'), url('inception/fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'), url('inception/fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'OpenSansLight';
- src: url('fonts/open-sans/OpenSans-Light-webfont.eot');
- src: url('fonts/open-sans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/open-sans/OpenSans-Light-webfont.woff') format('woff'), url('fonts/open-sans/OpenSans-Light-webfont.ttf') format('truetype'), url('fonts/open-sans/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+ src: url('inception/fonts/open-sans/OpenSans-Light-webfont.eot');
+ src: url('inception/fonts/open-sans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/open-sans/OpenSans-Light-webfont.woff') format('woff'), url('inception/fonts/open-sans/OpenSans-Light-webfont.ttf') format('truetype'), url('inception/fonts/open-sans/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'OpenSansRegular';
- src: url('fonts/open-sans/OpenSans-Regular-webfont.eot');
- src: url('fonts/open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/open-sans/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/open-sans/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/open-sans/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+ src: url('inception/fonts/open-sans/OpenSans-Regular-webfont.eot');
+ src: url('inception/fonts/open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/open-sans/OpenSans-Regular-webfont.woff') format('woff'), url('inception/fonts/open-sans/OpenSans-Regular-webfont.ttf') format('truetype'), url('inception/fonts/open-sans/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'OpenSansItalic';
- src: url('fonts/open-sans/OpenSans-Italic-webfont.eot');
- src: url('fonts/open-sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/open-sans/OpenSans-Italic-webfont.woff') format('woff'), url('fonts/open-sans/OpenSans-Italic-webfont.ttf') format('truetype'), url('fonts/open-sans/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
+ src: url('inception/fonts/open-sans/OpenSans-Italic-webfont.eot');
+ src: url('inception/fonts/open-sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/open-sans/OpenSans-Italic-webfont.woff') format('woff'), url('inception/fonts/open-sans/OpenSans-Italic-webfont.ttf') format('truetype'), url('inception/fonts/open-sans/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'OpenSansSemibold';
- src: url('fonts/open-sans/OpenSans-Semibold-webfont.eot');
- src: url('fonts/open-sans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/open-sans/OpenSans-Semibold-webfont.woff') format('woff'), url('fonts/open-sans/OpenSans-Semibold-webfont.ttf') format('truetype'), url('fonts/open-sans/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+ src: url('inception/fonts/open-sans/OpenSans-Semibold-webfont.eot');
+ src: url('inception/fonts/open-sans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/open-sans/OpenSans-Semibold-webfont.woff') format('woff'), url('inception/fonts/open-sans/OpenSans-Semibold-webfont.ttf') format('truetype'), url('inception/fonts/open-sans/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
  font-weight: normal;
  font-style: normal;
 }
 @font-face {
  font-family: 'HeydingsCommonIconsRegular';
- src: url('fonts/icons/heydings_icons-webfont.eot');
- src: url('fonts/icons/heydings_icons-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/icons/heydings_icons-webfont.woff') format('woff'), url('fonts/icons/heydings_icons-webfont.ttf') format('truetype'), url('fonts/icons/heydings_icons-webfont.svg#HeydingsCommonIconsRegular') format('svg');
+ src: url('inception/fonts/icons/heydings_icons-webfont.eot');
+ src: url('inception/fonts/icons/heydings_icons-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts/icons/heydings_icons-webfont.woff') format('woff'), url('inception/fonts/icons/heydings_icons-webfont.ttf') format('truetype'), url('inception/fonts/icons/heydings_icons-webfont.svg#HeydingsCommonIconsRegular') format('svg');
  font-weight: normal;
  font-style: normal;
 }
