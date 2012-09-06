@@ -1,6 +1,6 @@
 <fieldset>
   <legend><%= I18n.t(:"signin.bountyhill")%></legend>
-  <%= render 'shared/error_messages', :object => nil, :scope => "signin" %>
+  <%= render 'shared/error_messages', :object => @identity, :scope => "signin" %>
   
   <%= form.control_group :email %>
   <%= form.control_group :password,               :password_field %>
