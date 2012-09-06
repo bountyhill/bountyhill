@@ -1,12 +1,41 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]--> 
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <title><%= page_title(yield(:title)) %></title>
+  
+  <!-- meta information -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="keywords" content="wanted search ads reward bounty recommendation advise hint job car appartment twitter tweet social network">
+  
+  <!-- webfonts -->
+  <link type="text/css" rel="stylesheet" href='http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,700'/>
+    
+  <!-- stylesheet & JS -->
   <%= stylesheet_link_tag     "application", :media => "all" %>
   <%= javascript_include_tag  "application" %>
+
+  <!-- cross-site request forgery protection parameter and token -->
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="reward bounty recommendation advise job jobs wanted ads twitter tweet social network">
+  
+  <!-- styleswitches (TODO: move to application.css )-->
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="css/style1.css" disabled/>
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style2" href="css/style2.css" disabled/>
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style3" href="css/style3.css" />
+
+  <!-- TODO: delete or move to separate JS file -->
+  <script type="text/javascript">
+    var myScroll;
+    function loaded() {
+    myScroll = new iScroll('mini_gallery', { hScrollbar: false });
+    }
+    document.addEventListener('DOMContentLoaded', loaded, false);
+  </script>
 </head>
 <body>
   <%= render 'layouts/header' %>
