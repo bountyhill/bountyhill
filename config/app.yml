@@ -1,9 +1,0 @@
-default:
-  # Twitter oauth configuration.
-  twitter-oauth:
-    consumer_key:     "JCpnKf7bVi3ZYlZzNyvg"
-    consumer_secret:  "ErjoRAr4K8vW24Ip50g3V08qS8qsgHvEnLln5D0539w"
-
-  # User roles for specific users.
-  roles:
-    "@radiospiel":  "admin"

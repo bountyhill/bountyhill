@@ -1,0 +1,7 @@
+<h1>Listing quests</h1>
+
+<% @quests.each do |quest| %>
+  <%= render :partial => "list", :locals => { :quest => quest } %>
+<% end %>
+
+<%= link_to 'New Quest', new_quest_path %>

@@ -1,0 +1,20 @@
+default:
+  # Twitter oauth configuration.
+  twitter_oauth:
+    consumer_key:     "JCpnKf7bVi3ZYlZzNyvg"
+    consumer_secret:  "ErjoRAr4K8vW24Ip50g3V08qS8qsgHvEnLln5D0539w"
+
+  # User roles for specific users.
+  roles:
+    "@radiospiel":    "admin"
+
+  # 
+  transloadit:
+    key:              266cb911e56946729f63cb8ca72ff614
+    secret:           335ba676790fbb55add3797a4d20acf70c6f6461
+    s3_key:           183DWY3TS8SWQQJAAY82
+    s3_secret:        NndG7WPbbBb3cE/X7MB797U/vIZJnxhHjYcvaH1g
+
+development:
+  transloadit:
+    s3_bucket:        bountyhill-dev

@@ -2,6 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  update: Update
+  show:   Show
+  edit:   Edit
+  all:    All
+  create: Create
   cancel: Cancel
   error: 
     one: error
@@ -32,3 +37,10 @@ en:
       success: "Welcome on bountyhill!"
   request:
     text: What are you looking for?
+  quests: Quests
+  quest:
+    legend: ""
+    title:
+      show: ""
+      edit: "Edit quest"
+      create: "New quest"

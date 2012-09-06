@@ -6,6 +6,7 @@ gem "heroku"
 gem 'bcrypt-ruby', '3.0.1'
 gem "money"
 
+gem "rdiscount"
 gem "awesome_print"
 gem "twitter_oauth"
 # gem 'jbuilder' # To use Jbuilder templates for JSON
@@ -17,6 +18,7 @@ gem "fnordmetric"
 gem "neography"
 gem "curb"
 gem "twitter"
+gem "sass"
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -39,3 +41,4 @@ group :development, :test do
 end
 
 gem 'pg'
+gem 'transloadit-rails'

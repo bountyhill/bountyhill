@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 3) do
+ActiveRecord::Schema.define(:version => 4) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.datetime "ends_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.text     "image"
   end
 
   add_index "quests", ["user_id"], :name => "index_quests_on_user_id"

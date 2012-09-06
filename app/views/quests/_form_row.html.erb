@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="span1">&nbsp;</div>
+  <div class="span5">
+    <h1><%= if @quest.readonly? 
+      @quest.title 
+    else
+      I18n.t "quest.title.#{@quest.ui_mode}"
+    end
+    %>
+    </h1>
+    <%= render "form" %>
+  </div>
+  <div class="span4"><%= markdown "help" %></div>
+</div>

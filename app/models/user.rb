@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
   has_many :identities
   validates_presence_of :identities
 
+  has_many :quests
+
+  # Offers that this user has submitted.
+  # has_many :submitted_hints, :class_name => "Hint"
+  
   # Match identity symbol to class.
   IDENTITY_MODES = {
     :twitter => Identity::Twitter,
@@ -54,6 +59,8 @@ class User < ActiveRecord::Base
       identity.is_a?(IDENTITY_MODES[mode])
     end
   end
+  
+  alias :identity? :identity
   
   # Exception class for User#identity!
   class MissingIdentity < RuntimeError; end
