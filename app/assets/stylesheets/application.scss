@@ -23,12 +23,12 @@
 @import "inception/css/styles-responsive";
 
 // import partial stylesheet from basics
-@import "basics/page";
-@import "basics/form";
+// @import "basics/page";
+// @import "basics/form";
 
 // import partial stylesheet from widgets
-@import "widgets/static";
-@import "widgets/users";
+// @import "widgets/static";
+// @import "widgets/users";
 
 body {
   padding-top: 45px; /* 45px to make the container go all the way to the bottom of the topbar */

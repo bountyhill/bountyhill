@@ -1,11 +1,3 @@
 <footer>
-  <hr>
-  <div class="container-fluid">
-    <ul class="nav" id="footer">
-      <% %w(about help terms privacy).each do |nav_item| %>
-        <li><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
-      <% end %>
-    </ul>
-    <p class="pull-right">© bountyhill <%= Date.today.year %></p>
-  </div>
+  <div class="copyright">&copy; bountyhill <%= Date.today.year %></div>
 </footer>

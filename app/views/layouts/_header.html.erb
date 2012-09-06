@@ -1,6 +1,8 @@
+<div class="bg-blacklight"></div>
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
+    <div class="container">
       <%= link_to 'bountyhill', root_path, :class => "brand" %>
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -10,7 +12,7 @@
       </a>
       <div class="nav-collapse">
         <ul class="nav" id="service">
-          <% %w(about help quests).each do |nav_item| %>
+          <% %w(quests).each do |nav_item| %>
             <li><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
           <% end %>
         </ul>

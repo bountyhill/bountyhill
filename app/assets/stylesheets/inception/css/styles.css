@@ -733,23 +733,37 @@ p .firstdrop {
 */
 ul.liststar { list-style-image:url(../images/liststar.png); }
 ul.liststar li { padding:5px 0px; }
-ul.liststar li a, ul.listcontact li a {
+ul.liststar li a {
   color:#AAA;
   text-transform:none;
 }
 ul.liststar li a, ul.listcontact li a:hover {
-  color:#666666;
+  color:#666;
   text-decoration: underline;
 }
-ul.listcontact { margin-left:10px; }
+ul.listcontact { margin-left:0px; }
 ul.listcontact li {
   padding-top:2px;
   padding-left:20px;
   margin-bottom:2px;
 }
 ul li.cont-phone { background:url(../images/phone.png) no-repeat 0 5px }
-ul li.cont-email { background:url(../images/letter.png) no-repeat 0 4px }
 ul li.cont-adress { background:url(../images/home.png) no-repeat 0 5px }
+ul li.cont-email { background:url(../images/letter.png) no-repeat 0 4px }
+ul.listcontact li a { 
+  color: #666;
+  text-transform:none;
+}
+
+ul.listcontact.legal { 
+  margin-left:10px;
+  float:right;
+}
+ul.listcontact.legal li {
+  padding-top:2px;
+  margin-bottom:2px;
+}
+
 ul.list-services {
   margin:0;
   padding:0;
@@ -2912,7 +2926,8 @@ footer {
   padding: 5px;
 }
 footer .copyright {
-  color: #FFF;
+  font-size: 14px;
+  color: #AAA;
   padding: 5px 0;
   text-align: center;
 }

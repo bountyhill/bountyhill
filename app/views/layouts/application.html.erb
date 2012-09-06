@@ -8,7 +8,7 @@
   
   <!-- meta information -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="keywords" content="wanted search ads reward bounty recommendation advise hint job car appartment twitter tweet social network">
@@ -20,41 +20,18 @@
   <%= stylesheet_link_tag     "application", :media => "all" %>
   <%= javascript_include_tag  "application" %>
 
-  <!-- cross-site request forgery protection parameter and token -->
   <%= csrf_meta_tags %>
-  
-  <!-- TODO: delete or move to separate JS file -->
-  <script type="text/javascript">
-    var myScroll;
-    function loaded() {
-    myScroll = new iScroll('mini_gallery', { hScrollbar: false });
-    }
-    document.addEventListener('DOMContentLoaded', loaded, false);
-  </script>
 </head>
 <body>
   <%= render 'layouts/header' %>
-  <div class="container-fluid">
-    <% if current_user %>
-    <div class="content">
-      <% if current_user.identity?(:twitter) %>
-      <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Thanks!</strong> You are logged in using twitter, too.
-      </div>
-      <% else %>
-      <div class="alert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Warning!</strong> Best check yo self, you're not looking too good.
-      </div>
-      <% end %>
-    </div>
-    <% end %>
-    <div class="content">
+  <div class="container style3">
+    <section class="topspace blackshadow bg-white">
+      <%= render 'layouts/message_box' %>
       <%= yield %>
-    </div>
+      <%= render 'layouts/company' %>
+    </section>
   </div>
   <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
+  <%#= debug(params) if Rails.env.development? %>
 </body>
 </html>
