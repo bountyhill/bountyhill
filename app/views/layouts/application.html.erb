@@ -26,8 +26,10 @@
   <%= render 'layouts/header' %>
   <div class="container style3">
     <section class="topspace blackshadow bg-white">
-      <%= render 'layouts/message_box' %>
-      <%= yield %>
+      <div class="row">
+        <%= render 'layouts/message_box' %>
+        <%= yield %>
+      </div>
       <%= render 'layouts/company' %>
     </section>
   </div>
