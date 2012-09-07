@@ -17,12 +17,16 @@
   <link type="text/css" rel="stylesheet" href='http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,700'/>
     
   <!-- stylesheet & JS -->
-  <%= stylesheet_link_tag     "application", :media => "all" %>
-  <%= javascript_include_tag  "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="assets/inception/css/style1.css" />
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style2" href="assets/inception/css/style2.css" />
+  <link type="text/css" rel="alternate stylesheet" media="screen" title="style3" href="assets/inception/css/style3.css" />
+  <%= javascript_include_tag "application" %>
 
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="bg-blacklight"></div>
   <%= render 'layouts/header' %>
   <div class="container style3">
     <section class="topspace blackshadow bg-white">
