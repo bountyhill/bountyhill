@@ -6,7 +6,6 @@
 <head>
   <title></title>
   
-  <!-- meta information -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,13 +15,13 @@
   <!-- webfonts -->
   <link type="text/css" rel="stylesheet" href='http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,700'/>
     
-  <!-- stylesheet & JS -->
+  <!-- stylesheets -->
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="assets/inception/css/style1.css" />
-  <link type="text/css" rel="alternate stylesheet" media="screen" title="style2" href="assets/inception/css/style2.css" />
-  <link type="text/css" rel="alternate stylesheet" media="screen" title="style3" href="assets/inception/css/style3.css" />
+  
+  <!-- javascripts -->
   <%= javascript_include_tag "application" %>
-
+  
+  <!-- security -->
   <%= csrf_meta_tags %>
 </head>
 <body>

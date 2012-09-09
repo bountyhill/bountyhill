@@ -13,9 +13,8 @@
       </form>
       <div class="nav-collapse">
         <ul class="nav">
-          <li class="divider"></li>
           <% %w(quests).each do |nav_item| %>
-            <li><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
+            <li class="<%= navigation_item_class_for(nav_item) %>"><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
           <% end %>
           <li class="divider"></li>
         </ul>
