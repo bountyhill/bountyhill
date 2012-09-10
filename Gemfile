@@ -5,6 +5,8 @@ gem 'jquery-rails'
 gem "heroku"
 gem 'bcrypt-ruby', '3.0.1'
 gem "money"
+gem "rulesio"
+gem "girl_friday"
 
 gem "rdiscount"
 gem "awesome_print"
