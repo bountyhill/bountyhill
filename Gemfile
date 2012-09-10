@@ -21,6 +21,7 @@ gem "neography"
 gem "curb"
 gem "twitter"
 gem "sass"
+gem "simple_cache_rs"
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
