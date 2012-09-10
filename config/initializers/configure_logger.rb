@@ -16,5 +16,6 @@ class Formatter
   end
 end
 
-::Event.severity = :debug
-Rails.logger.formatter = Formatter.new
+unless Rails.env.test?
+  Rails.logger.formatter = Formatter.new
+end
