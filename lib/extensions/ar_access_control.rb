@@ -89,7 +89,7 @@ module ActiveRecord::AccessControl
     validate do |record|
       user = ActiveRecord::AccessControl.current_user
       self.owner_id ||= user && user.id  
-      self.errors.add :base, :"permission denied".t unless record.writable?(user)
+      self.errors.add :base, I18n.t(:"permission denied") unless record.writable?(user)
     end
 
     # returns the default scope for these models.
