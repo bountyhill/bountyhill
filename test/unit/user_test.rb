@@ -50,4 +50,24 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of(Identity::Email, user.identity(:email))
     assert_nil(user.identity(:twitter))
   end
+
+  def test_create_twitter_user
+    SecureRandom.stubs(:random_number).returns(1234567)
+    
+    user = Factory(:twitter_identity, :name => "twark").user
+    assert_kind_of(User, user)
+    assert_equal(1234567, user.id)
+  
+    assert_equal("@twark", user.name)
+  end
+
+  def test_admin
+    assert_kind_of(Array, User.admins)
+    
+    user = Factory(:twitter_identity, :name => "twark").user
+    assert(!user.admin?)
+
+    user = Factory(:twitter_identity, :name => "radiospiel").user
+    assert(user.admin?)
+  end
 end

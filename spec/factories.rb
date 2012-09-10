@@ -10,4 +10,14 @@ FactoryGirl.define do
       }
     end
   end
+
+  factory :twitter_identity, :class => "Identity::Twitter" do
+    name "twatter"
+
+    after(:build) do |identity, evaluator| 
+      identity.user = User.create! { |user| 
+        user.identities << identity 
+      }
+    end
+  end
 end
