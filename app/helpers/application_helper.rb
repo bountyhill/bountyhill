@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def navigation_item_class_for(nav_item)
+    controller.class.name.gsub("Controller","").downcase == nav_item ? "active" : ""
+  end
+  
   def error_message_for(object, attribute)
     if error_message = object.error_message_for(attribute)
       content_tag(:span, error_message, :class => "help-inline")
