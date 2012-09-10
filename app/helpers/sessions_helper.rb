@@ -24,7 +24,8 @@ module SessionsHelper
   # evaluating the remember_token and/or the twitter session.
   def current_user
     return nil if @current_user == false
-
+    return @current_user if @current_user
+    
     signin_from_remember_token
     signin_from_twitter_session
 
