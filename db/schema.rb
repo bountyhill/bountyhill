@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 5) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -31,15 +31,17 @@ ActiveRecord::Schema.define(:version => 4) do
     t.string   "title",           :null => false
     t.text     "description",     :null => false
     t.integer  "bounty_in_cents", :null => false
-    t.integer  "user_id"
+    t.integer  "owner_id"
     t.datetime "started_at"
     t.datetime "ends_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.text     "image"
+    t.string   "visibility"
   end
 
-  add_index "quests", ["user_id"], :name => "index_quests_on_user_id"
+  add_index "quests", ["owner_id"], :name => "index_quests_on_user_id"
+  add_index "quests", ["visibility"], :name => "index_quests_on_visibility"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",     :null => false
