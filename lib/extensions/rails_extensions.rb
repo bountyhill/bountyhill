@@ -13,7 +13,7 @@ class ActiveRecord::Base
   end
 end
 
-# -- included RandomID to have newly created models have a random ID.
+# -- include ActiveRecord::RandomID to have newly created models have a random ID.
 
 module ActiveRecord::RandomID
   def self.included(klass)
