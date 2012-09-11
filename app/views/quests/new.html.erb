@@ -1,1 +1,7 @@
-<%= render "form_row" %>
+<div class="row-fluid">
+  <div class="span8">
+    <h1><%= I18n.t "quest.title.#{@quest.ui_mode}" %></h1>
+    <%= render "form" %>
+  </div>
+  <div class="span4"><%= markdown "help" %></div>
+</div>

@@ -29,10 +29,14 @@
   <%= render 'layouts/header' %>
   <div class="container style3">
     <section class="topspace blackshadow bg-white">
-      <div class="row">
-        <%= yield %>
-      </div>
-      <%= render 'layouts/company' %>
+      <%= 
+        if defined?(content)
+          content.html_safe
+        else
+          yield
+        end
+      %>
+      <%= render 'layouts/company' if show_company_footer? %>
     </section>
   </div>
   <%= render 'layouts/footer' %>

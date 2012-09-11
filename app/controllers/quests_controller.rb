@@ -22,7 +22,6 @@ class QuestsController < ApplicationController
   # GET /quests/1.json
   def show
     @quest = Quest.find(params[:id])
-    @quest.readonly!
     
     respond_to do |format|
       format.html # show.html.erb

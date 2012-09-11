@@ -8,15 +8,7 @@
     <%= form.control_group :bounty %>
     <%= form.control_group :image, :transloadit %>
 
-    <%= 
-      if @quest.readonly?
-        form.actions :edit => edit_quest_path(@quest), :all => quests_path
-      elsif @quest.new_record?
-        form.actions :all => quests_path
-      else
-        form.actions :show => @quest, :all => quests_path
-      end
-     %>
+    <%= form.actions :cancel_url => quests_path %>
   </fieldset>
 <% end %>
 
