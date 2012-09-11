@@ -91,6 +91,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # return the user's twitter handle
+  def twitter_handle
+    if identity = self.identity(:twitter)
+      identity.name
+    end
+  end
+
   # returns a user's avatar URL
   def avatar(options = {})
     expect! options => { :default => [ String, nil ]}
@@ -98,5 +105,13 @@ class User < ActiveRecord::Base
     url = (identity = self.identity(:twitter)) && identity.avatar(options)
     url ||= (identity = self.identity(:email)) && identity.avatar(options)
     url || options[:default]
+  end
+  
+  def self.admins
+    Bountybase.config.admins
+  end
+  
+  def admin?
+    User.admins.include?(twitter_handle)
   end
 end

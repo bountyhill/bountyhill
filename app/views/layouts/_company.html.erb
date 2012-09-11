@@ -23,9 +23,8 @@
       <h4>Legal</h4>
       <p>Consectetur adipiscing elit aeneane lorem lipsum, condimentum ultrices consequat eu, vehicula mauris lipsum adipiscing lipsum aenean orci lorem.</p>
       <ul class="listcontact legal">
-        <% %w(privacy terms).each do |legal_item| %>
-          <li><%= link_to I18n.t(legal_item), self.send("#{legal_item}_path") %></li>
-        <% end %>
+        <li><%= link_to I18n.t("privacy"), privacy_path %></li>
+        <li><%= link_to I18n.t("terms"), terms_path %></li>
       </ul>
     </div>
   </div>

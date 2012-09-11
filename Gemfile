@@ -1,29 +1,24 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
+gem 'pg'
 gem 'jquery-rails'
-gem "heroku"
+gem 'heroku'
 gem 'bcrypt-ruby', '3.0.1'
-gem "money"
+gem 'money'
+gem 'rdiscount'
+gem 'twitter_oauth'
+gem 'transloadit-rails'
+gem 'rulesio'
+gem 'girl_friday'
 
-gem "rdiscount"
-gem "awesome_print"
-gem "twitter_oauth"
-# gem 'jbuilder' # To use Jbuilder templates for JSON
-# gem 'capistrano' # Deploy with Capistrano
-
-gem "expectation"
-gem "resque"
-gem "fnordmetric"
-gem "neography"
-gem "curb"
-gem "twitter"
-gem "sass"
+gem 'bountydeps'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'coffee-rails'
-  #gem 'uglifier'
+  gem 'uglifier'
+  gem 'sass'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'compass-colors'
@@ -40,5 +35,3 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
-gem 'pg'
-gem 'transloadit-rails'

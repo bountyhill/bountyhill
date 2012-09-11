@@ -24,17 +24,16 @@ en:
   settings: Settings
   signup:
     bountyhill: "Sign up with your name and email"
-    twitter: "Sign up with twitter"
     message:
       error: Please correct the errors below and then resubmit the form!
-      success: "Welcome on bountyhill!"
+      success: "Welcome to bountyhill!"
   signin:
     bountyhill: "Sign in with your email and password"
     twitter: "Sign in with twitter"
     new_user: "If you are a new user, please %{link} first!"
     message:
       error: Your email and/or password are not valid. Please try again!
-      success: "Welcome on bountyhill!"
+      success: "Welcome to bountyhill!"
   request:
     text: What are you looking for?
   quests: Quests
@@ -44,3 +43,6 @@ en:
       show: ""
       edit: "Edit quest"
       create: "New quest"
+  twitter_sessions:
+    following:  "Thank you for signing in with Twitter and for following @bountyhill."
+    success:    "Thank you for signing in with Twitter."

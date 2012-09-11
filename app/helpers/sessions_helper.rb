@@ -22,13 +22,16 @@ module SessionsHelper
   # returns the current_user. When called in a request for the first 
   # time, this method tries to fetch or create the current_user by 
   # evaluating the remember_token and/or the twitter session.
+  #
+  # This returns either a User object or nil.
   def current_user
-    return nil if @current_user == false
-
-    signin_from_remember_token
-    signin_from_twitter_session
-
-    @current_user ||= false
+    if @current_user.nil?
+      signin_from_remember_token
+      signin_from_twitter_session
+      @current_user ||= false
+    end
+    
+    @current_user || nil
   end
   
   def signin_from_remember_token #:nodoc:

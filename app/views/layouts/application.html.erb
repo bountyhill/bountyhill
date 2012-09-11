@@ -28,10 +28,15 @@
   <div class="bg-blacklight"></div>
   <%= render 'layouts/header' %>
   <div class="container style3">
-    <%= render 'layouts/message_box' %>
-    <section class="topspace whiteshadow bg-black">
-      <%= yield %>
-      <%= render 'layouts/company' %>
+    <section class="topspace blackshadow bg-white">
+      <%= 
+        if defined?(content)
+          content.html_safe
+        else
+          yield
+        end
+      %>
+      <%= render 'layouts/company' if show_company_footer? %>
     </section>
   </div>
   <%= render 'layouts/footer' %>

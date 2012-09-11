@@ -13,7 +13,7 @@ class ActiveRecord::Base
   end
 end
 
-# -- included RandomID to have newly created models have a random ID.
+# -- include ActiveRecord::RandomID to have newly created models have a random ID.
 
 module ActiveRecord::RandomID
   def self.included(klass)
@@ -75,7 +75,6 @@ ActionView::Helpers::FormBuilder
 class ActionView::Helpers::FormBuilder
   extend Forwardable
   delegate [:error_class_for, :error_message_for, :link_to, :image_for] => :@template
-  delegate :readonly? => :object
 
   # content_tag reimplementation for FormBuilder.
   #
@@ -114,10 +113,6 @@ class ActionView::Helpers::FormBuilder
       input_field_options = default_input_field_options.merge(input_field_options)
     end
 
-    if readonly?
-      input_field_options[:readonly] = true
-    end
-    
     div_tag :class => "control-group #{error_class_for(object, name)}" do
       label = self.label name, :class => "control-label"
       controls = div_tag :class => "controls" do
@@ -132,31 +127,31 @@ class ActionView::Helpers::FormBuilder
 
   def transloadit(name, options)
     parts = []
-    parts.push @template.transloadit(:upload) unless readonly?
+    parts.push @template.transloadit(:upload)
 
     unless object.send(name).blank?
       parts.push image_for(object) 
     end
     
-    parts.push file_field(name) unless readonly?
+    parts.push file_field(name)
 
     "#{parts.join("\n")}"
   end
   
-  def actions(additional_actions = {})
+  # Render form actions.
+  # All forms get "Cancel", "Create" or "Cancel", "Update" actions, depending
+  # on whether the current object is a new or an existing record.
+  def actions(options)
+    expect! options => { :cancel_url => String }
+
     div_tag :class => "form-actions" do
       parts = []
 
-      unless readonly?
-        label = object.new_record? ? :create : :update
-        parts.push submit(I18n.t(label), :class => "btn btn-primary")
-      end
-      
-      parts.concat additional_actions.map { |label, target|
-        link_to(I18n.t(label), target, :class => "btn")
-      }
-      
-      parts.join(" ")
+      # 
+      cancel_btn = link_to(I18n.t(:cancel), options[:cancel_url], :class => "btn")
+      save_btn = submit(I18n.t(object.new_record? ? :create : :update), :class => "btn btn-primary")
+
+      "#{cancel_btn} #{save_btn}"
     end
   end
 end

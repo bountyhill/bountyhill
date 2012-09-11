@@ -1,4 +1,7 @@
-<div class="span12 bg-white">
-  <%= gravatar_for @user %>
-  <h1><%= @user.name %></h1>
-</div
+<div class="row-fluid">
+  <div class="span8">
+    <%= gravatar_for @user %>
+    <h1><%= @user.name %></h1>
+  </div>
+  <div class="span4"><%= markdown "help" %></div>
+</div>

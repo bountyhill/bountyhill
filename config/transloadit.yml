@@ -1,8 +1,12 @@
-<% config = App.config %>
+<% 
+  config = Bountybase.config.transloadit 
+  key, secret, s3_key, s3_secret, s3_bucket = 
+    *config.values_at("key", "secret", "s3_key", "s3_secret", "s3_bucket")
+%>
 
 auth:
-  key:      <%= App.config.transloadit.key! %>
-  secret:   <%= config.transloadit.secret! %>
+  key:      <%= key %>
+  secret:   <%= secret %>
   duration: 1800
   # 30 minute validity period for signed upload forms
 
@@ -26,7 +30,7 @@ templates:
         - fullsize
         - thumbnail
         robot: /s3/store
-        key:    <%= config.transloadit.s3_key! %>
-        secret: <%= config.transloadit.s3_secret! %>
-        bucket: <%= config.transloadit.s3_bucket! %>
+        key:    <%= s3_key %>
+        secret: <%= s3_secret %>
+        bucket: <%= s3_bucket %>
         path: ${assembly.id}/${previous_step.name}_${file.url_name}

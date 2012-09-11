@@ -1,4 +1,5 @@
 module ApplicationHelper
+  # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
     controller.class.name.gsub("Controller","").downcase == nav_item ? "active" : ""
   end
@@ -32,5 +33,9 @@ module ApplicationHelper
     url = hash["url"] #.gsub(/^(http|https):/, "")
 
     image_tag url, :title => quest.title, :width => hash["width"], :height => hash["height"]
+  end
+  
+  def show_company_footer?
+    request.path == "/"
   end
 end

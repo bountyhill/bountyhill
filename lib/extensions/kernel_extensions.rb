@@ -24,3 +24,15 @@ class Hash
     end
   end
 end
+
+class String
+  def t(*args)
+    I18n.t(self, *args)
+  end
+end
+
+class Symbol
+  def t(*args)
+    I18n.t(self, *args)
+  end
+end
