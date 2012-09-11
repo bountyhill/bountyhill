@@ -55,6 +55,8 @@ $(function() {
 	$('#thumbs a').touchTouch();
 	$('#mini_gallery a').touchTouch();
 	
+  if(false) {
+    
 	 //Main Weather
 	$.simpleWeather({
 		location: 'Chiang Mai, thailand',unit: 'c',
@@ -101,7 +103,8 @@ $(function() {
 		}
 	});
 	
-	
+	}
+  
 	/* theme changer */
 	$('.open-close-demo').click(function() {
 			  if ($(this).parent().css('left') == '-148px') {
