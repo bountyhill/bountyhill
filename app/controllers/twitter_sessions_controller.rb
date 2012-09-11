@@ -28,8 +28,12 @@ class TwitterSessionsController < ApplicationController
   # The created action is where the TwitterAuthMiddleware will redirect to
   # after the user logged in successfully.
   def created
-    flash[:success] = "twitter_sessions.success".t
-
+    # At this point an existing user might have signed in for the first time,
+    # or might just revisit the site. In the latter case we don't produce a flash message.
+    if Time.now - current_user.created_at < 5
+      flash[:success] = "twitter_sessions.success".t
+    end
+    
     if session.delete(:follow_me)
       # follow_me
       flash[:success] = "twitter_sessions.following".t
