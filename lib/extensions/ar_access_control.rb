@@ -5,10 +5,10 @@ module ActiveRecord::AccessControl
     Thread.current[:ar_current_user]
   end
 
-  def self.current_user=(current_user)
+  def self.current_user=(user)
     expect! user => [User, nil]
 
-    Thread.current[:ar_current_user] = current_user
+    Thread.current[:ar_current_user] = user
   end
 
   # runs a block as a specific user.
