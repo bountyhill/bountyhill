@@ -76,7 +76,9 @@ class QuestsController < ApplicationController
     @quest = Quest.new(params[:quest])
 
     respond_to do |format|
-      if @quest.save
+      if @quest.valid?
+        @quest.save!
+        
         format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
         format.json { render json: @quest, status: :created, location: @quest }
       else
@@ -92,8 +94,10 @@ class QuestsController < ApplicationController
     @quest = Quest.find(params[:id])
 
     respond_to do |format|
-      if @quest.update_attributes(params[:quest])
-        format.html { redirect_to @quest, notice: 'Quest was successfully updated.' }
+      if @quest.valid?
+        @quest.update_attributes(params[:quest])
+        
+        format.html { redirect_to quests_path, notice: 'Quest was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
