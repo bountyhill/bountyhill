@@ -7,18 +7,27 @@ class TwitterAuthMiddleware
   # -- middleware starts here
   
   def initialize(app, options = {})
-    @app = app
+    options.symbolize_keys!
 
-    options = options.inject({}) { |hash, (k, v)| hash.update k.to_sym => v }
-
-    @twitter_oauth = {
-      :consumer_key    => (options[:consumer_key] || raise(ArgumentError, "Missing :consumer_key option")),
-      :consumer_secret => (options[:consumer_secret] || raise(ArgumentError, "Missing :consumer_secret option"))
+    expect! options => { 
+      :consumer_key => String,
+      :consumer_secret => String,
+      :failure_url => String,
+      :success_url => String
     }
+
+    @app = app
+    @twitter_oauth = {
+      :consumer_key    => options[:consumer_key],
+      :consumer_secret => options[:consumer_secret]
+    }
+
+    @failure_url, @success_url = options.values_at(:failure_url, :success_url)
 
     @path = options[:path] || 'tw'
     @matcher = /^\/#{@path}\/(login|logout|callback)$/
   end
+  
   
   def call(env)
     return @app.call(env) unless @matcher =~ env["PATH_INFO"]
@@ -68,20 +77,27 @@ class TwitterAuthMiddleware
     redirect "/"
   end
   
-  def twitter_callback
-    tw_request_token, tw_request_token_secret = session.values_at "tw_request_token", "tw_request_token_secret"
+  # log in from twitter callback. Raise OAuth::Unauthorized if authorization
+  # fails.
+  def login_from_twitter_callback
+    tw_request_token, tw_request_token_secret = 
+      session.values_at "tw_request_token", "tw_request_token_secret"
 
     client = twitter_client
 
-    access_token = client.authorize(tw_request_token, tw_request_token_secret, :oauth_verifier => params[:oauth_verifier])
-    if client.authorized?
-      session.delete "tw_request_token"
-      session.delete "tw_request_token_secret"
-      session.update "tw" => [client.info["name"], access_token.token, access_token.secret].join("|")
-    end
-
-    redirect "/"
+    access_token = client.authorize(tw_request_token, tw_request_token_secret, 
+      :oauth_verifier => params[:oauth_verifier])
+    raise OAuth::Unauthorized, "Unauthorized" unless client.authorized?
+    
+    session.delete "tw_request_token"
+    session.delete "tw_request_token_secret"
+    session.update "tw" => [client.info["name"], access_token.token, access_token.secret].join("|")
+  end
+  
+  def twitter_callback
+    login_from_twitter_callback
+    redirect @success_url
   rescue OAuth::Unauthorized
-    redirect "/"
+    redirect @failure_url
   end
 end

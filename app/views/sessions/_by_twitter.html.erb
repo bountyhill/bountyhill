@@ -1,0 +1,13 @@
+<%= form_for @identity, :url => twitter_sessions_path, :html => {:class => "form-horizontal"} do |form| %>
+  <fieldset>
+    <legend><%= I18n.t("signin.twitter") %></legend>
+    <%= render 'shared/error_messages', :object => @identity, :scope => "signup" %>
+
+    <%= form.control_group :name, :check_box %>
+
+    <div class="form-actions">
+      <%#= link_to I18n.t(:cancel), root_path, :class => "btn btn-mini" %>
+      <%= form.submit I18n.t(:sign_in), :class => "btn btn-primary" %>
+    </div>
+  </fieldset>
+<% end %>

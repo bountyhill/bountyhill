@@ -16,6 +16,10 @@ Bountyhill::Application.routes.draw do
   match 'signin'  => 'sessions#new'
   match 'signout' => 'sessions#destroy', :via => :delete  #should be invoked using an HTTP DELETE request
 
+  resources :twitter_sessions, :only => [:create]
+  match 'twitter_sessions/created'  => 'twitter_sessions#created'
+  match 'twitter_sessions/failed'   => 'twitter_sessions#failed'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
