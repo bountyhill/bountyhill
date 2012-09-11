@@ -40,23 +40,6 @@
     overflow: hidden;
     text-transform: none;
   }
-  img.temporality, img.locality {
-    position: relative;
-    margin-bottom: 4px;
-    width: 12px;
-    margin-left: 2px;
-  }
-  span.temporality, span.locality {
-    padding-left: 5px;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: normal;
-    color: #FD6D03;
-    line-height: 1.0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
   .ribbon { 
     font: bold 16px Sans-Serif;
     &.small { 
@@ -85,6 +68,38 @@
       background-image: -ms-linear-gradient(top, #BF3333, #8F3333);
       background-image: -o-linear-gradient(top, #BF3333, #8F3333);
       &::before, &::after {border-top: 3px solid #770101;}
+    }
+  }
+  .socialmedia {
+    margin: auto;
+    width: auto;
+    text-align: center;
+    margin-bottom: 0px;
+    float: right;
+  }
+  .restrictions {
+    float:left;
+    margin-top: 5px;
+    img {
+      &.temporality, &.locality {
+        position: relative;
+        margin-bottom: 4px;
+        width: 12px;
+        margin-left: 2px;
+      }
+    }
+    span {
+      &.temporality, &.locality {
+        padding-left: 5px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: normal;
+        color: #999;
+        line-height: 1.0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     }
   }
 }
