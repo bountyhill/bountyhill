@@ -10,8 +10,7 @@ class IdentitiesController < ApplicationController
 
     # If identity was valid and could be saved.
     if identity.id
-      flash[:success] = I18n.t("signin.message.success", 
-                          :default => "Welcome on bountyhill!", :name => identity.name)
+      flash[:success] = I18n.t("signin.message.success", :name => identity.name)
       sign_in identity.user
       redirect_to identity.user
     else
