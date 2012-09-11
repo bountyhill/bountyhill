@@ -1,5 +1,10 @@
 Bountyhill::Application.routes.draw do
 
+  # just temporary...
+  %w(quests offers).each do |mock|
+    match "mocks/#{mock}/:page" => "mocks##{mock}"
+  end
+
   %w(help about privacy terms).each do |static_page|
     match static_page => "static##{static_page}"    
   end

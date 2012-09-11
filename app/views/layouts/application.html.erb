@@ -28,11 +28,9 @@
   <div class="bg-blacklight"></div>
   <%= render 'layouts/header' %>
   <div class="container style3">
-    <section class="topspace blackshadow bg-white">
-      <div class="row">
-        <%= render 'layouts/message_box' %>
-        <%= yield %>
-      </div>
+    <%= render 'layouts/message_box' %>
+    <section class="topspace whiteshadow bg-black">
+      <%= yield %>
       <%= render 'layouts/company' %>
     </section>
   </div>

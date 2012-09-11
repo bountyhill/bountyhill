@@ -17,6 +17,7 @@
 
 // import twitter bootstrap
 @import "compass_twitter_bootstrap";
+body { padding-top: 30px } // has to be here! - gives some space between body and top nav
 @import "compass_twitter_bootstrap_responsive";
 
 // import inception stylesheets
@@ -25,9 +26,11 @@
 @import "inception/css/style3";
 
 // import basic stylesheets
- @import "basics/page";
+ @import "pages/layout";
+ @import "pages/quests";
 
 // import widget stylesheets
+ @import "widgets/banner";
  @import "widgets/form";
  @import "widgets/list";
  @import "widgets/nav";
