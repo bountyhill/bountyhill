@@ -47,17 +47,19 @@ module ApplicationHelper
     options[:title] ||= quest.title
     
     width, height = options.values_at :width, :height
-    if IMGIO && width && height && (url = quest.original_image_url)
-      return render_imgio_tag(url, options)
-    end
-
-    # The quest.image hash must have a size entry, which is a Hash
-    expect! quest.image => { size => Hash }
     
-    image_data = quest.image[size]
-    options[:width], options[:height] = image_data.values_at("width", "height")
-
-    image_tag image_data["url"], options
+    if IMGIO && width && height && (url = quest.original_image_url)
+      # We are using imgio and width and height are properly requested?
+      render_imgio_tag(url, options)
+    elsif image_data = quest.image[size]
+      # The quest.image hash should have a entry with key \a size, which
+      # is a Hash holding url, witdh, height, etc.
+      url, options[:width], options[:height] = image_data.values_at("url", "width", "height")
+      image_tag url, options
+    else
+      # If not we are just using a default image.
+      image_tag "/images/dummy.png", options
+    end
   end
   
   def show_company_footer?

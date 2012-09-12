@@ -26,20 +26,8 @@ module QuestsHelper
   end
 
   def quest_image_link_to(quest, options)
-    link_to quest_image(quest, options), quest, 
-      :class => "zoom", "data-bitly-type"=>"bitly_hover_card"
-  end
-
-  def quest_image(quest, options)
-    img = image_for quest, :class => "zoom", :width => 330, :height => 205
-    "#{img}\n#{zoomOverlay}#{image_highlight}".html_safe
-  end
-  
-  def zoomOverlay
-    '<span class="zoomOverlay"></span>'
-  end
-
-  def image_highlight
-    '<div class="image_highlight"></div>'
+    zoom = options.delete(:zoom) && "zoom"
+    link_to image_for(quest, options), quest, 
+      :class => zoom, "data-bitly-type" => "bitly_hover_card"
   end
 end

@@ -3,7 +3,7 @@
     <div class="featuedBox">
       <div class="imgShow">
         <%= render_bounty_ribbon quest %>
-        <%= quest_image_link_to quest, :width => 330, :height => 205 %>
+        <%= quest_image_link_to quest, :width => 330, :height => 205, :zoom => true %>
         
         <div class="unbottom untop">
           <h3><%= truncate quest.title, :length => 60 %></h3>
