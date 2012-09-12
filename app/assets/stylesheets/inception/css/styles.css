@@ -23,40 +23,47 @@
  font-weight: normal;
  font-style: normal;
 }
-@font-face {
- font-family: 'OpenSansLight';
- src: url('inception/fonts//open-sans/OpenSans-Light-webfont.eot');
- src: url('inception/fonts//open-sans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Light-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Light-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
- font-weight: normal;
- font-style: normal;
-}
-@font-face {
- font-family: 'OpenSansRegular';
- src: url('inception/fonts//open-sans/OpenSans-Regular-webfont.eot');
- src: url('inception/fonts//open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Regular-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Regular-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
- font-weight: normal;
- font-style: normal;
-}
-@font-face {
- font-family: 'OpenSansItalic';
- src: url('inception/fonts//open-sans/OpenSans-Italic-webfont.eot');
- src: url('inception/fonts//open-sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Italic-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Italic-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
- font-weight: normal;
- font-style: normal;
-}
-@font-face {
- font-family: 'OpenSansSemibold';
- src: url('inception/fonts//open-sans/OpenSans-Semibold-webfont.eot');
- src: url('inception/fonts//open-sans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
- font-weight: normal;
- font-style: normal;
-}
+
 @font-face {
  font-family: 'HeydingsCommonIconsRegular';
  src: url('inception/fonts//icons/heydings_icons-webfont.eot');
  src: url('inception/fonts//icons/heydings_icons-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//icons/heydings_icons-webfont.woff') format('woff'), url('inception/fonts//icons/heydings_icons-webfont.ttf') format('truetype'), url('inception/fonts//icons/heydings_icons-webfont.svg#HeydingsCommonIconsRegular') format('svg');
  font-weight: normal;
  font-style: normal;
+}
+
+
+/* Build a "bountyhill" font face by mapping the relevant OpenSans fonts to the various weight and styles. */
+@font-face {
+ font-family: 'bountyhill';
+ src: url('inception/fonts//open-sans/OpenSans-Light-webfont.eot');
+ src: url('inception/fonts//open-sans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Light-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Light-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+
+@font-face {
+  font-family: 'bountyhill';
+ src: url('inception/fonts//open-sans/OpenSans-LightItalic-webfont.eot');
+ src: url('inception/fonts//open-sans/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-LightItalic-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-LightItalic-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+ font-weight: normal;
+ font-style: italic;
+}
+
+@font-face {
+  font-family: 'bountyhill';
+ src: url('inception/fonts//open-sans/OpenSans-Semibold-webfont.eot');
+ src: url('inception/fonts//open-sans/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+ font-weight: bold;
+ font-style: normal;
+}
+
+@font-face {
+  font-family: 'bountyhill';
+ src: url('inception/fonts//open-sans/OpenSans-SemiboldItalic-webfont.eot');
+ src: url('inception/fonts//open-sans/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('inception/fonts//open-sans/OpenSans-SemiboldItalic-webfont.woff') format('woff'), url('inception/fonts//open-sans/OpenSans-SemiboldItalic-webfont.ttf') format('truetype'), url('inception/fonts//open-sans/OpenSans-SemiboldItalic-webfont.svg#OpenSansSemiboldItalic') format('svg');
+ font-weight: bold;
+ font-style: italic;
 }
 /*
 ------------------------------------------------------------
@@ -66,8 +73,12 @@
 :focus { outline:0px; }
 sub, sup, small { font-size: 75%; }
 ol, ul { list-style: none; }
+
+body, input, p {
+  font-family: "bountyhill", Arial, Helvetica, sans-serif !important;
+}
+
 body {
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	background-image: url(../images/bg.jpg);
 	color: #666666;
@@ -79,7 +90,7 @@ body.bg-img {
 	-o-background-size: cover!important;
 	background-size: cover!important;
 }
-h1, h2, h3, h4, h5 { font-family: "OpenSansLight", Arial, Helvetica, sans-serif; }
+
 h2 span { color:#F00; }
 h2 small {
 	display:block;
@@ -189,7 +200,6 @@ address:last-child { border-bottom:none; }
 ------------------------------------------------------------
 */
 .alert h1, .alert h2, .alert h3, .alert h4, .alert h5 {
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
 }
 /*
@@ -406,7 +416,6 @@ img.alignleft, img.alignright, img.aligncenter, img.alignnone { margin-bottom: 1
 	line-height:25px;
 	position: absolute;
 	padding:20px;
-	font:Arial, Helvetica, sans-serif;
 	font-size:24px;
 	color:#ffffff;
 	background-color:#000;
@@ -453,7 +462,6 @@ img.alignleft, img.alignright, img.aligncenter, img.alignnone { margin-bottom: 1
 .headerTitle .inner { padding: 15px 10px 15px 20px; }
 .headerTitle h2 {
 	color: #ffffff!important;
-	font-family: "OpenSansLight", Arial, sans-serif!important;
 	font-size: 20px;
 	line-height: 30px;
 	text-transform: capitalize;
@@ -580,7 +588,6 @@ img.locality {
 ------------------------------------------------------------
 */
 .logo ,.logoBig {
-	font-family: 'OpenSansSemibold', serif;
 	position:absolute;
 	color:#ffffff!important;
 	margin-top:-3px!important;
@@ -591,11 +598,9 @@ img.locality {
 	}
 .logo span {
 	color:#F30;
-	font-family: 'OpenSansLight', serif;
 }
 .logo small {
 	display:block;
-	font-family: Arial, Helvetica, sans-serif;
 	font-size:10px;
 	letter-spacing: 4px;
 	padding:4px 0;
@@ -606,7 +611,6 @@ img.locality {
 	
 	}
 .multi{ 
-font-family: 'OpenSansSemibold', serif;
 color:#FFF;
 text-align:right;
 }
@@ -705,7 +709,6 @@ text-align:right;
 p.notify {
 	font-size:18px;
 	line-height:25px;
-	font-family:"OpenSansLight", sans-serif;
 	padding:10px 0px 20px 0px;
 }
 p.notify .firstdrop { padding:0px 10px 3px 10px; }
@@ -772,7 +775,6 @@ ul.list-services p {
 }
 .ourteam img { margin-bottom:10px; }
 .ourteam h3 {
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight:bold;
 }
 .ourteam h3 small {
@@ -2350,7 +2352,6 @@ margin-left:0px;
 .pricing_box .header {
 	width: 100%;
 	height: 68px;
-	font-family: "OpenSansLight", Arial, Helvetica, sans-serif;
 }
 .pricing_box .header span {
 	position: relative;
