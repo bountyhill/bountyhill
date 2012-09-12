@@ -1,0 +1,5 @@
+<%= 
+  content = yield
+  content = '<div class="row"><div class="span12 inner">' + content + '</div></div>'
+  render :template => "layouts/application", :locals => { :content => content } 
+%>

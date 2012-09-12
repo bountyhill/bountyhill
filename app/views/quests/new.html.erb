@@ -1,7 +1,13 @@
 <div class="row-fluid">
-  <div class="span8">
+  <div class="span12 inner">
     <h1><%= I18n.t "quest.title.#{@quest.ui_mode}" %></h1>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span8 inner">
     <%= render "form" %>
   </div>
-  <div class="span4"><%= markdown "help" %></div>
+  <div class="span4 inner">
+    <%= markdown "help" %>
+  </div>
 </div>

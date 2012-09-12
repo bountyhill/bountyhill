@@ -4,10 +4,15 @@
     <%= render 'shared/error_messages', :object => nil, :scope => "quest" %>
 
     <%= form.control_group :title %>
+    <%= form.control_group :location %>
     <%= form.control_group :description, :text_area, :rows => 5 %>
     <%= form.control_group :bounty %>
     <%= form.control_group :image, :transloadit %>
 
+    <% Quest.criteria_attributes.each_with_index do |name, idx| %>
+      <%= form.control_group name %>
+    <% end %>
+    
     <%= form.actions :cancel_url => quests_path %>
   </fieldset>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 5) do
+ActiveRecord::Schema.define(:version => 6) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 5) do
     t.datetime "updated_at",      :null => false
     t.string   "type"
     t.integer  "user_id"
-    t.text     "options"
+    t.text     "serialized"
   end
 
   add_index "identities", ["email"], :name => "index_identities_on_email", :unique => true
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 5) do
     t.datetime "updated_at",      :null => false
     t.text     "image"
     t.string   "visibility"
+    t.string   "location"
+    t.text     "serialized"
   end
 
   add_index "quests", ["owner_id"], :name => "index_quests_on_user_id"

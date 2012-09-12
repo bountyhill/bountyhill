@@ -16,6 +16,6 @@ class Formatter
   end
 end
 
-unless Rails.env.test?
+if Rails.env.production?
   Rails.logger.formatter = Formatter.new
 end

@@ -82,3 +82,5 @@ module Bountyhill
 end
 
 Money.default_currency = "EUR"
+
+IMGIO = "http://imgio.heroku.com"

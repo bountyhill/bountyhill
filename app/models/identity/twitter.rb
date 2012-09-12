@@ -20,21 +20,7 @@ class Identity::Twitter < Identity
     write_attribute :name, screen_name
   end
 
-  def access_secret
-    options[:access_secret]
-  end
-
-  def access_secret=(access_secret)
-    options[:access_secret] = access_secret
-  end
-
-  def access_token
-    options[:access_token]
-  end
-
-  def access_token=(access_token)
-    options[:access_token] = access_token
-  end
+  serialized_attr :access_secret, :access_token
 
   #
   
