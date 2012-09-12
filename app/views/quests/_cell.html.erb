@@ -3,11 +3,8 @@
     <div class="featuedBox">
       <div class="imgShow">
         <%= render_bounty_ribbon quest %>
-        <a href="#" class="zoom" data-bitly-type="bitly_hover_card">
-          <%= image_for quest, :class => "zoom", :width => 330, :height => 205 %>
-          <span class="zoomOverlay"></span>
-          <div class="image_highlight"></div>
-        </a>
+        <%= quest_image_link_to quest, :width => 330, :height => 205 %>
+        
         <div class="unbottom untop">
           <h3><%= truncate quest.title, :length => 60 %></h3>
           <div class="restrictions">

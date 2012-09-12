@@ -1,1 +1,43 @@
-<%= render "form_row" %>
+<%= quest = @quest %>
+<div class="banner">
+  <span>
+    <h1><Current Requests><%= truncate @quest.title %></h1>
+  </span>
+  <%= link_to 'New Quest', new_quest_path, :class => "btn btn-inverse" %>
+</div>
+<div class="row">
+  <div class="span8">
+    <div class="inner">
+
+      <div class="featuedBox">
+        <div class="imgShow">
+          <%= render_bounty_ribbon quest %>
+          <%= quest_image_link_to quest, :width => 330, :height => 205 %>
+
+          <div class="unbottom untop">
+            <h3><%= quest.title %></h3>
+            
+            <div class="restrictions">
+              <img src="/images/icon/location.png" class="locality"><span class="locality">Hamburg, Germany</span><br>
+              <img src="/images/icon/calendar.png" class="temporality"><span class="temporality">15.02.2013</span>
+            </div>
+
+            <div class="socialmedia">
+              <!-- 
+              <a class="social-item googleplus" href="#" title="find us googleplus" data-bitly-type="bitly_hover_card">g</a>
+              <a class="social-item facebook" href="#" title="find us facebook" data-bitly-type="bitly_hover_card">f</a> 
+              -->
+              <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
+            </div>
+            
+            <div style="clear: both">
+              <%= quest.description %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
