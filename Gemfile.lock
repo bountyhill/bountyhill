@@ -118,6 +118,7 @@ GEM
       websocket-rack (= 0.4.0)
       yajl-ruby
     fssm (0.2.9)
+    geoip (1.1.2)
     girl_friday (0.10.0)
       connection_pool (~> 0.9.0)
     haml (3.1.7)
@@ -321,6 +322,7 @@ DEPENDENCIES
   compass_twitter_bootstrap
   factory_girl_rails
   faker
+  geoip
   girl_friday
   heroku
   jquery-rails
