@@ -13,8 +13,10 @@ class Quest < ActiveRecord::Base
   
   money :bounty
   
-  attr_accessible :title, :description, :bounty, :image, :image_url
+  attr_accessible :title, :description, :bounty, :image, :image_url, :location
 
+  serialize :serialized, Hash
+  
   def ui_mode
     if readonly?      then "show"
     elsif new_record? then "create" 
@@ -22,14 +24,16 @@ class Quest < ActiveRecord::Base
     end
   end
 
-  MAX_NUMBER_OF_CRITERIA = 10
+  MAX_NUMBER_OF_CRITERIA = 6
   
-  # The quest's criteria. Each criteria consists of a single piece of 
-  # text, and a random id number. Each answer will hold a compliance
-  # value between 0 and 1 and the same random id number.  
-  def criteria
-    # ...
+  def self.criteria_attributes
+    0.upto(MAX_NUMBER_OF_CRITERIA-1).map do |idx| 
+      "criterium_#{idx}"
+    end
   end
+  
+  serialized_attr *criteria_attributes
+  attr_accessible *criteria_attributes
   
   # Offers to the quest are ordered by their compliance value.
   has_many :offers, :order => "compliance DESC"

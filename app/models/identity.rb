@@ -20,9 +20,9 @@ class Identity < ActiveRecord::Base
   validates_presence_of :user, :on => :save
   
   after_destroy :delete_user_if_deleted_last_identity
-  
-  serialize :options, Hash
-  
+
+  serialize :serialized, Hash
+
   private
   
   def delete_user_if_deleted_last_identity

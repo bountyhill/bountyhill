@@ -13,6 +13,21 @@ class ActiveRecord::Base
   end
 end
 
+# -- support for serialized_attributes.
+
+class ActiveRecord::Base
+  def self.serialized_attr(*attribute_names)
+    attribute_names.each do |name|
+      define_method name        do 
+        serialized[name] 
+      end
+      define_method "#{name}="  do |value| 
+        serialized[name] = value 
+      end
+    end
+  end
+end
+
 # -- include ActiveRecord::RandomID to have newly created models have a random ID.
 
 module ActiveRecord::RandomID
