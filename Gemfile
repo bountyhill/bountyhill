@@ -33,5 +33,6 @@ group :development, :test do
   gem 'mocha'
   gem 'factory_girl_rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'faker'
 end
 

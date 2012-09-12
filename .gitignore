@@ -30,3 +30,4 @@ vendor/bountybased
 vendor/bountybase
 rdoc
 config/app.local.yml
+.sass-cache/

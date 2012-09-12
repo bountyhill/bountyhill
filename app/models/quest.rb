@@ -1,5 +1,7 @@
 class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
+
+  belongs_to :owner, :class_name => "User"
   
   # Quests are visible by the owner and when set to visibility public.
   # access_control :visibility
@@ -11,7 +13,7 @@ class Quest < ActiveRecord::Base
   
   money :bounty
   
-  attr_accessible :title, :description, :bounty, :image
+  attr_accessible :title, :description, :bounty, :image, :image_url
 
   def ui_mode
     if readonly?      then "show"
@@ -38,6 +40,42 @@ class Quest < ActiveRecord::Base
     return :offer_has_already_ended if expired?
     
     offer.calculate_compliance
+  end
+  
+  IMAGE_SIZES = {
+    "thumbnail" => "90x90", 
+    "fullsize"  => "640x480", 
+    "original"  => nil
+  }
+  
+  def image_url=(url)
+    image = {}
+    
+    IMAGE_SIZES.each do |name, size|
+      if size 
+        width, height = size.split(/\D+/).map(&:to_i)
+        size_url = "http://imgio.heroku.com/jpg/fill/#{size}/#{url}"
+      end
+      
+      image[name] = {
+        "url"     => size_url || url,
+        "mime"    => "image/jpeg",
+        "width"   => width,
+        "height"  => height
+      }
+    end
+    
+    self.image = image
+  end
+  
+  def original_image_url
+    original = image && image["original"]
+    url = original && original["url"]
+    
+    # If the original URL already points to an imgio instance; i.e. if it looks like
+    # this: "http://imgio.heroku.com/jpg/fill/90x90/http://some.where/123456.jpg",
+    # the following line extracts the original URL from the imgio URL.
+    url.gsub(/.*\d\/http/, "http") if url
   end
   
   def expired?
