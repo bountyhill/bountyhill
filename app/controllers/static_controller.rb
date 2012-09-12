@@ -1,20 +1,20 @@
 class StaticController < ApplicationController
-  # The static layout wraps a single, 12 column spanning row
-  # into the general application layout. 
-  layout "static"
-  
   def home
   end
 
   def help
+    set_layout :page
   end
 
   def about
+    set_layout :page
   end
 
   def privacy
+    set_layout :page
   end
 
   def terms
+    set_layout :page
   end
 end
