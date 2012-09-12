@@ -25,14 +25,32 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def image_for(quest, size = "thumbnail")
-    expect! size.to_s => [ "thumbnail", "fullsize", "original" ]
+  def thumbnail_for(quest, options = {})
+    render_image_for "thumbnail", quest, options
+  end
+  
+  def image_for(quest, options = {})
+    render_image_for "fullsize", quest, options
+  end
+  
+  def render_image_for(size, quest, options)
+    expect! size => String
+    
+    width, height = options.values_at :width, :height
+    if IMGIO && width && height && (url = quest.original_image_url)
+      url = "#{IMGIO}/jpg/50/fill/#{width}x#{height}/#{url}"
+    else
+      # The quest.image hash must have a size entry, which is a Hash
+      expect! quest.image => { size => Hash }
+      
+      image_data = quest.image[size]
 
-    hash = quest.image[size.to_s] || {}
+      options[:width], options[:height] = image_data.values_at("width", "height")
+      url = image_data["url"]
+    end
 
-    url = hash["url"] #.gsub(/^(http|https):/, "")
-
-    image_tag url, :title => quest.title, :width => hash["width"], :height => hash["height"]
+    options[:title] ||= quest.title
+    image_tag url, options
   end
   
   def show_company_footer?
