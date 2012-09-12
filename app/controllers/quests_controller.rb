@@ -1,16 +1,10 @@
-class Money
-  def to_full_string
-    "#{self} #{currency_as_string}"
-  end
-end
-
 class QuestsController < ApplicationController
   include Transloadit::Rails::ParamsDecoder
   
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.all
+    @quests = Quest.paginate(:page => params[:page], :per_page => 3)
 
     respond_to do |format|
       format.html # index.html.erb
