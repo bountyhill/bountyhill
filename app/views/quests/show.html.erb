@@ -1,4 +1,4 @@
-<%= quest = @quest %>
+<% quest = @quest %>
 <div class="banner">
   <span>
     <h1><Current Requests><%= truncate @quest.title %></h1>
@@ -33,10 +33,23 @@
               <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
             </div>
             
-            <div style="clear: both">
+            <div style="clear: both"></div>
+
+            <h3>Description</h3>
+            <div>
               <%= quest.description %>
             </div>
-            
+
+            <% unless quest.criteria.blank? %>
+            <h3>Criteria</h3>
+            <dl>
+            <% Quest.criteria_attributes.each do |name| %>
+            <dt>
+              <%= quest.send(name) %>
+            </dt>
+            <% end %>
+            </dl>
+            <% end %>
           </div>
         </div>
       </div>

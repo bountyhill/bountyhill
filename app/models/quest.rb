@@ -35,6 +35,12 @@ class Quest < ActiveRecord::Base
   serialized_attr *criteria_attributes
   attr_accessible *criteria_attributes
   
+  def criteria
+    self.class.criteria_attributes.
+      map { |name| send(name) }.
+      reject(&:blank?)
+  end
+  
   # Offers to the quest are ordered by their compliance value.
   has_many :offers, :order => "compliance DESC"
   
