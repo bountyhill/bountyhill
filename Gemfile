@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
 gem 'pg'
+gem 'psych'
 gem 'jquery-rails'
 gem 'heroku'
 gem 'bcrypt-ruby', '3.0.1'
@@ -36,5 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'faker'
+
+  gem 'spork-testunit'
 end
 
