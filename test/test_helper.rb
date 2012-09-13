@@ -85,6 +85,8 @@ class ActiveSupport::TestCase
   def teardown
     ActiveRecord::AccessControl.current_user = nil
   end
+
+  include ActiveRecord::Assertions
 end
 
 def Factory(*args)
