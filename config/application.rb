@@ -79,6 +79,15 @@ module Bountyhill
     # Configure and install AutoTitleMiddleware
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
+  
+  class Application
+    def load_console(app=self)
+      r = super
+      irbrc = File.join(Rails.root, "config", "irbrc")
+      load(irbrc) if File.exists?(irbrc)
+      r
+    end
+  end
 end
 
 Money.default_currency = "EUR"
