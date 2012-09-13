@@ -94,6 +94,17 @@ class Quest < ActiveRecord::Base
     expires_at && expires_at < Time.now
   end
 
+  def published?
+    started_at.present?
+  end
+  
+  def publish!
+    self.visibility = "public"
+    self.started_at = Time.now
+
+    save!
+  end
+  
   def number_of_tweets
     cached :time_to_live => 60 do
       Bountybase::Graph.number_of_tweets self.id
