@@ -1,7 +1,9 @@
 module ApplicationHelper
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
-    controller.class.name.gsub("Controller","").downcase == nav_item ? "active" : ""
+    if controller.class.name.gsub("Controller","").downcase == nav_item
+      "active"
+    end
   end
   
   def error_message_for(object, attribute)
