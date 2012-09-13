@@ -22,6 +22,6 @@ FactoryGirl.define do
   end
 
   factory :user do
-    initialize_with { factory(:identity).user }
+    initialize_with { Factory(:identity).user }
   end
 end
