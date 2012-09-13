@@ -22,6 +22,18 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_factory
+    assert_difference "User.count", +1 do
+      assert_difference "Identity.count", +1 do
+        assert_difference "Identity::Email.count", +1 do
+          user = Factory(:user)
+          assert_kind_of(User, user)
+          assert user.valid?
+        end
+      end
+    end
+  end
+  
   # Delete a user's last identity deletes the user, too.
   def test_deleting_last_identity_deletes_user
     user = User.find create_user.id
