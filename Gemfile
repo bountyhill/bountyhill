@@ -10,7 +10,7 @@ gem 'money'
 gem 'rdiscount'
 gem 'twitter_oauth'
 gem 'transloadit-rails'
-gem 'rulesio'
+# gem 'rulesio'
 gem 'girl_friday'
 
 gem 'will_paginate', '~> 3.0.0'
