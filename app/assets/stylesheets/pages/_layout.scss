@@ -2,10 +2,6 @@
   margin: 20px 0 -56px 0
 }
 
-.topspace {
-  margin: 66px 0 0 0;
-}
-
 .flash {
   text-align: center;
   border-radius: 0
@@ -15,3 +11,27 @@
   height: 120px;
 }
 
+@media (max-width: 320px) {
+  body {
+    padding: 0px;
+  }
+  .topspace {
+    margin-top: 0px;
+  }
+  .navbar-fixed-top {
+    margin: 0px -10px;
+  }
+  .navbar {
+    .brand {
+      padding: 8px 5px 12px 18px;
+      margin-left: -10px;
+      font-size: 18px;
+    }
+    .navbar-search {
+      margin-right: 0px;
+    }
+  }
+  .inner {
+    padding: 5px;
+  }
+}

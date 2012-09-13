@@ -1,6 +1,6 @@
 .categories {
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px;
   a {
     position: relative;
     text-decoration: none;
@@ -11,10 +11,10 @@
     font-size: 35px;
     line-height: 35px;
     display: inline-block;
-    width: 70px;
+    width: 68px;
     height: 52px;
-    padding-top: 18px;
-    margin: 6px 3px;
+    padding-top: 16px;
+    margin: 3px 1px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     -o-border-radius: 100px;
@@ -100,6 +100,14 @@
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .featuedBox {
+    .imgShow {
+      width: 310px;
     }
   }
 }
