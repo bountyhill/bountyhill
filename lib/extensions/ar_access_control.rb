@@ -65,7 +65,11 @@ module ActiveRecord::AccessControl
       end
     when :owner
       lambda do |user| 
-        where("owner_id=?", user.id) if user
+        if user
+          where("owner_id=?", user.id) 
+        else
+          where("FALSE") 
+        end
       end
     when :visibility
       lambda do |user|
