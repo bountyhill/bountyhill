@@ -12,16 +12,16 @@ class IdentityTest < ActiveSupport::TestCase
   # Can create a user and reads its identity
   def test_can_save_and_load_options
     identity = Factory(:identity)
-    identity.options = { "a" => "b" }
+    identity.serialized = { "a" => "b" }
     identity.save!
     
     r = identity.reload
-    assert_equal({ "a" => "b" }, r.options)
+    assert_equal({ "a" => "b" }, r.serialized)
 
-    identity.options = nil
+    identity.serialized = nil
     identity.save!
 
     r = identity.reload
-    assert_equal({}, r.options)
+    assert_equal({}, r.serialized)
   end
 end
