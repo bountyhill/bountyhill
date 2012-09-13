@@ -13,10 +13,11 @@ module ActiveRecord::AccessControl
 
   # runs a block as a specific user.
   def self.as(user, &block)
+    old_user = self.current_user
     self.current_user = user
     yield
   ensure
-    self.current_user = nil
+    self.current_user = old_user
   end
 
   # enable SQL-based access control on objects of this class.
@@ -86,17 +87,11 @@ module ActiveRecord::AccessControl
     cattr_accessor :read_access
     cattr_accessor :write_access
 
-    validate do |record|
-      user = ActiveRecord::AccessControl.current_user
-      self.owner_id ||= user && user.id  
-      self.errors.add :base, I18n.t(:"permission denied") unless record.writable?(user)
-    end
-
     # returns the default scope for these models.
     default_scope do
       user = ActiveRecord::AccessControl.current_user
       if user && user.admin?
-        {}
+        where("TRUE")
       else
         read_access.call(user) || where("FALSE")
       end
@@ -104,6 +99,20 @@ module ActiveRecord::AccessControl
   end
   
   module InstanceMethods
+    def self.included(other)
+      other.after_initialize :initialize_access_control
+      other.validate :validate_access_control
+    end
+    
+    def initialize_access_control
+      self.owner ||= ActiveRecord::AccessControl.current_user
+    end
+    
+    def validate_access_control
+      return if writable?
+      self.errors.add :base, I18n.t(:"permission denied")
+    end
+      
     # Returns true if the currently logged in user may write this
     # model. Write access is granted if
     #
@@ -115,18 +124,16 @@ module ActiveRecord::AccessControl
     #
     # Write access is denied if the current_user is not logged in.
     def writable?(user = ActiveRecord::AccessControl.current_user)
-      return @is_writable unless @is_writable.nil?
-
-      @is_writable = if !user
+      if !user
         false
       elsif user.admin?
         true
-      elsif new_record?
+      elsif user == owner
         true
       elsif (write_access = self.write_access).nil?
         true
       elsif scope = write_access.call(user)
-        scope.where(:id => model.id).count == 1
+        scope.where(:id => self.id).count == 1
       else
         false
       end

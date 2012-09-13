@@ -91,4 +91,14 @@ class UserTest < ActiveSupport::TestCase
     user = Identity::Twitter.find_by_name("radiospiel").user
     assert(user.admin?)
   end
+  
+  def test_pseudo_factories
+    foo, bar = user("foo"), user("@bar")
+    assert foo.identity(:twitter)
+    assert !foo.identity?(:email)
+    
+    foo = user("foo@bar.com")
+    assert !foo.identity(:twitter)
+    assert foo.identity?(:email)
+  end
 end

@@ -2,9 +2,11 @@ class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
 
   belongs_to :owner, :class_name => "User"
+  validates_presence_of :owner
   
   # Quests are visible by the owner and when set to visibility public.
-  # access_control :visibility
+  access_control :visibility
+  write_access_control :owner
   
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }

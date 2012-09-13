@@ -24,4 +24,10 @@ FactoryGirl.define do
   factory :user do
     initialize_with { Factory(:identity).user }
   end
+
+  factory :quest do
+    bounty "12"
+    title "bountytitle"
+    description "bounty description"
+  end
 end

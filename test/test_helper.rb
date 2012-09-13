@@ -86,6 +86,31 @@ class ActiveSupport::TestCase
     ActiveRecord::AccessControl.current_user = nil
   end
 
+  # a identity "factory"
+  def identity(name)
+    name = name.to_s
+
+    case name
+    when /^@(.*)/
+      Identity::Twitter.find_by_name($1) ||
+        Identity::Twitter.create!(:name => $1)
+    when /@/
+      Identity::Email.find_by_email(name) ||
+        Identity::Email.create!(:name => name, :email => name, :password => name, :password_confirmation => name)
+    else
+      Identity::Twitter.find_by_name(name) ||
+        Identity::Twitter.create!(:name => name)
+    end
+  end
+
+  # a user "factory"
+  def user(name)
+    identity(name).user
+  end
+  
+  extend Forwardable
+  delegate :as => ActiveRecord::AccessControl
+
   include ActiveRecord::Assertions
 end
 
