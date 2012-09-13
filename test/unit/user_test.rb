@@ -9,6 +9,15 @@ class UserTest < ActiveSupport::TestCase
     user
   end
 
+  def test_fixtures
+    assert_equal 1, User.count
+    assert_equal 1, Identity.count
+    assert_equal 1, Identity::Twitter.count
+    
+    user = Identity::Twitter.find_by_name("radiospiel").user
+    assert(user.admin?)
+  end
+  
   # There are no users without an identity
   def test_needs_an_identity
     assert_raise(ActiveRecord::RecordInvalid) {  
@@ -79,7 +88,7 @@ class UserTest < ActiveSupport::TestCase
     user = Factory(:twitter_identity, :name => "twark").user
     assert(!user.admin?)
 
-    user = Factory(:twitter_identity, :name => "radiospiel").user
+    user = Identity::Twitter.find_by_name("radiospiel").user
     assert(user.admin?)
   end
 end

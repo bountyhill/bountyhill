@@ -1,0 +1,4 @@
+admin:
+  type: Identity::Twitter
+  name: radiospiel
+  user: admin

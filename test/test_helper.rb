@@ -20,6 +20,22 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def self.admin
+    @admin ||= Identity::Twitter.find_by_name("radiospiel").user
+  end
+  
+  def admin
+    @admin ||= ActiveSupport::TestCase.admin
+  end
+  
+  def setup
+    ActiveRecord::AccessControl.current_user = admin
+  end
+
+  def teardown
+    ActiveRecord::AccessControl.current_user = nil
+  end
 end
 
 def Factory(*args)
