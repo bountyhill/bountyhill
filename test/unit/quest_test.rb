@@ -37,6 +37,22 @@ class QuestTest < ActiveSupport::TestCase
     end
   end
 
+  def assert_can_destroy(*objects)
+    objects.each do |object|
+      assert_nothing_raised() {  
+        object.destroy
+      }
+    end
+  end
+  
+  def assert_cannot_destroy(*objects)
+    objects.each do |object|
+      assert_raise(ActiveRecord::RecordInvalid) {  
+        object.destroy
+      }
+    end
+  end
+
   def assert_can_write(*objects)
     objects.each do |object|
       assert_nothing_raised() {  
@@ -101,29 +117,47 @@ class QuestTest < ActiveSupport::TestCase
   def test_write_visibilty
     setup_visibility
 
-    assert_can_write admin_quest
-    assert_can_write foo_quest
-    assert_can_write public_quest
+    assert_can_write admin_quest, foo_quest, public_quest
     
     as(foo_user) do
       assert_cannot_write admin_quest
-      assert_can_write foo_quest
-      assert_can_write public_quest
+      assert_can_write foo_quest, public_quest
     end
     
     as(nil) do
-      assert_cannot_write admin_quest
-      assert_cannot_write foo_quest
-      assert_cannot_write public_quest
+      assert_cannot_write admin_quest, foo_quest, public_quest
     end
   
     as(bar_user) do
-      assert_cannot_write admin_quest
-      assert_cannot_write foo_quest
-      assert_cannot_write public_quest
+      assert_cannot_write admin_quest, foo_quest, public_quest
     end
   
     assert_equal(admin, ActiveRecord::AccessControl.current_user)
+  end
+  
+  def test_destroy_access_control
+    setup_visibility
+
+    assert_can_destroy admin_quest, foo_quest, public_quest
+    
+    setup_visibility
+
+    as(foo_user) do
+      assert_cannot_destroy admin_quest
+      assert_can_destroy foo_quest, public_quest
+    end
+    
+    setup_visibility
+
+    as(nil) do
+      assert_cannot_destroy admin_quest, foo_quest, public_quest
+    end
+  
+    setup_visibility
+
+    as(bar_user) do
+      assert_cannot_destroy admin_quest, foo_quest, public_quest
+    end
   end
   
   def test_publish
