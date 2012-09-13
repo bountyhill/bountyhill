@@ -49,17 +49,41 @@ end
 
 module ActiveRecord::Base::MoneySupport
   M = ActiveRecord::Base::MoneySupport
+
+  # return the name of the cents column
+  def self.cents_column(column) #:nodoc:
+    cents_column = "#{column}_in_cents"
+  end
   
   def money(column)
-    cents_column = "#{column}_in_cents"
-    
-    validates_numericality_of cents_column, :greater_than_or_equal_to => 0
+    # make sure the MoneySupport::Validation module is included.
+    include Validation
 
     composed_of column,
       :class_name   => "Money",
-      :mapping      => [ [ cents_column, "cents" ] ],
+      :mapping      => [ [ M.cents_column(column), "cents" ] ],
       :constructor  => M.method(:construct_money),
       :converter    => M.method(:convert_to_money)
+  end
+
+  def money_attributes
+    @money_attributes ||= attribute_names.map { |name| name.gsub!(/_in_cents/, "") }.compact
+  end
+  
+  module Validation
+    def self.included(other)
+      other.validate :validate_money
+    end
+    
+    def validate_money
+      self.class.money_attributes.each do |attr|
+        cents = self.send M.cents_column(attr)
+        cents = Integer(cents) rescue nil
+        if !cents || cents < 0
+          errors.add attr, I18n.t(:greater_than_or_equal_to, :count => 0)
+        end
+      end 
+    end
   end
   
   def self.construct_money(cents)
