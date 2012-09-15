@@ -15,6 +15,7 @@ IMAGE_URLS = %w(
 namespace :demo do
   task :setup => :environment
   
+  desc "Create demo users"
   task :users => :setup do
     10.times do 
       name = Faker::Name.name
@@ -26,6 +27,7 @@ namespace :demo do
     end
   end
   
+  desc "Create demo quests"
   task :quests => :setup do
     10.times do
       bounty = 10000 * ((r = rand) * r)
