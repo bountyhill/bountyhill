@@ -18,8 +18,8 @@ module QuestsHelper
       currency = "&euro;"
     end
     
-    content_tag :div, :class => "ribbon-wrapper left" do
-      content_tag :div, :class => "ribbon #{bounty_class}" do
+    div :class => "ribbon-wrapper left" do
+      div :class => "ribbon #{bounty_class}" do
         "#{currency} #{amount}".html_safe
       end
     end

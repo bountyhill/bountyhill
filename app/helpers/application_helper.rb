@@ -1,4 +1,20 @@
 module ApplicationHelper
+  def h1(*content, &block)
+    content_tag(:h1, *content, &block)
+  end
+
+  def h2(*content, &block)
+    content_tag(:h2, *content, &block)
+  end
+  
+  def div(*content, &block)
+    content_tag(:div, *content, &block)
+  end
+
+  def span(*content, &block)
+    content_tag(:span, *content, &block)
+  end
+
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
     if controller.class.name.gsub("Controller","").downcase == nav_item
@@ -8,7 +24,7 @@ module ApplicationHelper
   
   def error_message_for(object, attribute)
     if error_message = object.error_message_for(attribute)
-      content_tag(:span, error_message, :class => "help-inline")
+      span(error_message, :class => "help-inline")
     end
   end
 
