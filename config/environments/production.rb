@@ -1,3 +1,5 @@
+# Note: This file is active in "staging" *AND* in "production".
+
 Bountyhill::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
