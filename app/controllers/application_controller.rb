@@ -36,4 +36,17 @@ class ApplicationController < ActionController::Base
   end
   
   layout :layout
+
+  # mobile devices: I know it sucks, but in some rare cases we just have
+  # to use slightly different markup for mobile and desktop.
+  #
+  # define the is_mobile_device? method and a few more; 
+  # see https://github.com/benlangfeld/mobile-fu
+  has_mobile_fu false
+
+  def mobile?
+    is_mobile_device? && !is_tablet_device?
+  end
+
+  helper_method :mobile?
 end

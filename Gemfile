@@ -16,6 +16,7 @@ gem 'girl_friday'
 gem 'will_paginate', '~> 3.0.0'
 gem 'bountydeps'
 gem 'geoip'
+gem 'mobile-fu'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
