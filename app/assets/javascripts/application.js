@@ -29,20 +29,20 @@ if(typeof console === "undefined") {
     panControl:         false,
     rotateControl:      false,
     streetViewControl:  false,
-    backgroundColor:    "black"
+    backgroundColor:    "black",
+    draggable:          false,
+    scrollwheel:        false
   };
 
-  $.fn.map = function(location) {
+  $.fn.map_widget = function(location) {
     var self = this;
     
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
       { 'address': location }, 
       function(results, status) {
-        console.log("Received results for ", location)
-        
         if (status !== 'OK') {
-          console.log("Sorry: could not locate " + location + ": " + status);
+          console.log("Could not locate " + location + ": " + status);
           return;
         }
 
