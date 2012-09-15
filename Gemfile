@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2'
 gem 'pg'
+gem 'psych'
 gem 'jquery-rails'
 gem 'heroku'
 gem 'bcrypt-ruby', '3.0.1'
@@ -9,7 +10,7 @@ gem 'money'
 gem 'rdiscount'
 gem 'twitter_oauth'
 gem 'transloadit-rails'
-gem 'rulesio'
+# gem 'rulesio'
 gem 'girl_friday'
 
 gem 'will_paginate', '~> 3.0.0'
@@ -36,5 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'faker'
+
+  gem 'spork-testunit'
 end
 

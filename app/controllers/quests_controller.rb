@@ -30,9 +30,7 @@ class QuestsController < ApplicationController
 
     # fill in location, if the server provides one.
     @quest.location = location.name if location = request.location
-    
-
-    @quest.owner_id = current_user
+    @quest.location = "Berlin" #location.name if location = request.location
     
     respond_to do |format|
       format.html # new.html.erb
@@ -51,9 +49,6 @@ class QuestsController < ApplicationController
   def create
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
-
-    # fill in owner
-    @quest.owner_id = current_user
 
     # (Try to) save
     respond_to do |format|

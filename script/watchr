@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'rb-fsevent'
+
+if ARGV.length < 2
+  STDERR.puts "watchr dir ruby-parameter(s)..."
+  abort
+end
+
+paths = ARGV.shift.split(",")
+$args = ARGV.dup
+
+
+def do_ruby
+  STDERR.puts $args.join(" ")
+  STDERR.puts "=" * 80
+  
+  system(*$args)
+end
+
+puts "Initial run"
+do_ruby
+
+fsevent = FSEvent.new
+fsevent.watch paths do |directories|
+  puts "Detected change inside: #{directories.inspect}"
+  do_ruby
+end
+fsevent.run
