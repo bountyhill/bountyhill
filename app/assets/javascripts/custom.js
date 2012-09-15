@@ -32,7 +32,7 @@ $(function() {
 	});
 	
 	// zoomOverlay
-	$("<span class='zoomOverlay'/><div class='image_highlight'/>").appendTo('.zoom');
+	jQuery(".zoom").append("<span class='zoomOverlay'> </span><div class='image_highlight'> </div>");
 	
 	// fancybox
 	$(".packages-items a.zoom").fancybox();
@@ -213,6 +213,7 @@ $(function() {
 	if(mybrowser.indexOf('Safari')>0){}		
 
 });	
+/*
 	// Contact Submiting form
 	function Contact_form(form, options){
 		// text on load you change , 0: No Overlay , 1 loading with  Overlay 
@@ -238,6 +239,7 @@ $(function() {
 			cache: false,type: "POST",dataType: 'json'
 		});
 	}
+	*/
 	// Loading
 	  function loading(name,overlay) { 
 			$('body').append('<div id="overlay"></div><div id="preloader">'+name+'..</div>');
