@@ -2,8 +2,11 @@
   <div class="span12 bg-black">
     <% if mobile? %>
     <div class="row">
-      <div class="span8">
-        <%= partial "quests/show/head", :quest => @quest %>
+      <div class="span4">
+        <%= partial "quests/show/image", :quest => @quest %>
+      </div>
+      <div class="span4">
+        <%= partial "quests/show/description", :quest => @quest %>
       </div>
       <div class="span4">
         <%= partial "quests/show/actions", :quest => @quest %>
