@@ -1,18 +1,25 @@
 module ApplicationHelper
+  def _content_tag(name, *content, &block)
+    options = content.extract_options!
+    content << capture(&block) if block_given?
+    content = content.join("\n").html_safe
+    content_tag name, content, options
+  end
+  
   def h1(*content, &block)
-    content_tag(:h1, *content, &block)
+    _content_tag(:h1, *content, &block)
   end
 
   def h2(*content, &block)
-    content_tag(:h2, *content, &block)
+    _content_tag(:h2, *content, &block)
   end
   
   def div(*content, &block)
-    content_tag(:div, *content, &block)
+    _content_tag(:div, *content, &block)
   end
 
   def span(*content, &block)
-    content_tag(:span, *content, &block)
+    _content_tag(:span, *content, &block)
   end
 
   # returns "active" if the nav_item belongs to the current controller.
