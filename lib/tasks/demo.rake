@@ -17,37 +17,41 @@ namespace :demo do
   
   desc "Create demo users"
   task :users => :setup do
-    10.times do 
-      name = Faker::Name.name
-      email = Faker::Internet.email
-      password = email
-      Identity::Email.create!(:name => name, :email => email, :password => password, :password_confirmation => password)
-    
-      W "created", email
+    ActiveRecord::AccessControl.as User.admin do
+      10.times do 
+        name = Faker::Name.name
+        email = Faker::Internet.email
+        password = email
+        Identity::Email.create!(:name => name, :email => email, :password => password, :password_confirmation => password)
+
+        W "created", email
+      end
     end
   end
   
   desc "Create demo quests"
   task :quests => :setup do
-    10.times do
-      bounty = 10000 * ((r = rand) * r)
-      bounty = 0 if bounty < 10
+    ActiveRecord::AccessControl.as User.admin do
+      10.times do
+        bounty = 10000 * ((r = rand) * r)
+        bounty = 0 if bounty < 10
 
-      title = nil
-      while !title || title.length > 100
-        title = Faker::Lorem.sentence(15)
+        title = nil
+        while !title || title.length > 100
+          title = Faker::Lorem.sentence(15)
+        end
+
+        quest = Quest.new :bounty => bounty,
+          :title => title,
+          :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n"),
+          :image_url =>  IMAGE_URLS[rand(IMAGE_URLS.length)]
+
+        quest.owner = User.first(:offset => rand(User.count))
+        quest.visibility = "public"
+        quest.save!
+
+        W title
       end
-      
-      quest = Quest.new :bounty => bounty,
-        :title => title,
-        :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n"),
-        :image_url =>  IMAGE_URLS[rand(IMAGE_URLS.length)]
-
-      quest.owner = User.first(:offset => rand(User.count))
-      quest.visibility = "public"
-      quest.save!
-
-      W title
     end
   end
 end
