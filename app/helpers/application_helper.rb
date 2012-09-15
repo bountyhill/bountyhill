@@ -67,4 +67,16 @@ module ApplicationHelper
   def show_company_footer?
     request.path == "/"
   end
+
+  def partial(partial, *args)
+    locals = args.extract_options!
+    expect! partial => String, args.length => [0,1]
+    
+    options = {}
+    options[:partial] = partial
+    options[:object] = args.first if args.first 
+    options[:locals] = locals if locals.present?
+
+    render options
+  end
 end
