@@ -30,6 +30,10 @@ module ApplicationHelper
     _content_tag(:li, *content, &block)
   end
 
+  def p(*content, &block)
+    _content_tag(:p, *content, &block)
+  end
+
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
     if controller.class.name.gsub("Controller","").downcase == nav_item
