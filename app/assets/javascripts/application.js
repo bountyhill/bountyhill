@@ -13,3 +13,53 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+// dummy console, just in case
+if(typeof console === "undefined") {
+  console = {
+    log: function() {}
+  };
+}
+
+(function( $ ) {
+  var DEFAULTS = {
+    zoom:               8,
+    center:             '52.5, 13.5', 
+    mapTypeControl:     false,
+    panControl:         false,
+    rotateControl:      false,
+    streetViewControl:  false,
+    backgroundColor:    "black"
+  };
+
+  $.fn.map = function(location) {
+    var self = this;
+    
+    console.log("Setup map to ", location)
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+      { 'address': location }, 
+      function(results, status) {
+        console.log("Received results for ", location)
+        
+        if (status !== 'OK') {
+          console.log("Sorry: could not locate " + location + ": " + status);
+          return;
+        }
+
+        var options = DEFAULTS;
+        options.center = results[0].geometry.location;
+        options.fitBounds = results[0].geometry.viewport;
+        
+        self.gmap(DEFAULTS).
+          bind('init', function(ev, map) {
+            self.gmap('addMarker', {'position': results[0].geometry.location}).
+              click(function() { });
+          });
+        map.fitBounds(results[0].geometry.viewport);
+      });
+      
+  }; // $.fn.map = ...
+
+})(jQuery);
