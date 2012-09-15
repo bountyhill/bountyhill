@@ -116,7 +116,7 @@
 	width: 5px;
 	height: 10px;
 	text-indent: -9999px;
-	background-image: url(../images/ui_arrows.png);
+	background-image: url(/images/ui_arrows.png);
 }
 .ui-datepicker-prev span { background-position: 0px 0px; }
 .ui-datepicker-next span { background-position: -5px 0px; }

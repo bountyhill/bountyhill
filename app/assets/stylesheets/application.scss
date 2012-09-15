@@ -31,6 +31,7 @@ body { padding-top: 30px } // has to be here! - gives some space between body an
 
 // import widget stylesheets
  @import "widgets/banner";
+ @import "widgets/buttons";
  @import "widgets/form";
  @import "widgets/list";
  @import "widgets/nav";

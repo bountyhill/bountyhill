@@ -104,10 +104,73 @@
   }
 }
 
+.article_list {
+  color: #666;
+  margin-bottom: 0px;
+  &.large {
+    li {
+      box-shadow: none;
+      article {
+        &::before {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.faq {
+  .accordion-heading {
+    min-height: 0px;
+    &::before {
+      content: "!";
+      padding: 12px 17px;
+      background-color: #333;
+    }
+  }
+  .accordion-body {
+    margin: 0 15px 0 5px;
+    width: auto;
+    &::before {
+      content: none;
+      background-color: black;
+    }
+    &::after {
+      border-top: 20px solid black;
+    }
+  }
+}
+
+h2 {
+  span {
+    &.bounty {
+      font-size: 48px;
+      &.small   { color: #3333BF; }
+      &.medium  { color: #33BF33; }
+      &.large   { color: #BF3333; }
+    }
+  }
+}
+
+.ui-datepicker {
+  width: auto;
+  table {
+    width: 100%;
+  }
+}
+
 @media (max-width: 320px) {
   .featuedBox {
     .imgShow {
       width: 310px;
+    }
+  }
+  .ca-menu {
+    margin-top: 3px;
+  }
+  .span4 {
+    .inner {
+      margin-bottom: 20px;
     }
   }
 }
