@@ -17,6 +17,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'bountydeps'
 gem 'geoip'
 gem 'mobile-fu'
+gem 'nokogiri'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
