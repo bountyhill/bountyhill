@@ -1,0 +1,1 @@
+this.onmessage=function(e){var t=e.data,n=t.data,r=null,i=n.length;for(var s=0;s<i;s+=4)r=n[s]*.3+n[s+1]*.59+n[s+2]*.11,n[s]=n[s+1]=n[s+2]=r;postMessage(t)};
