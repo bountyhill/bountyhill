@@ -104,6 +104,10 @@ class Money
   def to_full_string
     "#{self} #{currency_as_string}"
   end
+
+  def to_short_string
+    "#{to_s.gsub(/\..*/, "")} #{currency_as_string}"
+  end
 end
 
 # -- extend FormBuilder with a control_group method which renders
@@ -192,5 +196,11 @@ class ActionView::Helpers::FormBuilder
 
       "#{cancel_btn} #{save_btn}"
     end
+  end
+end
+
+class Date
+  def to_js
+    "new Date(#{year}, #{month-1}, #{day})"
   end
 end

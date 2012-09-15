@@ -35,8 +35,6 @@ if(typeof console === "undefined") {
   $.fn.map = function(location) {
     var self = this;
     
-    console.log("Setup map to ", location)
-
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
       { 'address': location }, 

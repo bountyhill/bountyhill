@@ -1,0 +1,18 @@
+<div class="inner">
+  <h2>
+    <span>2 criteria</span> 
+    <small>have been established</small>
+  </h2>
+
+  <div class="faq">
+    <%= accordion do |acc| %>
+      <%= acc.item "item1" do |*x| %>
+      <p>It must be good!</p>
+      <p>What I mean is that it must match perfectly!</p>
+      <% end %>
+      <%= acc.item "item2", "body2" %>
+      <%= acc.item "item3", "body3" %>
+      <%= acc.item "item4", "body4" %>
+    <% end %>
+  </div>
+</div>

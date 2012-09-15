@@ -118,5 +118,18 @@ class Quest < ActiveRecord::Base
   end
   
   def number_of_offers
+    rand(5)
+  end
+
+  def compliance
+    rand(100)
+  end
+  
+  def ends_at
+    Time.now + rand(1000000)
+  end
+  
+  def location
+    "Hamburg, Germany"
   end
 end

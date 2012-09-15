@@ -1,0 +1,26 @@
+<div class="inner">
+  <% if quest.ends_at.present? %>
+  <h2>
+    <span><%=t "quest.ends_at.title" %></span> 
+    <small><%=t "quest.ends_at.none" %></small>
+  </h2>
+  <% else %>
+  <h2>
+    <span><%=t "quest.ends_at.title" %></span> 
+    <small><%=t "quest.ends_at.sub", :date => quest.ends_at.to_date.strftime("%B %d, %Y") %></small>
+  </h2>
+  <div>
+    <div id="datepicker"> </div>
+    <script type="text/javascript" charset="utf-8">
+    jQuery(function() {
+      var date = <%= quest.ends_at.to_date.to_js %>;
+      jQuery('#datepicker').datepicker({
+        defaultDate: date,
+        minDate: date,
+        maxDate: date
+      });
+    });
+    </script>
+  </div>
+  <% end %>
+</div>

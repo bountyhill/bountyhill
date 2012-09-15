@@ -81,9 +81,9 @@ module Bountyhill
     # Configure and install AutoTitleMiddleware
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
 
-    if Rails.env.development?
-      config.middleware.use ::PrettyHTMLMiddleware
-    end
+    # if Rails.env.development?
+    #   config.middleware.use ::PrettyHTMLMiddleware
+    # end
   end
   
   class Application

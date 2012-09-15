@@ -1,59 +1,35 @@
-<% quest = @quest %>
-<div class="banner">
-  <span>
-    <h1><Current Requests><%= truncate @quest.title %></h1>
-  </span>
-  <%= link_to 'New Quest', new_quest_path, :class => "btn btn-inverse" %>
-</div>
-<div class="row">
-  <div class="span8">
-    <div class="inner">
-
-      <div class="featuedBox">
-        <div class="imgShow">
-          <%= render_bounty_ribbon quest %>
-          <%= quest_image_link_to quest, :width => 330, :height => 205 %>
-
-          <div class="unbottom untop">
-            <h3><%= quest.title %></h3>
-            
-            <div class="restrictions">
-              <img src="/images/icon/location.png" class="locality">
-              <span class="locality">Hamburg, Germany</span><br>
-
-              <img src="/images/icon/calendar.png" class="temporality">
-              <span class="temporality">15.02.2013</span>
-            </div>
-
-            <div class="socialmedia">
-              <!-- 
-              <a class="social-item googleplus" href="#" title="find us googleplus" data-bitly-type="bitly_hover_card">g</a>
-              <a class="social-item facebook" href="#" title="find us facebook" data-bitly-type="bitly_hover_card">f</a> 
-              -->
-              <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
-            </div>
-            
-            <div style="clear: both"></div>
-
-            <h3>Description</h3>
-            <div>
-              <%= quest.description %>
-            </div>
-
-            <% unless quest.criteria.blank? %>
-            <h3>Criteria</h3>
-            <dl>
-            <% Quest.criteria_attributes.each do |name| %>
-            <dt>
-              <%= quest.send(name) %>
-            </dt>
-            <% end %>
-            </dl>
-            <% end %>
-          </div>
-        </div>
+<div class="row bg-main" >
+  <div class="span12 bg-black">
+    <% if mobile? %>
+    <div class="row">
+      <div class="span8">
+        <%= partial "quests/show/head", :quest => @quest %>
       </div>
-
+      <div class="span4">
+        <%= partial "quests/show/actions", :quest => @quest %>
+      </div>
     </div>
+    <div class="row">
+      <div class="span8">
+        <%= partial "quests/show/criteria", :quest => @quest %>
+      </div>
+      <div class="span4">
+        <%= partial "quests/show/ends_at", :quest => @quest %>
+        <%= partial "quests/show/location", :quest => @quest %>
+      </div>
+    </div>
+    <% else %>
+    <div class="row">
+      <div class="span8">
+        <%= partial "quests/show/head", :quest => @quest %>
+        <%= partial "quests/show/criteria", :quest => @quest %>
+      </div>
+      <div class="span4">
+        <%= partial "quests/show/actions", :quest => @quest %>
+        <%= partial "quests/show/ends_at", :quest => @quest %>
+        <%= partial "quests/show/location", :quest => @quest %>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
