@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  before_filter :reload_libs if Rails.env.development?
+  
   protected
   
   around_filter :setup_access_control
@@ -49,4 +51,12 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :mobile?
+
+  #
+  # reload code in /lib
+  private
+
+  def reload_libs
+    Dir["#{Rails.root}/lib/**/*.rb"].each { |path| require_dependency path }
+  end
 end
