@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
 
   # enable ActiveRecord::AccessControl
   def setup_access_control(&block)
-    ActiveRecord::AccessControl.as(current_user, &block)
+    # ActiveRecord::AccessControl.as(current_user, &block)
+    ActiveRecord::AccessControl.as(User.admin, &block)
   end
 
   def set_locale
