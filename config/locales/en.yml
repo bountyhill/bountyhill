@@ -42,7 +42,7 @@ en:
       show: ""
       edit: "Edit quest"
       create: "New quest"
-    ends_at:
+    expires_at:
       title: "Expiration"
       sub: "This quest ends %{date}"
       none: "No expiration date defined yet. The quest is not yet started."
@@ -74,3 +74,9 @@ en:
   twitter_sessions:
     following:  "Thank you for signing in with Twitter and for following @bountyhill."
     success:    "Thank you for signing in with Twitter."
+  offer:
+    title:
+      show:   ""
+      edit:   "Edit Offer: %{title}"
+      create: "New Offer: %{title}"
+  offers: Offers
