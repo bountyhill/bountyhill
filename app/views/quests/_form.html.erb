@@ -9,8 +9,9 @@
     <%= form.control_group :bounty %>
     <%= form.control_group :image, :transloadit %>
 
-    <% Quest.criteria_attributes.each_with_index do |name, idx| %>
+    <% Quest.criteria_titles.each_with_index do |name, idx| %>
       <%= form.control_group name %>
+      <%= form.control_group Quest.criteria_descriptions[idx] %>
     <% end %>
     
     <%= form.actions :cancel_url => quests_path %>

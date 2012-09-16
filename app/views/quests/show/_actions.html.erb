@@ -1,12 +1,14 @@
-<div class="inner">
+<div class="inner quest">
   <h2>
-    <span class="bounty"><%=t "quest.actions.bounty.title", :bounty => quest.bounty.to_s.split(".").first %></span>
+    <span class="bounty">
+      <%=t "quest.actions.bounty.title", :bounty => quest.bounty.to_s.split(".").first %>
+    </span>
     <small><%=t "quest.actions.bounty.sub" %></small>
   </h2>
   <%= 
-    action_buttons do
-      action :t, :"quest.actions.tweet"
-      action :d, :"quest.actions.offer"
+    action_buttons do |act|
+      act.action :t, :"quest.actions.tweet"
+      act.action :d, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
     end
   %>
 </div>

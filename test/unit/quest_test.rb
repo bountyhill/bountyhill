@@ -163,14 +163,14 @@ class QuestTest < ActiveSupport::TestCase
   def test_publish
     setup_visibility
 
-    assert_equal false, foo_quest.published?
+    assert_equal false, foo_quest.started?
 
     as(nil) do
       assert_cannot_read foo_quest
     end
     
-    foo_quest.publish!
-    assert_equal true, foo_quest.published?
+    foo_quest.start!
+    assert_equal true, foo_quest.started?
 
     as(nil) do
       assert_can_read foo_quest

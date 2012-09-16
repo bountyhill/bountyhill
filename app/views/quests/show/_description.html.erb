@@ -1,7 +1,7 @@
 <%-
 # note that when changing this file you probably want to change _head.html.erb too.
 -%>
-<div class="inner">
-  <%= h1 quest.title %>
-  <%= p quest.description %>
+<div class="inner quest">
+  <%= h1 quest.title, :class => :title %>
+  <%= p quest.description, :class => :description %>
 </div>
