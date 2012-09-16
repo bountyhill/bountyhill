@@ -30,7 +30,6 @@ class QuestsController < ApplicationController
 
     # fill in location, if the server provides one.
     @quest.location = location.name if location = request.location
-    @quest.location = "Berlin" #location.name if location = request.location
     
     respond_to do |format|
       format.html # new.html.erb
