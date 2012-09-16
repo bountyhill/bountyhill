@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 7) do
     t.integer  "bounty_in_cents", :null => false
     t.integer  "owner_id"
     t.datetime "started_at"
-    t.datetime "ends_at"
+    t.datetime "expires_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.text     "image"

@@ -79,8 +79,11 @@ class Quest < ActiveRecord::Base
   #     :criterium_id => 176257652,
   #     :title => "I am the first criterium", 
   #     :description => "And I tell more about the first criterium." 
+  #     :compliance => (0..10)
   #   } 
   # ] 
+  #
+  # The title and description entries are read from the quest.
   # 
   # The description_id is a hash of the description title. It is used
   # to connect offer and quest criteria.
@@ -127,28 +130,26 @@ class Quest < ActiveRecord::Base
     self.image = image
   end
   
-  def original_image_url
-    original = image && image["original"]
-    url = original && original["url"]
-    
-    # If the original URL already points to an imgio instance; i.e. if it looks like
-    # this: "http://imgio.heroku.com/jpg/fill/90x90/http://some.where/123456.jpg",
-    # the following line extracts the original URL from the imgio URL.
-    url.gsub(/.*\d\/http/, "http") if url
+  def active?
+    started? and !expired?
   end
   
   def expired?
     expires_at && expires_at < Time.now
   end
 
-  def published?
+  def started?
     started_at.present?
   end
   
-  def publish!
+  def started?
+    started_at.present?
+  end
+  
+  def start!(expires_at = nil)
     self.visibility = "public"
     self.started_at = Time.now
-
+    self.expires_at = expires_at if expires_at
     save!
   end
   
@@ -167,17 +168,4 @@ class Quest < ActiveRecord::Base
   def compliance
     offers.all.map(&:compliance).sort.last
   end
-  
-  # def number_of_offers
-  #   rand(5)
-  # end
-  # 
-  # 
-  # def ends_at
-  #   Time.now + rand(1000000)
-  # end
-  # 
-  # def location
-  #   "Hamburg, Germany"
-  # end
 end
