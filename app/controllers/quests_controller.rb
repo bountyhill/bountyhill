@@ -1,5 +1,5 @@
 class QuestsController < ApplicationController
-  include ImageParameters
+  include ApplicationController::ImageParameters
   
   # GET /quests
   # GET /quests.json

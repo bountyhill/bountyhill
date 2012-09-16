@@ -1,4 +1,4 @@
-module ActionController::ImageParameters
+module ApplicationController::ImageParameters
   def self.included(klass)
     klass.send :include, Transloadit::Rails::ParamsDecoder
   end
