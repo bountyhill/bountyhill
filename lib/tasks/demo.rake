@@ -72,4 +72,29 @@ namespace :demo do
       end
     end
   end
+  
+  desc "Create demo offers"
+  task :offers => :setup do
+    ActiveRecord::AccessControl.as User.admin do
+      Quest.all.each do |quest|
+        next unless quest.criteria.blank?
+        next if rand(3) != 0
+
+        unless quest.started?
+          quest.start!(Date.today + 14.days)
+        end
+        offer = Offer.new
+        offer.quest = quest
+        offer.location = "Hamburg, Germany" if rand(2) == 0
+        offer.description = Faker::Lorem.sentence(12) 
+        
+        quest.criteria.each_with_index do |criterium, idx|
+          quest_criterium = criterium
+          offer.send :set_criterium, idx, quest_criterium[:uid], rand(10)
+        end
+        
+        offer.save!
+      end
+    end
+  end
 end
