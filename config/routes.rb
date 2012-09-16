@@ -10,7 +10,7 @@ Bountyhill::Application.routes.draw do
   end
 
   resources :quests
-
+  resources :offers
   resources :users
 
   resources :identities

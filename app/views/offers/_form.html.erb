@@ -1,0 +1,23 @@
+<%= form_for @offer, :html => {:class => "form-horizontal"}, :id => "offer_form" do |form| %>
+  <fieldset>
+    <legend><%= I18n.t(:"offer.legend")%></legend>
+    <%= render 'shared/error_messages', :object => nil, :scope => "offer" %>
+
+    <%= form.control_group :quest_id, :hidden_field %>
+
+    <%= form.control_group :description, :text_area, :rows => 5 %>
+    <%= form.control_group :image, :transloadit %>
+
+    <% @offer.criteria.each_with_index do |criterium, idx| %>
+      <%= criterium[:title] %>
+      <%= criterium[:description] %>
+      <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
+      <%= form.control_group Offer.criteria_compliances[idx] %>
+    <% end %>
+    
+    <%= form.actions :cancel_url => offers_path %>
+  </fieldset>
+<% end %>
+
+<script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
+<%= transloadit_jquerify :offer_form, :wait => true %>
