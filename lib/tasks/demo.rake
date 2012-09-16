@@ -54,4 +54,22 @@ namespace :demo do
       end
     end
   end
+  
+  desc "Create demo criteria"
+  task :criteria => :setup do
+    ActiveRecord::AccessControl.as User.admin do
+      Quest.all.each do |quest|
+        next unless quest.criteria.blank?
+
+        0.upto(rand(Quest::NUMBER_OF_CRITERIA)) do |idx|
+          text = Faker::Lorem.sentence(6)
+          description = Faker::Lorem.sentence(12) if rand(3) < 2
+          
+          quest.send :set_criterium, idx, text, description 
+        end
+        
+        quest.save!
+      end
+    end
+  end
 end
