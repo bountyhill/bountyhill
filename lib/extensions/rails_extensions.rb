@@ -156,6 +156,10 @@ class ActionView::Helpers::FormBuilder
       input_field_options = default_input_field_options.merge(input_field_options)
     end
 
+    if field_type == :hidden_field
+      return self.send field_type, name, input_field_options
+    end
+
     div_tag :class => "control-group #{error_class_for(object, name)}" do
       label = self.label name, :class => "control-label"
       controls = div_tag :class => "controls" do
