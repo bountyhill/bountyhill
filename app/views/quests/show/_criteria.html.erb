@@ -1,18 +1,22 @@
+<% criteria = quest.criteria %>
 <div class="inner">
+  <% if criteria.present? %>
   <h2>
-    <span>2 criteria</span> 
-    <small>have been established</small>
+    <span><%=t "quest.criteria.title" , :count => criteria.count %></span> 
+    <small><%=t "quest.criteria.sub" %></small>
   </h2>
 
   <div class="faq">
     <%= accordion do |acc| %>
-      <%= acc.item "item1" do |*x| %>
-      <p>It must be good!</p>
-      <p>What I mean is that it must match perfectly!</p>
+      <% criteria.each do |criterium| %>
+      <%= acc.item criterium[:title], criterium[:description] %>
       <% end %>
-      <%= acc.item "item2", "body2" %>
-      <%= acc.item "item3", "body3" %>
-      <%= acc.item "item4", "body4" %>
     <% end %>
   </div>
+  <% else %>
+  <h2>
+    <span><%=t "quest.criteria.none" %></span> 
+    <small><%=t "quest.criteria.none_sub" %></small>
+  </h2>
+  <% end %>
 </div>

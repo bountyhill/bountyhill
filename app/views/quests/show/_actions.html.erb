@@ -12,13 +12,15 @@
 </div>
 <div class="inner">
   <h2>
-    <span><%=t "quest.actions.offers.title", :count => quest.number_of_offers %></span>
+    <span><%=t "quest.actions.offers.title", :count => quest.offers.count %></span>
     <small><%=t "quest.actions.offers.sub" %></small>
   </h2>
 </div>
+<% if quest.offers.present? %>
 <div class="inner">
   <h2>
     <span><%=t "quest.actions.compliance.title", :compliance => quest.compliance %></span>
     <small><%=t "quest.actions.compliance.sub" %></small>
   </h2>
 </div>
+<% end %>

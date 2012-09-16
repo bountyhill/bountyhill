@@ -26,21 +26,68 @@ class Quest < ActiveRecord::Base
     end
   end
 
-  MAX_NUMBER_OF_CRITERIA = 6
+  NUMBER_OF_CRITERIA = 6
   
-  def self.criteria_attributes
-    0.upto(MAX_NUMBER_OF_CRITERIA-1).map do |idx| 
-      "criterium_#{idx}"
-    end
+  # returns the names of the criteria title attributes
+  def self.criteria_titles
+    @criteria_titles ||= 
+      0.upto(NUMBER_OF_CRITERIA-1).map do |idx| 
+        "criterium_#{idx}"
+      end
+  end
+
+  # returns the names of the criteria description attributes
+  def self.criteria_descriptions
+    @criteria_descriptions ||= 
+      0.upto(NUMBER_OF_CRITERIA-1).map do |idx| 
+        "criterium_description_#{idx}"
+      end
   end
   
-  serialized_attr *criteria_attributes
-  attr_accessible *criteria_attributes
+  serialized_attr *criteria_titles, *criteria_descriptions
+  attr_accessible *criteria_titles, *criteria_descriptions
+
+  private
   
+  def set_criterium(idx, title, description = nil)
+    title_attr = Quest.criteria_titles[idx]
+    description_attr = Quest.criteria_descriptions[idx]
+    
+    self.send "#{title_attr}=", title
+    self.send "#{description_attr}=", description
+  end
+
+  def get_criterium(idx)
+    title = self.send Quest.criteria_titles[idx]
+    description = self.send Quest.criteria_descriptions[idx]
+
+    return nil unless title
+    
+    {
+      :title => title,
+      :description => self.send("criterium_description_#{idx}"),
+      :criterium_id => title.crc32
+    }
+  end
+  
+  public
+  
+  # returns an array of hashes a la
+  #
+  # [ 
+  #   { 
+  #     :criterium_id => 176257652,
+  #     :title => "I am the first criterium", 
+  #     :description => "And I tell more about the first criterium." 
+  #   } 
+  # ] 
+  # 
+  # The description_id is a hash of the description title. It is used
+  # to connect offer and quest criteria.
   def criteria
-    self.class.criteria_attributes.
-      map { |name| send(name) }.
-      reject(&:blank?)
+    0.upto(NUMBER_OF_CRITERIA-1).map do |idx|
+      get_criterium idx
+    end.compact
   end
   
   # Offers to the quest are ordered by their compliance value.
@@ -116,20 +163,21 @@ class Quest < ActiveRecord::Base
       Bountybase::Graph.longest_chain self.id
     end
   end
-  
-  def number_of_offers
-    rand(5)
-  end
 
   def compliance
-    rand(100)
+    offers.all.map(&:compliance).sort.last
   end
   
-  def ends_at
-    Time.now + rand(1000000)
-  end
-  
-  def location
-    "Hamburg, Germany"
-  end
+  # def number_of_offers
+  #   rand(5)
+  # end
+  # 
+  # 
+  # def ends_at
+  #   Time.now + rand(1000000)
+  # end
+  # 
+  # def location
+  #   "Hamburg, Germany"
+  # end
 end

@@ -204,3 +204,11 @@ class Date
     "new Date(#{year}, #{month-1}, #{day})"
   end
 end
+
+require 'zlib' 
+
+class String
+  def crc32
+    Zlib::crc32(self)
+  end
+end

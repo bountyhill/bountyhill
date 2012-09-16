@@ -45,11 +45,16 @@ en:
     ends_at:
       title: "Expiration"
       sub: "This quest ends %{date}"
-      none: "No expiration date defined yet."
+      none: "No expiration date defined yet. The quest is not yet started."
     location:
       title: "Location"
       sub:  "Offers should be near %{location}."
       none: "This quest is not bound to a location."
+    criteria:
+      title:    "%{count} criteria"
+      sub:      "The user chose these criteria:"
+      none:     "No criteria"
+      none_sub: "The user can choose a number of criteria."
     actions:
       tweet:
         title: Tweet
