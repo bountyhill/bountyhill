@@ -19,13 +19,6 @@ class Quest < ActiveRecord::Base
 
   serialize :serialized, Hash
   
-  def ui_mode
-    if readonly?      then "show"
-    elsif new_record? then "create" 
-    else "edit"
-    end
-  end
-
   NUMBER_OF_CRITERIA = 6
   
   # returns the names of the criteria title attributes
