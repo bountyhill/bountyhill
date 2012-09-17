@@ -31,7 +31,9 @@ class OffersController < ApplicationController
     @offer = Offer.new(:quest_id => params[:quest_id])
     
     # fill in location, if the server provides one.
-    @offer.location = location.name if location = request.location
+    if location = request.location
+      @offer.location = location.name
+    end
     
     respond_to do |format|
       format.html # new.html.erb
