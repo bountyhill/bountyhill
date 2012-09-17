@@ -28,18 +28,18 @@ class Offer < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :all
   scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
   scope :received,  lambda { 
     joins(:quest).where("quests.owner_id=?", ActiveRecord::AccessControl.current_user)
   }
+  scope :with_criteria, joins(:quest).where("quests.number_of_criteria > 0")
   
   def self.filters
-    %w(all own received)
+    %w(all own received with_criteria)
   end
   
   def self.filter_scope(name)
-    return self if name.nil?
+    return self if name.nil? || name == "all"
     
     expect! name => filters
     self.send(name)
@@ -124,6 +124,8 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  private
+  
   def get_criterium(idx)
     criterium_id = self.send(Offer.criteria_ids[idx])
     compliance = self.send(Offer.criteria_compliances[idx] || 5)
@@ -136,6 +138,13 @@ class Offer < ActiveRecord::Base
     }
   end
 
+  def set_criterium(idx, uid, compliance)
+    criterium_id_attr = Offer.criteria_ids[idx]
+    criterium_compliance_attr = Offer.criteria_compliances[idx]
+    self.send "#{criterium_id_attr}=", uid
+    self.send "#{criterium_compliance_attr}=", compliance
+  end
+  
   # -- Compliance: The compliance value is the average of the individual
   #    compliances in all criteria. The compliance value is 50 if there 
   #    are no criteria.

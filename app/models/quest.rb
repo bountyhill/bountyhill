@@ -11,19 +11,19 @@ class Quest < ActiveRecord::Base
   access_control :visibility
   write_access_control :owner
 
-  # -- scopes ---------------------------------------------------------
+  # -- scopes and filters ---------------------------------------------
   
-  scope :all
   scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
-  scope :active,    lambda { where("started_at IS NOT NULL AND expires_at > ?", Time.now) }
-  scope :expired,   lambda { where("expires_at <= ?", Time.now) }
+  scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
+  scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
+  scope :with_criteria, where("quests.number_of_criteria > 0")
   
   def self.filters
-    %w(all own active expired)
+    %w(all own active expired with_criteria)
   end
   
   def self.filter_scope(name)
-    return self if name.nil?
+    return self if name.nil? || name == "all"
     
     expect! name => filters
     self.send(name)
@@ -77,13 +77,19 @@ class Quest < ActiveRecord::Base
     title = self.send Quest.criteria_titles[idx]
     description = self.send Quest.criteria_descriptions[idx]
 
-    return nil unless title
+    return nil unless title.present?
     
     {
       :title => title,
       :description => self.send("criterium_description_#{idx}"),
       :criterium_id => title.crc32
     }
+  end
+  
+  before_save :update_number_of_criteria
+  
+  def update_number_of_criteria
+    self.number_of_criteria = criteria.count
   end
   
   public

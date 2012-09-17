@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -43,18 +43,19 @@ ActiveRecord::Schema.define(:version => 8) do
   add_index "offers", ["quest_id"], :name => "index_offers_on_quest_id"
 
   create_table "quests", :force => true do |t|
-    t.string   "title",           :null => false
-    t.text     "description",     :null => false
-    t.integer  "bounty_in_cents", :null => false
+    t.string   "title",                             :null => false
+    t.text     "description",                       :null => false
+    t.integer  "bounty_in_cents",                   :null => false
     t.integer  "owner_id"
     t.datetime "started_at"
     t.datetime "expires_at"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.text     "image"
     t.string   "visibility"
     t.string   "location"
     t.text     "serialized"
+    t.integer  "number_of_criteria", :default => 0, :null => false
   end
 
   add_index "quests", ["owner_id"], :name => "index_quests_on_user_id"
