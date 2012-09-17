@@ -17,6 +17,8 @@ en:
   terms: "Terms & conditions"
   privacy: Privacy policy
   profile: Profile
+  restriction:
+    compliance: "Compliance: %{compliance}%"
   quests:
     filter:
       all:      

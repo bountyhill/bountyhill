@@ -131,7 +131,7 @@ module ApplicationHelper
   end
 
   def render_restriction(model, what)
-    expect! model => ActiveRecord::Base, what => [:location, :expires_at]
+    expect! model => ActiveRecord::Base, what => [:location, :expires_at, :compliance]
     value = model.send(what)
     return if value.blank?
     
@@ -142,6 +142,9 @@ module ApplicationHelper
     when :expires_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
       span = self.span value.to_date, :class => "locality"
+    when :compliance
+      icon = image_tag '/images/icon/location.png', :class => 'compliance'
+      span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "locality"
     end
     
     div icon, span
