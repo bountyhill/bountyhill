@@ -20,6 +20,12 @@ module PaginateHelper
     def html_container(html)
       tag :ul, html
     end
+
+    def gap
+      text = @template.will_paginate_translate(:page_gap) { '&hellip;' }
+      l = link(text, "#")
+      tag :li, l, :class => 'gap'
+    end
   end
 
   def paginate(p)
