@@ -4,7 +4,7 @@ class QuestsController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.paginate(:page => params[:page], :per_page => 3)
+    @quests = Quest.paginate(:page => params[:page], :per_page => per_page)
 
     respond_to do |format|
       format.html # index.html.erb

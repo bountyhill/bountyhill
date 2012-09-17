@@ -60,4 +60,26 @@ class ApplicationController < ActionController::Base
   def reload_libs
     Dir["#{Rails.root}/lib/**/*.rb"].each { |path| require_dependency path }
   end
+
+  private
+
+  if Rails.env.development?
+    
+    around_filter :log_time
+
+    # enable ActiveRecord::AccessControl
+    def log_time(&block)
+      started_at = Time.now
+      yield
+    ensure
+      Rails.logger.warn "Completed #{request.url} after #{(1000 * (Time.now - started_at)).to_i} msecs."
+    end
+
+  end
+
+  private
+
+  def per_page
+    12
+  end
 end

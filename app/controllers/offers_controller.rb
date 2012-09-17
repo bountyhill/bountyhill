@@ -6,7 +6,7 @@ class OffersController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @offers = Offer.paginate(:page => params[:page], :per_page => 3)
+    @offers = Offer.paginate(:page => params[:page], :per_page => per_page)
 
     respond_to do |format|
       format.html # index.html.erb
