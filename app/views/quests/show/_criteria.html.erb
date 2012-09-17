@@ -8,8 +8,8 @@
 
   <div class="faq">
     <%= accordion do |acc| %>
-      <% criteria.each do |criterium| %>
-      <%= acc.item criterium[:title], criterium[:description] %>
+      <% criteria.each_with_index do |criterium, idx| %>
+      <%= acc.item criterium[:title], criterium[:description], :collapsed => idx != 0 %>
       <% end %>
     <% end %>
   </div>
