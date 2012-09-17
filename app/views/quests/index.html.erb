@@ -25,21 +25,7 @@
       </div>
     </div>
   
-    <style type="text/css" media="screen">
-      a.filter {
-        display: inline-block;
-        border: 2px solid orange;
-        padding: 0 1em;
-        font-size: 170%;
-        font-weight: bold;
-      }
-    </style>
-    <div class="row" style="padding-left: 6em">
-      <% Quest.filters.each do |filter| %>
-      <%= link_to I18n.t("quests.filter.#{filter}.title"), quests_path(:filter => filter), :class => "filter" %>
-      <% end %>
-      
-    </div>
+    <%= partial "shared/filters", Quest %>
   </div>
   
   <!-- tiles -->

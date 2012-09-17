@@ -1,8 +1,11 @@
 <!-- banner-->
 <div class="banner">
   <span>
-    <h1><%= I18n.t "offers.index.title" %></h1>
-    <small><%= I18n.t "offers.index.sub" %></</small>
+    <h1>
+      <%= I18n.t("offers.filter.#{params[:filter] || "all"}.title") %>
+      <%= "(%d)" % @offers.total_entries %>
+    </h1>
+    <small><%= I18n.t "offers.filter.#{params[:filter] || "all"}.sub" %></</small>
   </span>
 </div>
 <div class="row bg-main" >
@@ -20,8 +23,10 @@
         <a href="#" title="Category  8" data-bitly-type="bitly_hover_card">h</a>
       </div>
     </div>
+
+    <%= partial "shared/filters", Offer %>
   </div>
-  
+
   <!-- tiles -->
   <div class="span12 bg-black">
     <% @offers.each_slice(3) do |slice| %>

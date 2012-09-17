@@ -26,6 +26,25 @@ class Offer < ActiveRecord::Base
 
   write_access_control :owner
 
+  # -- scopes and filters ---------------------------------------------
+  
+  scope :all
+  scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
+  scope :received,  lambda { 
+    joins(:quest).where("quests.owner_id=?", ActiveRecord::AccessControl.current_user)
+  }
+  
+  def self.filters
+    %w(all own received)
+  end
+  
+  def self.filter_scope(name)
+    return self if name.nil?
+    
+    expect! name => filters
+    self.send(name)
+  end
+  
   # -- Validation -----------------------------------------------------
 
   validates_presence_of :quest
