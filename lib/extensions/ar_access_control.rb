@@ -61,11 +61,15 @@ module ActiveRecord::AccessControl
       block
     when :none
       lambda do |user|
-        {} 
+        where("TRUE")
       end
     when :owner
       lambda do |user| 
-        where("owner_id=?", user.id) if user
+        if user
+          where("owner_id=?", user.id) 
+        else
+          where("FALSE") 
+        end
       end
     when :visibility
       lambda do |user|
@@ -101,15 +105,20 @@ module ActiveRecord::AccessControl
   module InstanceMethods
     def self.included(other)
       other.after_initialize :initialize_access_control
-      other.validate :validate_access_control
+      other.before_destroy :permission_denied!, :unless => :writable?
+      other.validate :permission_denied, :unless => :writable?
     end
     
     def initialize_access_control
       self.owner ||= ActiveRecord::AccessControl.current_user
     end
+
+    def permission_denied!
+      permission_denied
+      raise ActiveRecord::RecordInvalid, self
+    end
     
-    def validate_access_control
-      return if writable?
+    def permission_denied
       self.errors.add :base, I18n.t(:"permission denied")
     end
       

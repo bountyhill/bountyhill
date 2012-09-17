@@ -1,6 +1,9 @@
 <!-- banner-->
 <div class="banner">
-  <span><h1>Current Requests</h1><small>all actual requests...</small></span>
+  <span>
+    <h1><%= I18n.t "quests.index.title" %></h1>
+    <small><%= I18n.t "quests.index.sub" %></</small>
+  </span>
   <%= link_to 'New Quest', new_quest_path, :class => "btn btn-inverse" %>
 </div>
 <div class="row bg-main" >

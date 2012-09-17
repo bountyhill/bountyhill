@@ -1,0 +1,4 @@
+W "Loading project specific irbrc: #{__FILE__}"
+
+ActiveRecord::AccessControl.current_user = User.admin
+W "ActiveRecord::AccessControl.current_user is an admin."

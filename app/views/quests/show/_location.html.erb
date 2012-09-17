@@ -1,0 +1,20 @@
+<div class="quest inner">
+  <% unless quest.location.present? %>
+  <h2>
+    <span><%=t "quest.location.title" %></span> 
+    <small><%=t "quest.location.none" %></small>
+  </h2>
+  <% else %>
+  <h2>
+    <span><%=t "quest.location.title", :location => quest.location %></span> 
+    <small><%=t "quest.location.sub", :location => quest.location %></small>
+  </h2>
+  <div>
+    <div id="gmap_canvas" style="width: 100%; height: 200px"> </div>
+    <script type="text/javascript" charset="utf-8">
+      jQuery("#gmap_canvas").map_widget("Hamburg, Germany");
+    </script>
+  </div>
+  <% end %>
+</div>
+

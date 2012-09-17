@@ -1,12 +1,58 @@
 module ApplicationHelper
+  def i18n_title_for(model, attrs = {})
+    key = if model.readonly?  then "show"
+    elsif model.new_record?   then "create"
+    else                           "edit"
+    end
+    
+    I18n.t "#{model.class.name.downcase}.title.#{key}", attrs
+  end
+
+  def _content_tag(name, *content, &block)
+    options = content.extract_options!
+    content << capture(&block) if block_given?
+    content = content.join("\n").html_safe
+    content_tag name, content, options
+  end
+  
+  def h1(*content, &block)
+    _content_tag(:h1, *content, &block)
+  end
+
+  def h2(*content, &block)
+    _content_tag(:h2, *content, &block)
+  end
+  
+  def div(*content, &block)
+    _content_tag(:div, *content, &block)
+  end
+
+  def span(*content, &block)
+    _content_tag(:span, *content, &block)
+  end
+
+  def ul(*content, &block)
+    _content_tag(:ul, *content, &block)
+  end
+
+  def li(*content, &block)
+    _content_tag(:li, *content, &block)
+  end
+
+  def p(*content, &block)
+    _content_tag(:p, *content, &block)
+  end
+
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
-    controller.class.name.gsub("Controller","").downcase == nav_item ? "active" : ""
+    if controller.class.name.gsub("Controller","").downcase == nav_item
+      "active"
+    end
   end
   
   def error_message_for(object, attribute)
     if error_message = object.error_message_for(attribute)
-      content_tag(:span, error_message, :class => "help-inline")
+      span(error_message, :class => "help-inline")
     end
   end
 
@@ -20,9 +66,9 @@ module ApplicationHelper
     content_tag :xmp, s
   end
 
-  def markdown(name)
+  def markdown(name, options = {})
     html = render :partial => name
-    html.html_safe
+    div html.html_safe, options
   end
 
   def thumbnail_for(quest, options = {})
@@ -64,5 +110,23 @@ module ApplicationHelper
   
   def show_company_footer?
     request.path == "/"
+  end
+
+  def partial(partial, *args)
+    locals = args.extract_options!
+    expect! partial => String, args.length => [0,1]
+    
+    options = {}
+    options[:partial] = partial
+    options[:object] = args.first if args.first 
+    options[:locals] = locals if locals.present?
+
+    render options
+  end
+
+  def image_link_to(quest, options)
+    zoom = options.delete(:zoom) && "zoom"
+    link_to image_for(quest, options), quest, 
+      :class => zoom, "data-bitly-type" => "bitly_hover_card"
   end
 end

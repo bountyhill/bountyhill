@@ -1,0 +1,20 @@
+<div class="row-fluid">
+  <div class="span12 inner">
+    <h1><%= i18n_title_for(@offer, :title => @offer.quest.title) %></h1>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span8 inner">
+    <%= render "form" %>
+  </div>
+  <div class="span4 offers">
+    <style type="text/css" media="screen">
+      .offers .quest .title { display: none; }
+    </style>
+    <%= render "quests/show/bounty", :quest => @offer.quest %>
+    <%= render "quests/show/description", :quest => @offer.quest %>
+    <%= render "quests/show/expires_at", :quest => @offer.quest %>
+    <%= render "quests/show/location", :quest => @offer.quest %>
+    <%= markdown "help", :class => "inner" %>
+  </div>
+</div>

@@ -7,14 +7,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'bountyhill', root_path, :class => "brand span2" %>
+      <%= link_to 'bounty<strong>hill</strong>'.html_safe, root_path, :class => "brand span2" %>
       <form class="navbar-search" action="">
         <input type="text" class="search-query input-xlarge" placeholder="<%= I18n.t(:"request.text") %>">
       </form>
       <div class="nav-collapse">
         <ul class="nav">
-          <% %w(quests).each do |nav_item| %>
-            <li class="<%= navigation_item_class_for(nav_item) %>"><%= link_to I18n.t(nav_item), self.send("#{nav_item}_path") %></li>
+          <% %w(quests offers).each do |nav_item| %>
+            <%= 
+              content_tag :li, :class => navigation_item_class_for(nav_item) do 
+                link_to I18n.t(nav_item), self.send("#{nav_item}_path")
+              end
+            %>
           <% end %>
           <li class="divider"></li>
         </ul>

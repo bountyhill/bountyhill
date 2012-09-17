@@ -1,0 +1,22 @@
+<% criteria = quest.criteria %>
+<div class="inner quest">
+  <% if criteria.present? %>
+  <h2>
+    <span><%=t "quest.criteria.title" , :count => criteria.count %></span> 
+    <small><%=t "quest.criteria.sub" %></small>
+  </h2>
+
+  <div class="faq">
+    <%= accordion do |acc| %>
+      <% criteria.each do |criterium| %>
+      <%= acc.item criterium[:title], criterium[:description] %>
+      <% end %>
+    <% end %>
+  </div>
+  <% else %>
+  <h2>
+    <span><%=t "quest.criteria.none" %></span> 
+    <small><%=t "quest.criteria.none_sub" %></small>
+  </h2>
+  <% end %>
+</div>

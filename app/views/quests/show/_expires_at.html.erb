@@ -1,0 +1,26 @@
+<div class="inner quest">
+  <% if quest.expires_at.blank? %>
+  <h2>
+    <span><%=t "quest.expires_at.title" %></span> 
+    <small><%=t "quest.expires_at.none" %></small>
+  </h2>
+  <% else %>
+  <h2>
+    <span><%=t "quest.expires_at.title" %></span> 
+    <small><%=t "quest.expires_at.sub", :date => quest.expires_at.to_date.strftime("%B %d, %Y") %></small>
+  </h2>
+  <div>
+    <div id="datepicker"> </div>
+    <script type="text/javascript" charset="utf-8">
+    jQuery(function() {
+      var date = <%= quest.expires_at.to_date.to_js %>;
+      jQuery('#datepicker').datepicker({
+        defaultDate: date,
+        minDate: date,
+        maxDate: date
+      });
+    });
+    </script>
+  </div>
+  <% end %>
+</div>

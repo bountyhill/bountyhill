@@ -1,0 +1,38 @@
+<div class="row bg-main" >
+  <div class="span12 bg-black">
+    <% if mobile? %>
+    <div class="row">
+      <div class="span4">
+        <%= partial "offers/show/image", :offer => @offer %>
+      </div>
+      <div class="span4">
+        <%= partial "offers/show/description", :offer => @offer %>
+      </div>
+      <div class="span4">
+        <%= partial "offers/show/actions", :offer => @offer %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <%= partial "offers/show/criteria", :offer => @offer %>
+      </div>
+      <div class="span4">
+        <%= partial "quests/show/expires_at", :quest => @offer.quest %>
+        <%= partial "offers/show/location", :offer => @offer %>
+      </div>
+    </div>
+    <% else %>
+    <div class="row">
+      <div class="span8">
+        <%= partial "offers/show/head", :offer => @offer %>
+        <%= partial "offers/show/criteria", :offer => @offer %>
+      </div>
+      <div class="span4">
+        <%= partial "offers/show/actions", :offer => @offer %>
+        <%= partial "quests/show/expires_at", :quest => @offer.quest %>
+        <%= partial "offers/show/location", :offer => @offer %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

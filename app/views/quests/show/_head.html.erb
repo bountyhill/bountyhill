@@ -1,0 +1,15 @@
+<%-
+# note that when changing this file you probably want to change _description.html.erb
+# and _image.html.erb too.
+-%>
+<div class="inner quest unbottom">
+  <ul class="block article_list large">
+    <li>
+      <%= image_for(quest) %>
+      <article class="bg-gray">
+        <%= h1 quest.title %>
+        <%= p quest.description %>
+      </article>
+    </li>
+  </ul>
+</div>

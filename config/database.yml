@@ -8,6 +8,10 @@ development:
   <<: *common
   database: bountyhill
 
+staging:
+  <<: *common
+  database: bountyhill
+
 test:
   <<: *common
   database: bountyhill_test

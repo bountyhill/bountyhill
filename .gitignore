@@ -21,13 +21,11 @@
 /tmp
 
 # Ignore other unneeded files.
-doc/
 *.swp
 *~
 .project
 .DS_Store
 vendor/bountybased
-vendor/bountybase
 rdoc
 config/app.local.yml
 .sass-cache/

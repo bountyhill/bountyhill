@@ -104,6 +104,10 @@ class Money
   def to_full_string
     "#{self} #{currency_as_string}"
   end
+
+  def to_short_string
+    "#{to_s.gsub(/\..*/, "")} #{currency_as_string}"
+  end
 end
 
 # -- extend FormBuilder with a control_group method which renders
@@ -152,6 +156,10 @@ class ActionView::Helpers::FormBuilder
       input_field_options = default_input_field_options.merge(input_field_options)
     end
 
+    if field_type == :hidden_field
+      return self.send field_type, name, input_field_options
+    end
+
     div_tag :class => "control-group #{error_class_for(object, name)}" do
       label = self.label name, :class => "control-label"
       controls = div_tag :class => "controls" do
@@ -192,5 +200,19 @@ class ActionView::Helpers::FormBuilder
 
       "#{cancel_btn} #{save_btn}"
     end
+  end
+end
+
+class Date
+  def to_js
+    "new Date(#{year}, #{month-1}, #{day})"
+  end
+end
+
+require 'zlib' 
+
+class String
+  def crc32
+    Zlib::crc32(self)
   end
 end

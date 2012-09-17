@@ -3,13 +3,19 @@
     <div class="featuedBox">
       <div class="imgShow">
         <%= render_bounty_ribbon quest %>
-        <%= quest_image_link_to quest, :width => 330, :height => 205, :zoom => true %>
+        <%= image_link_to quest, :width => 330, :height => 205, :zoom => true %>
         
         <div class="unbottom untop">
           <h3><%= truncate quest.title, :length => 60 %></h3>
           <div class="restrictions">
-            <img src="/images/icon/location.png" class="locality"><span class="locality">Hamburg, Germany</span><br>
-            <img src="/images/icon/calendar.png" class="temporality"><span class="temporality">15.02.2013</span>
+            <% if quest.location.present? %>
+            <img src="/images/icon/location.png" class="locality">
+            <span class="locality"><%= quest.location %></span><br>
+            <% end %>
+            <% if quest.expires_at.present? %>
+            <img src="/images/icon/calendar.png" class="temporality">
+            <span class="temporality"><%= quest.expires_at.to_date %></span>
+            <% end %>
           </div>
           <div class="socialmedia">
             <!-- 

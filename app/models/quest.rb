@@ -1,5 +1,6 @@
 class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
+  include ImageAttributes
 
   belongs_to :owner, :class_name => "User"
   validates_presence_of :owner
@@ -19,28 +20,71 @@ class Quest < ActiveRecord::Base
 
   serialize :serialized, Hash
   
-  def ui_mode
-    if readonly?      then "show"
-    elsif new_record? then "create" 
-    else "edit"
-    end
+  NUMBER_OF_CRITERIA = 6
+  
+  # returns the names of the criteria title attributes
+  def self.criteria_titles
+    @criteria_titles ||= 
+      0.upto(NUMBER_OF_CRITERIA-1).map do |idx| 
+        "criterium_#{idx}"
+      end
   end
 
-  MAX_NUMBER_OF_CRITERIA = 6
-  
-  def self.criteria_attributes
-    0.upto(MAX_NUMBER_OF_CRITERIA-1).map do |idx| 
-      "criterium_#{idx}"
-    end
+  # returns the names of the criteria description attributes
+  def self.criteria_descriptions
+    @criteria_descriptions ||= 
+      0.upto(NUMBER_OF_CRITERIA-1).map do |idx| 
+        "criterium_description_#{idx}"
+      end
   end
   
-  serialized_attr *criteria_attributes
-  attr_accessible *criteria_attributes
+  serialized_attr *criteria_titles, *criteria_descriptions
+  attr_accessible *criteria_titles, *criteria_descriptions
+
+  private
   
+  def set_criterium(idx, title, description = nil)
+    title_attr = Quest.criteria_titles[idx]
+    description_attr = Quest.criteria_descriptions[idx]
+    
+    self.send "#{title_attr}=", title
+    self.send "#{description_attr}=", description
+  end
+
+  def get_criterium(idx)
+    title = self.send Quest.criteria_titles[idx]
+    description = self.send Quest.criteria_descriptions[idx]
+
+    return nil unless title
+    
+    {
+      :title => title,
+      :description => self.send("criterium_description_#{idx}"),
+      :criterium_id => title.crc32
+    }
+  end
+  
+  public
+  
+  # returns an array of hashes a la
+  #
+  # [ 
+  #   { 
+  #     :criterium_id => 176257652,
+  #     :title => "I am the first criterium", 
+  #     :description => "And I tell more about the first criterium." 
+  #     :compliance => (0..10)
+  #   } 
+  # ] 
+  #
+  # The title and description entries are read from the quest.
+  # 
+  # The description_id is a hash of the description title. It is used
+  # to connect offer and quest criteria.
   def criteria
-    self.class.criteria_attributes.
-      map { |name| send(name) }.
-      reject(&:blank?)
+    0.upto(NUMBER_OF_CRITERIA-1).map do |idx|
+      get_criterium idx
+    end.compact
   end
   
   # Offers to the quest are ordered by their compliance value.
@@ -80,20 +124,29 @@ class Quest < ActiveRecord::Base
     self.image = image
   end
   
-  def original_image_url
-    original = image && image["original"]
-    url = original && original["url"]
-    
-    # If the original URL already points to an imgio instance; i.e. if it looks like
-    # this: "http://imgio.heroku.com/jpg/fill/90x90/http://some.where/123456.jpg",
-    # the following line extracts the original URL from the imgio URL.
-    url.gsub(/.*\d\/http/, "http") if url
+  def active?
+    started? and !expired?
   end
   
   def expired?
     expires_at && expires_at < Time.now
   end
 
+  def started?
+    started_at.present?
+  end
+  
+  def started?
+    started_at.present?
+  end
+  
+  def start!(expires_at = nil)
+    self.visibility = "public"
+    self.started_at = Time.now
+    self.expires_at = expires_at if expires_at
+    save!
+  end
+  
   def number_of_tweets
     cached :time_to_live => 60 do
       Bountybase::Graph.number_of_tweets self.id
@@ -105,7 +158,8 @@ class Quest < ActiveRecord::Base
       Bountybase::Graph.longest_chain self.id
     end
   end
-  
-  def number_of_offers
+
+  def compliance
+    offers.all.map(&:compliance).sort.last
   end
 end

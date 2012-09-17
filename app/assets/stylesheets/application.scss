@@ -4,6 +4,11 @@
  * Important! Do *not* use Sprockets "require" syntax.
  * Use @import to include other stylesheets and Compass mixins.
  */
+
+// This is a unicode snowman. This should set the character encoding to utf8
+// ☃
+// see https://github.com/nex3/sass/issues/189#issuecomment-5611476
+
 // Include some nice mixins
 @import "compass/css3";
 

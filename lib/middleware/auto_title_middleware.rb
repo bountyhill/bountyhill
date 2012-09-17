@@ -25,6 +25,8 @@ class AutoTitleMiddleware
       doc = Nokogiri.HTML(body)
       if h1 = doc.css("h1").first
         "<title>#{prefix} | #{h1.text}</title>"
+      elsif h2 = doc.css("h2").first
+        "<title>#{prefix} | #{h2.text}</title>"
       else
         "<title>#{prefix}</title>"
       end

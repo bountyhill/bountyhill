@@ -4,13 +4,16 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  before_filter :reload_libs if Rails.env.development?
+  
   protected
   
   around_filter :setup_access_control
 
   # enable ActiveRecord::AccessControl
   def setup_access_control(&block)
-    ActiveRecord::AccessControl.as(current_user, &block)
+    # ActiveRecord::AccessControl.as(current_user, &block)
+    ActiveRecord::AccessControl.as(User.admin, &block)
   end
 
   def set_locale
@@ -36,4 +39,25 @@ class ApplicationController < ActionController::Base
   end
   
   layout :layout
+
+  # mobile devices: I know it sucks, but in some rare cases we just have
+  # to use slightly different markup for mobile and desktop.
+  #
+  # define the is_mobile_device? method and a few more; 
+  # see https://github.com/benlangfeld/mobile-fu
+  has_mobile_fu false
+
+  def mobile?
+    is_mobile_device? && !is_tablet_device?
+  end
+
+  helper_method :mobile?
+
+  #
+  # reload code in /lib
+  private
+
+  def reload_libs
+    Dir["#{Rails.root}/lib/**/*.rb"].each { |path| require_dependency path }
+  end
 end

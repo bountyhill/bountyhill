@@ -12,6 +12,10 @@ body {
 	color: #000000 !important;
 	text-decoration:none;
 }
+
+.nav li a:hover {
+	background:  #fd6d03 !important;
+}
 a , .nav-collapse .nav .nav-header ,.logo span{ color:#fd6d03; }
 h2 span, .carousel_header {
 color:#fd6d03; 

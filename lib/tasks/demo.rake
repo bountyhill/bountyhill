@@ -15,37 +15,86 @@ IMAGE_URLS = %w(
 namespace :demo do
   task :setup => :environment
   
+  desc "Create demo users"
   task :users => :setup do
-    10.times do 
-      name = Faker::Name.name
-      email = Faker::Internet.email
-      password = email
-      Identity::Email.create!(:name => name, :email => email, :password => password, :password_confirmation => password)
-    
-      W "created", email
+    ActiveRecord::AccessControl.as User.admin do
+      10.times do 
+        name = Faker::Name.name
+        email = Faker::Internet.email
+        password = email
+        Identity::Email.create!(:name => name, :email => email, :password => password, :password_confirmation => password)
+
+        W "created", email
+      end
     end
   end
   
+  desc "Create demo quests"
   task :quests => :setup do
-    10.times do
-      bounty = 10000 * ((r = rand) * r)
-      bounty = 0 if bounty < 10
+    ActiveRecord::AccessControl.as User.admin do
+      10.times do
+        bounty = 10000 * ((r = rand) * r)
+        bounty = 0 if bounty < 10
 
-      title = nil
-      while !title || title.length > 100
-        title = Faker::Lorem.sentence(15)
+        title = nil
+        while !title || title.length > 100
+          title = Faker::Lorem.sentence(15)
+        end
+
+        quest = Quest.new :bounty => bounty,
+          :title => title,
+          :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n"),
+          :image_url =>  IMAGE_URLS[rand(IMAGE_URLS.length)]
+
+        quest.owner = User.first(:offset => rand(User.count))
+        quest.visibility = "public"
+        quest.save!
+
+        W title
       end
-      
-      quest = Quest.new :bounty => bounty,
-        :title => title,
-        :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n"),
-        :image_url =>  IMAGE_URLS[rand(IMAGE_URLS.length)]
+    end
+  end
+  
+  desc "Create demo criteria"
+  task :criteria => :setup do
+    ActiveRecord::AccessControl.as User.admin do
+      Quest.all.each do |quest|
+        next unless quest.criteria.blank?
 
-      quest.owner = User.first(:offset => rand(User.count))
-      quest.visibility = "public"
-      quest.save!
+        0.upto(rand(Quest::NUMBER_OF_CRITERIA)) do |idx|
+          text = Faker::Lorem.sentence(6)
+          description = Faker::Lorem.sentence(12) if rand(3) < 2
+          
+          quest.send :set_criterium, idx, text, description 
+        end
+        
+        quest.save!
+      end
+    end
+  end
+  
+  desc "Create demo offers"
+  task :offers => :setup do
+    ActiveRecord::AccessControl.as User.admin do
+      Quest.all.each do |quest|
+        next unless quest.criteria.blank?
+        next if rand(3) != 0
 
-      W title
+        unless quest.started?
+          quest.start!(Date.today + 14.days)
+        end
+        offer = Offer.new
+        offer.quest = quest
+        offer.location = "Hamburg, Germany" if rand(2) == 0
+        offer.description = Faker::Lorem.sentence(12) 
+        
+        quest.criteria.each_with_index do |criterium, idx|
+          quest_criterium = criterium
+          offer.send :set_criterium, idx, quest_criterium[:uid], rand(10)
+        end
+        
+        offer.save!
+      end
     end
   end
 end

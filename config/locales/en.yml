@@ -17,10 +17,10 @@ en:
   terms: "Terms & conditions"
   privacy: Privacy policy
   profile: Profile
+  quests: "Quests"
   sign_up: "Sign up"
   sign_in: "Sign in"
   sign_out: "Sign out"
-  profile: Profile
   settings: Settings
   signup:
     bountyhill: "Sign up with your name and email"
@@ -36,13 +36,47 @@ en:
       success: "Welcome to bountyhill!"
   request:
     text: What are you looking for?
-  quests: Quests
   quest:
     legend: ""
     title:
       show: ""
       edit: "Edit quest"
       create: "New quest"
+    expires_at:
+      title: "Expiration"
+      sub: "This quest ends %{date}"
+      none: "No expiration date defined yet. The quest is not yet started."
+    location:
+      title: "Location"
+      sub:  "Offers should be near %{location}."
+      none: "This quest is not bound to a location."
+    criteria:
+      title:    "%{count} criteria"
+      sub:      "The user chose these criteria:"
+      none:     "No criteria"
+      none_sub: "The user can choose a number of criteria."
+    actions:
+      tweet:
+        title: Tweet
+        sub: Secure your chance for a part of the bounty.
+      offer:
+        title: Offer
+        sub: Win 50% of the bounty with a successful offer.
+      bounty:
+        title: "Bounty € %{bounty}"
+        sub: bounty has been posted.
+      offers:
+        title: "%{count} offers"
+        sub: for this quest so far.
+      compliance:
+        title: "%{compliance}% compliance"
+        sub: with the best offer.
   twitter_sessions:
     following:  "Thank you for signing in with Twitter and for following @bountyhill."
     success:    "Thank you for signing in with Twitter."
+  offer:
+    title:
+      show:   ""
+      edit:   "Edit Offer: %{title}"
+      create: "New Offer: %{title}"
+  offers: Offers

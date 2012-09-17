@@ -107,11 +107,18 @@ class User < ActiveRecord::Base
     url || options[:default]
   end
   
-  def self.admins
-    Bountybase.config.admins
+  def self.admin_names
+    [ "@bountyhill" ] + Bountybase.config.admins
   end
   
   def admin?
-    User.admins.include?(twitter_handle)
+    User.admin_names.include?(twitter_handle)
+  end
+
+  # return an admin user. This is the @bountyhill account.
+  def self.admin(name = "bountyhill")
+    bountyhill = Identity::Twitter.find_by_name("bountyhill") ||
+      Identity::Twitter.create!(:name => "bountyhill")
+    bountyhill.user
   end
 end

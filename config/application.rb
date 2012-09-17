@@ -13,8 +13,6 @@ require_relative "../vendor/bountybase/setup"
 
 module Bountyhill
   class Application < Rails::Application
-    require "middleware/twitter_auth_middleware"
-    require "middleware/auto_title_middleware"
     require "app"
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -23,6 +21,7 @@ module Bountyhill
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -69,6 +68,10 @@ module Bountyhill
     # Precompile *all* assets, except those that start with underscore
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
+    Dir.glob("#{File.dirname(__FILE__)}/../lib/middleware/*_middleware.rb").sort.each do |file|
+      load file
+    end
+
     # Configure and install TwitterAuthMiddleware 
     twitter_auth_config = App.config.twitter_oauth.merge :path => "tw",
       :success_url => '/twitter_sessions/created',
@@ -78,6 +81,19 @@ module Bountyhill
       
     # Configure and install AutoTitleMiddleware
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
+
+    # if Rails.env.development?
+    #   config.middleware.use ::PrettyHTMLMiddleware
+    # end
+  end
+  
+  class Application
+    def load_console(app=self)
+      r = super
+      irbrc = File.join(Rails.root, "config", "irbrc")
+      load(irbrc) if File.exists?(irbrc)
+      r
+    end
   end
 end
 

@@ -83,13 +83,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_admin
-    assert_kind_of(Array, User.admins)
+    assert_kind_of(Array, User.admin_names)
     
     user = Factory(:twitter_identity, :name => "twark").user
     assert(!user.admin?)
 
     user = Identity::Twitter.find_by_name("radiospiel").user
     assert(user.admin?)
+    
+    assert User.admin.admin?
   end
   
   def test_pseudo_factories
