@@ -116,9 +116,11 @@ class User < ActiveRecord::Base
   end
 
   # return an admin user. This is the @bountyhill account.
-  def self.admin(name = "bountyhill")
-    bountyhill = Identity::Twitter.find_by_name("bountyhill") ||
-      Identity::Twitter.create!(:name => "bountyhill")
-    bountyhill.user
+  def self.admin
+    @admin ||= begin
+      bountyhill = Identity::Twitter.find_by_name("bountyhill") ||
+        Identity::Twitter.create!(:name => "bountyhill")
+      bountyhill.user
+    end
   end
 end
