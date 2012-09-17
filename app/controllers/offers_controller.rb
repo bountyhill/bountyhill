@@ -6,9 +6,13 @@ class OffersController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @offers = Offer.
-      filter_scope(params[:filter]).
-      paginate(:page => params[:page], :per_page => per_page)
+    scope = Offer.filter_scope(params[:filter])
+    
+    if params[:quest_id]
+      scope = scope.where(:quest_id => params[:quest_id]).order("compliance DESC")
+    end
+    
+    @offers = scope.paginate(:page => params[:page], :per_page => per_page)
     
     respond_to do |format|
       format.html # index.html.erb

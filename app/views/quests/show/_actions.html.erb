@@ -9,6 +9,15 @@
     action_buttons do |act|
       act.action :t, :"quest.actions.tweet"
       act.action :d, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
+
+      if (offers_count = quest.offers.count).present?
+        act.action :d, 
+          I18n.t("quest.actions.see_offers.title", :count => offers_count), 
+          I18n.t("quest.actions.see_offers.sub", :count => offers_count), 
+          :url => offers_path(:quest_id => quest)
+      else
+        act.action :d, :"quest.actions.see_no_offers"
+      end
     end
   %>
 </div>

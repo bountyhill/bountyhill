@@ -83,6 +83,12 @@ en:
       offer:
         title: Offer
         sub: Win 50% of the bounty with a successful offer.
+      see_offers:
+        title: See %{count} offers
+        sub: See all offers on this quest.
+      see_no_offers:
+        title: No offers yet.
+        sub: See all offers on this quest.
       bounty:
         title: "Bounty € %{bounty}"
         sub: bounty has been posted.
