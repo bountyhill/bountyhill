@@ -11237,42 +11237,42 @@ a.more {
 }
 /* line 45, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.small {
-  background-color: #3333BF;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3333bf), to(#33338f));
-  background-image: -webkit-linear-gradient(top, #3333bf, #33338f);
-  background-image: -moz-linear-gradient(top, #3333bf, #33338f);
-  background-image: -ms-linear-gradient(top, #3333bf, #33338f);
-  background-image: -o-linear-gradient(top, #3333bf, #33338f);
+  background-color: #D4914F;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d4914f), to(#c36509));
+  background-image: -webkit-linear-gradient(top, #d4914f, #c36509);
+  background-image: -moz-linear-gradient(top, #d4914f, #c36509);
+  background-image: -ms-linear-gradient(top, #d4914f, #c36509);
+  background-image: -o-linear-gradient(top, #d4914f, #c36509);
 }
 /* line 52, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.small::before, .featuedBox .ribbon.small::after {
-  border-top: 3px solid #010177;
+  border-top: 3px solid #8B4800;
 }
 /* line 54, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.medium {
-  background-color: #33BF33;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#33bf33), to(#338f33));
-  background-image: -webkit-linear-gradient(top, #33bf33, #338f33);
-  background-image: -moz-linear-gradient(top, #33bf33, #338f33);
-  background-image: -ms-linear-gradient(top, #33bf33, #338f33);
-  background-image: -o-linear-gradient(top, #33bf33, #338f33);
+  background-color: silver;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(silver), to(#868686));
+  background-image: -webkit-linear-gradient(top, silver, #868686);
+  background-image: -moz-linear-gradient(top, silver, #868686);
+  background-image: -ms-linear-gradient(top, silver, #868686);
+  background-image: -o-linear-gradient(top, silver, #868686);
 }
 /* line 61, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.medium::before, .featuedBox .ribbon.medium::after {
-  border-top: 3px solid #017701;
+  border-top: 3px solid #606060;
 }
 /* line 63, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.large {
-  background-color: #BF3333;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#bf3333), to(#8f3333));
-  background-image: -webkit-linear-gradient(top, #bf3333, #8f3333);
-  background-image: -moz-linear-gradient(top, #bf3333, #8f3333);
-  background-image: -ms-linear-gradient(top, #bf3333, #8f3333);
-  background-image: -o-linear-gradient(top, #bf3333, #8f3333);
+  background-color: gold;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(gold), to(#b29600));
+  background-image: -webkit-linear-gradient(top, gold, #b29600);
+  background-image: -moz-linear-gradient(top, gold, #b29600);
+  background-image: -ms-linear-gradient(top, gold, #b29600);
+  background-image: -o-linear-gradient(top, gold, #b29600);
 }
 /* line 70, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .ribbon.large::before, .featuedBox .ribbon.large::after {
-  border-top: 3px solid #770101;
+  border-top: 3px solid #806C00;
 }
 /* line 73, ../../app/assets/stylesheets/pages/_quests.scss */
 .featuedBox .socialmedia {
@@ -11346,44 +11346,48 @@ a.more {
   border-top: 20px solid black;
 }
 
-/* line 146, ../../app/assets/stylesheets/pages/_quests.scss */
+/* line 144, ../../app/assets/stylesheets/pages/_quests.scss */
+h2 {
+  text-transform: none;
+}
+/* line 147, ../../app/assets/stylesheets/pages/_quests.scss */
 h2 span.bounty {
   font-size: 48px;
 }
-/* line 148, ../../app/assets/stylesheets/pages/_quests.scss */
-h2 span.bounty.small {
-  color: #3333BF;
-}
 /* line 149, ../../app/assets/stylesheets/pages/_quests.scss */
-h2 span.bounty.medium {
-  color: #33BF33;
+h2 span.bounty.small {
+  color: #D4914F;
 }
 /* line 150, ../../app/assets/stylesheets/pages/_quests.scss */
+h2 span.bounty.medium {
+  color: silver;
+}
+/* line 151, ../../app/assets/stylesheets/pages/_quests.scss */
 h2 span.bounty.large {
-  color: #BF3333;
+  color: gold;
 }
 
-/* line 155, ../../app/assets/stylesheets/pages/_quests.scss */
+/* line 156, ../../app/assets/stylesheets/pages/_quests.scss */
 .ui-datepicker {
   width: auto;
 }
-/* line 157, ../../app/assets/stylesheets/pages/_quests.scss */
+/* line 158, ../../app/assets/stylesheets/pages/_quests.scss */
 .ui-datepicker table {
   width: 100%;
 }
 
 @media (max-width: 320px) {
-  /* line 164, ../../app/assets/stylesheets/pages/_quests.scss */
+  /* line 165, ../../app/assets/stylesheets/pages/_quests.scss */
   .featuedBox .imgShow {
     width: 310px;
   }
 
-  /* line 168, ../../app/assets/stylesheets/pages/_quests.scss */
+  /* line 169, ../../app/assets/stylesheets/pages/_quests.scss */
   .ca-menu {
     margin-top: 3px;
   }
 
-  /* line 172, ../../app/assets/stylesheets/pages/_quests.scss */
+  /* line 173, ../../app/assets/stylesheets/pages/_quests.scss */
   .span4 .inner {
     margin-bottom: 20px;
   }
