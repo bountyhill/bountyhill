@@ -129,4 +129,21 @@ module ApplicationHelper
     link_to image_for(quest, options), quest, 
       :class => zoom, "data-bitly-type" => "bitly_hover_card"
   end
+
+  def render_restriction(model, what)
+    expect! model => ActiveRecord::Base, what => [:location, :expires_at]
+    value = model.send(what)
+    return if value.blank?
+    
+    case what
+    when :location
+      icon = image_tag '/images/icon/location.png', :class => 'locality'
+      span = self.span value, :class => "locality"
+    when :expires_at
+      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
+      span = self.span value.to_date, :class => "locality"
+    end
+    
+    div icon, span
+  end
 end

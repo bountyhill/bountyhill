@@ -8,20 +8,10 @@
         <div class="unbottom untop">
           <h3><%= truncate quest.title, :length => 60 %></h3>
           <div class="restrictions">
-            <% if quest.location.present? %>
-            <img src="/images/icon/location.png" class="locality">
-            <span class="locality"><%= quest.location %></span><br>
-            <% end %>
-            <% if quest.expires_at.present? %>
-            <img src="/images/icon/calendar.png" class="temporality">
-            <span class="temporality"><%= quest.expires_at.to_date %></span>
-            <% end %>
+            <%= render_restriction quest, :location %>
+            <%= render_restriction quest, :expires_at %>
           </div>
           <div class="socialmedia">
-            <!-- 
-            <a class="social-item googleplus" href="#" title="find us googleplus" data-bitly-type="bitly_hover_card">g</a>
-            <a class="social-item facebook" href="#" title="find us facebook" data-bitly-type="bitly_hover_card">f</a> 
-            -->
             <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
           </div>
           <div class="bottom_link tip">
