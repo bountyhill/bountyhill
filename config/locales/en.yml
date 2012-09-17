@@ -17,7 +17,14 @@ en:
   terms: "Terms & conditions"
   privacy: Privacy policy
   profile: Profile
-  quests: "Quests"
+  quests:
+    index:
+      title: Current quests
+      sub: All quests currently posted.
+  nav:
+    quests: Quests
+    offers: Offers
+    
   sign_up: "Sign up"
   sign_in: "Sign in"
   sign_out: "Sign out"
@@ -42,6 +49,7 @@ en:
       show: ""
       edit: "Edit quest"
       create: "New quest"
+    new: Post a Quest
     expires_at:
       title: "Expiration"
       sub: "This quest ends %{date}"
@@ -79,4 +87,23 @@ en:
       show:   ""
       edit:   "Edit Offer: %{title}"
       create: "New Offer: %{title}"
-  offers: Offers
+    actions:
+      bounty: 
+        title: "Bounty € %{bounty}"
+        sub: bounty has been posted.
+      compliance:
+        title: Compliance
+        sub: "…with the quest:"
+    location:
+      title: "Location"
+      sub:  "Offers should be near %{location}."
+      none: "This quest is not bound to a location."
+    criteria:
+      title:    "%{count} criteria"
+      sub:      "The user chose these criteria:"
+      none:     "No criteria"
+      none_sub: "The user can choose a number of criteria."
+  offers:
+    index:
+      title: All Offers
+      sub: ""

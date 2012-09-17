@@ -5,12 +5,6 @@
     </span>
     <small><%=t "offer.actions.bounty.sub" %></small>
   </h2>
-  <%= 
-    action_buttons do |act|
-      act.action :t, :"offer.actions.tweet"
-      act.action :d, :"offer.actions.offer", :url => new_offer_path(:offer_id => offer)
-    end
-  %>
 </div>
 <div class="inner">
   <h2>
