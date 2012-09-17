@@ -34,7 +34,7 @@ end
 group :development, :test do
   gem 'rspec-rails'#, '2.8.1'
   gem 'capybara'#, '1.1.2'
-  gem 'test-unit'
+  gem 'test-unit', :require => "test/unit"
   gem 'mocha'
   gem 'factory_girl_rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
