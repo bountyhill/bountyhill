@@ -1,8 +1,11 @@
 <!-- banner-->
 <div class="banner">
   <span>
-    <h1><%= I18n.t "quests.index.title" %></h1>
-    <small><%= I18n.t "quests.index.sub" %></</small>
+    <h1>
+      <%= I18n.t("quests.filter.#{params[:filter] || "all"}.title") %>
+      <%= "(%d)" % @quests.total_entries %>
+    </h1>
+    <small><%= I18n.t "quests.filter.#{params[:filter] || "all"}.sub" %></</small>
   </span>
   <%= link_to I18n.t("quest.new"), new_quest_path, :class => "btn btn-inverse" %>
 </div>
@@ -20,6 +23,22 @@
         <a href="#" title="Category  7" data-bitly-type="bitly_hover_card">g</a>
         <a href="#" title="Category  8" data-bitly-type="bitly_hover_card">h</a>
       </div>
+    </div>
+  
+    <style type="text/css" media="screen">
+      a.filter {
+        display: inline-block;
+        border: 2px solid orange;
+        padding: 0 1em;
+        font-size: 170%;
+        font-weight: bold;
+      }
+    </style>
+    <div class="row" style="padding-left: 6em">
+      <% Quest.filters.each do |filter| %>
+      <%= link_to I18n.t("quests.filter.#{filter}.title"), quests_path(:filter => filter), :class => "filter" %>
+      <% end %>
+      
     </div>
   </div>
   

@@ -4,10 +4,32 @@ class Quest < ActiveRecord::Base
 
   belongs_to :owner, :class_name => "User"
   validates_presence_of :owner
+
+  # -- Access control -------------------------------------------------
   
   # Quests are visible by the owner and when set to visibility public.
   access_control :visibility
   write_access_control :owner
+
+  # -- scopes ---------------------------------------------------------
+  
+  scope :all
+  scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
+  scope :active,    lambda { where("started_at IS NOT NULL AND expires_at > ?", Time.now) }
+  scope :expired,   lambda { where("expires_at <= ?", Time.now) }
+  
+  def self.filters
+    %w(all own active expired)
+  end
+  
+  def self.filter_scope(name)
+    return self if name.nil?
+    
+    expect! name => filters
+    self.send(name)
+  end
+  
+  # -- Validations ----------------------------------------------------
   
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }

@@ -21,6 +21,19 @@ en:
     index:
       title: Current quests
       sub: All quests currently posted.
+    filter:
+      all:      
+        title: "All quests"
+        sub:   "All quests in the system."
+      own:      
+        title: "Your quests"
+        sub:   "Quests posted by you."
+      active:  
+        title:  "Active quests"
+        sub:    "All active quest."
+      expired: 
+        title:  "Expired quests"
+        sub:    "All expired quests."
   nav:
     quests: Quests
     offers: Offers

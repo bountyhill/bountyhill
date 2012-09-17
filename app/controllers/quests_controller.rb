@@ -4,8 +4,9 @@ class QuestsController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    @quests = Quest.paginate(:page => params[:page], :per_page => per_page)
-
+    scope = Quest.filter_scope(params[:filter])
+    @quests = scope.paginate(:page => params[:page], :per_page => per_page)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quests }
@@ -29,7 +30,9 @@ class QuestsController < ApplicationController
     @quest = Quest.new
 
     # fill in location, if the server provides one.
-    @quest.location = location.name if location = request.location
+    if location = request.location
+      @quest.location = location.name 
+    end
     
     respond_to do |format|
       format.html # new.html.erb
