@@ -70,5 +70,6 @@ Bountyhill::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Set cache control headers on assets
-  config.middleware.use ::PublicCacheControl, :path => /^\/assets\//, :max_age => 600
+  # Does not work yet on heroku
+  # config.middleware.use ::PublicCacheControl, :path => /^\/assets\//, :max_age => 600
 end
