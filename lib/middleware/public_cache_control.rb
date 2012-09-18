@@ -2,7 +2,7 @@ class PublicCacheControl
   attr_reader :path, :max_age
   
   def initialize(app, options)
-    expect! options => { :path => [RegExp, nil], :max_age => Integer)
+    expect! options => { :path => [RegExp, nil], :max_age => Integer }
 
     @app = app
     @path = options[:path] || /^\/assets\//
@@ -11,8 +11,7 @@ class PublicCacheControl
   
   def call(env)
     result = @app.call(env)
-    path = env["REQUEST_PATH"]
-    if path =~ path
+    if env["REQUEST_PATH"] =~ path
       headers = result[1]
       headers["Cache-Control"] = "public, max-age=#{max_age}"
       headers["Expires"] = (Time.now + max_age).utc.rfc2822
