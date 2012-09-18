@@ -104,13 +104,24 @@ module ActiveRecord::AccessControl
   
   module InstanceMethods
     def self.included(other)
-      other.after_initialize :initialize_access_control
+      other.after_initialize :initialize_owner
       other.before_destroy :permission_denied!, :unless => :writable?
       other.validate :permission_denied, :unless => :writable?
     end
     
-    def initialize_access_control
-      self.owner ||= ActiveRecord::AccessControl.current_user
+    def initialize_owner
+      # When an object gets loaded from the database and initialized this
+      # method will be called. At this point the owner is quite likely not
+      # initialized yet; the owner_id attribute, on the other hand, is. 
+      # That means checking whether there is an owner results in a DB lookup.
+      #
+      # By testing against owner_id we save this DB lookup. If it is set
+      # (because the object is loaded from the database and has an owner_id
+      # value) we don't check for the owner and let Rails do that later -
+      # if this is required at all.
+      if self.owner_id.nil?
+        self.owner ||= ActiveRecord::AccessControl.current_user
+      end
     end
 
     def permission_denied!
