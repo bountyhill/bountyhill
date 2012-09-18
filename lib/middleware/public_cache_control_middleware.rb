@@ -2,7 +2,7 @@ class PublicCacheControl
   attr_reader :path, :max_age
   
   def initialize(app, options)
-    expect! options => { :path => [RegExp, nil], :max_age => Integer }
+    expect! options => { :path => [Regexp, nil], :max_age => Integer }
 
     @app = app
     @path = options[:path] || /^\/assets\//
