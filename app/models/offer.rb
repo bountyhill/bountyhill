@@ -10,17 +10,20 @@ class Offer < ActiveRecord::Base
   belongs_to :quest
   serialize :serialized, Hash
   
-  attr_accessible :location, :description, :image, :quest_id
+  attr_accessible :location, :description, :image, :quest_id, :quest
   
   # -- Access control -------------------------------------------------
+
+  belongs_to :owner, :class_name => "User"
+  validates  :owner, presence: true
   
   # Offers are visible to both its owner and to the quest owner, but 
   # they can be written by its owner only.
 
   access_control do |user|
     if user
-      joins(:quests).
-      where("owner_id=? OR quests.owner_id=?", user.id, user.id)
+      joins(:quest).
+      where("offers.owner_id=? OR quests.owner_id=?", user.id, user.id)
     end
   end
 
@@ -47,8 +50,8 @@ class Offer < ActiveRecord::Base
   
   # -- Validation -----------------------------------------------------
 
-  validates_presence_of :quest
-  validates_presence_of :description
+  validates :quest, presence: true
+  validates :description, presence: true, length: { maximum: 2400 }
   
   # Can make an offer on an active quest only.
   validate :validate_quest_is_active, :on => :create

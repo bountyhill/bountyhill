@@ -2,10 +2,10 @@ class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
 
-  belongs_to :owner, :class_name => "User"
-  validates_presence_of :owner
-
   # -- Access control -------------------------------------------------
+
+  belongs_to :owner, :class_name => "User"
+  validates  :owner, presence: true
   
   # Quests are visible by the owner and when set to visibility public.
   access_control :visibility
