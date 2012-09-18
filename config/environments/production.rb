@@ -11,7 +11,12 @@ Bountyhill::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
+  # config.serve_static_assets = false
+  # But heroku needs that. (https://devcenter.heroku.com/articles/http-routing)
   config.serve_static_assets = true
+
+  # Set cache control headers
+  config.static_cache_control = "public, max-age=3600"
 
   # Compress JavaScripts and CSS
   config.assets.compress = false
