@@ -11,7 +11,7 @@ namespace :assets do
   end
   
   task :clean_from_git do
-    system "git rm -r public/assets"
+    system "git rm -rf public/assets"
   end
 
   task :remove_jquery do 
