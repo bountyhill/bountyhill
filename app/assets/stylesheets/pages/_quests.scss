@@ -1,3 +1,16 @@
+.avatar {
+  width: 128px;
+  height: 128px;
+  float: left;
+  margin-right: 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+}
+
 .categories {
   text-align: center;
   padding: 10px;
@@ -100,6 +113,30 @@
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+  }
+}
+
+article {
+  &.quest {
+    h1 {
+      font-size: 24px;
+      line-height: 24px;
+      margin: 32px 0 0 148px;
+    }
+    .profile {
+      h2 {
+        margin: 0 148px;
+        font-size: 28px;
+        line-height: 22px;
+        margin-bottom: 10px;
+      }
+      h2, a {
+        color: #FEA768;
+      }
+    }
+    p {
+      margin: 10px 0 0 148px;
     }
   }
 }

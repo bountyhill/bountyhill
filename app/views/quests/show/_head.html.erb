@@ -3,13 +3,16 @@
 # and _image.html.erb too.
 -%>
 <div class="inner quest unbottom">
-  <ul class="block article_list large">
-    <li>
-      <%= image_for(quest) %>
-      <article class="bg-gray">
-        <%= h1 quest.title %>
-        <%= p quest.description %>
-      </article>
-    </li>
-  </ul>
+  <article class="quest">
+    <div class="profile">
+      <%#= image_for(quest) %>
+      <!-- TODO: change image_for to return avatar -->
+      <img src="/images/examples/avatar_128.jpg" class="avatar" alt="<%= quest.owner.name %>" title="<%= quest.owner.name %>">
+      <h2>jeannine michaelsen<%#= quest.owner.name %></h2>
+      <a href="#">@Michaelsen_J</a>
+      <h3></h3>
+    </div>
+    <%= h1 quest.title %>
+    <%= p quest.description %>
+  </article>
 </div>
