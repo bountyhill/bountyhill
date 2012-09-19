@@ -3,24 +3,27 @@ class Identity::Twitter < Identity
   def self.model_name #:nodoc:
     Identity.model_name
   end
-  
+
+  validates :name, presence: true, format: { with: /^[^@]/ }, 
+                                   uniqueness: { case_sensitive: false }
+
   # -- Twitter identity attributes
   
   def screen_name
-    read_attribute :name
-  end
-
-  def name
-    name = read_attribute(:name)
-    return if name.blank?
     "@#{name}"
   end
 
-  def screen_name=(screen_name)
-    write_attribute :name, screen_name
-  end
+  serialized_attr :oauth_secret, :oauth_token
 
-  serialized_attr :access_secret, :access_token
+  def update_auth!(auth)
+    return if oauth_token == auth[:oauth_token] && oauth_secret == auth[:oauth_secret]
+
+    self.oauth_token = auth[:oauth_token]
+    self.oauth_secret = auth[:oauth_secret]
+    
+    update_attributes! :oauth_token => auth[:oauth_token],
+      :oauth_secret => auth[:oauth_secret]
+  end
 
   #
   

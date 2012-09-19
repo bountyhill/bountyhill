@@ -80,8 +80,11 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    identity_for_name = identity(:email) || identity(:twitter)
-    identity_for_name.name
+    if i = identity(:email)
+      i.name
+    elsif i = identity(:twitter)
+      i.screen_name
+    end
   end
 
   # return the user's email

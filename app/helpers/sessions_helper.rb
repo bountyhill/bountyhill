@@ -45,22 +45,39 @@ module SessionsHelper
   # Twitter's oauth callback, which is handled by TwitterAuthMiddleware.
   # (see lib/middleware/twitter_auth_middleware.rb)
   def signin_from_twitter_session #:nodoc:
-    return unless session[:tw].to_s =~ /^([^|]+)|([^|]+)|([^|]+)$/
+    parts = session[:tw].to_s.split("|")
+    return if parts.length != 3
+
+    identity = twitter_identity :name => parts[0], 
+                  :oauth_token => parts[1], 
+                  :oauth_secret => parts[2]
+
+    sign_in(identity.user)
     
-    auth = { :screen_name => $1, :access_token => $2, :access_secret => $3 }
-    if identity = @current_user && @current_user.identity(:twitter)
-      identity.update_attributes!(auth)
-    else
-      identity = Identity::Twitter.new(auth)
-      identity.user = @current_user # and if its nil, save! will create a new User.
-      identity.save!
-
-      sign_in(identity.user)
-    end
-
-    # We no longer need the :tw entry in the session. Keeping the value
-    # would only result in unnecessary database I/O by calling 
-    # signin_from_twitter_session during future requests.
+    # We no longer need the :tw entry in the session. The user is
+    # logged in, and its auth keys should be stored in the DB.
     session.delete :tw
+  end
+  
+  # return the twitter_identity according to the auth hash received
+  # from twitter.
+  def twitter_identity(auth)
+    if @current_user
+      if identity = @current_user.identity(:twitter)
+        identity.update_auth!(auth)
+      else
+        identity = Identity::Twitter.new(auth)
+        identity.user = @current_user
+        identity.save!
+      end
+    else
+      if identity = Identity::Twitter.find_by_name(auth[:name])
+        identity.update_auth! auth
+      else
+        identity = Identity::Twitter.create!(auth)
+      end
+    end
+  
+    identity
   end
 end
