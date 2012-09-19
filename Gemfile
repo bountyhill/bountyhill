@@ -40,6 +40,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
 
   gem 'spork-testunit'
+  gem 'awesome_print'
   # gem 'sql-logging'
 end
 
