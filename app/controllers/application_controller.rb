@@ -82,4 +82,27 @@ class ApplicationController < ActionController::Base
   def per_page
     12
   end
+
+  around_filter :stat_time
+  
+  STAT_HAT_ACCOUNT = "eno@open-lab.org"
+  
+  def stat_hat_queue
+    @stat_hat_queue ||= GirlFriday::WorkQueue.new(:stat_hat, :size => 1) do |type, name, value=1|
+      expect! type => [ :count, :value ]
+      
+      case type
+      when :count then StatHat::API.ez_post_count(name, STAT_HAT_ACCOUNT, value || 1)
+      when :value then StatHat::API.ez_post_value(name, STAT_HAT_ACCOUNT, value)
+      end
+    end
+  end
+
+  # enable ActiveRecord::AccessControl
+  def stat_time(&block)
+    started_at = Time.now
+    yield
+  ensure
+    stat_hat_queue.push [ :value, "process_time", (1000 * (Time.now - started_at)).to_i ]
+  end
 end

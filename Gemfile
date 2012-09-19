@@ -18,6 +18,7 @@ gem 'bountydeps'
 gem 'geoip'
 gem 'mobile-fu'
 gem 'nokogiri'
+gem 'stathat'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
