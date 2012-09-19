@@ -126,10 +126,9 @@ article {
     }
     .profile {
       h2 {
-        margin: 0 148px;
+        margin: 0 0 10px 148px;
         font-size: 28px;
-        line-height: 22px;
-        margin-bottom: 10px;
+        line-height: 28px;
       }
       h2, a {
         color: #FEA768;
@@ -197,6 +196,17 @@ h2 {
   }
 }
 
+@media (max-width: 480px) {
+  article {
+    &.quest {
+      h1, p {
+        float: left;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 @media (max-width: 320px) {
   .featuedBox {
     .imgShow {
@@ -211,4 +221,13 @@ h2 {
       margin-bottom: 20px;
     }
   }
+  article {
+    &.quest {
+      h1, p {
+        float: left;
+        margin-left: 0;
+      }
+    }
+  }
 }
+
