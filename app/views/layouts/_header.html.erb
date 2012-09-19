@@ -13,10 +13,10 @@
       </form>
       <div class="nav-collapse">
         <ul class="nav">
-          <% %w(quests offers).each do |nav_item| %>
+          <% %w(quests offers stats).each do |nav_item| %>
             <%= 
-              content_tag :li, :class => navigation_item_class_for(nav_item) do 
-                link_to I18n.t("nav.#{nav_item}"), self.send("#{nav_item}_path")
+              if link = link_to_nav_item(nav_item)
+                content_tag :li, link, :class => navigation_item_class_for(nav_item)            
               end
             %>
           <% end %>

@@ -50,6 +50,18 @@ module ApplicationHelper
     end
   end
   
+  def stats_path
+    "/stats"
+  end
+  
+  ADMIN_NAV_ITEMS = %w(stats)
+  
+  def link_to_nav_item(nav_item)
+    if admin? || !ADMIN_NAV_ITEMS.include?(nav_item)
+      link_to I18n.t("nav.#{nav_item}"), self.send("#{nav_item}_path")
+    end
+  end
+  
   def error_message_for(object, attribute)
     if error_message = object.error_message_for(attribute)
       span(error_message, :class => "help-inline")

@@ -19,6 +19,10 @@ module SessionsHelper
     current_user
   end
 
+  def admin?
+    current_user && current_user.admin?
+  end
+
   # returns the current_user. When called in a request for the first 
   # time, this method tries to fetch or create the current_user by 
   # evaluating the remember_token and/or the twitter session.
