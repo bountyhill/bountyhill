@@ -1,3 +1,16 @@
+.avatar {
+  width: 128px;
+  height: 128px;
+  float: left;
+  margin-right: 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+}
+
 .categories {
   text-align: center;
   padding: 10px;
@@ -104,6 +117,29 @@
   }
 }
 
+article {
+  &.quest {
+    h1 {
+      font-size: 24px;
+      line-height: 24px;
+      margin: 32px 0 0 148px;
+    }
+    .profile {
+      h2 {
+        margin: 0 0 10px 148px;
+        font-size: 28px;
+        line-height: 28px;
+      }
+      h2, a {
+        color: #FEA768;
+      }
+    }
+    p {
+      margin: 10px 0 0 148px;
+    }
+  }
+}
+
 .article_list {
   color: #666;
   margin-bottom: 0px;
@@ -160,6 +196,17 @@ h2 {
   }
 }
 
+@media (max-width: 480px) {
+  article {
+    &.quest {
+      h1, p {
+        float: left;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
 @media (max-width: 320px) {
   .featuedBox {
     .imgShow {
@@ -174,4 +221,13 @@ h2 {
       margin-bottom: 20px;
     }
   }
+  article {
+    &.quest {
+      h1, p {
+        float: left;
+        margin-left: 0;
+      }
+    }
+  }
 }
+
