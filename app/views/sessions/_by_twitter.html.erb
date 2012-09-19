@@ -1,9 +1,11 @@
-<%= form_for @identity, :url => twitter_sessions_path, :html => {:class => "form-horizontal"} do |form| %>
+<%= form_for Identity::Twitter.new(:follow_bountyhill => true), :url => twitter_sessions_path, :html => {:class => "form-horizontal"} do |form| %>
+  <%= markdown "sessions/twitter_help", :class => "inner" %>
+
   <fieldset>
     <legend><%= I18n.t("signin.twitter") %></legend>
     <%= render 'shared/error_messages', :object => @identity, :scope => "signup" %>
 
-    <%= form.control_group :name, :check_box %>
+    <%= form.control_group :follow_bountyhill, :check_box %>
 
     <div class="form-actions">
       <%#= link_to I18n.t(:cancel), root_path, :class => "btn btn-mini" %>

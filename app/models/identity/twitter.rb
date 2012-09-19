@@ -1,3 +1,5 @@
+require "twitter"
+
 class Identity::Twitter < Identity
   # Fix Rails' polymorphic routes
   def self.model_name #:nodoc:
@@ -41,5 +43,55 @@ class Identity::Twitter < Identity
   def fetch_avatar_url(size = "bigger")
     url = "https://api.twitter.com/1/users/profile_image?screen_name=#{screen_name}&size=#{size}"
     Bountybase::HTTP.resolve url
+  end
+
+  # -- Twitter actions ------------------------------------------------
+
+  # The follow_bountyhill pseudo attribute exists only for
+  # the login via twitter form.
+  attr :follow_bountyhill, true
+  
+  # This method makes the user follow @bountyhill. If the user followed
+  # @bountyhill before, this method is a no-op.
+  def follow
+    follow! unless followed_at?
+  end
+  
+  def follow!
+    followee = Bountybase.config.twitter_app["user"]
+    expect! followee => /^[^@]/
+  
+    twitter :follow, followee
+    update_attributes :followed_at => Time.now
+  end
+
+  private
+  
+  def twitter(*args)
+    self.class.twitter_queue.push :args => args,
+      :oauth_token => self.oauth_token,
+      :oauth_secret => self.oauth_secret
+  end
+
+  def self.twitter_queue
+    @twitter_queue ||= GirlFriday::WorkQueue.new(:twitter_queue, :size => 1) do |data|
+      expect! data => {
+        :oauth_token  => String,
+        :oauth_secret => String, 
+        :args         => Array
+      }
+
+      twitter_config = Bountybase.config.twitter_app
+      
+      ::Twitter.configure do |config|
+        config.consumer_key       = twitter_config["consumer_key"]
+        config.consumer_secret    = twitter_config["consumer_secret"]
+        config.oauth_token        = data[:oauth_token]
+        config.oauth_token_secret = data[:oauth_secret]
+      end
+
+      args = data[:args]
+      ::Twitter.send *args
+    end
   end
 end
