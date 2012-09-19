@@ -13,8 +13,6 @@ require_relative "../vendor/bountybase/setup"
 
 module Bountyhill
   class Application < Rails::Application
-    require "app"
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -72,19 +70,23 @@ module Bountyhill
       load file
     end
 
-    # Configure and install TwitterAuthMiddleware 
-    twitter_auth_config = App.config.twitter_oauth.merge :path => "tw",
-      :success_url => '/twitter_sessions/created',
-      :failure_url => '/twitter_sessions/failed'
-    
-    config.middleware.use ::TwitterAuthMiddleware, twitter_auth_config
-      
-    # Configure and install AutoTitleMiddleware
-    config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
+    # -- middleware ---------------------------------------------------
 
-    # if Rails.env.development?
-    #   config.middleware.use ::PrettyHTMLMiddleware
-    # end
+    # TwitterAuthMiddleware: handles twitter authentication
+    
+    # Fetch the twitter configuration from Bountybase.
+    TWITTER_CONFIG = Bountybase.config.twitter_app
+    
+    config.middleware.use ::TwitterAuthMiddleware, {
+      path: "tw",
+      success_url:      '/twitter_sessions/created',
+      failure_url:      '/twitter_sessions/failed',
+      consumer_key:     TWITTER_CONFIG["consumer_key"],
+      consumer_secret:  TWITTER_CONFIG["consumer_secret"]
+    }
+    
+    # AutoTitleMiddleware: determines the page title from the first <h1> or <h2> 
+    config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
   
   class Application
