@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
   # return the user's twitter handle
   def twitter_handle
     if identity = self.identity(:twitter)
-      identity.name
+      identity.screen_name
     end
   end
 
