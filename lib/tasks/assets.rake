@@ -3,12 +3,12 @@ namespace :assets do
   task :prerelease => %W(clean precompile remove_jquery custom_compress)
   task :release => %W(clean_from_git prerelease commit)
 
+  task :instance do
+    ENV["INSTANCE"] = "deployment-web1"
+  end
+  
   task :clean => :instance
   task :precompile => :instance
-  
-  task :instance do
-    ENV["INSTANCE"] ||= "deployment-web1"
-  end
   
   task :clean_from_git do
     system "git rm -rf public/assets"

@@ -11,6 +11,21 @@
   height: 120px;
 }
 
+.navbar {
+  .brand {
+    text-transform: none;
+  }
+  .nav {
+    font-weight: bold;
+  }
+  .navbar-search {
+    .search-query {
+      font-weight: bold;
+      line-height: 1.5;
+    }
+  }
+}
+
 @media (max-width: 320px) {
   body {
     padding: 0px;

@@ -1,13 +1,13 @@
 <div class="inner quest">
   <% if quest.expires_at.blank? %>
   <h2>
-    <span><%=t "quest.expires_at.title" %></span> 
-    <small><%=t "quest.expires_at.none" %></small>
+    <span><%=t "quest.expires_at.none.title" %></span>
+    <small><%=t "quest.expires_at.none.sub" %></small>
   </h2>
   <% else %>
   <h2>
-    <span><%=t "quest.expires_at.title" %></span> 
-    <small><%=t "quest.expires_at.sub", :date => quest.expires_at.to_date.strftime("%B %d, %Y") %></small>
+    <span><strong><%= distance_of_time_in_words(Date.today, quest.expires_at.to_date) %></strong> <%=t "quest.expires_at.title" %></span>
+    <small><%=t "quest.expires_at.sub" %></small>
   </h2>
   <div>
     <div id="datepicker"> </div>
