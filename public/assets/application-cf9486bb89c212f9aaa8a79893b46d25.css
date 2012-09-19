@@ -11149,34 +11149,48 @@ a.more {
   height: 120px;
 }
 
+/* line 15, ../../app/assets/stylesheets/pages/_layout.scss */
+.navbar .brand {
+  text-transform: none;
+}
+/* line 18, ../../app/assets/stylesheets/pages/_layout.scss */
+.navbar .nav {
+  font-weight: bold;
+}
+/* line 22, ../../app/assets/stylesheets/pages/_layout.scss */
+.navbar .navbar-search .search-query {
+  font-weight: bold;
+  line-height: 1.5;
+}
+
 @media (max-width: 320px) {
-  /* line 15, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 30, ../../app/assets/stylesheets/pages/_layout.scss */
   body {
     padding: 0px;
   }
 
-  /* line 18, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 33, ../../app/assets/stylesheets/pages/_layout.scss */
   .topspace {
     margin-top: 0px;
   }
 
-  /* line 21, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 36, ../../app/assets/stylesheets/pages/_layout.scss */
   .navbar-fixed-top {
     margin: 0px -10px;
   }
 
-  /* line 25, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 40, ../../app/assets/stylesheets/pages/_layout.scss */
   .navbar .brand {
     padding: 8px 5px 12px 18px;
     margin-left: -10px;
     font-size: 18px;
   }
-  /* line 30, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 45, ../../app/assets/stylesheets/pages/_layout.scss */
   .navbar .navbar-search {
     margin-right: 0px;
   }
 
-  /* line 34, ../../app/assets/stylesheets/pages/_layout.scss */
+  /* line 49, ../../app/assets/stylesheets/pages/_layout.scss */
   .inner {
     padding: 5px;
   }
@@ -11350,8 +11364,8 @@ a.more {
 h2 {
   text-transform: none;
 }
-/* line 147, ../../app/assets/stylesheets/pages/_quests.scss */
-h2 span.bounty {
+/* line 148, ../../app/assets/stylesheets/pages/_quests.scss */
+h2 span.bounty strong {
   font-size: 48px;
 }
 /* line 149, ../../app/assets/stylesheets/pages/_quests.scss */
