@@ -145,7 +145,7 @@ h2 {
   text-transform: none;
   span {
     &.bounty {
-      font-size: 48px;
+      strong    { font-size: 48px; }
       &.small   { color: #D4914F; }
       &.medium  { color: silver; }
       &.large   { color: gold; }
