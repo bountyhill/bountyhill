@@ -11,7 +11,7 @@ namespace :assets do
   task :precompile => :instance
   
   task :clean_from_git do
-    system "git rm -rf public/assets"
+    system "git rm -r public/assets"
   end
 
   task :remove_jquery do 
