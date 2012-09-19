@@ -150,7 +150,8 @@ class ActionView::Helpers::FormBuilder
   
   # Creating a control_group.
   def control_group(name, field_type = :text_field, input_field_options = {})
-    expect! respond_to?(field_type), object.respond_to?(name)
+    raise ArgumentError, "Invalid field_type #{field_type.inspect}" unless respond_to?(field_type)
+    raise ArgumentError, "Invalid attribute #{object.class.name}##{name.inspect}" unless object.respond_to?(name)
     
     if default_input_field_options = DEFAULT_INPUT_FIELD_OPTIONS[field_type]
       input_field_options = default_input_field_options.merge(input_field_options)
