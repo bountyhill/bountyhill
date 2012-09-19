@@ -73,6 +73,8 @@ class Identity::Twitter < Identity
       :oauth_secret => self.oauth_secret
   end
 
+  TWITTER_CONFIG = Bountybase.config.twitter_app
+  
   def self.twitter_queue
     @twitter_queue ||= GirlFriday::WorkQueue.new(:twitter_queue, :size => 1) do |data|
       expect! data => {
@@ -81,17 +83,15 @@ class Identity::Twitter < Identity
         :args         => Array
       }
 
-      twitter_config = Bountybase.config.twitter_app
-      
-      ::Twitter.configure do |config|
-        config.consumer_key       = twitter_config["consumer_key"]
-        config.consumer_secret    = twitter_config["consumer_secret"]
-        config.oauth_token        = data[:oauth_token]
-        config.oauth_token_secret = data[:oauth_secret]
-      end
+      client = Twitter::Client.new(
+        :oauth_token        => data[:oauth_token],
+        :oauth_token_secret => data[:oauth_secret],
+        :consumer_key       => TWITTER_CONFIG["consumer_key"],
+        :consumer_secret    => TWITTER_CONFIG["consumer_secret"]
+      )
 
       args = data[:args]
-      ::Twitter.send *args
+      client.send *args
     end
   end
 end
