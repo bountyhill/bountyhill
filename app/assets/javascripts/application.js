@@ -10,9 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-// Note: we do not require jquery and jquery_ujs. We will load this code from google's CDN.
-//    require jquery
-//   require jquery_ujs
+// Note: we do not require jquery. We will load jquery from google's CDN.
+//  no_require jquery
+//
+//= require jquery_ujs
 //= require_tree .
 
 // dummy console, just in case
