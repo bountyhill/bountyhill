@@ -116,7 +116,7 @@ class Quest < ActiveRecord::Base
   end
   
   # Offers to the quest are ordered by their compliance value.
-  has_many :offers, :order => "compliance DESC"
+  has_many :offers, :order => "compliance DESC", :dependent => :destroy
   
   # Answer the quest. This method is built so that the attributes
   # can be filled in from a HTML form without much hassle.

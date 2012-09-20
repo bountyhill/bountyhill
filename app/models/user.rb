@@ -19,19 +19,24 @@ class User < ActiveRecord::Base
   end
   
   public
+  
+  # -- Associations ---------------------------------------------------
 
   #
   # Each user has at least a single identity, but can probably have more
   # than one. Each identity should be from a different identity provider
   # and should therefore be from a different class - but this is enforced
   # nowhere in the code.
-  has_many :identities
+  has_many :identities, :dependent => :destroy
   validates_presence_of :identities
 
-  has_many :quests
+  #
+  # Quests submitted by the user
+  has_many :quests, :foreign_key => "owner_id", :dependent => :destroy
 
-  # Offers that this user has submitted.
-  # has_many :submitted_hints, :class_name => "Hint"
+  #
+  # Offers submitted by the user
+  has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
   
   # Match identity symbol to class.
   IDENTITY_MODES = {
