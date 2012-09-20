@@ -44,7 +44,7 @@ class DeferredActionsController < ApplicationController
   
   # send confirmation email.
   def confirm
-    MailQ << UserMailer.confirm_email(current_user)
+    Deferred.mail UserMailer.confirm_email(current_user)
     flash[:success] = I18n.t("signup.confirm.sent")
     
     redirect_to "/"
@@ -57,7 +57,7 @@ class DeferredActionsController < ApplicationController
     end
     
     if identity
-      MailQ << UserMailer.reset_password(identity.user)
+      Deferred.mail UserMailer.reset_password(identity.user)
       flash[:success] = I18n.t("reset_password.sent")
     else
       flash[:error] = I18n.t("reset_password.unknown_email", :email => email)

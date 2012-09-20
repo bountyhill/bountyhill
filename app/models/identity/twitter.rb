@@ -68,30 +68,7 @@ class Identity::Twitter < Identity
   private
   
   def twitter(*args)
-    self.class.twitter_queue.push :args => args,
-      :oauth_token => self.oauth_token,
-      :oauth_secret => self.oauth_secret
-  end
-
-  TWITTER_CONFIG = Bountybase.config.twitter_app
-  
-  def self.twitter_queue
-    @twitter_queue ||= GirlFriday::WorkQueue.new(:twitter_queue, :size => 1) do |data|
-      expect! data => {
-        :oauth_token  => String,
-        :oauth_secret => String, 
-        :args         => Array
-      }
-
-      client = Twitter::Client.new(
-        :oauth_token        => data[:oauth_token],
-        :oauth_token_secret => data[:oauth_secret],
-        :consumer_key       => TWITTER_CONFIG["consumer_key"],
-        :consumer_secret    => TWITTER_CONFIG["consumer_secret"]
-      )
-
-      args = data[:args]
-      client.send *args
-    end
+    Deferred.twitter *args, oauth_token: data[:oauth_token],
+                            oauth_token_secret: data[:oauth_secret]
   end
 end
