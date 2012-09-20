@@ -98,4 +98,15 @@ class ApplicationController < ActionController::Base
     ActionMailer::Base.default_url_options = @@default_url_options.dup
     DeferredAction.default_url_options = @@default_url_options.dup
   end
+  
+
+  around_filter :stat_time
+
+  # enable ActiveRecord::AccessControl
+  def stat_time(&block)
+    started_at = Time.now
+    yield
+  ensure
+    Bountybase.metrics.pageview (1000 * (Time.now - started_at)).to_i
+  end
 end
