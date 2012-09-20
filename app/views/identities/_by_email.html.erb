@@ -9,7 +9,7 @@
     <%= form.control_group :password_confirmation,  :password_field %>
 
     <div class="form-actions">
-      <%#= link_to I18n.t(:cancel), root_path, :class => "btn btn-mini" %>
+      <%= link_to I18n.t(:go_to_signin), :signin %>
       <%= form.submit I18n.t(:sign_up), :class => "btn btn-primary" %>
     </div>
   </fieldset>

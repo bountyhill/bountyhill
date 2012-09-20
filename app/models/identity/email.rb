@@ -34,4 +34,13 @@ class Identity::Email < Identity
       :s => options[:size],
       :d => options[:default]
   end
+
+  def confirmed?
+    confirmed_at.present?
+  end
+
+  def confirm!
+    Identity::Email.update_all({:confirmed_at => Time.now}, :id => id)
+    reload
+  end
 end

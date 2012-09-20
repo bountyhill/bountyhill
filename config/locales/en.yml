@@ -43,13 +43,25 @@ en:
     
   sign_up: "Sign up"
   sign_in: "Sign in"
+  go_to_signin: "I have an account, take me to the login page!"
   sign_out: "Sign out"
   settings: Settings
+  reset_password:
+    label:  I forgot my password.
+    sent:   You should receive instructions to reset your password in your email.
+    unknown_email: "The email address is not registered here: %{email}."
   signup:
     bountyhill: "Sign up with your name and email"
     message:
       error: Please correct the errors below and then resubmit the form!
       success: "Welcome to bountyhill!"
+    confirm:
+      reminder: 
+        You have signed up with bountyhill, but didn't confirm your email address yet.
+      reminder_label:
+        Resend confirmation email!
+      sent: 
+        You should receive a confirmation email shortly.
   signin:
     bountyhill: "Sign in with your email and password"
     twitter: "Sign in with twitter"

@@ -26,6 +26,45 @@ class DeferredActionsController < ApplicationController
     redirect_to "/" unless performed?
   end
 
+  
+  before_filter :verify_method
+
+  def verify_method
+    expected_method = case action_name
+    when "show" then "GET"
+    else             "POST"
+    end
+
+    return if expected_method == request.method
+    
+    flash[:error] = "Don't know how to handle this request. Should be a #{expected_method}"
+    redirect_to "/"
+  end
+  
+  
+  # send confirmation email.
+  def confirm
+    MailQ << UserMailer.confirm_email(current_user)
+    flash[:success] = I18n.t("signup.confirm.sent")
+    
+    redirect_to "/"
+  end
+
+  # send reset password email.
+  def reset_password
+    if email = params[:email]
+      identity = Identity::Email.where("lower(email)=?", email.downcase).first
+    end
+    
+    if identity
+      MailQ << UserMailer.reset_password(identity.user)
+      flash[:success] = I18n.t("reset_password.sent")
+    else
+      flash[:error] = I18n.t("reset_password.unknown_email", :email => email)
+    end
+    redirect_to "/"
+  end
+
   protected
   
   # reset a password.
@@ -33,7 +72,7 @@ class DeferredActionsController < ApplicationController
     sign_in(action.actor)
   end
 
-  # reset a password.
+  # confirm email address.
   def perform_confirm_email
     action.actor.confirm_email!
   end

@@ -99,6 +99,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def confirmed_email?
+    identity = self.identity(:email)
+    identity && identity.confirmed?
+  end
+
+  def confirm_email!
+    self.identity(:email).confirm!
+  end
+
   # return the user's twitter handle
   def twitter_handle
     if identity = self.identity(:twitter)

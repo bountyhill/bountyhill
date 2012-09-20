@@ -27,6 +27,8 @@ Bountyhill::Application.routes.draw do
 
   resources :deferred_actions, :only => [:show]
   match 'act'  => 'deferred_actions#show'
+  match 'confirm' => 'deferred_actions#confirm'
+  match 'reset_password' => 'deferred_actions#reset_password'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
