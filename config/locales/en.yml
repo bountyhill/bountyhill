@@ -145,3 +145,6 @@ en:
   deferred_actions:
     invalid:          "This link is no longer valid."
     reset_password:   "You have been logged in. Please update your password." 
+  mail:
+    confirm_email:  "[Bountyhill] Please verify your email '%{email}'"
+    reset_password: "[Bountyhill] Reset your password"

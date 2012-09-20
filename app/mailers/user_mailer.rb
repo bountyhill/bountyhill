@@ -6,11 +6,11 @@ class UserMailer < ActionMailer::Base
   default_url_options[:host] = "bountyhill.local"
   
   # Confirm email address, please.
-  def confirm(user)
-    identity = user.identity(:email)
-    @url = url_for(:controller => :identities, :action => :confirm, :id => identity)
+  def confirm_email(user)
+    action = DeferredAction.create!(:actor => user, :action => "confirm_email")
+    @url = action.url
 
-    mail(:to => user.email, :subject => I18n.t("mail.welcome.subject", :email => user.email))
+    mail(:to => user.email, :subject => I18n.t("mail.confirm_email", :email => user.email))
   end
   
   # Forgot passwor?
@@ -18,6 +18,6 @@ class UserMailer < ActionMailer::Base
     action = DeferredAction.create!(:actor => user, :action => "reset_password")
     @url = action.url
 
-    mail(:to => user.email, :subject => I18n.t("mail.welcome.subject", :email => user.email))
+    mail(:to => user.email, :subject => I18n.t("mail.reset_password", :email => user.email))
   end
 end
