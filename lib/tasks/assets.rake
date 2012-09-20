@@ -11,7 +11,7 @@ namespace :assets do
   task :precompile => :instance
   
   task :clean_from_git do
-    system "git rm -r public/assets"
+    system "git rm -rf public/assets"
   end
 
   task :remove_jquery do 
@@ -76,8 +76,7 @@ namespace :assets do
   end
   
   task :commit do
-    sh "git add public/assets"
-    
-    sh "git commit -m 'Updated assets'"
+    sh "git add -f public/assets"
+    sh "git commit -m '[rake assets:commit] Updated assets'"
   end
 end

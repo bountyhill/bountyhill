@@ -30,3 +30,4 @@ rdoc
 config/app.local.yml
 .sass-cache/
 old
+public/assets
