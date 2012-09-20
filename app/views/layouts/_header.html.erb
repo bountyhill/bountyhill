@@ -45,9 +45,4 @@
     </div>
   </div>
 </div>
-<% flash.each do |key, value| %>
-  <div class="flash alert alert-<%= key %>">
-    <a class="close" data-dismiss="alert" href="#">×</a>
-    <%= value %>
-  </div>
-<% end %>
+<%= partial "layouts/flash", :flash => flash %>
