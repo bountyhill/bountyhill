@@ -81,4 +81,19 @@ class ApplicationController < ActionController::Base
   def per_page
     12
   end
+
+  # -- This sets and keeps the default_url_options. It assumes that all
+  #    requests run from the same domain; you cannot generate links to 
+  #    multiple domains with this. Consequently the before_filter
+  #    should run only once.
+
+  before_filter :set_mailer_default_url_options
+  
+  def set_mailer_default_url_options
+    @@default_url_options ||= { 
+      :host => request.host, :protocol => request.scheme
+    }
+    
+    ActionMailer::Base.default_url_options = @@default_url_options.dup
+  end
 end
