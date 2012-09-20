@@ -142,3 +142,6 @@ en:
       with_criteria: 
         title:  "Explained"
         sub:    "Offers with criteria."
+  deferred_actions:
+    invalid:          "This link is no longer valid."
+    reset_password:   "You have been logged in. Please update your password." 

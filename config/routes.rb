@@ -25,6 +25,9 @@ Bountyhill::Application.routes.draw do
   match 'twitter_sessions/created'  => 'twitter_sessions#created'
   match 'twitter_sessions/failed'   => 'twitter_sessions#failed'
 
+  resources :deferred_actions, :only => [:show]
+  match 'act'  => 'deferred_actions#show'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

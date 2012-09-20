@@ -91,9 +91,11 @@ class ApplicationController < ActionController::Base
   
   def set_mailer_default_url_options
     @@default_url_options ||= { 
-      :host => request.host, :protocol => request.scheme
+      :host => request.host_with_port,
+      :protocol => request.scheme
     }
     
     ActionMailer::Base.default_url_options = @@default_url_options.dup
+    DeferredAction.default_url_options = @@default_url_options.dup
   end
 end
