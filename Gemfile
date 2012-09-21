@@ -39,7 +39,7 @@ group :development, :test do
 
   gem 'spork-testunit'
   gem 'awesome_print'
-  gem 'kibo'
+  gem 'kibo', :require => false
   # gem 'sql-logging'
 end
 
