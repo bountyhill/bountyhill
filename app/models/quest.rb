@@ -2,6 +2,8 @@ class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
 
+  with_metrics! "quests"
+
   # -- Access control -------------------------------------------------
 
   belongs_to :owner, :class_name => "User"

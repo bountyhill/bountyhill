@@ -6,6 +6,8 @@ class Identity::Twitter < Identity
     Identity.model_name
   end
 
+  with_metrics! "accounts.twitter"
+
   validates :name, presence: true, format: { with: /^[^@]/ }, 
                                    uniqueness: { case_sensitive: false }
 

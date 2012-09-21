@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   before_create :create_remember_token
 
+  with_metrics! "accounts"
+
   private
 
   def create_remember_token

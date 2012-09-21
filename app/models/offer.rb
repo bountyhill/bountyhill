@@ -2,6 +2,8 @@ class Offer < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
 
+  with_metrics! "offers"
+
   extend Forwardable
   delegate [:title, :bounty] => :quest
   

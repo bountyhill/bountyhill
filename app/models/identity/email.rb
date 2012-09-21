@@ -3,6 +3,8 @@ class Identity::Email < Identity
   def self.model_name #:nodoc:
     Identity.model_name
   end
+
+  with_metrics! "accounts.email"
    
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
