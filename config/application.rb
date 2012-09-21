@@ -21,6 +21,10 @@ module Bountyhill
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+    # the I18n.default_locale when a translation can not be found)
+    config.i18n.fallbacks = [:en]
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -72,6 +76,9 @@ module Bountyhill
 
     # -- middleware ---------------------------------------------------
 
+    # Fetch the I18n.locale from the Browser.
+    config.middleware.use Rack::Locale
+    
     # TwitterAuthMiddleware: handles twitter authentication
     
     # Fetch the twitter configuration from Bountybase.

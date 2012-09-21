@@ -22,16 +22,23 @@ class AutoTitleMiddleware
 
     # ..and replace the title placeholder.
     body.gsub!("<title></title>") do 
-      doc = Nokogiri.HTML(body)
-      if h1 = doc.css("h1").first
-        "<title>#{prefix} | #{h1.text}</title>"
-      elsif h2 = doc.css("h2").first
-        "<title>#{prefix} | #{h2.text}</title>"
-      else
-        "<title>#{prefix}</title>"
-      end
+      title = extract_title(body)
+      title = title ? "#{prefix} | #{title}" : prefix
+      title = "[#{I18n.locale}] #{title}" if Rails.env.development?
+      
+      "<title>#{title}</title>"
     end
-
+    
     [status, headers, [body]]
+  end
+
+  def extract_title(body)
+    doc = Nokogiri.HTML(body)
+    
+    if h1 = doc.css("h1").first
+      h1.text
+    elsif h2 = doc.css("h2").first
+      h2.text
+    end
   end
 end

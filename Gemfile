@@ -17,6 +17,9 @@ gem 'geoip'
 gem 'mobile-fu'
 gem 'nokogiri'
 
+gem 'faker'
+gem 'rack-contrib'
+
 # Gems used only for assets and not required in production environments by default.
 group :assets do
   gem 'coffee-rails'
@@ -42,5 +45,3 @@ group :development, :test do
   gem 'kibo', :require => false
   # gem 'sql-logging'
 end
-
-gem 'faker'
