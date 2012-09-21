@@ -18,7 +18,7 @@ gem 'mobile-fu'
 gem 'nokogiri'
 
 # Gems used only for assets and not required in production environments by default.
-group :development do
+group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'sass'
