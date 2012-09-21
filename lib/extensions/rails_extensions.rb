@@ -182,7 +182,15 @@ class ActionView::Helpers::FormBuilder
       "#{label}\n#{controls}"
     end
   end
-
+  
+  def agree_to_terms
+    html = div_tag :class => "control-group" do
+      div_tag :class => "controls" do
+        I18n.t "agree_to_terms"
+      end
+    end
+  end
+  
   def transloadit(name, options)
     parts = []
     parts.push @template.transloadit(:upload)
