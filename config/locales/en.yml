@@ -160,3 +160,5 @@ en:
   mail:
     confirm_email:  "[Bountyhill] Please verify your email '%{email}'"
     reset_password: "[Bountyhill] Reset your password"
+    
+  agree_to_terms: "By signing in you agree to our <a href='#'>Terms and Conditions.</a>"

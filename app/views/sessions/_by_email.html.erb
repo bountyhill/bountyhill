@@ -3,8 +3,17 @@
     <legend><%= I18n.t(:"signin.bountyhill")%></legend>
     <%= render 'shared/error_messages', :object => @identity, :scope => "signin" %>
 
+    <div>
+      <strong>You must register your email address...</strong>
+      <p>
+        ...to enter a quest and to post an offer.
+      </p>
+    </div>
+
     <%= form.control_group :email %>
     <%= form.control_group :password,               :password_field %>
+
+    <%= form.agree_to_terms %>
 
     <div class="form-actions">
       <%= 

@@ -8,6 +8,8 @@
     <%= form.control_group :password,               :password_field %>
     <%= form.control_group :password_confirmation,  :password_field %>
 
+    <%= form.agree_to_terms %>
+
     <div class="form-actions">
       <%= link_to I18n.t(:go_to_signin), :signin %>
       <%= form.submit I18n.t(:sign_up), :class => "btn btn-primary" %>
