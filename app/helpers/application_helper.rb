@@ -51,7 +51,7 @@ module ApplicationHelper
   end
   
   def stats_path
-    "/stats"
+    "https://www.stathat.com/home"
   end
   
   ADMIN_NAV_ITEMS = %w(stats)
