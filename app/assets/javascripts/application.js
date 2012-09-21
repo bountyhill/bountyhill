@@ -36,8 +36,10 @@ if(typeof console === "undefined") {
     scrollwheel:        false
   };
 
-  $.fn.map_widget = function(location) {
+  $.fn.map_widget = function() {
     var self = this;
+    
+    var location = self.data("location");
     
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
@@ -48,18 +50,22 @@ if(typeof console === "undefined") {
           return;
         }
 
+        // We found the location -> build a gmap and put a marker on it.
         var options = DEFAULTS;
         options.center = results[0].geometry.location;
         options.fitBounds = results[0].geometry.viewport;
         
-        self.gmap(DEFAULTS).
+        self.gmap(options).
           bind('init', function(ev, map) {
             self.gmap('addMarker', {'position': results[0].geometry.location}).
               click(function() { });
           });
-        map.fitBounds(results[0].geometry.viewport);
       });
       
-  }; // $.fn.map = ...
+  }; // $.fn.map_widget = ...
 
 })(jQuery);
+
+jQuery(function() {
+  jQuery("[data-location]").map_widget();
+});

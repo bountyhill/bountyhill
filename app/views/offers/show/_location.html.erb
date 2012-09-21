@@ -9,12 +9,10 @@
     <span><%=t "offer.location.title", :location => offer.location %></span> 
     <small><%=t "offer.location.sub", :location => offer.location %></small>
   </h2>
-  <div>
-    <div id="gmap_canvas" style="width: 100%; height: 200px"> </div>
-    <script type="text/javascript" charset="utf-8">
-      jQuery("#gmap_canvas").map_widget("Hamburg, Germany");
-    </script>
-  </div>
+  <%= 
+    div :id => "gmap_canvas", :data => { :location => offer.location },
+                              :style => "width: 100%; height: 200px" 
+  %>
   <% end %>
 </div>
 
