@@ -109,4 +109,10 @@ class ApplicationController < ActionController::Base
   ensure
     Bountybase.metrics.pageview (1000 * (Time.now - started_at)).to_i
   end
+  
+  before_filter :keep_session
+  
+  def keep_session
+    @debug_session = session.inspect
+  end
 end
