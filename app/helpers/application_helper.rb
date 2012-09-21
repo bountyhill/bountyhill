@@ -78,6 +78,10 @@ module ApplicationHelper
     content_tag :xmp, s
   end
 
+  def debug(s)
+    content_tag :xmp, s
+  end
+
   def markdown(name, options = {})
     html = render :partial => name
     div html.html_safe, options
