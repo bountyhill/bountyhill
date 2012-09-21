@@ -1,0 +1,22 @@
+# This is an example Kibofile. Use with kibo(1) to configure
+# remote instances.
+heroku:
+  # The email of the heroku account to create app instances on heroku.
+  account: deployment@bountyhill.com
+
+  # Our instances will be called 'bountyhill-staging-web0', 'bountyhill-production-worker0', etc.
+  namespace: bountyhill
+
+# What to do before, during and after deploymet? These steps are run in the order 
+# of their keys
+deployment:
+  pre:
+    - git rm -rf public/assets || true
+    - rake assets:rebuild
+    - kibo compress --quiet public/assets
+    - git add -f public/assets
+    - git commit -m '[kibo] Updated assets'
+  post:
+    - heroku run rake db:migrate
+defaults:
+  web: 1
