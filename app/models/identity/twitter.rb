@@ -68,7 +68,7 @@ class Identity::Twitter < Identity
   private
   
   def twitter(*args)
-    Deferred.twitter *args, oauth_token: data[:oauth_token],
-                            oauth_token_secret: data[:oauth_secret]
+    Deferred.twitter *args, oauth_token: oauth_token,
+                            oauth_token_secret: oauth_secret
   end
 end
