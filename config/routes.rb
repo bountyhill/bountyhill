@@ -12,6 +12,7 @@ Bountyhill::Application.routes.draw do
   resources :quests
   resources :offers
   resources :users
+  match 'profile'  => 'users#show'
 
   resources :identities
   match 'signup'  => 'identities#new'
