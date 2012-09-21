@@ -1,11 +1,27 @@
 # Deferred runs methods asynchonously.
 module Deferred
-  RUN_DEFERRED = true
+
+  def self.in_background?
+    @in_background
+  end
+
+  def self.in_background=(in_background)
+    @in_background = in_background
+  end
+  
+  def self.in_background(flag, &block)
+    old, @in_background = @in_background, flag
+    yield
+  ensure
+    @in_background = old
+  end
+  
+  self.in_background = true
   
   def self.method_missing(sym, *args) #:nodoc:
     super unless instance_methods.include?(sym)
 
-    if RUN_DEFERRED
+    if in_background?
       queue(sym) << args
     else
       instance.send sym, *args

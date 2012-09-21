@@ -13,7 +13,10 @@ IMAGE_URLS = %w(
 )
 
 namespace :demo do
-  task :setup => :environment
+  task :setup => :environment do
+    Bountybase::Metrics.in_background = false
+    Deferred.in_background = false
+  end
   
   desc "Create demo users"
   task :users => :setup do
