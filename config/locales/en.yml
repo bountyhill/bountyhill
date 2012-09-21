@@ -92,8 +92,8 @@ en:
         title:  "No location"
         sub:    "This quest is not bound to a location."
     criteria:
-      title:    "criteria"
-      sub:      "are to match."
+      title:    "%{count} criteria"
+      sub:      "to match."
       none:
         title:  "No criteria"
         sub:    "There have been no criteria established."
