@@ -133,7 +133,7 @@ GEM
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     json (1.7.5)
-    kibo (0.3.1)
+    kibo (0.3.2)
       netrc
       rake
       thor
