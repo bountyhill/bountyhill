@@ -124,10 +124,6 @@ module ApplicationHelper
     end
   end
   
-  def show_company_footer?
-    request.path == "/"
-  end
-
   def partial(partial, *args)
     locals = args.extract_options!
     expect! partial => String, args.length => [0,1]
