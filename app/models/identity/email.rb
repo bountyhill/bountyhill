@@ -3,6 +3,8 @@ class Identity::Email < Identity
   def self.model_name #:nodoc:
     Identity.model_name
   end
+
+  with_metrics! "accounts.email"
    
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
@@ -33,5 +35,14 @@ class Identity::Email < Identity
     CGI.build_url "http://gravatar.com/avatar/#{gravatar_id}.png", 
       :s => options[:size],
       :d => options[:default]
+  end
+
+  def confirmed?
+    confirmed_at.present?
+  end
+
+  def confirm!
+    Identity::Email.update_all({:confirmed_at => Time.now}, :id => id)
+    reload
   end
 end

@@ -18,15 +18,22 @@ form {
     font-size: 16px;
     line-height: 16px;
   }
-}
-
-.alert {
-  margin: 20px 0 -56px 0
+  
+  legend {
+    color: &text;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+  }
 }
 
 .flash {
   text-align: center;
-  border-radius: 0
+  border-radius: 0;
+}
+
+.flash.alert {
+  margin: 20px 0 -56px 0;
 }
 
 .banner {
@@ -120,5 +127,18 @@ form {
   }
   .inner {
     padding: 5px;
+  }
+}
+
+.row-fluid.single-form, .row.single-form {
+  legend {
+    text-align: center;
+  }
+  
+  div.form-actions {
+    text-align: center;
+    float: none;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }

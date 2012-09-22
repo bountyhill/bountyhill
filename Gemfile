@@ -4,13 +4,11 @@ gem 'rails', '~> 3.2'
 gem 'pg'
 gem 'psych'
 gem 'jquery-rails'
-gem 'heroku'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'money'
 gem 'rdiscount'
 gem 'twitter_oauth'
 gem 'transloadit-rails'
-# gem 'rulesio'
 gem 'girl_friday'
 
 gem 'will_paginate', '~> 3.0.0'
@@ -18,6 +16,9 @@ gem 'bountydeps'
 gem 'geoip'
 gem 'mobile-fu'
 gem 'nokogiri'
+
+gem 'faker'
+gem 'rack-contrib'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
@@ -40,7 +41,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
 
   gem 'spork-testunit'
+  gem 'awesome_print'
+  gem 'kibo', :require => false
   # gem 'sql-logging'
 end
-
-gem 'faker'

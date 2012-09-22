@@ -54,56 +54,6 @@ $(function() {
 	// Initialize the gallery
 	$('#thumbs a').touchTouch();
 	$('#mini_gallery a').touchTouch();
-	
-  if(false) {
-    
-	 //Main Weather
-	$.simpleWeather({
-		location: 'Chiang Mai, thailand',unit: 'c',
-		success: function(weather) {
-			html = '<div><h1>'+weather.temp+'&deg; <small>'+weather.units.temp+' </small></h1><span>'+weather.currently+'</span></div>';
-			html += '<h2>'+weather.city+', '+weather.region+'</h2>';
-			html += '<img  src="'+weather.image+'">';
-			$("#weather").html(html);
-		}
-	});
-	// weather #1
-	$.simpleWeather({
-		location: 'Phuket, thailand',unit: 'c',success: function(weather) {					
-			html = '<li><span title="'+weather.city+'">'+weather.city+'</span><img  src="'+weather.image+'">High : '+weather.high+'&deg;<br />Low : '+weather.low+'&deg;</li>';
-			$(html).appendTo("#thelist");
-		}
-	});
-	// weather #2
-	$.simpleWeather({
-		location: 'Chon Buri, thailand',unit: 'c',success: function(weather) {					
-			html = '<li><span title="'+weather.city+'">'+weather.city+'</span><img  src="'+weather.image+'">High : '+weather.high+'&deg;<br />Low : '+weather.low+'&deg;</li>';
-			$(html).appendTo("#thelist");
-		}
-	});
-	// weather #3
-	$.simpleWeather({
-		location: 'Bangkok, thailand',unit: 'c',success: function(weather) {					
-			html = '<li><span title="'+weather.city+'">'+weather.city+'</span><img  src="'+weather.image+'">High : '+weather.high+'&deg;<br />Low : '+weather.low+'&deg;</li>';
-			$(html).appendTo("#thelist");
-		}
-	});
-	// weather #4
-	$.simpleWeather({
-		location: 'Phitsanulok, thailand',unit: 'c',success: function(weather) {					
-			html = '<li><span title="'+weather.city+'">'+weather.city+'</span><img  src="'+weather.image+'">High : '+weather.high+'&deg;<br />Low : '+weather.low+'&deg;</li>';
-			$(html).appendTo("#thelist");
-		}
-	});
-	// weather #5
-	$.simpleWeather({
-		location: 'Nakhon Ratchasima, thailand',unit: 'c',success: function(weather) {					
-			html = '<li><span title="'+weather.city+'">'+weather.city+'</span><img  src="'+weather.image+'">High : '+weather.high+'&deg;<br />Low : '+weather.low+'&deg;</li>';
-			$(html).appendTo("#thelist");
-		}
-	});
-	
-	}
   
 	/* theme changer */
 	$('.open-close-demo').click(function() {

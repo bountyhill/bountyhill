@@ -1,11 +1,15 @@
 <div class="row-fluid">
-  <div class="span8">
-    <div class="inner">
-      <%= image_tag(@user.avatar(:size => 128), :class => "avatar", :alt => @user.name, :title => @user.name) %>
-      <h1><%= @user.name %></h1>
-    </div>
-  </div>
-  <div class="span4">
-    <!-- TODO: add user info -->
+  <div class="span12">
+    <%= render_tabs %>
   </div>
 </div>
+
+<%= 
+  begin
+    partial "users/tabs/#{active_tab}" 
+  rescue
+    content_tag :pre do
+      "Missing partial users/tabs/#{active_tab}"
+    end
+  end
+%>

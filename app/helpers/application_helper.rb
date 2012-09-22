@@ -54,6 +54,18 @@ module ApplicationHelper
     end
   end
   
+  def stats_path
+    "https://www.stathat.com/home"
+  end
+  
+  ADMIN_NAV_ITEMS = %w(stats)
+  
+  def link_to_nav_item(nav_item)
+    if admin? || !ADMIN_NAV_ITEMS.include?(nav_item)
+      link_to I18n.t("nav.#{nav_item}"), self.send("#{nav_item}_path")
+    end
+  end
+  
   def error_message_for(object, attribute)
     if error_message = object.error_message_for(attribute)
       span(error_message, :class => "help-inline")
@@ -67,6 +79,10 @@ module ApplicationHelper
   end
 
   def xmp(s)
+    content_tag :xmp, s
+  end
+
+  def debug(s)
     content_tag :xmp, s
   end
 
@@ -112,10 +128,6 @@ module ApplicationHelper
     end
   end
   
-  def show_company_footer?
-    request.path == "/"
-  end
-
   def partial(partial, *args)
     locals = args.extract_options!
     expect! partial => String, args.length => [0,1]
@@ -152,5 +164,16 @@ module ApplicationHelper
     end
     
     div icon, span
+  end
+
+  def form_for(object, options = {}, &block)
+    html = options[:html] ||= {}
+    if html[:class]
+      html[:class] += " form-horizontal"
+    else
+      html[:class] = "form-horizontal"
+    end
+    
+    super(object, options, &block)
   end
 end

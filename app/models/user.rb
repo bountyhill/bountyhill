@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   before_create :create_remember_token
 
+  with_metrics! "accounts"
+
   private
 
   def create_remember_token
@@ -19,19 +21,24 @@ class User < ActiveRecord::Base
   end
   
   public
+  
+  # -- Associations ---------------------------------------------------
 
   #
   # Each user has at least a single identity, but can probably have more
   # than one. Each identity should be from a different identity provider
   # and should therefore be from a different class - but this is enforced
   # nowhere in the code.
-  has_many :identities
+  has_many :identities, :dependent => :destroy
   validates_presence_of :identities
 
-  has_many :quests
+  #
+  # Quests submitted by the user
+  has_many :quests, :foreign_key => "owner_id", :dependent => :destroy
 
-  # Offers that this user has submitted.
-  # has_many :submitted_hints, :class_name => "Hint"
+  #
+  # Offers submitted by the user
+  has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
   
   # Match identity symbol to class.
   IDENTITY_MODES = {
@@ -80,8 +87,11 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    identity_for_name = identity(:email) || identity(:twitter)
-    identity_for_name.name
+    if i = identity(:email)
+      i.name
+    elsif i = identity(:twitter)
+      i.screen_name
+    end
   end
 
   # return the user's email
@@ -91,10 +101,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def confirmed_email?
+    identity = self.identity(:email)
+    identity && identity.confirmed?
+  end
+
+  def confirm_email!
+    self.identity(:email).confirm!
+  end
+
   # return the user's twitter handle
   def twitter_handle
     if identity = self.identity(:twitter)
-      identity.name
+      identity.screen_name
     end
   end
 
@@ -122,5 +141,51 @@ class User < ActiveRecord::Base
         Identity::Twitter.create!(:name => "bountyhill")
       bountyhill.user
     end
+  end
+
+  # return an draft user. This is the @bountyhill_draft account.
+  def self.draft
+    @draft ||= begin
+      bountyhill = Identity::Twitter.find_by_name("bountyhill_draft") ||
+        Identity::Twitter.create!(:name => "bountyhill_draft")
+      bountyhill.user
+    end
+  end
+
+  def draft?
+    self == User.draft
+  end
+
+  # sign over the objects described in the transfers array.
+  # The transfers array can either contain ActiveRecord::Base objects
+  # or Strings a la "Quest:12".
+  #
+  # returns true on success or false on fail (e.g. at least one of the 
+  # objects could not be transferred).
+  def transfer!(transfers)
+    expect! transfers => Array
+  
+    objects = transfers.map do |obj|
+      expect! obj => [ ActiveRecord::Base, /^(Quest):.*/ ]
+      next obj if obj.is_a?(ActiveRecord::Base)
+
+      class_name, id = *obj.split(":")
+      case class_name
+      when "Quest" then Quest.find_by_id(id)
+      end
+    end.compact
+
+    success = true
+    
+    ActiveRecord.as(User.admin) do
+      objects.each do |object|
+        object.owner = self
+        if !object.save
+          success = false 
+        end
+      end
+    end
+    
+    success
   end
 end

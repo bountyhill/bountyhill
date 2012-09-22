@@ -2,6 +2,8 @@ class Offer < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
 
+  with_metrics! "offers"
+
   extend Forwardable
   delegate [:title, :bounty] => :quest
   
@@ -31,10 +33,8 @@ class Offer < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
-  scope :received,  lambda { 
-    joins(:quest).where("quests.owner_id=?", ActiveRecord::AccessControl.current_user)
-  }
+  scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
+  scope :received,  lambda { joins(:quest).where("quests.owner_id=?", ActiveRecord.current_user) }
   scope :with_criteria, joins(:quest).where("quests.number_of_criteria > 0")
   
   def self.filters

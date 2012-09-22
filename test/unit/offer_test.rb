@@ -128,7 +128,7 @@ __END__
       assert_can_read public_quest
     end
 
-    assert_equal(admin, ActiveRecord::AccessControl.current_user)
+    assert_equal(admin, ActiveRecord.current_user)
   end
 
   def test_write_visibilty
@@ -149,7 +149,7 @@ __END__
       assert_cannot_write admin_quest, foo_quest, public_quest
     end
   
-    assert_equal(admin, ActiveRecord::AccessControl.current_user)
+    assert_equal(admin, ActiveRecord.current_user)
   end
   
   def test_destroy_access_control

@@ -13,11 +13,14 @@ IMAGE_URLS = %w(
 )
 
 namespace :demo do
-  task :setup => :environment
+  task :setup => :environment do
+    Bountybase::Metrics.in_background = false
+    Deferred.in_background = false
+  end
   
   desc "Create demo users"
   task :users => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       10.times do 
         name = Faker::Name.name
         email = Faker::Internet.email
@@ -31,7 +34,7 @@ namespace :demo do
   
   desc "Create demo quests"
   task :quests => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       10.times do
         bounty = 10000 * ((r = rand) * r)
         bounty = 0 if bounty < 10
@@ -57,25 +60,47 @@ namespace :demo do
   
   desc "Create demo criteria"
   task :criteria => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    count = 0
+    ActiveRecord.as User.admin do
       Quest.all.each do |quest|
         next unless quest.criteria.blank?
 
-        0.upto(rand(Quest::NUMBER_OF_CRITERIA)) do |idx|
+        0.upto(1 + rand(Quest::NUMBER_OF_CRITERIA-1)) do |idx|
           text = Faker::Lorem.sentence(6)
           description = Faker::Lorem.sentence(12) if rand(3) < 2
           
           quest.send :set_criterium, idx, text, description 
         end
         
+        count += 1
+        
         quest.save!
       end
+      
+      W "Added criteria to #{count} quests"
     end
   end
   
+  
+  desc "Create demo locations"
+  task :locations => :setup do
+    locations = [ "Berlin, Germany", "Hamburg, Germany", "Germany" ]
+    count = 0
+    ActiveRecord.as User.admin do
+      Quest.all.each do |quest|
+        next if rand < 0.7
+        count += 1
+        
+        quest.update_attributes! :location => locations[rand(locations.length)]
+      end
+      
+      W "Added location to #{count} quests"
+    end
+  end
+
   desc "Create demo offers"
   task :offers => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       users = User.all
       offers = Quest.all.map do |quest|
         next if rand(3) != 0

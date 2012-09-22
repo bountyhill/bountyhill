@@ -30,6 +30,9 @@ class QuestsController < ApplicationController
   def new
     @quest = Quest.new
 
+    # When we come from the start page, we might have a quest title.
+    @quest.title = params[:q]
+    
     # fill in location, if the server provides one.
     if location = request.location
       @quest.location = location.name 
@@ -52,15 +55,30 @@ class QuestsController < ApplicationController
   def create
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
+    @quest.owner ||= User.draft
 
     # (Try to) save
-    respond_to do |format|
-      if @quest.valid?
-        @quest.save!
-        
-        format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
-        format.json { render json: @quest, status: :created, location: @quest }
+    if @quest.valid?
+      @quest.save!
+
+      # Mark the quest as to be transferred upon signin.
+      if @quest.owner.draft?
+        session[:transfer] ||= []
+        session[:transfer] << "Quest:#{@quest.id}"
+
+        redirect_to signin_path(:req => params[:req]), notice: 'You must register with your email.'
       else
+        @quest.start!
+        redirect_to @quest, notice: 'Quest was successfully created.'
+      end
+    else
+      flash.now[:error] = if base_errors = @quest.errors[:base]
+        I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
+      else
+        I18n.t("quest.message.error")
+      end
+      
+      respond_to do |format|
         format.html { render action: "new" }
         format.json { render json: @quest.errors, status: :unprocessable_entity }
       end

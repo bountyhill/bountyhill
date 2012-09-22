@@ -1,26 +1,33 @@
+require "twitter"
+
 class Identity::Twitter < Identity
   # Fix Rails' polymorphic routes
   def self.model_name #:nodoc:
     Identity.model_name
   end
-  
+
+  with_metrics! "accounts.twitter"
+
+  validates :name, presence: true, format: { with: /^[^@]/ }, 
+                                   uniqueness: { case_sensitive: false }
+
   # -- Twitter identity attributes
   
   def screen_name
-    read_attribute :name
-  end
-
-  def name
-    name = read_attribute(:name)
-    return if name.blank?
     "@#{name}"
   end
 
-  def screen_name=(screen_name)
-    write_attribute :name, screen_name
-  end
+  serialized_attr :oauth_secret, :oauth_token
 
-  serialized_attr :access_secret, :access_token
+  def update_auth!(auth)
+    return if oauth_token == auth[:oauth_token] && oauth_secret == auth[:oauth_secret]
+
+    self.oauth_token = auth[:oauth_token]
+    self.oauth_secret = auth[:oauth_secret]
+    
+    update_attributes! :oauth_token => auth[:oauth_token],
+      :oauth_secret => auth[:oauth_secret]
+  end
 
   #
   
@@ -38,5 +45,32 @@ class Identity::Twitter < Identity
   def fetch_avatar_url(size = "bigger")
     url = "https://api.twitter.com/1/users/profile_image?screen_name=#{screen_name}&size=#{size}"
     Bountybase::HTTP.resolve url
+  end
+
+  # -- Twitter actions ------------------------------------------------
+
+  # The follow_bountyhill pseudo attribute exists only for
+  # the login via twitter form.
+  attr :follow_bountyhill, true
+  
+  # This method makes the user follow @bountyhill. If the user followed
+  # @bountyhill before, this method is a no-op.
+  def follow
+    follow! unless followed_at?
+  end
+  
+  def follow!
+    followee = Bountybase.config.twitter_app["user"]
+    expect! followee => /^[^@]/
+  
+    twitter :follow, followee
+    update_attributes :followed_at => Time.now
+  end
+
+  private
+  
+  def twitter(*args)
+    Deferred.twitter *args, oauth_token: oauth_token,
+                            oauth_secret: oauth_secret
   end
 end

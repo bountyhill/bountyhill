@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 13) do
+
+  create_table "deferred_actions", :force => true do |t|
+    t.string   "secret",       :null => false
+    t.integer  "actor_id",     :null => false
+    t.string   "action"
+    t.text     "args"
+    t.string   "redirection"
+    t.datetime "expires_at"
+    t.datetime "performed_at"
+    t.text     "error"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -22,9 +35,12 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "type"
     t.integer  "user_id"
     t.text     "serialized"
+    t.datetime "followed_at"
+    t.datetime "confirmed_at"
   end
 
   add_index "identities", ["email"], :name => "index_identities_on_email", :unique => true
+  add_index "identities", ["name", "type"], :name => "index_identities_on_name_and_type", :unique => true
   add_index "identities", ["user_id", "id", "type"], :name => "index_identities_on_user_id_and_id_and_type", :unique => true
 
   create_table "offers", :force => true do |t|

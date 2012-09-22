@@ -15,6 +15,8 @@ class TwitterSessionsController < ApplicationController
     #
     # We store the form data in the session, to be evaluated during "created".
     # sessions[:follow_me] = true
+    identity = params[:identity] || {}
+    session[:follow_bountyhill] = identity[:follow_bountyhill] if identity
     
     # Where to go back? If the request has a "target" parameter, this is
     # where we'll go.
@@ -34,8 +36,9 @@ class TwitterSessionsController < ApplicationController
       flash[:success] = "twitter_sessions.success".t
     end
     
-    if session.delete(:follow_me)
-      # follow_me
+    if session.delete(:follow_bountyhill)
+      # follow @bountyhill
+      current_user.identity(:twitter).follow
       flash[:success] = "twitter_sessions.following".t
     end
     
@@ -45,7 +48,7 @@ class TwitterSessionsController < ApplicationController
   # The failed action is where the TwitterAuthMiddleware will redirect to
   # after the user cancelled log in.
   def failed
-    session.delete(:follow_me)
+    session.delete(:follow_bountyhill)
     redirect_to_target
   end
 
@@ -55,5 +58,4 @@ class TwitterSessionsController < ApplicationController
     target = session.delete(:target) || "/"
     redirect_to target
   end
-  
 end

@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permission_denied: Permission denied
   update: Update
   show:   Show
   edit:   Edit
@@ -39,16 +40,29 @@ en:
   nav:
     quests: Quests
     offers: Offers
+    stats: Stats
     
   sign_up: "Sign up"
   sign_in: "Sign in"
+  go_to_signin: "I have an account, take me to the login page!"
   sign_out: "Sign out"
   settings: Settings
+  reset_password:
+    label:  I forgot my password.
+    sent:   You should receive instructions to reset your password in your email.
+    unknown_email: "The email address is not registered here: %{email}."
   signup:
     bountyhill: "Sign up with your name and email"
     message:
       error: Please correct the errors below and then resubmit the form!
       success: "Welcome to bountyhill!"
+    confirm:
+      reminder: 
+        You have signed up with bountyhill, but didn't confirm your email address yet.
+      reminder_label:
+        Resend confirmation email!
+      sent: 
+        You should receive a confirmation email shortly.
   signin:
     bountyhill: "Sign in with your email and password"
     twitter: "Sign in with twitter"
@@ -60,6 +74,9 @@ en:
     box:
       placeholder: everything you're looking for...
   quest:
+    message:
+      error:      Please review your input.
+      base_error: "%{base_error}: please review your input."
     legend: ""
     title:
       show: ""
@@ -79,8 +96,8 @@ en:
         title:  "No location"
         sub:    "This quest is not bound to a location."
     criteria:
-      title:    "criteria"
-      sub:      "are to match."
+      title:    "%{count} criteria"
+      sub:      "to match."
       none:
         title:  "No criteria"
         sub:    "There have been no criteria established."
@@ -97,9 +114,9 @@ en:
       review:
         title: Review
         sub: "See all %{count} offers made."
-      bounty:
-        title: "bounty"
-        sub: has been promised.
+      bounty: 
+        title: "€ %{bounty}"
+        sub: bounty has been posted.
       offers:
         title: "offers"
         sub: for this quest so far.
@@ -144,3 +161,21 @@ en:
       with_criteria: 
         title:  "Explained"
         sub:    "Offers with criteria."
+  deferred_actions:
+    invalid:          "This link is no longer valid."
+    reset_password:   "You have been logged in. Please update your password." 
+  mail:
+    confirm_email:  "[Bountyhill] Please verify your email '%{email}'"
+    reset_password: "[Bountyhill] Reset your password"
+    
+  agree_to_terms: "By signing in you agree to our <a href='#'>Terms and Conditions.</a>"
+
+  users:
+    tab:
+      overview: Overview
+      email: Email accoutn
+      twitter: Twitter account
+      contact: Contact information
+      financial: Financial information
+      balance: Balance
+      payments: Payments

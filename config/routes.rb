@@ -13,9 +13,10 @@ Bountyhill::Application.routes.draw do
   resources :offers
   resources :users
 
+  match 'profile(/:tab)' => "users#show"
+
   resources :identities
   match 'signup'  => 'identities#new'
-  match 'profile' => 'identities#show'
 
   resources :sessions, :only => [:new, :create, :destroy]
   match 'signin'  => 'sessions#new'
@@ -25,6 +26,11 @@ Bountyhill::Application.routes.draw do
   match 'twitter_sessions/created'  => 'twitter_sessions#created'
   match 'twitter_sessions/failed'   => 'twitter_sessions#failed'
 
+  resources :deferred_actions, :only => [:show]
+  match 'act'  => 'deferred_actions#show'
+  match 'confirm' => 'deferred_actions#confirm'
+  match 'reset_password' => 'deferred_actions#reset_password'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

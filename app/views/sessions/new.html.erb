@@ -1,8 +1,10 @@
-<div class="row-fluid">
+<div class="row-fluid<%= " single-form" if requested_forms.length == 1 %>">
+  <% if requested_forms.length == 1 && !mobile? %>
+    <div class="span3">&nbsp;</div>
+  <% end %>
+  <% requested_forms.each do |name| %>
   <div class="span6">
-    <%= render :partial => "by_email" %>
+    <%= render :partial => name %>
   </div>
-  <div class="span6">
-    <%= render :partial => "by_twitter" %>
-  </div>
+  <% end %>
 </div>

@@ -2,6 +2,8 @@ class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
 
+  with_metrics! "quests"
+
   # -- Access control -------------------------------------------------
 
   belongs_to :owner, :class_name => "User"
@@ -13,7 +15,7 @@ class Quest < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
+  scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
   scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
   scope :with_criteria, where("quests.number_of_criteria > 0")
@@ -116,7 +118,7 @@ class Quest < ActiveRecord::Base
   end
   
   # Offers to the quest are ordered by their compliance value.
-  has_many :offers, :order => "compliance DESC"
+  has_many :offers, :order => "compliance DESC", :dependent => :destroy
   
   # Answer the quest. This method is built so that the attributes
   # can be filled in from a HTML form without much hassle.

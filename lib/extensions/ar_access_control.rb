@@ -130,7 +130,7 @@ module ActiveRecord::AccessControl
     end
     
     def permission_denied
-      self.errors.add :base, I18n.t(:"permission denied")
+      self.errors.add :base, I18n.t(:"permission_denied")
     end
       
     # Returns true if the currently logged in user may write this
@@ -144,7 +144,9 @@ module ActiveRecord::AccessControl
     #
     # Write access is denied if the current_user is not logged in.
     def writable?(user = ActiveRecord::AccessControl.current_user)
-      if !user
+      if owner == User.draft
+        true
+      elsif !user
         false
       elsif user.admin?
         true
@@ -162,3 +164,19 @@ module ActiveRecord::AccessControl
 end
 
 ActiveRecord::Base.extend ActiveRecord::AccessControl
+
+module ActiveRecord
+  # returns the current user for the AccessControl module.
+  def self.current_user
+    AccessControl.current_user
+  end
+
+  def self.current_user=(user)
+    AccessControl.current_user=(user)
+  end
+
+  # runs a block as a specific user.
+  def self.as(user, &block)
+    AccessControl.as(user, &block)
+  end
+end

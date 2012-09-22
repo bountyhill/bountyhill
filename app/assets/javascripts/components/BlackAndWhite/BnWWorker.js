@@ -1,3 +1,12 @@
+/*
+
+This is the webworker for jquery.BlackAndwhite. It does not play well with
+the Rails assets pipeline.
+
+*/
+
+/*
+
 this.onmessage = function (event) {
 	
 	var	imagedata = event.data,
@@ -13,3 +22,5 @@ this.onmessage = function (event) {
 	
 	postMessage(imagedata);
 }
+
+*/

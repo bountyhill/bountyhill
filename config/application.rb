@@ -13,8 +13,6 @@ require_relative "../vendor/bountybase/setup"
 
 module Bountyhill
   class Application < Rails::Application
-    require "app"
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -22,6 +20,10 @@ module Bountyhill
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+    # the I18n.default_locale when a translation can not be found)
+    config.i18n.fallbacks = [:en]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -72,19 +74,26 @@ module Bountyhill
       load file
     end
 
-    # Configure and install TwitterAuthMiddleware 
-    twitter_auth_config = App.config.twitter_oauth.merge :path => "tw",
-      :success_url => '/twitter_sessions/created',
-      :failure_url => '/twitter_sessions/failed'
-    
-    config.middleware.use ::TwitterAuthMiddleware, twitter_auth_config
-      
-    # Configure and install AutoTitleMiddleware
-    config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
+    # -- middleware ---------------------------------------------------
 
-    # if Rails.env.development?
-    #   config.middleware.use ::PrettyHTMLMiddleware
-    # end
+    # Fetch the I18n.locale from the Browser.
+    config.middleware.use Rack::Locale
+    
+    # TwitterAuthMiddleware: handles twitter authentication
+    
+    # Fetch the twitter configuration from Bountybase.
+    TWITTER_CONFIG = Bountybase.config.twitter_app
+    
+    config.middleware.use ::TwitterAuthMiddleware, {
+      path: "tw",
+      success_url:      '/twitter_sessions/created',
+      failure_url:      '/twitter_sessions/failed',
+      consumer_key:     TWITTER_CONFIG["consumer_key"],
+      consumer_secret:  TWITTER_CONFIG["consumer_secret"]
+    }
+    
+    # AutoTitleMiddleware: determines the page title from the first <h1> or <h2> 
+    config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
   
   class Application

@@ -28,6 +28,16 @@ class ActiveRecord::Base
   end
 end
 
+# -- support for serialized_attributes.
+
+class ActiveRecord::Base
+  def self.with_metrics!(name)
+    after_create do
+      Bountybase.metrics.count name
+    end
+  end
+end
+
 # -- include ActiveRecord::RandomID to have newly created models have a random ID.
 
 module ActiveRecord::RandomID
@@ -107,99 +117,6 @@ class Money
 
   def to_short_string
     "#{to_s.gsub(/\..*/, "")} #{currency_as_string}"
-  end
-end
-
-# -- extend FormBuilder with a control_group method which renders
-#    a default control group for Twitter Bootstrap forms. 
-
-ActionView::Helpers::FormBuilder
-
-class ActionView::Helpers::FormBuilder
-  extend Forwardable
-  delegate [:error_class_for, :error_message_for, :link_to, :image_for] => :@template
-
-  # content_tag reimplementation for FormBuilder.
-  #
-  # It would be nice to just use @template.content_tag, but
-  # Rails' HTML escaping messes up things.
-  def content_tag(name, *args, &block)
-    attrs = args.extract_options!
-    args.push yield if block_given?
-
-    unless attrs.empty?
-      escaped_attrs = " " + 
-        attrs.map { |k, v| "#{k}='#{CGI.escapeHTML(v.to_s)}'" }.join(" ")
-    end
-
-    "<#{name}#{escaped_attrs}>#{args.join("\n")}</#{name}>".html_safe
-  end
-
-  alias :tag :content_tag
-
-  # Shortcut for a div block.
-  def div_tag(*args, &block)
-    content_tag :div, *args, &block
-  end
-
-  DEFAULT_INPUT_FIELD_OPTIONS = {
-    :text_field     => { :class => "input-xlarge" },
-    :password_field => { :class => "input-xlarge" },
-    :text_area      => { :class => "input-xlarge" }
-  }
-  
-  # Creating a control_group.
-  def control_group(name, field_type = :text_field, input_field_options = {})
-    expect! respond_to?(field_type), object.respond_to?(name)
-    
-    if default_input_field_options = DEFAULT_INPUT_FIELD_OPTIONS[field_type]
-      input_field_options = default_input_field_options.merge(input_field_options)
-    end
-
-    if field_type == :hidden_field
-      return self.send field_type, name, input_field_options
-    end
-
-    div_tag :class => "control-group #{error_class_for(object, name)}" do
-      label = self.label name, :class => "control-label"
-      controls = div_tag :class => "controls" do
-        input_field = self.send field_type, name, input_field_options
-        errors = error_message_for(object, name)
-        "#{input_field}\n#{errors}\n"
-      end
-      
-      "#{label}\n#{controls}"
-    end
-  end
-
-  def transloadit(name, options)
-    parts = []
-    parts.push @template.transloadit(:upload)
-
-    unless object.send(name).blank?
-      parts.push image_for(object) 
-    end
-    
-    parts.push file_field(name)
-
-    "#{parts.join("\n")}"
-  end
-  
-  # Render form actions.
-  # All forms get "Cancel", "Create" or "Cancel", "Update" actions, depending
-  # on whether the current object is a new or an existing record.
-  def actions(options)
-    expect! options => { :cancel_url => String }
-
-    div_tag :class => "form-actions" do
-      parts = []
-
-      # 
-      cancel_btn = link_to(I18n.t(:cancel), options[:cancel_url], :class => "btn")
-      save_btn = submit(I18n.t(object.new_record? ? :create : :update), :class => "btn btn-primary")
-
-      "#{cancel_btn} #{save_btn}"
-    end
   end
 end
 
