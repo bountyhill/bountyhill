@@ -1,14 +1,44 @@
 <div class="row-fluid">
   <div class="span8">
-    <%= image_tag "/images/home.jpg" %>
+    <style type="text/css" media="screen">
+      form.home-search > div {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        text-align: center;
+      }
+      form.home-search .search-query {
+        width: 80%;
+        font-size: 190%;
+        height: auto;
+        border-radius: 23px;
+      }
+    </style>
+    <form class="home-search" action="/quests/new" class="inner">
+      <div class="inner"> </div>
+      <div class="inner">
+        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= I18n.t(:"search.box.placeholder") %>" name="q">
+      </div>
+      <div>
+        <a href='/quests' class="btn btn-large">Show all quests...</a>
+        &nbsp;&nbsp;
+        <input type="submit" value="Start a quest" name="commit" class="btn btn-primary btn-large">
+      </div>
+    </form>
+    
+    <script type="text/javascript" charset="utf-8">
+    jQuery(function() {
+      jQuery("#search-query").focus();
+    });
+    </script>
   </div>
   <div class="span4">
-    <div class="inner">
-      <h1>Bountyhill will change the way you search.</h1>
-      <br />
-      <h2>For a new flat.</h2>
-      <h2>For a dog sitter.</h2>
-      <h2>Forever.</h2>
-    </div>
+    <h1>Bountyhill will change the way you search.</h1>
+    <br />
+    <h2>For a new flat.</h2>
+    <h2>For a dog sitter.</h2>
+    <h2>Forever.</h2>
+
+    <a href='/about'>Learn more...</a>
   </div>
 </div>

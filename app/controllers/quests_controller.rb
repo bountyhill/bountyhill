@@ -30,6 +30,9 @@ class QuestsController < ApplicationController
   def new
     @quest = Quest.new
 
+    # When we come from the start page, we might have a quest title.
+    @quest.title = params[:q]
+    
     # fill in location, if the server provides one.
     if location = request.location
       @quest.location = location.name 
