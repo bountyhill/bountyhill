@@ -94,13 +94,13 @@ en:
       sub:   and it's surroundings border the location.
       none: 
         title:  "No location"
-        sub:    "This quest is not bound to a location."
+        sub:    "is bound to this quest."
     criteria:
-      title:    "%{count} criteria"
-      sub:      "to match."
+      title:    "criteria"
+      sub:      "are to match."
       none:
         title:  "No criteria"
-        sub:    "There have been no criteria established."
+        sub:    "have been established for this quest."
     image:
       title:  "image"
       sub:    "has been uploaded."
@@ -115,8 +115,8 @@ en:
         title: Review
         sub: "See all %{count} offers made."
       bounty: 
-        title: "€ %{bounty}"
-        sub: bounty has been posted.
+        title: "bounty"
+        sub: has been promised for this quest.
       offers:
         title: "offers"
         sub: for this quest so far.
