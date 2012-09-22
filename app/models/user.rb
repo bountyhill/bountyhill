@@ -142,4 +142,13 @@ class User < ActiveRecord::Base
       bountyhill.user
     end
   end
+
+  # return an draft user. This is the @bountyhill_draft account.
+  def self.draft
+    @draft ||= begin
+      bountyhill = Identity::Twitter.find_by_name("bountyhill_draft") ||
+        Identity::Twitter.create!(:name => "bountyhill_draft")
+      bountyhill.user
+    end
+  end
 end
