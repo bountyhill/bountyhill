@@ -17,13 +17,13 @@ form {
   }
 }
 
-.alert {
-  margin: 20px 0 -56px 0
-}
-
 .flash {
   text-align: center;
-  border-radius: 0
+  border-radius: 0;
+}
+
+.flash.alert {
+  margin: 20px 0 -56px 0;
 }
 
 .banner {
