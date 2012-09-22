@@ -107,9 +107,9 @@ en:
       review:
         title: Review
         sub: "See all %{count} offers made."
-      bounty:
-        title: "bounty"
-        sub: has been promised.
+      bounty: 
+        title: "€ %{bounty}"
+        sub: bounty has been posted.
       offers:
         title: "offers"
         sub: for this quest so far.

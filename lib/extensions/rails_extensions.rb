@@ -148,7 +148,7 @@ class ActionView::Helpers::FormBuilder
   alias :tag :content_tag
 
   # Shortcut for a div block.
-  def div_tag(*args, &block)
+  def div(*args, &block)
     content_tag :div, *args, &block
   end
 
@@ -159,7 +159,12 @@ class ActionView::Helpers::FormBuilder
   }
   
   # Creating a control_group.
-  def control_group(name, field_type = :text_field, input_field_options = {})
+  def control_group(*args)
+    input_field_options = args.extract_options!
+    
+    name, field_type = *args
+    field_type ||= :text_field
+    
     raise ArgumentError, "Invalid field_type #{field_type.inspect}" unless respond_to?(field_type)
     raise ArgumentError, "Invalid attribute #{object.class.name}##{name.inspect}" unless object.respond_to?(name)
     
@@ -171,21 +176,45 @@ class ActionView::Helpers::FormBuilder
       return self.send field_type, name, input_field_options
     end
 
-    div_tag :class => "control-group #{error_class_for(object, name)}" do
-      label = self.label name, :class => "control-label"
-      controls = div_tag :class => "controls" do
+    label = input_field_options.delete(:label)
+    div :class => "control-group #{error_class_for(object, name)}" do
+      label_tag = self.label label || name, :class => "control-label"
+      controls = div :class => "controls" do
         input_field = self.send field_type, name, input_field_options
         errors = error_message_for(object, name)
         "#{input_field}\n#{errors}\n"
       end
       
-      "#{label}\n#{controls}"
+      "#{label_tag}\n#{controls}"
     end
   end
   
+  def compliance(name, options)
+    div :class => :compliance do
+      object.send(name)
+    end
+  end
+
+  COMPLIANCES = {
+    0   => "red",
+    5   => "yellow", 
+    10  =>  "green"
+  }  
+  
+  def compliance_chooser(name, options)
+    current_value = object.send(name) || 5
+    
+    hidden_field = self.hidden_field(name, options)
+    COMPLIANCES.map do |value, klass|
+      div :class => "compliance_chooser #{klass}" do
+        radio_button name, value, :checked => (current_value == value)
+      end
+    end.join("")
+  end
+  
   def agree_to_terms
-    html = div_tag :class => "control-group" do
-      div_tag :class => "controls" do
+    div :class => "control-group" do
+      div :class => "controls" do
         I18n.t "agree_to_terms"
       end
     end
@@ -210,7 +239,7 @@ class ActionView::Helpers::FormBuilder
   def actions(options)
     expect! options => { :cancel_url => String }
 
-    div_tag :class => "form-actions" do
+    div :class => "form-actions" do
       parts = []
 
       # 
