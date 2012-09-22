@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  permission_denied: Permission denied
   update: Update
   show:   Show
   edit:   Edit
@@ -73,6 +74,9 @@ en:
     box:
       placeholder: everything you're looking for...
   quest:
+    message:
+      error:      Please review your input.
+      base_error: "%{base_error}: please review your input."
     legend: ""
     title:
       show: ""
