@@ -55,15 +55,35 @@ class QuestsController < ApplicationController
   def create
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
-
+    if @quest.owner.nil?
+      @quest.owner = User.draft
+      session[:own_quest] = 
+    end
+    
     # (Try to) save
-    respond_to do |format|
-      if @quest.valid?
-        @quest.save!
-        
+    if @quest.valid?
+      @quest.save!
+
+      # Mark the quest as to be transferred upon signin.
+      if @quest.owner == User.draft
+        session[:transfer] ||= []
+        session[:transfer] << "Quest#{@quest.id}"
+      else
+        @quest.start!
+      end
+      
+      respond_to do |format|
         format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
         format.json { render json: @quest, status: :created, location: @quest }
+      end
+    else
+      flash.now[:error] = if base_errors = @quest.errors[:base]
+        I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
       else
+        I18n.t("quest.message.error")
+      end
+      
+      respond_to do |format|
         format.html { render action: "new" }
         format.json { render json: @quest.errors, status: :unprocessable_entity }
       end

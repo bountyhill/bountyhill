@@ -61,7 +61,7 @@ class DeferredAction < ActiveRecord::Base
 
     expect! options => { :on => DeferredActionsController }
 
-    ActiveRecord::AccessControl.as(actor) do
+    ActiveRecord.as(actor) do
       options[:on].send("perform_#{action}", *args)
       update_attributes! :performed_at => Time.now
     end

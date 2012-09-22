@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   around_filter :setup_access_control
   
   def setup_access_control(&block)
-    ActiveRecord::AccessControl.as(current_user, &block)
+    ActiveRecord.as(current_user, &block)
   end
 
   # The locale is already set by a Rack::Locale middle-ware. See:  

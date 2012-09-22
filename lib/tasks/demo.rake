@@ -20,7 +20,7 @@ namespace :demo do
   
   desc "Create demo users"
   task :users => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       10.times do 
         name = Faker::Name.name
         email = Faker::Internet.email
@@ -34,7 +34,7 @@ namespace :demo do
   
   desc "Create demo quests"
   task :quests => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       10.times do
         bounty = 10000 * ((r = rand) * r)
         bounty = 0 if bounty < 10
@@ -61,7 +61,7 @@ namespace :demo do
   desc "Create demo criteria"
   task :criteria => :setup do
     count = 0
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       Quest.all.each do |quest|
         next unless quest.criteria.blank?
 
@@ -86,7 +86,7 @@ namespace :demo do
   task :locations => :setup do
     locations = [ "Berlin, Germany", "Hamburg, Germany", "Germany" ]
     count = 0
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       Quest.all.each do |quest|
         next if rand < 0.7
         count += 1
@@ -100,7 +100,7 @@ namespace :demo do
 
   desc "Create demo offers"
   task :offers => :setup do
-    ActiveRecord::AccessControl.as User.admin do
+    ActiveRecord.as User.admin do
       users = User.all
       offers = Quest.all.map do |quest|
         next if rand(3) != 0

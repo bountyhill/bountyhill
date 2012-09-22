@@ -15,7 +15,7 @@ class Quest < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :own,       lambda { where(:owner_id => ActiveRecord::AccessControl.current_user) }
+  scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
   scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
   scope :with_criteria, where("quests.number_of_criteria > 0")
@@ -191,5 +191,16 @@ class Quest < ActiveRecord::Base
 
   def compliance
     offers.all.map(&:compliance).sort.last
+  end
+  
+  # Transfer a quest (probably from the draft user) to a new owner.
+  def self.transer(quest_id, owner)
+    ActiveRecord.as(User.admin) do
+      if quest = Quest.find_by_id(quest_id)
+        quest.owner = owner
+        quest.save!
+      end
+      quest
+    end
   end
 end

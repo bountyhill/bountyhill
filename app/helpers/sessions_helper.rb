@@ -49,8 +49,6 @@ module SessionsHelper
   # Twitter's oauth callback, which is handled by TwitterAuthMiddleware.
   # (see lib/middleware/twitter_auth_middleware.rb)
   def signin_from_twitter_session #:nodoc:
-    W "twitter_session", session[:tw]
-    
     parts = session[:tw].to_s.split("|")
     return if parts.length != 3
 

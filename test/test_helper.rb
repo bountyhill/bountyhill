@@ -83,11 +83,11 @@ class ActiveSupport::TestCase
   end
   
   def setup
-    ActiveRecord::AccessControl.current_user = admin
+    ActiveRecord.current_user = admin
   end
 
   def teardown
-    ActiveRecord::AccessControl.current_user = nil
+    ActiveRecord.current_user = nil
   end
 
   # a identity "factory"
