@@ -67,7 +67,7 @@ en:
       create: "New quest"
     new: Post a Quest
     expires_at:
-      title: "days left"
+      title: "days"
       sub: "untill this quest ends."
       none: 
         title: "No expiration"
@@ -84,6 +84,9 @@ en:
       none:
         title:  "No criteria"
         sub:    "There have been no criteria established."
+    image:
+      title:  "image"
+      sub:    "has been uploaded."
     actions:
       tweet:
         title: Tweet

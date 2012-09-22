@@ -24,8 +24,8 @@ class Identity::Twitter < Identity
 
   #
   
-  def avatar(opts)
-    expect! opts => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
+  def avatar(options)
+    expect! options => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
 
     unless options[:avatar]
       options[:avatar] = fetch_avatar_url

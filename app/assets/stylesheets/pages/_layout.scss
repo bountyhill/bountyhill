@@ -2,9 +2,19 @@
   clear: both;
 }
 
+img {
+  height: 100%;
+}
+
+h2 {
+  span {
+    color: $text_highlight;
+  }
+}
+
 form {
   label, input {
-    color: white;
+    color: $text;
     font-size: 16px;
     line-height: 16px;
   }
@@ -29,6 +39,12 @@ form {
   }
   .nav {
     font-weight: bold;
+    li {
+      &.active > a, a:hover {
+        background:  $navigation_highlight !important;
+        color: $text;
+      }
+    }
   }
   .navbar-search {
     .search-query {
@@ -37,6 +53,50 @@ form {
     }
   }
 }
+
+.dropdown-menu {
+  li {
+    &.active, a:hover {
+      background-color: $navigation_highlight;
+      color: $text;
+    }
+  }
+}
+  
+.ca-menu {
+  li {
+    &:hover {
+      a {
+        color: $highlight;
+        text-shadow: 1px 1px 0px $background;
+      }
+      .ca-main {
+        color: $link_text;
+      }
+    }
+  }
+}
+
+.ui-datepicker {
+  width: auto;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  table {
+    width: 100%;
+  }
+}
+
+.ui-datepicker-calendar {
+  .ui-state-active, .ui-state-hover, th {
+    border-color: $highlight;
+  }
+}
+
+.ui-datepicker-header {
+  border-color: $highlight;
+}
+
 
 @media (max-width: 320px) {
   body {

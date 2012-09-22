@@ -6,10 +6,10 @@
   </h2>
   <% else %>
   <h2>
-    <span><strong><%= distance_of_time_in_words(Date.today, quest.expires_at.to_date) %></strong> <%=t "quest.expires_at.title" %></span>
+    <span><strong><%= (quest.expires_at.to_date - Date.today).to_i %></strong> <%=t "quest.expires_at.title" %></span>
     <small><%=t "quest.expires_at.sub" %></small>
   </h2>
-  <div>
+  <div class="datepicker-container">
     <div id="datepicker"> </div>
     <script type="text/javascript" charset="utf-8">
     jQuery(function() {

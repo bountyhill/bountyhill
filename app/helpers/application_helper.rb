@@ -22,6 +22,10 @@ module ApplicationHelper
   def h2(*content, &block)
     _content_tag(:h2, *content, &block)
   end
+
+  def h3(*content, &block)
+    _content_tag(:h3, *content, &block)
+  end
   
   def div(*content, &block)
     _content_tag(:div, *content, &block)

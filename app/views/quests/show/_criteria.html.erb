@@ -2,14 +2,14 @@
 <div class="inner quest">
   <% if criteria.present? %>
   <h2>
-    <span><%=t "quest.criteria.title" , :count => criteria.count %></span> 
+    <span><strong><%= criteria.size %></strong> <%=t "quest.criteria.title" , :count => criteria.count %></span> 
     <small><%=t "quest.criteria.sub" %></small>
   </h2>
 
-  <div class="faq">
+  <div class="criteria">
     <%= accordion do |acc| %>
       <% criteria.each_with_index do |criterium, idx| %>
-      <%= acc.item criterium[:title], criterium[:description], :collapsed => idx != 0 %>
+        <%= acc.item criterium[:title], criterium[:description], :collapsed => idx != 0 %>
       <% end %>
     <% end %>
   </div>

@@ -1,22 +1,22 @@
 module AccordionHelper
   class Accordion
     extend Forwardable
-    delegate [:div, :link_to, :h2, :capture] => "@template"
+    delegate [:div, :span, :ul, :li, :link_to, :h3, :capture] => "@template"
 
     def initialize(template, accordion_id)
       @template, @accordion_id = template, accordion_id
       @item_id = 0
     end
-
-    ARROW = '<span class="arrow"></span>'.html_safe
     
     def item_header(item_id, title, mode)
       expect! mode => [ :blank, :present ]
-      a = link_to h2(title), "##{item_id}", :class => "accordion-toggle", 
+      heading = span(@item_id, :class => "bullet")
+      heading += h3(title)
+      heading += span("", :class => "arrow")
+      a = link_to heading, "##{item_id}", :class => "accordion-toggle", 
         "data-toggle" => "collapse", "data-parent" => "##{@accordion_id}",
         "data-bitly-type"=>"bitly_hover_card"
-      a += ARROW if mode == :present
-
+        
       div a, :class => "accordion-heading"
     end
 
@@ -30,7 +30,7 @@ module AccordionHelper
       generate_item_id do |item_id|
         heading = item_header(item_id, title, contents.blank? ? :blank : :present)
         if contents.present?
-          css = "accordion-body bg-gray collapse"
+          css = "accordion-body collapse"
           css += " in" if options[:collapsed] == false
 
           body = div :id => item_id, :class => css do
@@ -38,7 +38,7 @@ module AccordionHelper
           end
         end
 
-        div heading, body, :class=>"accordion-group"
+        li heading, body, :class=>"accordion-group"
       end.html_safe
     end
 
@@ -51,7 +51,7 @@ module AccordionHelper
 
   def accordion(options = {})
     accordion_id = options[:id] || "accordion1"
-    div :class => "accordion", :id => accordion_id do
+    ul :class => "accordion", :id => accordion_id do
       yield Accordion.new(self, accordion_id)
     end
   end

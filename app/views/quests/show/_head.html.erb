@@ -5,12 +5,11 @@
 <div class="inner quest unbottom">
   <article class="quest">
     <div class="profile">
-      <%#= image_for(quest) %>
-      <!-- TODO: change image_for to return avatar -->
-      <img src="/images/examples/avatar_128.jpg" class="avatar" alt="<%= quest.owner.name %>" title="<%= quest.owner.name %>">
-      <h2>jeannine michaelsen<%#= quest.owner.name %></h2>
-      <a href="#">@Michaelsen_J</a>
-      <h3></h3>
+      <%= image_tag(quest.owner.avatar(:size => 128), :class => "avatar", :alt => quest.owner.name, :title => quest.owner.name) %>
+      <%= link_to user_path(quest.owner) do %>
+        <h2><%= quest.owner.name %></h2>
+        <div class="handle"><%= quest.owner.twitter_handle %></div>
+      <% end %>
     </div>
     <%= h1 quest.title %>
     <%= p quest.description %>
