@@ -249,6 +249,10 @@ class ActionView::Helpers::FormBuilder
       "#{cancel_btn} #{save_btn}"
     end
   end
+  
+  def error_messages
+    @template.partial "shared/error_messages", :object => object, :scope => object_name
+  end
 end
 
 class Date
