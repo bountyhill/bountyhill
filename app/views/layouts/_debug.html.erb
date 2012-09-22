@@ -1,0 +1,14 @@
+<% if @debug_output %>
+<style type="text/css" media="screen">
+  div.debug {
+    position: absolute;
+    right: 1em;
+    top: 11em;
+    width: 280px;
+    background-color: #ddd;
+  }
+</style>
+<div class="debug">
+  <pre><%= @debug_output %></pre>
+</div>
+<% end %>

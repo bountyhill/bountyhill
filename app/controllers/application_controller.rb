@@ -124,6 +124,8 @@ class ApplicationController < ActionController::Base
   # before_filter :keep_session
   
   def keep_session
-    @debug_output = session.inspect
+    @debug_output = session.to_a.map do |k,v|
+      "<b>#{k}:</b><br /><code>#{v.inspect}</code><br />"
+    end.join("\n").html_safe
   end
 end
