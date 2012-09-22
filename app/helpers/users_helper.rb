@@ -20,4 +20,17 @@ module UsersHelper
       link_to twitter_handle, "https://twitter.com/#{twitter_handle[1..-1]}"
     end
   end
+  
+  def render_tabs
+    default_tab = UsersController.default_tab
+
+    items = UsersController::TABS.map do |tab|
+      li :class => ("active" if active_tab == tab) do
+        url = tab == default_tab ? "/profile" : "/profile/#{tab}"
+        link_to I18n.t("users.tab.#{tab}"), url
+      end
+    end
+    
+    ul items, :class => "nav nav-tabs"
+  end
 end

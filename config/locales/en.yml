@@ -166,3 +166,13 @@ en:
     reset_password: "[Bountyhill] Reset your password"
     
   agree_to_terms: "By signing in you agree to our <a href='#'>Terms and Conditions.</a>"
+
+  users:
+    tab:
+      overview: Overview
+      email: Email accoutn
+      twitter: Twitter account
+      contact: Contact information
+      financial: Financial information
+      balance: Balance
+      payments: Payments

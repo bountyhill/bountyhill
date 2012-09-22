@@ -1,0 +1,39 @@
+<div class="row-fluid">
+  <div class="span8 inner" style="height: 180px">
+    <%= avatar @user %>
+    <h1><%= @user.name %></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 inner" style="height: 180px">
+    <h2>Your quests</h2>
+    <p>
+      <span class="large">22</span> quests posted so far.
+    </p>
+    <p>
+      <a href='#' class="btn btn-primary">Post a quest</a>
+    </p>
+  </div>
+  <% 10.times do %>
+  <div class="span1">
+    <div style="height: 120px; border: 3px solid red">
+      Quest #<%= rand(1000) %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="span4 inner" style="height: 180px">
+    <h2>Your offers</h2>
+    <p>
+      You didn't post any offer yet.
+    </p>
+  </div>
+  <% 10.times do %>
+  <div class="span1">
+    <div style="height: 120px; border: 3px solid red; margin: 5px">
+      Offer #<%= rand(1000) %>
+    </div>
+  </div>
+  <% end %>
+</div>

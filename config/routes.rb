@@ -12,11 +12,11 @@ Bountyhill::Application.routes.draw do
   resources :quests
   resources :offers
   resources :users
-  match 'profile'  => 'users#show'
+
+  match 'profile(/:tab)' => "users#show"
 
   resources :identities
   match 'signup'  => 'identities#new'
-  match 'profile' => 'identities#show'
 
   resources :sessions, :only => [:new, :create, :destroy]
   match 'signin'  => 'sessions#new'
