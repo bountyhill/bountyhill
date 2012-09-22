@@ -1,7 +1,8 @@
 <%= form_for @identity, :html => {:class => "form-horizontal"} do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
     <legend><%= I18n.t(:"signup.bountyhill")%></legend>
-    <%= render 'shared/error_messages', :object => @identity, :scope => "signup" %>
+    <%= form.error_messages :scope => "signup" %>
 
     <%= form.control_group :name %>
     <%= form.control_group :email %>
@@ -11,7 +12,7 @@
     <%= form.agree_to_terms %>
 
     <div class="form-actions">
-      <%= link_to I18n.t(:go_to_signin), :signin %>
+      <%= link_to I18n.t(:go_to_signin), signin_path(:req => params[:req]) %>
       <%= form.submit I18n.t(:sign_up), :class => "btn btn-primary" %>
     </div>
   </fieldset>

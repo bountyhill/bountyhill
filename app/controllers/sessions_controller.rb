@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include RequestedForms
+
   def new
     @identity = Identity::Email.new
   end

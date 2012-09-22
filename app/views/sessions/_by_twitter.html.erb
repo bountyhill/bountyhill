@@ -1,7 +1,9 @@
-<%= form_for Identity::Twitter.new(:follow_bountyhill => true), :url => twitter_sessions_path, :html => {:class => "form-horizontal"} do |form| %>
+<% identity = Identity::Twitter.new(:follow_bountyhill => true) %>
+<%= form_for identity, :url => twitter_sessions_path, :html => {:class => "form-horizontal"} do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
     <legend><%= I18n.t("signin.twitter") %></legend>
-    <%= render 'shared/error_messages', :object => @identity, :scope => "signup" %>
+    <%= form.error_messages :scope => "signup" %>
 
     <div>
       <strong>You must be signed in via Twitter...</strong>

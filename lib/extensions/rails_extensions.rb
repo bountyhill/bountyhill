@@ -250,8 +250,9 @@ class ActionView::Helpers::FormBuilder
     end
   end
   
-  def error_messages
-    @template.partial "shared/error_messages", :object => object, :scope => object_name
+  def error_messages(options = {})
+    options = { :object => object, :scope => object_name }.update(options)
+    @template.partial "shared/error_messages", options
   end
 end
 

@@ -1,4 +1,6 @@
 class IdentitiesController < ApplicationController
+  include RequestedForms
+  
   #
   # /signup - create an identity by email.
   def new
