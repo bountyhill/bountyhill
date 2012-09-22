@@ -165,4 +165,15 @@ module ApplicationHelper
     
     div icon, span
   end
+
+  def form_for(object, options = {}, &block)
+    html = options[:html] ||= {}
+    if html[:class]
+      html[:class] += " form-horizontal"
+    else
+      html[:class] = "form-horizontal"
+    end
+    
+    super(object, options, &block)
+  end
 end
