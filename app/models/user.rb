@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
   
   # Match identity symbol to class.
-  IDENTITY_MODES = {
+  IDENTITY_CLASSES = {
     :twitter => Identity::Twitter,
     :email   => Identity::Email
   }
@@ -59,12 +59,16 @@ class User < ActiveRecord::Base
   #
   #   user.identity(:twitter)
   #   => an Identity::Twitter object or nil
-  def identity(mode)
-    expect! mode => IDENTITY_MODES.keys
-
-    identities.detect do |identity|
-      identity.is_a?(IDENTITY_MODES[mode])
+  def identity(*modi)
+    identities_by_class = identities.by(&:class)
+    
+    modi.each do |mode|
+      if i = identities_by_class[IDENTITY_CLASSES[mode]]
+        return i
+      end
     end
+    
+    nil
   end
   
   alias :identity? :identity
@@ -78,8 +82,8 @@ class User < ActiveRecord::Base
   #
   #   user.identity!(:twitter)
   #   => might raise a User::MissingIdentity error
-  def identity!(mode)
-    identity(mode) || raise(MissingIdentity, "No #{mode} identity")
+  def identity!(*modi)
+    identity(*modi) || raise(MissingIdentity, "No identity for #{modi.join(", ")}")
   end
 
   # -- automatic pseudo "attributes" : these methods try to return
@@ -87,23 +91,19 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    if i = identity(:email)
-      i.name
-    elsif i = identity(:twitter)
-      i.screen_name
-    end
+    return unless identity = self.identity(:email, :twitter)
+    identity.name
   end
 
   # return the user's email
   def email
-    if identity = self.identity(:email)
-      identity.email
-    end
+    return unless identity = self.identity(:email)
+    identity.email
   end
 
   def confirmed_email?
-    identity = self.identity(:email)
-    identity && identity.confirmed?
+    return unless identity = self.identity(:email)
+    identity.email if identity.confirmed?
   end
 
   def confirm_email!
@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
   # return the user's twitter handle
   def twitter_handle
     if identity = self.identity(:twitter)
-      identity.screen_name
+      "@" + identity.screen_name
     end
   end
 
@@ -121,9 +121,11 @@ class User < ActiveRecord::Base
   def avatar(options = {})
     expect! options => { :default => [ String, nil ]}
 
-    url = (identity = self.identity(:twitter)) && identity.avatar(options)
-    url ||= (identity = self.identity(:email)) && identity.avatar(options)
-    url || options[:default]
+    if identity = self.identity(:email, :twitter)
+      avatar = identity.avatar(options)
+    end
+    
+    avatar || options[:default]
   end
   
   def self.admin_names
@@ -137,8 +139,8 @@ class User < ActiveRecord::Base
   # return an admin user. This is the @bountyhill account.
   def self.admin
     @admin ||= begin
-      bountyhill = Identity::Twitter.find_by_name("bountyhill") ||
-        Identity::Twitter.create!(:name => "bountyhill")
+      bountyhill = Identity::Twitter.find_by_email("bountyhill") ||
+        Identity::Twitter.create!(:email => "bountyhill")
       bountyhill.user
     end
   end
@@ -146,8 +148,8 @@ class User < ActiveRecord::Base
   # return an draft user. This is the @bountyhill_draft account.
   def self.draft
     @draft ||= begin
-      bountyhill = Identity::Twitter.find_by_name("bountyhill_draft") ||
-        Identity::Twitter.create!(:name => "bountyhill_draft")
+      bountyhill = Identity::Twitter.find_by_email("bountyhill_draft") ||
+        Identity::Twitter.create!(:email => "bountyhill_draft")
       bountyhill.user
     end
   end

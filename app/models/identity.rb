@@ -26,6 +26,8 @@ class Identity < ActiveRecord::Base
   private
   
   def delete_user_if_deleted_last_identity
+    return unless user
+
     return if user.identities.any? { |identity| identity.id != self.id }
     user.destroy
   end

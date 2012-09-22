@@ -1,6 +1,6 @@
+require_dependency "identity/twitter"
+
 module SessionsHelper
-  User
-  
   def sign_in(user)
     expect! user => User
     
@@ -49,44 +49,19 @@ module SessionsHelper
     end
   end
   
-  # This reads the twitter oauth configuration from the :tw session entry.
-  # The :tw session entry is filled in initially as the result of 
-  # Twitter's oauth callback, which is handled by TwitterAuthMiddleware.
-  # (see lib/middleware/twitter_auth_middleware.rb)
+  # This reads the twitter oauth configuration from the session, via the
+  # TwitterAuthMiddleware (see lib/middleware/twitter_auth_middleware.rb), 
+  # and loads or creates an Identity accordingly.
   def signin_from_twitter_session #:nodoc:
-    parts = session[:tw].to_s.split("|")
-    return if parts.length != 3
+    screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
+    return unless screen_name
 
-    identity = twitter_identity :name => parts[0], 
-                  :oauth_token => parts[1], 
-                  :oauth_secret => parts[2]
+    identity = ::Identity::Twitter.find_or_create :info => info, 
+                  :user => current_user,
+                  :screen_name  => screen_name,
+                  :oauth_token  => oauth_token,
+                  :oauth_secret => oauth_secret
 
     sign_in(identity.user)
-    
-    # We no longer need the :tw entry in the session. The user is
-    # logged in, and its auth keys should be stored in the DB.
-    session.delete :tw
-  end
-  
-  # return the twitter_identity according to the auth hash received
-  # from twitter.
-  def twitter_identity(auth)
-    if @current_user
-      if identity = @current_user.identity(:twitter)
-        identity.update_auth!(auth)
-      else
-        identity = Identity::Twitter.new(auth)
-        identity.user = @current_user
-        identity.save!
-      end
-    else
-      if identity = Identity::Twitter.find_by_name(auth[:name])
-        identity.update_auth! auth
-      else
-        identity = Identity::Twitter.create!(auth)
-      end
-    end
-  
-    identity
   end
 end
