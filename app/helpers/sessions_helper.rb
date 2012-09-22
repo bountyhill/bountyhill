@@ -5,9 +5,14 @@ module SessionsHelper
     expect! user => User
     
     session[:remember_token] = user.remember_token
-    @current_user = user
-  end
 
+    @current_user = user
+
+    if transfers = session.delete(:transfer)
+      user.transfer!(transfers)
+    end
+  end
+  
   def sign_out
     @current_user = false
     

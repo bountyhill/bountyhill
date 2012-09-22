@@ -55,26 +55,21 @@ class QuestsController < ApplicationController
   def create
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
-    if @quest.owner.nil?
-      @quest.owner = User.draft
-      session[:own_quest] = 
-    end
-    
+    @quest.owner ||= User.draft
+
     # (Try to) save
     if @quest.valid?
       @quest.save!
 
       # Mark the quest as to be transferred upon signin.
-      if @quest.owner == User.draft
+      if @quest.owner.draft?
         session[:transfer] ||= []
-        session[:transfer] << "Quest#{@quest.id}"
+        session[:transfer] << "Quest:#{@quest.id}"
+
+        redirect_to signin_path(:req => params[:req]), notice: 'You must register with your email.'
       else
         @quest.start!
-      end
-      
-      respond_to do |format|
-        format.html { redirect_to @quest, notice: 'Quest was successfully created.' }
-        format.json { render json: @quest, status: :created, location: @quest }
+        redirect_to @quest, notice: 'Quest was successfully created.'
       end
     else
       flash.now[:error] = if base_errors = @quest.errors[:base]

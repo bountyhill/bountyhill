@@ -192,15 +192,4 @@ class Quest < ActiveRecord::Base
   def compliance
     offers.all.map(&:compliance).sort.last
   end
-  
-  # Transfer a quest (probably from the draft user) to a new owner.
-  def self.transer(quest_id, owner)
-    ActiveRecord.as(User.admin) do
-      if quest = Quest.find_by_id(quest_id)
-        quest.owner = owner
-        quest.save!
-      end
-      quest
-    end
-  end
 end
