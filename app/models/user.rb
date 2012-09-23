@@ -128,30 +128,36 @@ class User < ActiveRecord::Base
     avatar || options[:default]
   end
   
-  def self.admin_names
-    [ "@bountyhill" ] + Bountybase.config.admins
+  # -- special System users -------------------------------------------
+
+  module SystemUsers
+    # return an admin user. This is the @bountyhill account.
+    def admin
+      system_users["admin"]
+    end
+
+    # return an draft user. This is the @bountyhill_draft account.
+    def draft
+      system_users["draft"]
+    end
+
+    private
+
+    def system_users
+      @system_users ||= Hash.new do |hash, key|
+        hash[key] = begin
+          identity = Identity::Twitter.find_by_email("bountyhill_#{key}") ||
+            Identity::Twitter.create!(:email => "bountyhill_#{key}", :name => key)
+          identity.user
+        end
+      end
+    end
   end
+  extend SystemUsers
   
   def admin?
-    User.admin_names.include?(twitter_handle)
-  end
-
-  # return an admin user. This is the @bountyhill account.
-  def self.admin
-    @admin ||= begin
-      bountyhill = Identity::Twitter.find_by_email("bountyhill") ||
-        Identity::Twitter.create!(:email => "bountyhill")
-      bountyhill.user
-    end
-  end
-
-  # return an draft user. This is the @bountyhill_draft account.
-  def self.draft
-    @draft ||= begin
-      bountyhill = Identity::Twitter.find_by_email("bountyhill_draft") ||
-        Identity::Twitter.create!(:email => "bountyhill_draft")
-      bountyhill.user
-    end
+    self == User.admin ||
+    Bountybase.config.admins.include?(twitter_handle)
   end
 
   def draft?

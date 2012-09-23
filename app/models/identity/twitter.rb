@@ -27,7 +27,7 @@ class Identity::Twitter < Identity
     serialized[:info] || {}
   end
 
-  attr_accessible :screen_name, :oauth_secret, :oauth_token, :info, :user, :name, :followed_at
+  attr_accessible :screen_name, :oauth_secret, :oauth_token, :info, :user, :name, :followed_at, :email
   
   # return the twitter_identity according to the auth hash received
   # from twitter.
