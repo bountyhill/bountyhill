@@ -58,7 +58,7 @@ en:
       success: "Welcome to bountyhill!"
     confirm:
       reminder: 
-        You have signed up with bountyhill, but didn't confirm your email address yet.
+        "You have signed up with bountyhill, but didn't confirm your email address yet."
       reminder_label:
         Resend confirmation email!
       sent: 
@@ -101,6 +101,8 @@ en:
       none:
         title:  "No criteria"
         sub:    "have been established for this quest."
+      description:
+        none:   "No description."
     image:
       title:  "image"
       sub:    "has been uploaded."
