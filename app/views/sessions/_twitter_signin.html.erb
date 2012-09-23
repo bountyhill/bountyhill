@@ -1,5 +1,5 @@
 <% identity = Identity::Twitter.new(:follow_bountyhill => true) %>
-<%= form_for identity, :url => twitter_sessions_path do |form| %>
+<%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
   <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
     <legend><%= I18n.t("signin.twitter") %></legend>

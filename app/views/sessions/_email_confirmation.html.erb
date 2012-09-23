@@ -1,0 +1,11 @@
+<h2>Confirm your email address!</h2>
+<div>
+  <%= I18n.t("signup.confirm.reminder") %>
+</div>
+<div>
+  <%= 
+    link_to I18n.t("signup.confirm.reminder_label"), 
+      "/confirm", 
+      :class => "btn btn-primary", :method => :post 
+  %>
+</div>

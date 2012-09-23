@@ -86,8 +86,8 @@ module Bountyhill
     
     config.middleware.use ::TwitterAuthMiddleware, {
       path: "tw",
-      success_url:      '/twitter_sessions/created',
-      failure_url:      '/twitter_sessions/failed',
+      success_url:      '/sessions/twitter',
+      failure_url:      '/sessions/twitter_failed',
       consumer_key:     TWITTER_CONFIG["consumer_key"],
       consumer_secret:  TWITTER_CONFIG["consumer_secret"]
     }

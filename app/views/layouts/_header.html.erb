@@ -32,13 +32,13 @@
                 <li><%= link_to I18n.t(:profile), current_user %></li>
                 <li><%= link_to I18n.t(:settings), '#' %></li>
                 <li class="divider"></li>
-                <li><%= link_to I18n.t(:sign_out), signout_path, method: "delete" %></li>
+                <li><%= link_to I18n.t(:sign_out), "/signout", method: "delete" %></li>
               </ul>
-              <li><%= link_to I18n.t(:sign_out), signout_path, method: "delete" %></li>
+              <li><%= link_to I18n.t(:sign_out), "/signout", method: "delete" %></li>
             </li>
           <% else %>
-            <li><%= link_to I18n.t(:sign_up), signup_path %></li>
-            <li><%= link_to I18n.t(:sign_in), signin_path %></li>
+            <li><%= link_to I18n.t(:sign_up), "/signup" %></li>
+            <li><%= link_to I18n.t(:sign_in), "/signin" %></li>
           <% end %>
         </ul>
       </div>
