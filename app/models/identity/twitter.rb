@@ -43,20 +43,39 @@ class Identity::Twitter < Identity
     user = attrs.delete :user
     name = (attrs[:info] || {}).delete("name")
 
-    # find existing identity from current_user
-    identity = if user
-      user.identity(:twitter)
-    else
-      Identity::Twitter.where(:email => attrs[:screen_name]).first
-    end
+    transaction do
+      user_identity = user.identity(:twitter) if user
+      twitter_identity = Identity::Twitter.where(email: attrs[:screen_name]).first
 
-    identity ||= Identity::Twitter.new
-    
-    identity.attributes = attrs
-    identity.user = user if user
-    identity.name = name if name
-    identity.save! if identity.changed?
-    identity
+      # What happens if a user signs in via twitter, when he is already 
+      # logged in as a user, and the twitter handle exists already in 
+      # the database, but belongs to another user? In this case we take
+      # away the other user's twitter identity and put it to this user.
+      # 
+      # This scenario might sound esoteric. A use case, however, is:
+      # 
+      # - user logs in via its twitter @handle
+      # - user logs out
+      # - now user registered via "user@email.com" email
+      # - user starts or shares a quest. The application asks the user 
+      #   to add a twitter login.
+      # - user enters his @twitter handle.
+      # 
+      if twitter_identity && user && twitter_identity.user != user
+        # if a twitter identity exists, but belongs to a different user,
+        # we "merge" these users.
+        twitter_identity.user = user
+        twitter_identity.save!
+      end
+      
+      identity = twitter_identity || user_identity || Identity::Twitter.new
+
+      identity.attributes = attrs
+      identity.user = user if user
+      identity.name = name if name
+      identity.save! if identity.changed?
+      identity    
+    end
   end
   
   def avatar(options)
