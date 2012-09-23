@@ -13,45 +13,64 @@ class Identity::Twitter < Identity
 
   # -- Twitter identity attributes
   
-  def screen_name
-    "@#{name}"
-  end
-
+  def screen_name=(screen_name); self.email = screen_name; end
+  def screen_name; email; end
+  
+  # Twitter auth tokens
   serialized_attr :oauth_secret, :oauth_token
+  serialized_attr :info
 
-  def update_auth!(auth)
-    return if oauth_token == auth[:oauth_token] && oauth_secret == auth[:oauth_secret]
-
-    self.oauth_token = auth[:oauth_token]
-    self.oauth_secret = auth[:oauth_secret]
-    
-    update_attributes! :oauth_token => auth[:oauth_token],
-      :oauth_secret => auth[:oauth_secret]
+  # Twitter info record. This entry usually has these keys: 
+  # "id", "followers_count", "friends_count", "lang", "location", 
+  # "profile_image_url", "profile_image_url_https", "statuses_count"
+  def info
+    serialized[:info] || {}
   end
 
-  #
+  attr_accessible :screen_name, :oauth_secret, :oauth_token, :info, :user, :name, :followed_at, :email
+  
+  # return the twitter_identity according to the auth hash received
+  # from twitter.
+  def self.find_or_create(attrs)
+    expect! attrs => {
+      :screen_name  => String,
+      :oauth_token  => String,
+      :oauth_secret => String,
+      :info         => [Hash, nil],
+      :user         => [User, nil]
+    }
+
+    user = attrs.delete :user
+    name = (attrs[:info] || {}).delete("name")
+
+    # find existing identity from current_user
+    identity = if user
+      user.identity(:twitter)
+    else
+      Identity::Twitter.where(:email => attrs[:screen_name]).first
+    end
+
+    identity ||= Identity::Twitter.new
+    
+    identity.attributes = attrs
+    identity.user = user if user
+    identity.name = name if name
+    identity.save! if identity.changed?
+    identity
+  end
   
   def avatar(options)
     expect! options => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
-
-    unless options[:avatar]
-      options[:avatar] = fetch_avatar_url
-      save!
-    end
-
-    return options[:avatar]
+    info["profile_image_url"] || options[:default]
   end
   
-  def fetch_avatar_url(size = "bigger")
-    url = "https://api.twitter.com/1/users/profile_image?screen_name=#{screen_name}&size=#{size}"
-    Bountybase::HTTP.resolve url
-  end
 
   # -- Twitter actions ------------------------------------------------
 
   # The follow_bountyhill pseudo attribute exists only for
   # the login via twitter form.
   attr :follow_bountyhill, true
+  attr_accessible :follow_bountyhill
   
   # This method makes the user follow @bountyhill. If the user followed
   # @bountyhill before, this method is a no-op.

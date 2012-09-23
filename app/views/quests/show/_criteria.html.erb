@@ -10,7 +10,10 @@
     <!-- TODO: accordion handling does not work correctly - pls. fix! -->
     <%= accordion do |acc| %>
       <% criteria.each_with_index do |criterium, idx| %>
-        <%= acc.item criterium[:title], criterium[:description], :collapsed => idx != 0 %>
+        <%=
+          description = criterium[:description] || I18n.t("quest.criteria.description.none")
+          acc.item criterium[:title], description, :collapsed => idx != 0
+        %>
       <% end %>
     <% end %>
   </div>

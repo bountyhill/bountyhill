@@ -77,27 +77,52 @@ class TwitterAuthMiddleware
     redirect "/"
   end
   
+  def twitter_callback
+    login_from_twitter_callback
+    redirect @success_url
+  rescue OAuth::Unauthorized
+    redirect @failure_url
+  end
+  
   # log in from twitter callback. Raise OAuth::Unauthorized if authorization
   # fails.
   def login_from_twitter_callback
-    tw_request_token, tw_request_token_secret = 
-      session.values_at "tw_request_token", "tw_request_token_secret"
+    tw_request_token = session.delete "tw_request_token"
+    tw_request_token_secret = session.delete "tw_request_token_secret"
 
     client = twitter_client
 
     access_token = client.authorize(tw_request_token, tw_request_token_secret, 
       :oauth_verifier => params[:oauth_verifier])
     raise OAuth::Unauthorized, "Unauthorized" unless client.authorized?
-    
-    session.delete "tw_request_token"
-    session.delete "tw_request_token_secret"
-    session.update "tw" => [client.info["name"], access_token.token, access_token.secret].join("|")
+
+    info = client.info
+    session.update "twinfo" => info.values_at(*TWINFO_KEYS)
+    session.update "twauth" => "#{info["screen_name"]}|#{access_token.token}|#{access_token.secret}"
   end
   
-  def twitter_callback
-    login_from_twitter_callback
-    redirect @success_url
-  rescue OAuth::Unauthorized
-    redirect @failure_url
+  TWINFO_KEYS = %w(
+    id followers_count friends_count lang location name
+    profile_image_url profile_image_url_https statuses_count
+  )
+  
+  def self.get_session_info(session)
+    twinfo = session["twinfo"]
+    return unless twinfo.is_a?(Array) && twinfo.length == TWINFO_KEYS.length
+  
+    {}.tap do |info|
+      TWINFO_KEYS.each_with_index { |key, idx| info[key] = twinfo[idx] }
+    end
+  end
+  
+  def self.session_info(session)
+    parts = session["twauth"].to_s.split("|")
+    return unless parts.length == 3
+    
+    screen_name, oauth_token, oauth_secret = *parts
+    [ screen_name, oauth_token, oauth_secret, get_session_info(session) ]
+  ensure
+    session.delete "twauth"
+    session.delete "twinfo"
   end
 end

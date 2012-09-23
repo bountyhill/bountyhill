@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 13) do
+ActiveRecord::Schema.define(:version => 15) do
 
   create_table "deferred_actions", :force => true do |t|
     t.string   "secret",       :null => false
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "confirmed_at"
   end
 
-  add_index "identities", ["email"], :name => "index_identities_on_email", :unique => true
-  add_index "identities", ["name", "type"], :name => "index_identities_on_name_and_type", :unique => true
+  add_index "identities", ["email", "type"], :name => "index_identities_on_email_and_type", :unique => true
+  add_index "identities", ["name", "type"], :name => "index_identities_on_name_and_type"
   add_index "identities", ["user_id", "id", "type"], :name => "index_identities_on_user_id_and_id_and_type", :unique => true
 
   create_table "offers", :force => true do |t|

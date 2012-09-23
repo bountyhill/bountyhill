@@ -4,6 +4,12 @@ class Identity::Email < Identity
     Identity.model_name
   end
 
+  after_create :send_confirmation_email
+  
+  def send_confirmation_email
+    Deferred.mail UserMailer.confirm_email(user)
+  end
+  
   with_metrics! "accounts.email"
    
   attr_accessible :name, :email, :password, :password_confirmation

@@ -53,29 +53,26 @@ module ApplicationHelper
       "active"
     end
   end
-  
-  def stats_path
-    "https://www.stathat.com/home"
-  end
-  
-  ADMIN_NAV_ITEMS = %w(stats)
+
+  ADMIN_NAVIGATION = {
+    "stats" => "https://www.stathat.com/home",
+    "logs"  => "https://papertrailapp.com/systems/staging/events"
+  }
   
   def link_to_nav_item(nav_item)
-    if admin? || !ADMIN_NAV_ITEMS.include?(nav_item)
-      link_to I18n.t("nav.#{nav_item}"), self.send("#{nav_item}_path")
+    expect! nav_item => String
+    
+    if admin_only_url = ADMIN_NAVIGATION[nav_item]
+      link_to I18n.t("nav.#{nav_item}"), admin_only_url, :target => "_blank"
+    else
+      link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path")
     end
   end
   
-  def error_message_for(object, attribute)
-    if error_message = object.error_message_for(attribute)
-      span(error_message, :class => "help-inline")
-    end
-  end
-
-  def error_class_for(object, attribute)
-    if object.error_message_for(attribute)
-      "error"
-    end
+  def nav_items
+    nav_items = %w(quests offers)
+    nav_items += ADMIN_NAVIGATION.keys if admin?
+    nav_items
   end
 
   def xmp(s)
@@ -173,6 +170,8 @@ module ApplicationHelper
     else
       html[:class] = "form-horizontal"
     end
+
+    html[:autocomplete] = "off"
     
     super(object, options, &block)
   end

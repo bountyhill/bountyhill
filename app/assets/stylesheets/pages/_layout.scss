@@ -13,12 +13,17 @@ h2 {
 }
 
 form {
-  label, input {
+  label {
     color: $text;
     font-size: 16px;
     line-height: 16px;
   }
   
+  /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
+  input {
+    font-size: 16px;
+    line-height: 16px;
+  }
   legend {
     color: $text;
     font-weight: bold;

@@ -41,8 +41,8 @@ class DeferredActionsController < ApplicationController
     redirect_to "/"
   end
   
-  
-  # send confirmation email.
+  # Send an email address confirmation email.
+  #
   def confirm
     Deferred.mail UserMailer.confirm_email(current_user)
     flash[:success] = I18n.t("signup.confirm.sent")
@@ -50,7 +50,7 @@ class DeferredActionsController < ApplicationController
     redirect_to "/"
   end
 
-  # send reset password email.
+  # Send a reset password email.
   def reset_password
     if email = params[:email]
       identity = Identity::Email.where("lower(email)=?", email.downcase).first

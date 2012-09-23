@@ -11,12 +11,21 @@ heroku:
 # of their keys
 deployment:
   pre:
-    - git rm -rf public/assets || true
+    - git rm -r --force --quiet public/assets || true
     - rake assets:rebuild
     - kibo compress --quiet public/assets
     - git add -f public/assets
     - git commit -m '[kibo] Updated assets'
-  post:
+  success:
     - heroku run rake db:migrate
+source:
+  pre:
+    - rm -rf tmp/assets
+    - mv public/assets tmp/assets || true
+  success:
+    - git tag $ENVIRONMENT-$(date "+%Y.%m.%d-%H.%M")
+  final:
+    - rm -rf public/assets
+    - mv tmp/assets public/assets || true
 defaults:
   web: 1
