@@ -40,12 +40,6 @@ class User < ActiveRecord::Base
   # Offers submitted by the user
   has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
   
-  # Match identity symbol to class.
-  IDENTITY_CLASSES = {
-    :twitter => Identity::Twitter,
-    :email   => Identity::Email
-  }
-  
   # returns a user's identity in a specific mode, which is needed to
   # 
   # - interact with a specific identity provider (e.g. a user's twitter
@@ -60,16 +54,27 @@ class User < ActiveRecord::Base
   #   user.identity(:twitter)
   #   => an Identity::Twitter object or nil
   def identity(*modi)
-    identities_by_class = identities.by(&:class)
-    
-    modi.each do |mode|
-      if i = identities_by_class[IDENTITY_CLASSES[mode]]
-        return i
-      end
+    i = nil
+    modi.detect do |mode|
+      i = find_identity(mode)
     end
-    
-    nil
+    i
   end
+  
+  private
+  
+  def find_identity(mode)
+    expect! mode => [ :email, :twitter, :confirmed, :any ]
+    
+    case mode
+    when :email     then identities.detect { |i| i.is_a?(Identity::Email) }
+    when :twitter   then identities.detect { |i| i.is_a?(Identity::Twitter) }
+    when :confirmed then identities.detect { |i| i.is_a?(Identity::Email) && i.confirmed? }
+    else            identities.first
+    end
+  end
+
+  public
   
   alias :identity? :identity
   
@@ -91,7 +96,7 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    return unless identity = self.identity(:email, :twitter)
+    return unless identity = self.identity(:twitter, :email)
     identity.name
   end
 
@@ -101,9 +106,13 @@ class User < ActiveRecord::Base
     identity.email
   end
 
+  def confirmed_email
+    return unless identity = self.identity(:confirmed)
+    identity.email
+  end
+
   def confirmed_email?
-    return unless identity = self.identity(:email)
-    identity.email if identity.confirmed?
+    confirmed_email != nil
   end
 
   def confirm_email!
