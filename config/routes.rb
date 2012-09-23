@@ -9,22 +9,27 @@ Bountyhill::Application.routes.draw do
     match static_page => "static##{static_page}"    
   end
 
-  resources :quests
+  resources :quests do
+    get 'start', :on => :member
+  end
+  
   resources :offers
   resources :users
 
   match 'profile(/:tab)' => "users#show"
 
-  resources :identities
-  match 'signup'  => 'identities#new'
+  # signup, signin, signout
+  match "signup" => "sessions#signup",      :via => :get
+  match "signup" => "sessions#signup_post", :via => :post
+  match "signin" => "sessions#signin",      :via => :get
+  match "signin" => "sessions#signin_post", :via => :post
+  match "signout" => "sessions#signout",    :via => :delete
 
-  resources :sessions, :only => [:new, :create, :destroy]
-  match 'signin'  => 'sessions#new'
-  match 'signout' => 'sessions#destroy', :via => :delete  #should be invoked using an HTTP DELETE request
-
-  resources :twitter_sessions, :only => [:create]
-  match 'twitter_sessions/created'  => 'twitter_sessions#created'
-  match 'twitter_sessions/failed'   => 'twitter_sessions#failed'
+  match "sessions/twitter" => "sessions#twitter_post", :via => :post
+  match "sessions/twitter" => "sessions#twitter", :via => :get
+  match "sessions/twitter_failed" => "sessions#twitter"
+  
+  # 
 
   resources :deferred_actions, :only => [:show]
   match 'act'  => 'deferred_actions#show'
