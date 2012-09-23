@@ -9,11 +9,50 @@
     <%= form.control_group :bounty %>
     <%= form.control_group :image, :transloadit %>
 
+    <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
-      <%= form.control_group name %>
-      <%= form.control_group Quest.criteria_descriptions[idx] %>
+      <div class="criterium-group">
+        <%= form.control_group name %>
+        <%= form.control_group Quest.criteria_descriptions[idx] %>
+      </div>
     <% end %>
+    </div>
     
+    <script type="text/javascript" charset="utf-8">
+      (function($) {
+        
+        /*
+            Hide all criterium groups that have no value in its input 
+            nodes except the first one.
+         */
+        var count = 0;
+        $(".criterium-group").each(function() {
+          // array with true entries when there is input.
+          var inputsHaveVals = jQuery.map($("input", this), function(input) {
+            return $(input).val() !== "" ? true : false;
+          });
+
+          var visible = (jQuery.inArray(true, inputsHaveVals) != -1) ||
+            (count++ == 0);
+
+          if(!visible)
+            $(this).hide();
+        });
+        
+        /*
+            Whenever an input loses focus and has a value != "" the
+            next criterium group becomes visible.
+         */
+        $(".criterium-group input").blur(function() {
+          var value = $(this).val();
+          if(value == "") return;
+           
+          $(this).closest(".criterium-group").
+            next(".criterium-group").show();
+        });
+        
+      })(jQuery);
+    </script>
     <%= form.actions :cancel_url => quests_path %>
   </fieldset>
 <% end %>
