@@ -8,7 +8,7 @@ class Identity::Twitter < Identity
 
   with_metrics! "accounts.twitter"
 
-  validates :name, presence: true, format: { with: /^[^@]/ }, 
+  validates :email, presence: true, format: { with: /^[^@]/ }, 
                                    uniqueness: { case_sensitive: false }
 
   # -- Twitter identity attributes
