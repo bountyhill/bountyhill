@@ -128,4 +128,19 @@ class ApplicationController < ActionController::Base
       "<b>#{k}:</b><br /><code>#{v.inspect}</code><br />"
     end.join("\n").html_safe
   end
+
+  # -- the confirmation reminder
+  
+  before_filter :show_confirmation_reminder
+  
+  def hide_confirmation_reminder
+    @confirmation_reminder_hidden = true
+  end
+  
+  def show_confirmation_reminder
+    return if @confirmation_reminder_hidden
+    return unless current_user && (email = current_user.identity(:email)) && !email.confirmed?
+
+    flash.now[:warn] = render_to_string(:partial => "shared/confirmation_reminder").html_safe
+  end
 end
