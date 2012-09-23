@@ -31,6 +31,18 @@ class Quest < ActiveRecord::Base
     self.send(name)
   end
   
+  # Find a quest, even if it does not belong to the current_user, but to
+  # User.draft. We'll need this when a user enters a quest before she is
+  # registered: in that case the quest will be attached to User.draft.
+  def self.draft(id)
+    ActiveRecord.as(User.admin) do 
+      quest = Quest.find_by_id(id)
+      if quest.owner == ActiveRecord.current_user || quest.owner == User.draft
+        quest
+      end
+    end
+  end
+  
   # -- Validations ----------------------------------------------------
   
   validates :title,       presence: true, length: { maximum: 100 }

@@ -8,8 +8,8 @@ module SessionsHelper
 
     @current_user = user
 
-    if transfers = session.delete(:transfer)
-      user.transfer!(transfers)
+    if (transfer = session.delete(:transfer)) && transfer.is_a?(String) 
+      user.transfer!(transfer)
     end
   end
   

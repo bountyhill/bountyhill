@@ -173,36 +173,24 @@ class User < ActiveRecord::Base
     self == User.draft
   end
 
-  # sign over the objects described in the transfers array.
-  # The transfers array can either contain ActiveRecord::Base objects
-  # or Strings a la "Quest:12".
-  #
-  # returns true on success or false on fail (e.g. at least one of the 
-  # objects could not be transferred).
-  def transfer!(transfers)
-    expect! transfers => Array
+  # sign over the passed in object to this user. 
+  # The transfer parameter can be an ActiveRecord::Base object
+  # or a String a la "Quest:12".
+  def transfer!(transfer)
+    expect! transfer => [ nil, ActiveRecord::Base, /^(Quest):.*/ ]
   
-    objects = transfers.map do |obj|
-      expect! obj => [ ActiveRecord::Base, /^(Quest):.*/ ]
-      next obj if obj.is_a?(ActiveRecord::Base)
-
-      class_name, id = *obj.split(":")
-      case class_name
-      when "Quest" then Quest.find_by_id(id)
-      end
-    end.compact
-
-    success = true
-    
     ActiveRecord.as(User.admin) do
-      objects.each do |object|
-        object.owner = self
-        if !object.save
-          success = false 
+      if transfer.is_a?(String)
+        class_name, id = *transfer.split(":")
+        case class_name
+        when "Quest" then transfer = Quest.find_by_id(id)
         end
       end
-    end
     
-    success
+      if transfer
+        transfer.owner = self
+        transfer.save!
+      end
+    end
   end
 end
