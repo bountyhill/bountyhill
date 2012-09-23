@@ -40,7 +40,8 @@ en:
   nav:
     quests: Quests
     offers: Offers
-    stats: Stats
+    stats:  Stats
+    logs:   Logs
     
   sign_up: "Sign up"
   sign_in: "Sign in"
