@@ -23,7 +23,7 @@ source:
     - rm -rf tmp/assets
     - mv public/assets tmp/assets || true
   success:
-    - git tag $(date "$ENVIRONMENT+%Y.%m.%d-%H.%M")
+    - git tag $ENVIRONMENT-$(date "+%Y.%m.%d-%H.%M")
   final:
     - rm -rf public/assets
     - mv tmp/assets public/assets || true
