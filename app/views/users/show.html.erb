@@ -7,7 +7,7 @@
 <%= 
   begin
     partial "users/tabs/#{active_tab}" 
-  rescue
+  rescue ActionView::MissingTemplate
     content_tag :pre do
       "Missing partial users/tabs/#{active_tab}"
     end
