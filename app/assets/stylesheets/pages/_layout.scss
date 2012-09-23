@@ -104,6 +104,21 @@ form {
   border-color: $highlight;
 }
 
+.pagination {
+  li {
+    a {
+      border: 1px solid $text_highlight;
+      color: $navigation_text;
+    }
+    &.active, &:hover {
+      a {
+        background-color: $text_highlight;
+        color: $navigation_text;
+        font-weight: bold;
+      }
+    }
+  }
+}
 
 @media (max-width: 320px) {
   body {

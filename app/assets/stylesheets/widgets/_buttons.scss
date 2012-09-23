@@ -25,3 +25,43 @@
 .ca-menu li {
   height: 55px;
 }
+
+.circle-buttons {
+  margin-bottom: 20px;
+  a {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px 3px;
+    font-family: 'icomoon' !important;
+    font-size: 32px;
+    text-decoration: none;
+    text-transform: none;
+    line-height: 48px;
+    color: $text;
+    background-color: $background_highlight;
+    background-image: none;
+    background-repeat: no-repeat;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -o-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -khtml-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -o-transition: all 1s;
+    -ms-transition: all 1s;
+    -khtml-transition: all 1s;
+    transition: all 1s;
+    &:hover, &.active { 
+      background-color: $highlight;
+      color: $text;
+    }
+    &:first-child { margin-left: 0; }
+  }
+  .categories { text-align: left; }
+  .sorting    { text-align: left; }
+  .order      { text-align: right; }
+}

@@ -21,22 +21,25 @@ en:
   restriction:
     compliance: "Compliance: %{compliance}%"
   quests:
+    title:
+      one:    quest
+      other:  quests
     filter:
       all:      
-        title: "All quests"
-        sub:   "All quests in the system."
+        title: "All"
+        sub:   "are availble in total."
       own:      
-        title: "Your quests"
-        sub:   "Quests posted by you."
+        title: "Yours"
+        sub:   "have been posted by you."
       active:  
-        title:  "Active quests"
-        sub:    "All active quest."
+        title:  "Active"
+        sub:    "are active right now."
       expired: 
-        title:  "Expired quests"
-        sub:    "All expired quests."
+        title:  "Expired"
+        sub:    "have been already expired."
       with_criteria: 
         title:  "Explained"
-        sub:    "Quests with criteria."
+        sub:    "are defined with criteria."
   nav:
     quests: Quests
     offers: Offers
@@ -91,7 +94,7 @@ en:
         sub: "This quest is not yet started."
     location:
       title: "%{location}"
-      sub:   and it's surroundings border the location.
+      sub:   "borders the location of this quest."
       none: 
         title:  "No location"
         sub:    "is bound to this quest."
@@ -105,6 +108,9 @@ en:
       title:  "image"
       sub:    "has been uploaded."
     actions:
+      new:     
+        title: Post
+        sub: Place a new quest to fullfil your belonging.
       tweet:
         title: Tweet
         sub: Secure your chance for a part of the bounty.
@@ -179,3 +185,22 @@ en:
       financial: Financial information
       balance: Balance
       payments: Payments
+  buttons:
+    category:
+      job:      Jobs
+      home:     Homes
+      car:      Cars
+      people:   People
+      gift:     Gifts
+      help:     Help
+      travel:   Travel
+      fashion:  Fashion
+    sort:
+      created:     Sort by creation date
+      bounty:      Sort by amount of bounty
+      temporality: Sort by expiry date
+      locality:    Sort by place
+    order:
+      desc: Descending order
+      asc:  Ascending order
+      

@@ -1,3 +1,11 @@
+.quests {
+  .head {
+    .btn-group {
+      padding-top: 35px;
+    }
+  }
+}
+
 .avatar {
   width: 128px;
   height: 128px;
@@ -11,107 +19,109 @@
   border-radius: 6px;
 }
 
-.categories {
-  text-align: center;
-  padding: 10px;
-  a {
+.quest-cells {
+  .span4 {
+    & > .inner { padding: 10px 0; }
+/*
+    // does not work when 2 cells are in a row
+    &:first-child { 
+      & > .inner { margin-left: 20px; }
+    }
+    &:3rd-child { 
+      & > .inner { margin-right: 20px; }
+    }
+*/    
+  }
+  .quest-cell {
+    width: 100%;
+    margin: 0;
     position: relative;
-    text-decoration: none;
-    font-family: 'WebSymbolsRegular' !important;
-    text-align: center;
-    text-transform: none;
-    color: $text;
-    font-size: 35px;
-    line-height: 35px;
-    display: inline-block;
-    width: 68px;
-    height: 52px;
-    padding-top: 16px;
-    margin: 3px 1px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -o-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -khtml-border-radius: 100px;
-    border-radius: 100px;
-    -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    -o-transition: all 1s;
-    -ms-transition: all 1s;
-    -khtml-transition: all 1s;
-    transition: all 1s;
-    background-color: $background_highlight;
-    &:hover { background:$highlight; }
-  }
-}
-
-.featuedBox {
-  width: 100%;
-  margin: 0;
-  h3 { 
-    height: 55px;
-    overflow: hidden;
-    text-transform: none;
-  }
-  .ribbon { 
-    font: bold 16px Sans-Serif;
-    &.small { 
-      background-color: $ribbon_minor;
-      background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_minor), to($ribbon_minor_gradient));
-      background-image: -webkit-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
-      background-image: -moz-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
-      background-image: -ms-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
-      background-image: -o-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
-      &::before, &::after {border-top: 3px solid $ribbon_minor_border;}
+    height: 140px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    background-color: $background_light;
+    &:hover {
+      background-color: $background_highlight;
     }
-    &.medium { 
-      background-color: $ribbon;
-      background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon), to($ribbon_gradient));
-      background-image: -webkit-linear-gradient(top, $ribbon, $ribbon_gradient);
-      background-image: -moz-linear-gradient(top, $ribbon, $ribbon_gradient);
-      background-image: -ms-linear-gradient(top, $ribbon, $ribbon_gradient);
-      background-image: -o-linear-gradient(top, $ribbon, $ribbon_gradient);
-      &::before, &::after {border-top: 3px solid $ribbon_border;}
+    .inner {
+      padding: 10px; 
     }
-    &.large { 
-      background-color: $ribbon_major;
-      background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_major), to($ribbon_major_gradient));
-      background-image: -webkit-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
-      background-image: -moz-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
-      background-image: -ms-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
-      background-image: -o-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
-      &::before, &::after {border-top: 3px solid $ribbon_major_border;}
+    .avatar {
+      width: 64px;
+      height: 64px;
     }
-  }
-  .socialmedia {
-    margin: auto;
-    width: auto;
-    text-align: center;
-    margin-bottom: 0px;
-    float: right;
-  }
-  .restrictions {
-    float:left;
-    margin-top: 5px;
-    img {
-      &.temporality, &.locality {
-        position: relative;
-        margin-bottom: 4px;
-        width: 12px;
-        margin-left: 2px;
+    h3 { 
+      overflow: hidden;
+      text-transform: none;
+      height: 80px;
+      color: $text;
+    }
+    .ribbon { 
+      opacity: 0.9;
+      font: bold 16px Sans-Serif;
+      &.small { 
+        background-color: $ribbon_minor;
+        background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_minor), to($ribbon_minor_gradient));
+        background-image: -webkit-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
+        background-image: -moz-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
+        background-image: -ms-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
+        background-image: -o-linear-gradient(top, $ribbon_minor, $ribbon_minor_gradient);
+        &::before, &::after {border-top: 3px solid $ribbon_minor_border;}
+      }
+      &.medium { 
+        background-color: $ribbon;
+        background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon), to($ribbon_gradient));
+        background-image: -webkit-linear-gradient(top, $ribbon, $ribbon_gradient);
+        background-image: -moz-linear-gradient(top, $ribbon, $ribbon_gradient);
+        background-image: -ms-linear-gradient(top, $ribbon, $ribbon_gradient);
+        background-image: -o-linear-gradient(top, $ribbon, $ribbon_gradient);
+        &::before, &::after {border-top: 3px solid $ribbon_border;}
+      }
+      &.large { 
+        background-color: $ribbon_major;
+        background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_major), to($ribbon_major_gradient));
+        background-image: -webkit-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
+        background-image: -moz-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
+        background-image: -ms-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
+        background-image: -o-linear-gradient(top, $ribbon_major, $ribbon_major_gradient);
+        &::before, &::after {border-top: 3px solid $ribbon_major_border;}
       }
     }
-    span {
-      &.temporality, &.locality {
-        padding-left: 5px;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: normal;
-        color: $text_minor;
-        line-height: 1.0;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+    .socialmedia {
+      margin: auto;
+      width: auto;
+      text-align: center;
+      margin-bottom: 0px;
+      float: right;
+    }
+    .restrictions {
+      float:left;
+      margin-top: 5px;
+      img {
+        &.temporality, &.locality {
+          position: relative;
+          margin-bottom: 4px;
+          width: 12px;
+          height: 12px;
+          margin-left: 2px;
+        }
+      }
+      span {
+        &.temporality, &.locality {
+          padding-left: 5px;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: normal;
+          color: $text_minor;
+          line-height: 1.0;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
       }
     }
   }
@@ -131,6 +141,7 @@ article {
           margin: 0 0 5px 148px;
           font-size: 28px;
           line-height: 28px;
+          color: $link_text;
         }
       }
       .handle {
@@ -140,21 +151,6 @@ article {
     }
     p {
       margin: 10px 0 10px 148px;
-    }
-  }
-}
-
-.article_list {
-  color: $text_minor;
-  margin-bottom: 0px;
-  &.large {
-    li {
-      box-shadow: none;
-      article {
-        &::before {
-          border-bottom: none;
-        }
-      }
     }
   }
 }
@@ -236,13 +232,21 @@ article {
   }
 }
 
-h2 {
+h1, h2 {
+  font-size: 24px;
+  line-height: 36px;
   text-transform: none;
+  color: $highlight;
   span {
     strong  { font-size: 32px; }
     &.bounty {
-      strong    { font-size: 36px; }
+      strong { font-size: 36px; }
     }
+  }
+  small {
+    display: block;
+    margin-top: -10px;
+    font-size: 14px;
   }
 }
 

@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
   # -- The default number of items per page in a will_paginate enumeration.
   #
   def per_page
-    12
+    24
   end
 
   # -- default_url_options --------------------------------------------

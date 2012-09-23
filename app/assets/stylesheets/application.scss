@@ -29,8 +29,11 @@ body { padding-top: 30px } // has to be here! - gives some space between body an
 @import "inception/css/styles";
 @import "inception/css/styles-responsive";
 
-// import basic stylesheets
- @import "pages/colors";
+// import baiscs
+@import "colors";
+@import "fonts";
+
+// import pagewise stylesheets
  @import "pages/layout";
  @import "pages/quests";
 

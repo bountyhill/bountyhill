@@ -2,20 +2,13 @@
   expect! filters => Class 
   name = filters.model_name.pluralize.downcase
 %>
-<style type="text/css" media="screen">
-  a.filter {
-    display: inline-block;
-    border: 2px solid orange;
-    padding: 0 1em;
-    font-size: 170%;
-    font-weight: bold;
-  }
-</style>
-<div class="row" style="padding-left: 6em">
+<div class="inner btn-group">
   <% filters.filters.each do |filter| %>
   <%=
-    url = self.send("#{name}_path", :filter => filter)
-    link_to I18n.t("#{name}.filter.#{filter}.title"), url, :class => "filter" 
+    url = self.send("#{name}_path", params.slice(*params_for(name.to_sym)).update(:filter => filter))
+    css_class = "btn btn-inverse btn-large"
+    css_class += " active" if (params[:filter] == filter) 
+    link_to I18n.t("#{name}.filter.#{filter}.title"), url, :class => css_class
   %>
   <% end %>
 </div>

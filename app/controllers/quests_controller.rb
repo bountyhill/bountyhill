@@ -4,6 +4,10 @@ class QuestsController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
+    params[:filter] ||= "all"
+    params[:sort]   ||= "created"
+    params[:order]  ||= "desc"
+    
     @quests = Quest.
       filter_scope(params[:filter]).
       paginate(:page => params[:page], :per_page => per_page)

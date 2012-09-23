@@ -176,4 +176,14 @@ module ApplicationHelper
     
     super(object, options, &block)
   end
+  
+  ALLOWED_PARAMS_FOR = {
+    :quests => [:filter, :category, :sort, :order],
+    :offers => [:filter, :category, :sort, :order]
+  }
+  def params_for(controller)
+    expect! controller => ALLOWED_PARAMS_FOR.keys
+    
+    ALLOWED_PARAMS_FOR[controller]
+  end
 end
