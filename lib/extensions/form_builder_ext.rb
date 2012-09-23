@@ -5,7 +5,7 @@ ActionView::Helpers::FormBuilder
 
 class ActionView::Helpers::FormBuilder
   extend Forwardable
-  delegate [:error_class_for, :error_message_for, :link_to, :image_for] => :@template
+  delegate [:link_to, :image_for] => :@template
 
   # content_tag reimplementation for FormBuilder.
   #
@@ -54,13 +54,20 @@ class ActionView::Helpers::FormBuilder
       return self.send field_type, name, input_field_options
     end
 
-    label = input_field_options.delete(:label)
-    div :class => "control-group #{error_class_for(object, name)}" do
+    if error_message = object.error_message_for(name)
+      control_group_class = "control-group error"
+    else
+      control_group_class = "control-group"
+    end
+    
+    div :class => control_group_class do
+
+      label = input_field_options.delete(:label)
       label_tag = self.label label || name, :class => "control-label"
+
       controls = div :class => "controls" do
         input_field = self.send field_type, name, input_field_options
-        errors = error_message_for(object, name)
-        "#{input_field}\n#{errors}\n"
+        "#{input_field}\n#{error_message}\n"
       end
       
       "#{label_tag}\n#{controls}"

@@ -75,12 +75,6 @@ module ApplicationHelper
     nav_items
   end
 
-  def error_class_for(object, attribute)
-    if object.error_message_for(attribute)
-      "error"
-    end
-  end
-
   def xmp(s)
     content_tag :xmp, s
   end
