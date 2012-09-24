@@ -1,7 +1,7 @@
 require_dependency "identity/twitter"
 
 module SessionsHelper
-  def sign_in(user)
+  def signin(user)
     expect! user => User
     
     session[:remember_token] = user.remember_token
@@ -13,7 +13,7 @@ module SessionsHelper
     end
   end
   
-  def sign_out
+  def signout
     @current_user = false
     
     session.delete(:remember_token)   # Delete the BH remember token
@@ -62,6 +62,6 @@ module SessionsHelper
                   :oauth_token  => oauth_token,
                   :oauth_secret => oauth_secret
 
-    sign_in(identity.user)
+    signin(identity.user)
   end
 end

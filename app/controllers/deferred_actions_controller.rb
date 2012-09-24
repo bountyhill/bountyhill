@@ -69,7 +69,7 @@ class DeferredActionsController < ApplicationController
   
   # reset a password.
   def perform_reset_password
-    sign_in(action.actor)
+    signin(action.actor)
   end
 
   # confirm email address.

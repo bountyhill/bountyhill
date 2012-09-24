@@ -45,11 +45,11 @@ en:
     offers: Offers
     stats:  Stats
     logs:   Logs
-    
-  sign_up: "Sign up"
-  sign_in: "Sign in"
+    signup: "Sign up"
+    signin: "Sign in"
+    signout: "Sign out"
+
   go_to_signin: "I have an account, take me to the login page!"
-  sign_out: "Sign out"
   settings: Settings
   reset_password:
     label:  I forgot my password.
@@ -68,9 +68,10 @@ en:
       sent: 
         You should receive a confirmation email shortly.
   signin:
-    bountyhill: "Sign in with your email and password"
+    email: "Sign in with your email and password"
     twitter: "Sign in with twitter"
     new_user: "If you are a new user, please %{link} first!"
+    label: "Sign in"
     message:
       error: Your email and/or password are not valid. Please try again!
       success: "Welcome to bountyhill!"

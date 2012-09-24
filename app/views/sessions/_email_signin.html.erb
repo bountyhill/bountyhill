@@ -2,7 +2,7 @@
   form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post do |form| %>
   <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
-    <legend><%= I18n.t(:"signin.bountyhill")%></legend>
+    <legend><%= I18n.t(:"signin.email")%></legend>
     <%= form.error_messages :scope => "signin" %>
 
     <div>
@@ -23,7 +23,7 @@
           link_to I18n.t(:"reset_password.label"), reset_password_path(:email => @identity.email), :method => "post" 
         end 
       %> 
-      <%= form.submit I18n.t(:sign_in), :class => "btn btn-primary" %>
+      <%= form.submit I18n.t("signin.label"), :class => "btn btn-primary" %>
     </div>
   </fieldset>
 <% end %>

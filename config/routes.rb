@@ -19,9 +19,9 @@ Bountyhill::Application.routes.draw do
   match 'profile(/:tab)' => "users#show"
 
   # signup, signin, signout
-  match "signup" => "sessions#signup",      :via => :get
+  match "signup" => "sessions#signup_get",  :via => :get
   match "signup" => "sessions#signup_post", :via => :post
-  match "signin" => "sessions#signin",      :via => :get
+  match "signin" => "sessions#signin_get",  :via => :get
   match "signin" => "sessions#signin_post", :via => :post
   match "signout" => "sessions#signout",    :via => :delete
 

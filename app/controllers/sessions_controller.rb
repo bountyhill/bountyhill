@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   #   show "confirmed" when email identity is present but not confirmed.
   # - all other values: show "email" and "twitter" login forms.
   #
-  def signin
+  def signin_get
     render_signin
   end
 
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     
     flash[:success] = I18n.t("signin.message.success")
       
-    sign_in @identity.user
+    signin @identity.user
     redirect_to_target
   end
   
@@ -63,7 +63,7 @@ class SessionsController < ApplicationController
   
   # This action renders the signup forms. 
   #
-  def signup
+  def signup_get
     if current_user
       raise "user is already logged in"
     end
@@ -82,7 +82,7 @@ class SessionsController < ApplicationController
     end
     
     flash[:success] = I18n.t("signin.message.success", :name => @identity.name)
-    sign_in @identity.user
+    signin @identity.user
     redirect_to @identity.user
   end
   
@@ -103,7 +103,7 @@ class SessionsController < ApplicationController
   public
   
   def signout
-    sign_out
+    signout
     redirect_to root_path
   end
   

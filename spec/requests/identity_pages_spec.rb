@@ -8,16 +8,16 @@ describe "Identity pages" do
     before { visit signup_path }
 
     describe "page" do
-      it { should have_selector('h1',    text: I18n.t(:sign_up)) }
-      it { should have_selector('title', text: I18n.t(:sign_up)) }
+      it { should have_selector('h1',    text: I18n.t(:signup)) }
+      it { should have_selector('title', text: I18n.t(:signup)) }
     end
 
     describe "with invalid information" do
-      before { click_button I18n.t(:sign_up) }      
+      before { click_button I18n.t(:signup) }      
       it { should have_content('error') }
       it { should have_selector('div.alert.alert-error', text: I18n.t("signup.message.error")) }
       it "should not create identity" do
-        expect { click_button I18n.t(:sign_up) }.not_to change(Identity, :count)  
+        expect { click_button I18n.t(:signup) }.not_to change(Identity, :count)  
       end
 
     end
@@ -33,18 +33,18 @@ describe "Identity pages" do
       end
 
       it "should create identity" do
-        expect { click_button I18n.t(:sign_up) }.to change(Identity, :count)  
+        expect { click_button I18n.t(:signup) }.to change(Identity, :count)  
       end
 
       describe "after creating a identity" do
-        before { click_button I18n.t(:sign_up) }
+        before { click_button I18n.t(:signup) }
         let(:identity) { Identity.find_by_email(email) }
 
         it { should have_selector('h1', text: identity.name) }
         it { should have_selector('div.alert.alert-success', text: I18n.t("signup.message.success")) }
 
         describe "after saving the identity" do
-          it { should have_link(I18n.t(:sign_out)) }
+          it { should have_link(I18n.t(:signout)) }
         end
       end
     end
