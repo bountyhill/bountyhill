@@ -9,9 +9,8 @@ Bountyhill::Application.routes.draw do
     match static_page => "static##{static_page}"    
   end
 
-  resources :quests do
-    get 'start', :on => :member
-  end
+  resources :quests
+  resources :runs
   
   resources :offers
   resources :users

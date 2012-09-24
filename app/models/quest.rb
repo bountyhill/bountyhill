@@ -13,6 +13,11 @@ class Quest < ActiveRecord::Base
   access_control :visibility
   write_access_control :owner
 
+  # -- Pseudo attributes ----------------------------------------------
+
+  attr :duration_in_days, true 
+  attr_accessible :duration_in_days
+
   # -- scopes and filters ---------------------------------------------
   
   scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
@@ -186,6 +191,12 @@ class Quest < ActiveRecord::Base
     self.visibility = "public"
     self.started_at = Time.now
     self.expires_at = expires_at if expires_at
+    save!
+  end
+
+  def cancel!
+    self.visibility = nil
+    self.expires_at = Time.now
     save!
   end
   
