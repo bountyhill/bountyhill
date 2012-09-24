@@ -66,7 +66,11 @@ class ActionView::Helpers::FormBuilder
       label_tag = self.label label || name, :class => "control-label"
 
       controls = div :class => "controls" do
-        input_field = self.send field_type, name, input_field_options
+        input_field = if block_given? 
+          yield
+        else
+          self.send field_type, name, input_field_options
+        end
         "#{input_field}\n#{error_message}\n"
       end
       
@@ -122,14 +126,17 @@ class ActionView::Helpers::FormBuilder
   # All forms get "Cancel", "Create" or "Cancel", "Update" actions, depending
   # on whether the current object is a new or an existing record.
   def actions(options)
-    expect! options => { :cancel_url => String }
+    expect! options => { :cancel_url => String, :label => [ String, nil ] }
 
     div :class => "form-actions" do
       parts = []
 
       # 
       cancel_btn = link_to(I18n.t(:cancel), options[:cancel_url], :class => "btn")
-      save_btn = submit(I18n.t(object.new_record? ? :create : :update), :class => "btn btn-primary")
+
+      label = options[:label]
+      label ||= object.new_record? ? I18n.t(:create) : I18n.t(:update)
+      save_btn = submit(label, :class => "btn btn-primary")
 
       "#{cancel_btn} #{save_btn}"
     end
