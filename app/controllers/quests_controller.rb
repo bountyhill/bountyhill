@@ -3,13 +3,7 @@ class QuestsController < ApplicationController
   
   # GET /quests
   def index
-    params[:filter] ||= "all"
-    params[:sort]   ||= "created"
-    params[:order]  ||= "desc"
-    
-    @quests = Quest.
-      filter_scope(params[:filter]).
-      paginate(:page => params[:page], :per_page => per_page)
+    @quests = Quest.paginate(:page => params[:page], :per_page => per_page)
   end
 
   # GET /quests/1

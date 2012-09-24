@@ -7,9 +7,6 @@
           <%= partial "quests/index/head" %>
         </div>
       </div>
-      <div class="span5">
-        <%= partial "shared/filters", Quest %>
-      </div>
       <div class="span4">
         <div class="inner">
           <%= partial "quests/index/actions" %>
@@ -17,11 +14,6 @@
       </div>
     </div>
 
-    <div class="row circle-buttons">
-      <%= partial "quests/index/buttons" %>
-    </div>
-
-    
     <% @quests.each_slice(3) do |slice| %>
     <div class="row quest-cells">
       <% slice.each_with_index do |quest, index|
