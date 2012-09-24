@@ -83,14 +83,13 @@ class Identity::Twitter < Identity
     info["profile_image_url"] || options[:default]
   end
   
+  # -- Pseudo attributes ----------------------------------------------
+
+  attr :follow_bountyhill, true
+  attr_accessible :follow_bountyhill
 
   # -- Twitter actions ------------------------------------------------
 
-  # The follow_bountyhill pseudo attribute exists only for
-  # the login via twitter form.
-  attr :follow_bountyhill, true
-  attr_accessible :follow_bountyhill
-  
   # This method makes the user follow @bountyhill. If the user followed
   # @bountyhill before, this method is a no-op.
   def follow
