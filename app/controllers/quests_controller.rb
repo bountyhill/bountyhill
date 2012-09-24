@@ -2,7 +2,6 @@ class QuestsController < ApplicationController
   include ApplicationController::ImageParameters
   
   # GET /quests
-  # GET /quests.json
   def index
     params[:filter] ||= "all"
     params[:sort]   ||= "created"
@@ -11,26 +10,13 @@ class QuestsController < ApplicationController
     @quests = Quest.
       filter_scope(params[:filter]).
       paginate(:page => params[:page], :per_page => per_page)
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @quests }
-    end
   end
 
   # GET /quests/1
-  # GET /quests/1.json
   def show
     @quest = Quest.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @quest }
-    end
   end
 
-  # GET /quests/new
-  # GET /quests/new.json
   def new
     @quest = Quest.new
 
@@ -41,14 +27,8 @@ class QuestsController < ApplicationController
     if location = request.location
       @quest.location = location.name 
     end
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @quest }
-    end
   end
 
-  # GET /quests/1/edit
   def edit
     @quest = Quest.find(params[:id])
     render action: "new"
@@ -61,50 +41,32 @@ class QuestsController < ApplicationController
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
 
-    # (Try to) save
-    if @quest.valid?
-      @quest.save!
-
-      # Mark the quest as to be transferred upon signin.
-      if @quest.owner.draft?
-        session[:transfer] ||= []
-        session[:transfer] << "Quest:#{@quest.id}"
-
-        redirect_to signin_path(:req => params[:req]), notice: 'You must register with your email.'
-      else
-        @quest.start!
-        redirect_to @quest, notice: 'Quest was successfully created.'
-      end
-    else
-      flash.now[:error] = if base_errors = @quest.errors[:base]
-        I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
-      else
-        I18n.t("quest.message.error")
-      end
-      
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.json { render json: @quest.errors, status: :unprocessable_entity }
-      end
+    # Start the quest after saving.
+    if @quest.save
+      redirect_to! run_path(@quest), notice: 'Quest was successfully created.'
     end
-  end
 
+    # rerender form if quest could not be saved
+    flash.now[:error] = if base_errors = @quest.errors[:base]
+      I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
+    else
+      I18n.t("quest.message.error")
+    end
+
+    render action: "new"
+  end
+  
   # PUT /quests/1
   # PUT /quests/1.json
   def update
     @quest = Quest.find(params[:id])
+    @quest.attributes = params[:quest]
 
-    respond_to do |format|
-      if @quest.valid?
-        @quest.update_attributes(params[:quest])
-        
-        format.html { redirect_to quests_path, notice: 'Quest was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @quest.errors, status: :unprocessable_entity }
-      end
+    if @quest.valid?
+      redirect_to! quests_path, notice: 'Quest was successfully updated.'
     end
+
+    render action: "new"
   end
 
   # DELETE /quests/1
@@ -113,9 +75,6 @@ class QuestsController < ApplicationController
     @quest = Quest.find(params[:id])
     @quest.destroy
 
-    respond_to do |format|
-      format.html { redirect_to quests_url }
-      format.json { head :no_content }
-    end
+    redirect_to quests_url
   end
 end
