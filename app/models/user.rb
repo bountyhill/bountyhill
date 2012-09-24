@@ -127,15 +127,13 @@ class User < ActiveRecord::Base
     identity.email
   end
 
+  # returns the email if it is confirmed
   def confirmed_email
     return unless identity = self.identity(:confirmed)
     identity.email
   end
 
-  def confirmed_email?
-    confirmed_email != nil
-  end
-
+  # confirm the email address
   def confirm_email!
     self.identity(:email).confirm!
   end
@@ -193,6 +191,15 @@ class User < ActiveRecord::Base
   def draft?
     self == User.draft
   end
+
+  # -- offers ---------------------------------------------------------
+  
+  # returns true if the user has any current offers
+  def current_offers?
+    quests.active.first || offers.first
+  end
+  
+  # -- special System users -------------------------------------------
 
   # sign over the passed in object to this user. 
   # The transfer parameter can be an ActiveRecord::Base object
