@@ -102,7 +102,7 @@ class SessionsController < ApplicationController
 
   public
   
-  def signout
+  def signout_delete
     signout
     redirect_to root_path
   end

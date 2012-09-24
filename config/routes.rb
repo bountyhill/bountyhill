@@ -18,12 +18,12 @@ Bountyhill::Application.routes.draw do
 
   match 'profile(/:tab)' => "users#show"
 
-  # signup, signin, signout
-  match "signup" => "sessions#signup_get",  :via => :get
-  match "signup" => "sessions#signup_post", :via => :post
-  match "signin" => "sessions#signin_get",  :via => :get
-  match "signin" => "sessions#signin_post", :via => :post
-  match "signout" => "sessions#signout",    :via => :delete
+  # manual routes for signup, signin, signout, twitter signin
+  match "signup" => "sessions#signup_get",      :via => :get
+  match "signup" => "sessions#signup_post",     :via => :post
+  match "signin" => "sessions#signin_get",      :via => :get
+  match "signin" => "sessions#signin_post",     :via => :post
+  match "signout" => "sessions#signout_delete", :via => :delete
 
   match "sessions/twitter" => "sessions#twitter_post", :via => :post
   match "sessions/twitter" => "sessions#twitter", :via => :get

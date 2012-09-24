@@ -38,7 +38,7 @@ module NavigationHelper
       end
       nav_items
     when :right
-      if signed_in?
+      if current_user
         [ :profile, :signout ]
       else
         [ "signup", "signin" ]

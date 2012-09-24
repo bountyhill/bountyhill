@@ -1,6 +1,10 @@
 require_dependency "identity/twitter"
 
-module SessionsHelper
+module ApplicationController::Sessions
+  def self.included(klass)
+    klass.helper_method :current_user, :admin?
+  end
+  
   def signin(user)
     expect! user => User
     
@@ -17,13 +21,8 @@ module SessionsHelper
     @current_user = false
     
     session.delete(:remember_token)   # Delete the BH remember token
-    session.delete(:tw)               # Delete the twitter auth token
   end
   
-  def signed_in?
-    current_user
-  end
-
   def admin?
     current_user && current_user.admin?
   end
