@@ -1,7 +1,7 @@
 <%= form_for @identity, :url => "/signup", :method => :post do |form| %>
   <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
-    <legend><%= I18n.t(:"signup.bountyhill")%></legend>
+    <legend><%= I18n.t(:"signup.email")%></legend>
     <%= form.error_messages :scope => "signup" %>
 
     <%= form.control_group :name %>
