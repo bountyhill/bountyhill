@@ -5,7 +5,7 @@ Bountyhill::Application.routes.draw do
     match "mocks/#{mock}/:page" => "mocks##{mock}"
   end
 
-  %w(help about privacy terms).each do |static_page|
+  %w(help about privacy terms contact).each do |static_page|
     match static_page => "static##{static_page}"    
   end
 

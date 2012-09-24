@@ -12,10 +12,12 @@ module NavigationHelper
   }
   
   def link_to_nav_item(nav_item)
-    expect! nav_item => [String, :profile, :signout]
+    expect! nav_item => [String, :profile, :signout, :copyright]
     
     if nav_item == :profile
       link_to current_user.name, "/profile"
+    elsif nav_item == :copyright
+      link_to "&copy; bountyhill, 2012".html_safe, contact_path
     elsif nav_item == :signout
       link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path"), :method => "delete"
     elsif admin_only_url = ADMIN_NAVIGATION[nav_item]
@@ -26,31 +28,34 @@ module NavigationHelper
   end
   
   def navigation_items(position)
-    expect! position => [:left, :right]
+    expect! position => [:left, :right, :bottom_left, :bottom_right]
     
     case position
     when :left
-      nav_items = []
-      nav_items << "quests"
+      nav_items = [ "about", "quests" ]
       if current_user && (current_user.offers.first || current_user.quests.first)
         nav_items << "offers"
       end
       nav_items
     when :right
-      nav_items = if signed_in?
+      if signed_in?
         [ :profile, :signout ]
       else
         [ "signup", "signin" ]
       end
+    when :bottom_left
+      [ "terms", "privacy", "contact" ]
+    when :bottom_right
       if admin?
-        nav_items = ADMIN_NAVIGATION.keys + nav_items
+        ADMIN_NAVIGATION.keys + [ :copyright ]
+      else
+        [ :copyright ]
       end
-      nav_items
     end
   end
   
   def render_navigation_items(position)
-    ul :class => "nav #{" pull-right" if position == :right }" do
+    ul :class => "nav #{" pull-right" if position == :right || position == :bottom_right }" do
       navigation_items(position).map do |navigation_item|
         if link = link_to_nav_item(navigation_item)
           content_tag :li, link, :class => navigation_item_class_for(navigation_item)

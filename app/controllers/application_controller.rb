@@ -21,25 +21,6 @@ class ApplicationController < ActionController::Base
   #   # I18n.locale = I18n.default_locale
   # end
 
-  # -- Adjust the layout ----------------------------------------------
-  #
-  # We support these layouts:
-  #
-  # - "application" the default application layout
-  # - "static" wraps a single, 12 column spanning row into the 
-  #   "application" layout. This is useful for single pages, probably 
-  #   created from markdown.
-  #
-  def set_layout(layout)
-    @layout = layout.to_s
-  end
-  
-  def layout #:nodoc:
-    @layout || "application"
-  end
-  
-  layout :layout
-
   # -- Detect mobile devices  -----------------------------------------
   #
   # I know it sucks, but in some rare cases we just have to render

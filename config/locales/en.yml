@@ -48,7 +48,10 @@ en:
     signup: "Sign up"
     signin: "Sign in"
     signout: "Sign out"
-
+    about:  "About"
+    terms:  "Terms & Conditions"
+    privacy: "Privacy"
+    contact: Contact
   go_to_signin: "I have an account, take me to the login page!"
   settings: Settings
   reset_password:

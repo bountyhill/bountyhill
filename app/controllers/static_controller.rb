@@ -1,20 +1,25 @@
 class StaticController < ApplicationController
+  layout :layout, :except => "home"
+
+  def layout #:nodoc:
+    "page"
+  end
+
   def home
   end
 
   def help
-    set_layout :page
   end
 
   def about
-    set_layout :page
   end
 
   def privacy
-    set_layout :page
   end
 
   def terms
-    set_layout :page
+  end
+  
+  def contact
   end
 end
