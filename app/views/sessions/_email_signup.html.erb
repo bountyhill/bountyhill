@@ -13,7 +13,7 @@
 
     <div class="form-actions">
       <%= link_to I18n.t(:go_to_signin), signin_path(:req => params[:req]) %>
-      <%= form.submit I18n.t(:signup), :class => "btn btn-primary" %>
+      <%= form.submit I18n.t("signup.label"), :class => "btn btn-primary" %>
     </div>
   </fieldset>
 <% end %>

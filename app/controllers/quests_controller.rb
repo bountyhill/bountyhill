@@ -51,8 +51,8 @@ class QuestsController < ApplicationController
   # GET /quests/1/edit
   def edit
     @quest = Quest.find(params[:id])
+    render action: "new"
   end
-
 
   # POST /quests
   # POST /quests.json

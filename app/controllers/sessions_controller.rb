@@ -37,6 +37,7 @@ class SessionsController < ApplicationController
   private
 
   def render_signin
+    @identity ||= Identity::Email.new
     render :action => "new", :locals => { :partials => signin_partials }
   end
 
