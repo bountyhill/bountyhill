@@ -11,19 +11,21 @@ module NavigationHelper
     "logs"  => "https://papertrailapp.com/systems/staging/events"
   }
   
+  def nav_profile_label
+    confirmation = if current_user.identity(:confirmed)
+      span " &#10004;".html_safe, :title => "Confirmed email account"
+    elsif current_user.identity(:twitter)
+      span " &#10003;".html_safe, :title => "Confirmed twitter account"
+    end
+    
+    "#{h current_user.name}#{confirmation}".html_safe
+  end
+
   def link_to_nav_item(nav_item)
     expect! nav_item => [String, :profile, :signout, :copyright]
     
     if nav_item == :profile
-      label = if current_user.identity(:confirmed)
-        "#{h current_user.name} &#10004;".html_safe
-      elsif current_user.identity(:twitter)
-        "#{h current_user.name} &#10003;".html_safe
-      else
-        current_user.name
-      end
-
-      link_to label, "/profile"
+      link_to nav_profile_label, "/profile"
     elsif nav_item == :copyright
       link_to "&copy; bountyhill, 2012".html_safe, contact_path
     elsif nav_item == :signout
