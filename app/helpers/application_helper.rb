@@ -111,8 +111,7 @@ module ApplicationHelper
 
   def image_link_to(quest, options)
     zoom = options.delete(:zoom) && "zoom"
-    link_to image_for(quest, options), quest, 
-      :class => zoom, "data-bitly-type" => "bitly_hover_card"
+    link_to image_for(quest, options), quest, :class => zoom
   end
 
   def render_restriction(model, what)

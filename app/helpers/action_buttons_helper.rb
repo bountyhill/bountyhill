@@ -28,7 +28,7 @@ module ActionButtonsHelper
       url = options[:url] || '#'
       
       li = self.li do
-        link_to url, "data-bitly-type" => "bitly_hover_card" do
+        link_to url do
           html = span icon, "class" => "ca-icon twitter"
           html += div "class" => "ca-content" do
             title = span title, :class => "ca-main"

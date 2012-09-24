@@ -14,8 +14,7 @@ module AccordionHelper
       heading += h3(title)
       heading += span("", :class => "arrow")
       a = link_to heading, "##{item_id}", :class => "accordion-toggle", 
-        "data-toggle" => "collapse", "data-parent" => "##{@accordion_id}",
-        "data-bitly-type"=>"bitly_hover_card"
+        "data-toggle" => "collapse", "data-parent" => "##{@accordion_id}"
         
       div a, :class => "accordion-heading"
     end
