@@ -40,11 +40,15 @@ class Quest < ActiveRecord::Base
   # User.draft. We'll need this when a user enters a quest before she is
   # registered: in that case the quest will be attached to User.draft.
   def self.draft(id)
+    current_user = ActiveRecord.current_user
+    
     ActiveRecord.as(User.admin) do 
-      quest = Quest.find_by_id(id)
-      if quest.owner == ActiveRecord.current_user || quest.owner == User.draft
-        quest
-      end
+      quest = Quest.find(id)
+      
+      next quest if quest.owner == current_user 
+      next quest if quest.owner == User.draft && quest.created_at > Time.now - 10.minutes
+
+      raise ActiveRecord::RecordNotFound, "Couldn't find Quest(draft) with id=#{id}"
     end
   end
   
