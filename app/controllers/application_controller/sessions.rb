@@ -4,23 +4,17 @@ module ApplicationController::Sessions
   def self.included(klass)
     klass.helper_method :current_user, :admin?
   end
-  
+
   def signin(user)
     expect! user => User
     
     session[:remember_token] = user.remember_token
-
     @current_user = user
-
-    if (transfer = session.delete(:transfer)) && transfer.is_a?(String) 
-      user.transfer!(transfer)
-    end
   end
   
   def signout
     @current_user = false
-    
-    session.delete(:remember_token)   # Delete the BH remember token
+    session.delete(:remember_token)
   end
   
   def admin?
@@ -34,33 +28,14 @@ module ApplicationController::Sessions
   # This returns either a User object or nil.
   def current_user
     if @current_user.nil?
-      signin_from_remember_token
-      signin_from_twitter_session
+      if remember_token = session[:remember_token]
+        @current_user = User.find_by_remember_token(remember_token)
+        # run_after_signin if @current_user
+      end
+
       @current_user ||= false
     end
     
     @current_user || nil
-  end
-  
-  def signin_from_remember_token #:nodoc:
-    if remember_token = session[:remember_token]
-      @current_user = User.find_by_remember_token(remember_token)
-    end
-  end
-  
-  # This reads the twitter oauth configuration from the session, via the
-  # TwitterAuthMiddleware (see lib/middleware/twitter_auth_middleware.rb), 
-  # and loads or creates an Identity accordingly.
-  def signin_from_twitter_session #:nodoc:
-    screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
-    return unless screen_name
-
-    identity = ::Identity::Twitter.find_or_create :info => info, 
-                  :user => current_user,
-                  :screen_name  => screen_name,
-                  :oauth_token  => oauth_token,
-                  :oauth_secret => oauth_secret
-
-    signin(identity.user)
   end
 end

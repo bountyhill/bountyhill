@@ -132,6 +132,17 @@ class SessionsController < ApplicationController
   # The created action is where the TwitterAuthMiddleware will redirect 
   # to after the user logged in successfully.
   def twitter
+    screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
+    if screen_name
+      identity = ::Identity::Twitter.find_or_create :info => info, 
+                    :user => current_user,
+                    :screen_name  => screen_name,
+                    :oauth_token  => oauth_token,
+                    :oauth_secret => oauth_secret
+
+      signin(identity.user)
+    end
+    
     follow_bountyhill = session.delete(:follow_bountyhill)
 
     if current_user
