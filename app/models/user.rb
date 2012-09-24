@@ -39,7 +39,28 @@ class User < ActiveRecord::Base
   #
   # Offers submitted by the user
   has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
+
+  # -- Finding --------------------------------------------------------
   
+  def self.by_handle(handle)
+    expect! handle => String
+    
+    identity = case handle
+    when /^.+@(.*)/ then  Identity::Email.find_by_email(handle)
+    when /^@(.*)/   then  Identity::Twitter.find_by_email($1)
+    else                  Identity::Twitter.find_by_email(handle)
+    end
+
+    identity.user if identity
+  end
+
+  def self.by_handle!(handle)
+    by_handle(handle) ||
+      raise(ActiveRecord::RecordNotFound, "Couldn't find User with handle: #{handle.inspect}") 
+  end
+  
+  # -- Identities -----------------------------------------------------
+
   # returns a user's identity in a specific mode, which is needed to
   # 
   # - interact with a specific identity provider (e.g. a user's twitter
