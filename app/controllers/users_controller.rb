@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  TABS = %w(overview email twitter contact financial balance payments)
+  TABS = %w(overview account contact financial)
 
   def show
     @user = current_user
@@ -7,13 +7,16 @@ class UsersController < ApplicationController
   
   private
   
-  def active_tab
-    params[:tab] || UsersController.default_tab
-  end
-  
   def self.default_tab
     TABS.first
   end
 
-  helper_method :active_tab
+  def active_tab
+    params[:tab] || UsersController.default_tab
+  end
+  
+  helper_method :current_tabs, :active_tab
+  def current_tabs
+    TABS
+  end
 end

@@ -24,13 +24,14 @@ module UsersHelper
   def render_tabs
     default_tab = UsersController.default_tab
 
-    items = UsersController::TABS.map do |tab|
-      li :class => ("active" if active_tab == tab) do
-        url = tab == default_tab ? "/profile" : "/profile/#{tab}"
-        link_to I18n.t("users.tab.#{tab}"), url
-      end
+    ul :class => "nav nav-tabs" do
+      current_tabs.map do |tab|
+        li :class => ("active" if active_tab == tab) do
+          url = tab == default_tab ? "/profile" : "/profile/#{tab}"
+          link_to I18n.t("users.tab.#{tab}"), url
+        end
+      end.join.html_safe
     end
     
-    ul items, :class => "nav nav-tabs"
   end
 end

@@ -183,12 +183,9 @@ en:
   users:
     tab:
       overview: Overview
-      email: Email accoutn
-      twitter: Twitter account
+      account: Account information
       contact: Contact information
       financial: Financial information
-      balance: Balance
-      payments: Payments
   buttons:
     category:
       job:      Jobs
