@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include ApplicationController::Redirected
   include ApplicationController::Sessions
   include ApplicationController::RequiredIdentity
+  include ApplicationController::Debugging
 
   private
   
@@ -104,12 +105,12 @@ class ApplicationController < ActionController::Base
   # Keep the value of the incoming session. It then can be displayed in
   # the application layout. To disable just dactivate the before_filter.
 
-  # before_filter :keep_session
-  
-  def keep_session
-    @debug_output = session.to_a.map do |k,v|
-      "<b>#{k}:</b><br /><code>#{v.inspect}</code><br />"
-    end.join("\n").html_safe
+  before_filter do |controller|
+    lines = session.each do |k,v| 
+      controller.debug k, v unless k.in?(%w(_csrf_token))
+    end
+    
+    controller.debug "User", "User.find(#{current_user.id})"
   end
 
   # -- the confirmation reminder

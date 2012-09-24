@@ -29,7 +29,7 @@
   <div class="bg-blacklight"></div>
   <%= render 'layouts/header' %>
   <div class="container">
-  <%= render 'layouts/debug' %>
+    <%= render 'layouts/debug' if Rails.env.development? %>
     <section class="topspace blackshadow bg-black">
       <%= 
         if defined?(content)

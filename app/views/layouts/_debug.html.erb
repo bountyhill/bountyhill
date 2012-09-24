@@ -1,4 +1,4 @@
-<% if @debug_output %>
+<% if @debug %>
 <style type="text/css" media="screen">
   div.debug {
     position: absolute;
@@ -9,6 +9,6 @@
   }
 </style>
 <div class="debug">
-  <pre><%= @debug_output %></pre>
+  <pre><%= @debug.join("<br />").html_safe %></pre>
 </div>
 <% end %>
