@@ -15,7 +15,15 @@ module NavigationHelper
     expect! nav_item => [String, :profile, :signout, :copyright]
     
     if nav_item == :profile
-      link_to current_user.name, "/profile"
+      label = if current_user.identity(:confirmed)
+        "#{h current_user.name} &#10004;".html_safe
+      elsif current_user.identity(:twitter)
+        "#{h current_user.name} &#10003;".html_safe
+      else
+        current_user.name
+      end
+
+      link_to label, "/profile"
     elsif nav_item == :copyright
       link_to "&copy; bountyhill, 2012".html_safe, contact_path
     elsif nav_item == :signout
@@ -33,7 +41,7 @@ module NavigationHelper
     case position
     when :left
       nav_items = [ "about", "quests" ]
-      if current_user && (current_user.offers.first || current_user.quests.first)
+      if current_user && current_user.current_offers?
         nav_items << "offers"
       end
       nav_items
