@@ -35,18 +35,6 @@ class Offer < ActiveRecord::Base
   
   scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
   scope :received,  lambda { joins(:quest).where("quests.owner_id=?", ActiveRecord.current_user) }
-  scope :with_criteria, joins(:quest).where("quests.number_of_criteria > 0")
-  
-  def self.filters
-    %w(all own received with_criteria)
-  end
-  
-  def self.filter_scope(name)
-    return self if name.nil? || name == "all"
-    
-    expect! name => filters
-    self.send(name)
-  end
   
   # -- Validation -----------------------------------------------------
 

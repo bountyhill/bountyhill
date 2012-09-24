@@ -162,19 +162,9 @@ en:
       none:     "No criteria"
       none_sub: "The user can choose a number of criteria."
   offers:
-    filter:
-      all:      
-        title: "All offers"
-        sub:   "All offers in the system."
-      own:      
-        title: "Your offers"
-        sub:   "Offers posted by you."
-      received:  
-        title:  "Received offers"
-        sub:    "Offers you received."
-      with_criteria: 
-        title:  "Explained"
-        sub:    "Offers with criteria."
+    all:      
+      title: "All offers (%{count})"
+      sub:   "All offers in the system."
   deferred_actions:
     invalid:          "This link is no longer valid."
     reset_password:   "You have been logged in. Please update your password." 

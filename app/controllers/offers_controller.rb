@@ -6,8 +6,7 @@ class OffersController < ApplicationController
   # GET /quests
   # GET /quests.json
   def index
-    scope = Offer.filter_scope(params[:filter])
-    
+    scope = Offer
     if params[:quest_id]
       scope = scope.where(:quest_id => params[:quest_id]).order("compliance DESC")
     end
