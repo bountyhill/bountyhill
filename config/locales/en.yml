@@ -208,4 +208,7 @@ en:
     order:
       desc: Descending order
       asc:  Ascending order
-      
+  requires_identity:
+    email:      "Please sign in with your email address."
+    confirmed:  "Please confirm your email address."
+    twitter:    "Please sign in with twitter."

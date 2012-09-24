@@ -75,6 +75,7 @@ class DeferredActionsController < ApplicationController
   # confirm email address.
   def perform_confirm_email
     action.actor.confirm_email!
+    signin(action.actor)
   end
   
   private

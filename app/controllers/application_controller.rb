@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include ApplicationController::Redirected
   include ApplicationController::Sessions
+  include ApplicationController::RequiredIdentity
 
   private
   
