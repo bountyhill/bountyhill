@@ -3,7 +3,7 @@ class RunsController < ApplicationController
   
   # Start a new run, based on a given quest
   def show
-    requires_identity! :confirmed, :transfer => @quest
+    requires_identity! :confirmed, :transfer => quest
   end
   
   # Start the quest
@@ -39,6 +39,6 @@ class RunsController < ApplicationController
   private
   
   def quest
-    @quest ||= Quest.find(params[:id])
+    @quest ||= Quest.draft(params[:id])
   end
 end
