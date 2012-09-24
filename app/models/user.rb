@@ -134,8 +134,8 @@ class User < ActiveRecord::Base
   end
 
   # confirm the email address
-  def confirm_email!
-    self.identity(:email).confirm!
+  def confirm_email!(flag = true)
+    self.identity(:email).confirm!(flag)
   end
 
   # return the user's twitter handle

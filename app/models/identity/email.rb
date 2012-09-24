@@ -47,8 +47,8 @@ class Identity::Email < Identity
     confirmed_at.present?
   end
 
-  def confirm!
-    Identity::Email.update_all({:confirmed_at => Time.now}, :id => id)
+  def confirm!(flag)
+    Identity::Email.update_all({:confirmed_at => flag ? Time.now : nil}, :id => id)
     reload
   end
 end

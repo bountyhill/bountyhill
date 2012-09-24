@@ -133,3 +133,13 @@ class String
     Zlib::crc32(self)
   end
 end
+
+class Module
+  def reload
+    source_file = "#{name.underscore}.rb"
+    load source_file
+    STDERR.puts "Loaded #{source_file}"
+  rescue StandardError
+    STDERR.puts "Cannot load #{source_file}: #{$!}, from\n\t#{$!.backtrace.join("\n\t")}"
+  end
+end
