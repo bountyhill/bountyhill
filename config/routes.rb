@@ -11,6 +11,8 @@ Bountyhill::Application.routes.draw do
 
   resources :quests
   resources :runs
+  match "/runs/:id" => "runs#update", :via => :post
+  match "/runs/:id/start" => "runs#start", :via => :get
   
   resources :offers
   resources :users
