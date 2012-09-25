@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  include ApplicationController::Redirected
+
+  include ApplicationController::Halt
   include ApplicationController::Sessions
   include ApplicationController::RequiredIdentity
   include ApplicationController::Debugging
@@ -105,12 +106,26 @@ class ApplicationController < ActionController::Base
   # Keep the value of the incoming session. It then can be displayed in
   # the application layout. To disable just dactivate the before_filter.
 
-  before_filter do |controller|
-    lines = session.each do |k,v| 
-      controller.debug k, v unless k.in?(%w(_csrf_token))
+  before_filter :debug_session if Rails.env.development?
+  
+  def debug_session
+    session.each do |k,v| 
+      next if k.in?(%w(_csrf_token session_id))
+      if k == "flash"
+        v.each { |vk, vv| debug "flash.#{vk}", vv }
+      else
+        debug k, v
+      end
     end
     
-    controller.debug "User", "User.find(#{current_user.id})"
+    if current_user
+      user_info = [:email, :confirmed, :twitter].map do |sym|
+        sym if current_user.identity(sym)
+      end.compact.join(", ")
+      user_info = " [#{user_info}]"
+    end
+    
+    debug "User", "#{current_user.uid}#{user_info}"
   end
 
   # -- the confirmation reminder

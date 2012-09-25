@@ -12,8 +12,7 @@ class TwitterAuthMiddleware
     expect! options => { 
       :consumer_key => String,
       :consumer_secret => String,
-      :failure_url => String,
-      :success_url => String
+      :redirect_to => String
     }
 
     @app = app
@@ -22,8 +21,8 @@ class TwitterAuthMiddleware
       :consumer_secret => options[:consumer_secret]
     }
 
-    @failure_url, @success_url = options.values_at(:failure_url, :success_url)
-
+    @redirect_to = options[:redirect_to]
+    
     @path = options[:path] || 'tw'
     @matcher = /^\/#{@path}\/(login|logout|callback)$/
   end
@@ -79,9 +78,9 @@ class TwitterAuthMiddleware
   
   def twitter_callback
     login_from_twitter_callback
-    redirect @success_url
+    redirect @redirect_to
   rescue OAuth::Unauthorized
-    redirect @failure_url
+    redirect @redirect_to
   end
   
   # log in from twitter callback. Raise OAuth::Unauthorized if authorization

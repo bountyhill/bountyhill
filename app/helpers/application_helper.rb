@@ -156,4 +156,25 @@ module ApplicationHelper
     
     ALLOWED_PARAMS_FOR[controller]
   end
+
+  BOOTSTRAP_ALERT_CLASS = {
+    :error    =>  "alert-error",
+    :success  =>  "alert-success",
+    :notice   =>  "alert-info",
+    :info     =>  "alert-info"
+  }
+
+  def render_flash
+    flash_msg = nil
+    flash_key = [:error, :success, :warn, :notice, :info].detect do |key| 
+      flash_msg = flash[key] 
+    end
+    
+    return unless flash_key
+
+    div :class => "flash alert #{BOOTSTRAP_ALERT_CLASS[flash_key]}" do
+      link_to("x", "#", :class => "close", :"data-dismiss" => "alert") +
+      flash_msg
+    end
+  end
 end

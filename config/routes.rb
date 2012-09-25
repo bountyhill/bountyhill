@@ -11,6 +11,8 @@ Bountyhill::Application.routes.draw do
 
   resources :quests
   resources :runs
+  match "/runs/:id" => "runs#update", :via => :post
+  match "/runs/:id/start" => "runs#start", :via => :get
   
   resources :offers
   resources :users
@@ -18,15 +20,13 @@ Bountyhill::Application.routes.draw do
   match 'profile(/:tab)' => "users#show"
 
   # manual routes for signup, signin, signout, twitter signin
-  match "signup" => "sessions#signup_get",      :via => :get
-  match "signup" => "sessions#signup_post",     :via => :post
   match "signin" => "sessions#signin_get",      :via => :get
   match "signin" => "sessions#signin_post",     :via => :post
   match "signout" => "sessions#signout_delete", :via => :delete
+  match "sessions/cancel" => "sessions#cancel", :via => :post
 
   match "sessions/twitter" => "sessions#twitter_post", :via => :post
   match "sessions/twitter" => "sessions#twitter", :via => :get
-  match "sessions/twitter_failed" => "sessions#twitter"
   
   # 
 

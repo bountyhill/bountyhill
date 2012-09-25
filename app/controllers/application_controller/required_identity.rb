@@ -1,9 +1,4 @@
 module ApplicationController::RequiredIdentity
-
-  def self.included(klass)
-    klass.rescue_from Missing, :with => :redirect_to_identity_provider
-  end
-  
   def requires_identity!(*args)
     options = args.extract_options!
     kind = args.first || :any
@@ -11,82 +6,97 @@ module ApplicationController::RequiredIdentity
     expect! args.length => [0, 1]
     expect! kind => [ :confirmed, :email, :twitter, :any ]
     expect! options => {
-      :transfer => [ nil, ActiveRecord::Base ],
-      :redirect_to => [ nil, ActiveRecord::Base, String ]
+      :on_complete => [ nil, ActiveRecord::Base, String ],
+      :on_success  => [ nil, ActiveRecord::Base, String ],
+      :on_cancel   => [ nil, ActiveRecord::Base, String ]
     }
 
-    return if current_user && current_user.identity(kind)
-    raise Missing, options.merge(:kind => kind)
+    # does the user already has the identity?
+    if current_user && current_user.identity(kind)
+      redirect_after_identity_provided!(options, :on_success, :on_complete)
+      return
+    end
+
+    # -- prepare payload ----------------------------------------------
+    
+    # Normalize options: store uids instead of AR::Base objects.
+    options.keys.each do |key|
+      target = options[key]
+      options[key] = target.uid if target.is_a?(ActiveRecord::Base)
+    end
+
+    # a default on_success redirection.
+    options[:on_success] ||= request.path if request.method == "GET"
+
+    # set payload
+    H.set_payload session, kind, options
+
+    # -- fetch notice text --------------------------------------------
+    
+    notice = I18n.t("requires_identity.#{kind}")
+
+    # If we need a confirmed email, but not even have an email yet,
+    # we ask for the email first.
+    if kind == :confirmed
+      if !current_user || !current_user.identity(:email)
+        notice = I18n.t("requires_identity.email")
+      end
+    end
+
+    # -- start signing in ---------------------------------------------
+    redirect_to! signin_path(:req => kind), notice: notice
   end
 
   private
 
-  def signin(user)
-    super
+  def redirect_after_identity_provided!(payload, *args) #:nodoc:
+    # find and resolve a redirection target
+    return unless target = payload.values_at(*args).compact.first
 
-    return unless (signedin = session["signedin"]).is_a?(Hash)
-    return unless (kind = signedin[:kind]).in?([:confirmed, :email, :twitter, :any])
-    return unless @current_user.identity(kind)
+    # finally redirect.
+    model = target if target.is_a?(ActiveRecord::Base) 
+    model ||= ActiveRecord::Base.by_uid(target)
 
-    run_identity_requirement_payload
+    redirect_to! model ? url_for(model) : target
   end
   
-  def run_identity_requirement_payload
-    signedin = session["signedin"]
-    #raise signedin.inspect
-    
-    if transfer = signedin[:transfer]
-      @current_user.transfer! transfer
-    end
-    if redirect = signedin[:redirect_to]
-     # raise redirect
-      redirect_to! redirect
-    end
-  end
-  
-  # The Missing exception is raised by requires_identity!
-  # when an identity requirement is not met. It is catched and dealt 
-  # with then by redirect_to_identity_provider.
-  class Missing < RuntimeError #:nodoc:
-    attr_reader :options
-    
-    def initialize(options)
-      @options = options
-    end
-  end
-  
-  # The redirect_to_identity_provider sets up the session so that the
-  # run_identity_requirement_payload method gets suitable input.
-  def redirect_to_identity_provider(e) #:nodoc:
-    expect! e => Missing
-    options = e.options
+  module H
+    SESSION_KEY = "identity"
 
-    # -- set after signin options -------------------------------------
-    case transfer = options[:transfer]
-    when ActiveRecord::Base
-      options[:transfer] = "#{transfer.class.name}:#{transfer.id}"
-    end
+    # fetch payload of a given \a kind from the \a session
+    def self.payload(session, kind) #:nodoc:
+      payload = session[SESSION_KEY]
 
-    case redirect = options[:redirect_to]
-    when ActiveRecord::Base
-      options[:redirect_to] = url_for(redirect).gsub(/^(http|https):\/\/[^\/]+/, "")
-    when nil
-      if request.method == "GET"
-        options[:redirect_to] = request.path
+      if payload.is_a?(Hash) && payload[:kind].in?([:confirmed, :email, :twitter, :any])
+        session.delete SESSION_KEY
+        if kind == :any || kind == payload[:kind]
+          payload 
+        end
       end
     end
 
-    session["signedin"] = options
-
-    # -- set notice text ----------------------------------------------
-    if options[:kind] == :confirmed
-      if current_user && current_user.identity(:email)
-        notice = I18n.t("requires_identity.email")
-      end
+    def self.set_payload(session, kind, payload)
+      session[SESSION_KEY] = payload.merge(:kind => kind)
     end
-    notice ||= I18n.t("requires_identity.#{options[:kind]}")
+  end
+  
+  # Call this method when the user presented the specified identity,
+  # e.g. logged in via the signin or signup forms.
+  def identity_presented!(kind, cancelled = nil)
+    return unless payload = H.payload(session, kind)
+    
+    unless cancelled
+      expect! current_user.identity(kind) => :truish
+      redirect_after_identity_provided! payload, :on_success, :on_complete
+    else
+      expect! current_user.identity(kind) => nil
+      redirect_after_identity_provided! payload, :on_cancel, :on_complete
+    end
+  end
 
-    # -- redirect to signin -------------------------------------------
-    redirect_to signin_path(:req => options[:kind]), notice: notice
+  # Call this method when the user cancelled the identity, for example
+  # if the user pressed Cancel on a login form.
+  def identity_cancelled!(kind = :any)
+    identity_presented! kind, :cancelled
   end
 end

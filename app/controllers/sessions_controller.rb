@@ -14,94 +14,62 @@ class SessionsController < ApplicationController
   # - all other values: show "email" and "twitter" login forms.
   #
   def signin_get
+    @identity = Identity::Email.new(:email => params[:email])
+    @mode = :signin
+
     render_signin
   end
 
-  # This action received the email signin form.
+  # This action received the email signin/signup form.
   def signin_post
-    email, password = *params[:identity].values_at(:email, :password)
-    @identity = Identity::Email.authenticate(email, password)
-    unless @identity
-      @identity = Identity::Email.new(:email => email)
-      flash.now[:error] = I18n.t("signin.message.error")
-      
-      return render_signin
+    @mode = params[:do_signup] ? :signup : :signin
+    attrs = params[@mode] || {}
+    
+    if @mode == :signin
+      email, password = attrs.values_at(:email, :password)
+
+      @identity = Identity::Email.authenticate(email, password) || Identity::Email.new(attrs)
+    else
+      @identity = Identity::Email.create(attrs)
     end
     
-    flash[:success] = I18n.t("signin.message.success")
+    # Success: @identity is in the database, else error (validation failed or
+    # invalid message/password)
+    if @identity.id
+      flash[:success] = I18n.t("#{@mode}.message.success", :name => @identity.name)
       
-    signin @identity.user
-    redirect_to_target
+      signin @identity.user
+      redirect_to @identity.user
+    else
+      flash.now[:error] = I18n.t("#{@mode}.message.error")
+      render_signin
+    end
   end
-  
+
   private
 
   def render_signin
-    @identity ||= Identity::Email.new
-    render :action => "new", :locals => { :partials => signin_partials }
-  end
+    partials = case params[:req]
+    when "confirmed" 
+      if current_user && current_user.identity(:email)
+        %w(email_confirmation)
+      else
+        %w(email)
+      end
+    when "twitter"    then %w(twitter)
+    when "email"      then %w(email)
+    else              %w(email twitter)
+    end
 
-  def signin_partials
-    case params[:req]
-    when "twitter" then %w(twitter_signin)
-    when "email"
-      # Show email signin form, when not logged in; show
-      # email signup form, when the user is logged in but has no email identity.
-      current_user ? %w(email_signup) : %w(email_signin)
-    when "confirmed"
-      # show email signin form, when not logged in; show email signup
-      # form, when logged in, but no email identity is present; show
-      # email confirmation form when email identity is not confirmed.
-      current_user.nil? ? %w(email_signin) : 
-      current_user.identity(:email).nil? ? %w(email_signup) :
-      %w(email_confirmation)
-    else
-      %w(email_signin twitter_signin)
-    end
-  end
-  
-  public
-  
-  # This action renders the signup forms. 
-  #
-  def signup_get
-    if current_user
-      raise "user is already logged in"
-    end
-    
-    @identity = Identity::Email.new
-    render_signup
-  end
-  
-  def signup_post
-    @identity = Identity::Email.create(params[:identity])
-
-    # If identity could not be saved.
-    unless @identity.id
-      render_signup
-      return
-    end
-    
-    flash[:success] = I18n.t("signin.message.success", :name => @identity.name)
-    signin @identity.user
-    redirect_to @identity.user
-  end
-  
-  private
-  
-  def signup_partials
-    case params[:req]
-    when "twitter"            then %w(twitter_signin)
-    when "email", "confirmed" then %w(email_signup)
-    else                      %w(email_signup twitter_signin)
-    end
-  end
-
-  def render_signup
-    render :action => "new", :locals => { :partials => signup_partials }
+    render :action => "new", :locals => { :partials => partials }
   end
 
   public
+  
+  def cancel
+    identity_cancelled!
+    redirect_to :back
+  end
   
   def signout_delete
     signout
@@ -132,8 +100,12 @@ class SessionsController < ApplicationController
   # The created action is where the TwitterAuthMiddleware will redirect 
   # to after the user logged in successfully.
   def twitter
+    follow_bountyhill = session.delete(:follow_bountyhill)
+    
     screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
+
     if screen_name
+      # After a successful twitter signin
       identity = ::Identity::Twitter.find_or_create :info => info, 
                     :user => current_user,
                     :screen_name  => screen_name,
@@ -141,13 +113,10 @@ class SessionsController < ApplicationController
                     :oauth_secret => oauth_secret
 
       signin(identity.user)
-    end
-    
-    follow_bountyhill = session.delete(:follow_bountyhill)
 
-    if current_user
       # At this point an existing user might have signed in for the first time,
-      # or might just revisit the site. In the latter case we don't produce a flash message.
+      # or might just revisit the site. In the latter case we don't produce a 
+      # flash message.
       if Time.now - current_user.created_at < 5
         flash[:success] = "twitter_sessions.success".t
       end
@@ -157,16 +126,14 @@ class SessionsController < ApplicationController
         current_user.identity(:twitter).follow
         flash[:success] = "twitter_sessions.following".t
       end
+
+      identity_presented! :twitter
+    else
+      session.delete(:follow_bountyhill)
+      identity_cancelled! :twitter
     end
 
-    redirect_to_target
-  end
-
-  # The failed action is where the TwitterAuthMiddleware will redirect to
-  # after the user cancelled log in.
-  def twitter_failed
-    session.delete(:follow_bountyhill)
-    redirect_to_target
+    redirect_to "/"
   end
 
   private

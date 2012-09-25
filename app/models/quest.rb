@@ -13,11 +13,6 @@ class Quest < ActiveRecord::Base
   access_control :visibility
   write_access_control :owner
 
-  # -- Pseudo attributes ----------------------------------------------
-
-  attr :duration_in_days, true 
-  attr_accessible :duration_in_days
-
   # -- scopes and filters ---------------------------------------------
   
   scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
@@ -28,15 +23,18 @@ class Quest < ActiveRecord::Base
   # User.draft. We'll need this when a user enters a quest before she is
   # registered: in that case the quest will be attached to User.draft.
   def self.draft(id)
-    current_user = ActiveRecord.current_user
-    
-    ActiveRecord.as(User.admin) do 
+    ActiveRecord.as(User.admin) do |previous_user| 
       quest = Quest.find(id)
       
-      next quest if quest.owner == current_user 
-      next quest if quest.owner == User.draft && quest.created_at > Time.now - 10.minutes
+      if quest.owner != previous_user 
+        if !quest.owner.draft?
+          raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" 
+        elsif quest.created_at < Time.now - 10.minutes
+          raise ActiveRecord::RecordNotFound, "#{quest.uid} is too old" 
+        end
+      end
 
-      raise ActiveRecord::RecordNotFound, "Couldn't find Quest(draft) with id=#{id}"
+      quest
     end
   end
   
@@ -48,10 +46,11 @@ class Quest < ActiveRecord::Base
   serialize :image, Hash
   
   money :bounty
-  
-  attr_accessible :title, :description, :bounty, :image, :image_url, :location
 
   serialize :serialized, Hash
+  serialized_attr :duration_in_days
+  
+  attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
   
   NUMBER_OF_CRITERIA = 6
   
@@ -179,10 +178,15 @@ class Quest < ActiveRecord::Base
     started_at.present?
   end
   
-  def start!(expires_at = nil)
+  def start!
+    if duration_in_days.to_i > 0
+      expires_at = (Date.today + duration_in_days.to_i + 1).to_time - 1
+    end
+
     self.visibility = "public"
     self.started_at = Time.now
-    self.expires_at = expires_at if expires_at
+    self.expires_at = expires_at
+
     save!
   end
 

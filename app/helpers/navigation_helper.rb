@@ -12,13 +12,8 @@ module NavigationHelper
   }
   
   def nav_profile_label
-    confirmation = if current_user.identity(:confirmed)
-      span " &#10004;".html_safe, :title => "Confirmed email account"
-    elsif current_user.identity(:twitter)
-      span " &#10003;".html_safe, :title => "Confirmed twitter account"
-    end
-    
-    "#{h current_user.name}#{confirmation}".html_safe
+    info = span(" &#10003;") if current_user && current_user.identity(:email, :twitter)
+    "#{h current_user.name}#{info}".html_safe
   end
 
   def link_to_nav_item(nav_item)
@@ -51,7 +46,7 @@ module NavigationHelper
       if current_user
         [ :profile, :signout ]
       else
-        [ "signup", "signin" ]
+        [ "signin" ]
       end
     when :bottom_left
       [ "terms", "privacy", "contact" ]

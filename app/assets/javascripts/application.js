@@ -62,6 +62,7 @@ if(typeof console === "undefined") {
           });
       });
       
+      return this;
   }; // $.fn.map_widget = ...
 
 })(jQuery);

@@ -198,26 +198,47 @@ class User < ActiveRecord::Base
   def current_offers?
     quests.active.first || offers.first
   end
-  
+
   # -- special System users -------------------------------------------
 
-  # sign over the passed in object to this user. 
-  # The transfer parameter can be an ActiveRecord::Base object
-  # or a String a la "Quest:12".
-  def transfer!(transfer)
-    expect! transfer => [ nil, ActiveRecord::Base, /^(Quest):.*/ ]
-  
-    ActiveRecord.as(User.admin) do
-      if transfer.is_a?(String)
-        class_name, id = *transfer.split(":")
-        case class_name
-        when "Quest" then transfer = Quest.find_by_id(id)
-        end
-      end
+  # sign over ownerships.
+  #
+  # Examples:
+  #
+  #   User.transfer! model1 => current_user, model2 => current_user
+  #
+  # The objects to sign over must all be either owned by the receiving 
+  # user, or be owned by User.draft.
+  #
+  # <b>The receiving user must be ActiveRecord.current_user.</b> This is
+  # probably strange and turns that parameter into somthing bogus, but 
+  # allows for a better reading code:
+  #   User.transfer! rec => current_user
+  # instead of, say, 
+  #   current_user.transfer! rec
+  #   User.transfer! rec
+  #
+  def self.transfer!(transfers)
+    expect! transfers => Hash
     
-      if transfer
-        transfer.owner = self
-        transfer.save!
+    transfers = transfers.map do |object, target_user|
+      expect! target_user => ActiveRecord.current_user
+      expect! object => ActiveRecord::Base
+
+      next if object.owner == target_user
+      raise ArgumentError, "#{object.uid} is not owned by draft" unless object.owner.draft?
+
+      object
+    end.compact
+    
+    transaction do
+      target_user = ActiveRecord.current_user
+
+      ActiveRecord.as(User.admin) do
+        transfers.each do |object|
+          object.owner = target_user
+          object.save!
+        end
       end
     end
   end

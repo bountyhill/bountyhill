@@ -7,9 +7,9 @@
   If you missed this email, we can just send you a new one.
 </p>
 <div>
-  <%= 
-    link_to I18n.t("signup.confirm.reminder_label"), 
-      "/confirm", 
+  <%= link_to_cancel_signin %>
+  <%=
+    link_to I18n.t("signup.confirm.reminder_label"), "/confirm", 
       :class => "btn btn-primary", :method => :post 
   %>
 </div>

@@ -1,19 +1,10 @@
-<%= form_for @identity, :url => "/signup", :method => :post do |form| %>
-  <%= hidden_field_tag :req, params[:req] %>
-  <fieldset>
-    <legend><%= I18n.t(:"signup.email")%></legend>
-    <%= form.error_messages :scope => "signup" %>
+<%= form.control_group :email, :name => "signup[email]" %>
+<%= form.control_group :password, :password_field, :name => "signup[password]" %>
+<%= form.control_group :password_confirmation, :password_field, :name => "signup[password_confirmation]" %>
 
-    <%= form.control_group :name %>
-    <%= form.control_group :email %>
-    <%= form.control_group :password,               :password_field %>
-    <%= form.control_group :password_confirmation,  :password_field %>
+<%= form.agree_to_terms %>
 
-    <%= form.agree_to_terms %>
-
-    <div class="form-actions">
-      <%= link_to I18n.t(:go_to_signin), signin_path(:req => params[:req]) %>
-      <%= form.submit I18n.t("signup.label"), :class => "btn btn-primary" %>
-    </div>
-  </fieldset>
-<% end %>
+<div class="form-actions">
+  <%= link_to_cancel_signin %>
+  <%= form.submit I18n.t("signup.label"), :name => "do_signup", :class => "btn btn-primary" %>
+</div>

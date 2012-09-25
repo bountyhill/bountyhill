@@ -106,7 +106,8 @@ namespace :demo do
         next if rand(3) != 0
 
         unless quest.started?
-          quest.start!(Date.today + 14.days)
+          quest.duration_in_days = 14
+          quest.start!
         end
         offer = Offer.new
         offer.owner = users.at(rand(users.length))

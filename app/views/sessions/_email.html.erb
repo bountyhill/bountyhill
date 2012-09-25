@@ -1,0 +1,34 @@
+<%= form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post, :id => "signin_email" do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
+  <fieldset>
+    <legend><%= I18n.t(:"signin.email")%></legend>
+
+    <div>
+      <strong>You must register your email address...</strong>
+      <p>
+        ...to enter a quest and to post an offer.
+      </p>
+    </div>
+
+    <div class="tab-content">
+      <div id="signin_subform" class="tab-pane fade<%= " active in" if @mode == :signin %>">
+        <div>
+          <a data-toggle="tab" href="#signup_subform" class="btn">
+            I am new here. Take me to the Signup form.
+          </a>
+        </div>
+        <%= form.error_messages :scope => "signin" if @mode == :signin %>
+        <%= partial "email_signin", :form => form %>
+      </div>
+      <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode != :signin %>">
+        <div>
+          <a data-toggle="tab" href="#signin_subform" class="btn">
+            I have an account alerady. Take me to the signin form.
+          </a>
+        </div>
+        <%= form.error_messages :scope => "signup" if @mode != :signin %>
+        <%= partial "email_signup", :form => form %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
