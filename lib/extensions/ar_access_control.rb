@@ -15,7 +15,7 @@ module ActiveRecord::AccessControl
   def self.as(user, &block)
     old_user = self.current_user
     self.current_user = user
-    yield
+    yield old_user
   ensure
     self.current_user = old_user
   end
