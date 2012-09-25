@@ -85,11 +85,10 @@ module Bountyhill
     TWITTER_CONFIG = Bountybase.config.twitter_app
     
     config.middleware.use ::TwitterAuthMiddleware, {
-      path: "tw",
-      success_url:      '/sessions/twitter',
-      failure_url:      '/sessions/twitter_failed',
+      path:             'tw',
       consumer_key:     TWITTER_CONFIG["consumer_key"],
-      consumer_secret:  TWITTER_CONFIG["consumer_secret"]
+      consumer_secret:  TWITTER_CONFIG["consumer_secret"],
+      redirect_to:      '/sessions/twitter'
     }
     
     # AutoTitleMiddleware: determines the page title from the first <h1> or <h2> 
