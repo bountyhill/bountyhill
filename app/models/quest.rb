@@ -178,10 +178,15 @@ class Quest < ActiveRecord::Base
     started_at.present?
   end
   
-  def start!(expires_at = nil)
+  def start!
+    if duration_in_days.to_i > 0
+      expires_at = (Date.today + duration_in_days.to_i + 1).to_time - 1
+    end
+
     self.visibility = "public"
     self.started_at = Time.now
-    self.expires_at = expires_at if expires_at
+    self.expires_at = expires_at
+
     save!
   end
 
