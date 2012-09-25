@@ -13,11 +13,6 @@ class Quest < ActiveRecord::Base
   access_control :visibility
   write_access_control :owner
 
-  # -- Pseudo attributes ----------------------------------------------
-
-  attr :duration_in_days, true 
-  attr_accessible :duration_in_days
-
   # -- scopes and filters ---------------------------------------------
   
   scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
@@ -51,10 +46,11 @@ class Quest < ActiveRecord::Base
   serialize :image, Hash
   
   money :bounty
-  
-  attr_accessible :title, :description, :bounty, :image, :image_url, :location
 
   serialize :serialized, Hash
+  serialized_attr :duration_in_days
+  
+  attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
   
   NUMBER_OF_CRITERIA = 6
   
