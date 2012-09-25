@@ -97,7 +97,7 @@ module ApplicationController::RequiredIdentity
 
   # Call this method when the user cancelled the identity, for example
   # if the user pressed Cancel on a login form.
-  def identity_cancelled!(kind)
+  def identity_cancelled!(kind = :any)
     identity_presented! kind, :cancelled
   end
 end

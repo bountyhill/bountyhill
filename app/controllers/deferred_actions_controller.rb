@@ -62,7 +62,8 @@ class DeferredActionsController < ApplicationController
     else
       flash[:error] = I18n.t("reset_password.unknown_email", :email => email)
     end
-    redirect_to "/"
+
+    redirect_to CGI.build_url("/signin", :req => params[:req], :email => email)
   end
 
   protected

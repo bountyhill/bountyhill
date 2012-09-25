@@ -46,7 +46,7 @@ module NavigationHelper
       if current_user
         [ :profile, :signout ]
       else
-        [ "signup", "signin" ]
+        [ "signin" ]
       end
     when :bottom_left
       [ "terms", "privacy", "contact" ]
