@@ -1,0 +1,37 @@
+<div class="row bg-main quests" >
+  <div class="span12 bg-black">
+    
+    <div class="row head">
+      <div class="span3">
+        <div class="inner">
+          <%= partial "quests/index/head" %>
+        </div>
+      </div>
+      <div class="span4">
+        <div class="inner">
+          <%= partial "quests/index/actions" %>
+        </div>
+      </div>
+    </div>
+
+    <% @quests.each_slice(3) do |slice| %>
+    <div class="row quest-cells">
+      <% slice.each_with_index do |quest, index|
+      style = case index
+        when 0 then "margin-left: 20px"
+        when 1 then ""
+        when 2 then "margin-right: 20px"
+        end  %>
+      <div class="span4">
+        <%= render :partial => "cell", :locals => { :quest => quest, :style => style } %>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="pagination pagination-centered inner">
+      <%= paginate @quests %>
+    </div>
+    
+  </div>
+</div>

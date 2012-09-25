@@ -1,0 +1,28 @@
+<!-- banner-->
+<div class="banner">
+  <span>
+    <h1>
+      <%= I18n.t("offers.all.title", :count => @offers.total_entries) %>
+    </h1>
+    <small><%= I18n.t "offers.all.sub" %></</small>
+  </span>
+</div>
+<div class="row bg-main" >
+  <!-- tiles -->
+  <div class="span12 bg-black">
+    <% @offers.each_slice(3) do |slice| %>
+    <div class="row">
+      <% slice.each do |offer| %>
+        <%= render :partial => "cell", :locals => { :offer => offer } %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  <!-- pagination -->
+  <div class="span12 bg-black">
+    <div class="pagination pagination-centered inner">
+      <%= paginate @offers %>
+    </div>
+  </div>
+</div>

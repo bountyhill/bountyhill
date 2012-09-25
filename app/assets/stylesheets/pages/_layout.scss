@@ -1,0 +1,164 @@
+.inner {
+  clear: both;
+}
+
+img {
+  height: 100%;
+}
+
+h2 {
+  span {
+    color: $text_highlight;
+  }
+}
+
+form {
+  label {
+    color: $text;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  
+  /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
+  input {
+    font-size: 16px;
+    line-height: 16px;
+  }
+  legend {
+    color: $text;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
+
+.flash {
+  text-align: center;
+  border-radius: 0;
+}
+
+.flash.alert {
+  margin: 20px 0 -56px 0;
+}
+
+.banner {
+  height: 120px;
+}
+
+.navbar {
+  .brand {
+    text-transform: none;
+  }
+  .nav {
+    font-weight: bold;
+    li {
+      &.active > a, a:hover {
+        background:  $navigation_highlight !important;
+        color: $text;
+      }
+    }
+  }
+  .navbar-search {
+    .search-query {
+      font-weight: bold;
+      line-height: 1.5;
+    }
+  }
+}
+
+.dropdown-menu {
+  li {
+    &.active, a:hover {
+      background-color: $navigation_highlight;
+      color: $text;
+    }
+  }
+}
+  
+.ca-menu {
+  li {
+    &:hover {
+      a {
+        color: $highlight;
+        text-shadow: 1px 1px 0px $background;
+      }
+      .ca-main {
+        color: $link_text;
+      }
+    }
+  }
+}
+
+.ui-datepicker {
+  width: auto;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  table {
+    width: 100%;
+  }
+}
+
+.ui-datepicker-calendar {
+  .ui-state-active, .ui-state-hover, th {
+    border-color: $highlight;
+  }
+}
+
+.ui-datepicker-header {
+  border-color: $highlight;
+}
+
+.pagination {
+  li {
+    a {
+      border: 1px solid $text_highlight;
+      color: $navigation_text;
+    }
+    &.active, &:hover {
+      a {
+        background-color: $text_highlight;
+        color: $navigation_text;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    padding: 0px;
+  }
+  .topspace {
+    margin-top: 0px;
+  }
+  .navbar-fixed-top {
+    margin: 0px -10px;
+  }
+  .navbar {
+    .brand {
+      padding: 8px 5px 12px 18px;
+      margin-left: -10px;
+      font-size: 18px;
+    }
+    .navbar-search {
+      margin-right: 0px;
+    }
+  }
+  .inner {
+    padding: 5px;
+  }
+}
+
+.row-fluid.single-form, .row.single-form {
+  legend {
+    text-align: center;
+  }
+  
+  div.form-actions {
+    text-align: center;
+    float: none;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

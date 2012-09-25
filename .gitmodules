@@ -1,0 +1,3 @@
+[submodule "vendor/bountybase"]
+	path = vendor/bountybase
+	url = https://bh-deployment:eadbcef59d7a40310b576cc2a453ccba@github.com/bountyhill/bountybase.git

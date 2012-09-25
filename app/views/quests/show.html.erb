@@ -1,0 +1,37 @@
+<div class="row bg-main" >
+  <div class="span12 bg-black">
+    <% if mobile? %>
+    <div class="row">
+      <div class="span6">
+        <%= partial "quests/show/head", :quest => @quest %>
+      </div>
+      <div class="span6">
+        <%= partial "quests/show/actions", :quest => @quest %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <%= partial "quests/show/criteria", :quest => @quest %>
+        <%= partial "quests/show/image", :quest => @quest %>
+      </div>
+      <div class="span6">
+        <%= partial "quests/show/expires_at", :quest => @quest %>
+        <%= partial "quests/show/location", :quest => @quest %>
+      </div>
+    </div>
+    <% else %>
+    <div class="row">
+      <div class="span8">
+        <%= partial "quests/show/head", :quest => @quest %>
+        <%= partial "quests/show/criteria", :quest => @quest %>
+        <%= partial "quests/show/image", :quest => @quest %>
+      </div>
+      <div class="span4">
+        <%= partial "quests/show/actions", :quest => @quest %>
+        <%= partial "quests/show/expires_at", :quest => @quest %>
+        <%= partial "quests/show/location", :quest => @quest %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

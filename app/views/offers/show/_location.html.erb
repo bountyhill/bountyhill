@@ -1,0 +1,18 @@
+<div class="offer inner">
+  <% unless offer.location.present? %>
+  <h2>
+    <span><%=t "offer.location.title" %></span> 
+    <small><%=t "offer.location.none" %></small>
+  </h2>
+  <% else %>
+  <h2>
+    <span><%=t "offer.location.title", :location => offer.location %></span> 
+    <small><%=t "offer.location.sub", :location => offer.location %></small>
+  </h2>
+  <%= 
+    div :id => "gmap_canvas", :data => { :location => offer.location },
+                              :style => "width: 100%; height: 200px" 
+  %>
+  <% end %>
+</div>
+

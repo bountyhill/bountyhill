@@ -1,0 +1,26 @@
+# gem 'pg'
+common: &common
+  adapter: postgresql
+  username: bountyhill
+  password: bountyhill 
+
+development:
+  <<: *common
+  database: bountyhill
+
+staging:
+  <<: *common
+  database: bountyhill
+
+test:
+  <<: *common
+  database: bountyhill_test
+
+#
+# Note: during deployment the production setting will be replaced 
+# by some other setting. We use the same setting as in development
+# mode: this way one can guess at the production performance on
+# a developer machine.
+production:
+  <<: *common
+  database: bountyhill

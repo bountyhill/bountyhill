@@ -1,0 +1,33 @@
+<div class="inner quest">
+  <h2>
+    <span class="bounty"><strong><%= "€ #{quest.bounty.to_s.split(".").first}" %></strong> <%=t "quest.actions.bounty.title" %></span>
+    <small><%=t "quest.actions.bounty.sub" %></small>
+  </h2>
+  <%= 
+    action_buttons do |act|
+      act.action :t, :"quest.actions.tweet"
+      act.action :h, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
+
+      unless (offers_count = quest.offers.count).zero?
+        act.action :d, 
+          I18n.t("quest.actions.review.title", :count => offers_count), 
+          I18n.t("quest.actions.review.sub", :count => offers_count), 
+          :url => offers_path(:quest_id => quest)
+      end
+    end
+  %>
+</div>
+<% if quest.offers.present? %>
+<div class="inner">
+  <h2>
+    <span><strong><%= quest.offers.count %></strong> <%=t "quest.actions.offers.title" %></span>
+    <small><%=t "quest.actions.offers.sub" %></small>
+  </h2>
+</div>
+<div class="inner">
+  <h2>
+    <span><strong><%= quest.compliance %></strong> <%=t "quest.actions.compliance.title" %></span>
+    <small><%=t "quest.actions.compliance.sub" %></small>
+  </h2>
+</div>
+<% end %>

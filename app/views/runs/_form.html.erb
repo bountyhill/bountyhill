@@ -1,0 +1,20 @@
+<%= form_for @quest, :id => "quest_form" do |form| %>
+  <fieldset>
+    <legend><%= I18n.t(:"quest.legend")%></legend>
+    <%= form.error_messages %>
+
+    <%= form.control_group :title %>
+    <%= form.control_group :bounty %>
+    <%= 
+    duration_in_days = @quest.duration_in_days || 7
+      form.control_group :duration_in_days do 
+        [1, 3, 7, 14].map do |value|
+          radio_button = form.radio_button :duration_in_days, value, 
+            :checked => (duration_in_days == value)
+          "<label>#{radio_button}#{value} days</label>"
+        end.join
+      end
+    %>
+    <%= form.actions :label => "Start", :cancel_url => quest_path(@quest) %>
+  </fieldset>
+<% end %>

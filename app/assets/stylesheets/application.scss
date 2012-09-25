@@ -1,0 +1,45 @@
+/*
+ * application.scss
+ *
+ * Important! Do *not* use Sprockets "require" syntax.
+ * Use @import to include other stylesheets and Compass mixins.
+ */
+
+// This is a unicode snowman. This should set the character encoding to utf8
+// ☃
+// see https://github.com/nex3/sass/issues/189#issuecomment-5611476
+
+// Include some nice mixins
+@import "compass/css3";
+
+//
+// Temporary fix for compass_twitter_bootstrap; see
+// https://github.com/vwall/compass-twitter-bootstrap/issues/40
+// The issue is closed, yet the bug is still present in the gem...
+@function e($raw-css) {
+    @return #{$raw-css}
+}
+
+// import twitter bootstrap
+@import "compass_twitter_bootstrap";
+body { padding-top: 30px } // has to be here! - gives some space between body and top nav
+@import "compass_twitter_bootstrap_responsive";
+
+// import inception stylesheets
+@import "inception/css/styles";
+@import "inception/css/styles-responsive";
+
+// import baiscs
+@import "colors";
+@import "fonts";
+
+// import pagewise stylesheets
+ @import "pages/layout";
+ @import "pages/quests";
+
+// import widget stylesheets
+ @import "widgets/banner";
+ @import "widgets/buttons";
+ @import "widgets/form";
+ @import "widgets/list";
+ @import "widgets/nav";

@@ -1,0 +1,28 @@
+$background:                #000;
+$background_border:         #222;
+$background_light:          #333;
+$background_highlight:      #666;
+$highlight:                 #fd6d03;
+
+$text:                      #fff;
+$text_inverted:             #000;
+$text_minor:                #999;
+$text_highlight:            $highlight;
+
+$link_text:                 #FEA768;
+$link_highlight:            #FED3B4;
+
+$navigation:                $background;
+$navigation_text:           $text;
+$navigation_highlight:      $highlight;
+$navigation_highlight_text: $text_inverted;
+
+$ribbon_minor:              #D4914F;
+$ribbon_minor_gradient:     #C36509;
+$ribbon_minor_border:       #8B4800;
+$ribbon:                    silver;
+$ribbon_gradient:           #868686;
+$ribbon_border:             #606060;
+$ribbon_major:              gold;
+$ribbon_major_gradient:     #B29600;
+$ribbon_major_border:       #806C00;

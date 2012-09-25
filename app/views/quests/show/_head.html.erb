@@ -1,0 +1,18 @@
+<%-
+# note that when changing this file you probably want to change _description.html.erb
+# and _image.html.erb too.
+-%>
+<div class="inner quest unbottom">
+  <article class="quest">
+    <div class="profile">
+      <%= avatar quest.owner, :size => 128 %>
+      <%#= image_tag(quest.owner.avatar(:size => 128), :class => "avatar", :alt => quest.owner.name, :title => quest.owner.name) %>
+      <%= link_to user_path(quest.owner) do %>
+        <h2><%= quest.owner.name %></h2>
+      <% end %>
+      <div class="handle"><%= link_to_twitter_account quest.owner %></div>
+    </div>
+    <%= h1 quest.title %>
+    <%= p quest.description %>
+  </article>
+</div>

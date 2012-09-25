@@ -1,0 +1,9 @@
+<% 
+  key = [:error, :success, :warn, :info].detect { |key| flash.key?(key) }
+  if key
+%>
+<div class="flash alert alert-<%= key %>">
+  <a class="close" data-dismiss="alert" href="#">×</a>
+  <%= flash[key] %>
+</div>
+<% end %>

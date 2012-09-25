@@ -1,0 +1,60 @@
+<%= form_for @offer, :id => "offer_form" do |form| %>
+  <fieldset>
+    <legend><%= I18n.t(:"offer.legend")%></legend>
+    <%= form.error_messages %>
+
+    <%= form.control_group :quest_id, :hidden_field %>
+
+    <%= form.control_group :description, :text_area, :rows => 5 %>
+    <%= form.control_group :image, :transloadit %>
+
+    <%= form.control_group :compliance, :compliance %>
+
+    <% @offer.criteria.each_with_index do |criterium, idx| %>
+      <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
+      <%= form.control_group Offer.criteria_compliances[idx], :compliance_chooser, :label => "#{criterium[:title]}?" %>
+      <div class="description">
+        <%= criterium[:description] %>
+      </div>
+    <% end %>
+    
+    <%= form.actions :cancel_url => offers_path %>
+  </fieldset>
+<% end %>
+
+<script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
+<%= transloadit_jquerify :offer_form, :wait => true %>
+
+<style type="text/css" media="screen">
+  /* The compliance_display div */
+  div.compliance:after {
+    content:"%";
+  }
+  div.compliance {
+    color: orange;
+    font-weight: bold;
+    font-size: 260%;
+  }
+  /* The div which contains the input radioboxes */ 
+  div.compliance_chooser {
+    width: 30%;
+    display: inline-block;
+  }
+  div.compliance_chooser.red { background-color: red; }
+  div.compliance_chooser.yellow { background-color: yellow; }
+  div.compliance_chooser.green { background-color: green; }
+</style>
+<script type="text/javascript" charset="utf-8">
+// recalculate compliance^, whenever a radio button changed.
+  jQuery("div.compliance_chooser > input[type=radio]").change(function() {
+    var form = $(this).closest("form");
+
+    var sum = 0, count = 0; 
+    var radios = jQuery("div.compliance_chooser > input[type=radio]:checked", form);
+    radios.each(function() { sum += parseInt($(this).val()); });
+    
+    var compliance = radios.length > 0 ? (sum * 100) / (10 * radios.length) : 50;
+
+    $("div.compliance", form).text(Math.round(compliance));
+  });
+</script>

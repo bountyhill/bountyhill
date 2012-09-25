@@ -1,0 +1,36 @@
+<% 
+  config = Bountybase.config.transloadit 
+  key, secret, s3_key, s3_secret, s3_bucket = 
+    *config.values_at("key", "secret", "s3_key", "s3_secret", "s3_bucket")
+%>
+
+auth:
+  key:      <%= key %>
+  secret:   <%= secret %>
+  duration: 1800
+  # 30 minute validity period for signed upload forms
+
+templates:
+  # template defined inline
+  upload:
+    steps:
+      thumbnail:
+        robot:  /image/resize
+        use:    ':original'
+        width:    90
+        height:   90
+      fullsize:
+        robot:  /image/resize
+        use:    ':original'
+        width:   640
+        height: 1000
+      export:
+        use:
+        - ':original'
+        - fullsize
+        - thumbnail
+        robot: /s3/store
+        key:    <%= s3_key %>
+        secret: <%= s3_secret %>
+        bucket: <%= s3_bucket %>
+        path: ${assembly.id}/${previous_step.name}_${file.url_name}

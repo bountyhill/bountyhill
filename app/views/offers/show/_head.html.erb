@@ -1,0 +1,15 @@
+<%-
+# note that when changing this file you probably want to change _description.html.erb
+# and _image.html.erb too.
+-%>
+<div class="inner offer unbottom">
+  <ul class="block article_list large">
+    <li>
+      <%= image_for(offer) %>
+      <article class="bg-gray">
+        <%= h1 offer.title %>
+        <%= p offer.description %>
+      </article>
+    </li>
+  </ul>
+</div>

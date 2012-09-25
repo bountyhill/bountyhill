@@ -1,0 +1,16 @@
+<div class="inner" style="<%= style %>">
+  <div class="quest-cell bg-gray">
+    <%= render_bounty_ribbon quest %>
+    <div class="inner">
+      <%= avatar quest.owner, :size => 64 %>
+      <%= link_to h3(truncate(quest.title, :length => 80)), quest_path(quest) %>
+      <div class="restrictions">
+        <%= render_restriction quest, :location %>
+        <%= render_restriction quest, :expires_at %>
+      </div>
+      <div class="socialmedia">
+        <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
+      </div>
+    </div>
+  </div>
+</div>

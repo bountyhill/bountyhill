@@ -1,0 +1,26 @@
+<% identity = Identity::Twitter.new(:follow_bountyhill => true) %>
+<%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
+  <fieldset>
+    <legend><%= I18n.t("signin.twitter") %></legend>
+    <%= form.error_messages :scope => "signup" %>
+
+    <div>
+      <strong>You must be signed in via Twitter...</strong>
+      <p>
+        ...to forward a quest and secure your chance to win a part of the bounty.
+        If you choose to <strong>follow @bountyhill</strong>, we'll send you
+        a tweet on succes.
+      </p>
+    </div>
+
+    <%= form.control_group :follow_bountyhill, :check_box %>
+
+    <%= form.agree_to_terms %>
+
+    <div class="form-actions">
+      <%#= link_to I18n.t(:cancel), root_path, :class => "btn btn-mini" %>
+      <%= form.submit I18n.t("signin.label"), :class => "btn btn-primary" %>
+    </div>
+  </fieldset>
+<% end %>

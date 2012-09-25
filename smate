@@ -1,0 +1,1 @@
+${EDITOR:-mate} $(ls -1 | egrep -vw 'vendor|public|log|data|tmp|rdoc') $(ls -1d public/* | grep -v assets)

@@ -1,0 +1,12 @@
+<%-
+# note that when changing this file you probably want to change _head.html.erb too.
+-%>
+<% if quest.image.present? %>
+<div class="quest inner">
+  <h2>
+    <span><strong>1</strong> <%=t "quest.image.title" %></span> 
+    <small><%=t "quest.image.sub" %></small>
+  </h2>
+  <%= image_for(quest) %>
+</div>
+<% end %>

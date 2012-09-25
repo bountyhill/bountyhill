@@ -1,0 +1,29 @@
+<%= 
+  form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
+  <fieldset>
+    <legend><%= I18n.t(:"signin.email")%></legend>
+    <%= form.error_messages :scope => "signin" %>
+
+    <div>
+      <strong>You must register your email address...</strong>
+      <p>
+        ...to enter a quest and to post an offer.
+      </p>
+    </div>
+
+    <%= form.control_group :email %>
+    <%= form.control_group :password,               :password_field %>
+
+    <%= form.agree_to_terms %>
+
+    <div class="form-actions">
+      <%= 
+        if form.object.email.present?
+          link_to I18n.t(:"reset_password.label"), reset_password_path(:email => @identity.email), :method => "post" 
+        end 
+      %> 
+      <%= form.submit I18n.t("signin.label"), :class => "btn btn-primary" %>
+    </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,27 @@
+.ca-main {
+  font-size: 20px;
+}
+.ca-menu {
+  width: 100%;
+}
+.ca-sub {
+  text-transform: none;
+}
+.ca-icon {
+  text-transform: none;
+  height: 30px;
+  left: 10px;
+  line-height: 55px;
+  &.twitter {
+    font-size: 30px;
+    line-height: 50px;
+  }
+}
+.ca-content{
+  top: 12px;
+  width: auto;
+  height: auto;
+}
+.ca-menu li {
+  height: 55px;
+}

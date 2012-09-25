@@ -1,0 +1,18 @@
+form.navbar-search {
+  min-width: 170px;
+}
+div.form-actions {
+  float:right;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.span6 {
+  .form-horizontal {
+    .form-actions {
+      padding-right: 30px;
+    }
+  }
+}

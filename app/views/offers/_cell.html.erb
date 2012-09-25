@@ -1,0 +1,25 @@
+<div class="span4">
+  <div class="inner">
+    <div class="featuedBox">
+      <div class="imgShow">
+        <%= render_bounty_ribbon offer %>
+        <%= image_link_to offer, :width => 330, :height => 205, :zoom => true %>
+        
+        <div class="unbottom untop">
+          <h3><%= truncate offer.title, :length => 60 %></h3>
+          <div class="restrictions">
+            <%= render_restriction offer.quest, :location %>
+            <%= render_restriction offer.quest, :expires_at %>
+            <%= render_restriction offer, :compliance %>
+          </div>
+          <div class="socialmedia">
+            <a class="social-item twitter" href="#" title="find us twitter" data-bitly-type="bitly_hover_card">t</a>
+          </div>
+          <div class="bottom_link tip">
+            <!-- <a href="#" class="more" data-original-title="More Detail" data-bitly-type="bitly_hover_card"></a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
