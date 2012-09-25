@@ -26,7 +26,6 @@ Bountyhill::Application.routes.draw do
 
   match "sessions/twitter" => "sessions#twitter_post", :via => :post
   match "sessions/twitter" => "sessions#twitter", :via => :get
-  match "sessions/twitter_failed" => "sessions#twitter"
   
   # 
 

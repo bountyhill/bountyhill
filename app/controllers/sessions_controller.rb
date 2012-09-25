@@ -132,8 +132,12 @@ class SessionsController < ApplicationController
   # The created action is where the TwitterAuthMiddleware will redirect 
   # to after the user logged in successfully.
   def twitter
+    follow_bountyhill = session.delete(:follow_bountyhill)
+    
     screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
+
     if screen_name
+      # After a successful twitter signin
       identity = ::Identity::Twitter.find_or_create :info => info, 
                     :user => current_user,
                     :screen_name  => screen_name,
@@ -141,13 +145,10 @@ class SessionsController < ApplicationController
                     :oauth_secret => oauth_secret
 
       signin(identity.user)
-    end
-    
-    follow_bountyhill = session.delete(:follow_bountyhill)
 
-    if current_user
       # At this point an existing user might have signed in for the first time,
-      # or might just revisit the site. In the latter case we don't produce a flash message.
+      # or might just revisit the site. In the latter case we don't produce a 
+      # flash message.
       if Time.now - current_user.created_at < 5
         flash[:success] = "twitter_sessions.success".t
       end
@@ -157,16 +158,15 @@ class SessionsController < ApplicationController
         current_user.identity(:twitter).follow
         flash[:success] = "twitter_sessions.following".t
       end
+
+      identity_presented! :twitter
+    else
+      session.delete(:follow_bountyhill)
+      identity_cancelled! :twitter
     end
 
-    redirect_to_target
-  end
-
-  # The failed action is where the TwitterAuthMiddleware will redirect to
-  # after the user cancelled log in.
-  def twitter_failed
-    session.delete(:follow_bountyhill)
-    redirect_to_target
+    
+    redirect_to "/"
   end
 
   private
