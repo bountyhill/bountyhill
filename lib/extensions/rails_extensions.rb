@@ -13,6 +13,33 @@ class ActiveRecord::Base
   end
 end
 
+# -- system wide object ids.
+
+class ActiveRecord::Base
+  def self.by_uid(uid)
+    return unless uid.is_a?(String)
+    
+    if uid =~ /^([a-zA-Z_][a-zA-Z_0-9:]*)#(\d+)$/
+      $1.constantize.find($2)
+    end
+  rescue NameError
+  end
+
+  def self.by_uid!(uid)
+    by_uid(uid) || raise(ActiveRecord::RecordNotFound, "Could not find #{uid.inspect}")
+  end
+  
+  def uid
+    "#{self.class.model_name}##{id}" unless new_record?
+  end
+end
+
+class NilClass
+  def uid
+    nil
+  end
+end
+
 # -- support for serialized_attributes.
 
 class ActiveRecord::Base
@@ -28,7 +55,7 @@ class ActiveRecord::Base
   end
 end
 
-# -- support for serialized_attributes.
+# -- automatically count the metric for this class.
 
 class ActiveRecord::Base
   def self.with_metrics!(name)
