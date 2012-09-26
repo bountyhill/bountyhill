@@ -200,9 +200,9 @@ en:
   users:
     tab:
       overview: Overview
-      account: Account information
+      stats: Stats
       contact: Contact information
-      financial: Financial information
+      unregister: Delete your account
   buttons:
     category:
       job:      Jobs

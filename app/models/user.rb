@@ -271,4 +271,15 @@ class User < ActiveRecord::Base
     
     "#<User id: #{id} [#{parts.join(", ")}]>"
   end
+  
+  # -- user information -----------------------------------------------
+  serialize :serialized, Hash
+  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
+  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
+
+  attr :delete_me, true
+  attr_accessible :delete_me, :deleted_at
+
+  attr :description, true
+  attr_accessible :description
 end

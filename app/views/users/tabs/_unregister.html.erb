@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="span4">
+    <div class="inner">
+      <%= partial "/users/mini", :user => @user %>
+    </div>
+  </div>
+  <div class="span8">
+    <%= form_for @user do |form| %>
+      <%= hidden_field_tag :tab, params[:tab] %>
+      <fieldset>
+        <legend><%= I18n.t(:"account.unregister")%></legend>
+        <p>
+          <strong>We hate to see you leave.</strong>
+        </p>
+        <p>
+          Do you mind us asking why you decided to leave bountyhill?
+        </p>
+        <%= form.control_group :description, :text_area, :rows => 5 %>
+        
+        <%= form.control_group :delete_me, :check_box %>
+        <div class='form-actions'>
+          <input class="btn btn-danger" name="commit" type="submit" value="Delete my account" />
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+

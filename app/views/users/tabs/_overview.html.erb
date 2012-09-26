@@ -1,26 +1,30 @@
 <div class="row-fluid">
-  <div class="span8 inner" style="height: 180px">
-    <%= avatar @user %>
-    <h1><%= @user.name %></h1>
-    <h3><strong>Email:</strong>
-      <%= @user.email || link_to(I18n.t("profile.add_email"), signin_path(:req => :email)) %>
-    </h3>
-    <h3><strong>Twitter:</strong>
-      <%= @user.twitter_handle || link_to(I18n.t("profile.add_twitter"), signin_path(:req => :twitter)) %>
-    </h3>
+  <div class="span4">
+    <div class="inner">
+      <%= partial "/users/mini", :user => @user %>
+    </div>
+  </div>
+  <div class="span8" style="height: 180px">
+    <div class="inner">
+      <h3>
+        <strong>Email:</strong>
+        <%= @user.email || link_to(I18n.t("profile.add_email"), signin_path(:req => :email)) %>
+      </h3>
+      <h3>
+        <strong>Twitter:</strong>
+        <%= @user.twitter_handle || link_to(I18n.t("profile.add_twitter"), signin_path(:req => :twitter)) %>
+      </h3>
+    </div>
   </div>
 </div>
 
 <a name="quests"> </a>
 <div class="row">
-  <div class="span4 inner" style="height: 180px">
-    <h2>Your quests</h2>
-    <p>
-      <span class="large">22</span> quests posted so far.
-    </p>
-    <p>
-      <a href='#' class="btn btn-primary">Post a quest</a>
-    </p>
+  <div class="span4" style="height: 180px">
+    <div class="inner">
+      <h2>Your quests</h2>
+      <p>You didn't post any offer yet.</p>
+    </div>
   </div>
   <% 10.times do %>
   <div class="span1">
@@ -33,11 +37,11 @@
 
 <a name="offers"> </a>
 <div class="row">
-  <div class="span4 inner" style="height: 180px">
-    <h2>Your offers</h2>
-    <p>
-      You didn't post any offer yet.
-    </p>
+  <div class="span4" style="height: 180px">
+    <div class="inner">
+      <h2>Your offers</h2>
+      <p>You didn't post any offer yet.</p>
+    </div>
   </div>
   <% 10.times do %>
   <div class="span1">

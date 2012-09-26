@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  TABS = %w(overview account contact financial)
+  TABS = %w(overview stats contact unregister)
 
   def show
     @user = current_user
