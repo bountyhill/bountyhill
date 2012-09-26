@@ -17,7 +17,9 @@ en:
   help: Help
   terms: "Terms & conditions"
   privacy: Privacy policy
-  profile: Profile
+  profile:
+    add_twitter: "Add your twitter account"
+    add_email: "Add your email"
   restriction:
     compliance: "Compliance: %{compliance}%"
   quests:
@@ -43,6 +45,8 @@ en:
   nav:
     quests: Quests
     offers: Offers
+    your_quests: Your Quests
+    your_offers: Your Offers
     stats:  Stats
     logs:   Logs
     signin: "Sign in"

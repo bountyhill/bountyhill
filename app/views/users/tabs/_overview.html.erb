@@ -2,10 +2,16 @@
   <div class="span8 inner" style="height: 180px">
     <%= avatar @user %>
     <h1><%= @user.name %></h1>
-    <h3><strong>Email:</strong> <%= @user.email %></h3>
-    <h3><strong>Twitter:</strong> <%= @user.twitter_handle %></h3>
+    <h3><strong>Email:</strong>
+      <%= @user.email || link_to(I18n.t("profile.add_email"), signin_path(:req => :email)) %>
+    </h3>
+    <h3><strong>Twitter:</strong>
+      <%= @user.twitter_handle || link_to(I18n.t("profile.add_twitter"), signin_path(:req => :twitter)) %>
+    </h3>
   </div>
 </div>
+
+<a name="quests"> </a>
 <div class="row">
   <div class="span4 inner" style="height: 180px">
     <h2>Your quests</h2>
@@ -24,6 +30,8 @@
   </div>
   <% end %>
 </div>
+
+<a name="offers"> </a>
 <div class="row">
   <div class="span4 inner" style="height: 180px">
     <h2>Your offers</h2>

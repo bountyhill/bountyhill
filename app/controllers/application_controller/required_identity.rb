@@ -164,8 +164,7 @@ module ApplicationController::RequiredIdentity
   # Call this method when the user cancelled the identity, for example
   # if the user pressed Cancel on a login form.
   def identity_cancelled!
-    redirect_to! "/" unless payload = H.payload(session)
-    
+    payload = H.payload(session) || {}
     redirect_after_identity_provided! payload[:on_cancel] || "/"
   end
 end

@@ -16,7 +16,15 @@ class SessionsController < ApplicationController
   def signin_get
     @identity = Identity::Email.new(:email => params[:email])
     @mode = :signin
-
+    
+    if params[:req].present? && !ApplicationController::RequiredIdentity.payload(session)
+      kind = params[:req].to_sym
+      back = request.env["HTTP_REFERER"]
+      
+      ApplicationController::RequiredIdentity.set_payload(session, 
+        :on_success => back, :on_cancel => back, :kind => kind)
+    end
+    
     render_signin!
   end
 
