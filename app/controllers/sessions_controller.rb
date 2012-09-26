@@ -107,7 +107,7 @@ class SessionsController < ApplicationController
                     :oauth_token  => oauth_token,
                     :oauth_secret => oauth_secret
 
-      signin(identity.user)
+      signin(User.find(identity.user.id))
 
       # At this point an existing user might have signed in for the first time,
       # or might just revisit the site. In the latter case we don't produce a 
