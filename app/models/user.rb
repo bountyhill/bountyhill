@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
   def avatar(options = {})
     expect! options => { :default => [ String, nil ]}
 
-    if identity = self.identity(:email, :twitter)
+    if identity = self.identity(:twitter, :email)
       avatar = identity.avatar(options)
     end
     
