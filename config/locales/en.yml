@@ -102,9 +102,11 @@ en:
 
         When you signed up, we sent you an email with details how to do this. 
         If you missed this email, we can just send you a new one.
-  search:
-    box:
-      placeholder: everything you're looking for...
+  home:
+    search:
+      box:
+        placeholder: What are you looking for?
+        button: "Start your quest"
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
