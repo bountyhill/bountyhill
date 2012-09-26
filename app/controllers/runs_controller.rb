@@ -8,7 +8,7 @@ class RunsController < ApplicationController
     #
     # The user must have a confirmed email address. If not, she cannot
     # continue here, but gets transferred to an identity provider.
-    requires_identity! :confirmed
+    request_identity! :confirmed
 
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! quest => current_user
@@ -34,7 +34,7 @@ class RunsController < ApplicationController
     
     # If there is no twitter identity yet, ask the user to provide one;
     # but go to do_start even if he chooses not to do so.
-    requires_identity! :twitter, :on_complete => "/runs/#{quest.id}/start"
+    request_identity! :twitter, :on_complete => "/runs/#{quest.id}/start"
     start
   end
   
