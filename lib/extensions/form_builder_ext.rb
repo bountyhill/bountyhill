@@ -143,7 +143,12 @@ class ActionView::Helpers::FormBuilder
   end
   
   def error_messages(options = {})
-    options = { :object => object, :scope => object_name }.update(options)
+    if options.is_a?(String)
+      options = { :object => object, :scope => object_name, :message => options }
+    else
+      options = { :object => object, :scope => object_name, :message => nil }.update(options)
+    end
+
     @template.partial "shared/error_messages", options
   end
 end
