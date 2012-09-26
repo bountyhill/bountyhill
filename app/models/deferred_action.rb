@@ -16,9 +16,6 @@
 # - +error+: error message when failed?
 #
 class DeferredAction < ActiveRecord::Base
-  include ActiveRecord::RandomID
-  before_create :set_secret
-
   serialize :args, Array
 
   # Checks whether the DeferredAction expired.
@@ -35,7 +32,38 @@ class DeferredAction < ActiveRecord::Base
   
   belongs_to :actor, :class_name => "User"
   validates_presence_of :actor
+  
+  # -- expiration -----------------------------------------------------
+  
+  # All DeferredActions expire one day after creation, unless
+  # explicitely stated otherwise.
 
+  before_create :set_expiration
+  
+  def set_expiration
+    self.expires_at = Time.now + 1.day
+  end
+
+  # -- secrets --------------------------------------------------------
+  
+  include ActiveRecord::RandomID
+  
+  # All DeferredActions have a and are referenced by their secret
+  # which is stored in the database. We add roughly ~36 bits of security
+  # to the 31 bit of security from the random id.
+  before_create :set_secret
+  
+  def set_secret
+    expect! self.id => Integer # id should be set already
+    
+    self.secret = Digest::SHA1.hexdigest("#{id}/#{SecureRandom.random_number(0x80000000)}/#{Time.now}")
+  end
+  
+  # -- validation -----------------------------------------------------
+  
+  # Actions must refer to one of the perform_XXX actions in 
+  # DeferredActionsController.
+  
   validate :validate_action
 
   def self.valid_actions
@@ -48,14 +76,26 @@ class DeferredAction < ActiveRecord::Base
     errors.add :action, "Action #{action.inspect} is not valid; valid actions: #{self.class.valid_actions.inspect}"
   end
   
+  # -- Performing -----------------------------------------------------
+  
+  # Can the action be performed? It must be valid, not yet expired, and
+  # not yet performed.
+  
   def performable?
     !performed_at? && !expired? && valid?
   end
   
-  # Perform the DeferredAction. 
+  # Perform the DeferredAction. This signs in as the actor in the 
+  # stored in deferred action, and then perform the method on the
+  # DeferredActionsController passed in.
   #
-  # On an error this raises an exception, which message can be
-  # used to show a error message to the user.
+  # Sets the "performed_at" and, in case of an error, the "error"
+  # attribute.
+  # 
+  # Example:
+  #
+  #   perform :on => controller_instance
+  #
   def perform!(options = Hash)
     raise("This link is no longer valid.") unless performable?
 
@@ -65,19 +105,12 @@ class DeferredAction < ActiveRecord::Base
       options[:on].send("perform_#{action}", *args)
       update_attributes! :performed_at => Time.now
     end
-  rescue
+  rescue StandardError
     update_attributes! :performed_at => Time.now, :error => $!.to_s
     raise
   end
   
-  # Note: This method is not super secure. It gives roughly ~65..70 bits of security.
-  def set_secret
-    expect! self.id => Integer # id should be set already
-    
-    self.secret = Digest::SHA1.hexdigest("id/#{SecureRandom.random_number(0x80000000)}/#{Time.now}")
-  end
-
-  # -- DeferredAction URLs --------------------------------------------
+  # -- URLs -----------------------------------------------------------
   
   def self.default_url_options=(default_url_options)
     @@default_url_options = default_url_options
@@ -88,6 +121,8 @@ class DeferredAction < ActiveRecord::Base
     protocol: "http"
   }
   
+  # This method returns an URL for the DeferredAction. It assumes
+  # that DeferredAction.default_url_options was called before. 
   def url
     protocol, host = @@default_url_options.values_at :protocol, :host
     CGI.build_url "#{protocol}://#{host}/act?#{action}-#{secret}"
