@@ -102,6 +102,9 @@ en:
     box:
       placeholder: everything you're looking for...
   quest:
+    started:    "Your quest \"%{title}\" was started."
+    cancelled:  "Your quest \"%{title}\" was cancelled."
+
     message:
       error:      Please review your input.
       base_error: "%{base_error}: please review your input."

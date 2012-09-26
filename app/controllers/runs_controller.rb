@@ -32,17 +32,19 @@ class RunsController < ApplicationController
       render! action: "show"
     end
     
-    # If there is no twitter identity yet, ask the user to provide one;
-    # but go to do_start even if he chooses not to do so.
-    request_identity! :twitter, :on_complete => "/runs/#{quest.id}/start"
-    start
+    redirect_to! "/runs/#{quest.id}/start"
   end
   
   # This method is called as an *action* after a redirection from the
   # twitter identity provision or as a *method* from the create action.
   def start
+    request_identity! :twitter
+
+    # If there is no twitter identity yet, ask the user to provide one;
+    # but go to do_start even if he chooses not to do so.
     quest.start!
-    
+
+    flash[:success] = I18n.t("quest.started", :title => quest.title)
     redirect_to quest
   end
 
@@ -50,6 +52,7 @@ class RunsController < ApplicationController
   # DELETE /quests/1.json
   def destroy
     quest.cancel!
+    flash[:success] = I18n.t("quest.cancelled", :title => quest.title)
     redirect_to quest_path(quest)
   end
 
