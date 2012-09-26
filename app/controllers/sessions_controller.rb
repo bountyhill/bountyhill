@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     @identity = Identity::Email.new(:email => params[:email])
     @mode = :signin
 
-    render_signin
+    render_signin!
   end
 
   # This action received the email signin/signup form.
@@ -35,40 +35,35 @@ class SessionsController < ApplicationController
     
     # Success: @identity is in the database, else error (validation failed or
     # invalid message/password)
-    if @identity.id
-      flash[:success] = I18n.t("#{@mode}.message.success", :name => @identity.name)
-      
-      signin @identity.user
-      redirect_to @identity.user
-    else
-      flash.now[:error] = I18n.t("#{@mode}.message.error")
-      render_signin
+    unless @identity.id
+      @error = I18n.t("sessions.email.error.#{@mode}")
+      # flash.now[:error] = @error
+      render_signin!
     end
+    
+    flash[:success] = I18n.t("sessions.email.success.#{@mode}", :name => @identity.name)
+    
+    signin @identity.user
+    identity_presented!
   end
 
   private
 
-  def render_signin
+  def render_signin!
     partials = case params[:req]
-    when "confirmed" 
-      if current_user && current_user.identity(:email)
-        %w(email_confirmation)
-      else
-        %w(email)
-      end
+    when "confirmed"  then identity?(:email) ? %w(email_confirmation) : %w(email)
     when "twitter"    then %w(twitter)
     when "email"      then %w(email)
     else              %w(email twitter)
     end
 
-    render :action => "new", :locals => { :partials => partials }
+    render! :action => "new", :locals => { :partials => partials }
   end
 
   public
   
   def cancel
     identity_cancelled!
-    redirect_to :back
   end
   
   def signout_delete
@@ -118,22 +113,20 @@ class SessionsController < ApplicationController
       # or might just revisit the site. In the latter case we don't produce a 
       # flash message.
       if Time.now - current_user.created_at < 5
-        flash[:success] = "twitter_sessions.success".t
+        flash[:success] = "sessions.twitter.success".t
       end
 
       # follow @bountyhill?
       if follow_bountyhill
         current_user.identity(:twitter).follow
-        flash[:success] = "twitter_sessions.following".t
+        flash[:success] = "sessions.twitter.following".t
       end
 
-      identity_presented! :twitter
+      identity_presented!
     else
       session.delete(:follow_bountyhill)
-      identity_cancelled! :twitter
+      identity_cancelled!
     end
-
-    redirect_to "/"
   end
 
   private

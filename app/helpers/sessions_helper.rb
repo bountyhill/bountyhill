@@ -6,7 +6,7 @@ module SessionsHelper
 
   def link_to_reset_password
     link_to I18n.t(:"reset_password.label"), 
-      reset_password_path(:email => @identity.email, :req => params[:req]), 
+      reset_password_path(:email => @identity.email), 
       :method => "post"
   end 
 end

@@ -1,15 +1,15 @@
-<h2>Confirm your email address!</h2>
-<p>
-  At this point we must make sure that your email address is correct.
-</p>
-<p>
-  When you signed up, we sent you an email with details how to do this. 
-  If you missed this email, we can just send you a new one.
-</p>
-<div>
+<%= form_for Identity::Email.new, :url => "/" do |form| %>
+<legend><%= I18n.t("sessions.confirmed.legend")%></legend>
+
+<div class="alert alert-info" style="min-height: 5em">
+  <%= I18n.t "sessions.confirmed.reasons" %>
+</div>
+
+<div class="form-actions">
   <%= link_to_cancel_signin %>
   <%=
-    link_to I18n.t("signup.confirm.reminder_label"), "/confirm", 
+    link_to I18n.t("sessions.email.resend_confirmation"), "/confirm",
       :class => "btn btn-primary", :method => :post 
   %>
 </div>
+<% end %>

@@ -2,16 +2,11 @@
 <%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
   <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
-    <legend><%= I18n.t("signin.twitter") %></legend>
+    <legend><%= I18n.t("sessions.twitter.legend")%></legend>
     <%= form.error_messages :scope => "signup" %>
 
-    <div>
-      <strong>You must be signed in via Twitter...</strong>
-      <p>
-        ...to forward a quest and secure your chance to win a part of the bounty.
-        If you choose to <strong>follow @bountyhill</strong>, we'll send you
-        a tweet on succes.
-      </p>
+    <div class="alert alert-info" style="min-height: 5em">
+      <%= I18n.t "sessions.twitter.reasons" %>
     </div>
 
     <%= form.control_group :follow_bountyhill, :check_box %>
@@ -20,7 +15,7 @@
 
     <div class="form-actions">
       <%= link_to I18n.t(:cancel), "/sessions/twitter", :method => :post, :class => "btn cancel" %>
-      <%= form.submit I18n.t("signin.label"), :class => "btn btn-primary" %>
+      <%= form.submit I18n.t("sessions.twitter.signin"), :class => "btn btn-primary" %>
     </div>
   </fieldset>
 <% end %>

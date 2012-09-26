@@ -45,40 +45,59 @@ en:
     offers: Offers
     stats:  Stats
     logs:   Logs
-    signup: "Sign up"
     signin: "Sign in"
     signout: "Sign out"
     about:  "About"
     terms:  "Terms & Conditions"
     privacy: "Privacy"
     contact: Contact
-  go_to_signin: "I have an account, take me to the login page!"
   settings: Settings
   reset_password:
     label:  I forgot my password.
     sent:   You should receive instructions to reset your password in your email.
     unknown_email: "The email address is not registered here: %{email}."
-  signup:
-    label: "Sign up"
-    email: "Sign up with your email address"
-    message:
-      error: Please correct the errors below and then resubmit the form!
-      success: "Welcome to bountyhill!"
-    confirm:
-      reminder: 
+  sessions:
+    to_signup:    I am new here. Take me to the Signup form.
+    to_signin:    I have an account already. Take me to the signin form.
+    twitter:
+      following:  "Thank you for signing in with Twitter and for following @bountyhill."
+      success:    "Thank you for signing in with Twitter."
+      legend:     Sign in with twitter
+      signin:     Sign in
+      reasons:
+        "You must be signed in via Twitter to share a quest and to
+        secure your chance to win a part of the bounty.
+        
+        If you choose to follow @bountyhill by checking the checkbox below, 
+        we'll send you a tweet on succes."
+    email:
+      signin:     Sign in
+      signup:     Sign up
+      legend:     
+        Sign in with your email and password
+      reasons:
+        You must register your email address to enter a quest and to post an offer.
+      confirmation_reminder: 
         "You have signed up with bountyhill, but didn't confirm your email address yet."
-      reminder_label:
+      resend_confirmation: 
         Resend confirmation email!
-      sent: 
+      confirmation_sent:  
         You should receive a confirmation email shortly.
-  signin:
-    email: "Sign in with your email and password"
-    twitter: "Sign in with twitter"
-    new_user: "If you are a new user, please %{link} first!"
-    label: "Sign in"
-    message:
-      error: Your email and/or password are not valid. Please try again!
-      success: "Welcome to bountyhill!"
+      confirmed:
+        Thank you for confirming your email address.
+      success:
+        signup: Welcome to bountyhill!
+        signin: Welcome to bountyhill!
+      error:
+        signup: Please correct the errors below and then resubmit the form!
+        signin: Your email and/or password are not valid. Please try again!
+    confirmed:
+      legend: Confirm your email address!
+      reasons:
+        At this point we must make sure that your email address is correct.
+
+        When you signed up, we sent you an email with details how to do this. 
+        If you missed this email, we can just send you a new one.
   search:
     box:
       placeholder: everything you're looking for...
@@ -137,9 +156,6 @@ en:
       compliance:
         title: "compliance"
         sub: with the best offer.
-  twitter_sessions:
-    following:  "Thank you for signing in with Twitter and for following @bountyhill."
-    success:    "Thank you for signing in with Twitter."
   offer:
     title:
       show:   ""
