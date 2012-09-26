@@ -1,46 +1,65 @@
 <div class="row-fluid">
-  <div class="span8">
-    <style type="text/css" media="screen">
-      form.home-search > div {
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2em;
-        text-align: center;
-      }
-      form.home-search .search-query {
-        width: 80%;
-        font-size: 190%;
-        height: auto;
-        border-radius: 23px;
-      }
-    </style>
-    <form class="home-search" action="/quests/new" class="inner">
-      <div class="inner"> </div>
-      <div class="inner">
-        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= I18n.t(:"search.box.placeholder") %>" name="q">
-      </div>
-      <div>
-        <a href='/quests' class="btn btn-large">Show all quests...</a>
-        &nbsp;&nbsp;
-        <input type="submit" value="Start a quest" name="commit" class="btn btn-primary btn-large">
-      </div>
-    </form>
+  <div class="span12">
+    <div class="inner">
+      <form class="home-search" action="/quests/new" class="inner">
+        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= I18n.t(:"home.search.box.placeholder") %>" name="q">
+        <input type="submit" value="<%= I18n.t(:"home.search.box.button") %>" name="commit" class="btn btn-inverse btn-large">
+      </form>
     
     <script type="text/javascript" charset="utf-8">
     jQuery(function() {
       jQuery("#search-query").focus();
     });
     </script>
-  </div>
-  <div class="span4">
-    <h1>Bountyhill will change the way you search.</h1>
-    <br />
-    <h2>For a new flat.</h2>
-    <h2>For a dog sitter.</h2>
-    <h2>Forever.</h2>
-
-    <a href='/about'>Learn more...</a>
+    </div>
   </div>
 </div>
 
-<%= partial 'homeinfo' %>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="inner">
+      <div class="tagline">
+        <h1>Bountyhill will change the way you search</h1>
+        <p class="claim">
+          <span class="reemphasis">
+            for a new flat |
+            for a new car |
+            for a new live |
+            for everything
+          </span>
+          <span class="emphasis">...forever!</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= partial 'static/home/info' %>
+
+<!-- <div class="row-fluid">
+  <div class="span12">
+    <div class="notifly bg-gray">
+      <div class="shadow"></div>
+        <div id="twitter">
+          <div class="twitter">t</div>
+            <span class="text">
+              <ul class="tweet_list">
+                <li class="tweet_first tweet_odd">
+                  <span class="tweet_time">
+                    <a href="http://twitter.com/ziceinclude/status/247550990012801024" title="view tweet on twitter">about 9 days ago</a>
+                  </span>
+                  <span class="tweet_join">i was looking at</span>
+                  <span class="tweet_text">
+                    Check out this great 
+                    <a href="http://search.twitter.com/search?q=&amp;tag=themeforest&amp;lang=all">#themeforest</a>
+                    item 'Inception Theme Responsive HTML' 
+                    <a href="http://themeforest.net/item/inception-theme-responsive-html/2714206">themeforest.net/item/inception…</a>
+                  </span>
+                </li>
+              </ul>
+            </span>
+        </div>
+    </div>
+    <div class="shadow"></div>
+  </div>
+</div> -->

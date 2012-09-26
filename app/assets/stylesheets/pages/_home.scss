@@ -1,0 +1,57 @@
+form.home-search {
+  margin: 80px 0 100px 0;
+  text-align: center;
+  input[type=submit], input[type=text] {
+    padding: 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -khtml-border-radius: 8px;
+  }
+  input[type=text] {
+    width: 60%;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 32px;
+    height: auto;
+    text-align: center;
+  }
+  input[type=submit] {
+    margin-left: 40px;
+    padding: 12px 14px;
+    line-height: 20px;
+    font-size: 18px;
+  }
+}
+
+.tagline {
+  padding: 10px 40px;
+  h1 {
+    font-size: 24px;
+  }
+  .claim {
+    float:right;
+  }
+  .reemphasis {
+    font-size: 14px;
+    color: $text_minor;
+    font-weight: bold;
+  }
+  .emphasis {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: $highlight;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.columnBottom {
+  margin-top: 40px;
+  color: #CCC;
+  h4 {
+    color: #CCC;
+  }
+}
