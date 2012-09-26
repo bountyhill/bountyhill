@@ -1,21 +1,86 @@
 module ApplicationController::RequiredIdentity
-  def requires_identity!(*args)
-    options = args.extract_options!
-    kind = args.first || :any
+  H = ApplicationController::RequiredIdentity
 
+  # Make sure the user is logged in with a specific (or any) identity.
+  # If the user is not logged in or if his login does not provide the
+  # requested identity, she will be asked for it using the /sessions
+  # controller. On success the user will be redirected to the _success_
+  # target URL.
+  #
+  # The user might cancel providing his/her identity, in which case
+  # she will be redirected to the _cancel_ target.
+  #
+  # Redirection targets can be passed in either as URL strings or as
+  # ActiveRecord models. In the latter case the redirection
+  # shows the #show action.
+  #
+  # Parameters:
+  #  - request_identity! mode, options
+  #  - request_identity! options
+  #  - request_identity! mode
+  #
+  # The +mode+ parameter is one of the supported authentication modi
+  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:any</tt>)
+  # and defaults to :any.
+  #
+  # - <tt>:on_cancel</tt> URL to redirect to when user cancels authentication.
+  # - <tt>:on_success</tt> URL to redirect to when user authentication succeeds.
+  # - <tt>:notice</tt> the redirection notice to show to the user.
+  #
+  # Examples: Secure non-destructive (read: "GET") actions by requiring the user
+  # to log in.
+  #
+  #   def index
+  #     request_identity!
+  #     ...
+  #   end
+  #
+  # Example: request an identity before running a specific action. Note:
+  # "start" usually responds to a POST request (i.e. to a form), while 
+  # "do_start" must be a GET action.
+  #
+  #   def start
+  #     # handle form data.
+  #     # return if failed.
+  #     do_start
+  #   end
+  #
+  #   def do_start
+  #     request_identity! :twitter, :on_cancel => "/"
+  #     current_user.twitter.status "Hey, I am in here!"
+  #   end
+  
+  def request_identity!(*args)
+    options = args.extract_options!
+    kind = args.first || options[:kind] || :any
+
+    expect! request.method => "GET"
     expect! args.length => [0, 1]
     expect! kind => [ :confirmed, :email, :twitter, :any ]
     expect! options => {
-      :on_complete => [ nil, ActiveRecord::Base, String ],
       :on_success  => [ nil, ActiveRecord::Base, String ],
-      :on_cancel   => [ nil, ActiveRecord::Base, String ]
+      :on_cancel   => [ nil, ActiveRecord::Base, String ],
+      :notice      => [ nil, String ]
     }
-
-    # does the user already has the identity?
-    if current_user && current_user.identity(kind)
-      redirect_after_identity_provided!(options, :on_success, :on_complete)
+    
+    # does the user already provide the requested identity?
+    if identity?(kind)
+      if options[:on_success]
+        redirect_after_identity_provided! options[:on_success] 
+      end
       return
     end
+
+    # Ask for email, if we need a *confirmed* email, but don't even have
+    # an unconfirmed yet.
+    if kind == :confirmed && !identity?(:email)
+      kind = :email
+    end
+
+    # -- fetch notice text --------------------------------------------
+    
+    notice = options.delete(:notice)
+    notice ||= I18n.t("requires_identity.#{kind}")
 
     # -- prepare payload ----------------------------------------------
     
@@ -25,23 +90,15 @@ module ApplicationController::RequiredIdentity
       options[key] = target.uid if target.is_a?(ActiveRecord::Base)
     end
 
-    # a default on_success redirection.
-    options[:on_success] ||= request.path if request.method == "GET"
+    # a default on_success redirection. This allows to secure non-
+    # destructive (read: "GET") actions by just adding on top:
+    #
+    #   request_identity! :email
+    #
+    options[:on_success] ||= request.url
 
     # set payload
-    H.set_payload session, kind, options
-
-    # -- fetch notice text --------------------------------------------
-    
-    notice = I18n.t("requires_identity.#{kind}")
-
-    # If we need a confirmed email, but not even have an email yet,
-    # we ask for the email first.
-    if kind == :confirmed
-      if !current_user || !current_user.identity(:email)
-        notice = I18n.t("requires_identity.email")
-      end
-    end
+    H.set_payload session, options.merge(:kind => kind)
 
     # -- start signing in ---------------------------------------------
     redirect_to! signin_path(:req => kind), notice: notice
@@ -49,54 +106,66 @@ module ApplicationController::RequiredIdentity
 
   private
 
-  def redirect_after_identity_provided!(payload, *args) #:nodoc:
-    # find and resolve a redirection target
-    return unless target = payload.values_at(*args).compact.first
-
-    # finally redirect.
-    model = target if target.is_a?(ActiveRecord::Base) 
+  def redirect_after_identity_provided!(target) #:nodoc:
+    # redirect to the target
+    model = target if target.is_a?(ActiveRecord::Base)
     model ||= ActiveRecord::Base.by_uid(target)
 
     redirect_to! model ? url_for(model) : target
   end
-  
-  module H
-    SESSION_KEY = "identity"
 
-    # fetch payload of a given \a kind from the \a session
-    def self.payload(session, kind) #:nodoc:
-      payload = session[SESSION_KEY]
+  # -- storing/fetching payload ---------------------------------------
 
-      if payload.is_a?(Hash) && payload[:kind].in?([:confirmed, :email, :twitter, :any])
-        session.delete SESSION_KEY
-        if kind == :any || kind == payload[:kind]
-          payload 
-        end
-      end
-    end
+  SESSION_KEY = "identity"
 
-    def self.set_payload(session, kind, payload)
-      session[SESSION_KEY] = payload.merge(:kind => kind)
+  # fetch payload of a given \a kind from the \a session
+  def self.payload(session) #:nodoc:
+    payload = session.delete(SESSION_KEY)
+    
+    # validate identity payload, just to be sure.
+    return unless payload.is_a?(Hash)
+    return unless payload[:kind].in?([:confirmed, :email, :twitter, :any])
+    
+    payload
+  end
+
+  # store the payload in the session. 
+  def self.set_payload(session, payload) #:nodoc:
+    if payload
+      session[SESSION_KEY] = payload
+    else
+      session.delete SESSION_KEY
     end
   end
   
-  # Call this method when the user presented the specified identity,
-  # e.g. logged in via the signin or signup forms.
-  def identity_presented!(kind, cancelled = nil)
-    return unless payload = H.payload(session, kind)
-    
-    unless cancelled
-      expect! current_user.identity(kind) => :truish
-      redirect_after_identity_provided! payload, :on_success, :on_complete
-    else
-      expect! current_user.identity(kind) => nil
-      redirect_after_identity_provided! payload, :on_cancel, :on_complete
+  # -- identity provisioning result: identity_presented! and identity_cancelled!
+  # are called when the user either presented an identity or cancelled the 
+  # provisioning process. Both identity_cancelled! and identity_presented!
+  # redirect in any case and do not return.
+  
+  # The user presented the specified identity.
+  def identity_presented!
+    redirect_to! "/" unless payload = H.payload(session)
+
+    # on_success redirection if the requested identity exists now.
+    if identity?(payload[:kind])
+      redirect_after_identity_provided! payload[:on_success] || "/"
     end
+
+    # Re-request the requested identity, when a wrong identity has been
+    # provided, e.g.
+    # - the website requests an email, user signs in via twitter instead, or
+    # - a :confirmed email was requested, but the site asked for an :email first
+    #
+    # Note: The user *must press cancel* to cancel the identity request.
+    request_identity! payload
   end
 
   # Call this method when the user cancelled the identity, for example
   # if the user pressed Cancel on a login form.
-  def identity_cancelled!(kind = :any)
-    identity_presented! kind, :cancelled
+  def identity_cancelled!
+    redirect_to! "/" unless payload = H.payload(session)
+    
+    redirect_after_identity_provided! payload[:on_cancel] || "/"
   end
 end

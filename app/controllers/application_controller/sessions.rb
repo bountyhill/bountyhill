@@ -14,7 +14,11 @@ module ApplicationController::Sessions
   
   def signout
     @current_user = false
+    
     session.delete(:remember_token)
+    session.delete(:signedin)
+
+    ApplicationController::RequiredIdentity.set_payload session, nil
   end
   
   def admin?
