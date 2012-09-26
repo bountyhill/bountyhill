@@ -12,7 +12,7 @@ module NavigationHelper
   }
   
   def nav_profile_label
-    info = span(" &#10003;") if current_user && current_user.identity(:email, :twitter)
+    info = span(" &#10003;") if current_user && current_user.identity(:confirmed, :twitter)
     "#{h current_user.name}#{info}".html_safe
   end
 
