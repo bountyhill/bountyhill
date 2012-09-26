@@ -120,26 +120,20 @@ class ApplicationController < ActionController::Base
     
     if current_user
       user_info = [:email, :confirmed, :twitter].map do |sym|
-        sym if current_user.identity(sym)
+        sym if identity?(sym)
       end.compact.join(", ")
       user_info = " [#{user_info}]"
     end
     
-    debug "User", "#{current_user.uid}#{user_info}"
+    debug "User", (current_user ? current_user.inspect : :"<none>")
   end
 
   # -- the confirmation reminder
   
   before_filter :show_confirmation_reminder
   
-  def hide_confirmation_reminder
-    @confirmation_reminder_hidden = true
-  end
-  
   def show_confirmation_reminder
-    return if @confirmation_reminder_hidden
-    return unless current_user && (email = current_user.identity(:email)) && !email.confirmed?
-
+    return if !current_user || identity?(:confirmed)
     flash.now[:warn] = render_to_string(:partial => "shared/confirmation_reminder").html_safe
   end
 end

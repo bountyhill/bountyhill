@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_dependency "identity"
 require_dependency "identity/twitter"
 require_dependency "identity/email"
@@ -117,8 +119,19 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    return unless identity = self.identity(:twitter, :email)
-    identity.name
+    if identity = self.identity(:email)
+      name = identity.name
+    end
+    
+    if name.blank? && identity = self.identity(:twitter)
+      name = identity.name
+    end
+
+    if name.blank? && identity = self.identity(:email)
+      name = identity.email
+    end
+    
+    name
   end
 
   # return the user's email
@@ -241,5 +254,21 @@ class User < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def inspect
+    parts = []
+
+    if identity = self.identity(:twitter)
+      parts << "@#{identity.email}"
+    end
+
+    if identity = self.identity(:confirmed)
+      parts << "#{identity.email} (✓)"
+    elsif identity = self.identity(:email)
+      parts << identity.email
+    end
+    
+    "#<User id: #{id} [#{parts.join(", ")}]>"
   end
 end

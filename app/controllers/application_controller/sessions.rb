@@ -21,6 +21,10 @@ module ApplicationController::Sessions
     current_user && current_user.admin?
   end
 
+  def identity?(*args)
+    current_user && current_user.identity(*args)
+  end
+
   # returns the current_user. When called in a request for the first 
   # time, this method tries to fetch or create the current_user by 
   # evaluating the remember_token and/or the twitter session.
