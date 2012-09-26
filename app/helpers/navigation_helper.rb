@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module NavigationHelper
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
@@ -17,16 +19,21 @@ module NavigationHelper
   end
 
   def link_to_nav_item(nav_item)
-    expect! nav_item => [String, :profile, :signout, :copyright]
-    
-    if nav_item == :profile
+    expect! nav_item => [String, :dot, :profile, :signout, :copyright, :your_offers, :your_quests]
+
+    case nav_item
+    when :dot
+      link_to "·", "#", :class => "separator"
+    when :profile
       link_to nav_profile_label, "/profile"
-    elsif nav_item == :copyright
+    when :your_offers, :your_quests
+      link_to I18n.t("nav.#{nav_item}"), "/profile##{nav_item.to_s[5..-1]}"
+    when :copyright
       link_to "&copy; bountyhill, 2012".html_safe, contact_path
-    elsif nav_item == :signout
+    when :signout
       link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path"), :method => "delete"
-    elsif admin_only_url = ADMIN_NAVIGATION[nav_item]
-      link_to I18n.t("nav.#{nav_item}"), admin_only_url, :target => "_blank"
+    when *ADMIN_NAVIGATION.keys
+      link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     else
       link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path")
     end
@@ -38,8 +45,8 @@ module NavigationHelper
     case position
     when :left
       nav_items = [ "about", "quests" ]
-      if current_user && current_user.current_offers?
-        nav_items << "offers"
+      if current_user && current_user.identity?(:email)
+        nav_items.concat [ :dot, :your_quests, :your_offers ]
       end
       nav_items
     when :right
