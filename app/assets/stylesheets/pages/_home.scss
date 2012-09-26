@@ -1,5 +1,31 @@
+#twitter {
+  overflow: visible;
+  padding: 17px 0 15px 15px;
+  &:hover {
+    .twitter {
+      color: $text_major;
+      font-size: 1200%;
+      opacity: 0.3;
+    }
+  }
+  .twitter {
+    color: $background_border;
+  }
+  a {
+    color: $link_text;
+  }
+  p {
+    display: block;
+    font-style: italic;
+    font-size: 16px;
+    margin-left: 100px;
+    color: $text_major;
+    text-shadow: 1px 1px 0px black;
+  }
+}
+
 form.home-search {
-  margin: 80px 0 100px 0;
+  margin: 80px 0;
   text-align: center;
   input[type=submit], input[type=text] {
     padding: 10px;
@@ -48,10 +74,23 @@ form.home-search {
   }
 }
 
+.overlap {
+  margin: 40px -5px 0 -5px;
+}
+
 .columnBottom {
-  margin-top: 40px;
   color: #CCC;
+  &.inner {
+     padding: 20px 30px;
+  }
   h4 {
     color: #CCC;
+  }
+}
+
+.home-top {
+  padding: 10px 50px;
+  p {
+    
   }
 }

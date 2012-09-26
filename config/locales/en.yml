@@ -106,7 +106,7 @@ en:
     search:
       box:
         placeholder: What are you looking for?
-        button: "Start your quest"
+        button: "Start quest"
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
