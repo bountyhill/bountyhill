@@ -8,8 +8,10 @@ class DeferredActionsController < ApplicationController
   def show
     secret = params.key(nil) || params[:id]
 
+    # The parameter might include the action name, for debug reasons. 
+    secret = secret.split("-").last
     @action = DeferredAction.find_by_secret(secret)
-    
+
     unless action && action.performable?
       flash[:error] = I18n.t "deferred_actions.invalid"
       redirect_to "/"
@@ -38,16 +40,16 @@ class DeferredActionsController < ApplicationController
     return if expected_method == request.method
     
     flash[:error] = "Don't know how to handle this request. Should be a #{expected_method}"
-    redirect_to "/"
+    redirect_to :back
   end
   
   # Send an email address confirmation email.
   #
   def confirm
     Deferred.mail UserMailer.confirm_email(current_user)
-    flash[:success] = I18n.t("signup.confirm.sent")
+    flash[:success] = I18n.t("sessions.email.confirmation_sent")
     
-    redirect_to "/"
+    redirect_to :back
   end
 
   # Send a reset password email.
@@ -63,20 +65,25 @@ class DeferredActionsController < ApplicationController
       flash[:error] = I18n.t("reset_password.unknown_email", :email => email)
     end
 
-    redirect_to CGI.build_url("/signin", :req => params[:req], :email => email)
+    redirect_to :back
   end
 
   protected
   
   # reset a password.
   def perform_reset_password
+    action.actor.confirm_email!
     signin(action.actor)
+    identity_presented!
   end
 
   # confirm email address.
   def perform_confirm_email
+    flash[:success] = I18n.t("sessions.email.confirmed")
+
     action.actor.confirm_email!
     signin(action.actor)
+    identity_presented!
   end
   
   private

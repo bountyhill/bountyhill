@@ -90,6 +90,6 @@ class DeferredAction < ActiveRecord::Base
   
   def url
     protocol, host = @@default_url_options.values_at :protocol, :host
-    CGI.build_url "#{protocol}://#{host}/act?#{secret}", :action => action
+    CGI.build_url "#{protocol}://#{host}/act?#{action}-#{secret}"
   end
 end
