@@ -103,10 +103,17 @@ en:
         When you signed up, we sent you an email with details how to do this. 
         If you missed this email, we can just send you a new one.
   home:
+    twitter:
+      link: Follow us on Twitter
+      text: and never miss a bounty.
+    claim: 
+      head: Bountyhill will change the way you search
+      text: "for a new flat | for a new car | for a new job | for anything"
+      emphasis: "... forever!"
     search:
       box:
         placeholder: What are you looking for?
-        button: "Start quest"
+        button: "Start a quest"
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."

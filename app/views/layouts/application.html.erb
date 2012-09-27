@@ -26,11 +26,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="bg-blacklight"></div>
+  <!-- <div class="bg-blacklight"></div> -->
   <%= render 'layouts/header' %>
   <div id="content" class="container">
     <%#= render 'layouts/debug' if Rails.env.development? %>
-    <section class="topspace bg-black">
+    <section class="topspace bg-solid-black">
       <%= 
         if defined?(content)
           content.html_safe
@@ -40,6 +40,7 @@
       %>
     </section>
   </div>
+  <!-- <div class="bg-blacklight"></div> -->
   <%= render 'layouts/footer' %>
 </body>
 </html>
