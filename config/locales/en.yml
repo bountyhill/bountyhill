@@ -206,11 +206,22 @@ en:
     
   agree_to_terms: "By signing in you agree to our <a href='#'>Terms and Conditions.</a>"
 
+  user:
+    message:
+      error:            Please review your input.
+      check_delete_me:  You must check this box to unregister.
+    unregister:
+      legend:           Delete your account
+      label:            Delete your account!
+    passwd:
+      legend:           Change your password
+      label:            Save
   users:
     tab:
       overview: Overview
       stats: Stats
       contact: Contact information
+      passwd: Change your password
       unregister: Delete your account
   buttons:
     category:
