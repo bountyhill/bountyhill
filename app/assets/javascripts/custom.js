@@ -4,14 +4,7 @@ $(function() {
 	$('.etip a').tooltip({ 'placement':'left' });
 	$('.wtip a').tooltip({ 'placement':'right' });
 	$('.tip a').tooltip();
-	
-	// TWITTER //
-	$("#twitter span").tweet({
-		username: "ziceinclude",
-		join_text: "auto",
-		count: 1
-	});
-	
+		
 	// NewsUpdate
 	$('#news_update').vTicker({ 
 		speed: 500,

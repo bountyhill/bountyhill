@@ -1,0 +1,16 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="inner">
+      <form class="home-search" action="/quests/new" class="inner">
+        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= I18n.t(:"home.search.box.placeholder") %>" name="q">
+        <input type="submit" value="<%= I18n.t(:"home.search.box.button") %>" name="commit" class="btn btn-inverse btn-large">
+      </form>
+    
+    <script type="text/javascript" charset="utf-8">
+    jQuery(function() {
+      jQuery("#search-query").focus();
+    });
+    </script>
+    </div>
+  </div>
+</div>
