@@ -277,9 +277,36 @@ class User < ActiveRecord::Base
   serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
   attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
 
-  attr :delete_me, true
-  attr_accessible :delete_me, :deleted_at
-
   attr :description, true
   attr_accessible :description
+  
+  # -- deletion -------------------------------------------------------
+
+  # we dont let a user delete her account; instead we "hide" it. This
+  # way we can still access her quests, offers, and bounties. 
+  #
+  # To "delete" a user you call
+  #
+  # user.soft_delete!
+
+  def soft_delete!
+    User.transaction do
+      # set its deleted_at timestamp
+      self.deleted_at = Time.now
+      save!
+      
+      # set the visibility of all offers and quests to deleted
+      Quest.update_all({ :visibility => "deleted" }, :id => quests)
+
+      # remove its twitter acount to "release" the twitter handle
+      if twitter = identity(:twitter)
+        twitter.destroy
+      end
+
+      # adjust the email identity so, that the email address is kept for 
+      # future references and that the user might re-signup with same email
+      # again.
+      Identity.update_all({:type => "Identity::Deleted"}, :id => identity(:email))
+    end
+  end
 end
