@@ -1,7 +1,9 @@
 a {
-  color: $link_text;
-  &:hover {
+  &, &:hover {
     color: $link_text;
+    text-transform: none;
+  }
+  &:hover {
     text-decoration: underline;
   };
 }
