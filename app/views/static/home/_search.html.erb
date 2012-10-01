@@ -2,15 +2,15 @@
   <div class="span12">
     <div class="inner">
       <form class="home-search" action="/quests/new" class="inner">
-        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= I18n.t(:"home.search.box.placeholder") %>" name="q">
-        <input type="submit" value="<%= I18n.t(:"home.search.box.button") %>" name="commit" class="btn btn-inverse btn-large">
+        <input type="text" id="search-query" class="search-query input-xlarge" placeholder="<%= t "home.search.box.placeholder" %>" name="q">
+        <input type="submit" value="<%= t "home.search.box.button" %>" name="commit" class="btn btn-inverse btn-large">
+        <p><%= t "home.search.bounties.text" %> <%= link_to t("home.search.bounties.link"), quests_path %></p>
       </form>
-    
-    <script type="text/javascript" charset="utf-8">
+    <!-- <script type="text/javascript" charset="utf-8">
     jQuery(function() {
       jQuery("#search-query").focus();
     });
-    </script>
+    </script> -->
     </div>
   </div>
 </div>

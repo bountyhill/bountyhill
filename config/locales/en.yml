@@ -104,16 +104,19 @@ en:
         If you missed this email, we can just send you a new one.
   home:
     twitter:
-      link: Follow us on Twitter
-      text: and never miss a bounty.
+      link: Catch your bounty on Twitter
+      text: with the help of your friends and followers
     claim: 
       head: Bountyhill will change the way you search
       text: "for a new flat | for a new car | for a new job | for anything"
-      emphasis: "... forever!"
+      emphasis: "forever!"
     search:
       box:
         placeholder: What are you looking for?
         button: "Start a quest"
+      bounties: 
+        text: If you are interested to see what others are looking for you might want to
+        link: see all quests
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."

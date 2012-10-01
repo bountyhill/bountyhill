@@ -1,3 +1,11 @@
+a {
+  color: $link_text;
+  &:hover {
+    color: $link_text;
+    text-decoration: underline;
+  };
+}
+
 #content {
   padding-top: 20px;
 }
