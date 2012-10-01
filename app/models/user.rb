@@ -309,4 +309,9 @@ class User < ActiveRecord::Base
       Identity.update_all({:type => "Identity::Deleted"}, :id => identity(:email))
     end
   end
+  
+  # -- retweet a quest ------------------------------------------------
+  def retweet(quest)
+    identity(:twitter).update_status quest.tweet
+  end
 end
