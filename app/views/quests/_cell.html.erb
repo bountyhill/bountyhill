@@ -9,7 +9,7 @@
         <%= render_restriction quest, :expires_at %>
       </div>
       <div class="socialmedia">
-        <a class="social-item twitter" href="#" title="find us twitter">t</a>
+        <%= link_to "t", retweet_quest_path(quest), :title => "quest.actions.tweet", :class => "social-item tweet", :rel => "nofollow" %>
       </div>
     </div>
   </div>

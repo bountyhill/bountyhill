@@ -29,7 +29,6 @@ class QuestsController < ApplicationController
   end
 
   # POST /quests
-  # POST /quests.json
   def create
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
@@ -51,7 +50,6 @@ class QuestsController < ApplicationController
   end
   
   # PUT /quests/1
-  # PUT /quests/1.json
   def update
     @quest = Quest.find(params[:id])
     @quest.attributes = params[:quest]
@@ -64,11 +62,20 @@ class QuestsController < ApplicationController
   end
 
   # DELETE /quests/1
-  # DELETE /quests/1.json
   def destroy
     @quest = Quest.find(params[:id])
     @quest.destroy
 
     redirect_to quests_url
+  end
+  
+  # GET /quests/1/share
+  def retweet
+    request_identity! :twitter
+    
+    @quest = Quest.find(params[:id])
+    current_user.retweet @quest
+    
+    redirect_to @quest, notice: "Thank your for sharing!"
   end
 end

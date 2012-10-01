@@ -112,19 +112,8 @@ class DeferredAction < ActiveRecord::Base
   
   # -- URLs -----------------------------------------------------------
   
-  def self.default_url_options=(default_url_options)
-    @@default_url_options = default_url_options
-  end
-
-  @@default_url_options = {
-    host: "bountyhill.local",
-    protocol: "http"
-  }
-  
-  # This method returns an URL for the DeferredAction. It assumes
-  # that DeferredAction.default_url_options was called before. 
+  # This method returns an URL for the DeferredAction.
   def url
-    protocol, host = @@default_url_options.values_at :protocol, :host
-    CGI.build_url "#{protocol}://#{host}/act?#{action}-#{secret}"
+    Bountyhill::Application.url_for("act?#{action}-#{secret}")
   end
 end

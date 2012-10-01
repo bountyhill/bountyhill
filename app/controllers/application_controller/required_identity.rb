@@ -120,13 +120,20 @@ module ApplicationController::RequiredIdentity
 
   # fetch payload of a given \a kind from the \a session
   def self.payload(session) #:nodoc:
-    payload = session.delete(SESSION_KEY)
+    payload = session[SESSION_KEY]
     
     # validate identity payload, just to be sure.
     return unless payload.is_a?(Hash)
     return unless payload[:kind].in?([:confirmed, :email, :twitter, :any])
     
     payload
+  end
+
+  # fetch and delete payload of a given \a kind from the \a session
+  def self.delete_payload(session) #:nodoc:
+    payload(session)
+  ensure
+    session.delete(SESSION_KEY)
   end
 
   # store the payload in the session. 
@@ -145,8 +152,10 @@ module ApplicationController::RequiredIdentity
   
   # The user presented the specified identity.
   def identity_presented!
-    redirect_to! "/" unless payload = H.payload(session)
-
+    unless payload = H.delete_payload(session)
+      redirect_to! "/"
+    end
+    
     # on_success redirection if the requested identity exists now.
     if identity?(payload[:kind])
       redirect_after_identity_provided! payload[:on_success] || "/"
@@ -164,7 +173,7 @@ module ApplicationController::RequiredIdentity
   # Call this method when the user cancelled the identity, for example
   # if the user pressed Cancel on a login form.
   def identity_cancelled!
-    payload = H.payload(session) || {}
+    payload = H.delete_payload(session) || {}
     redirect_after_identity_provided! payload[:on_cancel] || "/"
   end
 end

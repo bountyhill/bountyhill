@@ -9,7 +9,14 @@ Bountyhill::Application.routes.draw do
     match static_page => "static##{static_page}"    
   end
 
-  resources :quests
+  resources :quests do
+    member do
+      get 'retweet'
+    end
+  end
+
+  match "/q/:id" => "quests#show", :via => :get
+  
   resources :runs
   match "/runs/:id" => "runs#update", :via => :post
   match "/runs/:id/start" => "runs#start", :via => :get

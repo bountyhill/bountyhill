@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Quest < ActiveRecord::Base
   include ActiveRecord::RandomID
   include ImageAttributes
@@ -210,5 +212,21 @@ class Quest < ActiveRecord::Base
 
   def compliance
     offers.all.map(&:compliance).sort.last
+  end
+  
+  def url
+    Bountyhill::Application.url_for "/q/#{self.id}"
+  end
+  
+  def tweet
+    text = title.truncate(100, :separator => ' ', :omission => "…")
+    hash_tag = "#bounty"
+    
+    if self.bounty > 0
+      bounty = self.bounty.to_short_string.sub(/ EUR/, "€")
+      "#{text} #{bounty} #{hash_tag} #{url}"
+    else
+      "#{text} #{hash_tag} #{url}"
+    end
   end
 end

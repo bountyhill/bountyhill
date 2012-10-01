@@ -28,7 +28,7 @@ module ActionButtonsHelper
       url = options[:url] || '#'
       
       li = self.li do
-        link_to url do
+        link_to url, :rel => "nofollow" do
           html = span icon, "class" => "ca-icon twitter"
           html += div "class" => "ca-content" do
             title = span title, :class => "ca-main"
