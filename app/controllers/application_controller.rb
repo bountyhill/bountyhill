@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
         :protocol => request.scheme
       }.tap do |options|
         ActionMailer::Base.default_url_options = options.dup
-        DeferredAction.default_url_options = options.dup
+        Bountyhill::Application.url_options = options.dup
       end
     end
   end
