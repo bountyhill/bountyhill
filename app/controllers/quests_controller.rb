@@ -3,7 +3,7 @@ class QuestsController < ApplicationController
   
   # GET /quests
   def index
-    @quests = Quest.paginate(:page => params[:page], :per_page => per_page, :include => {:owner => :identities})
+    @quests = Quest.active.paginate(:page => params[:page], :per_page => per_page, :include => {:owner => :identities})
   end
 
   # GET /quests/1
