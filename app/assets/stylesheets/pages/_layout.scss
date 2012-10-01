@@ -1,3 +1,7 @@
+section {
+  margin: 40px 0;
+}
+
 a {
   &, &:hover {
     color: $link_text;
@@ -78,6 +82,7 @@ form {
 }
 
 .navbar {
+  margin: 0;
   .brand {
     text-transform: none;
   }
@@ -87,35 +92,6 @@ form {
       &.active > a, a:hover {
         background:  $navigation_highlight !important;
         color: $text;
-      }
-    }
-  }
-  .navbar-search {
-    .search-query {
-      font-weight: bold;
-      line-height: 1.5;
-    }
-  }
-}
-
-.dropdown-menu {
-  li {
-    &.active, a:hover {
-      background-color: $navigation_highlight;
-      color: $text;
-    }
-  }
-}
-  
-.ca-menu {
-  li {
-    &:hover {
-      a {
-        color: $highlight;
-        text-shadow: 1px 1px 0px $background;
-      }
-      .ca-main {
-        color: $link_text;
       }
     }
   }
