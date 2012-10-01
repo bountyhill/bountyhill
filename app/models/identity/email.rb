@@ -15,6 +15,8 @@ class Identity::Email < Identity
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
   
+  # -- validation -----------------------------------------------------
+  
   # constant to use with name validation
   MAX_NAME_LENGTH     = 256
 
@@ -29,10 +31,14 @@ class Identity::Email < Identity
   validates :email,     presence: true, format: { with: EMAIL_ADDRESS_REGEX }, 
                                         uniqueness: { case_sensitive: false }
 
+  # -- authenticate ---------------------------------------------------
+  
   def self.authenticate(email, password)
     identity = find_by_email(email)
     identity.authenticate(password) if identity
   end
+
+  # -- methods --------------------------------------------------------
   
   def avatar(options)
     expect! options => { :default => [ String, nil ]}
