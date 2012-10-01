@@ -22,8 +22,8 @@ module UsersHelper
   end
   
   def render_tabs
-    default_tab = UsersController.default_tab
-
+    default_tab = current_tabs.first
+    
     ul :class => "nav nav-tabs" do
       current_tabs.map do |tab|
         li :class => ("active" if active_tab == tab) do

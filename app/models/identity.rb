@@ -13,6 +13,7 @@
 #
 # - Identity::Twitter
 # - Identity::Email
+# - Identity::Deleted
 #
 class Identity < ActiveRecord::Base
   belongs_to :user

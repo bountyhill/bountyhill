@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="span4">
+    <div class="inner">
+      <%= partial "/users/mini", :user => @user %>
+    </div>
+  </div>
+  <div class="span8" style="height: 180px">
+    <div class="inner">
+      <div class="stats">
+      <p>
+        You posted <span><strong>10</strong> quests</span>, 
+        shared <span><strong>10</strong> quests</span>, 
+        and answered with <span><strong>10</strong> offers</span>.
+      </p>
+      <p>
+        <span><strong>3</strong> of your quests</span> are still running. 
+        <span><strong>3</strong> quests</span> that you shared are still running.
+      </p>
+      <p>
+        You earned <span><strong>23</strong> EUR</span> so far... 
+        27 EUR until you may request a cashout.
+      </p>
+      <p>
+        You have still have the chance of earning additional
+        <span><strong>17</strong> EUR</span>
+        on yet to close quests.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  div.stats p {
+    font-size: 130%;
+    margin-bottom: 1em;
+  }
+  div.stats p span {
+    color: orange;
+    font-weight: bold;
+  }
+  div.stats p strong {
+    font-size: 160%;
+  }
+</style>
