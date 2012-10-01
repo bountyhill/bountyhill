@@ -1,9 +1,3 @@
-<div class="row-fluid">
-  <div class="span4">
-    <div class="inner">
-      <%= partial "/users/mini", :user => @user %>
-    </div>
-  </div>
   <div class="span8" style="height: 180px">
     <div class="inner">
       <h3>
@@ -18,36 +12,48 @@
   </div>
 </div>
 
+<% quests = current_user.quests.limit(4) %>
+
 <a name="quests"> </a>
 <div class="row">
-  <div class="span4" style="height: 180px">
+  <div class="span3" style="height: 180px">
     <div class="inner">
       <h2>Your quests</h2>
-      <p>You didn't post any offer yet.</p>
+      <%= link_to "See your quests", quests_path(:owner_id => current_user) %>
     </div>
   </div>
-  <% 10.times do %>
-  <div class="span1">
-    <div style="height: 120px; border: 3px solid red">
-      Quest #<%= rand(1000) %>
-    </div>
+  <div class="span9">
+    <% if quests.present? %>
+      <% quests.each do |quest| %>
+      <div class="span4">
+        <%= partial "quests/cell", :quest => quest %>
+      </div>
+      <% end %>
+    <% else %>
+      <%= partial "no_quests" %>
+    <% end %>
   </div>
-  <% end %>
 </div>
 
+<% offers = Offer.relevant_for(current_user).limit(4) %>
 <a name="offers"> </a>
 <div class="row">
-  <div class="span4" style="height: 180px">
+  <div class="span3" style="height: 180px">
     <div class="inner">
       <h2>Your offers</h2>
-      <p>You didn't post any offer yet.</p>
+      <%= link_to "See your offers", offers_path(:owner_id => current_user) %>
     </div>
   </div>
-  <% 10.times do %>
-  <div class="span1">
-    <div style="height: 120px; border: 3px solid red; margin: 5px">
-      Offer #<%= rand(1000) %>
-    </div>
+  <div class="span9">
+    <% if offers.present? %>
+    
+      <% offers.each do |offer| %>
+        <div class="span4">
+          <%= partial "offers/cell", :offer => offer %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= partial "no_offers" %>
+    <% end %>
   </div>
-  <% end %>
 </div>
