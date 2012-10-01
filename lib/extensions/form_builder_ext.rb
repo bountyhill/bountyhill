@@ -37,7 +37,7 @@ class ActionView::Helpers::FormBuilder
   }
   
   # Creating a control_group.
-  def control_group(*args)
+  def control_group(*args, &block)
     input_field_options = args.extract_options!
     
     name, field_type = *args
@@ -51,30 +51,57 @@ class ActionView::Helpers::FormBuilder
     end
 
     if field_type == :hidden_field
-      return self.send field_type, name, input_field_options
-    end
-
-    if error_message = object.error_message_for(name)
-      control_group_class = "control-group error"
+      hidden_field name, input_field_options
     else
-      control_group_class = "control-group"
+      render_control_group field_type, name, input_field_options, &block
     end
-    
-    div :class => control_group_class do
+  end
 
-      label = input_field_options.delete(:label)
-      label_tag = self.label label || name, :class => "control-label"
+  def control_group_class(name)
+    if object.error_message_for(name)
+      "control-group error"
+    else
+      "control-group"
+    end
+  end
+  
+  def render_control_group_label(field_type, name, options)
+    return if field_type == :check_box
 
-      controls = div :class => "controls" do
-        input_field = if block_given? 
-          yield
-        else
-          self.send field_type, name, input_field_options
-        end
-        "#{input_field}\n#{error_message}\n"
-      end
+    label_text = options.delete(:label) || name
+    content_tag :label, label_text, :class => "control-label"
+  end
+
+  def render_control_group_input(field_type, name, options, &block)
+    if block_given? 
+      yield
+    else
+      self.send field_type, name, options
+    end
+  end
+
+  def render_control_group_controls(field_type, name, options, &block)
+    if field_type == :check_box
+      label_text = options.delete(:label) || name
       
-      "#{label_tag}\n#{controls}"
+      controls = content_tag :label do
+        render_control_group_input(field_type, name, options, &block) +
+        label_text.html_safe
+      end
+    else
+      controls = render_control_group_input(field_type, name, options, &block)
+    end
+
+    div :class => "controls" do
+      "#{controls}\n#{object.error_message_for(name)}"
+    end
+  end
+  
+  def render_control_group(field_type, name, options, &block)
+    return if name == :check_box
+    div :class => control_group_class(name) do
+      "#{render_control_group_label(field_type, name, options)}\n" +
+      "#{render_control_group_controls(field_type, name, options)}\n"
     end
   end
   
