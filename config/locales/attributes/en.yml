@@ -6,6 +6,7 @@ en:
         email: "Email"
         password: "Password"
         confirmation: "Confirmation"
+        delete_me: "Delete my account"
       quest:
         criterium_0:              "Criterium"
         criterium_description_0:  "Description (opt.)"

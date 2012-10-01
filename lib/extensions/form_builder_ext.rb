@@ -82,8 +82,8 @@ class ActionView::Helpers::FormBuilder
 
   def render_control_group_controls(field_type, name, options, &block)
     if field_type == :check_box
-      label_text = options.delete(:label) || name
-      
+      label_text = options.delete(:label) || I18n.t("activerecord.attributes.#{object_name}.#{name}")
+
       controls = content_tag :label do
         render_control_group_input(field_type, name, options, &block) +
         label_text.html_safe
