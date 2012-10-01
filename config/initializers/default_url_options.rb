@@ -9,6 +9,8 @@ class Bountyhill::Application
   end
 
   def self.url_for(path, *args)
+    protocol, host = @@url_options.values_at :protocol, :host
+
     path = File.join("#{protocol}://#{host}", path)
     CGI.build_url path, *args
   end
