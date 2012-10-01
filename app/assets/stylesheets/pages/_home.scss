@@ -31,12 +31,13 @@ form.home-search {
     text-align: center;
   }
   p {
-    width: 90%;
+    width: 88%;
     margin: 10px 0 0 0;
     color: $text_minor;
   }
   input[type=submit], input[type=text] {
     padding: 4px 20px;
+    border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -o-border-radius: 8px;
@@ -44,7 +45,6 @@ form.home-search {
     -khtml-border-radius: 8px;
   }
   input[type=text] {
-    width: 60%;
     margin-right: 10px;
     font-size: 24px;
     font-weight: bold;

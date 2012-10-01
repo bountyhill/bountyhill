@@ -31,9 +31,9 @@ class ActionView::Helpers::FormBuilder
   end
 
   DEFAULT_INPUT_FIELD_OPTIONS = {
-    :text_field     => { :class => "input-xlarge" },
-    :password_field => { :class => "input-xlarge" },
-    :text_area      => { :class => "input-xlarge" }
+    :text_field     => { :class => "input-xxlarge" },
+    :password_field => { :class => "input-xxlarge" },
+    :text_area      => { :class => "input-xxlarge" }
   }
   
   # Creating a control_group.
@@ -62,8 +62,10 @@ class ActionView::Helpers::FormBuilder
     
     div :class => control_group_class do
 
-      label = input_field_options.delete(:label)
-      label_tag = self.label label || name, :class => "control-label"
+      # label = input_field_options.delete(:label)
+      # label_tag = self.label label || name, :class => "control-label"
+      input_field_options[:placeholder] ||= object.class.human_attribute_name(name)
+
 
       controls = div :class => "controls" do
         input_field = if block_given? 
@@ -74,7 +76,8 @@ class ActionView::Helpers::FormBuilder
         "#{input_field}\n#{error_message}\n"
       end
       
-      "#{label_tag}\n#{controls}"
+#      "#{label_tag}\n#{controls}"
+      controls
     end
   end
   
@@ -128,7 +131,7 @@ class ActionView::Helpers::FormBuilder
   def actions(options)
     expect! options => { :cancel_url => String, :label => [ String, nil ] }
 
-    div :class => "form-actions" do
+    div :class => "buttons" do
       parts = []
 
       # 

@@ -1,18 +1,55 @@
-form.navbar-search {
-  min-width: 170px;
-}
-div.form-actions {
-  float:right;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
+.form-container {
+  height: auto;
+  margin: 0 40px;
+  padding: 10px 20px;
+  border: 2px solid $background_border;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
 }
 
-.span6 {
-  .form-horizontal {
-    .form-actions {
-      padding-right: 30px;
+form {
+  label {
+    color: $text;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
+  input, textarea {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 4px;
+    &:placeholder {
+      color: red;
+    }
+    &[type=file] {
+      color: $text;
+    }
+  }
+  legend {
+    color: $text;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .buttons {
+    float:right;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+  }
+  .control-group {
+    .controls {
+      margin: 0;
     }
   }
 }
+

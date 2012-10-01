@@ -120,15 +120,14 @@ en:
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
-
     message:
       error:      Please review your input.
       base_error: "%{base_error}: please review your input."
-    legend: ""
+    legend: "The request text as well as the bounty of your quest will be send in a tweet to all your followers. All further information provided will be displayed on bountyhill only."
     title:
       show: ""
       edit: "Edit quest"
-      create: "New quest"
+      create: "Start your quest right now"
     new: Post a Quest
     expires_at:
       title: "days"
@@ -226,24 +225,6 @@ en:
       contact: Contact information
       passwd: Change your password
       unregister: Delete your account
-  buttons:
-    category:
-      job:      Jobs
-      home:     Homes
-      car:      Cars
-      people:   People
-      gift:     Gifts
-      help:     Help
-      travel:   Travel
-      fashion:  Fashion
-    sort:
-      created:     Sort by creation date
-      bounty:      Sort by amount of bounty
-      temporality: Sort by expiry date
-      locality:    Sort by place
-    order:
-      desc: Descending order
-      asc:  Ascending order
   requires_identity:
     email:      "Please sign in with your email address."
     confirmed:  "Please confirm your email address."
