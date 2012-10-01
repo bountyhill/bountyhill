@@ -10,6 +10,9 @@ class OffersController < ApplicationController
     if params[:quest_id]
       scope = scope.where(:quest_id => params[:quest_id]).order("compliance DESC")
     end
+    if params[:owner_id]
+      scope = scope.relevant_for(User.find(params[:owner_id]))
+    end
     
     @offers = scope.paginate(:page => params[:page], :per_page => per_page)
     

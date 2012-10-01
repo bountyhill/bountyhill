@@ -17,9 +17,8 @@ class Quest < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
-  scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
-  scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
+  scope :active,  lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
+  scope :expired, lambda { where("quests.expires_at <= ?", Time.now) }
   
   # Find a quest, even if it does not belong to the current_user, but to
   # User.draft. We'll need this when a user enters a quest before she is
