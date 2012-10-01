@@ -100,13 +100,27 @@ class ActionView::Helpers::FormBuilder
       end
     end.join("")
   end
-  
+
   def agree_to_terms
     div :class => "control-group" do
       div :class => "controls" do
-        I18n.t "agree_to_terms"
+        I18n.t "sessions.agree_to_terms"
       end
     end
+  end
+
+  def agree_to_terms!
+    html = <<-HTML
+<div class='control-group'>
+  <div class='controls'>
+    <label>
+      <input id="agree_to_terms" type="checkbox" />
+      #{I18n.t "sessions.agree_to_full_terms"}
+    </label>
+  </div>
+</div>
+HTML
+    html.html_safe
   end
   
   def transloadit(name, options)
