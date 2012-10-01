@@ -33,8 +33,11 @@ class Offer < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  scope :own,       lambda { where(:owner_id => ActiveRecord.current_user) }
-  scope :received,  lambda { joins(:quest).where("quests.owner_id=?", ActiveRecord.current_user) }
+  # relevant offers for a user: own or received
+  scope :relevant_for,  lambda { |user|
+    joins(:quest).
+    where("quests.owner_id=? OR offers.owner_id=?", user, user) 
+  }
   
   # -- Validation -----------------------------------------------------
 

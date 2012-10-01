@@ -31,13 +31,13 @@ class ActionView::Helpers::FormBuilder
   end
 
   DEFAULT_INPUT_FIELD_OPTIONS = {
-    :text_field     => { :class => "input-xxlarge" },
-    :password_field => { :class => "input-xxlarge" },
-    :text_area      => { :class => "input-xxlarge" }
+    :text_field     => { :class => "input-xlarge" },
+    :password_field => { :class => "input-xlarge" },
+    :text_area      => { :class => "input-xlarge" }
   }
   
   # Creating a control_group.
-  def control_group(*args)
+  def control_group(*args, &block)
     input_field_options = args.extract_options!
     
     name, field_type = *args
@@ -51,33 +51,57 @@ class ActionView::Helpers::FormBuilder
     end
 
     if field_type == :hidden_field
-      return self.send field_type, name, input_field_options
-    end
-
-    if error_message = object.error_message_for(name)
-      control_group_class = "control-group error"
+      hidden_field name, input_field_options
     else
-      control_group_class = "control-group"
+      render_control_group field_type, name, input_field_options, &block
     end
-    
-    div :class => control_group_class do
+  end
 
-      # label = input_field_options.delete(:label)
-      # label_tag = self.label label || name, :class => "control-label"
-      input_field_options[:placeholder] ||= object.class.human_attribute_name(name)
+  def control_group_class(name)
+    if object.error_message_for(name)
+      "control-group error"
+    else
+      "control-group"
+    end
+  end
+  
+  def render_control_group_label(field_type, name, options)
+    return if field_type == :check_box
 
+    label_text = options.delete(:label) || name
+    content_tag :label, label_text, :class => "control-label"
+  end
 
-      controls = div :class => "controls" do
-        input_field = if block_given? 
-          yield
-        else
-          self.send field_type, name, input_field_options
-        end
-        "#{input_field}\n#{error_message}\n"
+  def render_control_group_input(field_type, name, options, &block)
+    if block_given? 
+      yield
+    else
+      self.send field_type, name, options
+    end
+  end
+
+  def render_control_group_controls(field_type, name, options, &block)
+    if field_type == :check_box
+      label_text = options.delete(:label) || I18n.t("activerecord.attributes.#{object_name}.#{name}")
+
+      controls = content_tag :label do
+        render_control_group_input(field_type, name, options, &block) +
+        label_text.html_safe
       end
-      
-#      "#{label_tag}\n#{controls}"
-      controls
+    else
+      controls = render_control_group_input(field_type, name, options, &block)
+    end
+
+    div :class => "controls" do
+      "#{controls}\n#{object.error_message_for(name)}"
+    end
+  end
+  
+  def render_control_group(field_type, name, options, &block)
+    return if name == :check_box
+    div :class => control_group_class(name) do
+      "#{render_control_group_label(field_type, name, options)}\n" +
+      "#{render_control_group_controls(field_type, name, options)}\n"
     end
   end
   
@@ -103,13 +127,27 @@ class ActionView::Helpers::FormBuilder
       end
     end.join("")
   end
-  
+
   def agree_to_terms
     div :class => "control-group" do
       div :class => "controls" do
-        I18n.t "agree_to_terms"
+        I18n.t "sessions.agree_to_terms"
       end
     end
+  end
+
+  def agree_to_terms!
+    html = <<-HTML
+<div class='control-group'>
+  <div class='controls'>
+    <label>
+      <input id="agree_to_terms" type="checkbox" />
+      #{I18n.t "sessions.agree_to_full_terms"}
+    </label>
+  </div>
+</div>
+HTML
+    html.html_safe
   end
   
   def transloadit(name, options)
@@ -131,7 +169,7 @@ class ActionView::Helpers::FormBuilder
   def actions(options)
     expect! options => { :cancel_url => String, :label => [ String, nil ] }
 
-    div :class => "buttons" do
+    div :class => "form-actions" do
       parts = []
 
       # 

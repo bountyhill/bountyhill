@@ -3,7 +3,13 @@ class QuestsController < ApplicationController
   
   # GET /quests
   def index
-    @quests = Quest.paginate(:page => params[:page], :per_page => per_page, :include => {:owner => :identities})
+    scope = if params[:owner_id]
+      User.find(params[:owner_id]).quests
+    else
+      Quest.active
+    end
+
+    @quests = scope.paginate(:page => params[:page], :per_page => per_page, :include => {:owner => :identities})
   end
 
   # GET /quests/1
