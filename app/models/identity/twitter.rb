@@ -104,6 +104,12 @@ class Identity::Twitter < Identity
     update_attributes :followed_at => Time.now
   end
 
+  #
+  # retweet a status
+  def update_status(msg)
+    twitter :update, msg
+  end
+  
   private
   
   def twitter(*args)
