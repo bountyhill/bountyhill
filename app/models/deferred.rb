@@ -44,8 +44,14 @@ module Deferred
     end
     
     GirlFriday::WorkQueue.new(name, :size => 1) do |args|
-      Thread.send :sleep, 0.2
-      instance.send name, *args
+      begin
+        W "Deferred.#{name}"
+        Thread.send :sleep, 0.2
+        instance.send name, *args
+      rescue StandardError
+        W "#{$!} in processing Deferred.#{name}; from\n\t" + $!.backtrace[0..4].join("\n\t")
+        raise
+      end
     end
   end
 
@@ -64,13 +70,14 @@ module Deferred
     }
 
     client = Twitter::Client.new(oauth)
-    client.send *args
+    r = client.send *args
+    W "OK twitter", *args
   end
 
   # -- deliver an email -----------------------------------------------
   
   def mail(mail)
-    STDERR.puts "---- Sending email ------------------------\n#{mail}"
+    W "send email\n#{mail.to_s}"
     mail.deliver
   end
 end
