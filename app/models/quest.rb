@@ -53,7 +53,7 @@ class Quest < ActiveRecord::Base
   
   attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
   
-  NUMBER_OF_CRITERIA = 6
+  NUMBER_OF_CRITERIA = 10
   
   # returns the names of the criteria title attributes
   def self.criteria_titles

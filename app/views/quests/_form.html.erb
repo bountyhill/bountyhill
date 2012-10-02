@@ -1,25 +1,40 @@
 <%= form_for @quest, :id => "quest_form" do |form| %>
   <fieldset>
-    <legend><%= I18n.t(:"quest.legend")%></legend>
-    <%= form.error_messages %>
+    <legend><%= I18n.t(:"quest.form.legend")%></legend>
+    <%#= form.error_messages %>
 
-    <%= form.control_group :title %>
+    <%= form.control_group :title, :text_area, :rows => 2 %>
+    <%= form.control_group :description, :text_area, :rows => 4 %>
     <%= form.control_group :location %>
-    <%= form.control_group :description, :text_area, :rows => 5 %>
-    <%= form.control_group :bounty %>
-    <%= form.control_group :image, :transloadit %>
+    <%= form.control_group :bounty, :class => "input-xxsmall", :unit => "EURO" %>
+    <%#= form.control_group :image, :transloadit %>
 
     <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
       <div class="criterium-group">
-        <%= form.control_group name %>
-        <%= form.control_group Quest.criteria_descriptions[idx] %>
+        <%= form.control_group name, :hint => I18n.t("quest.form.field_hint.criteria") %>
+        <%= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 4, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
       </div>
     <% end %>
     </div>
     
     <script type="text/javascript" charset="utf-8">
       (function($) {
+        /*
+          Show message hint on fokus
+        */
+        $(".control-group textarea, .control-group input").focus(function() {
+          $(this).nextAll(".message").toggleClass("hidden");
+        });
+        
+        $(".control-group textarea, .control-group input").blur(function() {
+          $(this).nextAll(".message").toggleClass("hidden");
+        });
+
+        /*
+          Set fokus in first text input field
+         */
+        $("#quest_title").focus();
         
         /*
             Hide all criterium groups that have no value in its input 
@@ -56,6 +71,5 @@
     <%= form.actions :cancel_url => quests_path %>
   </fieldset>
 <% end %>
-
-<script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
-<%= transloadit_jquerify :quest_form, :wait => true %>
+<!-- <script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>  -->
+<%#= transloadit_jquerify :quest_form, :wait => true %>

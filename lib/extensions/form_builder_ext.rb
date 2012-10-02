@@ -31,9 +31,12 @@ class ActionView::Helpers::FormBuilder
   end
 
   DEFAULT_INPUT_FIELD_OPTIONS = {
-    :text_field     => { :class => "input-xlarge" },
-    :password_field => { :class => "input-xlarge" },
-    :text_area      => { :class => "input-xlarge" }
+    :text_field     => { :class => "input-xxlarge" },
+    :password_field => { :class => "input-xxlarge" },
+    :text_area      => { :class => "input-xxlarge" },
+    :buttons        => { :class => "input-xxlarge" },
+    :message        => { :class => "input-xlarge" },
+    :unit           => { :class => "input-xlarge" }
   }
   
   # Creating a control_group.
@@ -68,21 +71,23 @@ class ActionView::Helpers::FormBuilder
   def render_control_group_label(field_type, name, options)
     return if field_type == :check_box
 
-    label_text = options.delete(:label) || name
-    content_tag :label, label_text, :class => "control-label"
+    if label_text = options.delete(:label)
+      content_tag :label, label_text, :class => "control-label"
+    end
   end
 
   def render_control_group_input(field_type, name, options, &block)
     if block_given? 
       yield
     else
+      options[:placeholder] ||= object.class.human_attribute_name(name)
       self.send field_type, name, options
     end
   end
 
   def render_control_group_controls(field_type, name, options, &block)
     if field_type == :check_box
-      label_text = options.delete(:label) || I18n.t("activerecord.attributes.#{object_name}.#{name}")
+      label_text = options.delete(:label) || object.class.human_attribute_name(name) #I18n.t("activerecord.attributes.#{object_name}.#{name}")
 
       controls = content_tag :label do
         render_control_group_input(field_type, name, options, &block) +
@@ -91,16 +96,27 @@ class ActionView::Helpers::FormBuilder
     else
       controls = render_control_group_input(field_type, name, options, &block)
     end
-
+    
+    unit = if (unit_text = options.delete(:unit))
+      content_tag :div, unit_text, :class => "unit #{DEFAULT_INPUT_FIELD_OPTIONS[:unit][:class]}"
+    end
+    
+    message = div :class => "message hidden #{DEFAULT_INPUT_FIELD_OPTIONS[:message][:class]}" do
+      if object.errors.include?(name)
+        "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
+      else
+        options[:hint] || I18n.t("#{object.class.name.downcase}.form.field_hint.#{name}")
+      end
+    end
+    
     div :class => "controls" do
-      "#{controls}\n#{object.error_message_for(name)}"
+      "#{controls}#{unit}#{message}"
     end
   end
   
   def render_control_group(field_type, name, options, &block)
-    return if name == :check_box
     div :class => control_group_class(name) do
-      "#{render_control_group_label(field_type, name, options)}\n" +
+      # "#{render_control_group_label(field_type, name, options)}\n" +
       "#{render_control_group_controls(field_type, name, options)}\n"
     end
   end
@@ -169,7 +185,7 @@ HTML
   def actions(options)
     expect! options => { :cancel_url => String, :label => [ String, nil ] }
 
-    div :class => "form-actions" do
+    div :class => "buttons #{DEFAULT_INPUT_FIELD_OPTIONS[:buttons][:class]}" do
       parts = []
 
       # 
@@ -177,7 +193,7 @@ HTML
 
       label = options[:label]
       label ||= object.new_record? ? I18n.t(:create) : I18n.t(:update)
-      save_btn = submit(label, :class => "btn btn-primary")
+      save_btn = submit(label, :class => "btn btn-primary btn-inverse btn-large")
 
       "#{cancel_btn} #{save_btn}"
     end

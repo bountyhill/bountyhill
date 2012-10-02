@@ -4,7 +4,7 @@ $background:                #000;
 $background_border:         #222;
 $background_light:          #333;
 $background_highlight:      #666;
-
+$background_inverse:        #fff;
 $background_gray:           #5e6165;
 $background_gray_dark:      #33373a;
 
@@ -13,6 +13,7 @@ $text_inverted:             #000;
 $text_minor:                #999;
 $text_major:                #eee;
 $text_highlight:            $highlight;
+$text_error:                #D59291;
 
 $link_text:                 #FEA768;
 $link_highlight:            #FED3B4;

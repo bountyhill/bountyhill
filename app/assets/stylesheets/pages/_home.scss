@@ -26,19 +26,18 @@
 
 form.home-search {
   margin: 60px 0 40px 0;
-  &, p {
+  text-align: center;
+  input[type=text], p {
     text-align: center;
   }
   p {
+    width: 88%;
     margin: 10px 0 0 0;
-    width: 80%;
     color: $text_minor;
-    a {
-      text-transform: none;
-    }
   }
   input[type=submit], input[type=text] {
     padding: 4px 20px;
+    border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     -o-border-radius: 8px;
@@ -46,15 +45,13 @@ form.home-search {
     -khtml-border-radius: 8px;
   }
   input[type=text] {
-    width: 60%;
+    margin-right: 10px;
     font-size: 24px;
     font-weight: bold;
     line-height: 32px;
     height: auto;
-    text-align: center;
   }
   input[type=submit] {
-    margin-left: 40px;
     padding: 12px 14px;
     line-height: 20px;
     font-size: 18px;
@@ -63,6 +60,7 @@ form.home-search {
 
 .claim {
   padding: 10px 50px;
+  margin-bottom: 40px;
   h1 {
     font-size: 24px;
   }
@@ -85,7 +83,7 @@ form.home-search {
 }
 
 .overlap {
-  margin: 40px -5px 0 -5px;
+  margin: 0px -5px;
 }
 
 .columnBottom {

@@ -71,11 +71,11 @@ en:
       Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> 
       to receive updates on your bounties directly in your private Twitter inbox.
     agree_to_terms:
-      By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>
+      "By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>"
     agree_to_full_terms:  
-      By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>
+      "By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>
       You explicitely state that you took notice of the terms covering
-      <a href='/terms#extra' target='_blank'>potential payment obligations and assignment of potential claims.</a>
+      <a href='/terms#extra' target='_blank'>potential payment obligations and assignment of potential claims.</a>"
     to_signup:    I am new here. Take me to the Signup form.
     to_signin:    I have an account already. Take me to the signin form.
     twitter:
@@ -135,15 +135,22 @@ en:
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
-
     message:
       error:      Please review your input.
       base_error: "%{base_error}: please review your input."
-    legend: ""
+    form:
+      legend: "You're quest will have the best chance to succeed, if you provide a detailed description about what you are looking for combined with important criteria to be matched. The message as well as the location and bounty of your quest will be shared in your favorite social networks. All further information entered will be displayed on bountyhill only."
+      field_hint:
+        title: "Enter a message describing your request in a few words."
+        description: "Add a description for your quest explaining it more detailed."
+        location: "Restrict your quest to a particular location."
+        bounty: "Set up a bounty for your quest to ensure it's success by offering a reward."
+        criteria: "Criteria are used to measure the relevance of incoming offers."
+        criteria_description: "Explain your critera in more details."
     title:
       show: ""
       edit: "Edit quest"
-      create: "New quest"
+      create: "Start your quest right now"
     new: Post a Quest
     expires_at:
       title: "days"
@@ -239,24 +246,6 @@ en:
       contact: Contact information
       passwd: Change your password
       unregister: Delete your account
-  buttons:
-    category:
-      job:      Jobs
-      home:     Homes
-      car:      Cars
-      people:   People
-      gift:     Gifts
-      help:     Help
-      travel:   Travel
-      fashion:  Fashion
-    sort:
-      created:     Sort by creation date
-      bounty:      Sort by amount of bounty
-      temporality: Sort by expiry date
-      locality:    Sort by place
-    order:
-      desc: Descending order
-      asc:  Ascending order
   requires_identity:
     email:      "Please sign in with your email address."
     confirmed:  "Please confirm your email address."

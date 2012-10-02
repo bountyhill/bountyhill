@@ -1,18 +1,65 @@
-form.navbar-search {
-  min-width: 170px;
-}
-div.form-actions {
-  float:right;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
+.form-container {
+  height: auto;
+  padding: 10px 20px;
+  border: 2px solid $background_border;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
 }
 
-.span6 {
-  .form-horizontal {
-    .form-actions {
-      padding-right: 30px;
+form {
+  label {
+    color: $text;
+  }
+  
+  /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
+  input[type=text], input[type=password], textarea, .unit {
+    vertical-align: top;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  input[type=text], textarea {
+    margin-right: 20px;
+  }
+  .unit {
+    margin-right: 50px;
+  }
+  input[type=file] {
+    color: $text;
+  }
+  legend {
+    color: $text;
+    border: none;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .buttons {
+    text-align: right;
+  }
+  .control-group {
+    min-height: 36px;
+    &.error {
+      .controls {
+        .message {
+          display: inline-block;
+          visibility: visible;
+          color: $text_error;
+        }
+      }
+    }
+    .controls {
+      margin: 0;
+      .message, .unit {
+        display: inline-block;
+        color: $text_major;
+      }
     }
   }
 }
+

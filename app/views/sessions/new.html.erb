@@ -1,33 +1,13 @@
-<% if partials.length == 1 %>
-  <div class="row-fluid single-form">
-    <div class="span3">
-    </div>
-    <div class="span6">
-      <div class="inner">
-        <%= partial partials[0] %>
-      </div>
-    </div>
-  </div>
-<% else %>
 <div class="row-fluid">
-  <div class="span6">
+  <div class="span1">&nbsp;</div>
+  <div class="span10">
     <div class="inner">
-      <%= partial partials[0] %>
+      <% partials.each do |form_partial| %>
+        <div class="form-container">
+          <%= partial form_partial %>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="span6">
-    <div class="inner">
-      <%= partial partials[1] %>
-    </div>
-  </div>
+  <div class="span1">&nbsp;</div>
 </div>
-<% end %>
-
-<style type="text/css" media="screen">
-  div.btn-cancel {
-    display: none;
-  }
-  .single-form div.btn-cancel {
-    display: default;
-  }
-</style>
