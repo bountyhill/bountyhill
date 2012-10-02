@@ -1,4 +1,4 @@
-<% identity = Identity::Twitter.new(:follow_bountyhill => true) %>
+<% identity = Identity::Twitter.new(:follow_bountyhermes => true) %>
 <%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
   <%= hidden_field_tag :req, params[:req] %>
   <fieldset>
@@ -9,7 +9,7 @@
       <%= I18n.t "sessions.twitter.reasons" %>
     </div>
 
-    <%= form.control_group :follow_bountyhill, :check_box, :label => I18n.t("sessions.follow_bountyhill") %>
+    <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes") %>
 
     <%= form.agree_to_terms %>
 

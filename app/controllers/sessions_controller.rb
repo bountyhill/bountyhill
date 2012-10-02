@@ -91,7 +91,7 @@ class SessionsController < ApplicationController
     # We store the form data in the session, to be evaluated in the
     # "twitter" action.
     identity = params[:identity] || {}
-    session[:follow_bountyhill] = identity[:follow_bountyhill] if identity
+    session[:follow_bountyhermes] = identity[:follow_bountyhermes] if identity
 
     # The TwitterAuthMiddleware intercepts "/tw/" URLs. The "/tw/login" 
     # URL sets up and redirects to twitter auth. When Twitter oauth
@@ -103,7 +103,7 @@ class SessionsController < ApplicationController
   # The created action is where the TwitterAuthMiddleware will redirect 
   # to after the user logged in successfully.
   def twitter
-    follow_bountyhill = session.delete(:follow_bountyhill)
+    follow_bountyhermes = session.delete(:follow_bountyhermes)
     
     screen_name, oauth_token, oauth_secret, info = *TwitterAuthMiddleware.session_info(session)
 
@@ -124,15 +124,18 @@ class SessionsController < ApplicationController
         flash[:success] = "sessions.twitter.success".t
       end
 
-      # follow @bountyhill?
-      if follow_bountyhill
-        current_user.identity(:twitter).follow
+      # follow @bountyhermes?
+      if follow_bountyhermes
+        current_user.identity(:twitter).tap do |twitter|
+          twitter.follow
+          twitter.direct_message "sessions.tweet.thanks_for_following".t
+        end
         flash[:success] = "sessions.twitter.following".t
       end
 
       identity_presented!
     else
-      session.delete(:follow_bountyhill)
+      session.delete(:follow_bountyhermes)
       identity_cancelled!
     end
   end

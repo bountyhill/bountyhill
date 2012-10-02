@@ -51,23 +51,19 @@ module Deferred
 
   # -- run a twitter request ------------------------------------------
   
-  TWITTER_CONFIG = Bountybase.config.twitter_app
-  
+  # does a Twitter API call. The parameters include a oauth options
+  # hash with all required oauth entries.
   def twitter(*args)
     oauth = args.extract_options!
     
     expect! oauth => {
       :oauth_token  => String,
-      :oauth_secret => String
+      :oauth_token_secret => String, 
+      :consumer_key => String,
+      :consumer_secret => String
     }
 
-    client = Twitter::Client.new(
-      :oauth_token        => oauth[:oauth_token],
-      :oauth_token_secret => oauth[:oauth_secret],
-      :consumer_key       => TWITTER_CONFIG["consumer_key"],
-      :consumer_secret    => TWITTER_CONFIG["consumer_secret"]
-    )
-
+    client = Twitter::Client.new(oauth)
     client.send *args
   end
 
