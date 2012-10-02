@@ -61,10 +61,15 @@ en:
     sent:   You should receive instructions to reset your password in your email.
     unknown_email: "The email address is not registered here: %{email}."
   sessions:
-    follow_bountyhill:
-      Follow <a href="http://twitter.com/bountyhill" target='_blank'>@bountyhill</a> 
-      to receive updates on your bounty directly in your 
-      private Twitter inbox.
+    # Note: the bountyhermes name is referred here in both the text and 
+    # the twitter target link. It must match the twitter_notifications 
+    # entry in the bountybase configuration - if you change it there, it
+    # must be changed here, too. 
+    tweet:
+      thanks_for_following: "Thank you for signing up with @bountyhill and for following @bountyhermes."
+    follow_bountyhermes:
+      Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> 
+      to receive updates on your bounties directly in your private Twitter inbox.
     agree_to_terms:
       By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>
     agree_to_full_terms:  
@@ -74,7 +79,7 @@ en:
     to_signup:    I am new here. Take me to the Signup form.
     to_signin:    I have an account already. Take me to the signin form.
     twitter:
-      following:  "Thank you for signing in with Twitter and for following @bountyhill."
+      following:  "Thank you for signing in with Twitter and for following @bountyhermes."
       success:    "Thank you for signing in with Twitter."
       legend:     Sign in with twitter
       signin:     Sign in
@@ -82,7 +87,7 @@ en:
         "You must be signed in via Twitter to share a quest and to
         secure your chance to win a part of the bounty.
         
-        If you choose to follow @bountyhill by checking the checkbox below, 
+        If you choose to follow @bountyhermes by checking the checkbox below, 
         we'll send you a tweet on succes."
     email:
       signin:     Sign in

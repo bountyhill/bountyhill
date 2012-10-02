@@ -86,8 +86,8 @@ module Bountyhill
     
     config.middleware.use ::TwitterAuthMiddleware, {
       path:             'tw',
-      consumer_key:     TWITTER_CONFIG["consumer_key"],
-      consumer_secret:  TWITTER_CONFIG["consumer_secret"],
+      consumer_key:     Bountybase.config.twitter_app["consumer_key"],
+      consumer_secret:  Bountybase.config.twitter_app["consumer_secret"],
       redirect_to:      '/sessions/twitter'
     }
     

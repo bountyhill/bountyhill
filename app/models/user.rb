@@ -172,26 +172,57 @@ class User < ActiveRecord::Base
   # -- special System users -------------------------------------------
 
   module SystemUsers
-    # return an admin user. This is the @bountyhill account.
+    # The admin user. In production this is the @bountyhill account.
     def admin
       system_users["admin"]
     end
 
-    # return an draft user. This is the @bountyhill_draft account.
+    # return an draft user.
     def draft
       system_users["draft"]
+    end
+    
+    # The hermes user is used to send out messages via the @bountyhermes account.
+    def hermes
+      system_users["hermes"]
     end
 
     private
 
     def system_users
       @system_users ||= Hash.new do |hash, key|
-        hash[key] = begin
-          identity = Identity::Twitter.find_by_email("bountyhill_#{key}") ||
-            Identity::Twitter.create!(:email => "bountyhill_#{key}", :name => key)
-          identity.user
-        end
+        hash[key] = find_or_create_system_user key
       end
+    end
+
+    TWITTER_HANDLES = {
+      "admin"   => Bountybase.config.twitter_app,
+      "hermes"  => Bountybase.config.twitter_notifications,
+
+      # TODO: Currently the draft user is linked to the @bountyhermes
+      # twitter account. While this works, it would probably be better
+      # to not use a Twitter identity for that user, as this user should
+      # never act on twitter at all.
+      "draft"   => Bountybase.config.twitter_notifications
+    }
+    
+    def find_or_create_system_user(key)
+      expect! key => TWITTER_HANDLES.keys
+
+      config = TWITTER_HANDLES[key]
+      twitter_handle = config["user"]
+      identity = Identity::Twitter.find_by_email(config["user"]) || 
+        Identity::Twitter.create!(:name => key, :email => config["user"])
+
+      # Update attributes in the database to synchronize configuration
+      # with database information. As this is done only once per
+      # session, the runtime overhead is negligiable.
+      identity.update_attributes! :consumer_key => config["consumer_key"],
+        :consumer_secret => config["consumer_secret"],
+        :oauth_token     => config["access_token"],
+        :oauth_secret    => config["access_token_secret"]
+
+      identity.user
     end
   end
   extend SystemUsers
