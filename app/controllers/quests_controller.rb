@@ -46,7 +46,7 @@ class QuestsController < ApplicationController
     end
 
     # rerender form if quest could not be saved
-    flash.now[:error] = if base_errors = @quest.errors[:base]
+    flash.now[:error] = if (base_errors = @quest.errors[:base]).present?
       I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
     else
       I18n.t("quest.message.error")

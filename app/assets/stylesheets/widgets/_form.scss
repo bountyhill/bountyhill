@@ -1,6 +1,5 @@
 .form-container {
   height: auto;
-  margin: 0 40px;
   padding: 10px 20px;
   border: 2px solid $background_border;
   border-radius: 6px;
@@ -14,23 +13,24 @@
 form {
   label {
     color: $text;
-    font-size: 16px;
-    line-height: 20px;
   }
   
   /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
-  input, textarea {
+  input[type=text], input[type=password], textarea, .unit {
+    vertical-align: top;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    font-weight: bold;
     font-size: 16px;
     line-height: 20px;
-    font-weight: bold;
-    padding: 4px;
-    &:placeholder {
-      color: red;
-    }
-    &[type=file] {
-      color: $text;
-    }
+  }
+  input[type=text], textarea {
+    margin-right: 20px;
+  }
+  .unit {
+    margin-right: 50px;
+  }
+  input[type=file] {
+    color: $text;
   }
   legend {
     color: $text;
@@ -40,15 +40,25 @@ form {
     line-height: 18px;
   }
   .buttons {
-    float:right;
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: none;
+    text-align: right;
   }
   .control-group {
+    min-height: 36px;
+    &.error {
+      .controls {
+        .message {
+          display: inline-block;
+          visibility: visible;
+          color: $text_error;
+        }
+      }
+    }
     .controls {
       margin: 0;
+      .message, .unit {
+        display: inline-block;
+        color: $text_major;
+      }
     }
   }
 }

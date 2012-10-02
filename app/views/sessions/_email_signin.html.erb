@@ -6,5 +6,5 @@
 <div class="buttons">
   <%= link_to_reset_password if form.object.email.present? %> 
   <%= link_to_cancel_signin %>
-  <%= form.submit I18n.t("sessions.email.signin"), :name => "do_signin", :class => "btn btn-primary" %>
+  <%= form.submit I18n.t("sessions.email.signin"), :name => "do_signin", :class => "btn btn-primary btn-inverse btn-large" %>
 </div>

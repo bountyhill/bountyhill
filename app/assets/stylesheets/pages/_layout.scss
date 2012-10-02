@@ -1,3 +1,7 @@
+body {
+  font-size: 14px;
+}
+
 section {
   margin: 40px 0;
 }
@@ -63,10 +67,9 @@ h2 {
 .flash {
   text-align: center;
   border-radius: 0;
-}
-
-.flash.alert {
-  margin: 20px 0 -56px 0;
+  &.alert {
+    margin: 40px 0 -75px 0;
+  }
 }
 
 .banner {
