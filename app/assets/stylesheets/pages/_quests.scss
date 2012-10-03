@@ -51,7 +51,7 @@
     }
     .ribbon { 
       opacity: 0.9;
-      font: bold 16px Sans-Serif;
+      font: bold 14px Sans-Serif;
       &.small { 
         background-color: $ribbon_minor;
         background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_minor), to($ribbon_minor_gradient));
