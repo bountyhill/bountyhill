@@ -1,5 +1,18 @@
+<div class="bg-gray overlap">
+  <div class="row-fluid head">
+    <div class="span12">
+      <div class="header-button">
+        <div class="icon">d</div>
+        <p><%= link_to t("quest.actions.offer.title"), new_offer_path %> <%= t "quest.actions.offer.sub" %></p>
+      </div>
+      <div class="socialmedia">
+        <%= link_to "t", retweet_quest_path(@quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row bg-main" >
-  <div class="span12 bg-black">
+  <div class="span12 bg-solid-black">
     <% if mobile? %>
     <div class="row">
       <div class="span6">
@@ -26,7 +39,8 @@
         <%= partial "quests/show/criteria", :quest => @quest %>
         <%= partial "quests/show/image", :quest => @quest %>
       </div>
-      <div class="span4">
+      <div class="span1">&nbsp</div>
+      <div class="span3">
         <%= partial "quests/show/actions", :quest => @quest %>
         <%= partial "quests/show/expires_at", :quest => @quest %>
         <%= partial "quests/show/location", :quest => @quest %>

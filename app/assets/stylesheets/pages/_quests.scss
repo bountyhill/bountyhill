@@ -80,20 +80,11 @@
         &::before, &::after {border-top: 3px solid $ribbon_major_border;}
       }
     }
-    .socialmedia {
-      width: auto;
-      float: right;
-      margin: 0;
-      a {
-        text-transform: capitalize;
-        color: $text;
-      }
-    }
     .restrictions {
       float: left;
       margin-top: 20px;
       height: 20px;
-      width: 280px;
+      width: 80%;
       text-overflow: ellipsis;
       overflow: hidden;
       .restriction {
@@ -128,16 +119,17 @@ article {
   &.quest {
     h1 {
       font-size: 24px;
-      line-height: 24px;
-      margin: 26px 0 0 148px;
+      line-height: 32px;
+      margin: 10px 0 0 148px;
+      color: $text;
     }
     .profile {
       a {
         color: $link_text;
         h2 {
           margin: 0 0 5px 148px;
-          font-size: 28px;
-          line-height: 28px;
+          font-size: 18px;
+          line-height: 18px;
           color: $link_text;
         }
       }

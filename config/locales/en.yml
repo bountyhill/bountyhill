@@ -118,7 +118,7 @@ en:
         If you missed this email, we can just send you a new one.
   home:
     twitter:
-      link: Catch your bounty on Twitter
+      link: Catch your bounty
       text: with the help of your friends and followers
     claim: 
       head: Bountyhill will change the way you search
@@ -182,14 +182,14 @@ en:
       sub:    "has been uploaded."
     actions:
       new:     
-        title: Start
-        sub: your quest in your social network.
+        title: Start your quest
+        sub: in your social network.
       tweet:
         title: Tweet
         sub: Secure your chance for a part of the bounty.
       offer:
-        title: Offer
-        sub: Get 50% of the bounty with a successful offer.
+        title: Offer on this quest
+        sub: to get 50% of the bounty.
       review:
         title: Review
         sub: "See all %{count} offers made."

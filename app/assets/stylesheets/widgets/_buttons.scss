@@ -1,4 +1,6 @@
 .header-button {
+  width: 80%;
+  float: left;
   overflow: visible;
   padding: 17px 0 15px 15px;
   position: relative;
@@ -48,8 +50,26 @@
   }
 }
 
-
-
+.socialmedia {
+  width: auto;
+  float: right;
+  margin: 0;
+  a {
+    text-transform: capitalize;
+    color: $text;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+.head {
+  .socialmedia {
+    margin: 15px 15px 0 0;
+    a {
+      background-color: $background_light;
+    }
+  }
+}
 
 .ca-main {
   font-size: 20px;
