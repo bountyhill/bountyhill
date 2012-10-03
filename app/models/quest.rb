@@ -26,6 +26,9 @@ class Quest < ActiveRecord::Base
   def self.draft(id)
     ActiveRecord.as(User.admin) do |previous_user| 
       quest = Quest.find(id)
+
+      W "quest.owner", quest.owner
+      W "previous_user", previous_user
       
       if quest.owner != previous_user 
         if !quest.owner.draft?
