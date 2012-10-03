@@ -43,6 +43,7 @@ class RunsController < ApplicationController
     # If there is no twitter identity yet, ask the user to provide one;
     # but go to do_start even if he chooses not to do so.
     quest.start!
+    current_user.retweet(quest)
 
     flash[:success] = I18n.t("quest.started", :title => quest.title)
     redirect_to quest
