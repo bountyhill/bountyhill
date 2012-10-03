@@ -141,8 +141,6 @@ module ApplicationHelper
     else
       html[:class] = "form-horizontal"
     end
-
-    html[:autocomplete] = "off"
     
     super(object, options, &block)
   end
