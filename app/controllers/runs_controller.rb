@@ -64,6 +64,7 @@ class RunsController < ApplicationController
   private
   
   def quest
+    W "runs: current_user", current_user
     @quest ||= Quest.draft(params[:id])
   end
 end
