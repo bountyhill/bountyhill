@@ -21,6 +21,8 @@ class RunsController < ApplicationController
   
   # start the run. This action receives the form from "runs/show".
   def update
+    W "runs/update: current_user", current_user
+    
     # Re-render the form, if the quest is not valid?
     unless quest.update_attributes params[:quest]
       flash.now[:error] = if base_errors = @quest.errors[:base]
