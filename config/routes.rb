@@ -1,4 +1,7 @@
+require "resque/server"
+
 Bountyhill::Application.routes.draw do
+  mount Resque::Server.new, :at => "/jobs"
 
   # just temporary...
   %w(quests offers).each do |mock|

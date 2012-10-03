@@ -211,7 +211,7 @@ GEM
       redis (~> 3.0.0)
     remote_syslog_logger (1.0.3)
       syslog_protocol
-    resque (1.22.0)
+    resque (1.23.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.0)
       sinatra (>= 0.9.2)
