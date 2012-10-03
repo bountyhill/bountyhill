@@ -40,6 +40,8 @@ class RunsController < ApplicationController
   def start
     request_identity! :twitter
 
+    W "runs/start: current_user", current_user
+
     # If there is no twitter identity yet, ask the user to provide one;
     # but go to do_start even if he chooses not to do so.
     quest.start!
