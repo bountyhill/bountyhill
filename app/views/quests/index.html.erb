@@ -1,37 +1,39 @@
-<div class="row bg-main quests" >
-  <div class="span12 bg-black">
-    
-    <div class="row head">
-      <div class="span3">
-        <div class="inner">
-          <%= partial "quests/index/head" %>
-        </div>
-      </div>
-      <div class="span4">
-        <div class="inner">
-          <%= partial "quests/index/actions" %>
-        </div>
+<div class="bg-gray overlap">
+  <div class="row-fluid head">
+    <div class="span12">
+      <div class="header-button">
+        <div class="icon">d</div>
+        <p><%= link_to t("quest.actions.new.title"), new_quest_path %> <%= t "quest.actions.new.sub" %></p>
       </div>
     </div>
+  </div>
+</div>
+<div class="row bg-main">
+  <div class="span12 bg-solid-black">
+    <div class="quests">
 
-    <% @quests.each_slice(3) do |slice| %>
-    <div class="row quest-cells">
-      <% slice.each_with_index do |quest, index|
-      style = case index
-        when 0 then "margin-left: 20px"
-        when 1 then ""
-        when 2 then "margin-right: 20px"
-        end  %>
-      <div class="span4">
-        <%= render :partial => "cell", :locals => { :quest => quest, :style => style } %>
+      <%= partial "quests/index/head" %>
+      
+      <% @quests.each_slice(3) do |slice| %>
+      <div class="row quest-cells">
+        <% slice.each_with_index do |quest, index|
+        style = case index
+          when 0 then "margin-left: 20px"
+          when 1 then ""
+          when 2 then "margin-right: 20px"
+          end  %>
+        <div class="span4">
+          <%= render :partial => "cell", :locals => { :quest => quest, :style => style } %>
+        </div>
+        <% end %>
       </div>
       <% end %>
+      
+      <% if pagination = paginate(@quests) %>
+        <div class="pagination pagination-centered inner">
+          <%= pagination %>
+        </div>
+      <% end %>
     </div>
-    <% end %>
-
-    <div class="pagination pagination-centered inner">
-      <%= paginate @quests %>
-    </div>
-    
   </div>
 </div>

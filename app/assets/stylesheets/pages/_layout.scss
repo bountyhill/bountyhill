@@ -118,6 +118,13 @@ h2 {
   }
 }
 
+h1 {
+  &.head {
+    text-align: center;
+    margin: 20px 0 10px 0;
+  }
+}
+
 .accordion {
   .separator {
     background: $background_highlight;

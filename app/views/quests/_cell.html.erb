@@ -2,17 +2,17 @@
 style ||= nil
 %>
 <div class="inner" style="<%= style %>">
-  <div class="quest-cell bg-gray">
+  <div class="quest-cell bg-black">
     <%= render_bounty_ribbon quest %>
     <div class="inner">
       <%= avatar quest.owner, :size => 64 %>
       <%= link_to h3(truncate(quest.title, :length => 80)), quest_path(quest) %>
       <div class="restrictions">
-        <%= render_restriction quest, :location %>
         <%= render_restriction quest, :expires_at %>
+        <%= render_restriction quest, :location %>
       </div>
       <div class="socialmedia">
-        <%= link_to "t", retweet_quest_path(quest), :title => "quest.actions.tweet", :class => "social-item tweet", :rel => "nofollow" %>
+        <%= link_to "t", retweet_quest_path(quest), :title => "quest.actions.tweet", :class => "social-item twitter", :rel => "nofollow" %>
       </div>
     </div>
   </div>

@@ -21,6 +21,9 @@ en:
     add_twitter: "Add your twitter account"
     add_email: "Add your email"
   restriction:
+    temporality: 
+      one: "%{count} day"
+      other: "%{count} days"
     compliance: "Compliance: %{compliance}%"
   quests:
     title:
@@ -29,7 +32,7 @@ en:
     filter:
       all:      
         title: "All"
-        sub:   "are availble in total."
+        sub:   "are currently running."
       own:      
         title: "Yours"
         sub:   "have been posted by you."
@@ -179,8 +182,8 @@ en:
       sub:    "has been uploaded."
     actions:
       new:     
-        title: Post
-        sub: Place a new quest to fullfil your belonging.
+        title: Start
+        sub: your quest in your social network.
       tweet:
         title: Tweet
         sub: Secure your chance for a part of the bounty.
