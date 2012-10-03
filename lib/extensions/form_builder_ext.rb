@@ -35,8 +35,7 @@ class ActionView::Helpers::FormBuilder
     :password_field => { :class => "input-xxlarge" },
     :text_area      => { :class => "input-xxlarge" },
     :buttons        => { :class => "input-xxlarge" },
-    :message        => { :class => "input-xlarge" },
-    :unit           => { :class => "input-xlarge" }
+    :message        => { :class => "input-xlarge" }
   }
   
   # Creating a control_group.
@@ -93,20 +92,20 @@ class ActionView::Helpers::FormBuilder
         render_control_group_input(field_type, name, options, &block) +
         label_text.html_safe
       end
+      message = ""
     else
       controls = render_control_group_input(field_type, name, options, &block)
+      message = div :class => "message hidden #{DEFAULT_INPUT_FIELD_OPTIONS[:message][:class]}" do
+        if object.errors.include?(name)
+          "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
+        else
+          options[:hint] || I18n.t("#{object.class.name.underscore}.form.field_hint.#{name}")
+        end
+      end
     end
     
     unit = if (unit_text = options.delete(:unit))
-      content_tag :div, unit_text, :class => "unit #{DEFAULT_INPUT_FIELD_OPTIONS[:unit][:class]}"
-    end
-    
-    message = div :class => "message hidden #{DEFAULT_INPUT_FIELD_OPTIONS[:message][:class]}" do
-      if object.errors.include?(name)
-        "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
-      else
-        options[:hint] || I18n.t("#{object.class.name.downcase}.form.field_hint.#{name}")
-      end
+      content_tag :div, unit_text, :class => "unit"
     end
     
     div :class => "controls" do

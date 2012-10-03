@@ -1,12 +1,12 @@
 <%= form_for @quest, :id => "quest_form" do |form| %>
   <fieldset>
-    <legend><%= I18n.t(:"quest.form.legend")%></legend>
+    <legend><%= I18n.t(:"quest.form.legend", :count => Quest::NUMBER_OF_CRITERIA) %></legend>
     <%#= form.error_messages %>
 
     <%= form.control_group :title, :text_area, :rows => 2 %>
     <%= form.control_group :description, :text_area, :rows => 4 %>
     <%= form.control_group :location %>
-    <%= form.control_group :bounty, :class => "input-xxsmall", :unit => "EURO" %>
+    <%= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
     <%#= form.control_group :image, :transloadit %>
 
     <div class="criteria">
@@ -24,17 +24,16 @@
           Show message hint on fokus
         */
         $(".control-group textarea, .control-group input").focus(function() {
-          $(this).nextAll(".message").toggleClass("hidden");
+          $(this).nextAll(".message").removeClass("hidden");
         });
         
         $(".control-group textarea, .control-group input").blur(function() {
-          $(this).nextAll(".message").toggleClass("hidden");
+          $(this).nextAll(".message").addClass("hidden");
         });
-
         /*
           Set fokus in first text input field
          */
-        $("#quest_title").focus();
+        $(".control-group textarea, .control-group input").first().focus();
         
         /*
             Hide all criterium groups that have no value in its input 

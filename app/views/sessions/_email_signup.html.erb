@@ -1,13 +1,22 @@
-<%= form.control_group :email, :name => "signup[email]" %>
-<%= form.control_group :password, :password_field, :name => "signup[password]" %>
-<%= form.control_group :password_confirmation, :password_field, :name => "signup[password_confirmation]" %>
+</fieldset>
+  <legend><%= I18n.t("sessions.email.legend.signin")%></legend>
+  <%#= form.error_messages @error if @error && @mode != :signin %>
 
-<%= form.agree_to_terms! %>
+  <%= form.control_group :email, :name => "signup[email]", :class => "input-xlarge" %>
+  <%= form.control_group :password, :password_field, :name => "signup[password]", :class => "input-xlarge" %>
+  <%= form.control_group :password_confirmation, :password_field, :name => "signup[password_confirmation]", :class => "input-xlarge" %>
 
-<div class="buttons">
-  <%= link_to_cancel_signin %>
-  <%= form.submit I18n.t("sessions.email.signup"), :name => "do_signup", :class => "btn btn-primary btn-inverse btn-large" %>
-</div>
+  <div class="pull-left">
+    <%= form.agree_to_terms! %>
+  </div>
+  <div class="buttons input-xxlarge">
+    <%= link_to_cancel_signin %>
+    <%= form.submit I18n.t("sessions.email.signup"), :name => "do_signup", :class => "btn btn-primary btn-inverse btn-large" %>
+  </div>
+  <div class="pull-left">
+    <a data-toggle="tab" href="#signin_subform" class="toggle_signin_signup"><%= I18n.t "sessions.to_signin" %></a>
+  </div>
+</fieldset>
 
 <script type="text/javascript" charset="utf-8">
   $("#agree_to_terms").change(function() {

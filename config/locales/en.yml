@@ -59,8 +59,9 @@ en:
   reset_password:
     label:  I forgot my password.
     sent:   You should receive instructions to reset your password in your email.
-    unknown_email: "The email address is not registered here: %{email}."
+    unknown_email: "The email address is not registered here."
   sessions:
+    title: "Sign in <span>and climb up on bountyhill</span>"
     # Note: the bountyhermes name is referred here in both the text and 
     # the twitter target link. It must match the twitter_notifications 
     # entry in the bountybase configuration - if you change it there, it
@@ -69,33 +70,28 @@ en:
       thanks_for_following: "Thank you for signing up with @bountyhill and for following @bountyhermes."
     follow_bountyhermes:
       Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> 
-      to receive updates on your bounties directly in your private Twitter inbox.
+      to receive updates about your bounties via Twitter.
     agree_to_terms:
-      "By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>"
+      "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
     agree_to_full_terms:  
-      "By signing in you agree to our <a href='/terms' target='_blank'>Terms and Conditions.</a>
-      You explicitely state that you took notice of the terms covering
-      <a href='/terms#extra' target='_blank'>potential payment obligations and assignment of potential claims.</a>"
-    to_signup:    I am new here. Take me to the Signup form.
-    to_signin:    I have an account already. Take me to the signin form.
+      "I agree to the <a href='/terms' target='_blank'>terms and conditions</a>
+      and state that I took notice of the the 
+      <a href='/terms#extra' target='_blank'>payment obligations.</a>"
+    to_signup:    I am new here. Let me sign up.
+    to_signin:    I have already an account. Let me sign in.
     twitter:
       following:  "Thank you for signing in with Twitter and for following @bountyhermes."
       success:    "Thank you for signing in with Twitter."
-      legend:     Sign in with twitter
+      title:      Sign in with Twitter
+      legend:     "You must be signed in via Twitter to share a quest and to secure your chance to win a part of the bounty. If you choose to follow @bountyhermes by checking the checkbox below, we'll send you a direct message on succes."
       signin:     Sign in
-      reasons:
-        "You must be signed in via Twitter to share a quest and to
-        secure your chance to win a part of the bounty.
-        
-        If you choose to follow @bountyhermes by checking the checkbox below, 
-        we'll send you a tweet on succes."
     email:
-      signin:     Sign in
-      signup:     Sign up
-      legend:     
-        Sign in with your email and password
-      reasons:
-        You must register your email address to enter a quest and to post an offer.
+      signin: Sign in
+      signup: Sign up
+      title: Enter your email and password
+      legend: 
+        signin: "By signing in with your email and password you are allowed to start quests and post offers. Your email will not be displayed to pther users."
+        signup: "By signing up with your email and password you are allowed to start quests and post offers. Your email will not be displayed to pther users."
       confirmation_reminder: 
         "You have signed up with bountyhill, but didn't confirm your email address yet."
       resend_confirmation: 
@@ -111,10 +107,9 @@ en:
         signup: Please correct the errors below and then resubmit the form!
         signin: Your email and/or password are not valid. Please try again!
     confirmed:
-      legend: Confirm your email address!
+      title: Confirm your email address!
+      legend: At this point we must make sure that your email address is correct.
       reasons:
-        At this point we must make sure that your email address is correct.
-
         When you signed up, we sent you an email with details how to do this. 
         If you missed this email, we can just send you a new one.
   home:
@@ -132,6 +127,12 @@ en:
       bounties: 
         text: If you are interested to see what others are looking for you might want to
         link: see all quests
+  "identity/email":
+    form:
+      field_hint:
+        email: "Your email address is required to start a quest and/or to post an offer."
+        password: "You can reset your password by just entering your email."
+        password_confirmation: "Make sure you have no typo in your password."
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
@@ -139,18 +140,18 @@ en:
       error:      Please review your input.
       base_error: "%{base_error}: please review your input."
     form:
-      legend: "You're quest will have the best chance to succeed, if you provide a detailed description about what you are looking for combined with important criteria to be matched. The message as well as the location and bounty of your quest will be shared in your favorite social networks. All further information entered will be displayed on bountyhill only."
+      legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched. Your quest will have the best chance to succeed, if you promise a sufficient bounty. The message as well as the bounty of your quest will be posted in your favorite social networks. All other information provided will be available on bountyhill only."
       field_hint:
-        title: "Enter a message describing your request in a few words."
-        description: "Add a description for your quest explaining it more detailed."
+        title: "Enter a short message describing your quest in a few words."
+        description: "Add a detailed description for your quest."
         location: "Restrict your quest to a particular location."
         bounty: "Set up a bounty for your quest to ensure it's success by offering a reward."
         criteria: "Criteria are used to measure the relevance of incoming offers."
-        criteria_description: "Explain your critera in more details."
+        criteria_description: "Explain your critera in detail to enable offerers providing a degree of fulfilment."
     title:
       show: ""
       edit: "Edit quest"
-      create: "Start your quest right now"
+      create: "Start your quest <span>right now</span>"
     new: Post a Quest
     expires_at:
       title: "days"

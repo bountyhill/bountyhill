@@ -3,7 +3,7 @@
 module NavigationHelper
   # returns "active" if the nav_item belongs to the current controller.
   def navigation_item_class_for(nav_item)
-    if controller.class.name.gsub("Controller","").downcase == nav_item
+    if (path_parts = request.env['PATH_INFO'].split("/")[1..-1]) && path_parts.first == nav_item # ensures uri starts conform to nav item
       "active"
     end
   end

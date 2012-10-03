@@ -16,6 +16,18 @@ a {
   };
 }
 
+.bottomspace {
+  margin-bottom: 55px;
+}
+
+.overlap {
+  margin: 0px -5px;
+}
+
+.main-space {
+  min-height: 600px;
+}
+
 #content {
   padding-top: 20px;
 }
@@ -92,6 +104,55 @@ h2 {
   }
 }
 
+.headline {
+  text-align: center;
+  h1 {
+    line-height: 25px;
+    font-style: italic;
+    text-shadow: 1px 1px 0px black;
+    span {
+      font-size: 16px;
+      font-weight: normal;
+      color: #EEE;
+    }
+  }
+}
+
+.accordion {
+  .separator {
+    background: $background_highlight;
+    text-align: center;
+    height: 1px;
+    margin: 20px auto;
+    span {
+      background: $background;
+      padding: 0 15px;
+      position: relative;
+      top: -0.7em;
+    }
+    &:last-child {
+      display: none;
+    }
+  }
+  .accordion-group {
+    border: none;
+  }
+  .accordion-heading {
+    position: relative;
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .accordion-body {
+    .accordion-inner {
+      border: none;
+      padding: 0;
+    }
+  }
+}
+
 .ui-datepicker {
   width: auto;
   box-shadow: none;
@@ -150,18 +211,5 @@ h2 {
   }
   .inner {
     padding: 5px;
-  }
-}
-
-.row-fluid.single-form, .row.single-form {
-  legend {
-    text-align: center;
-  }
-  
-  div.form-actions {
-    text-align: center;
-    float: none;
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }

@@ -5,7 +5,7 @@ module ApplicationHelper
     else                           "edit"
     end
     
-    I18n.t "#{model.class.name.downcase}.title.#{key}", attrs
+    I18n.t("#{model.class.name.downcase}.title.#{key}", attrs).html_safe
   end
 
   def _content_tag(name, *content, &block)

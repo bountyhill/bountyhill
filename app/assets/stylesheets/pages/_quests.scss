@@ -176,6 +176,9 @@ article {
       width: 90%;
     }
     a {
+      &:hover {
+        text-decoration: none;
+      };
       span { 
         &.bullet {
           float: left;
