@@ -27,6 +27,16 @@ form {
   padding: 0;
   input, select, textarea {
     color: $text_inverted;
+    /* ensure placeholder is always gray, even on error - see: http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css */
+    &::-webkit-input-placeholder {
+      color: $text_minor !important;
+    }
+    &:-moz-placeholder {
+      color: $text_minor !important;
+    }
+    &:-ms-input-placeholder {
+      color: $text_minor !important;
+    }
   }
   label {
     color: $text;
