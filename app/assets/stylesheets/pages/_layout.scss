@@ -98,8 +98,11 @@ h2 {
   .nav {
     font-weight: bold;
     li {
+      a {
+        text-transform: uppercase;
+      }
       &.active > a, a:hover {
-        background:  $navigation_highlight !important;
+        background:  $navigation_highlight;
         color: $text;
       }
     }
