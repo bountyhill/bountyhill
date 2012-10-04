@@ -99,7 +99,10 @@ class ActionView::Helpers::FormBuilder
         if object.errors.include?(name)
           "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
         else
-          options[:hint] || I18n.t("#{object.class.name.underscore}.form.field_hint.#{name}")
+          value = case name.to_s
+            when "password" then Identity::Email::MIN_PASSWORD_LENGTH
+            end
+          options[:hint] || I18n.t("#{object.class.name.underscore}.form.field_hint.#{options[:name] || name}", :value => value)
         end
       end
     end

@@ -134,9 +134,11 @@ en:
   "identity/email":
     form:
       field_hint:
-        email: "Your email address is required to start a quest and/or to post an offer."
-        password: "You can reset your password by just entering your email."
-        password_confirmation: "Make sure you have no typo in your password."
+        signup[email]: "What's your email address?"
+        signin[email]: "Please enter your email address."
+        signup[password]: "Your password should contain at least %{value} characters."
+        signin[password]: "Please enter your password."
+        signup[password_confirmation]: "Make sure you have no typo in your password."
   quest:
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
