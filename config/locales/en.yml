@@ -94,8 +94,8 @@ en:
       signup: Sign up
       title: Enter your email and password
       legend: 
-        signin: "By signing in with your email and password you are allowed to start quests and post offers. Your email will not be displayed to pther users."
-        signup: "By signing up with your email and password you are allowed to start quests and post offers. Your email will not be displayed to pther users."
+        signin: "By signing in with your email and password you may start quests and post offers. Your email will not be displayed to other users."
+        signup: "By signing up with your email and password you may start quests and post offers. Your email will not be displayed to other users."
       confirmation_reminder: 
         "You have signed up with bountyhill, but didn't confirm your email address yet."
       resend_confirmation: 
