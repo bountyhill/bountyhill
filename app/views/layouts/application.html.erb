@@ -30,7 +30,7 @@
   <%= render 'layouts/header' %>
   <div id="content" class="container">
     <%#= render 'layouts/debug' if Rails.env.development? %>
-    <section class="topspace bg-black">
+    <section class="topspace bottomspace bg-black">
       <%= 
         if defined?(content)
           content.html_safe

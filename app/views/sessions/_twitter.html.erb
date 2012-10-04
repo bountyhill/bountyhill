@@ -1,30 +1,26 @@
-<% identity = Identity::Twitter.new(:follow_bountyhermes => true) %>
-<%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
-  <%= hidden_field_tag :req, params[:req] %>
-  <fieldset>
-    <legend><%= I18n.t("sessions.twitter.legend")%></legend>
-    <%= form.error_messages :scope => "signup" %>
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwitter">
+      <h3><%= I18n.t("sessions.twitter.title")%></h3>
+    </a>
+  </div>
+  <div id="collapseTwitter" class="accordion-body <%='in' if expand %> collapse">
+    <div class="accordion-inner">
+      <% identity = Identity::Twitter.new(:follow_bountyhermes => true) %>
+      <%= form_for identity, :url => "/sessions/twitter", :method => :post do |form| %>
+        <%= hidden_field_tag :req, params[:req] %>
+        <fieldset>
+          <legend><%= I18n.t("sessions.twitter.legend")%></legend>
+          <%#= form.error_messages :scope => "signup" %>
+          <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes") %>
+          <%#= form.agree_to_terms %>
 
-    <div class="alert alert-info" style="min-height: 5em">
-      <%= I18n.t "sessions.twitter.reasons" %>
+          <div class="buttons input-xxlarge">
+            <%= link_to I18n.t(:cancel), "/sessions/twitter", :class => "btn cancel" %>
+            <%= form.submit I18n.t("sessions.twitter.signin"), :class => "btn btn-primary btn-inverse btn-large" %>
+          </div>
+        </fieldset>
+      <% end %>
     </div>
-
-    <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes") %>
-
-    <%= form.agree_to_terms %>
-
-    <div class="buttons">
-      <%= link_to I18n.t(:cancel), "/sessions/twitter", :class => "btn cancel" %>
-      <%= form.submit I18n.t("sessions.twitter.signin"), :class => "btn btn-primary" %>
-    </div>
-  </fieldset>
-<% end %>
-
-<style type="text/css" media="screen">
-  form div.cancel {
-    display: none;
-  }
-  div.single-form form div.cancel {
-    display: default;
-  }
-</style>
+  </div>
+</div>

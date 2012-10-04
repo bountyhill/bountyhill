@@ -1,32 +1,22 @@
-<%= form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post, :id => "signin_email" do |form| %>
-  <%= hidden_field_tag :req, params[:req] %>
-  <fieldset>
-    <legend><%= I18n.t("sessions.email.legend")%></legend>
-
-    <div class="alert alert-info" style="min-height: 5em">
-      <%= I18n.t "sessions.email.reasons" %>
-    </div>
-
-    <div class="tab-content">
-      <div id="signin_subform" class="tab-pane fade<%= " active in" if @mode == :signin %>">
-        <div>
-          <a data-toggle="tab" href="#signup_subform" class="btn">
-            <%= I18n.t "sessions.to_signup" %>
-          </a>
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSignin">
+      <h3><%= I18n.t("sessions.email.title")%></h3>
+    </a>
+  </div>
+  <div id="collapseSignin" class="accordion-body <%='in' if expand %> collapse">
+    <div class="accordion-inner">
+      <%= form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post, :id => "signin_email" do |form| %>
+        <%= hidden_field_tag :req, params[:req] %>
+        <div class="tab-content">
+          <div id="signin_subform" class="tab-pane fade<%= " active in" if @mode == :signin %>">
+            <%= partial "email_signin", :form => form %>
+          </div>
+          <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode != :signin %>">
+            <%= partial "email_signup", :form => form %>
+          </div>
         </div>
-        
-        <%= form.error_messages @error if @error && @mode == :signin %>
-        <%= partial "email_signin", :form => form %>
-      </div>
-      <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode != :signin %>">
-        <div>
-          <a data-toggle="tab" href="#signin_subform" class="btn">
-            <%= I18n.t "sessions.to_signin" %>
-          </a>
-        </div>
-        <%= form.error_messages @error if @error && @mode != :signin %>
-        <%= partial "email_signup", :form => form %>
       </div>
     </div>
-  </fieldset>
-<% end %>
+  <% end %>
+</div>

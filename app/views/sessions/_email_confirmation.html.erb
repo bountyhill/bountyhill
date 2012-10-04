@@ -1,15 +1,24 @@
 <%= form_for Identity::Email.new, :url => "/" do |form| %>
-<legend><%= I18n.t("sessions.confirmed.legend")%></legend>
-
-<div class="alert alert-info" style="min-height: 5em">
-  <%= I18n.t "sessions.confirmed.reasons" %>
-</div>
-
-<div class="buttons">
-  <%= link_to_cancel_signin %>
-  <%=
-    link_to I18n.t("sessions.email.resend_confirmation"), "/confirm",
-      :class => "btn btn-primary", :method => :post 
-  %>
-</div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseConfirmation">
+        <h3><%= I18n.t("sessions.confirmed.title")%></h3>
+      </a>
+    </div>
+    <div id="collapseConfirmation" class="accordion-body <%='in' if expand %> collapse">
+      <div class="accordion-inner">
+        <fieldset>
+          <legend><%= I18n.t("sessions.confirmed.legend")%></legend>
+          <%= I18n.t "sessions.confirmed.reasons" %>
+          <div class="buttons">
+            <%= link_to_cancel_signin %>
+            <%=
+              link_to I18n.t("sessions.email.resend_confirmation"), "/confirm",
+                :class => "btn btn-primary btn-inverse btn-large", :method => :post 
+            %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
 <% end %>

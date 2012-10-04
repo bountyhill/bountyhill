@@ -1,11 +1,3 @@
-.quests {
-  .head {
-    .btn-group {
-      padding-top: 35px;
-    }
-  }
-}
-
 .avatar {
   width: 128px;
   height: 128px;
@@ -20,29 +12,22 @@
 }
 
 .quest-cells {
+  margin-bottom: 10px;
   .span4 {
     & > .inner { padding: 10px 0; }
-/*
-    // does not work when 2 cells are in a row
-    &:first-child { 
-      & > .inner { margin-left: 20px; }
-    }
-    &:3rd-child { 
-      & > .inner { margin-right: 20px; }
-    }
-*/    
   }
   .quest-cell {
     width: 100%;
+    height: 150px;
     margin: 0;
     position: relative;
-    height: 140px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+    border: 1px solid $background_border;
     background-color: $background_light;
     &:hover {
       background-color: $background_highlight;
@@ -54,15 +39,19 @@
       width: 64px;
       height: 64px;
     }
+    a {
+      text-decoration: none;
+    }
     h3 { 
       overflow: hidden;
+      color: $text;
       text-transform: none;
       height: 80px;
-      color: $text;
+      margin-bottom: 10px;
     }
     .ribbon { 
       opacity: 0.9;
-      font: bold 16px Sans-Serif;
+      font: bold 14px Sans-Serif;
       &.small { 
         background-color: $ribbon_minor;
         background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_minor), to($ribbon_minor_gradient));
@@ -91,18 +80,19 @@
         &::before, &::after {border-top: 3px solid $ribbon_major_border;}
       }
     }
-    .socialmedia {
-      margin: auto;
-      width: auto;
-      text-align: center;
-      margin-bottom: 0px;
-      float: right;
-    }
     .restrictions {
-      float:left;
-      margin-top: 5px;
+      float: left;
+      margin-top: 20px;
+      height: 20px;
+      width: 80%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      .restriction {
+        display: inline-block;
+        margin-right: 10px;
+      }
       img {
-        &.temporality, &.locality {
+        &.temporality, &.locality, &.compliance {
           position: relative;
           margin-bottom: 4px;
           width: 12px;
@@ -111,16 +101,14 @@
         }
       }
       span {
-        &.temporality, &.locality {
+        &.temporality, &.locality, &:compliance {
           padding-left: 5px;
           font-size: 12px;
           font-style: normal;
-          font-weight: normal;
+          font-weight: bold;
           color: $text_minor;
           line-height: 1.0;
           white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
         }
       }
     }
@@ -131,16 +119,17 @@ article {
   &.quest {
     h1 {
       font-size: 24px;
-      line-height: 24px;
-      margin: 26px 0 0 148px;
+      line-height: 32px;
+      margin: 10px 0 0 148px;
+      color: $text;
     }
     .profile {
       a {
         color: $link_text;
         h2 {
           margin: 0 0 5px 148px;
-          font-size: 28px;
-          line-height: 28px;
+          font-size: 18px;
+          line-height: 18px;
           color: $link_text;
         }
       }
@@ -176,6 +165,9 @@ article {
       width: 90%;
     }
     a {
+      &:hover {
+        text-decoration: none;
+      };
       span { 
         &.bullet {
           float: left;
@@ -242,11 +234,6 @@ h1, h2 {
     &.bounty {
       strong { font-size: 36px; }
     }
-  }
-  small {
-    display: block;
-    margin-top: -10px;
-    font-size: 14px;
   }
 }
 

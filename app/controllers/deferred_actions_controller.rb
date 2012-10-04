@@ -62,7 +62,7 @@ class DeferredActionsController < ApplicationController
       Deferred.mail UserMailer.reset_password(identity.user)
       flash[:success] = I18n.t("reset_password.sent")
     else
-      flash[:error] = I18n.t("reset_password.unknown_email", :email => email)
+      flash[:error] = I18n.t("reset_password.unknown_email")
     end
 
     redirect_to :back

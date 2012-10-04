@@ -1,10 +1,18 @@
-<%= form.control_group :email, :name => "signin[email]" %>
-<%= form.control_group :password, :password_field, :name => "signin[password]" %>
+<fieldset>
+  <legend><%= I18n.t("sessions.email.legend.signup")%></legend>
+  <%#= form.error_messages @error if @error && @mode == :signin %>
 
-<%= form.agree_to_terms %>
+  <%= form.control_group :email, :name => "signin[email]", :class => "input-xlarge" %>
+  <%= form.control_group :password, :password_field, :name => "signin[password]", :class => "input-xlarge" %>
 
-<div class="buttons">
-  <%= link_to_reset_password if form.object.email.present? %> 
-  <%= link_to_cancel_signin %>
-  <%= form.submit I18n.t("sessions.email.signin"), :name => "do_signin", :class => "btn btn-primary btn-inverse btn-large" %>
-</div>
+  <%#= form.agree_to_terms %>
+
+  <div class="buttons input-xxlarge">
+    <%= link_to_cancel_signin %>
+    <%= form.submit I18n.t("sessions.email.signin"), :name => "do_signin", :class => "btn btn-primary btn-inverse btn-large" %>
+  </div>
+  <div class="pull-left">
+    <a data-toggle="tab" href="#signup_subform"><%= I18n.t "sessions.to_signup" %></a>
+    <%= "<br>#{link_to_reset_password}".html_safe if form.object.email.present? %>
+  </div>
+</fieldset>

@@ -5,7 +5,7 @@ module ApplicationHelper
     else                           "edit"
     end
     
-    I18n.t "#{model.class.name.downcase}.title.#{key}", attrs
+    I18n.t("#{model.class.name.downcase}.title.#{key}", attrs).html_safe
   end
 
   def _content_tag(name, *content, &block)
@@ -125,13 +125,13 @@ module ApplicationHelper
       span = self.span value, :class => "locality"
     when :expires_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
-      span = self.span value.to_date, :class => "locality"
+      span = self.span t('restriction.temporality', :count => (value.to_date - Date.today).to_i), :class => "temporality"
     when :compliance
       icon = image_tag '/images/icon/location.png', :class => 'compliance'
-      span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "locality"
+      span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"
     end
     
-    div icon, span
+    div icon, span, :class => "restriction"
   end
 
   def form_for(object, options = {}, &block)
@@ -141,8 +141,6 @@ module ApplicationHelper
     else
       html[:class] = "form-horizontal"
     end
-
-    html[:autocomplete] = "off"
     
     super(object, options, &block)
   end
