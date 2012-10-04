@@ -6,7 +6,7 @@
     <small><%=t "quest.criteria.sub" %></small>
   </h2>
 
-  <div class="criteria">
+  <div class="criteria no-flicker">
     <%= accordion do |acc| %>
       <% criteria.each_with_index do |criterium, idx| %>
         <%=

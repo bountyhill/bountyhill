@@ -2,7 +2,7 @@
 style ||= nil
 %>
 <div class="inner" style="<%= style %>">
-  <div class="quest-cell bg-black">
+  <div class="quest-cell bg-black no-flicker">
     <%= render_bounty_ribbon quest %>
     <div class="inner">
       <%= avatar quest.owner, :size => 64 %>
