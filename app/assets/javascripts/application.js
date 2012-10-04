@@ -14,7 +14,10 @@
 //  no_require jquery
 //
 //= require jquery_ujs
-//= require_tree .
+//
+//= require bootstrap.js
+//= require_tree ./components
+//= require custom.js
 
 // dummy console, just in case
 if(typeof console === "undefined") {
@@ -49,6 +52,8 @@ if(typeof console === "undefined") {
           console.log("Could not locate " + location + ": " + status);
           return;
         }
+
+        console.log("located " + location);
 
         // We found the location -> build a gmap and put a marker on it.
         var options = DEFAULTS;
