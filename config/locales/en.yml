@@ -60,10 +60,6 @@ en:
     privacy: "Privacy"
     contact: Contact
   settings: Settings
-  reset_password:
-    label:  I forgot my password.
-    sent:   You should receive instructions to reset your password in your email.
-    unknown_email: "The email address is not registered here."
   sessions:
     title: "Sign in <span>and climb up on bountyhill</span>"
     # Note: the bountyhermes name is referred here in both the text and 
@@ -83,6 +79,7 @@ en:
       <a href='/terms#extra' target='_blank'>payment obligations.</a>"
     to_signup:    I am new here. Let me sign up.
     to_signin:    I have already an account. Let me sign in.
+    to_reset:     I forgot my password.
     twitter:
       following:  "Thank you for signing in with Twitter and for following @bountyhermes."
       success:    "Thank you for signing in with Twitter."
@@ -90,12 +87,14 @@ en:
       legend:     "You must be signed in via Twitter to share a quest and to secure your chance to win a part of the bounty. If you choose to follow @bountyhermes by checking the checkbox below, we'll send you a direct message on succes."
       signin:     Sign in
     email:
+      reset: Reset my password
       signin: Sign in
       signup: Sign up
       title: Enter your email and password
       legend: 
         signin: "By signing in with your email and password you may start quests and post offers. Your email will not be displayed to other users."
         signup: "By signing up with your email and password you may start quests and post offers. Your email will not be displayed to other users."
+        reset: "Enter you email address. You will receive instructions to reset your password in your email."
       confirmation_reminder: 
         "You have signed up with bountyhill, but didn't confirm your email address yet."
       resend_confirmation: 
@@ -107,9 +106,11 @@ en:
       success:
         signup: Welcome to bountyhill!
         signin: Welcome to bountyhill!
+        reset:  You should receive instructions to reset your password in your email.
       error:
         signup: Please correct the errors below and then resubmit the form!
         signin: Your email and/or password are not valid. Please try again!
+        reset: "This email address is not registered here."
     confirmed:
       title: Confirm your email address!
       legend: At this point we must make sure that your email address is correct.

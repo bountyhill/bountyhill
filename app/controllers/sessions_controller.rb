@@ -30,29 +30,47 @@ class SessionsController < ApplicationController
 
   # This action received the email signin/signup form.
   def signin_post
-    @mode = params[:do_signup] ? :signup : :signin
+    @mode = if params[:do_signup] then :signup 
+      elsif params[:do_signin] then :signin
+      else :reset
+      end
+      
     attrs = params[@mode] || {}
     
-    if @mode == :signin
+    case @mode
+    when :signin
       email, password = attrs.values_at(:email, :password)
-
-      @identity = Identity::Email.authenticate(email, password) || Identity::Email.new(attrs)
-    else
+      @identity = Identity::Email.authenticate(email, password)
+    when :signup
       @identity = Identity::Email.create(attrs)
+    when :reset
+      @identity = if attrs[:email]
+        Identity::Email.where("lower(email)=?", attrs[:email].downcase).first
+      end
     end
+
+    @identity ||= Identity::Email.new(attrs)
     
-    # Success: @identity is in the database, else error (validation failed or
-    # invalid message/password)
+    # Error: @identity is not in the database. 
+    # -> validation failed, invalid email/password, etc.
     unless @identity.id
       @error = I18n.t("sessions.email.error.#{@mode}")
-      # flash.now[:error] = @error
+      flash.now[:error] = @error
       render_signin!
     end
-    
+
+    # Success! Set flash, and go somewhere...
+
     flash[:success] = I18n.t("sessions.email.success.#{@mode}", :name => @identity.name)
-    
-    signin @identity.user
-    identity_presented!
+
+    case @mode
+    when :signup, :signin
+      signin @identity.user
+      identity_presented!
+    when :reset
+      Deferred.mail UserMailer.reset_password(@identity.user)
+      redirect_to signin_path
+    end
   end
 
   private
