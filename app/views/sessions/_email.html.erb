@@ -12,7 +12,10 @@
           <div id="signin_subform" class="tab-pane fade<%= " active in" if @mode == :signin %>">
             <%= partial "email_signin", :form => form %>
           </div>
-          <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode != :signin %>">
+          <div id="reset_subform" class="tab-pane fade<%= " active in" if @mode == :reset %>">
+            <%= partial "email_reset", :form => form %>
+          </div>
+          <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode == :signup %>">
             <%= partial "email_signup", :form => form %>
           </div>
         </div>

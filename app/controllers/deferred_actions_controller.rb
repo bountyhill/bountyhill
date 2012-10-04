@@ -52,22 +52,6 @@ class DeferredActionsController < ApplicationController
     redirect_to :back
   end
 
-  # Send a reset password email.
-  def reset_password
-    if email = params[:email]
-      identity = Identity::Email.where("lower(email)=?", email.downcase).first
-    end
-    
-    if identity
-      Deferred.mail UserMailer.reset_password(identity.user)
-      flash[:success] = I18n.t("reset_password.sent")
-    else
-      flash[:error] = I18n.t("reset_password.unknown_email")
-    end
-
-    redirect_to :back
-  end
-
   protected
   
   # reset a password.

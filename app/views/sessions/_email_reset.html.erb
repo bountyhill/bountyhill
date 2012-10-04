@@ -1,0 +1,16 @@
+<fieldset>
+  <legend><%= I18n.t("sessions.email.legend.reset")%></legend>
+  <%#= form.error_messages @error if @error && @mode == :signin %>
+
+  <%= form.control_group :email, :name => "reset[email]", :class => "input-xlarge" %>
+  
+  <%#= form.agree_to_terms %>
+
+  <div class="buttons input-xxlarge">
+    <%= link_to_cancel_signin %>
+    <%= form.submit I18n.t("sessions.email.reset"), :name => "do_reset", :class => "btn btn-primary btn-inverse btn-large" %>
+  </div>
+  <div class="pull-left">
+    <a data-toggle="tab" href="#signup_subform"><%= I18n.t "sessions.to_signup" %></a>
+  </div>
+</fieldset>

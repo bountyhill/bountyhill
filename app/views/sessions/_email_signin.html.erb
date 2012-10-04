@@ -13,6 +13,7 @@
   </div>
   <div class="pull-left">
     <a data-toggle="tab" href="#signup_subform"><%= I18n.t "sessions.to_signup" %></a>
-    <%= "<br>#{link_to_reset_password}".html_safe if form.object.email.present? %>
+    <br>
+    <a data-toggle="tab" href="#reset_subform"><%= I18n.t "sessions.to_reset" %></a>
   </div>
 </fieldset>
