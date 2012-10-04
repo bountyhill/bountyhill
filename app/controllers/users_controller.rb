@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :set_user
   
   def show
+    request_identity!
   end
   
   def update

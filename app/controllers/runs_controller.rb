@@ -21,6 +21,8 @@ class RunsController < ApplicationController
   
   # start the run. This action receives the form from "runs/show".
   def update
+    W "runs/update: current_user", current_user
+    
     # Re-render the form, if the quest is not valid?
     unless quest.update_attributes params[:quest]
       flash.now[:error] = if base_errors = @quest.errors[:base]
@@ -39,6 +41,8 @@ class RunsController < ApplicationController
   # twitter identity provision or as a *method* from the create action.
   def start
     request_identity! :twitter
+
+    W "runs/start: current_user", current_user
 
     # If there is no twitter identity yet, ask the user to provide one;
     # but go to do_start even if he chooses not to do so.
@@ -60,6 +64,7 @@ class RunsController < ApplicationController
   private
   
   def quest
+    W "runs: current_user", current_user
     @quest ||= Quest.draft(params[:id])
   end
 end

@@ -16,7 +16,7 @@ deployment:
     - kibo compress --quiet public/assets
     - git add -f public/assets
     - git commit -m '[kibo] Updated assets'
-  success:
+  skip-success:
     - heroku run rake db:migrate
 source:
   pre:
