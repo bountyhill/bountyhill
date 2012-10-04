@@ -3,7 +3,7 @@
     <div class="span12">
       <div class="header-button">
         <div class="icon">d</div>
-        <p><%= link_to t("quest.actions.offer.title"), new_offer_path %> <%= t "quest.actions.offer.sub" %></p>
+        <p><%= link_to t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest) %> <%= t "quest.actions.offer.sub" %></p>
       </div>
       <div class="socialmedia">
         <%= link_to "t", retweet_quest_path(@quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
