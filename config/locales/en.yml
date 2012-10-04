@@ -165,10 +165,10 @@ en:
         sub: "This quest is not yet started."
     location:
       title: "%{location}"
-      sub:   "borders the location of this quest."
+      sub:   "Preferred location for offers."
       none: 
         title:  "No location"
-        sub:    "is bound to this quest."
+        sub:    "Offers accepted from anywhere."
     criteria:
       title:    "criteria"
       sub:      "are to match."
@@ -188,8 +188,8 @@ en:
         title: Tweet
         sub: Secure your chance for a part of the bounty.
       offer:
-        title: Offer on this quest
-        sub: to get 50% of the bounty.
+        title: Post an offer!
+        sub: Successful offers will receive 50% of the bounty.
       review:
         title: Review
         sub: "See all %{count} offers made."
