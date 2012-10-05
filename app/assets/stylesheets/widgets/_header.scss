@@ -1,0 +1,69 @@
+/* ------- headline ------- */
+.headline {
+  text-align: center;
+  h1 {
+    line-height: 25px;
+    font-style: italic;
+    span {
+      font-size: 16px;
+      font-weight: normal;
+      color: #EEE;
+    }
+  }
+}
+
+/* ------- ribbon ------- */
+.horizontal-ribbon {
+  margin: 0px -10px;
+  -ms-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  -khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+  .corner {
+    border-style:solid;
+    border-width:10px;
+    height:0px;
+    width:0px;
+    position: relative;
+    z-index: -1;
+    &.left {
+      border-color: transparent $background_gray_dark transparent transparent;
+      left: -10px;
+      top: -10px;
+    }
+    &.right {
+      border-color: transparent transparent transparent $background_gray_dark;
+      left: 950px;
+      top: -30px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .horizontal-ribbon {
+    .corner {
+      &.right {
+        left: 1180px;
+      }
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  .horizontal-ribbon {
+    .corner {
+      &.right {
+        left: 735px;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .horizontal-ribbon {
+    margin: 0;
+    .corner {
+      display: none;
+    }
+  }
+}

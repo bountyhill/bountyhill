@@ -49,9 +49,16 @@
       height: 80px;
       margin-bottom: 10px;
     }
+    .ribbon-wrapper {
+      .right {
+        top: -5px;
+        right: -5px;
+      }
+    }
     .ribbon { 
       opacity: 0.9;
       font: bold 14px Sans-Serif;
+      padding: 5px 0;
       &.small { 
         background-color: $ribbon_minor;
         background-image: -webkit-gradient(linear, left top, left bottom, from($ribbon_minor), to($ribbon_minor_gradient));
