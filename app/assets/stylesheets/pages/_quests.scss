@@ -146,6 +146,7 @@ article {
       }
     }
     p {
+      color: $text_major;
       clear: both;
       padding: 10px 0;
       font-size: 18px;
@@ -154,14 +155,15 @@ article {
 }
 
 .criteria {
+  margin-top: 10px;
   ul { margin: 0; }
   .accordion-group {
     border: none;
+    margin-bottom: 20px;
     &:hover {
         span {
-        &.arrow { 
-          opacity:1;
-          right: 0px;
+        &.arrow {
+          display: none;
         }
       }
     }
@@ -177,59 +179,56 @@ article {
       &:hover {
         text-decoration: none;
       };
-      span { 
-        &.bullet {
-          float: left;
-          text-align: center;
-          color: $text;
-          font-size: 18px;
-          line-height: 27px;
-          font-weight: bold;
-          display: inline-block;
-          width: 27px;
-          height: 27px;
-          padding: 0;
-          -webkit-border-radius: 100px;
-          -moz-border-radius: 100px;
-          -o-border-radius: 100px;
-          -ms-border-radius: 100px;
-          -khtml-border-radius: 100px;
-          border-radius: 100px;
-          -webkit-transition: all 1s;
-          -moz-transition: all 1s;
-          -o-transition: all 1s;
-          -ms-transition: all 1s;
-          -khtml-transition: all 1s;
-          transition: all 1s;
-          background-color: #666;
-        }
-        &.arrow {
-          background: transparent url(../images/down.png) no-repeat center center;
-          text-indent: -9000px;
-          width: 26px;
-          height: 14px;
-          display: inline-block;
-          position: absolute;
-          top: 22px;
-          right: -26px;
-          margin-top: -7px;
-          opacity: 0;
-          -webkit-transition: all 0.2s ease-in-out;
-          -moz-transition: all 0.2s ease-in-out;
-          -o-transition: all 0.2s ease-in-out;
-          -ms-transition: all 0.2s ease-in-out;
-          transition: all 0.2s ease-in-out;
-        }
+      &.arrow {
+        background: transparent url(../images/down.png) no-repeat center center;
+        text-indent: -9000px;
+        width: 26px;
+        height: 14px;
+        display: inline-block;
+        position: absolute;
+        top: 22px;
+        right: -26px;
+        margin-top: -7px;
+        opacity: 0;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+    span { 
+      &.bullet {
+        float: left;
+        text-align: center;
+        color: $text;
+        font-size: 18px;
+        line-height: 27px;
+        font-weight: bold;
+        display: inline-block;
+        width: 27px;
+        height: 27px;
+        padding: 0;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        -o-border-radius: 100px;
+        -ms-border-radius: 100px;
+        -khtml-border-radius: 100px;
+        border-radius: 100px;
+        -webkit-transition: all 1s;
+        -moz-transition: all 1s;
+        -o-transition: all 1s;
+        -ms-transition: all 1s;
+        -khtml-transition: all 1s;
+        transition: all 1s;
+        background-color: #666;
       }
     }
     .accordion-toggle { padding: 8px 15px 8px 0 }
   }
   .accordion-body {
+    color: $text_major;
     margin-left: 36px;
-    .accordion-inner {
-      padding: 9px 0px;
-      border-top: 1px solid $background_highlight;
-    }
   }
 }
 
