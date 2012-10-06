@@ -1,7 +1,12 @@
 require "resque/server"
 
 Bountyhill::Application.routes.draw do
-  mount Resque::Server.new, :at => "/jobs"
+  app = Rack::Builder.new {
+    use ::AdminOnlyMiddleware
+    run Resque::Server.new
+  }.to_app
+
+  mount app, :at => "/jobs"
 
   # just temporary...
   %w(quests offers).each do |mock|

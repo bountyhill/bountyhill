@@ -33,6 +33,7 @@ class TwitterAuthMiddleware
 
     begin
       @request = ::Rack::Request.new(env)
+      # $1 is "login", "logout", or "callback"
       self.send "twitter_#{$1}"
     ensure
       @request = nil

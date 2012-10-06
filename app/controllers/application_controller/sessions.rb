@@ -7,8 +7,8 @@ module ApplicationController::Sessions
 
   def signin(user)
     expect! user => User
-    
-    session[:remember_token] = user.remember_token
+
+    session.update :remember_token => user.remember_token, :admin => user.admin?
     @current_user = user
   end
   
@@ -16,7 +16,7 @@ module ApplicationController::Sessions
     @current_user = false
     
     session.delete(:remember_token)
-    session.delete(:signedin)
+    session.delete(:admin)
 
     ApplicationController::RequiredIdentity.set_payload session, nil
   end
