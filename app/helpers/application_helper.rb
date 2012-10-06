@@ -175,4 +175,62 @@ module ApplicationHelper
       flash_msg
     end
   end
+  
+  
+  #
+  # returns the header ribbon in form of a button
+  # this is used e.g. on top of list or detail pages
+  def header_ribbon_button(button, name, url, opts={})
+    text = opts[:text]
+    
+    icon = case button
+      when :bubble  then "c"
+      when :rect    then "d"
+      when :twitter then "t"
+      else ""
+      end
+    
+    header_button = div :class => "header-button" do
+      div(icon, :class => "icon") + 
+      p("#{link_to(name, url)} #{text}".html_safe)
+    end
+    
+    social_buttons = if opts[:social]
+      div :class => "socialmedia" do
+        link_to("t", opts[:social][:twitter].delete(:url), opts[:social][:twitter].merge(:class => "social-item twitter")) if opts[:social][:twitter]
+      end
+    else ""
+    end
+    
+    div(:class => "horizontal-ribbon") do
+      [
+        div(:class => "row-fluid bg-gray") do
+          div(:class => "span12") do
+            header_button + 
+            social_buttons
+          end
+        end,
+        div(:class => "corner left"),
+        div(:class => "corner right")
+      ].join.html_safe
+    end
+  end
+
+  #
+  # returns the header ribbon in form of a headline
+  # this is used e.g. on top of forms
+  def header_ribbon_title(title)
+    div(:class => "horizontal-ribbon") do
+      [
+        div(:class => "row-fluid bg-gray") do
+          div(:class => "span12 headline inner") do
+              h1 title
+          end
+        end,
+        div(:class => "corner left"),
+        div(:class => "corner right")
+      ].join.html_safe
+    end
+  end
+
 end

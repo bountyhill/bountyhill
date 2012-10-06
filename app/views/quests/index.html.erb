@@ -1,13 +1,5 @@
-<div class="bg-gray overlap">
-  <div class="row-fluid head">
-    <div class="span12">
-      <div class="header-button">
-        <div class="icon">c</div>
-        <p><%= link_to t("quest.actions.new.title"), new_quest_path %> <%= t "quest.actions.new.sub" %></p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= header_ribbon_button :bubble, t("quest.actions.new.title"), new_quest_path, :text => t("quest.actions.new.sub") %>
+
 <div class="row bg-main">
   <div class="span12 bg-solid-black">
     <div class="quests">

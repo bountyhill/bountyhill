@@ -1,0 +1,32 @@
+/* ------- navigation ------- */
+.navbar {
+  margin: 0;
+  -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
+  .brand {
+    text-transform: none;
+  }
+  .nav {
+    font-weight: bold;
+    li {
+      a {
+        text-transform: uppercase;
+      }
+      &.active > a, a:hover {
+        background:  $navigation_highlight;
+        color: $text;
+      }
+    }
+  }
+}
+@media (max-width: 320px) {
+  .navbar-fixed-top {
+    margin: 0px -10px;
+  }
+  .navbar {
+    .brand {
+      padding: 8px 5px 12px 18px;
+      margin-left: -10px;
+      font-size: 18px;
+    }
+  }
+}

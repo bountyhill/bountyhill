@@ -1,16 +1,7 @@
-<div class="bg-gray overlap">
-  <div class="row-fluid head">
-    <div class="span12">
-      <div class="header-button">
-        <div class="icon">d</div>
-        <p><%= link_to t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest) %> <%= t "quest.actions.offer.sub" %></p>
-      </div>
-      <div class="socialmedia">
-        <%= link_to "t", retweet_quest_path(@quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= header_ribbon_button :rect, t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest),
+  :text   => t("quest.actions.offer.sub"),
+  :social => { :twitter => { :url => retweet_quest_path(@quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow" }} %>
+  
 <div class="row bg-main" >
   <div class="span12 bg-solid-black">
     <% if mobile? %>

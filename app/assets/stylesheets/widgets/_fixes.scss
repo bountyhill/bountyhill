@@ -1,0 +1,11 @@
+/* ------- fixes ------- */
+
+/* prevents flicker on transformations in Safari- see: http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform */
+.no-flicker {
+  -webkit-transform: translateZ(0);
+}
+
+/* disables scrollbar in tab content */
+.tab-content {
+  overflow: hidden;
+}

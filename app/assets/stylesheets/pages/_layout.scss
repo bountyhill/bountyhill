@@ -1,11 +1,61 @@
+/* ------- general page layout ------- */
 body {
   font-size: 14px;
   background-color: $background;
   background-image:url(../images/switcher/6.jpg);
+  > .container {
+    min-height: 800px;
+  }
+}
+.inner {
+  clear: both;
+}
+.topspace {
+  margin-top: 95px;
+}
+.bottomspace {
+  margin-bottom: 55px;
+}
+.main-space {
+  min-height: 600px;
+}
+@media (max-width: 979px) {
+  .topspace {
+    margin-top: 55px;
+  }
 }
 
-section {
-  margin: 40px 0;
+@media (max-width: 320px) {
+  body {
+    padding: 0px;
+  }
+  .section {
+    margin: 10px 0;
+  }
+  .inner {
+    padding: 5px;
+  }
+  .topspace {
+    margin-top: 0;
+  }
+  .bottomspace {
+    margin-bottom: 0;
+  }
+}
+
+
+/* ------- common tags ------- */
+h1 {
+  &.head {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+h2 {
+  span {
+    color: $text_highlight;
+  }
 }
 
 a {
@@ -18,128 +68,12 @@ a {
   };
 }
 
-/* prevents flicker on transformations in Safari- see: http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform*/
-.no-flicker {
-  -webkit-transform: translateZ(0);
-}
-
-.bottomspace {
-  margin-bottom: 55px;
-}
-
-.overlap {
-  margin: 0px -5px;
-}
-
-.main-space {
-  min-height: 600px;
-}
-
-#content {
-  padding-top: 20px;
-}
-
-.inner {
-  clear: both;
-}
-
-.bg-solid-black {
-  background-color: $background;
-}
-
-.bg-solid-gray {
-  background-color: $background_gray;
-}
-
-.bg-solid-gray-dark {
-  background-color: $background_gray_dark;
-}
-
-.bg-solid-white {
-  background-color: $background_inverse;
-}
-
-.bg-gray-inverse {
-  background-size: 100% 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25)), color-stop(0.4, rgba(0, 0, 0, 0)), color-stop(0.6, rgba(0, 0, 0, 0))), -webkit-gradient(linear, left top, left bottom, from($background_gray_dark), to($background_gray));
-  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -moz-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -ms-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -o-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), linear-gradient(top, $background_gray_dark, $background_gray);
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  color: #FFF;
-}
-
 img {
   height: 100%;
 }
 
-h2 {
-  span {
-    color: $text_highlight;
-  }
-}
 
-.flash {
-  text-align: center;
-  border-radius: 0;
-  &.alert {
-    margin: 40px 0 -75px 0;
-  }
-}
-
-.banner {
-  height: 120px;
-}
-
-.tab-content {
-  overflow: hidden;
-}
-
-.navbar {
-  margin: 0;
-  -webkit-transform: translateZ(0);
-  .brand {
-    text-transform: none;
-  }
-  .nav {
-    font-weight: bold;
-    li {
-      a {
-        text-transform: uppercase;
-      }
-      &.active > a, a:hover {
-        background:  $navigation_highlight;
-        color: $text;
-      }
-    }
-  }
-}
-
-.headline {
-  text-align: center;
-  h1 {
-    line-height: 25px;
-    font-style: italic;
-    text-shadow: 1px 1px 0px black;
-    span {
-      font-size: 16px;
-      font-weight: normal;
-      color: #EEE;
-    }
-  }
-}
-
-h1 {
-  &.head {
-    text-align: center;
-    margin: 20px 0 10px 0;
-  }
-}
-
+/* ------- accordion ------- */
 .accordion {
   .separator {
     background: $background_highlight;
@@ -151,6 +85,7 @@ h1 {
       padding: 0 15px;
       position: relative;
       top: -0.7em;
+      font-weight: bold;
     }
     &:last-child {
       display: none;
@@ -172,66 +107,5 @@ h1 {
       border: none;
       padding: 0;
     }
-  }
-}
-
-.ui-datepicker {
-  width: auto;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  table {
-    width: 100%;
-  }
-}
-
-.ui-datepicker-calendar {
-  .ui-state-active, .ui-state-hover, th {
-    border-color: $highlight;
-  }
-}
-
-.ui-datepicker-header {
-  border-color: $highlight;
-}
-
-.pagination {
-  li {
-    a {
-      border: 1px solid $text_highlight;
-      color: $navigation_text;
-    }
-    &.active, &:hover {
-      a {
-        background-color: $text_highlight;
-        color: $navigation_text;
-        font-weight: bold;
-      }
-    }
-  }
-}
-
-@media (max-width: 320px) {
-  body {
-    padding: 0px;
-  }
-  .topspace {
-    margin-top: 0px;
-  }
-  .navbar-fixed-top {
-    margin: 0px -10px;
-  }
-  .navbar {
-    .brand {
-      padding: 8px 5px 12px 18px;
-      margin-left: -10px;
-      font-size: 18px;
-    }
-    .navbar-search {
-      margin-right: 0px;
-    }
-  }
-  .inner {
-    padding: 5px;
   }
 }
