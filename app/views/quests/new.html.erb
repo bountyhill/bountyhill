@@ -1,13 +1,5 @@
 <%= header_ribbon_title i18n_title_for(@quest) %>
 
-<div class="row-fluid bg-solid-black">
-  <div class="span1">&nbsp;</div>
-  <div class="span10">
-    <div class="inner">
-      <div class="form-container">
-        <%= render "form" %>
-      </div>
-    </div>
-  </div>
-  <div class="span1">&nbsp;</div>
-</div>
+<%= render_form do %>
+  <%= render "form" %>
+<% end %>

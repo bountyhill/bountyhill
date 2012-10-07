@@ -26,7 +26,32 @@ if(typeof console === "undefined") {
   };
 }
 
+
 (function( $ ) {
+
+  $.fn.extend({ 
+    // sets focus to the first control element in a form
+    // displays explanation message in addition
+    setFocus: function() {
+      return this.each(function() {
+        
+        //  Show message hint on fokus
+        $(".control-group textarea, .control-group input").focus(function() {
+          $(this).closest(".control-group").find(".message").removeClass("hidden");
+        });
+
+        //  Hide message hint when fokus is gone
+        $(".control-group textarea, .control-group input").blur(function() {
+          $(this).closest(".control-group").find(".message").addClass("hidden");
+        });
+
+        //  Set fokus in first text input field
+        $(".control-group textarea, .control-group input").first().focus();
+        
+      });
+    }
+  });
+  
   var DEFAULTS = {
     zoom:               8,
     center:             '52.5, 13.5', 

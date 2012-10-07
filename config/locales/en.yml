@@ -60,6 +60,9 @@ en:
     privacy: "Privacy"
     contact: Contact
   settings: Settings
+  runs:
+    title: "Start your quest <span>on bountyhill</span>"
+    legend: "The message as well as the bounty of your quest will be posted in your favorite social networks. Please review your quest and specify it's run time."
   sessions:
     title: "Sign in <span>and climb up on bountyhill</span>"
     # Note: the bountyhermes name is referred here in both the text and 
@@ -147,18 +150,18 @@ en:
       error:      Please review your input.
       base_error: "%{base_error}: please review your input."
     form:
-      legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched. Your quest will have the best chance to succeed, if you promise a sufficient bounty. The message as well as the bounty of your quest will be posted in your favorite social networks. All other information provided will be available on bountyhill only."
+      legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched. Your quest will have the best chance to succeed, if you promise a sufficient bounty. "
       field_hint:
-        title: "Enter a short message describing your quest in a few words."
+        title: "Enter a message describing your quest in a few words."
         description: "Add a detailed description for your quest."
         location: "Restrict your quest to a particular location."
-        bounty: "Set up a bounty for your quest to ensure it's success by offering a reward."
-        criteria: "Criteria are used to measure the relevance of incoming offers."
+        bounty: "Set up a bounty for your quest."
+        criteria: "Define a criteria to assess incoming offers."
         criteria_description: "Explain your critera in detail to enable offerers providing a degree of fulfilment."
     title:
       show: ""
       edit: "Edit quest"
-      create: "Start your quest <span>right now</span>"
+      create: "Describe your quest <span>by filling out the form below</span>"
     new: Post a Quest
     expires_at:
       title: "days"
@@ -186,7 +189,7 @@ en:
     actions:
       new:     
         title: Start your quest
-        sub: in your social network.
+        sub: on bountyhill.
       tweet:
         title: Tweet
         sub: Secure your chance for a part of the bounty.

@@ -177,7 +177,6 @@ module ApplicationHelper
   end
   
   
-  #
   # returns the header ribbon in form of a button
   # this is used e.g. on top of list or detail pages
   def header_ribbon_button(button, name, url, options={})
@@ -222,7 +221,6 @@ module ApplicationHelper
     end
   end
 
-  #
   # returns the header ribbon in form of a headline
   # this is used e.g. on top of forms
   def header_ribbon_title(title)
@@ -241,4 +239,21 @@ module ApplicationHelper
     end
   end
 
+  
+  def render_form(span=8, &block)
+    side_span = (12-span) / 2
+    
+    div :class => "row-fluid main-space bg-solid-black" do
+      [
+        div("&nbsp", :class => "span#{side_span}"),
+        div(:class => "span#{span}") do
+          div(:class => "inner form-container bg-solid-gray-dark") do
+            yield block if block_given?
+          end
+        end,
+        div("&nbsp", :class => "span#{side_span}")
+      ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
+    end
+  end
+  
 end

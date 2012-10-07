@@ -34,8 +34,7 @@ class ActionView::Helpers::FormBuilder
     :text_field     => { :class => "input-xxlarge" },
     :password_field => { :class => "input-xxlarge" },
     :text_area      => { :class => "input-xxlarge" },
-    :buttons        => { :class => "input-xxlarge" },
-    :message        => { :class => "input-xlarge" }
+    :buttons        => { :class => "input-xxlarge" }
   }
   
   # Creating a control_group.
@@ -95,16 +94,6 @@ class ActionView::Helpers::FormBuilder
       message = ""
     else
       controls = render_control_group_input(field_type, name, options, &block)
-      message = div :class => "message hidden #{DEFAULT_INPUT_FIELD_OPTIONS[:message][:class]}" do
-        if object.errors.include?(name)
-          "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
-        else
-          value = case name.to_s
-            when "password" then Identity::Email::MIN_PASSWORD_LENGTH
-            end
-          options[:hint] || I18n.t("#{object.class.name.underscore}.form.field_hint.#{options[:name] || name}", :value => value)
-        end
-      end
     end
     
     unit = if (unit_text = options.delete(:unit))
@@ -112,14 +101,28 @@ class ActionView::Helpers::FormBuilder
     end
     
     div :class => "controls" do
-      "#{controls}#{unit}#{message}"
+      "#{controls}#{unit}"
+    end
+  end
+  
+  def render_control_group_message(field_type, name, options)
+    message = div :class => "message hidden" do
+      if object.errors.include?(name)
+        "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
+      else
+        value = case name.to_s
+          when "password" then Identity::Email::MIN_PASSWORD_LENGTH
+          end
+        options[:hint] || I18n.t("#{object.class.name.underscore}.form.field_hint.#{options[:name] || name}", :value => value)
+      end
     end
   end
   
   def render_control_group(field_type, name, options, &block)
     div :class => control_group_class(name) do
       # "#{render_control_group_label(field_type, name, options)}\n" +
-      "#{render_control_group_controls(field_type, name, options)}\n"
+      "#{render_control_group_controls(field_type, name, options)}\n" +
+      "#{render_control_group_message(field_type, name, options)}\n"
     end
   end
   

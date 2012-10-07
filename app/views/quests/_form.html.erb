@@ -4,7 +4,7 @@
     <%#= form.error_messages %>
 
     <%= form.control_group :title, :text_area, :rows => 2 %>
-    <%= form.control_group :description, :text_area, :rows => 4 %>
+    <%= form.control_group :description, :text_area, :rows => 3 %>
     <%= form.control_group :location %>
     <%= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
     <%#= form.control_group :image, :transloadit %>
@@ -13,28 +13,13 @@
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
       <div class="criterium-group">
         <%= form.control_group name, :hint => I18n.t("quest.form.field_hint.criteria") %>
-        <%= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 4, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
+        <%= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
       </div>
     <% end %>
     </div>
     
     <script type="text/javascript" charset="utf-8">
       (function($) {
-        /*
-          Show message hint on fokus
-        */
-        $(".control-group textarea, .control-group input").focus(function() {
-          $(this).nextAll(".message").removeClass("hidden");
-        });
-        
-        $(".control-group textarea, .control-group input").blur(function() {
-          $(this).nextAll(".message").addClass("hidden");
-        });
-        /*
-          Set fokus in first text input field
-         */
-        $(".control-group textarea, .control-group input").first().focus();
-        
         /*
             Hide all criterium groups that have no value in its input 
             nodes except the first one.
