@@ -1,17 +1,5 @@
-<div class="row-fluid">
-  <div class="span12 inner">
-    <h1><%= "Start the quest" %></h1>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span8">
-    <div class="inner">
-      <%= render "form" %>
-    </div>
-  </div>
-  <div class="span4">
-    <div class="inner">
-      <%= markdown "help" %>
-    </div>
-  </div>
-</div>
+<%= header_ribbon_title I18n.t("runs.title").html_safe %>
+
+<%= render_form do %>
+  <% render "form" %>
+<% end %>

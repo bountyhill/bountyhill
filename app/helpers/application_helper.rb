@@ -177,11 +177,15 @@ module ApplicationHelper
   end
   
   
-  #
   # returns the header ribbon in form of a button
   # this is used e.g. on top of list or detail pages
-  def header_ribbon_button(button, name, url, opts={})
-    text = opts[:text]
+  def header_ribbon_button(button, name, url, options={})
+    expect! button => Symbol
+    expect! name => String
+    expect! url => String
+    expect! options => {}
+    
+    text = options[:text]
     
     icon = case button
       when :bubble  then "c"
@@ -195,9 +199,10 @@ module ApplicationHelper
       p("#{link_to(name, url)} #{text}".html_safe)
     end
     
-    social_buttons = if opts[:social]
+    social_buttons = if options[:social]
       div :class => "socialmedia" do
-        link_to("t", opts[:social][:twitter].delete(:url), opts[:social][:twitter].merge(:class => "social-item twitter")) if opts[:social][:twitter]
+        link_to("t", options[:social][:twitter].delete(:url), 
+          options[:social][:twitter].merge(:class => "social-item twitter")) if options[:social][:twitter]
       end
     else ""
     end
@@ -216,10 +221,11 @@ module ApplicationHelper
     end
   end
 
-  #
   # returns the header ribbon in form of a headline
   # this is used e.g. on top of forms
   def header_ribbon_title(title)
+    expect! title => String
+
     div(:class => "horizontal-ribbon") do
       [
         div(:class => "row-fluid bg-gray") do
@@ -233,4 +239,21 @@ module ApplicationHelper
     end
   end
 
+  
+  def render_form(span=8, &block)
+    side_span = (12-span) / 2
+    
+    div :class => "row-fluid main-space bg-solid-black" do
+      [
+        div("&nbsp", :class => "span#{side_span}"),
+        div(:class => "span#{span}") do
+          div(:class => "inner form-container bg-solid-gray-dark") do
+            yield block if block_given?
+          end
+        end,
+        div("&nbsp", :class => "span#{side_span}")
+      ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
+    end
+  end
+  
 end

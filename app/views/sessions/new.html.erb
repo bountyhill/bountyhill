@@ -1,34 +1,10 @@
 <%= header_ribbon_title I18n.t("sessions.title").html_safe %>
 
-<div class="row-fluid main-space bg-solid-black">
-  <div class="span2">&nbsp;</div>
-  <div class="span8">
-    <div class="inner">
-      <div id="accordion" class="accordion form-container">
-        <% partials.each_with_index do |form_partial, index| %>
-          <%= partial form_partial, :expand => index.zero? %>
-          <div class="separator"><span>or</span></div>
-        <% end %>
-      </div>
-    </div>
+<%= render_form do %>
+  <div id="accordion" class="accordion">
+    <% partials.each_with_index do |form_partial, index| %>
+      <%= partial form_partial, :expand => index.zero? %>
+      <div class="separator"><span>or</span></div>
+    <% end %>
   </div>
-  <div class="span2">&nbsp;</div>
-</div>
-<script type="text/javascript" charset="utf-8">
-  (function($) {
-    /*
-      Show message hint on fokus
-    */
-    $(".control-group textarea, .control-group input").focus(function() {
-      $(this).nextAll(".message").removeClass("hidden");
-    });
-    
-    $(".control-group textarea, .control-group input").blur(function() {
-      $(this).nextAll(".message").addClass("hidden");
-    });
-    /*
-      Set fokus in first text input field
-     */
-    $(".control-group textarea, .control-group input").first().focus();
-  })(jQuery);
-</script>
+<% end %>

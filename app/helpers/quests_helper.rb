@@ -1,5 +1,7 @@
 module QuestsHelper
   def render_bounty_ribbon(quest)
+    expect! quest => Quest
+    
     amount = quest.bounty.to_f
     
     if amount < 100

@@ -8,10 +8,10 @@
 
   <div class="criteria no-flicker">
     <%= accordion do |acc| %>
-      <% criteria.each_with_index do |criterium, idx| %>
+      <% criteria.each do |criterium| %>
         <%=
           description = criterium[:description] || I18n.t("quest.criteria.description.none")
-          acc.item criterium[:title], description, :collapsed => idx != 0
+          acc.item criterium[:title], description, :collapse => false
         %>
       <% end %>
     <% end %>

@@ -2,9 +2,9 @@
   <legend><%= I18n.t("sessions.email.legend.signin")%></legend>
   <%#= form.error_messages @error if @error && @mode != :signin %>
 
-  <%= form.control_group :email, :name => "signup[email]", :class => "input-xlarge" %>
-  <%= form.control_group :password, :password_field, :name => "signup[password]", :class => "input-xlarge" %>
-  <%= form.control_group :password_confirmation, :password_field, :name => "signup[password_confirmation]", :class => "input-xlarge" %>
+  <%= form.control_group :email, :name => "signup[email]" %>
+  <%= form.control_group :password, :password_field, :name => "signup[password]" %>
+  <%= form.control_group :password_confirmation, :password_field, :name => "signup[password_confirmation]" %>
 
   <div class="pull-left">
     <%= form.agree_to_terms! %>

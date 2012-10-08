@@ -8,29 +8,39 @@ module AccordionHelper
       @item_id = 0
     end
     
-    def item_header(item_id, title, mode)
-      expect! mode => [ :blank, :present ]
+    def item_header(item_id, title, options)
+      expect! options => { :mode => [ :blank, :present ] }
+      expect! options => { :collapse  => [ true, false, nil ] }
+      
       heading = span(@item_id, :class => "bullet")
       heading += h3(title)
       heading += span("", :class => "arrow")
-      a = link_to heading, "##{item_id}", :class => "accordion-toggle", 
-        "data-toggle" => "collapse", "data-parent" => "##{@accordion_id}"
-        
-      div a, :class => "accordion-heading"
+      
+      
+      item_heading = unless options[:collapse] == false
+        link_options = { :class => "accordion-toggle" }
+        link_options.merge!("data-toggle" => "collapse", "data-parent" => "##{@accordion_id}")
+        link_to heading, "##{item_id}", link_options
+      else
+        heading
+      end
+      div item_heading, :class => "accordion-heading"
     end
 
     def item(title, *contents, &block)
       options = contents.extract_options!
       expect! options => { :collapsed => [ true, false, nil ] }
+      expect! options => { :collapse  => [ true, false, nil ] }
       
       contents << capture(&block) if block_given?
       contents.compact!
       
       generate_item_id do |item_id|
-        heading = item_header(item_id, title, contents.blank? ? :blank : :present)
+        heading = item_header(item_id, title, :mode => (contents.blank? ? :blank : :present), :collapse => options[:collapse])
         if contents.present?
-          css = "accordion-body collapse"
-          css += " in" if options[:collapsed] == false
+          css = "accordion-body"
+          css += " collapse"  if options[:collapse] == false
+          css += " in"        if options[:collapse] == false || options[:collapsed] == false
 
           body = div :id => item_id, :class => css do
             div(*contents, :class => "accordion-inner")
