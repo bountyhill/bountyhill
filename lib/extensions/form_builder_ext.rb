@@ -120,9 +120,9 @@ class ActionView::Helpers::FormBuilder
   
   def render_control_group(field_type, name, options, &block)
     div :class => control_group_class(name) do
-      # "#{render_control_group_label(field_type, name, options)}\n" +
-      "#{render_control_group_controls(field_type, name, options)}\n" +
-      "#{render_control_group_message(field_type, name, options)}\n"
+      "#{render_control_group_label(    field_type, name, options)}\n" +
+      "#{render_control_group_controls( field_type, name, options, &block)}\n" +
+      "#{render_control_group_message(  field_type, name, options)}\n"
     end
   end
   

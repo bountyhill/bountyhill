@@ -38,6 +38,14 @@ form {
       color: $text_minor !important;
     }
   }
+  &.form-horizontal {
+    .control-label {
+      padding-top: 0;
+      width: 130px;
+      text-align: left;
+      font-weight: bold;
+    }
+  }
   label {
     color: $text;
     font-size: inherit;
@@ -107,6 +115,18 @@ form {
       color: $text_major;
       &.hidden {
         display: none;
+      }
+    }
+    ul {
+      margin: 0;
+      &.radio_button_group {
+        li {
+          float:left;
+          margin-right: 30px;
+          input {
+            margin-top: 0;
+          }
+        }
       }
     }
   }

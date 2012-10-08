@@ -9,6 +9,7 @@ en:
         delete_me: "Delete my account"
       quest:
         title:                    Message
+        duration_in_days:         Duration
         criterium_0:              "Criteria 1"
         criterium_description_0:  "Description (opt.)"
         criterium_1:              "Criteria 2"
