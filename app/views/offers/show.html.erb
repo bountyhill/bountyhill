@@ -1,3 +1,13 @@
+<%
+  if action = offer_actions(@offer).first
+    url = self.send("#{action}_offer_path", @offer)
+    header_ribbon_button :rect, 
+      t("offer.actions.#{action}.title"), 
+      url,
+      :text   => t("offer.actions.#{action}.sub"),
+      :method => :post
+  end
+%>
 <div class="row bg-main" >
   <div class="span12 bg-black">
     <% if mobile? %>

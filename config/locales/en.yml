@@ -229,6 +229,16 @@ en:
       sub:      "The user chose these criteria:"
       none:     "No criteria"
       none_sub: "The user can choose a number of criteria."
+    actions:
+      accept:     
+        title:  Accept this offer…
+        sub:    and notify the sender of this offer.
+      decline:     
+        title:  Decline this offer…
+        sub:    and notify the sender of this offer.
+      withdraw:     
+        title:  Withdraw this offer…
+        sub:    and notify its receiver.
   offers:
     all:      
       title: "All offers (%{count})"

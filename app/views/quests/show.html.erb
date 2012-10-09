@@ -1,7 +1,14 @@
-<%= header_ribbon_button :rect, t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest),
-  :text   => t("quest.actions.offer.sub"),
-  :social => { :twitter => { :url => share_path(:quest_id => quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow" }} %>
-  
+<%= 
+  header_ribbon_button :rect, 
+    t("quest.actions.offer.title"), 
+    new_offer_path(:quest_id => @quest),
+    :text   => t("quest.actions.offer.sub"),
+    :social => { 
+      :twitter => { :url => new_share_path(:quest_id => @quest), 
+        :title => t("quest.actions.tweet.title"), 
+        :rel => "nofollow" }
+      } 
+%>
 <div class="row bg-main" >
   <div class="span12 bg-solid-black">
     <% if mobile? %>

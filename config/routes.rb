@@ -26,7 +26,13 @@ Bountyhill::Application.routes.draw do
   match "/runs/:id" => "runs#update", :via => :post
   match "/runs/:id/start" => "runs#start", :via => :get
   
-  resources :offers
+  resources :offers do
+    member do
+      post "accept"
+      post "decline"
+      post "withdraw"
+    end
+  end
   resources :users
 
   match 'profile(/:tab)' => "users#show"
