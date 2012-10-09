@@ -74,14 +74,4 @@ class QuestsController < ApplicationController
 
     redirect_to quests_url
   end
-  
-  # GET /quests/1/share
-  def retweet
-    request_identity! :twitter
-    
-    @quest = Quest.find(params[:id])
-    current_user.retweet @quest
-    
-    redirect_to @quest, notice: "Thank your for sharing!"
-  end
 end

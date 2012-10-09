@@ -5,7 +5,7 @@
   </h2>
   <%#= 
     action_buttons do |act|
-      act.action :t, :"quest.actions.tweet", :url => retweet_quest_path(@quest)
+      act.action :t, :"quest.actions.tweet", :url => share_quest_path(@quest)
       act.action :h, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
 
       unless (offers_count = quest.offers.count).zero?

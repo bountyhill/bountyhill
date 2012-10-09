@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'thin'
 gem 'rails', '~> 3.2'
 gem 'pg'
 gem 'psych'
@@ -42,6 +43,7 @@ group :development, :test do
 
   gem 'spork-testunit'
   gem 'awesome_print'
-  gem 'kibo', :require => false
+  gem 'kibo', '~> 0.4', :require => false
+  
   # gem 'sql-logging'
 end
