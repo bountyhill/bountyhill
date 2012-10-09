@@ -360,6 +360,7 @@ DEPENDENCIES
   sass-rails
   spork-testunit
   test-unit
+  thin
   transloadit-rails
   twitter_oauth
   uglifier
