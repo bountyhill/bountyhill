@@ -178,4 +178,44 @@ class Offer < ActiveRecord::Base
   def image
     super || quest.image
   end
+  
+  def url
+    Bountyhill::Application.url_for "/offers/#{self.id}"
+  end
+
+  # -- states ---------------------------------------------------------
+  # An offer is active if the quest is still running, and it is not
+  # decided upon.
+  
+  # The offer is not decided upon, and the quest is still active?
+  def active?
+    quest.active? && state.nil?
+  end 
+
+  def withdraw!
+    raise ArgumentError, "Quest is no longer active" unless active?
+    update_attributes! "state" => "withdrawn"
+  end
+  
+  def accept!
+    raise ArgumentError, "Quest is no longer active" unless active?
+    update_attributes! "state" => "accepted"
+  end
+  
+  def decline!
+    raise ArgumentError, "Quest is no longer active" unless active?
+    update_attributes! "state" => "declined"
+  end
+
+  def withdrawn?
+    state == "withdrawn"
+  end
+  
+  def accepted?
+    state == "accepted"
+  end
+  
+  def declined?
+    state == "declined"
+  end
 end

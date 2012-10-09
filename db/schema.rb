@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "deferred_actions", :force => true do |t|
     t.string   "secret",       :null => false
-    t.integer  "actor_id"
+    t.integer  "actor_id",     :null => false
     t.string   "action"
     t.text     "args"
+    t.string   "redirection"
     t.datetime "expires_at"
     t.datetime "performed_at"
     t.text     "error"
@@ -52,10 +53,12 @@ ActiveRecord::Schema.define(:version => 16) do
     t.text     "image"
     t.string   "location"
     t.text     "serialized"
+    t.string   "state"
   end
 
   add_index "offers", ["owner_id"], :name => "index_offers_on_owner_id"
   add_index "offers", ["quest_id"], :name => "index_offers_on_quest_id"
+  add_index "offers", ["state"], :name => "index_offers_on_state"
 
   create_table "quests", :force => true do |t|
     t.string   "title",                             :null => false
