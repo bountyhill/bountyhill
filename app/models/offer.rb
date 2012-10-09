@@ -234,4 +234,19 @@ class Offer < ActiveRecord::Base
     
     Deferred.mail mail
   end
+  
+  # returns an array of users connecting the quest with the sender
+  # of this offer. The following users are excluded:
+  # - the quest owner
+  # - the offer offer
+  # - the bountyhill admin user 
+  def chain
+    transaction do
+      identities = quest.chain_to(owner).map do |screen_name|
+        ::Identity::Twitter.find_or_create :screen_name => screen_name
+      end
+
+      identities.map(&:user) - [ quest.owner, owner, User.admin ]
+    end
+  end
 end

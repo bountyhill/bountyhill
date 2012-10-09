@@ -214,7 +214,7 @@ class Quest < ActiveRecord::Base
   # Note that this method can be slow. One should consider caching it
   # on the quest and the user.
   def chain_to(user)
-    return unless twitter = user && user.identity(:twitter)
+    return [] unless twitter = user && user.identity(:twitter)
     return [] unless chain = Bountybase::Graph.chain(self.id, twitter.user_id)
   
     chain.map(&:attributes).pluck("screen_name")
