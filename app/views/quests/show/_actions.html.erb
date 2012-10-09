@@ -31,3 +31,18 @@
   </h2>
 </div>
 <% end %>
+
+
+<% if (number_of_tweets = quest.number_of_tweets).present? %>
+<div class="inner">
+  <h2>
+    <span><strong><%= number_of_tweets %></strong> retweets</span>
+  </h2>
+</div>
+<% end %>
+
+<% if (chain = quest.chain_to(current_user)) && chain.present? %>
+<div class="inner">
+  <% partial "shared/chain", :quest => quest, :chain => chain %>
+</div>
+<% end %>

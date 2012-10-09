@@ -206,10 +206,18 @@ class Quest < ActiveRecord::Base
     end
   end
 
-  def longest_chain
-    cached :time_to_live => 60 do
-      Bountybase::Graph.longest_chain self.id
-    end
+  # returns an array of twitter user names that follow the quest from
+  # the original tweet to the passed in user. The user is not included
+  # in the chain; the original account, if it is the "@bountyhill" 
+  # or the owner's account, is.
+  #
+  # Note that this method can be slow. One should consider caching it
+  # on the quest and the user.
+  def chain_to(user)
+    return unless twitter = user && user.identity(:twitter)
+    return [] unless chain = Bountybase::Graph.chain self.id, twitter.user_id
+  
+    chain.map(&:attributes).pluck("screen_name")
   end
 
   def compliance

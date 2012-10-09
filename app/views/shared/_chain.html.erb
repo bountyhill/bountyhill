@@ -1,0 +1,9 @@
+<h2>
+  <span><strong>Recommendation chain</strong></span>
+  <small>where are you?</small>
+</h2>
+<ul>
+  <% chain.map do |screen_name| %>
+  <%= li screen_name %>
+  <% end %>
+</ul>
