@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
   # Offers submitted by the user
   has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
 
+  #
+  # The user (monetary) account
+  has_one :account, :foreign_key => "owner_id", :dependent => :destroy
+  
   # -- Finding --------------------------------------------------------
   
   def self.by_handle(handle)

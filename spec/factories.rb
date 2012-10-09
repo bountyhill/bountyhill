@@ -1,3 +1,5 @@
+FactoryGirl.factories.clear
+
 FactoryGirl.define do
   factory :identity, :class => "Identity::Email" do
     name     "Foo Bar"
@@ -29,5 +31,9 @@ FactoryGirl.define do
     bounty "12"
     title "bountytitle"
     description "bounty description"
+  end
+
+  factory :offer do
+    description "offer description"
   end
 end

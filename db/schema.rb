@@ -11,14 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 17) do
+ActiveRecord::Schema.define(:version => 18) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer "owner_id"
+  end
+
+  add_index "accounts", ["owner_id"], :name => "index_accounts_on_owner_id", :unique => true
 
   create_table "deferred_actions", :force => true do |t|
     t.string   "secret",       :null => false
-    t.integer  "actor_id",     :null => false
+    t.integer  "actor_id"
     t.string   "action"
     t.text     "args"
-    t.string   "redirection"
     t.datetime "expires_at"
     t.datetime "performed_at"
     t.text     "error"
@@ -42,6 +47,16 @@ ActiveRecord::Schema.define(:version => 17) do
   add_index "identities", ["email", "type"], :name => "index_identities_on_email_and_type", :unique => true
   add_index "identities", ["name", "type"], :name => "index_identities_on_name_and_type"
   add_index "identities", ["user_id", "id", "type"], :name => "index_identities_on_user_id_and_id_and_type", :unique => true
+
+  create_table "liabilities", :force => true do |t|
+    t.integer "account_id",                      :null => false
+    t.integer "other_account_id",                :null => false
+    t.integer "amount_in_cents",  :default => 0, :null => false
+    t.string  "reference_type",                  :null => false
+    t.integer "reference_id",                    :null => false
+  end
+
+  add_index "liabilities", ["account_id"], :name => "index_liabilities_on_account_id"
 
   create_table "offers", :force => true do |t|
     t.text     "description", :null => false

@@ -92,10 +92,12 @@ module ActiveRecord::Base::MoneySupport
     cents_column = "#{column}_in_cents"
   end
   
-  def money(column)
+  def money(column, options = {})
     # make sure the MoneySupport::Validation module is included.
-    include Validation
-
+    if options[:validate] != false
+      include Validation
+    end
+    
     composed_of column,
       :class_name   => "Money",
       :mapping      => [ [ M.cents_column(column), "cents" ] ],
