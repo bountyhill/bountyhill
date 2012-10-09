@@ -12,7 +12,7 @@ class Offer < ActiveRecord::Base
   belongs_to :quest
   serialize :serialized, Hash
   
-  attr_accessible :location, :description, :image, :quest_id, :quest
+  attr_accessible :location, :description, :image, :quest_id, :quest, :state
   
   # -- Access control -------------------------------------------------
 
