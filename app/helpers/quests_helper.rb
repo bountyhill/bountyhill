@@ -3,6 +3,7 @@ module QuestsHelper
     expect! quest => Quest
     
     amount = quest.bounty.to_f
+    return unless amount > 0
     
     if amount < 100
       bounty_class = "small"
