@@ -23,6 +23,7 @@ arena:
     - heroku run rake db:migrate
 source:
   pre:
+    - rake bountybase:release
     - rm -rf tmp/assets
     - mv public/assets tmp/assets || true
   success:

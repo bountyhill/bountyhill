@@ -8,6 +8,6 @@ namespace :bountybase do
 
   task :pull do
     sh "(cd vendor/bountybase; git pull)"
-    sh "git commit -m 'Updated bountybase' vendor/bountybase"
+    system "git commit -m 'Updated bountybase' vendor/bountybase"
   end
 end
