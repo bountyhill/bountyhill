@@ -133,7 +133,10 @@ class ApplicationController < ActionController::Base
   before_filter :show_confirmation_reminder
   
   def show_confirmation_reminder
-    return if !current_user || identity?(:confirmed)
+    return if !current_user
+    return if identity?(:confirmed)
+    return unless identity?(:email)
+    
     flash.now[:warn] = render_to_string(:partial => "shared/confirmation_reminder").html_safe
   end
 end
