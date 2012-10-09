@@ -215,7 +215,7 @@ class Quest < ActiveRecord::Base
   # on the quest and the user.
   def chain_to(user)
     return unless twitter = user && user.identity(:twitter)
-    return [] unless chain = Bountybase::Graph.chain self.id, twitter.user_id
+    return [] unless chain = Bountybase::Graph.chain(self.id, twitter.user_id)
   
     chain.map(&:attributes).pluck("screen_name")
   end

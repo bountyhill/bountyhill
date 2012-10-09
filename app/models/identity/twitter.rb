@@ -15,6 +15,13 @@ class Identity::Twitter < Identity
   
   def screen_name=(screen_name); self.email = screen_name; end
   def screen_name; email; end
+
+  # build the name from the name attribute, fallback to the screen_name
+  def name
+    name = read_attribute(:name)
+    name.blank? ? screen_name : name
+  end
+  
   
   # Twitter auth tokens
   serialized_attr :oauth_secret, :oauth_token

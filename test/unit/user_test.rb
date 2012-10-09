@@ -14,7 +14,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 1, Identity.count
     assert_equal 1, Identity::Twitter.count
     
-    user = Identity::Twitter.find_by_name("radiospiel").user
+    user = Identity::Twitter.find_by_email("radiospiel").user
+    
     assert(user.admin?)
   end
   
@@ -75,20 +76,21 @@ class UserTest < ActiveSupport::TestCase
   def test_create_twitter_user
     SecureRandom.stubs(:random_number).returns(1234567)
     
-    user = Factory(:twitter_identity, :name => "twark").user
+    user = Factory(:twitter_identity, :email => "twark").user
     assert_kind_of(User, user)
     assert_equal(1234567, user.id)
-  
-    assert_equal("@twark", user.name)
+
+    identity = user.identity(:twitter)
+
+    assert_equal("twark", user.name)
+    assert_equal("@twark", user.twitter_handle)
   end
 
   def test_admin
-    assert_kind_of(Array, User.admin_names)
-    
     user = Factory(:twitter_identity, :name => "twark").user
     assert(!user.admin?)
 
-    user = Identity::Twitter.find_by_name("radiospiel").user
+    user = Identity::Twitter.find_by_email("radiospiel").user
     assert(user.admin?)
     
     assert User.admin.admin?

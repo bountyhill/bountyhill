@@ -18,6 +18,10 @@ module Deferred
   
   self.in_background = true
   
+  if Rails.env.test?
+    self.in_background = false
+  end
+  
   def self.method_missing(sym, *args) #:nodoc:
     super unless instance_methods.include?(sym)
 
@@ -76,8 +80,8 @@ module Deferred
 
   # -- deliver an email -----------------------------------------------
   
-  def mail(mail)
-    W "send email\n#{mail.to_s}"
-    mail.deliver
+  def mail(email)
+    W "send email to #{email.to}", email.subject
+    email.deliver
   end
 end
