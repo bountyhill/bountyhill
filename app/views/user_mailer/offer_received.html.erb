@@ -10,7 +10,7 @@
 </p>
 <p>
   If you need to discuss further details please contact '<%= @offer.owner.name %>'
-  via email at <%= link_to_mail @offer.owner.email %>.
+  via email at <%= link_to @offer.owner.email, "mailto:#{@offer.owner.email}" %>.
 </p>
 <p>  
   Note: A copy of this email will be sent to <%= @quest.owner.name %>.
