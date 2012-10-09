@@ -7,15 +7,18 @@ heroku:
   # Our instances will be called 'bountyhill-staging-web0', 'bountyhill-production-worker0', etc.
   namespace: bountyhill
 
-# What to do before, during and after deploymet? These steps are run in the order 
-# of their keys
-deployment:
+processes:
+  web: 1
+
+# Commands to run in the deployment arena; i.e. when the deployment branch
+# is checked out.
+arena:
   pre:
     - git rm -r --force --quiet public/assets || true
     - rake assets:rebuild
     - kibo compress --quiet public/assets
     - git add -f public/assets
-    - git commit -m '[kibo] Updated assets'
+    - "git commit -m '[kibo] Updated assets'"
   skip-success:
     - heroku run rake db:migrate
 source:
@@ -27,5 +30,3 @@ source:
   final:
     - rm -rf public/assets
     - mv tmp/assets public/assets || true
-defaults:
-  web: 1

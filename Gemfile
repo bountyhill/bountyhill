@@ -42,6 +42,7 @@ group :development, :test do
 
   gem 'spork-testunit'
   gem 'awesome_print'
-  gem 'kibo', '~> 0.3.5', :require => false
+  gem 'kibo', '~> 0.4', :require => false
+  
   # gem 'sql-logging'
 end
