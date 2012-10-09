@@ -196,15 +196,17 @@ module ApplicationHelper
   # this is used e.g. on top of list or detail pages
   def header_ribbon_button(button, name, url, options={})
     expect! button => Symbol  # symbol which describes which icon to render
-    expect! name => String    # 
-    expect! url => String
-    expect! options => {}
-    
-    text = options[:text]
+    expect! name => String    # title
+    expect! url => String     # url
+    expect! options => {
+      :text => [String, nil]  # subtitle
+    }     
     
     header_button = div :class => "header-button" do
+      link = link_to(name, url, :method => options[:method])
+
       div(HEADER_ICONS[button] || "", :class => "icon") + 
-      p("#{link_to(name, url)} #{text}".html_safe)
+      p("#{link} #{options[:text]}".html_safe)
     end
     
     social_buttons = if options[:social]
