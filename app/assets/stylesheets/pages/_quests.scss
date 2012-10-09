@@ -156,8 +156,8 @@ article {
         color: $link_text;
         h2 {
           margin: 0 0 5px 148px;
-          font-size: 18px;
-          line-height: 18px;
+          font-size: 22px;
+          line-height: 1.0;
           color: $link_text;
         }
       }
@@ -169,7 +169,7 @@ article {
     p {
       color: $text_major;
       clear: both;
-      padding: 10px 0;
+      padding: 20px 0;
       font-size: 18px;
     }
   }
@@ -195,6 +195,7 @@ article {
       color: $text;
       margin-left: 36px;
       width: 90%;
+      text-align: left;
     }
     a {
       &:hover {
