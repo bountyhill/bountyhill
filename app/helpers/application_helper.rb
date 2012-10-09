@@ -177,42 +177,49 @@ module ApplicationHelper
   end
   
   
+  HEADER_ICONS = {
+    :bubble  => "c",
+    :rect    => "d",
+    :twitter => "t"
+  }
+
+  def render_social_button(key, options)
+    expect! key => HEADER_ICONS.keys, 
+      options => { :url => String }
+    
+    url = options.delete(:url)
+    
+    link_to(HEADER_ICONS[key], url, options.merge(:class => "social-item #{key}"))
+  end
+  
   # returns the header ribbon in form of a button
   # this is used e.g. on top of list or detail pages
   def header_ribbon_button(button, name, url, options={})
-    expect! button => Symbol
-    expect! name => String
+    expect! button => Symbol  # symbol which describes which icon to render
+    expect! name => String    # 
     expect! url => String
     expect! options => {}
     
     text = options[:text]
     
-    icon = case button
-      when :bubble  then "c"
-      when :rect    then "d"
-      when :twitter then "t"
-      else ""
-      end
-    
     header_button = div :class => "header-button" do
-      div(icon, :class => "icon") + 
+      div(HEADER_ICONS[button] || "", :class => "icon") + 
       p("#{link_to(name, url)} #{text}".html_safe)
     end
     
     social_buttons = if options[:social]
       div :class => "socialmedia" do
-        link_to("t", options[:social][:twitter].delete(:url), 
-          options[:social][:twitter].merge(:class => "social-item twitter")) if options[:social][:twitter]
+        options[:social].map do |key, button_options|
+          render_social_button key, button_options
+        end.join.html_safe
       end
-    else ""
     end
     
     div(:class => "horizontal-ribbon") do
       [
         div(:class => "row-fluid bg-gray") do
           div(:class => "span12") do
-            header_button + 
-            social_buttons
+            "#{header_button}#{social_buttons}".html_safe
           end
         end,
         div(:class => "corner left"),
