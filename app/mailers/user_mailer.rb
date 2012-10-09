@@ -1,4 +1,6 @@
 class UserMailer < ActionMailer::Base
+  layout "../user_mailer/layout"
+  
   default from: "info@bountyhill.com"
 
   # This is a temporary default_url_option. It will be adjusted by
