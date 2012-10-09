@@ -12,7 +12,7 @@ style ||= nil
         <%= render_restriction quest, :location %>
       </div>
       <div class="socialmedia">
-        <%= link_to "t", share_path(:quest_id => quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
+        <%= link_to "t", new_share_path(:quest_id => quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
       </div>
     </div>
   </div>
