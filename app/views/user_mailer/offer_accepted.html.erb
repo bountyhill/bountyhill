@@ -1,0 +1,18 @@
+<h1>Your offer was accepted!</h1>
+<p>
+  Congratulations! The bountyhill user '<%= @quest.owner.name %>'
+  just accepted your offer!
+</p>
+<p>
+  See the original quest here: <%= link_to @quest.title, @quest.url %>. 
+  Your offer can be reviewed <%= link_to "here", @offer.url %>.
+</p>
+<h2>What next?</h2>
+<p>
+  We are glad that you are able to help <%= @quest.owner.name %>. After
+  you are done you are entitled to receive parts of the bounty posted
+  with the quest. Details can be found on your profile page at bountyhill.
+</p>
+<p>
+  Note: A copy of this email will be sent to <%= @quest.owner.name %>.
+</p>

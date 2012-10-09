@@ -1,0 +1,17 @@
+<h1>You received an offer!</h1>
+<p>
+  Congratulations! The bountyhill user '<%= @offer.owner.name %>' just posted
+  an offer on your quest '<%= link_to @quest.title, @quest.url %>'! 
+</p>
+<h2>What next?</h2>
+<p>
+  Please take a few minutes to <%= link_to "review the offer", @offer.url %>.
+  Ideally you should respond soon by either accepting or declining the offer.
+</p>
+<p>
+  If you need to discuss further details please contact '<%= @offer.owner.name %>'
+  via email at <%= link_to_mail @offer.owner.email %>.
+</p>
+<p>  
+  Note: A copy of this email will be sent to <%= @quest.owner.name %>.
+</p>

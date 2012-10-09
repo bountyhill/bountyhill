@@ -22,4 +22,38 @@ class UserMailer < ActionMailer::Base
 
     mail(:to => user.email, :subject => I18n.t("mail.reset_password", :email => user.email))
   end
+  
+  # -- Offer emails ---------------------------------------------------
+  
+  # "[Bountyhill] You received an offer on your quest %{title}"
+  def offer_received(offer)
+    @quest, @offer = offer.quest, offer
+
+    mail(:to => @quest.owner.email, :cc => @offer.owner.email,
+      :subject => I18n.t("mail.offer_received", :title => @quest.title))
+  end
+  
+  # "[Bountyhill] Your offer has been accepted %{title}"
+  def offer_accepted(offer)
+    @quest, @offer = offer.quest, offer
+    
+    mail(:to => @offer.owner.email, :cc => @quest.owner.email,
+      :subject => I18n.t("mail.offer_accepted", :title => @quest.title))
+  end
+  
+  # "[Bountyhill] Your offer has been declined %{title}"
+  def offer_declined(offer)
+    @quest, @offer = offer.quest, offer
+    
+    mail(:to => @offer.owner.email, 
+      :subject => I18n.t("mail.offer_declined", :title => @quest.title))
+  end
+  
+  # "[Bountyhill] An offer has been withdrawn"
+  def offer_withdrawn(offer)
+    @quest, @offer = offer.quest, offer
+    
+    mail(:to => @quest.owner.email, 
+      :subject => I18n.t("mail.offer_withdrawn", :title => @quest.title))
+  end
 end

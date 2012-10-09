@@ -218,4 +218,20 @@ class Offer < ActiveRecord::Base
   def declined?
     state == "declined"
   end
+
+  # -- send out emails
+  
+  after_save :send_state_change_mail, :if => :state_changed?
+  after_create :send_state_change_mail
+  
+  def send_state_change_mail
+    mail = case state
+    when "withdrawn"  then UserMailer.offer_withdrawn(self)
+    when "accepted"   then UserMailer.offer_accepted(self)
+    when "declined"   then UserMailer.offer_declined(self)
+    when nil          then UserMailer.offer_received(self) # after creation
+    end
+    
+    Deferred.mail mail
+  end
 end

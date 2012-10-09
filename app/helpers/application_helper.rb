@@ -264,5 +264,8 @@ module ApplicationHelper
       ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
     end
   end
-  
+
+  def link_to_mail(email, label = nil)
+    link_to label || email, "mailto:#{email}"
+  end
 end
