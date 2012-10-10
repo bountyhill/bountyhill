@@ -1,3 +1,5 @@
+version: "0.4.3"
+
 # This is an example Kibofile. Use with kibo(1) to configure
 # remote instances.
 heroku:
@@ -9,6 +11,17 @@ heroku:
 
 processes:
   web: 1
+
+sharing:
+  - eno@open-lab.org
+
+live:
+  addons:
+    web1:
+      - heroku-postgresql:dev
+      - pgbackups:auto-month
+      - neo4j:test
+      - sendgrid:starter
 
 # Commands to run in the deployment arena; i.e. when the deployment branch
 # is checked out.
