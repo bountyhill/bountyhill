@@ -1,7 +1,7 @@
 <div class="inner quest">
   <h2>
     <span class="bounty">
-      <%=t "quest.actions.bounty.title", :bounty => quest.bounty.to_s.split(".").first %>
+      <%=t "quest.actions.bounty.title", :bounty => quest.bounty.to_s(:cents => false) %>
     </span>
     <small><%=t "quest.actions.bounty.sub" %></small>
   </h2>

@@ -229,14 +229,13 @@ class Quest < ActiveRecord::Base
   end
   
   def tweet
-    text = title.truncate(100, :separator => ' ', :omission => "…")
-    hash_tag = Bountybase.config.twitter_app["tag"]
-    
-    if self.bounty > 0
-      bounty = self.bounty.to_short_string.sub(/ EUR/, "€")
-      "#{text} #{bounty} #{hash_tag} #{url}"
-    else
-      "#{text} #{hash_tag} #{url}"
-    end
+    parts = [
+      title.truncate(100, :separator => ' ', :omission => "…"),
+      Bountybase.config.twitter_app["tag"],
+      (bounty.to_s(:cents => false, :thousands_separators => false).sub(" ", "") if bounty > 0),
+      url
+    ]
+
+    parts.compact.join(" ")
   end
 end

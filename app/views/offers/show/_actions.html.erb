@@ -1,7 +1,7 @@
 <div class="inner offer">
   <h2>
     <span class="bounty">
-      <%=t "offer.actions.bounty.title", :bounty => offer.bounty.to_s.split(".").first %>
+      <%=t "offer.actions.bounty.title", :bounty => bounty.to_s(:cents => false) %>
     </span>
     <small><%=t "offer.actions.bounty.sub" %></small>
   </h2>

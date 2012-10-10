@@ -140,12 +140,48 @@ end
 ActiveRecord::Base.extend ActiveRecord::Base::MoneySupport
 
 class Money
-  def to_full_string
-    "#{self} #{currency_as_string}"
-  end
+  # Supported options:
+  #
+  #   :currency => true             # show or hide currency
+  #   :thousands_separators => true # show or hide thousands_separators
+  #   :cents => true                # include cents or not.
+  def to_s(options = {})
+    defaults = {currency: true, cents: true, thousands_separators: true}
 
-  def to_short_string
-    "#{to_s.gsub(/\..*/, "")} #{currency_as_string}"
+    # Text transformation options
+    options = defaults.merge(options)
+
+    # get numerical part
+    amount = cents / currency.subunit_to_unit.to_f 
+    
+    if options[:cents]
+      subunit_length = currency.subunit_to_unit.to_s.length - 1
+      s = amount.round(subunit_length).to_s
+    else
+      s = amount.round(0).to_s
+    end
+    
+    # adjust thousands_separator and decimal_mark
+    parts = s.split('.')
+    if options[:thousands_separators]
+      parts[0].gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{currency.thousands_separator}")
+    end
+    s = parts.join(currency.decimal_mark)
+    
+    # add currency
+    if options[:currency]
+      if currency.symbol_first
+        s = "#{currency.symbol} #{s}"
+      else
+        s = "#{s} #{currency.symbol}"
+      end
+    end
+    
+    if options[:nbsp]
+      s.gsub!(" ", "\u00a0") # "\u00a0" is the non breakable space UTF8 character
+    end
+    
+    s.html_safe
   end
 end
 
