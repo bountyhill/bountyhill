@@ -5,8 +5,14 @@ style ||= nil
   <div class="quest-cell bg-black no-flicker">
     <%= render_bounty_ribbon quest %>
     <div class="inner">
-      <%= avatar quest.owner, :size => 64 %>
-      <%= link_to h3(truncate(quest.title, :length => 80)), quest_path(quest) %>
+      <div class="profile">
+        <%= avatar quest.owner, :size => 64 %>
+        <%= link_to user_path(quest.owner) do %>
+          <h3><%= quest.owner.name %></h3>
+        <% end %>
+        <div class="handle"><%= link_to_twitter_account quest.owner %></div>
+      </div>
+      <%= link_to h4(truncate(quest.title, :length => 100)), quest_path(quest) %>
       <div class="restrictions">
         <%= render_restriction quest, :expires_at %>
         <%= render_restriction quest, :location %>

@@ -18,7 +18,7 @@
   }
   .quest-cell {
     width: 100%;
-    height: 150px;
+    height: 130px;
     margin: 0;
     position: relative;
     -webkit-border-radius: 5px;
@@ -42,12 +42,22 @@
     a {
       text-decoration: none;
     }
-    h3 { 
+    h4 { 
       overflow: hidden;
       color: $text;
       text-transform: none;
-      height: 80px;
-      margin-bottom: 10px;
+      height: 60px;
+    }
+    .profile {
+      height: 20px;
+      h3 {
+        margin-right: 10px;
+        float: left;
+      }
+      h3, .handle {
+        font-size: 14px;
+        line-height: 1.0;
+      }
     }
     .ribbon-wrapper {
       .right {
@@ -89,34 +99,45 @@
     }
     .restrictions {
       float: left;
-      margin-top: 20px;
-      height: 20px;
+      margin-top: 10px;
       width: 80%;
       text-overflow: ellipsis;
       overflow: hidden;
       .restriction {
         display: inline-block;
         margin-right: 10px;
-      }
-      img {
-        &.temporality, &.locality, &.compliance {
-          position: relative;
-          margin-bottom: 4px;
-          width: 12px;
-          height: 12px;
-          margin-left: 2px;
+        img {
+          &.temporality, &.locality, &.compliance {
+            position: relative;
+            text-align: center;
+            width: 12px;
+            height: 12px;
+          }
+          &.temporality {
+            margin: 0 2px 4px 0;
+          }
+          &.locality {
+            margin-bottom: 2px;
+          }
+        }
+        span {
+          &.temporality, &.locality, &.compliance {
+            font-size: 12px;
+            line-height: 1.0;
+            font-weight: bold;
+            color: $text_minor;
+            white-space: nowrap;
+          }
         }
       }
-      span {
-        &.temporality, &.locality, &:compliance {
-          padding-left: 5px;
-          font-size: 12px;
-          font-style: normal;
-          font-weight: bold;
-          color: $text_minor;
-          line-height: 1.0;
-          white-space: nowrap;
-        }
+    }
+    .socialmedia {
+      a {
+        font-size: 20px;
+        line-height: 1.0;
+        width: 30px;
+        height: 25px;
+        padding-top: 5px;
       }
     }
   }
@@ -135,8 +156,8 @@ article {
         color: $link_text;
         h2 {
           margin: 0 0 5px 148px;
-          font-size: 18px;
-          line-height: 18px;
+          font-size: 22px;
+          line-height: 1.0;
           color: $link_text;
         }
       }
@@ -148,7 +169,7 @@ article {
     p {
       color: $text_major;
       clear: both;
-      padding: 10px 0;
+      padding: 20px 0;
       font-size: 18px;
     }
   }
@@ -174,6 +195,7 @@ article {
       color: $text;
       margin-left: 36px;
       width: 90%;
+      text-align: left;
     }
     a {
       &:hover {
