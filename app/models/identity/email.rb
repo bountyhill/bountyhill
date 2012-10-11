@@ -41,12 +41,7 @@ class Identity::Email < Identity
   # -- methods --------------------------------------------------------
   
   def avatar(options)
-    expect! options => { :default => [ String, nil ]}
-    
-    gravatar_id = Digest::MD5::hexdigest(email.downcase)
-    CGI.build_url "http://gravatar.com/avatar/#{gravatar_id}.png", 
-      :s => options[:size],
-      :d => options[:default]
+    Gravatar.url(email, options)
   end
 
   def confirmed?

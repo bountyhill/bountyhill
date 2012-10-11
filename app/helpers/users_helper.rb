@@ -1,16 +1,11 @@
 module UsersHelper
   AVATAR_SIZE = 128
   
-  def default_avatar
-    File.join(root_url, asset_path("default_avatar_128.png"))
-  end
-  
   # Returns the Gravatar (http://gravatar.com/) for the given user.
   def avatar(user, options = {})
     size = options[:size] ||= AVATAR_SIZE
-    default = options[:default] || default_avatar
     
-    url = user.avatar(:size => size, :default => default)
+    url = user.avatar(:size => size)
     image_tag url, alt: user.name, title: user.name, class: "avatar", 
                  width: size, height: size
   end

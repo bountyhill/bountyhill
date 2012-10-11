@@ -164,13 +164,14 @@ class User < ActiveRecord::Base
 
   # returns a user's avatar URL
   def avatar(options = {})
-    expect! options => { :default => [ String, nil ]}
-
-    if identity = self.identity(:twitter, :email)
-      avatar = identity.avatar(options)
+    avatar = [ twitter, email ].inject(nil) do |avatar, sym|
+      if identity = self.identity(sym)
+        avatar = identity.avatar(options.merge(:default => avatar))
+      end
+      avatar
     end
-    
-    avatar || options[:default]
+
+    avatar || Gravatar.url(:size => options[:size])
   end
   
   # -- special System users -------------------------------------------
