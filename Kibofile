@@ -18,10 +18,11 @@ sharing:
 live:
   addons:
     web1:
-      - heroku-postgresql:dev
       - pgbackups:auto-month
       - neo4j:test
       - sendgrid:starter
+      - openredis:micro
+      - heroku-postgresql:basic
 
 # Commands to run in the deployment arena; i.e. when the deployment branch
 # is checked out.
