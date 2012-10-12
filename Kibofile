@@ -12,10 +12,17 @@ heroku:
 processes:
   web: 1
 
+#heroku:
+  
 sharing:
   - eno@open-lab.org
 
+# The live settings overwrite other settings for the "live" environment.
 live:
+  processes:
+    web: 1
+  heroku:
+    mode: pro
   addons:
     web1:
       - pgbackups:auto-month
@@ -33,14 +40,13 @@ arena:
     - kibo compress --quiet public/assets
     - git add -f public/assets
     - "git commit -m '[kibo] Updated assets'"
-  skip-success:
-    - heroku run rake db:migrate
 source:
   pre:
     - rake bountybase:release
     - rm -rf tmp/assets
     - mv public/assets tmp/assets || true
   success:
+    - kibo per_role $ENVIRONMENT run rake db:migrate
     - git tag $ENVIRONMENT-$(date "+%Y.%m.%d-%H.%M")
   final:
     - rm -rf public/assets
