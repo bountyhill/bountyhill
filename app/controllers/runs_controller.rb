@@ -33,24 +33,12 @@ class RunsController < ApplicationController
 
       render! action: "show"
     end
-    
-    redirect_to! "/runs/#{quest.id}/start"
-  end
-  
-  # This method is called as an *action* after a redirection from the
-  # twitter identity provision or as a *method* from the create action.
-  def start
-    request_identity! :twitter
 
-    W "runs/start: current_user", current_user
-
-    # If there is no twitter identity yet, ask the user to provide one;
-    # but go to do_start even if he chooses not to do so.
     quest.start!
     current_user.retweet(quest)
 
     flash[:success] = I18n.t("quest.started", :title => quest.title)
-    redirect_to quest
+    redirect_to quests_path(:owner_id => current_user.id)
   end
 
   # DELETE /quests/1
