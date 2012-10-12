@@ -2,7 +2,10 @@
     <div class="row-fluid bg-gray">
       <div id="twitter" class="span12">
           <div class="twitter">t</div>
-          <p><a href="http://twitter.com"><%= t "home.twitter.link" %></a> <%= t "home.twitter.text" %></p>
+          <p>
+            <%= link_to_follow_twitter_account :label => I18n.t("home.twitter.link") %>
+            <%= t "home.twitter.text" %>
+          </p>
       </div>
   </div>
   <div class="corner left"></div>
