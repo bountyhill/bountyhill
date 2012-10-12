@@ -6,9 +6,9 @@ class RunsController < ApplicationController
   # This is valid only if the quest is not running.
   def show
     #
-    # The user must have a confirmed email address. If not, she cannot
+    # The user must have a twitter account. (see #49) If not, she cannot
     # continue here, but gets transferred to an identity provider.
-    request_identity! :confirmed
+    request_identity! :twitter
 
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! quest => current_user
