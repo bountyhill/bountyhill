@@ -80,9 +80,11 @@ class TwitterAuthMiddleware
   def twitter_callback
     login_from_twitter_callback
     redirect @redirect_to
-  rescue OAuth::Unauthorized
+  rescue Unauthorized, OAuth::Unauthorized
     redirect @redirect_to
   end
+  
+  class Unauthorized < RuntimeError; end
   
   # log in from twitter callback. Raise OAuth::Unauthorized if authorization
   # fails.
@@ -90,11 +92,16 @@ class TwitterAuthMiddleware
     tw_request_token = session.delete "tw_request_token"
     tw_request_token_secret = session.delete "tw_request_token_secret"
 
+    # STDERR.puts "tw_request_token", tw_request_token.inspect
+    # STDERR.puts "tw_request_token_secret", tw_request_token_secret.inspect
+    # STDERR.puts "oauth_verifier", params["oauth_verifier"].inspect
+    # STDERR.puts "params", params.inspect
+    
     client = twitter_client
 
     access_token = client.authorize(tw_request_token, tw_request_token_secret, 
-      :oauth_verifier => params[:oauth_verifier])
-    raise OAuth::Unauthorized, "Unauthorized" unless client.authorized?
+      :oauth_verifier => params["oauth_verifier"])
+    raise Unauthorized, "Unauthorized" unless client.authorized?
 
     info = client.info
     session.update "twinfo" => info.values_at(*TWINFO_KEYS)
@@ -117,10 +124,11 @@ class TwitterAuthMiddleware
   
   def self.session_info(session)
     parts = session["twauth"].to_s.split("|")
-    return unless parts.length == 3
     
-    screen_name, oauth_token, oauth_secret = *parts
-    [ screen_name, oauth_token, oauth_secret, get_session_info(session) ]
+    if parts.length == 3
+      screen_name, oauth_token, oauth_secret = *parts
+      [ screen_name, oauth_token, oauth_secret, get_session_info(session) ]
+    end
   ensure
     session.delete "twauth"
     session.delete "twinfo"
