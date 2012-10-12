@@ -2,7 +2,7 @@ module QuestsHelper
   def render_bounty_ribbon(quest)
     expect! quest => [Quest, Offer]
 
-    amount = quest.bounty.to_f <= 0
+    amount = quest.bounty.to_f
     return if amount <= 0
     
     css = if amount < 100 then "small"
