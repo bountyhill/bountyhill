@@ -164,7 +164,7 @@ class User < ActiveRecord::Base
 
   # returns a user's avatar URL
   def avatar(options = {})
-    avatar = [ twitter, email ].inject(nil) do |avatar, sym|
+    avatar = [ :twitter, :email ].inject(nil) do |avatar, sym|
       if identity = self.identity(sym)
         avatar = identity.avatar(options.merge(:default => avatar))
       end
