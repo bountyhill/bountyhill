@@ -8,7 +8,7 @@ class RunsController < ApplicationController
     #
     # The user must have a confirmed email address. If not, she cannot
     # continue here, but gets transferred to an identity provider.
-    # request_identity! :confirmed
+    request_identity! :confirmed
 
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! quest => current_user
