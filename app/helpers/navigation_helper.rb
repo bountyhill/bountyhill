@@ -27,8 +27,10 @@ module NavigationHelper
       link_to "·", "#", :class => "separator"
     when :profile
       link_to nav_profile_label, "/profile"
-    when :your_offers, :your_quests
-      link_to I18n.t("nav.#{nav_item}"), "/profile##{nav_item.to_s[5..-1]}"
+    when :your_offers
+      link_to I18n.t("nav.#{nav_item}"), offers_path(:owner_id => current_user.id)
+    when :your_quests
+      link_to I18n.t("nav.#{nav_item}"), quests_path(:owner_id => current_user.id)
     when :copyright
       link_to "&copy; bountyhill, 2012".html_safe, contact_path
     when :signout
