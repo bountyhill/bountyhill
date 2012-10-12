@@ -10,7 +10,7 @@ module NavigationHelper
 
   ADMIN_NAVIGATION = {
     "stats" => "https://www.stathat.com/home",
-    "logs"  => "https://papertrailapp.com/systems/staging/events",
+    "logs"  => "https://papertrailapp.com/systems/#{Bountybase.environment}/events",
     "jobs"  => "/jobs"
   }
   
