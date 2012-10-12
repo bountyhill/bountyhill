@@ -347,7 +347,8 @@ class User < ActiveRecord::Base
   end
   
   # -- retweet a quest ------------------------------------------------
-  def retweet(quest)
-    identity(:twitter).update_status quest.tweet
+  def retweet(quest, options = {})
+    message = options[:message] || "#{quest.title} #{quest.url}"
+    identity(:twitter).update_status message
   end
 end

@@ -23,7 +23,7 @@ class RunsController < ApplicationController
   def update
     W "runs/update: current_user", current_user
     
-    # Re-render the form, if the quest is not valid?
+    # Re-render the form, if the quest is not valid.
     unless quest.update_attributes params[:quest]
       flash.now[:error] = if base_errors = @quest.errors[:base]
         I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
@@ -35,7 +35,9 @@ class RunsController < ApplicationController
     end
 
     quest.start!
-    current_user.retweet(quest)
+    
+    # quest.tweet is a pseudo-attribute; it will be set from the form data.
+    current_user.retweet(quest, :message => quest.tweet)
 
     flash[:success] = I18n.t("quest.started", :title => quest.title)
     redirect_to quests_path(:owner_id => current_user.id)
