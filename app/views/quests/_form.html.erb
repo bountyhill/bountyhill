@@ -5,15 +5,15 @@
 
     <%= form.control_group :title, :text_area, :rows => 2 %>
     <%= form.control_group :description, :text_area, :rows => 3 %>
-    <%= form.control_group :location %>
-    <%= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
+    <%#= form.control_group :location %>
+    <%#= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
     <%#= form.control_group :image, :transloadit %>
 
     <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
       <div class="criterium-group">
-        <%= form.control_group name, :hint => I18n.t("quest.form.field_hint.criteria") %>
-        <%= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
+        <%= form.control_group name, :text_area, :rows => 2, :hint => I18n.t("quest.form.field_hint.criteria") %>
+        <%#= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
       </div>
     <% end %>
     </div>
@@ -39,13 +39,11 @@
         });
         
         /*
-            Whenever an input loses focus and has a value != "" the
-            next criterium group becomes visible.
+            Whenever a criterium grou gets focus we are showing the next 
+            criterium group already: the user might want to enter some data
+            there.
          */
-        $(".criterium-group input").blur(function() {
-          var value = $(this).val();
-          if(value == "") return;
-           
+        $(".criterium-group textarea").focus(function() {
           $(this).closest(".criterium-group").
             next(".criterium-group").show();
         });
