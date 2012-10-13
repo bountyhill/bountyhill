@@ -10,8 +10,9 @@
     <%= accordion do |acc| %>
       <% criteria.each do |criterium| %>
         <%=
-          description = criterium[:description] || I18n.t("quest.criteria.description.none")
-          acc.item criterium[:title], description, :collapse => false
+          # description = criterium[:description] || I18n.t("quest.criteria.description.none")
+          # acc.item criterium[:title], description, :collapse => false
+          acc.item criterium[:title], "", :collapse => false
         %>
       <% end %>
     <% end %>
