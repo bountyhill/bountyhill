@@ -6,9 +6,9 @@ class RunsController < ApplicationController
   # This is valid only if the quest is not running.
   def show
     #
-    # The user must have a confirmed email address. If not, she cannot
+    # The user must have a twitter account. (see #49) If not, she cannot
     # continue here, but gets transferred to an identity provider.
-    request_identity! :confirmed
+    request_identity! :twitter
 
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! quest => current_user
@@ -23,7 +23,7 @@ class RunsController < ApplicationController
   def update
     W "runs/update: current_user", current_user
     
-    # Re-render the form, if the quest is not valid?
+    # Re-render the form, if the quest is not valid.
     unless quest.update_attributes params[:quest]
       flash.now[:error] = if base_errors = @quest.errors[:base]
         I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
@@ -33,24 +33,14 @@ class RunsController < ApplicationController
 
       render! action: "show"
     end
-    
-    redirect_to! "/runs/#{quest.id}/start"
-  end
-  
-  # This method is called as an *action* after a redirection from the
-  # twitter identity provision or as a *method* from the create action.
-  def start
-    request_identity! :twitter
 
-    W "runs/start: current_user", current_user
-
-    # If there is no twitter identity yet, ask the user to provide one;
-    # but go to do_start even if he chooses not to do so.
     quest.start!
-    current_user.retweet(quest)
+    
+    # quest.tweet is a pseudo-attribute; it will be set from the form data.
+    current_user.retweet(quest, :message => quest.tweet)
 
     flash[:success] = I18n.t("quest.started", :title => quest.title)
-    redirect_to quest
+    redirect_to quests_path(:owner_id => current_user.id)
   end
 
   # DELETE /quests/1

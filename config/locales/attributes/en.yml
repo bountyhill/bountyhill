@@ -8,7 +8,8 @@ en:
         confirmation: "Confirmation"
         delete_me: "Delete my account"
       quest:
-        title:                    Message
+        title:                    Name
+        message:                  Message
         duration_in_days:         Duration
         criterium_0:              "Criteria 1"
         criterium_description_0:  "Description (opt.)"

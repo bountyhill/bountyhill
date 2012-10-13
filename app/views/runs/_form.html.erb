@@ -1,10 +1,36 @@
+<%-
+  # Prepare a tweet. This form works mostlybut not completely on
+  # virtual attributes.
+  #
+  # :tweet
+  # :message the message part of the tweet, prefilled with the quest title
+  # :bounty the bounty value; preset with the bounty from the quest, but without currency and such.
+  #
+  # By editing message and bounty the user edits the "tweet" entry. When submitting the
+  # form the controller saves the bounty in the quest and sends a tweet with the :tweet
+  # message and the quest url.
+-%> 
 <%= form_for @quest, :id => "quest_form", :url => run_path(@quest), :method => :post do |form| %>
   <fieldset>
     <legend><%= I18n.t(:"runs.legend")%></legend>
     <%= form.error_messages %>
 
-    <%= form.control_group :title, :text_area, :rows => 3 %>
-    <%= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
+    <style type="text/css" media="screen">
+      #tweet {
+        font-family: serif; font-size: 130%; background-color: #ddeeff;
+        cursor: text;
+        color: black;
+      }
+    </style>
+    
+    <div id="tweet"> </div>
+    <%= form.control_group :tweet, :hidden_field %>
+    <%= form.control_group :message, :text_area, :rows => 3, :value => @quest.title %>
+
+    <%= 
+      bounty = @quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
+      form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO", :value => bounty
+    %>
     <%= form.control_group :duration_in_days, :radio_button, :label => Quest.human_attribute_name(:duration_in_days) do 
       ul :class => "radio_button_group" do
         [1, 3, 7, 14].map do |value|
@@ -17,3 +43,31 @@
     <%= form.actions :label => "Start", :cancel_url => quest_path(@quest) %>
   </fieldset>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+(function($) {
+  var node_bounty = $("#quest_bounty"), 
+    node_message = $("#quest_message"), 
+    node_form_tweet = $("#quest_tweet");
+    node_tweet = $("#tweet");
+  
+  function update_message() {
+    // This is a rough JS re-implementation of Quest#message
+    var message = node_message.val();
+    if(message.length > 99)
+      message = message.substr(0, 99) + "…";
+    message = message + " #bounty";
+    var bounty = node_bounty.val();
+    if(parseInt(bounty) > 0)
+      message = message + " €" + parseInt(bounty);
+    
+    node_form_tweet.val(message);
+    node_tweet.html(message);
+  }
+  
+  node_bounty.change(update_message).keyup(update_message);
+  node_message.change(update_message).keyup(update_message);
+
+  update_message();
+})(jQuery);
+</script>

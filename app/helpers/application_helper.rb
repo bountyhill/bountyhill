@@ -268,4 +268,11 @@ module ApplicationHelper
       ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
     end
   end
+
+  def link_to_follow_twitter_account(options = {})
+    expect! options => { :label => String, :account => [String, nil] }
+    account = options[:account] || Bountybase.config.twitter_app["user"]
+    
+    link_to options[:label], "http://twitter.com/#{account}", :target => :blank
+  end
 end

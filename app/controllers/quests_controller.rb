@@ -39,6 +39,7 @@ class QuestsController < ApplicationController
     params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
+    @quest.bounty_in_cents ||= 1000 # 10 EUR
 
     # Start the quest after saving.
     if @quest.save

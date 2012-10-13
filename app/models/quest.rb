@@ -56,6 +56,8 @@ class Quest < ActiveRecord::Base
   
   attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
   
+  # -- Criteria -------------------------------------------------------
+  
   NUMBER_OF_CRITERIA = 10
   
   # returns the names of the criteria title attributes
@@ -129,6 +131,8 @@ class Quest < ActiveRecord::Base
     end.compact
   end
   
+  # -- Offers ---------------------------------------------------------
+  
   # Offers to the quest are ordered by their compliance value.
   has_many :offers, :order => "compliance DESC", :dependent => :destroy
   
@@ -139,6 +143,8 @@ class Quest < ActiveRecord::Base
     
     offer.calculate_compliance
   end
+  
+  # -- Image ----------------------------------------------------------
   
   IMAGE_SIZES = {
     "thumbnail" => "90x90", 
@@ -165,6 +171,8 @@ class Quest < ActiveRecord::Base
     
     self.image = image
   end
+  
+  # -- Quest status ---------------------------------------------------
   
   def active?
     started? and !expired?
@@ -200,10 +208,12 @@ class Quest < ActiveRecord::Base
     save!
   end
   
+  # -- Quest stats ----------------------------------------------------
+  
   def number_of_tweets
-#    cached :time_to_live => 60 do
+    # cached :time_to_live => 60 do
       Bountybase::Graph.propagation self.id
-#    end
+    # end
   end
 
   # returns an array of twitter user names that follow the quest from
@@ -220,22 +230,17 @@ class Quest < ActiveRecord::Base
     chain.map(&:attributes).pluck("screen_name")
   end
 
+  # -- Pseudo attributes ----------------------------------------------
+  
+  attr :message, true
+  attr :tweet, true
+  attr_accessible :message, :tweet
+
   def compliance
     offers.all.map(&:compliance).sort.last
   end
   
   def url
     Bountyhill::Application.url_for "/q/#{self.id}"
-  end
-  
-  def tweet
-    parts = [
-      title.truncate(100, :separator => ' ', :omission => "…"),
-      Bountybase.config.twitter_app["tag"],
-      (bounty.to_s(:cents => false, :thousands_separators => false).sub(" ", "") if bounty > 0),
-      url
-    ]
-
-    parts.compact.join(" ")
   end
 end
