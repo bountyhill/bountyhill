@@ -7,9 +7,6 @@ style ||= nil
     <div class="inner">
       <div class="profile">
         <%= avatar quest.owner, :size => 64 %>
-        <%= link_to user_path(quest.owner) do %>
-          <h3><%= quest.owner.name %></h3>
-        <% end %>
         <div class="handle"><%= link_to_twitter_account quest.owner %></div>
       </div>
       <%= link_to h4(truncate(quest.title, :length => 100)), quest_path(quest) %>
