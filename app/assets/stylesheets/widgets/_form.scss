@@ -38,6 +38,16 @@ form {
       color: $text_minor !important;
     }
   }
+  input, textarea {
+    &:focus {
+      outline: 1px dotted $input_focus_highligh;
+      outline: thin dotted 1px; 
+      /* IE6-9 */
+      -webkit-box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
+      -moz-box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
+      box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
+    }
+  }
   &.form-horizontal {
     .control-label {
       padding-top: 0;
