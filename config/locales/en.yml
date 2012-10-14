@@ -61,11 +61,11 @@ en:
     contact: Contact
   settings: Settings
   runs:
-    title: "Start your quest <span>on bountyhill</span>"
+    title: "<strong>Start your quest</strong> on bountyhill"
     legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
     preview: "This preview shows how your quest will be tweeted."
   sessions:
-    title: "Sign in <span>and climb up on bountyhill</span>"
+    title: "<strong>Sign in</strong> and climb up on bountyhill"
     # Note: the bountyhermes name is referred here in both the text and 
     # the twitter target link. It must match the twitter_notifications 
     # entry in the bountybase configuration - if you change it there, it
@@ -153,16 +153,16 @@ en:
     form:
       legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched. Your quest will have the best chance to succeed, if you promise a sufficient bounty. "
       field_hint:
-        title: "Enter a message describing your quest in a few words."
+        title: "Enter a subject describing your quest in a few words."
         description: "Add a detailed description for your quest."
         location: "Restrict your quest to a particular location."
         bounty: "Set up a bounty for your quest."
-        criteria: "Define a criteria to assess incoming offers."
+        criteria: "Define a criteria to better assess incoming offers."
         criteria_description: "Explain your critera in detail to enable offerers providing a degree of fulfilment."
     title:
       show: ""
       edit: "Edit quest"
-      create: "Describe your quest <span>by filling out the form below</span>"
+      create: "<strong>Describe your quest</strong> by filling out the form below"
     new: Post a Quest
     expires_at:
       title: "days"

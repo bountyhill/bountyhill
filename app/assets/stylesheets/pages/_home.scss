@@ -1,5 +1,6 @@
 #twitter {
   font-weight: bold;
+  font-style: normal;
   overflow: visible;
   padding: 17px 0 15px 15px;
   &:hover {
@@ -11,16 +12,6 @@
   }
   .twitter {
     color: $background_border;
-  }
-  a {
-    color: $link_text;
-  }
-  p {
-    display: block;
-    font-style: italic;
-    font-size: 16px;
-    margin-left: 100px;
-    color: $text_major;
   }
 }
 

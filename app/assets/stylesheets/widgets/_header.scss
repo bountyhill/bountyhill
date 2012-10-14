@@ -1,19 +1,31 @@
-/* ------- headline ------- */
-.headline {
-  text-align: center;
-  h1 {
-    line-height: 25px;
-    font-style: italic;
-    span {
-      font-size: 16px;
-      font-weight: normal;
-      color: #EEE;
-    }
-  }
-}
-
 /* ------- ribbon ------- */
 .horizontal-ribbon {
+  color: $highlight;
+  font-weight: bold;
+  font-style: italic;
+  .headline {
+    text-align: center;
+    padding: 17px 0 15px 15px;
+    margin-bottom: 10px;
+  }
+  a {
+    color: link_text;
+    text-decoration: none;
+    strong {
+      color: $link_text;
+    }
+  }
+  p {
+    display: block;
+    font-style: italic;
+    font-size: 16px;
+    margin-left: 100px;
+    color: $text_major;
+  }
+  strong {
+    font-size: 18px;
+    color: $highlight;
+  }
   margin: 0px -10px;
   -ms-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
   -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);

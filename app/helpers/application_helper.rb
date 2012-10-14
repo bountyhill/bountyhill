@@ -38,6 +38,10 @@ module ApplicationHelper
   def span(*content, &block)
     _content_tag(:span, *content, &block)
   end
+  
+  def strong(*content, &block)
+    _content_tag(:strong, *content, &block)
+  end
 
   def ul(*content, &block)
     _content_tag(:ul, *content, &block)
@@ -206,11 +210,9 @@ module ApplicationHelper
       :text => [String, nil]  # subtitle
     }     
     
-    header_button = div :class => "header-button" do
-      link = link_to(name, url, :method => options[:method])
-
+    header_button = link_to(url, :method => options[:method], :class => "header-button") do
       div(HEADER_ICONS[button] || "", :class => "icon") + 
-      p("#{link} #{options[:text]}".html_safe)
+      p("#{strong name} #{options[:text]}".html_safe)
     end
     
     social_buttons = if options[:social]
@@ -243,7 +245,7 @@ module ApplicationHelper
       [
         div(:class => "row-fluid bg-gray") do
           div(:class => "span12 headline inner") do
-              h1 title
+              p title
           end
         end,
         div(:class => "corner left"),
@@ -269,10 +271,12 @@ module ApplicationHelper
     end
   end
 
-  def link_to_follow_twitter_account(options = {})
-    expect! options => { :label => String, :account => [String, nil] }
+  def link_to_follow_twitter_account(options = {}, &block)
+    expect! options => { :account => [String, nil] }
     account = options[:account] || Bountybase.config.twitter_app["user"]
     
-    link_to options[:label], "http://twitter.com/#{account}", :target => :blank
+    link_to "http://twitter.com/#{account}", :target => :blank do
+      yield block if block_given?
+    end
   end
 end
