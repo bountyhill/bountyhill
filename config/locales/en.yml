@@ -62,7 +62,8 @@ en:
   settings: Settings
   runs:
     title: "Start your quest <span>on bountyhill</span>"
-    legend: "The message as well as the bounty of your quest will be posted in your favorite social networks. Please review your quest and specify it's run time."
+    legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
+    preview: "This preview shows how your quest will be tweeted."
   sessions:
     title: "Sign in <span>and climb up on bountyhill</span>"
     # Note: the bountyhermes name is referred here in both the text and 

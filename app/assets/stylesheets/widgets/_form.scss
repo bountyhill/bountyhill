@@ -72,7 +72,7 @@ form {
     line-height: 20px;
   }
   input[type=text], input[type=password], textarea {
-    margin-right: 20px;
+    margin-right: 10px;
   }
   .unit {
     width: 50px;
@@ -99,6 +99,7 @@ form {
 */
   }
   .control-group {
+    clear: both;
     position: relative;
     &.error {
       input, select, textarea {
@@ -132,7 +133,7 @@ form {
       &.radio_button_group {
         li {
           float:left;
-          margin-right: 30px;
+          margin-left: 30px;
           input {
             margin-top: 0;
           }
@@ -141,6 +142,42 @@ form {
     }
   }
 }
+
+.runs_form {
+  padding-right: 15px;
+  .input-xxlarge {
+    width: 100%;
+  }
+  input {
+    &.bounty {
+      width: 60px;
+    }
+  }
+  legend {
+    &.preview {
+      color: $twitter;
+      margin: 30px 0 5px 0;
+      font-weight: bold;
+    }
+  }
+  #tweet {
+    width: 100%;
+    min-height: 40px;
+    padding: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    border: 2px solid $twitter;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+  }
+}
+
 
 @media (max-width: 1199px) {
   .input-xxlarge {
