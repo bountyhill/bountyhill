@@ -110,6 +110,7 @@ class ActionView::Helpers::FormBuilder
       if object.errors.include?(name)
         "#{object.class.human_attribute_name(name)} #{object.error_message_for(name)}"
       else
+        return "" if options[:hint] == false
         value = case name.to_s
           when "password" then Identity::Email::MIN_PASSWORD_LENGTH
           end

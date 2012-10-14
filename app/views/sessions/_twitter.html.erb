@@ -12,7 +12,7 @@
         <fieldset>
           <legend><%= I18n.t("sessions.twitter.legend")%></legend>
           <%#= form.error_messages :scope => "signup" %>
-          <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes") %>
+          <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes"), :hint => false %>
           <%#= form.agree_to_terms %>
 
           <div class="buttons input-xxlarge">
