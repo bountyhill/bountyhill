@@ -1,5 +1,5 @@
 <%= header_ribbon_title I18n.t("runs.title").html_safe %>
 
 <%= render_form do %>
-  <% render "form" %>
+  <% partial "shared/tweet", :quest => @quest %>
 <% end %>

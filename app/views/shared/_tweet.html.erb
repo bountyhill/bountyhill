@@ -9,37 +9,54 @@
   # By editing message and bounty the user edits the "tweet" entry. When submitting the
   # form the controller saves the bounty in the quest and sends a tweet with the :tweet
   # message and the quest url.
+  #
+  # Parameters:
+  # - +quest+: the Quest object.
+  # - +retweet+: when set, this is a retweet. That means that the user cannot change
+  #   the bounty value or the run time.
+  if !defined?(retweet)
+    retweet = false
+  end
+
+  url = retweet ? share_path(quest) : run_path(quest)
+  
+  bounty = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 -%> 
-<%= form_for @quest, :url => run_path(@quest), :method => :post, :html => { :class => "runs_form" } do |form| %>
+<%= form_for quest, :url => url, :method => :post, :html => { :class => "runs_form" } do |form| %>
   <fieldset>
-    <legend><%= I18n.t(:"runs.legend")%></legend>
+    <legend><%= retweet ? I18n.t("retweets.legend") : I18n.t("runs.legend") %></legend>
     <%= form.error_messages %>
 
+    <% if retweet %>
+    <%= form.control_group :bounty, :hidden_field, :value => bounty %>
+    <% else %>
     <div class="pull-left">
     <%= 
-      bounty = @quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
       form.control_group :bounty, :class => "bounty", :unit => "EURO", :value => bounty, :hint => false, :autocomplete => "off"
     %>
     </div>
+    <% end %>
+
+    <% unless retweet %>
     <div class="pull-right">
     <%= form.control_group :duration_in_days, :radio_button, :hint => false do 
       ul :class => "radio_button_group" do
         [1, 3, 7, 14].map do |value|
           radio_button = form.radio_button :duration_in_days, value,
-            :checked => ((@quest.duration_in_days || 7) == value)
+            :checked => ((quest.duration_in_days || 7) == value)
           li "#{radio_button} #{I18n.t('restriction.temporality', :count => value)}"
         end.join.html_safe
       end 
     end %>
     </div>
-    <%= form.control_group :message, :text_area, :rows => 2, :value => @quest.title, :hint => false %>
-    
+    <% end %>
+    <%= form.control_group :message, :text_area, :rows => 2, :value => quest.title, :hint => false %>
     
     <legend class="preview"><%= I18n.t(:"runs.preview")%></legend>
     <%= form.control_group :tweet, :hidden_field %>
     <div id="tweet"> </div>
     
-    <%= form.actions :label => "Start", :cancel_url => quest_path(@quest) %>
+    <%= form.actions :label => "Start", :cancel_url => quest_path(quest) %>
   </fieldset>
 <% end %>
 

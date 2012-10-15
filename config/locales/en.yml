@@ -145,6 +145,7 @@ en:
         signin[password]: "Please enter your password."
         signup[password_confirmation]: "Make sure you have no typo in your password."
   quest:
+    shared:     "Thank you for sharing!"
     started:    "Your quest \"%{title}\" was started."
     cancelled:  "Your quest \"%{title}\" was cancelled."
     message:
