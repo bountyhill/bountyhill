@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
     @mode = :signin
     
     if params[:req].present? && !ApplicationController::RequiredIdentity.payload(session)
+      @mode = :signup
       kind = params[:req].to_sym
       back = request.env["HTTP_REFERER"]
       
