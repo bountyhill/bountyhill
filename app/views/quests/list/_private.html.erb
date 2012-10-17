@@ -1,0 +1,9 @@
+<% @quests.each do |quest| %>
+<div class="row quest-cells-large">
+  <div class="span2">&nbsp</div>
+  <div class="span8">
+    <%= render :partial => "cell-large", :locals => { :quest => quest } %>
+  </div>
+  <div class="span2">&nbsp</div>
+</div>
+<% end %>

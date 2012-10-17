@@ -14,4 +14,15 @@ module QuestsHelper
       div quest.bounty.to_s(:cents => false), :class => "ribbon #{css}"
     end
   end
+  
+  def quests_for?(owner)
+    params[:owner_id].to_i == owner.id
+  end
+  
+  def quests_subtitle
+    scope = if quests_for?(current_user) then "own"
+            else params[:filter] || "all"
+            end
+    I18n.t "quests.filter.#{scope}.sub"
+  end
 end

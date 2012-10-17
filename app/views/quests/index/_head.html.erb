@@ -1,4 +1,4 @@
 <h1 class="head">
   <span><strong><%= @quests.total_entries %></strong> <%= I18n.t("quests.title", :count => @quests.total_entries) %></span>
-  <small><%= I18n.t "quests.filter.#{params[:filter] || "all"}.sub" %></small>
+  <small><%= quests_subtitle %></small>
 </h1>

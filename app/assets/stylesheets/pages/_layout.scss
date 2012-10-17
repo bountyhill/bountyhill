@@ -107,6 +107,7 @@ img {
     position: relative;
     text-align: center;
     a {
+      color: $text_major;
       &:hover {
         text-decoration: none;
       }
