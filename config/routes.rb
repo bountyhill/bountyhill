@@ -18,7 +18,8 @@ Bountyhill::Application.routes.draw do
   end
 
   resources :quests
-  resources :share
+  resources :shares
+  match "/shares/:id" => "shares#update", :via => :post
 
   match "/q/:id" => "quests#show", :via => :get
   

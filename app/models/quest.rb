@@ -209,11 +209,11 @@ class Quest < ActiveRecord::Base
   end
   
   # -- Quest stats ----------------------------------------------------
-  
+
   def number_of_tweets
-    # cached :time_to_live => 60 do
+    Bountybase.cached [ User.first, :number_of_tweets ], :ttl => 60 do
       Bountybase::Graph.propagation self.id
-    # end
+    end
   end
 
   # returns an array of twitter user names that follow the quest from
