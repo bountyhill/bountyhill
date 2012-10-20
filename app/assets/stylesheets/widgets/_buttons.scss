@@ -1,8 +1,8 @@
 .header-button {
-  width: 80%;
+  width: auto;
   float: left;
   overflow: visible;
-  padding: 17px 0 15px 15px;
+  padding: 17px 15px 15px 15px;
   margin-bottom: 10px;
   position: relative;
   -webkit-transition: background-color .2s ease-out;
@@ -44,6 +44,7 @@
 
 .socialmedia {
   font-style: normal;
+  font-weight: normal;
   width: auto;
   float: right;
   margin: 0;
