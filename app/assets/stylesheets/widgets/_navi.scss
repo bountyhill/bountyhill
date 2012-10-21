@@ -10,6 +10,13 @@
     li {
       a {
         text-transform: uppercase;
+        &.separator {
+          &:hover {
+            background:  transparent;
+            color: $text_minor;
+            cursor: default;
+          }
+        }
       }
       &.active > a, a:hover {
         background:  $navigation_highlight;
