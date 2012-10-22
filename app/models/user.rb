@@ -348,7 +348,12 @@ class User < ActiveRecord::Base
   
   # -- retweet a quest ------------------------------------------------
   def retweet(quest, options = {})
-    message = options[:message] || "#{quest.title} #{quest.url}"
-    identity(:twitter).update_status message
+    if options[:message]
+      message = options[:message].gsub(/(^\s+)|(\s+$)/, "").gsub(/\s\s+/, " ")
+    end
+    
+    message = quest.title if message.blank?
+    
+    identity(:twitter).update_status "#{message} #{quest.url}"
   end
 end
