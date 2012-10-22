@@ -279,4 +279,17 @@ module ApplicationHelper
       yield block if block_given?
     end
   end
+  
+  # This method returns true, 
+  # - if the current_user was referenced in the URL as the owner, 
+  # - or if a single quest or offer was referenced and belongs
+  #   the user 
+  def personal_page?
+    return false unless current_user
+    return true if params[:owner_id].to_i == current_user.id
+    return true if @quest && current_user == @quest.owner
+    return true if @offer && current_user == @offer.owner
+  
+    false
+  end
 end

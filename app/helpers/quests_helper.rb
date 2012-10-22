@@ -15,12 +15,8 @@ module QuestsHelper
     end
   end
   
-  def quests_for?(owner)
-    params[:owner_id].to_i == owner.id
-  end
-  
   def quests_subtitle
-    scope = if quests_for?(current_user) then "own"
+    scope = if personal_page? then "own"
             else params[:filter] || "all"
             end
     I18n.t "quests.filter.#{scope}.sub"

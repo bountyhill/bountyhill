@@ -11,11 +11,11 @@ module NavigationHelper
       
       if request.path =~ /^\/profile/
         :profile
-      elsif controller_name == "offers" && params[:owner_id] == user_id.to_s
+      elsif controller_name == "offers" && personal_page?
         :your_offers
       elsif controller_name == "offers"
         :offers
-      elsif controller_name == "quests" && params[:owner_id] == user_id.to_s
+      elsif controller_name == "quests" && personal_page?
         :your_quests
       elsif controller_name == "quests"
         :quests
