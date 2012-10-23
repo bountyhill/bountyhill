@@ -1,10 +1,13 @@
-<%= header_ribbon_button :bubble, t("quest.actions.new.title"), new_quest_path, :text => t("quest.actions.new.sub") %>
+<%= header_ribbon(
+  header_button(:bubble, t("quest.actions.new.title"), new_quest_path, :text => t("quest.actions.new.sub")),
+  partial("quests/index/head"),
+  "&nbsp") %>
 
 <div class="row bg-main">
-  <div class="span12 bg-solid-black">
+  <div class="span12">
     <div class="quests">
 
-      <%= partial "quests/index/head" %>
+      <%#= partial "quests/index/head" %>
 
       <% if quests_for?(current_user) %>
         <%= render :partial => 'quests/list/private' %>

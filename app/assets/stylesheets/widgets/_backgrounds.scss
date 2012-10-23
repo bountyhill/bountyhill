@@ -1,6 +1,6 @@
 /* ------- backgrounds ------- */
 .bg-solid-black {
-  background-color: $background;
+  background-color: #000;
 }
 
 .bg-solid-gray {
@@ -13,18 +13,4 @@
 
 .bg-solid-white {
   background-color: $background_inverse;
-}
-
-.bg-gray-inverse {
-  background-size: 100% 100%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.25)), to(rgba(0, 0, 0, 0.25)), color-stop(0.4, rgba(0, 0, 0, 0)), color-stop(0.6, rgba(0, 0, 0, 0))), -webkit-gradient(linear, left top, left bottom, from($background_gray_dark), to($background_gray));
-  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -webkit-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -moz-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -ms-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), -o-linear-gradient(top, $background_gray_dark, $background_gray);
-  background: linear-gradient(left, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.25)), linear-gradient(top, $background_gray_dark, $background_gray);
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  color: #FFF;
 }

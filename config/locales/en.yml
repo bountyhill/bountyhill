@@ -22,8 +22,8 @@ en:
     add_email: "Add your email"
   restriction:
     temporality: 
-      one: "%{count} day"
-      other: "%{count} days"
+      one: "%{count} day left"
+      other: "%{count} days left"
     compliance: "Compliance: %{compliance}%"
   quests:
     title:
@@ -32,19 +32,29 @@ en:
     filter:
       all:      
         title: "All"
-        sub:   "are currently running."
+        sub:
+          one:    "is currently running."
+          other:  "are currently running."
       own:      
         title: "Yours"
-        sub:   "are owned by you."
+        sub:
+          one:   "is owned by you."
+          other: "are owned by you."
       active:  
         title:  "Active"
-        sub:    "are active right now."
+        sub:   
+          one:  "is active right now."
+          other:  "are active right now."
       expired: 
         title:  "Expired"
-        sub:    "have been already expired."
+        sub:    
+          one:  "has already expired."
+          other:  "have been already expired."
       with_criteria: 
         title:  "Explained"
-        sub:    "are defined with criteria."
+        sub:    
+          one:    "is defined with criteria."
+          other:  "are defined with criteria."
   nav:
     quests: Quests
     offers: Offers

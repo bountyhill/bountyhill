@@ -139,7 +139,8 @@ module ApplicationHelper
       span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"
     end
     
-    div icon, span, :class => "restriction"
+    # div icon, span, :class => "restriction"
+    div span, :class => "restriction"
   end
 
   def form_for(object, options = {}, &block)
@@ -198,6 +199,31 @@ module ApplicationHelper
     url = options.delete(:url)
     
     link_to(HEADER_ICONS[key], url, options.merge(:class => "social-item #{key}"))
+  end
+
+  def header_ribbon(*elements)
+    options   = elements.extract_options!
+
+    div(:class => "horizontal-ribbon") do
+      [
+        div(:class => "row-fluid bg-gray") do
+          div(:class => "span12") do
+            elements.map do |element|
+              div element, :class => "span4"
+            end.join.html_safe
+          end
+        end,
+        div(:class => "corner left"),
+        div(:class => "corner right")
+      ].join.html_safe
+    end
+  end
+  
+  def header_button(button, name, url, options)
+    link_to(url, :method => options[:method], :class => "header-button") do
+      div(HEADER_ICONS[button] || "", :class => "icon") + 
+      p("#{strong name} #{options[:text]}".html_safe)
+    end
   end
   
   # returns the header ribbon in form of a button
@@ -258,7 +284,7 @@ module ApplicationHelper
   def render_form(span=8, &block)
     side_span = (12-span) / 2
     
-    div :class => "row-fluid main-space bg-solid-black" do
+    div :class => "row-fluid main-space" do
       [
         div("&nbsp", :class => "span#{side_span}"),
         div(:class => "span#{span}") do

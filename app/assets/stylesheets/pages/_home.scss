@@ -1,8 +1,9 @@
 #twitter {
+  width: auto;
   font-weight: bold;
   font-style: normal;
   overflow: visible;
-  padding: 17px 0 15px 15px;
+  padding: 17px 15px 15px 15px;
   &:hover {
     .twitter {
       color: $twitter;
@@ -11,7 +12,7 @@
     }
   }
   .twitter {
-    color: $background_border;
+    color: $background_dark;
   }
   p {
     margin-left: 100px;
@@ -31,12 +32,7 @@ form.home-search {
   }
   input[type=submit], input[type=text] {
     padding: 4px 20px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -o-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -khtml-border-radius: 8px;
+    @include border-radius(4px);
   }
   input[type=text] {
     margin-right: 10px;
@@ -46,7 +42,7 @@ form.home-search {
     height: auto;
   }
   input[type=submit] {
-    padding: 12px 14px;
+    padding: 11px 14px;
     line-height: 20px;
     font-size: 18px;
   }
@@ -56,23 +52,26 @@ form.home-search {
   padding: 10px 50px;
   margin-bottom: 40px;
   h1 {
-    font-size: 24px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
   }
   p {
     float:right;
   }
   .reemphasis {
-    font-size: 14px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
     color: $text_minor;
     font-weight: bold;
   }
   .emphasis {
-    margin-left: 20px;
-    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;
+    margin-left: 10px;
+    font-size: 24px;
     font-weight: bold;
     color: $highlight;
     position: relative;
-    top: 2px;
+    top: 1px;
   }
 }
 
