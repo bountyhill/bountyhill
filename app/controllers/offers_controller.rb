@@ -39,8 +39,6 @@ class OffersController < ApplicationController
 
   # POST /quests
   def create
-    params[:offer][:image] = image_param
-    
     @offer = Offer.new(params[:offer])
 
     # (Try to) save

@@ -107,8 +107,6 @@ end
 
 Money.default_currency = "EUR"
 
-IMGIO = "http://imgio.heroku.com"
-
 if defined?(SqlLogging)
   SqlLogging::Statistics.show_top_sql_queries = false
 end

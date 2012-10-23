@@ -36,7 +36,6 @@ class QuestsController < ApplicationController
 
   # POST /quests
   def create
-    params[:quest][:image] = image_param
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
     @quest.bounty_in_cents ||= 1000 # 10 EUR

@@ -58,14 +58,12 @@ class Quest < ActiveRecord::Base
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }
   
-  serialize :image, Hash
-  
   money :bounty
 
   serialize :serialized, Hash
   serialized_attr :duration_in_days
   
-  attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
+  attr_accessible :title, :description, :bounty, :location, :duration_in_days
   
   # -- Criteria -------------------------------------------------------
   
@@ -153,34 +151,6 @@ class Quest < ActiveRecord::Base
     return :offer_has_already_ended if expired?
     
     offer.calculate_compliance
-  end
-  
-  # -- Image ----------------------------------------------------------
-  
-  IMAGE_SIZES = {
-    "thumbnail" => "90x90", 
-    "fullsize"  => "640x480", 
-    "original"  => nil
-  }
-  
-  def image_url=(url)
-    image = {}
-    
-    IMAGE_SIZES.each do |name, size|
-      if size 
-        width, height = size.split(/\D+/).map(&:to_i)
-        size_url = "http://imgio.heroku.com/jpg/fill/#{size}/#{url}"
-      end
-      
-      image[name] = {
-        "url"     => size_url || url,
-        "mime"    => "image/jpeg",
-        "width"   => width,
-        "height"  => height
-      }
-    end
-    
-    self.image = image
   end
   
   # -- Quest status ---------------------------------------------------

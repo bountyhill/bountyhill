@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "accounts", :force => true do |t|
     t.integer "owner_id"
@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(:version => 18) do
 
   create_table "deferred_actions", :force => true do |t|
     t.string   "secret",       :null => false
-    t.integer  "actor_id"
+    t.integer  "actor_id",     :null => false
     t.string   "action"
     t.text     "args"
+    t.string   "redirection"
     t.datetime "expires_at"
     t.datetime "performed_at"
     t.text     "error"
@@ -84,7 +85,6 @@ ActiveRecord::Schema.define(:version => 18) do
     t.datetime "expires_at"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.text     "image"
     t.string   "visibility"
     t.string   "location"
     t.text     "serialized"
