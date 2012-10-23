@@ -70,11 +70,11 @@ module Bountyhill
     # Precompile *all* assets, except those that start with underscore
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
+    # -- middleware ---------------------------------------------------
+
     Dir.glob("#{File.dirname(__FILE__)}/../lib/middleware/*_middleware.rb").sort.each do |file|
       load file
     end
-
-    # -- middleware ---------------------------------------------------
 
     # Fetch the I18n.locale from the Browser.
     config.middleware.use Rack::Locale
