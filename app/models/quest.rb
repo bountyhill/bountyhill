@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class Quest < ActiveRecord::Base
+  opinio_subjectum
+
   include ActiveRecord::RandomID
   include ImageAttributes
 

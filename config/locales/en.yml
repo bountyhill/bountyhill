@@ -25,6 +25,10 @@ en:
       one: "%{count} day left"
       other: "%{count} days left"
     compliance: "Compliance: %{compliance}%"
+  comments:
+    headline:
+      one:    comment
+      other:  comments
   quests:
     title:
       one:    quest
