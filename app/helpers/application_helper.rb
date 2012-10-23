@@ -218,13 +218,13 @@ module ApplicationHelper
     
     div :class => "row-fluid main-space bg-solid-black" do
       [
-        div("&nbsp", :class => "span#{side_span}"),
+        div("&nbsp;", :class => "span#{side_span}"),
         div(:class => "span#{span}") do
           div(:class => "inner form-container bg-solid-gray-dark") do
             yield block if block_given?
           end
         end,
-        div("&nbsp", :class => "span#{side_span}")
+        div("&nbsp;", :class => "span#{side_span}")
       ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
     end
   end
