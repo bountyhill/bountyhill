@@ -14,15 +14,15 @@
     <% @offer.criteria.each_with_index do |criterium, idx| %>
       <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
       <%= form.control_group Offer.criteria_compliances[idx], :compliance_chooser, :label => "#{criterium[:title]}?" %>
-      <div class="description">
-        <%= criterium[:description] %>
-      </div>
     <% end %>
     
     <%= form.actions :cancel_url => offers_path %>
   </fieldset>
 <% end %>
 
+<%
+# --- compliance style and code ---------------------------------------
+%>
 <style type="text/css" media="screen">
   /* The compliance_display div */
   div.compliance:after {
