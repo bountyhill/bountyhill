@@ -1,0 +1,6 @@
+/* geometry */
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}

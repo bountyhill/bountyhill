@@ -26,7 +26,7 @@ form {
   margin: 0;
   padding: 0;
   input, select, textarea {
-    color: $text_inverted;
+    color: $text_inverse;
     /* ensure placeholder is always gray, even on error - see: http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css */
     &::-webkit-input-placeholder {
       color: $text_minor !important;
@@ -103,7 +103,7 @@ form {
     position: relative;
     &.error {
       input, select, textarea {
-        color: $text_inverted;
+        color: $text_inverse;
       }
       .message {
         display: inline-block !important;

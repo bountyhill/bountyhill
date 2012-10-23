@@ -1,19 +1,22 @@
 $highlight:                 #fd6d03;
 
-$background:                #000;
-$background_border:         #222;
-$background_light:          #333;
+$background_dark:           #222;
+$background:                #333;
+$background_border:         #444;
+$background_light:          #555;
 $background_highlight:      #666;
 $background_inverse:        #fff;
 $background_gray:           #5e6165;
 $background_gray_dark:      #33373a;
 
 $text:                      #fff;
-$text_inverted:             #000;
 $text_minor:                #999;
 $text_major:                #eee;
 $text_highlight:            $highlight;
 $text_error:                #D59291;
+$text_inverse:              #000;
+$text_inverse_major:        #666;
+$text_inverse_minor:        #999;
 
 $link_text:                 #FEA768;
 $link_highlight:            #FED3B4;
@@ -21,17 +24,13 @@ $link_highlight:            #FED3B4;
 $navigation:                $background;
 $navigation_text:           $text;
 $navigation_highlight:      $highlight;
-$navigation_highlight_text: $text_inverted;
+$navigation_highlight_text: $text_inverse;
 
-$ribbon_minor:              #D4914F;
-$ribbon_minor_gradient:     #C36509;
-$ribbon_minor_border:       #8B4800;
-$ribbon:                    silver;
-$ribbon_gradient:           #868686;
-$ribbon_border:             #606060;
-$ribbon_major:              gold;
-$ribbon_major_gradient:     #B29600;
-$ribbon_major_border:       #806C00;
+$bounty_minor:              #D4914F;
+$bounty_normal:             silver;
+$bounty_major:              gold;
+
+$social_button_bg_light:    #ddd;
 
 $twitter:                   #0084B4;
 $input_focus_highligh:      #0084B4;  /* $input_focus_highligh: #82A8EC; */

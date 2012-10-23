@@ -1,14 +1,7 @@
-<% @quests.each_slice(3) do |slice| %>
-<div class="row quest-cells">
-  <% slice.each_with_index do |quest, index|
-  style = case index
-    when 0 then "margin-left: 20px"
-    when 1 then ""
-    when 2 then "margin-right: 20px"
-    end  %>
-  <div class="span4">
-    <%= render :partial => "cell", :locals => { :quest => quest, :style => style } %>
-  </div>
+<ul class="row quest-cells">
+  <% @quests.each do |quest| %>
+    <li class="span4">
+      <%= render :partial => "cell", :locals => { :quest => quest } %>
+    </li>
   <% end %>
-</div>
-<% end %>
+</ul>
