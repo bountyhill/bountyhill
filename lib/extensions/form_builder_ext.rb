@@ -172,19 +172,6 @@ HTML
     html.html_safe
   end
   
-  def transloadit(name, options)
-    parts = []
-    parts.push @template.transloadit(:upload)
-
-    unless object.send(name).blank?
-      parts.push image_for(object) 
-    end
-    
-    parts.push file_field(name)
-
-    "#{parts.join("\n")}"
-  end
-  
   # Render form actions.
   # All forms get "Cancel", "Create" or "Cancel", "Update" actions, depending
   # on whether the current object is a new or an existing record.
