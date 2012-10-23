@@ -1,4 +1,6 @@
 class Offer < ActiveRecord::Base
+  opinio_subjectum
+
   include ActiveRecord::RandomID
   include ImageAttributes
 

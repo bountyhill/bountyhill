@@ -1,6 +1,8 @@
 require "resque/server"
 
 Bountyhill::Application.routes.draw do
+  opinio_model
+
   app = Rack::Builder.new {
     use ::AdminOnlyMiddleware
     run Resque::Server.new
@@ -17,7 +19,10 @@ Bountyhill::Application.routes.draw do
     match static_page => "static##{static_page}"    
   end
 
-  resources :quests
+  resources :quests do
+    opinio
+  end
+  
   resources :shares
   match "/shares/:id" => "shares#update", :via => :post
 
@@ -28,6 +33,8 @@ Bountyhill::Application.routes.draw do
   match "/runs/:id/start" => "runs#start", :via => :get
   
   resources :offers do
+    opinio
+
     member do
       post "accept"
       post "decline"

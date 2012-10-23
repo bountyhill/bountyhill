@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   include ApplicationController::RequiredIdentity
   include ApplicationController::Debugging
 
+  opinio_identifier do |params|
+    next Offer.find(params[:offer_id]) if params[:offer_id]
+    next Quest.find(params[:quest_id]) if params[:quest_id]
+  end
+  
   private
   
   # -- ActiveRecord::AccessControl ------------------------------------

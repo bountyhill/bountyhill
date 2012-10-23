@@ -28,8 +28,10 @@
         <%= partial "offers/show/head", :offer => @offer %>
         <%= partial "offers/show/images", :offer => @offer %>
         <%= partial "offers/show/criteria", :offer => @offer %>
+
+        <%= partial "offers/comments", :offer => @offer %>
       </div>
-      <div class="span1">&nbsp</div>
+      <div class="span1">&nbsp;</div>
       <div class="span3">
         <%= partial "offers/show/actions", :offer => @offer %>
         <%= partial "quests/show/expires_at", :quest => @offer.quest %>

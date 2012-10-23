@@ -10,6 +10,7 @@ gem 'money'
 gem 'rdiscount'
 gem 'twitter_oauth'
 gem 'girl_friday'
+gem 'opinio'
 
 gem 'will_paginate', '~> 3.0.0'
 gem 'bountydeps'
