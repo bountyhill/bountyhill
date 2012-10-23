@@ -7,6 +7,8 @@
 
     <%= form.control_group :description, :text_area, :rows => 5 %>
     
+    <%= form.control_group :images, :filepicker %>
+
     <%= form.control_group :compliance, :compliance %>
 
     <% @offer.criteria.each_with_index do |criterium, idx| %>
