@@ -71,8 +71,14 @@ module NavigationHelper
     case position
     when :left
       nav_items = [ :about, :quests ]
-      if current_user && current_user.identity?(:email)
-        nav_items.concat [ :dot, :your_quests, :your_offers ]
+      user_items = []
+      
+      user_items << :your_quests if current_user && current_user.quests.first
+      user_items << :your_offers if current_user && current_user.offers.first
+
+      unless user_items.empty?
+        nav_items << :dot
+        nav_items.concat user_items
       end
       nav_items
     when :right
