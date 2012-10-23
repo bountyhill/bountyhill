@@ -81,7 +81,20 @@ namespace :demo do
     end
   end
   
+  desc "Start some quests"
+  task :start => :setup do
+    count = 0
+    ActiveRecord.as User.admin do
+      Quest.prepared.each do |quest|
+        quest.start!
+        count += 1
+      end
+    end
+    
+    W "Started #{count} quests"
+  end
   
+=begin
   desc "Create demo locations"
   task :locations => :setup do
     locations = [ "Berlin, Germany", "Hamburg, Germany", "Germany" ]
@@ -97,6 +110,7 @@ namespace :demo do
       W "Added location to #{count} quests"
     end
   end
+=end
 
   desc "Create demo offers"
   task :offers => :setup do
