@@ -6,25 +6,23 @@
     <%= form.control_group :quest_id, :hidden_field %>
 
     <%= form.control_group :description, :text_area, :rows => 5 %>
-    <%= form.control_group :image, :transloadit %>
+    
+    <%= form.control_group :images, :filepicker %>
 
     <%= form.control_group :compliance, :compliance %>
 
     <% @offer.criteria.each_with_index do |criterium, idx| %>
       <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
       <%= form.control_group Offer.criteria_compliances[idx], :compliance_chooser, :label => "#{criterium[:title]}?" %>
-      <div class="description">
-        <%= criterium[:description] %>
-      </div>
     <% end %>
     
     <%= form.actions :cancel_url => offers_path %>
   </fieldset>
 <% end %>
 
-<script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>
-<%= transloadit_jquerify :offer_form, :wait => true %>
-
+<%
+# --- compliance style and code ---------------------------------------
+%>
 <style type="text/css" media="screen">
   /* The compliance_display div */
   div.compliance:after {

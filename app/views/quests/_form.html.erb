@@ -7,7 +7,6 @@
     <%= form.control_group :description, :text_area, :rows => 3 %>
     <%#= form.control_group :location %>
     <%#= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
-    <%#= form.control_group :image, :transloadit %>
 
     <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
@@ -53,5 +52,3 @@
     <%= form.actions :cancel_url => quests_path %>
   </fieldset>
 <% end %>
-<!-- <script type="text/javascript" src="//assets.transloadit.com/js/jquery.transloadit2.js"></script>  -->
-<%#= transloadit_jquerify :quest_form, :wait => true %>

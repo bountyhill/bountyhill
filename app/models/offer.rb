@@ -12,7 +12,7 @@ class Offer < ActiveRecord::Base
   belongs_to :quest
   serialize :serialized, Hash
   
-  attr_accessible :location, :description, :image, :quest_id, :quest, :state
+  attr_accessible :location, :description, :images, :quest_id, :quest, :state
   
   # -- Access control -------------------------------------------------
 
@@ -54,6 +54,27 @@ class Offer < ActiveRecord::Base
 
   # -- Attributes and accessors ---------------------------------------
   
+  # -- Images ---------------------------------------------------------
+  
+  def images(size = {})
+    width, height = size.values_at(:width, :height)
+    urls = serialized[:images] || []
+    
+    if width && height
+      expect! width => Fixnum, height => Fixnum
+    
+      # set width and height; see https://developers.filepicker.io/docs/web/#fpurl
+      urls = urls.map { |url| "#{url}/convert?w=#{width}&h=#{height}" }
+    end
+
+    # set content disposition; see https://developers.filepicker.io/docs/web/#fpurl
+    urls.map { |url| "#{url}?dl=false" }
+  end
+  
+  def images=(urls)
+    expect! urls => [ Array, nil ]
+    serialized[:images] = urls
+  end
   
   # -- Criteria -------------------------------------------------------
   
@@ -174,10 +195,6 @@ class Offer < ActiveRecord::Base
   end
 
   public
-  
-  def image
-    super || quest.image
-  end
   
   def url
     Bountyhill::Application.url_for "/offers/#{self.id}"

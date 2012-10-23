@@ -18,6 +18,7 @@
 //= require bootstrap.js
 //= require_tree ./components
 //= require custom.js
+//= require filepicker.js
 
 // dummy console, just in case
 if(typeof console === "undefined") {

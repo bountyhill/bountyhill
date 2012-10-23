@@ -221,6 +221,7 @@ en:
         title: "compliance"
         sub: with the best offer.
   offer:
+    compliance: "Compliance %{compliance}%"
     title:
       show:   ""
       edit:   "Edit Offer: %{title}"

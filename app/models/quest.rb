@@ -6,6 +6,11 @@ class Quest < ActiveRecord::Base
 
   with_metrics! "quests"
 
+  # If no duration is set when starting a quest this is the duration
+  # to use instead.
+  
+  DEFAULT_DURATION_IN_DAYS = 7
+  
   # -- Access control -------------------------------------------------
 
   belongs_to :owner, :class_name => "User"
@@ -16,9 +21,15 @@ class Quest < ActiveRecord::Base
   write_access_control :owner
 
   # -- scopes and filters ---------------------------------------------
-  
-  scope :active,  lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
-  scope :expired, lambda { where("quests.expires_at <= ?", Time.now) }
+
+  # prepared: not yet started
+  scope :prepared,  lambda { where("quests.started_at IS NULL") }
+
+  # active: started and no yet expired
+  scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
+
+  # expired: well, expired
+  scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
   
   # Find a quest, even if it does not belong to the current_user, but to
   # User.draft. We'll need this when a user enters a quest before she is
@@ -47,14 +58,12 @@ class Quest < ActiveRecord::Base
   validates :title,       presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 2400 }
   
-  serialize :image, Hash
-  
   money :bounty
 
   serialize :serialized, Hash
   serialized_attr :duration_in_days
   
-  attr_accessible :title, :description, :bounty, :image, :image_url, :location, :duration_in_days
+  attr_accessible :title, :description, :bounty, :location, :duration_in_days
   
   # -- Criteria -------------------------------------------------------
   
@@ -144,34 +153,6 @@ class Quest < ActiveRecord::Base
     offer.calculate_compliance
   end
   
-  # -- Image ----------------------------------------------------------
-  
-  IMAGE_SIZES = {
-    "thumbnail" => "90x90", 
-    "fullsize"  => "640x480", 
-    "original"  => nil
-  }
-  
-  def image_url=(url)
-    image = {}
-    
-    IMAGE_SIZES.each do |name, size|
-      if size 
-        width, height = size.split(/\D+/).map(&:to_i)
-        size_url = "http://imgio.heroku.com/jpg/fill/#{size}/#{url}"
-      end
-      
-      image[name] = {
-        "url"     => size_url || url,
-        "mime"    => "image/jpeg",
-        "width"   => width,
-        "height"  => height
-      }
-    end
-    
-    self.image = image
-  end
-  
   # -- Quest status ---------------------------------------------------
   
   def active?
@@ -191,8 +172,9 @@ class Quest < ActiveRecord::Base
   end
   
   def start!
-    if duration_in_days.to_i > 0
-      expires_at = (Date.today + duration_in_days.to_i + 1).to_time - 1
+    duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
+    if duration_in_days > 0
+      expires_at = (Date.today + duration_in_days + 1).to_time - 1
     end
 
     self.visibility = "public"

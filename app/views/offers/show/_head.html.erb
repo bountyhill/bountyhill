@@ -1,15 +1,13 @@
-<%-
-# note that when changing this file you probably want to change _description.html.erb
-# and _image.html.erb too.
--%>
-<div class="inner offer unbottom">
-  <ul class="block article_list large">
-    <li>
-      <%= image_for(offer) %>
-      <article class="bg-gray">
-        <%= h1 offer.title %>
-        <%= p offer.description %>
-      </article>
-    </li>
-  </ul>
+<div class="inner quest unbottom">
+  <article class="offer">
+    <div class="profile">
+      <%= avatar offer.owner, :size => 128 %>
+      <%= link_to user_path(offer.owner) do %>
+        <h2><%= offer.owner.name %></h2>
+      <% end %>
+      <div class="handle"><%= link_to_twitter_account offer.owner %></div>
+    </div>
+    <%= h1 offer.quest.title %>
+    <%= p offer.description %>
+  </article>
 </div>

@@ -6,7 +6,6 @@
   <article class="quest">
     <div class="profile">
       <%= avatar quest.owner, :size => 128 %>
-      <%#= image_tag(quest.owner.avatar(:size => 128), :class => "avatar", :alt => quest.owner.name, :title => quest.owner.name) %>
       <%= link_to user_path(quest.owner) do %>
         <h2><%= quest.owner.name %></h2>
       <% end %>

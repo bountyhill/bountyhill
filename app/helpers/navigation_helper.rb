@@ -2,16 +2,39 @@
 
 module NavigationHelper
   # returns "active" if the nav_item belongs to the current controller.
-  def navigation_item_class_for(nav_item)
-    if (path_parts = request.env['PATH_INFO'].split("/")[1..-1]) && path_parts.first == nav_item # ensures uri starts conform to nav item
-      "active"
+  def navigation_item_active?(nav_item)
+    # some navigation items takes precendence over others when determining
+    # the active navigation item. For example, "/quests?owner_id=123" is
+    # *your_quests* and not *quests*.
+    @static_active_navigation_item ||= begin
+      user_id = current_user.id if current_user
+      
+      if request.path =~ /^\/profile/
+        :profile
+      elsif controller_name == "offers" && personal_page?
+        :your_offers
+      elsif controller_name == "offers"
+        :offers
+      elsif controller_name == "quests" && personal_page?
+        :your_quests
+      elsif controller_name == "quests"
+        :quests
+      else
+        :none
+      end
+    end
+
+    if @static_active_navigation_item != :none
+      nav_item == @static_active_navigation_item
+    else
+      request.path.starts_with?("/#{nav_item}")
     end
   end
 
   ADMIN_NAVIGATION = {
-    "stats" => "https://www.stathat.com/home",
-    "logs"  => "https://papertrailapp.com/systems/#{Bountybase.environment}/events",
-    "jobs"  => "/jobs"
+    :stats => "https://www.stathat.com/home",
+    :logs  => "https://papertrailapp.com/systems/#{Bountybase.environment}/events",
+    :jobs  => "/jobs"
   }
   
   def nav_profile_label
@@ -20,7 +43,7 @@ module NavigationHelper
   end
 
   def link_to_nav_item(nav_item)
-    expect! nav_item => [String, :dot, :profile, :signout, :copyright, :your_offers, :your_quests]
+    expect! nav_item => [Symbol]
 
     case nav_item
     when :dot
@@ -47,7 +70,7 @@ module NavigationHelper
     
     case position
     when :left
-      nav_items = [ "about", "quests" ]
+      nav_items = [ :about, :quests ]
       if current_user && current_user.identity?(:email)
         nav_items.concat [ :dot, :your_quests, :your_offers ]
       end
@@ -56,10 +79,10 @@ module NavigationHelper
       if current_user
         [ :profile, :signout ]
       else
-        [ "signin" ]
+        [ :signin ]
       end
     when :bottom_left
-      [ "terms", "privacy", "contact" ]
+      [ :terms, :privacy, :contact ]
     when :bottom_right
       if admin?
         ADMIN_NAVIGATION.keys + [ :copyright ]
@@ -70,10 +93,17 @@ module NavigationHelper
   end
   
   def render_navigation_items(position)
+    show_active_links = position == :right || position == :left
+    
     ul :class => "nav #{" pull-right" if position == :right || position == :bottom_right }" do
       navigation_items(position).map do |navigation_item|
         if link = link_to_nav_item(navigation_item)
-          content_tag :li, link, :class => navigation_item_class_for(navigation_item)
+          css = {}
+          if show_active_links && navigation_item_active?(navigation_item)
+            css = { :class => "active" }
+          end
+          
+          content_tag :li, link, css
         end
       end.compact.join.html_safe
     end

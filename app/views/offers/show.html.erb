@@ -1,46 +1,39 @@
-<%
-  if action = offer_actions(@offer).first
-    url = self.send("#{action}_offer_path", @offer)
-    header_ribbon_button :rect, 
-      t("offer.actions.#{action}.title"), 
-      url,
-      :text   => t("offer.actions.#{action}.sub"),
-      :method => :post
-  end
+<%= 
+  header_ribbon_button :rect, t("show.actions.offer.title"), "/offers",
+    :text   => t("show.actions.offer.sub")
 %>
 <div class="row bg-main" >
-  <div class="span12 bg-black">
+  <div class="span12 bg-solid-black">
     <% if mobile? %>
     <div class="row">
-      <div class="span4">
-        <%= partial "offers/show/image", :offer => @offer %>
+      <div class="span6">
+        <%= partial "offers/show/head", :offer => @offer %>
       </div>
-      <div class="span4">
-        <%= partial "offers/show/description", :offer => @offer %>
-      </div>
-      <div class="span4">
+      <div class="span6">
         <%= partial "offers/show/actions", :offer => @offer %>
       </div>
     </div>
     <div class="row">
-      <div class="span8">
+      <div class="span6">
+        <%#= partial "offers/show/image", :offer => @offer %>
         <%= partial "offers/show/criteria", :offer => @offer %>
       </div>
-      <div class="span4">
+      <div class="span6">
         <%= partial "quests/show/expires_at", :quest => @offer.quest %>
-        <%= partial "offers/show/location", :offer => @offer %>
       </div>
     </div>
     <% else %>
     <div class="row">
       <div class="span8">
         <%= partial "offers/show/head", :offer => @offer %>
+        <%= partial "offers/show/images", :offer => @offer %>
         <%= partial "offers/show/criteria", :offer => @offer %>
       </div>
-      <div class="span4">
+      <div class="span1">&nbsp</div>
+      <div class="span3">
         <%= partial "offers/show/actions", :offer => @offer %>
         <%= partial "quests/show/expires_at", :quest => @offer.quest %>
-        <%= partial "offers/show/location", :offer => @offer %>
+        <%#= partial "offers/show/location", :offer => @offer %>
       </div>
     </div>
     <% end %>

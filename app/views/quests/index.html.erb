@@ -9,7 +9,7 @@
 
       <%#= partial "quests/index/head" %>
 
-      <% if quests_for?(current_user) %>
+      <% if personal_page? %>
         <%= render :partial => 'quests/list/private' %>
       <% else %>
         <%= render :partial => 'quests/list/public' %>

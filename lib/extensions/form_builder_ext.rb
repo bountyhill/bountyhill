@@ -15,6 +15,14 @@ class ActionView::Helpers::FormBuilder
     attrs = args.extract_options!
     args.push yield if block_given?
 
+    if attrs[:data].is_a?(Hash)
+      data = attrs.delete(:data)
+      
+      data.each do |key, value|
+        attrs["data-#{key}"] = value
+      end
+    end
+    
     unless attrs.empty?
       escaped_attrs = " " + 
         attrs.map { |k, v| "#{k}='#{CGI.escapeHTML(v.to_s)}'" }.join(" ")
@@ -172,19 +180,6 @@ HTML
     html.html_safe
   end
   
-  def transloadit(name, options)
-    parts = []
-    parts.push @template.transloadit(:upload)
-
-    unless object.send(name).blank?
-      parts.push image_for(object) 
-    end
-    
-    parts.push file_field(name)
-
-    "#{parts.join("\n")}"
-  end
-  
   # Render form actions.
   # All forms get "Cancel", "Create" or "Cancel", "Update" actions, depending
   # on whether the current object is a new or an existing record.
@@ -213,5 +208,45 @@ HTML
     end
 
     @template.partial "shared/error_messages", options
+  end
+  
+  #
+  # renders a filepicker input tag. This needs an event listener
+  # installed on the input[type=filepicker] input node, which is 
+  # done with JS code in filepicker.js
+  def filepicker(name, options)
+    slide_name = "fp_slides_#{object_name}_#{name}"       # name for slideshow node
+    target_name = "#{object_name}[#{name}][]"             # name for target input nodes
+
+    data = filepicker_data(options)                       # add filepicker_data from options
+    
+    data.update "fp-slides" => "##{slide_name}",          # adds name for slides node
+                "fp-name" => "#{object_name}[#{name}][]"  # adds target input name
+
+    # build HTML
+    slides = tag :ul, :id => slide_name, :class => "fp-slides"
+    input = tag :input, :type => :filepicker, :data => data
+
+    "#{slides}#{input}"
+  end
+  
+  # returns a hash of filepicker.io options to set in the filepicker's
+  # input tag.
+  def filepicker_data(options)
+    data = options[:data] || {}
+    
+    services  = [ "COMPUTER", "FACEBOOK", "FLICKR", "PICASA" ]
+    mimetypes = [ 'image/*' ]
+    maxSize   = 1 * 1024 * 1024
+
+    {
+      "fp-button-text"  => options[:placeholder],
+      "fp-button-class" => "btn",
+      "fp-mimetypes"    => mimetypes.join(","),
+      "fp-multiple"     => true,
+      "fp-services"     => services.join(","),
+      "fp-openTo"       => services.first,
+      "fp-maxSize"      => maxSize
+    }.update(data)
   end
 end
