@@ -29,7 +29,7 @@
         <%= partial "offers/show/images", :offer => @offer %>
         <%= partial "offers/show/criteria", :offer => @offer %>
 
-        <%= partial "offers/comments", :offer => @offer %>
+        <%= partial "shared/comments", :commentable => @offer %>
       </div>
       <div class="span1">&nbsp;</div>
       <div class="span3">
