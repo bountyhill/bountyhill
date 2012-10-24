@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   def debug(s)
-    content_tag :xmp, s
+    content_tag :pre, s
   end
 
   def markdown(name, options = {})
