@@ -5,15 +5,16 @@ class OffersController < ApplicationController
   
   # GET /quests
   def index
-    scope = Offer
+    scope = Offer.order("offers.created_at DESC")
     if params[:quest_id]
-      scope = scope.where(:quest_id => params[:quest_id]).order("compliance DESC")
+      scope = scope.where(:quest_id => params[:quest_id]).order("offers.compliance DESC, offers.created_at DESC")
     end
     if params[:owner_id]
+      # relevant_for: owned by user or sent to user
       scope = scope.relevant_for(User.find(params[:owner_id]))
     end
     
-    @offers = scope.paginate(:page => params[:page], :per_page => per_page)
+    @offers = scope.paginate(:include => :quest, :page => params[:page], :per_page => per_page)
   end
 
   # GET /offers/1
@@ -35,6 +36,7 @@ class OffersController < ApplicationController
   # GET /offers/1/edit
   def edit
     @offer = Offer.find(params[:id])
+    render action: "new"
   end
 
   # POST /quests
