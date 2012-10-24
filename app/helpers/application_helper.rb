@@ -280,4 +280,14 @@ module ApplicationHelper
   
     false
   end
+
+  def filepicker_tags
+    apikey = Bountybase.config.filepicker["apikey"]
+    html = <<-HTML
+      <script src="https://api.filepicker.io/v1/filepicker.js"></script>
+      <script type="text/javascript">filepicker.setKey(#{apikey.to_json});</script>
+    HTML
+    
+    html.html_safe
+  end
 end
