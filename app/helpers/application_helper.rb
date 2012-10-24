@@ -81,7 +81,7 @@ module ApplicationHelper
   end
 
   def render_restriction(model, what)
-    expect! model => ActiveRecord::Base, what => [:location, :expires_at, :compliance]
+    expect! model => ActiveRecord::Base, what => [:location, :expires_at, :created_at, :compliance]
     value = model.send(what)
     return if value.blank?
     
@@ -92,6 +92,10 @@ module ApplicationHelper
     when :expires_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
       span = self.span t('restriction.temporality', :count => (value.to_date - Date.today).to_i), :class => "temporality"
+    when :created_at
+      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
+      span = self.span t('restriction.created_at', :time => time_ago_in_words(value)), :class => "temporality"
+      span = self.span t('restriction.created_at', :time => value.to_s), :class => "temporality"
     when :compliance
       icon = image_tag '/images/icon/location.png', :class => 'compliance'
       span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"
