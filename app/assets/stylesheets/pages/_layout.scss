@@ -24,6 +24,11 @@ body {
 .main-space {
   min-height: 600px;
 }
+.endless_scroll_hook {
+  display: block;
+  text-align: center;
+}
+
 @media (max-width: 979px) {
   .topspace {
     margin-top: 55px;
