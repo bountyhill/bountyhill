@@ -27,6 +27,14 @@ if(typeof console === "undefined") {
   };
 }
 
+$(document).ready(function() {
+  $('.endless_scroll_hook').bind('inview', function(e,visible) {
+    if( visible ) {
+      $.getScript($(this).attr("href"));
+    }
+  });
+});
+
 
 (function( $ ) {
 
@@ -53,6 +61,7 @@ if(typeof console === "undefined") {
     }
   });
   
+  /*
   var DEFAULTS = {
     zoom:               8,
     center:             '52.5, 13.5', 
@@ -95,9 +104,12 @@ if(typeof console === "undefined") {
       
       return this;
   }; // $.fn.map_widget = ...
+  */
 
 })(jQuery);
 
+/*
 jQuery(function() {
   jQuery("[data-location]").map_widget();
 });
+*/

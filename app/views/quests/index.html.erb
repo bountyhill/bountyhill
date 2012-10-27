@@ -5,21 +5,11 @@
 
 <div class="row bg-main">
   <div class="span12">
-    <div class="quests">
-
-      <%#= partial "quests/index/head" %>
-
-      <% if personal_page? %>
-        <%= render :partial => 'quests/list/private' %>
-      <% else %>
-        <%= render :partial => 'quests/list/public' %>
-      <% end %>
-      
-      <% if pagination = paginate(@quests) %>
-        <div class="pagination pagination-centered inner">
-          <%= pagination %>
-        </div>
-      <% end %>
+    <ul class="row quests">
+      <%= render :partial => 'quests/list' %>
+    </ul>
+    <div class="spinner">
+      <%= link_to I18n.t("status.loading"), quests_path(:page => (params[:page].to_i || 1)+1), :class => 'endless_scroll_hook', :remote => true %>
     </div>
   </div>
 </div>

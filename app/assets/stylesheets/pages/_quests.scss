@@ -5,7 +5,7 @@
   @include border-radius(3px, 3px);
 }
 
-.quest-cells {
+.quests {
   .span4 {
     & > .inner { padding: 10px 0; }
   }
@@ -14,7 +14,7 @@
     position: relative;
     margin-bottom: 60px;
     background-color: $background_inverse;
-    @include single-transition(transform, 0.15s, linear, 0);
+    @include transition-duration(0.15s);
     &:nth-child(even) {
       @include rotate(3deg);
       top:5px;
@@ -60,6 +60,7 @@
         }
         .handle {
           position: absolute;
+          left: 104px;
           top: 44px;
           color: $text_inverse_major;
           font-size: 16px;
@@ -135,12 +136,6 @@
     height: 25px;
     padding-top: 5px;
     background: $social_button_bg_light;
-  }
-}
-
-.quest-cells-large {
-  .span8 {
-    & > .inner { padding: 10px 0; }
   }
 }
 
@@ -274,7 +269,7 @@ h1, h2 {
 }
 
 @media (max-width: 480px) {
-  .quest-cells {
+  .quests {
     .span4 {
       & > .inner { padding: 10px 0; }
     }

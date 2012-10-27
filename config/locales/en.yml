@@ -17,6 +17,8 @@ en:
   help: Help
   terms: "Terms & conditions"
   privacy: Privacy policy
+  status:
+    loading: "Loading..."
   profile:
     add_twitter: "Add your twitter account"
     add_email: "Add your email"
