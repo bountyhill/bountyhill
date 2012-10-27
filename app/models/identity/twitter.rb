@@ -93,7 +93,12 @@ class Identity::Twitter < Identity
   
   def avatar(options)
     expect! options => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
-    info["profile_image_url"] || options[:default]
+
+    # url = info["profile_image_url"] # use http URL
+    url = info["profile_image_url_https"]
+    return options[:default] unless url
+    
+    url.gsub(/_normal\./, "_reasonably_small.")
   end
   
   # -- Pseudo attributes ----------------------------------------------

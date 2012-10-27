@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "accounts", :force => true do |t|
     t.integer "owner_id"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20) do
     t.integer  "compliance",  :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.text     "image"
     t.string   "location"
     t.text     "serialized"
     t.string   "state"

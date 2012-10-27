@@ -20,8 +20,10 @@
 <% if quest.offers.present? %>
 <div class="inner">
   <h2>
-    <span><strong><%= quest.offers.count %></strong> <%=t "quest.actions.offers.title" %></span>
-    <small><%=t "quest.actions.offers.sub" %></small>
+    <%= link_to offers_path(:quest_id => quest) do %>
+      <span><strong><%= quest.offers.count %></strong> <%=t "quest.actions.offers.title" %></span>
+      <small><%=t "quest.actions.offers.sub" %></small>
+    <% end %>
   </h2>
 </div>
 <div class="inner">

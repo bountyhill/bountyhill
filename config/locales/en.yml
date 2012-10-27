@@ -27,6 +27,7 @@ en:
       one: "%{count} day left"
       other: "%{count} days left"
     compliance: "Compliance: %{compliance}%"
+    created_at: "%{time}"
   comments:
     headline:
       one:    comment

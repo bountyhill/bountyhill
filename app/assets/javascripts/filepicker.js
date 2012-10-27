@@ -33,3 +33,9 @@ jQuery(document).on("change", "input[type=filepicker]", function(event) {
     slideshow.append(slide);
   });
 });
+
+jQuery(function() {
+  jQuery("ul.fp-slides-edit li a.fp-delete").click(function() {
+    $(this).closest("li").remove();
+  });
+});

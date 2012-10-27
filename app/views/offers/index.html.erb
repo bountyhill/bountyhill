@@ -1,12 +1,7 @@
-<!-- banner-->
-<div class="banner">
-  <span>
-    <h1>
-      <%= I18n.t("offers.all.title", :count => @offers.total_entries) %>
-    </h1>
-    <small><%= I18n.t "offers.all.sub" %></</small>
-  </span>
-</div>
+<%= 
+  header_ribbon_button :rect, t("offers.all.sub"), "/offers",
+    :text   => I18n.t("offers.all.title", :count => @offers.total_entries)
+%>
 <div class="row bg-main" >
   <!-- tiles -->
   <div class="span12 bg-black">

@@ -221,10 +221,15 @@ HTML
     data = filepicker_data(options)                       # add filepicker_data from options
     
     data.update "fp-slides" => "##{slide_name}",          # adds name for slides node
-                "fp-name" => "#{object_name}[#{name}][]"  # adds target input name
+                "fp-name" => target_name                  # adds target input name
 
-    # build HTML
-    slides = tag :ul, :id => slide_name, :class => "fp-slides"
+    # build slides to show existing slides, 
+    # along with inline editing stuff.
+    slides = @template.render_slides(object, :id => slide_name, :class => "fp-slides-edit") do |image, thumbnail|
+      tag(:input, :type => :hidden, :name => target_name, :value => image) +
+      @template.render_slide_image(thumbnail) +
+      link_to("DEL", '#', :class => "fp-delete")
+    end
     input = tag :input, :type => :filepicker, :data => data
 
     "#{slides}#{input}"

@@ -5,11 +5,16 @@
         <%= render_bounty_ribbon offer %>
         
         <div class="unbottom untop">
-          <h3><%= truncate offer.title, :length => 60 %></h3>
+          <h3><%= 
+            title = truncate offer.title, :length => 60 
+            link_to title, offer
+          %></h3>
+          <div>
+            <%= truncate offer.description, :length => 200 %>
+          </div>
           <div class="restrictions">
-            <%= render_restriction offer.quest, :location %>
-            <%= render_restriction offer.quest, :expires_at %>
             <%= render_restriction offer, :compliance %>
+            <%= render_restriction offer, :created_at %>
           </div>
           <div class="socialmedia">
             <a class="social-item twitter" href="#" title="find us twitter">t</a>
