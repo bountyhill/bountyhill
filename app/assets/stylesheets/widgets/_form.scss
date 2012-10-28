@@ -1,18 +1,37 @@
 .form-container {
   height: auto;
-  padding: 10px 20px 20px 20px;
-  border: 1px solid $background_border;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  
-  &.accordion {
-    .accordion-group {
-      .accordion-heading {
-        text-align: center;
+  padding: 40px 35px 40px 40px;
+  background-color: $background_inverse;
+  position: relative;
+  .tape {
+    position:absolute;
+    width: 120px;
+    height: 35px;
+    background-color: $background_inverse;
+    opacity:0.6;
+    border-left: 1px dashed rgba(0, 0, 0, 0.1);
+    border-right: 1px dashed rgba(0, 0, 0, 0.1);
+    @include box-shadow(#cccccc 0px 0px 1px 0px);
+    &.top {
+      top: 0px;
+      &.left {
+        left: -40px;
+        @include transform(rotate(-45deg) skew(0,0));
+      }
+      &.right {
+        right: -40px;
+        @include transform(rotate(45deg) skew(0,0));
+      }
+    }
+    &.bottom {
+      bottom: 0px;
+      &.left {
+        left: -40px;
+        @include transform(rotate(45deg) skew(0,0));
+      }
+      &.right {
+        right: -40px;
+        @include transform(rotate(-45deg) skew(0,0));
       }
     }
   }
@@ -32,20 +51,10 @@ form {
       color: $text_minor !important;
     }
     &:-moz-placeholder {
-      color: $text_minor !important;
+      color: $text_inverse_minor !important;
     }
     &:-ms-input-placeholder {
-      color: $text_minor !important;
-    }
-  }
-  input, textarea {
-    &:focus {
-      outline: 1px dotted $input_focus_highligh;
-      outline: thin dotted 1px; 
-      /* IE6-9 */
-      -webkit-box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
-      -moz-box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
-      box-shadow: inset 0 0 -2px rgba($input_focus_highligh,.4), 0 0 2px rgba($input_focus_highligh,.8);
+      color: $text_inverse_minor !important;
     }
   }
   &.form-horizontal {
@@ -57,7 +66,7 @@ form {
     }
   }
   label {
-    color: $text;
+    color: $text_inverse;
     font-size: inherit;
   }
   .input-xxxsmall {
@@ -86,11 +95,12 @@ form {
     top: -0.2em;
   }
   legend {
-    color: $text;
+    color: $text_inverse;
     border: none;
     margin-bottom: 20px;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 1.2;
+    font-weight: bold;
   }
   .buttons {
     text-align: right;
@@ -115,7 +125,7 @@ form {
       margin: 0;
       .unit {
         display: inline-block;
-        color: $text_major;
+        color: $text_inverse_major;
       }
     }
     .message {
@@ -123,7 +133,7 @@ form {
       left: 560px;
       top: 0px;
       display: inline-block;
-      color: $text_major;
+      color: $text_inverse_major;
       &.hidden {
         display: none;
       }

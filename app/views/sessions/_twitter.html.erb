@@ -15,9 +15,9 @@
           <%= form.control_group :follow_bountyhermes, :check_box, :label => I18n.t("sessions.follow_bountyhermes"), :hint => false %>
           <%#= form.agree_to_terms %>
 
-          <div class="buttons input-xxlarge">
+          <div class="buttons">
             <%= link_to I18n.t(:cancel), "/sessions/twitter", :class => "btn cancel" %>
-            <%= form.submit I18n.t("sessions.twitter.signin"), :class => "btn btn-primary btn-inverse btn-large" %>
+            <%= form.submit I18n.t("sessions.twitter.signin"), :class => "btn btn-primary btn-inverse" %>
           </div>
         </fieldset>
       <% end %>

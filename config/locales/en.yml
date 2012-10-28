@@ -291,6 +291,7 @@ en:
       passwd: Change your password
       unregister: Delete your account
   requires_identity:
+    any:        "Please sign in with your email address or twitter."
     email:      "Please sign in with your email address."
     confirmed:  "Please confirm your email address."
     twitter:    "Please sign in with twitter."

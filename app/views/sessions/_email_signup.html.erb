@@ -9,9 +9,9 @@
   <div class="pull-left">
     <%= form.agree_to_terms! %>
   </div>
-  <div class="buttons input-xxlarge">
+  <div class="buttons">
     <%= link_to_cancel_signin %>
-    <%= form.submit I18n.t("sessions.email.signup"), :name => "do_signup", :class => "btn btn-primary btn-inverse btn-large" %>
+    <%= form.submit I18n.t("sessions.email.signup"), :name => "do_signup", :class => "btn btn-primary btn-inverse" %>
   </div>
   <div class="pull-left">
     <a data-toggle="tab" href="#signin_subform" class="toggle_signin_signup"><%= I18n.t "sessions.to_signin" %></a>

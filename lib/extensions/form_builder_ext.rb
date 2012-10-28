@@ -41,8 +41,7 @@ class ActionView::Helpers::FormBuilder
   DEFAULT_INPUT_FIELD_OPTIONS = {
     :text_field     => { :class => "input-xxlarge" },
     :password_field => { :class => "input-xxlarge" },
-    :text_area      => { :class => "input-xxlarge" },
-    :buttons        => { :class => "input-xxlarge" }
+    :text_area      => { :class => "input-xxlarge" }
   }
   
   # Creating a control_group.
@@ -186,15 +185,15 @@ HTML
   def actions(options)
     expect! options => { :cancel_url => String, :label => [ String, nil ] }
 
-    div :class => "buttons #{DEFAULT_INPUT_FIELD_OPTIONS[:buttons][:class]}" do
+    div :class => "buttons" do
       parts = []
 
       # 
-      cancel_btn = link_to(I18n.t(:cancel), options[:cancel_url], :class => "btn")
+      cancel_btn = link_to(I18n.t(:cancel), options[:cancel_url], :class => "btn btn-small")
 
       label = options[:label]
       label ||= object.new_record? ? I18n.t(:create) : I18n.t(:update)
-      save_btn = submit(label, :class => "btn btn-primary btn-inverse btn-large")
+      save_btn = submit(label, :class => "btn btn-primary btn-inverse")
 
       "#{cancel_btn} #{save_btn}"
     end

@@ -250,8 +250,14 @@ module ApplicationHelper
       [
         div("&nbsp;", :class => "span#{side_span}"),
         div(:class => "span#{span}") do
-          div(:class => "inner form-container bg-solid-gray-dark") do
-            yield block if block_given?
+          div(:class => "inner form-container") do
+            [
+              div(:class => "tape top left"),
+              div(:class => "tape top right"),
+              block_given? ? capture(&block) : "",
+              div(:class => "tape bottom left"),
+              div(:class => "tape bottom right")
+            ].join.html_safe
           end
         end,
         div("&nbsp;", :class => "span#{side_span}")

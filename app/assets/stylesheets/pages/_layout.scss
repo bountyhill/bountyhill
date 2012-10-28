@@ -84,7 +84,7 @@ img {
     text-align: center;
     height: 0px;
     border: 1px solid $background_gray;
-    margin: 20px auto;
+    margin: 30px auto;
     span {
       padding: 0 15px;
       position: relative;
@@ -110,8 +110,9 @@ img {
   .accordion-heading {
     position: relative;
     text-align: center;
+    padding: 0px 15px 15px 15px;
     a {
-      color: $text_major;
+      outline: none;
       &:hover {
         text-decoration: none;
       }
