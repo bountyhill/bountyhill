@@ -17,6 +17,15 @@
     end
   %>
 </div>
+
+<div class="inner">
+  <h2>
+    <span><strong><%= quest.criteria.size %></strong> <%=t "quest.criteria.title" , :count => quest.criteria.count %></span> 
+    <small><%=t "quest.criteria.sub" %></small>
+  </h2>
+</div>
+
+
 <% if quest.offers.present? %>
 <div class="inner">
   <h2>
@@ -38,10 +47,20 @@
 <% if (number_of_tweets = quest.number_of_tweets).present? %>
 <div class="inner">
   <h2>
-    <span><strong><%= number_of_tweets %></strong> retweets</span>
+    <span><strong><%= number_of_tweets %></strong> <%=t "quest.actions.retweets.title" %></span>
+    <small><%=t "quest.actions.retweets.sub" %></small>
   </h2>
 </div>
 <% end %>
+
+<div class="inner">
+  <h2>
+    <span>
+      <strong><%= quest.comments.count %></strong><%= t "comments.headline", :count => quest.comments.count %>
+      <small><%=t "comments.subheadline", :count => quest.comments.count %></small>
+    </span> 
+  </h2>
+</div>
 
 <% if (chain = quest.chain_to(current_user)) && chain.present? %>
 <div class="inner">

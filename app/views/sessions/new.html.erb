@@ -1,10 +1,12 @@
 <%= header_ribbon_title I18n.t("sessions.title").html_safe %>
 
-<%= render_form do %>
-  <div id="accordion" class="accordion" style="height:<%= partials.size > 1 ? '360px' : 'auto' %>">
-    <% partials.each_with_index do |form_partial, index| %>
-      <%= partial form_partial, :expand => index.zero? %>
-      <div class="separator"><span>or</span></div>
-    <% end %>
-  </div>
-<% end %>
+<div class="row-fluid main-space">
+  <%= render_form do %>
+    <div id="accordion" class="accordion" style="height:<%= partials.size > 1 ? '360px' : 'auto' %>">
+      <% partials.each_with_index do |form_partial, index| %>
+        <%= partial form_partial, :expand => index.zero? %>
+        <div class="separator"><span>or</span></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

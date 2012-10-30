@@ -1,0 +1,23 @@
+.comments {
+  margin: 40px 0;
+  &:before {
+    width: 0;
+  }
+  .form-container {
+    min-height: 80px;
+  }
+}
+
+#comments {
+  color: #000;
+}
+
+#comments .avatar {
+  width: 32px;
+  height: 32px;
+}
+
+#new_comment textarea {
+  width: 100%;
+  height: 60px;
+}

@@ -32,6 +32,9 @@ en:
     headline:
       one:    comment
       other:  comments
+    subheadline:
+      one:    has been passed so far.
+      other:  have been passed so far.
   quests:
     title:
       one:    quest
@@ -221,6 +224,9 @@ en:
       bounty: 
         title: "bounty"
         sub: has been promised for this quest.
+      retweets: 
+          title: "retweets"
+          sub: have been posted so far.
       offers:
         title: "offers"
         sub: for this quest so far.

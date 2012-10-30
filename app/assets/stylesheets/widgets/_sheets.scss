@@ -1,0 +1,41 @@
+.sheet {
+  position: relative;
+  background-color: $background_inverse;
+  color: $text_inverse;
+  &.even {
+    @include transform(rotate(-0.5deg) skew(0,0) translate(50px, 0px));
+  }
+  &.uneven {
+    @include transform(rotate(0.5deg) skew(0,0) translate(50px, 0px));
+  }
+  .inner {
+    background-color: inherit;
+  }
+  .shadow {
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    z-index: -1;
+    @include box-shadow(rgba(0, 0, 0, 0.4) -10px -10px 10px);
+    &.top {
+      &.left {
+       top:-12px; left:-5px;
+       @include transform(scale(1) rotate(4deg) translate(20px, 25px) skew(9deg, 0deg));
+      }
+      &.right {
+        top:-4px; right:-13px;
+        @include transform(scale(1) rotate(96deg) translate(20px, 25px) skew(9deg, 0deg));
+      }
+    }
+    &.bottom {
+      &.left {
+       bottom:-5px; left:-12px;
+       @include transform(scale(1) rotate(274deg) translate(20px, 25px) skew(9deg, 0deg));
+      }
+      &.right {
+        bottom:-13px; right:-4px;
+        @include transform(scale(1) rotate(184deg) translate(20px, 25px) skew(9deg, 0deg));
+      }
+    }
+  }
+}

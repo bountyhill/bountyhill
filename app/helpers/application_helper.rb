@@ -243,26 +243,24 @@ module ApplicationHelper
   end
 
   
-  def render_form(span=8, &block)
-    side_span = (12-span) / 2
-    
-    div :class => "row-fluid main-space" do
-      [
-        div("&nbsp;", :class => "span#{side_span}"),
-        div(:class => "span#{span}") do
-          div(:class => "inner form-container") do
-            [
-              div(:class => "tape top left"),
-              div(:class => "tape top right"),
-              block_given? ? capture(&block) : "",
-              div(:class => "tape bottom left"),
-              div(:class => "tape bottom right")
-            ].join.html_safe
-          end
-        end,
-        div("&nbsp;", :class => "span#{side_span}")
-      ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
-    end
+  def render_form(span_left=2, span_right=2, &block)
+    span = 12 - span_left - span_right
+
+    [
+      div("&nbsp;", :class => "span#{span_left}"),
+      div(:class => "span#{span}") do
+        div(:class => "inner form-container") do
+          [
+            div(:class => "tape top left"),
+            div(:class => "tape top right"),
+            block_given? ? capture(&block) : "",
+            div(:class => "tape bottom left"),
+            div(:class => "tape bottom right")
+          ].join.html_safe
+        end
+      end,
+      div("&nbsp;", :class => "span#{span_right}")
+    ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
   end
 
   def link_to_follow_twitter_account(options = {}, &block)
@@ -295,5 +293,9 @@ module ApplicationHelper
     HTML
     
     html.html_safe
+  end
+  
+  def random_even_unenven
+    (rand(99) % 2).zero? ? "even" : "uneven"
   end
 end

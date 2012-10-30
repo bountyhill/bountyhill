@@ -1,5 +1,7 @@
 <%= header_ribbon_title "retweets.title".t %>
 
-<%= render_form do %>
-  <%= partial "shared/tweet", :quest => @quest, :retweet => true %>
-<% end %>
+<div class="row-fluid main-space">
+  <%= render_form do %>
+    <%= partial "shared/tweet", :quest => @quest, :retweet => true %>
+  <% end %>
+</div>
