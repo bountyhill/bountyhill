@@ -28,21 +28,22 @@ form.home-search {
   p {
     width: 88%;
     margin: 10px 0 0 0;
-    color: $text_minor;
+    color: $text_inverse;
+    font-weight: bold;
   }
   input[type=submit], input[type=text] {
     padding: 4px 20px;
     @include border-radius(4px);
   }
   input[type=text] {
-    margin-right: 10px;
+    margin-right: 20px;
     font-size: 24px;
     font-weight: bold;
     line-height: 32px;
     height: auto;
   }
   input[type=submit] {
-    padding: 11px 14px;
+    padding: 10px 14px;
     line-height: 20px;
     font-size: 18px;
   }
@@ -51,8 +52,9 @@ form.home-search {
 .claim {
   padding: 10px 50px;
   margin-bottom: 40px;
+  font-family: 'Permanent Marker', cursive;
+  color: $highlight;
   h1 {
-    font-family: 'Permanent Marker', cursive;
     font-size: 32px;
   }
   p {
@@ -61,7 +63,7 @@ form.home-search {
   .reemphasis {
     font-family: 'Permanent Marker', cursive;
     font-size: 18px;
-    color: $text_minor;
+    color: $text_inverse;
     font-weight: bold;
   }
   .emphasis {
