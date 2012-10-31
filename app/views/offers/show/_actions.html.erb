@@ -38,9 +38,6 @@
 </div>
 <% end %>
 
-
 <% if (chain = offer.quest.chain_to(offer.owner)) && chain.present? %>
-<div class="inner">
   <% partial "shared/chain", :quest => quest, :chain => chain %>
-</div>
 <% end %>

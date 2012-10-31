@@ -1,6 +1,21 @@
 <%= header_ribbon_button :rect, t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest),
   :text   => t("quest.actions.offer.sub"),
   :social => { :twitter => { :url => share_path(@quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow" }} %>
+  
+  <%#= 
+    action_buttons do |act|
+      act.action :t, :"quest.actions.tweet", :url => share_path(quest)
+      act.action :h, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
+
+      unless (offers_count = quest.offers.count).zero?
+        act.action :d, 
+          I18n.t("quest.actions.review.title", :count => offers_count), 
+          I18n.t("quest.actions.review.sub", :count => offers_count), 
+          :url => offers_path(:quest_id => quest)
+      end
+    end
+  %>
+  
 <div class="row bg-main" >
   <div class="span12">
     <% if mobile? %>
@@ -26,27 +41,30 @@
       </div>
     </div>
     <% else %>
-    <div class="row">
-      <div class="span8">
-        <article class="quest sheet <%= random_even_unenven %>">
-          <div class="shadow top left"></div><div class="shadow top right"></div>
-          <div class="inner">
-            <%= partial "quests/show/head", :quest => @quest %>
-            <%= partial "quests/show/criteria", :quest => @quest %>
-          </div>
-          <div class="shadow bottom left"></div><div class="shadow bottom right"></div>
-        </article>
+      <div class="row">
+        <div class="span8">
+          <article class="quest sheet <%= random_even_unenven %>">
+            <div class="shadow top left"></div><div class="shadow top right"></div>
+            <div class="inner">
+              <%= partial "quests/show/head", :quest => @quest %>
+              <%= partial "quests/show/criteria", :quest => @quest %>
+            </div>
+            <div class="shadow bottom left"></div><div class="shadow bottom right"></div>
+          </article>
+        </div>
+        <div class="span1">&nbsp;</div>
+        <div class="span3">
+          <%= partial "quests/show/actions", :quest => @quest %>
+          <%#= partial "quests/show/expires_at", :quest => @quest %>
+          <%#= partial "quests/show/location", :quest => @quest %>
+        </div>
       </div>
-      <div class="span1">&nbsp;</div>
-      <div class="span3">
-        <%= partial "quests/show/actions", :quest => @quest %>
-        <%= partial "quests/show/expires_at", :quest => @quest %>
-        <%#= partial "quests/show/location", :quest => @quest %>
+      <div class="comments">
+        <%= partial "shared/comments", :commentable => @quest %>
       </div>
-    </div>
-    <div class="comments">
-      <%= partial "shared/comments", :commentable => @quest %>
-    </div>
+      <% if (chain = @quest.chain_to(current_user)) && chain.present? %>
+        <% partial "shared/chain", :quest => @quest, :chain => chain %>
+      <% end %>
     <% end %>
   </div>
 </div>

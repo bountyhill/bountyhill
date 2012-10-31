@@ -39,3 +39,65 @@
     }
   }
 }
+
+.sticker {
+  position: relative;
+  left: -20px;
+  li {
+    position: relative;
+    height: 80px;
+    width: 160px;
+    margin-bottom: 10px;
+    padding: 20px 10px 10px 20px;
+    color: $highlight;
+    font-family: 'Permanent Marker', cursive;
+    line-height: 1.2;
+    border: 1px solid $sticker;
+    background-color: $sticker;
+    @include box-shadow(rgba(0, 0, 0, .7) 0px 3px 5px);
+    &:nth-child(odd) { 
+      @include rotate(-1deg);
+      left: 0px;
+    }
+    &:nth-child(even) { 
+      @include rotate(-1deg);
+      left: 0px;
+    }
+    &:first-child, &:last-child {
+      @include rotate(0deg);
+      left: -5px;
+    }
+    &:nth-child(2n) { 
+      @include rotate(-1deg);
+      left: 5px;
+    }
+    &:nth-child(3n) {
+      @include rotate(1deg);
+      left: -5px;
+    }
+    &:nth-child(4n) { 
+      @include rotate(-1deg);
+      left: 5px;
+    }
+    &:nth-child(5n) {
+      @include rotate(-2deg);
+      left: -5px;
+    }
+    p  {
+      font-family: 'Permanent Marker', cursive !important;
+      font-size: 22px;
+    }
+    strong {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 30px;
+    }
+    small {
+      font-size: 18px;
+    }
+    &.bounty {
+      &.small   > p { color: $bounty_minor; }
+      &.medium  > p { color: $bounty_normal; }
+      &.large   > p { color: $bounty_major; }
+    }
+  }
+}

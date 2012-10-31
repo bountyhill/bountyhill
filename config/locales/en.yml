@@ -189,27 +189,27 @@ en:
       title: "days"
       sub: "untill this quest ends."
       none: 
-        title: "No expiration"
-        sub: "This quest is not yet started."
+        title: "Not running"
+        sub: "Quest was not started yet."
     location:
       title: "%{location}"
-      sub:   "Preferred location for offers."
-      none: 
-        title:  "No location"
-        sub:    "Offers accepted from anywhere."
-    criteria:
-      title:    "criteria"
-      sub:      "are to match."
+      sub: "Preferred location for offers."
       none:
-        title:  "No criteria"
-        sub:    "have been established for this quest."
+        title: "No location"
+        sub: "Offers accepted from anywhere."
+    criteria:
+      title: "criteria"
+      sub: "are to match."
+      none:
+        title: "No criteria"
+        sub: "have been established for this quest."
       description:
-        none:   "No description."
+        none: "No description."
     image:
-      title:  "image"
-      sub:    "has been uploaded."
+      title: "image"
+      sub: "has been uploaded."
     actions:
-      new:     
+      new:
         title: Start your quest
         sub: on bountyhill.
       tweet:
@@ -223,10 +223,10 @@ en:
         sub: "See all %{count} offers made."
       bounty: 
         title: "bounty"
-        sub: has been promised for this quest.
+        sub: has been promised.
       retweets: 
-          title: "retweets"
-          sub: have been posted so far.
+        title: "retweets"
+        sub: have been posted by now.
       offers:
         title: "offers"
         sub: for this quest so far.

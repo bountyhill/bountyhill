@@ -1,5 +1,4 @@
 .comments {
-  margin: 40px 0;
   &:before {
     width: 0;
   }
@@ -8,16 +7,22 @@
   }
 }
 
-#comments {
+ul#comments {
+  margin: 0;
   color: #000;
+  .avatar {
+    width: 32px;
+    height: 32px;
+  }
 }
 
-#comments .avatar {
-  width: 32px;
-  height: 32px;
-}
-
-#new_comment textarea {
-  width: 100%;
-  height: 60px;
+#new_comment { 
+  textarea {
+    width: 100%;
+    height: 60px;
+  }
+  p { 
+    margin-top: 10px;
+    color: #000;
+  }
 }

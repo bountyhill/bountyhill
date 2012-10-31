@@ -36,7 +36,7 @@
     .quest-cell {
       height: 256px;
       position: relative;
-      border: 1px solid $background;
+      border: 1px solid $background_highlight;
       .tape{
         position:absolute;
         top: -15px;
@@ -140,6 +140,7 @@
 
 article {
   &.quest {
+    margin-bottom: 80px;
     h1 {
       font-size: 24px;
       line-height: 32px;
@@ -202,19 +203,6 @@ article {
         background-color: #666;
         @include border-radius(100px);
       }
-    }
-  }
-}
-
-h1, h2 {
-  font-size: 24px;
-  line-height: 36px;
-  text-transform: none;
-  color: $highlight;
-  span {
-    strong  { font-size: 32px; }
-    &.bounty {
-      strong { font-size: 36px; }
     }
   }
 }
