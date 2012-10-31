@@ -1,37 +1,65 @@
+<%-
+# TODO: build helper method to render a sidebar note. These are the cases:
+#
+# - add custom class on <li> node
+# - add number to headline, in <strong>markup</strong>
+# - make sure the number properly uses .one / .other translation keys
+# - add link to headline, if needed.
+# - add <small>markup</small> for "body"
+#
+-%>
 <ul class="sticker actions">
   <li class="bounty <%= bounty_class(@quest) %>">
-    <p><strong><%= quest.bounty.to_s(:cents => false) %></strong> <%=t "quest.actions.bounty.title" %></p>
+    <p>
+      <strong><%= quest.bounty.to_s(:cents => false) %></strong>
+      <%=t "quest.actions.bounty.title" %>
+    </p>
     <small><%=t "quest.actions.bounty.sub" %></small>
   </li>
   <li>
-    <p><strong><%= quest.criteria.size %></strong> <%=t "quest.criteria.title" , :count => quest.criteria.count %></p>
+    <p>
+      <strong><%= quest.criteria.size %></strong> 
+      <%=t "quest.criteria.title" , :count => quest.criteria.count %>
+    </p>
     <small><%=t "quest.criteria.sub" %></small>
   </li>
   <li>
     <% if quest.expires_at.blank? %>
-      <p><strong><%=t "quest.expires_at.none.title" %></strong></p>
-      <small><%=t "quest.expires_at.none.sub" %></small>
+    <p>
+      <strong><%=t "quest.expires_at.none.title" %></strong>
+    </p>
+    <small><%=t "quest.expires_at.none.sub" %></small>
+    <% elsif quest.expires_at > Time.now %>
+    <p>
+      <strong><%= (quest.expires_at.to_date - Date.today).to_i %></strong> 
+      <%=t "quest.expires_at.title" %>
+    </p>
+    <small><%=t "quest.expires_at.sub" %></small>
     <% else %>
-      <p><strong><%= (quest.expires_at.to_date - Date.today).to_i %></strong> <%=t "quest.expires_at.title" %></p>
-      <small><%=t "quest.expires_at.sub" %></small>
+    <p>
+      <strong><%= (Date.today - quest.expires_at.to_date).to_i %></strong> 
+      <%=t "quest.expired_at.title" %>
+    </p>
+    <small><%=t "quest.expired_at.sub" %></small>
     <% end %>
   </li>
-<% if quest.offers.present? %>
+  <% if quest.offers.present? %>
   <li>
-    <%= link_to offers_path(:quest_id => quest) do
-      "<p>" + strong(quest.offers.count) + " #{t('quest.actions.offers.title')}" + "</p>" +
-      small(t("quest.actions.offers.sub"))
-    end %>
+    <p>
+    <%= link_to t('quest.actions.offers.title', :count => quest.offers.count), 
+          offers_path(:quest_id => quest) %>
+    </p>
+    <small><%=t("quest.actions.offers.sub") %></small>
   </li>
   <li>
     <p><strong><%= quest.compliance %>%</strong> <%=t "quest.actions.compliance.title" %></p>
     <small><%=t "quest.actions.compliance.sub" %></small>
   </li>
-<% end %>
-<% if (number_of_tweets = quest.number_of_tweets).present? %>
+  <% end %>
+  <% if (number_of_tweets = quest.number_of_tweets).present? %>
   <li>
       <p><strong><%= number_of_tweets %></strong> <%=t "quest.actions.retweets.title" %></p>
       <small><%=t "quest.actions.retweets.sub" %></small>
   </li>
-<% end %>
+  <% end %>
 </ul>

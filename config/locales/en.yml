@@ -185,9 +185,12 @@ en:
       edit: "Edit quest"
       create: "<strong>Describe your quest</strong> by filling out the form below"
     new: Post a Quest
+    expired_at:
+      title: "days"
+      sub: "since this quest ended."
     expires_at:
       title: "days"
-      sub: "untill this quest ends."
+      sub: "until this quest ends."
       none: 
         title: "Not running"
         sub: "Quest was not started yet."
@@ -228,7 +231,9 @@ en:
         title: "retweets"
         sub: have been posted by now.
       offers:
-        title: "offers"
+        title:
+          one: "%{count} offers"
+          other: "One offers"
         sub: for this quest so far.
       compliance:
         title: "compliance"

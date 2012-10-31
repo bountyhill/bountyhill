@@ -55,6 +55,10 @@ module ApplicationHelper
     _content_tag(:p, *content, &block)
   end
   
+  def small(*content, &block)
+    _content_tag(:small, *content, &block)
+  end
+  
   def xmp(s)
     content_tag :xmp, s
   end
