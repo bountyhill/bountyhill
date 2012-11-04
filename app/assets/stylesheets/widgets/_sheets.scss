@@ -83,16 +83,23 @@
       @include rotate(-2deg);
       left: -5px;
     }
+    a {
+      color: $highlight;
+      &:hover {
+        color: $highlight;
+        text-decoration: none;
+      };
+    }
     p  {
       font-family: 'Permanent Marker', cursive !important;
-      font-size: 22px;
+      font-size: 20px;
     }
     strong {
       font-family: 'Permanent Marker', cursive;
-      font-size: 30px;
+      font-size: 28px;
     }
     small {
-      font-size: 18px;
+      font-size: 16px;
     }
     &.bounty {
       &.small   > p { color: $bounty_minor; }
