@@ -18,7 +18,7 @@
           }
         }
       }
-      &.active > a, a:hover {
+      &.active > a, &.active > a:hover, a:hover {
         background:  $navigation_highlight;
         color: $text;
       }
