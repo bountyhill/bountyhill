@@ -31,4 +31,11 @@ module QuestsHelper
             end
     I18n.t "quests.filter.#{scope}.sub", :count => count
   end
+  
+  def render_sticker_note(options={})
+    li :class => options[:html_class] do
+      p("#{strong(options[:count])} #{options[:title]}") +
+      small(options[:subtitle])
+    end    
+  end
 end
