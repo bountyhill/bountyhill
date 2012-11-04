@@ -220,7 +220,7 @@ en:
         sub: Secure your chance for a part of the bounty.
       offer:
         title: Post an offer
-        sub: to win the bounty.
+        sub: to earn the bounty.
       review:
         title: Review
         sub: "See all %{count} offers made."
