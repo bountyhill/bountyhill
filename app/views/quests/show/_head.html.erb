@@ -5,7 +5,7 @@
 <div class="profile">
   <%= avatar quest.owner, :size => 128 %>
   <%= link_to user_path(quest.owner) do %>
-    <%= quest.owner.twitter_handle %>
+    <%= quest.owner.twitter_handle %><br>
     <h2><%= quest.owner.name %></h2>
   <% end %>
   
