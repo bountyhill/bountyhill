@@ -49,16 +49,30 @@
   float: right;
   margin: 0;
   a {
-    text-transform: capitalize;
+    font-family: 'WebSymbolsRegular' !important;
     color: $text;
+    font-size: 20px;
+    margin: 0 5px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    };
     &:hover {
       text-decoration: none;
+      background-color: $highlight !important;
+    }
+    &.twitter {
+      &:hover {
+        background-color: $twitter !important;
+      }
     }
   }
 }
 .horizontal-ribbon {
   .socialmedia {
-    margin: 15px 15px 0 0;
+    margin: 14px 40px;
     a {
       background-color: $background_light;
     }

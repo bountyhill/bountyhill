@@ -221,6 +221,10 @@ en:
       offer:
         title: Post an offer
         sub: to earn the bounty.
+      start:
+        title: Start your quest
+      stop:
+        title: Stop your quest
       review:
         title: Review
         sub: "See all %{count} offers made."

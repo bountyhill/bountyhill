@@ -1,24 +1,12 @@
-<%= 
-  header_ribbon(
+<%= header_ribbon(
     header_action(:rect, new_offer_path(:quest_id => @quest), :title => t("quest.actions.offer.title"), :text => t("quest.actions.offer.sub")),
     header_buttons(
-      header_button(:twitter, share_path(@quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow")
+      start_quest_button(@quest),
+      stop_quest_button(@quest),
+      offer_button(@quest),
+      share_button(@quest)
     )
   ) %>
-
-  <%#=
-    action_buttons do |act|
-      act.action :t, :"quest.actions.tweet", :url => share_path(quest)
-      act.action :h, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)
-
-      unless (offers_count = quest.offers.count).zero?
-        act.action :d, 
-          I18n.t("quest.actions.review.title", :count => offers_count), 
-          I18n.t("quest.actions.review.sub", :count => offers_count), 
-          :url => offers_path(:quest_id => quest)
-      end
-    end
-  %>
   
 <div class="row bg-main" >
   <div class="span12">

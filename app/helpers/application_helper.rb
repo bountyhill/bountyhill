@@ -152,14 +152,16 @@ module ApplicationHelper
   end
   
   HEADER_ICONS = {
-    :bubble  => "c",
-    :rect    => "d",
-    :twitter => "t"
+    :bubble   => "d",
+    :rect     => "c",
+    :twitter  => "t",
+    :start    => "V",
+    :stop     => "W"
   }
 
   def header_buttons(*buttons)
     div :class => "socialmedia" do
-      buttons.join.html_safe
+      buttons.compact.join.html_safe
     end
   end
   
