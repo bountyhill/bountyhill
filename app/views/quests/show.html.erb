@@ -1,8 +1,12 @@
-<%= header_ribbon_button :rect, t("quest.actions.offer.title"), new_offer_path(:quest_id => @quest),
-  :text   => t("quest.actions.offer.sub"),
-  :social => { :twitter => { :url => share_path(@quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow" }} %>
-  
-  <%#= 
+<%= 
+  header_ribbon(
+    header_action(:rect, new_offer_path(:quest_id => @quest), :title => t("quest.actions.offer.title"), :text => t("quest.actions.offer.sub")),
+    header_buttons(
+      header_button(:twitter, share_path(@quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow")
+    )
+  ) %>
+
+  <%#=
     action_buttons do |act|
       act.action :t, :"quest.actions.tweet", :url => share_path(quest)
       act.action :h, :"quest.actions.offer", :url => new_offer_path(:quest_id => quest)

@@ -1,7 +1,7 @@
-<%= header_ribbon_title i18n_title_for(@quest) %>
+<%= header_ribbon h1(i18n_title_for(@quest)) %>
 
 <div class="row-fluid main-space">
-  <%= render_form do %>
-    <%= render "form" %>
-  <% end %>
+  <%= render_form do
+    render "form"
+  end %>
 </div>

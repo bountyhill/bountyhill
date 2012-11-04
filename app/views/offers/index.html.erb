@@ -1,7 +1,7 @@
-<%= 
-  header_ribbon_button :rect, t("offers.all.sub"), "/offers",
-    :text   => I18n.t("offers.all.title", :count => @offers.total_entries)
-%>
+<%= header_ribbon(
+  header_action(:rect, "/offers", :title => I18n.t("offers.all.title", :count => @offers.total_entries), :text => t("offers.all.sub"))
+) %>
+
 <div class="row bg-main" >
   <!-- tiles -->
   <div class="span12 bg-black">

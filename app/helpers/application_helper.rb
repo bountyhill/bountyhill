@@ -151,31 +151,45 @@ module ApplicationHelper
     end
   end
   
-  
   HEADER_ICONS = {
     :bubble  => "c",
     :rect    => "d",
     :twitter => "t"
   }
 
-  def render_social_button(key, options)
-    expect! key => HEADER_ICONS.keys, 
-      options => { :url => String }
+  def header_buttons(*buttons)
+    div :class => "socialmedia" do
+      buttons.join.html_safe
+    end
+  end
+  
+  def header_button(icon, url, options={})
+    expect! icon  => HEADER_ICONS.keys
+    expect! url   => String
     
-    url = options.delete(:url)
+    link_to(HEADER_ICONS[icon], url, options.merge(:class => "social-item #{icon}"))
+  end
+
+  def header_action(icon, url, options={})
+    title = options.delete(:title).to_s
+    text = options.delete(:text).to_s
     
-    link_to(HEADER_ICONS[key], url, options.merge(:class => "social-item #{key}"))
+    link_to url, options.merge(:class => "header-action") do
+      div(HEADER_ICONS[icon] || "", :class => "icon") + 
+      p("#{strong title} #{text}".html_safe)
+    end
   end
 
   def header_ribbon(*elements)
     options   = elements.extract_options!
-
+    span_size = 12 / elements.size
+    
     div(:class => "horizontal-ribbon") do
       [
         div(:class => "row-fluid bg-gray") do
           div(:class => "span12") do
             elements.map do |element|
-              div element, :class => "span4"
+              div element, :class => "span#{span_size}"
             end.join.html_safe
           end
         end,
@@ -184,68 +198,6 @@ module ApplicationHelper
       ].join.html_safe
     end
   end
-  
-  def header_button(button, name, url, options)
-    link_to(url, :method => options[:method], :class => "header-button") do
-      div(HEADER_ICONS[button] || "", :class => "icon") + 
-      p("#{strong name} #{options[:text]}".html_safe)
-    end
-  end
-  
-  # returns the header ribbon in form of a button
-  # this is used e.g. on top of list or detail pages
-  def header_ribbon_button(button, name, url, options={})
-    expect! button => Symbol  # symbol which describes which icon to render
-    expect! name => String    # title
-    expect! url => String     # url
-    expect! options => {
-      :text => [String, nil]  # subtitle
-    }     
-    
-    header_button = link_to(url, :method => options[:method], :class => "header-button") do
-      div(HEADER_ICONS[button] || "", :class => "icon") + 
-      p("#{strong name} #{options[:text]}".html_safe)
-    end
-    
-    social_buttons = if options[:social]
-      div :class => "socialmedia" do
-        options[:social].map do |key, button_options|
-          render_social_button key, button_options
-        end.join.html_safe
-      end
-    end
-    
-    div(:class => "horizontal-ribbon") do
-      [
-        div(:class => "row-fluid bg-gray") do
-          div(:class => "span12") do
-            "#{header_button}#{social_buttons}".html_safe
-          end
-        end,
-        div(:class => "corner left"),
-        div(:class => "corner right")
-      ].join.html_safe
-    end
-  end
-
-  # returns the header ribbon in form of a headline
-  # this is used e.g. on top of forms
-  def header_ribbon_title(title)
-    expect! title => String
-
-    div(:class => "horizontal-ribbon") do
-      [
-        div(:class => "row-fluid bg-gray") do
-          div(:class => "span12 headline inner") do
-              p title
-          end
-        end,
-        div(:class => "corner left"),
-        div(:class => "corner right")
-      ].join.html_safe
-    end
-  end
-
   
   def render_form(span_left=2, span_right=2, &block)
     span = 12 - span_left - span_right

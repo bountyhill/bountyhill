@@ -1,6 +1,6 @@
 <%= header_ribbon(
-  header_button(:bubble, t("quest.actions.new.title"), new_quest_path, :text => t("quest.actions.new.sub")),
-  partial("quests/index/head"),
+  header_action(:bubble, new_quest_path, :title => t("quest.actions.new.title"), :text => t("quest.actions.new.sub")),
+  partial("quests/index/head"), 
   "&nbsp") %>
 
 <div class="row bg-main">

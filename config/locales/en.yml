@@ -81,11 +81,11 @@ en:
     contact: Contact
   settings: Settings
   runs:
-    title: "<strong>Start your quest</strong> on bountyhill"
+    title: "Start your quest <small>on bountyhill</small>"
     legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
     preview: "This preview shows how your quest will be tweeted."
   sessions:
-    title: "<strong>Sign in</strong> and climb up on bountyhill"
+    title: "Sign in <small>and climb up on bountyhill</small>"
     # Note: the bountyhermes name is referred here in both the text and 
     # the twitter target link. It must match the twitter_notifications 
     # entry in the bountybase configuration - if you change it there, it
@@ -183,7 +183,7 @@ en:
     title:
       show: ""
       edit: "Edit quest"
-      create: "<strong>Describe your quest</strong> by filling out the form below"
+      create: "Describe your quest <small>by filling out the form below<small>"
     new: Post a Quest
     expired_at:
       title: "days"
@@ -271,9 +271,11 @@ en:
         title:  Withdraw this offer…
         sub:    and notify its receiver.
   offers:
-    all:      
-      title: "All offers (%{count})"
-      sub:   "All offers in the system."
+    all:
+      title: 
+        one: "%{count} offer has been"
+        other: "%{count} offers have been"
+      sub:   "posted in total"
   deferred_actions:
     invalid:          "This link is no longer valid."
     reset_password:   "You have been logged in. Please update your password." 

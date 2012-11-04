@@ -1,7 +1,10 @@
 <%= 
-  header_ribbon_button :rect, t("show.actions.offer.title"), "/offers",
-    :text   => t("show.actions.offer.sub")
-%>
+  header_ribbon(
+    header_action(:rect, "/offers", :title => t("show.actions.offer.title")),
+    t("show.actions.offer.sub"),
+    "&nbsp"
+  ) %>
+
 <div class="row bg-main" >
   <div class="span12 bg-solid-black">
     <% if mobile? %>
