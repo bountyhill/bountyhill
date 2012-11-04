@@ -2,14 +2,13 @@
 # note that when changing this file you probably want to change _description.html.erb
 # and _image.html.erb too.
 -%>
-<div class="inner">
-  <div class="profile">
-    <%= avatar quest.owner, :size => 128 %>
-    <%= link_to user_path(quest.owner) do %>
-      <h2><%= quest.owner.name %></h2>
-    <% end %>
-    <div class="handle"><%= link_to_twitter_account quest.owner %></div>
-  </div>
-  <%= h1 quest.title %>
-  <%= p quest.description %>
+<div class="profile">
+  <%= avatar quest.owner, :size => 128 %>
+  <%= link_to user_path(quest.owner) do %>
+    <%= quest.owner.twitter_handle %>
+    <h2><%= quest.owner.name %></h2>
+  <% end %>
+  
 </div>
+<%= h1 quest.title %>
+<%= p quest.description %>

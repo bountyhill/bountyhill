@@ -141,39 +141,49 @@
 
 article {
   &.quest {
+    position: relative;
     margin-bottom: 80px;
     font-family: 'Amaranth', sans-serif;
+    .inner {
+      padding: 40px;
+    }
     h1 {
+      clear: both;
+      display: inline-block;
+      padding: 30px 0 10px 0;
       font-size: 24px;
       line-height: 32px;
-      margin: 10px 0 0 148px;
       color: $text_inverse;
     }
     .profile {
-      a {
-        color: $twitter;
-        h2 {
-          margin: 0 0 5px 148px;
-          font-size: 22px;
-          line-height: 1.0;
-        }
+      .avatar {
+        @include square(128px);
       }
-      .handle {
+      a {
+        position: absolute;
+        top: 122px;
+        left: 198px;
         color: $twitter;
+        line-height: 1.0;
         font-size: 18px;
+        h2 {
+          font-size: 22px;
+        }
       }
     }
     p {
       font-family: 'Amaranth', sans-serif !important;
       clear: both;
-      padding: 30px 0;
+      padding: 10px 0;
       font-size: 18px;
     }
   }
 }
 
 .criteria {
-  ul { margin: 0; }
+  ul { 
+    margin: 20px 0 0 0; 
+  }
   .accordion-group {
     border: none;
     &:hover {
@@ -186,6 +196,7 @@ article {
   }
   .accordion-heading {
     position: relative;
+    padding: 0px 15px 15px 0;
     h3 {
       margin-left: 36px;
       text-align: left;
