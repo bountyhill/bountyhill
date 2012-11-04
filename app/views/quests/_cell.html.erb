@@ -1,22 +1,24 @@
 <div class="quest-cell no-flicker">
   <div class="tape"></div>
-  <%#= render_bounty_ribbon quest %>
   <%= render_bounty_badge quest %>
   <div class="inner">
-    <div class="profile">
+    <%= link_to user_path(quest.owner), :class => "profile" do %>
       <%= avatar quest.owner, :size => 64 %>
-      <%= link_to user_path(quest.owner), :class => "handle" do %>
+      <div class="handle">
         <%= quest.owner.twitter_handle %></br>
         <strong><%= quest.owner.name %></strong>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+    
     <%= link_to quest_path(quest), :class => "request" do %>
       <%= h2(truncate(quest.title, :length => 100)) %>
     <% end %>
+    
     <div class="restrictions">
       <%= render_restriction quest, :expires_at %>
       <%#= render_restriction quest, :location %>
     </div>
+    
     <div class="socialmedia">
       <%= link_to "t", share_path(quest), :title => t("quest.actions.tweet.title"), :class => "social-item twitter", :rel => "nofollow" %>
     </div>
