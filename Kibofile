@@ -26,7 +26,7 @@ live:
   addons:
     web1:
       - pgbackups:auto-month
-      - neo4j:test
+      - neo4j:try
       - sendgrid:starter
       - openredis:micro
       - heroku-postgresql:basic
