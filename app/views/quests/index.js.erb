@@ -1,6 +1,6 @@
 <% if @quests.total_pages > @quests.current_page -%>
 $('ul.quests').append('<%= escape_javascript(render(partial: 'list')) %>');
-$('a.endless_scroll_hook').attr('href', '<%= quests_path(page: (params[:page].to_i || 1)+1) %>').show();
+$('a.endless_scroll_hook').attr('href', '<%= quests_path(params.merge(:page => (params[:page].to_i || 1)+1)) %>').show();
 <% else -%>
 $('a.endless_scroll_hook').hide();
 <% end -%>

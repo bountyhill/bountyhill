@@ -8,6 +8,9 @@
     <ul class="row quests">
       <%= render :partial => 'quests/list' %>
     </ul>
-    <%= link_to I18n.t("status.loading"), quests_path(:page => (params[:page].to_i || 1)+1), :class => 'endless_scroll_hook', :remote => true %>
+    <%= link_to I18n.t("status.loading"), 
+      quests_path(params.merge(:page => (params[:page].to_i || 1)+1)), 
+      :class => 'endless_scroll_hook', 
+      :remote => true %>
   </div>
 </div>
