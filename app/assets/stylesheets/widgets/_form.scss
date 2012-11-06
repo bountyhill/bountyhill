@@ -3,6 +3,7 @@
   padding: 40px 35px 40px 40px;
   background-color: $background_inverse;
   position: relative;
+  color: $text_inverse;
   .tape {
     position:absolute;
     width: 120px;
@@ -103,6 +104,7 @@ form {
     font-weight: bold;
   }
   .buttons {
+    clear: both;
     text-align: right;
 /*
     padding-left: 10px; // to compensate padding of input fields and text areas
