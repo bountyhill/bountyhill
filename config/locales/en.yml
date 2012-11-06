@@ -312,3 +312,6 @@ en:
     email:      "Please sign in with your email address."
     confirmed:  "Please confirm your email address."
     twitter:    "Please sign in with twitter."
+  retweets:
+    title: Tweet this quest
+    legend: Enter the message you want to tweet. Your message will be complement with the height of the bounty and the url of the quest.
