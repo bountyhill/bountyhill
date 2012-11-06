@@ -83,7 +83,6 @@ en:
   runs:
     title: "Start your quest <small>right now</small>"
     legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
-    preview: "This preview shows how your quest will be tweeted."
   sessions:
     title: "Sign in <small>and climb up on bountyhill</small>"
     # Note: the bountyhermes name is referred here in both the text and 

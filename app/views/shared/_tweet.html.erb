@@ -51,11 +51,11 @@
     </div>
     <% end %>
     <%= form.control_group :message, :text_area, :rows => 2, :value => quest.title, :hint => false %>
-    
-    <legend class="preview"><%= I18n.t(:"runs.preview")%></legend>
-    <%= form.control_group :tweet, :hidden_field %>
-    <div id="tweet"> </div>
-    
+    <div class="tweet-container">
+      <%= form.control_group :tweet, :hidden_field %>
+      <%= avatar current_user, :size => 48 %>
+      <div id="tweet"> </div>
+    </div>
     <%= form.actions :label => "Start", :cancel_url => quest_path(quest) %>
   </fieldset>
 <% end %>

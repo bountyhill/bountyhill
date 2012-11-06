@@ -159,37 +159,46 @@ form {
   padding-right: 15px;
   .input-xxlarge {
     width: 100%;
+    min-height: 60px;
   }
   input {
     &.bounty {
       width: 60px;
     }
   }
-  legend {
-    &.preview {
-      color: $twitter;
-      margin: 30px 0 5px 0;
-      font-weight: bold;
-    }
-  }
-  #tweet {
-    width: 100%;
-    min-height: 40px;
-    padding: 5px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 20px;
-    border: 2px solid $twitter;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -khtml-border-radius: 3px;
+  textarea {
+   box-sizing: border-box;
   }
 }
 
+.tweet-container {
+  position: relative;
+  margin-top: 36px;
+  #tweet {
+    min-height: 60px;
+    padding: 10px;
+    margin: 0 0 20px 60px;;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Amaranth', normal;
+    line-height: 1.2;
+    background-color: $tweet;
+    border: 2px solid $tweet;
+    @include border-radius(3px);
+    &:before {
+      content: "";
+      display: block;
+      height: 0;
+      width: 0;
+      border: 10px solid $tweet;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent $tweet transparent transparent;
+      position: absolute;
+      left: 50px;
+      top: 15px;
+    }
+  }
+}
 
 @media (max-width: 1199px) {
   .input-xxlarge {
