@@ -1,0 +1,5 @@
+.avatar {
+  float: left;
+  margin-right: 20px;
+  @include border-radius(3px, 3px);
+}
