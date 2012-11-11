@@ -1,8 +1,5 @@
-<% 
-span    = personal_page? ? 'span8' : 'span4'
-partial = personal_page? ? 'cell-large' : 'cell'
-@quests.each do |quest| %>
-  <li class="<%= span %>">
-    <%= render :partial => partial, :locals => { :quest => quest } %>
+<% @quests.each do |quest| %>
+  <li class="span4">
+    <%= render :partial => 'pin', :locals => { :quest => quest } %>
   </li>
 <% end %>

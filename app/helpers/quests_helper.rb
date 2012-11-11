@@ -20,24 +20,16 @@ module QuestsHelper
     header_button(:start, run_path(quest), :title => t("quest.actions.start.title"),  :rel => "nofollow")
   end
   
-  def render_bounty_badge(quest)
-    expect! quest => [Quest, Offer]
+  def render_bounty_badge(object)
+    expect! object => [Quest, Offer]
     
-    div quest.bounty.to_s(:cents => false), :class => "bounty_badge #{bounty_class(quest)}"
+    div object.bounty.to_s(:cents => false), :class => "bounty_badge #{bounty_class(object)}"
   end
   
-  def render_bounty_ribbon(quest)
-    expect! quest => [Quest, Offer]
+  def bounty_class(object)
+    expect! object => [Quest, Offer]
     
-    div :class => "ribbon-wrapper right" do
-      div quest.bounty.to_s(:cents => false), :class => "ribbon #{bounty_class(quest)}"
-    end
-  end
-  
-  def bounty_class(quest)
-    expect! quest => [Quest, Offer]
-    
-    amount = quest.bounty.to_f
+    amount = object.bounty.to_f
     return if amount <= 0
     
     if    amount < 100  then  "small"

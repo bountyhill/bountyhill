@@ -10,23 +10,23 @@
     @include box-shadow(rgba(0, 0, 0, .7) 5px 5px 7px);
     @include transition-duration(0.15s);
     &:nth-child(even) {
-      @include rotate(3deg);
+      @include rotate(1deg);
       top:5px;
     }
     &:nth-child(3n), &:first-child {
-      @include rotate(-3deg);
+      @include rotate(-1deg);
       top:0px;
     }
     &:nth-child(5n) {
-      @include rotate(-1deg);
+      @include rotate(-2deg);
       top:-5px;
     }
     &:hover {
       @include box-shadow(rgba(0,0,0,.7) 10px 10px 7px);
-      @include scale(1.15);
+      @include scale(1.1);
       z-index:5;
     }
-    .quest-cell {
+    .pin {
       height: 256px;
       position: relative;
       border: 1px solid #ddd;
@@ -61,21 +61,19 @@
           }
         }
       }
-      a {
+      .request {
+        display: inline-block;
+        overflow: hidden;
+        clear: both;
+        width: 100%;
+        height: 98px;
+        margin: 20px 0 0 0;
         text-decoration: none;
-        &.request {
-          display: inline-block;
-          clear: both;
-          width: 100%;
-          height: 98px;
-          margin: 20px 0 0 0;
-          overflow: hidden;
-          h2 {
-            color: $text_inverse;
-            font-size: 20px;
-            font-family: 'Amaranth', sans-serif;
-            line-height: 1.2;
-          }
+        h2 {
+          color: $text_inverse;
+          font-size: 20px;
+          font-family: 'Amaranth', sans-serif;
+          line-height: 1.2;
         }
       }
       .bounty_badge {
@@ -98,7 +96,7 @@
       .restrictions {
         float: left;
         margin-top: 10px;
-        width: 80%;
+        width: auto;
         font-family: 'Permanent Marker', cursive;
         text-overflow: ellipsis;
         overflow: hidden;

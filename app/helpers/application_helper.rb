@@ -159,7 +159,7 @@ module ApplicationHelper
     :stop     => "W"
   }
 
-  def header_buttons(*buttons)
+  def interaction_buttons(*buttons)
     div :class => "socialmedia" do
       buttons.compact.join.html_safe
     end

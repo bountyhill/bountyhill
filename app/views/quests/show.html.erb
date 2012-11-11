@@ -1,6 +1,6 @@
 <%= header_ribbon(
     header_action(:rect, new_offer_path(:quest_id => @quest), :title => t("quest.actions.offer.title"), :text => t("quest.actions.offer.sub")),
-    header_buttons(
+    interaction_buttons(
       start_quest_button(@quest),
       stop_quest_button(@quest),
       offer_button(@quest),
