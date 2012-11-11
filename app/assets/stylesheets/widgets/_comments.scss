@@ -25,6 +25,9 @@ ul#comments {
       a {
         color: $twitter;
       }
+      p {
+        margin: 0;
+      }
     }
   }
   ul.replies {
