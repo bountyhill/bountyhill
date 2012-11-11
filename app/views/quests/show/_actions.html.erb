@@ -11,9 +11,9 @@
     :subtitle   => t("quest.criteria.sub")
   ) %>
   <%= count, title, subtitle = 
-      if    quest.expires_at.blank?     then  [t("quest.expires_at.none.title"),              nil,                          t("quest.expires_at.none.sub")]
-      elsif quest.expires_at > Time.now then  [(quest.expires_at.to_date - Date.today).to_i,  t("quest.expires_at.title"),  t("quest.expires_at.sub") ]
-      else                                    [(Date.today - quest.expires_at.to_date).to_i,  t("quest.expired_at.title"),  t("quest.expired_at.sub")]
+      if    quest.expires_at.blank?     then  [nil,                                           t("quest.expires_at.none.title"), t("quest.expires_at.none.sub")]
+      elsif quest.expires_at > Time.now then  [(quest.expires_at.to_date - Date.today).to_i,  t("quest.expires_at.title"),      t("quest.expires_at.sub")]
+      else                                    [(Date.today - quest.expires_at.to_date).to_i,  t("quest.expired_at.title"),      t("quest.expired_at.sub")]
       end
     render_sticker_note(
       :count      => count,
