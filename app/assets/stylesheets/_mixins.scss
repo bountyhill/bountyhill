@@ -4,3 +4,25 @@
   width: $size;
   height: $size;
 }
+
+@mixin comment($font-size) {
+  font-size: $font-size;
+  font-weight: bold;
+  font-family: 'Amaranth', normal;
+  line-height: 1.2;
+  background-color: $comment;
+  border: 2px solid $comment;
+  @include border-radius(3px);
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    border: 10px solid $comment;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent $comment transparent transparent;
+    position: absolute;
+    left: 50px;
+    top: 15px;
+  }
+}

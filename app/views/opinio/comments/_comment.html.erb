@@ -1,16 +1,18 @@
 <% reply = defined?(reply) ? reply : false %>
 <li id="comment_<%= comment.id %>">
   <span>
-    <%= h = avatar comment.owner, :size => 32 %>
-    <%= link_to comment.owner.name, user_path(comment.owner) %>
+    <%= avatar comment.owner, :size => 48 %>
   </span>
-  <p>
+  <div class="comment_text">
+    <%= link_to comment.owner.name, user_path(comment.owner) %>
     <%= simple_format(comment.body) %>
-  </p>
-  <%= link_to t('opinio.actions.delete'), comment_path(comment), :method => :delete, :remote => true %>
+  </div>
+  <span class="interactions">
+    <%= link_to(t('opinio.actions.reply'), reply_comment_path(comment), :remote => true) if Opinio.accept_replies && !reply %>
+    <%= link_to(t('opinio.actions.delete'), comment_path(comment), :method => :delete, :remote => true) %>
+  </span>
   <%# this enables only 1 level of replies %>
   <% if Opinio.accept_replies && !reply %>
-    <span><%= link_to t('opinio.actions.reply'), reply_comment_path(comment), :remote => true %></span>
     <ul id="comment_<%= comment.id %>_replies" class="replies">
       <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
     </ul>

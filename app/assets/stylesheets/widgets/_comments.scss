@@ -9,10 +9,26 @@
 
 ul#comments {
   margin: 0;
-  color: #000;
-  .avatar {
-    width: 32px;
-    height: 32px;
+  color: $text_inverse;
+  li {
+    position: relative;
+    clear: both;
+    margin-bottom: 20px;
+    .interactions {
+      float: right
+    }
+    .comment_text {
+      @include comment(14px);
+      min-height: 40px;
+      padding: 5px;
+      margin-left: 60px;
+      a {
+        color: $twitter;
+      }
+    }
+  }
+  ul.replies {
+    margin-top: 20px;
   }
 }
 
