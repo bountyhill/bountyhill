@@ -3,9 +3,12 @@
  * see https://developers.filepicker.io/docs/web
  */
 jQuery(document).on("change", "input[type=filepicker]", function(event) {
-  var fpfiles = event.originalEvent.fpfile;
+  var fpfiles = event.originalEvent.fpfiles;
   if(!fpfiles) return;
 
+  /* If the widget is in multiple=false mode, then fpfile is not set. */
+  var single_mode = event.originalEvent.fpfile != null;
+  
   var width = 100;
   var height = 140;
   
@@ -16,10 +19,11 @@ jQuery(document).on("change", "input[type=filepicker]", function(event) {
    * The slideshow target node; this is a UL, and new images are
    * added as <li><img src="..."></li> nodes.
    */
-  var slideshow = (function() {
-    var slides = self.data("fp-slides");
-    return jQuery(slides, form);
-  })();
+  var slideshow = jQuery(self.data("fp-slides"), form);
+  
+  if(single_mode) {
+    jQuery("> li", slideshow).empty();
+  }
   
   jQuery.each(fpfiles, function() {
     var url = this.url;

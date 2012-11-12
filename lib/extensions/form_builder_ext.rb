@@ -247,7 +247,7 @@ HTML
       "fp-button-text"  => options[:placeholder],
       "fp-button-class" => "btn",
       "fp-mimetypes"    => mimetypes.join(","),
-      "fp-multiple"     => true,
+      "fp-multiple"     => options.key?(:multiple) ? options[:multiple] : true,
       "fp-services"     => services.join(","),
       "fp-openTo"       => services.first,
       "fp-maxSize"      => maxSize
