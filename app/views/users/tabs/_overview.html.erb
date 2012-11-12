@@ -27,7 +27,7 @@
     <% if quests.present? %>
       <% quests.each do |quest| %>
       <div class="span4">
-        <%= partial "quests/cell", :quest => quest %>
+        <%= partial "quests/pin", :quest => quest %>
       </div>
       <% end %>
     <% else %>
