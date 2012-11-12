@@ -9,6 +9,8 @@
       <fieldset>
         <legend><%= I18n.t(:"account.legend")%></legend>
         <%= form.error_messages %>
+        
+        <%= form.control_group :images, :filepicker, :multiple => false %>
 
         <%= form.control_group :first_name %>
         <%= form.control_group :last_name %>

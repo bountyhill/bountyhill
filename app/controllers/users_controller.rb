@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         redirect_to! @user
       end
     else
-      @user.attributes = passwd
+      @user.attributes = params["user"]
       redirect_to! @user if @user.save
     end
 
