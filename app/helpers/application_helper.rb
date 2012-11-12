@@ -95,11 +95,16 @@ module ApplicationHelper
       span = self.span value, :class => "locality"
     when :expires_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
-      span = self.span t('restriction.temporality', :count => (value.to_date - Date.today).to_i), :class => "temporality"
+      days = (value.to_date - Date.today).to_i
+      span = if value > Time.now
+        self.span t('restriction.expires_on', :count => days), :class => "temporality"
+      else
+        self.span t('restriction.expired_on', :count => -days), :class => "temporality"
+      end
     when :created_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
-      span = self.span t('restriction.created_at', :time => time_ago_in_words(value)), :class => "temporality"
-      span = self.span t('restriction.created_at', :time => value.to_s), :class => "temporality"
+      days = (value.to_date - Date.today).to_i
+      span = self.span t('restriction.created_on', :count => -days), :class => "temporality"
     when :compliance
       icon = image_tag '/images/icon/location.png', :class => 'compliance'
       span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"

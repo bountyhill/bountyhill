@@ -23,11 +23,19 @@ en:
     add_twitter: "Add your twitter account"
     add_email: "Add your email"
   restriction:
-    temporality: 
-      one: "%{count} day left"
-      other: "%{count} days left"
+    expires_on: 
+      zero:   "ends today"
+      one:    "one day left"
+      other:  "%{count} days left"
+    expired_on: 
+      zero:   "ended today"
+      one:    "ended yesterday"
+      other:  "ended %{count} days ago"
     compliance: "Compliance: %{compliance}%"
-    created_at: "%{time}"
+    created_on: 
+      zero:   "today"
+      one:    "yesterday"
+      other:  "%{count} days ago"
   comments:
     headline:
       one:    comment
