@@ -5,14 +5,12 @@
 jQuery(document).on("change", "input[type=filepicker]", function(event) {
   var fpfiles = event.originalEvent.fpfiles;
   if(!fpfiles) return;
-
-  /* If the widget is in multiple=false mode, then fpfile is not set. */
-  var single_mode = event.originalEvent.fpfile != null;
   
   var width = 100;
   var height = 140;
   
   var self = jQuery(this);
+  var single_mode = self.data("fpMultiple") != true; /* multiple images? */
   var form = self.closest("form");
 
   /*
