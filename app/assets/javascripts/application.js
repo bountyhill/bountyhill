@@ -12,8 +12,7 @@
 //
 // Note: we do not require jquery. We will load jquery from google's CDN.
 //  no_require jquery
-//
-//= require jquery_ujs
+//  no_require jquery_ujs
 //
 //= require bootstrap.js
 //= require_tree ./components
