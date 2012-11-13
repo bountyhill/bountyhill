@@ -2,6 +2,12 @@
   position: relative;
   background-color: $background_inverse;
   color: $text_inverse;
+  &.math {
+    background-image: url(../images/math-paper.jpg);
+  }
+  &.lined {
+    background-image: url(../images/lined-paper.jpg);
+  }
   &.even {
     @include transform(rotate(-0.5deg) skew(0,0) translate(50px, 0px));
   }
@@ -10,6 +16,7 @@
   }
   .inner {
     background-color: inherit;
+    background-image: inherit;
   }
   .shadow {
     width: 140px;
@@ -40,6 +47,39 @@
   }
 }
 
+.tape {
+  position:absolute;
+  width: 120px;
+  height: 35px;
+  background-color: $background_inverse;
+  opacity:0.6;
+  border-left: 1px dashed rgba(0, 0, 0, 0.1);
+  border-right: 1px dashed rgba(0, 0, 0, 0.1);
+  @include box-shadow(#cccccc 0px 0px 1px 0px);
+  &.top {
+    top: 0px;
+    &.left {
+      left: -40px;
+      @include transform(rotate(-45deg) skew(0,0));
+    }
+    &.right {
+      right: -40px;
+      @include transform(rotate(45deg) skew(0,0));
+    }
+  }
+  &.bottom {
+    bottom: 0px;
+    &.left {
+      left: -40px;
+      @include transform(rotate(45deg) skew(0,0));
+    }
+    &.right {
+      right: -40px;
+      @include transform(rotate(-45deg) skew(0,0));
+    }
+  }
+}
+
 .sticker {
   position: relative;
   left: -20px;
@@ -48,13 +88,12 @@
     height: 80px;
     width: 160px;
     margin-bottom: 10px;
-    padding: 20px 10px 10px 20px;
+    padding: 10px 20px;
     color: $highlight;
     font-family: 'Permanent Marker', cursive;
-    line-height: 1.2;
-    border: 1px solid $sticker;
-    background-color: $sticker;
-    @include box-shadow(rgba(0, 0, 0, .7) 0px 3px 5px);
+    border: 1px solid $sticker_yellow;
+    background-color: $sticker_yellow;
+    @include box-shadow(rgba(0, 0, 0, .3) 0px 3px 3px);
     &:nth-child(odd) { 
       @include rotate(-1deg);
       left: 0px;
@@ -91,6 +130,7 @@
       };
     }
     p  {
+      margin-top: 10px;
       font-family: 'Permanent Marker', cursive !important;
       font-size: 20px;
     }

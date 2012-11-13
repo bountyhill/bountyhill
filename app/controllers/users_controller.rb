@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    case params["tab"]
+    case params["section"]
     when "passwd"
       identity = params["identity"] || {}
       password_old = params["identity"].delete("password_old")
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         redirect_to! @user
       end
     else
-      @user.attributes = passwd
+      @user.attributes = params["user"]
       redirect_to! @user if @user.save
     end
 
@@ -43,19 +43,6 @@ class UsersController < ApplicationController
   end
   
   private
-  
-  def active_tab
-    params[:tab] || current_tabs.first
-  end
-  
-  helper_method :current_tabs, :active_tab
-  def current_tabs
-    if @email
-      %w(overview stats contact passwd unregister)
-    else
-      %w(overview stats contact unregister)
-    end
-  end
   
   def set_user
     @user = current_user

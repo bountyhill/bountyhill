@@ -34,9 +34,10 @@
 @import "mixins";
 
 // import pagewise stylesheets
- @import "pages/layout";
- @import "pages/home";
- @import "pages/quests";
+@import "pages/layout";
+@import "pages/home";
+@import "pages/quests";
+@import "pages/users";
 
 // import widget stylesheets
  @import "widgets/avatar";

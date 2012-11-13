@@ -274,6 +274,9 @@ en:
         title:  Withdraw this offer…
         sub:    and notify its receiver.
   offers:
+    title: 
+      one:    offer
+      other:  offers
     all:
       title: 
         one: "%{count} offer has been"
@@ -299,13 +302,8 @@ en:
     passwd:
       legend:           Change your password
       label:            Save
-  users:
-    tab:
-      overview: Overview
-      stats: Stats
-      contact: Contact information
-      passwd: Change your password
-      unregister: Delete your account
+    stats:
+      title:  ""
   requires_identity:
     any:        "Please sign in with your email address or twitter."
     email:      "Please sign in with your email address."
