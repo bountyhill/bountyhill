@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     next Quest.find(params[:quest_id]) if params[:quest_id]
   end
   
+  comment_destroy_conditions { |comment| comment.writable? }
+
   private
   
   # -- ActiveRecord::AccessControl ------------------------------------

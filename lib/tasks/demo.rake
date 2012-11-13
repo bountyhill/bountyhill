@@ -46,9 +46,8 @@ namespace :demo do
 
         quest = Quest.new :bounty => bounty,
           :title => title,
-          :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n"),
-          :image_url =>  IMAGE_URLS[rand(IMAGE_URLS.length)]
-
+          :description => Faker::Lorem.paragraphs(rand(4) + 1).join("\n")
+        
         quest.owner = User.first(:offset => rand(User.count))
         quest.visibility = "public"
         quest.save!
@@ -119,6 +118,8 @@ namespace :demo do
       offers = Quest.all.map do |quest|
         next if rand(3) != 0
 
+        next if quest.expired?
+        
         unless quest.started?
           quest.duration_in_days = 14
           quest.start!
@@ -129,6 +130,7 @@ namespace :demo do
         offer.quest = quest
         offer.location = "Hamburg, Germany" if rand(2) == 0
         offer.description = Faker::Lorem.sentence(12) 
+        offer.images = [ IMAGE_URLS[rand(IMAGE_URLS.length)] ]
         
         quest.criteria.each_with_index do |criterium, idx|
           quest_criterium = criterium

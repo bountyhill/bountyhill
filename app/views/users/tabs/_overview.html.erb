@@ -3,17 +3,17 @@
     <div class="inner">
       <h3>
         <strong>Email:</strong>
-        <%= @user.email || link_to(I18n.t("profile.add_email"), signin_path(:req => :email)) %>
+        <%= user.email || link_to(I18n.t("profile.add_email"), signin_path(:req => :email)) %>
       </h3>
       <h3>
         <strong>Twitter:</strong>
-        <%= @user.twitter_handle || link_to(I18n.t("profile.add_twitter"), signin_path(:req => :twitter)) %>
+        <%= user.twitter_handle || link_to(I18n.t("profile.add_twitter"), signin_path(:req => :twitter)) %>
       </h3>
     </div>
   </div>
 </div>
 
-<% quests = current_user.quests.limit(4) %>
+<% quests = user.quests.limit(4) %>
 
 <a name="quests"> </a>
 <div class="row">
@@ -27,7 +27,7 @@
     <% if quests.present? %>
       <% quests.each do |quest| %>
       <div class="span4">
-        <%= partial "quests/cell", :quest => quest %>
+        <%= partial "quests/pin", :quest => quest %>
       </div>
       <% end %>
     <% else %>

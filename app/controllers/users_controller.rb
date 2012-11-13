@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_filter :set_user
   
   def show
-    request_identity!
   end
   
   def update
@@ -45,10 +44,14 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    @user = current_user
-    @user.extend DummyParameters
-
-    if @user
+    @user = if params[:id]
+      User.find(params[:id])
+    else
+      current_user
+    end
+    
+    if @user and @user == current_user
+      @user.extend DummyParameters
       @email = @user.identity(:email)
       @email.extend DummyParameters
     end

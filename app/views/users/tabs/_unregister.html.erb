@@ -1,12 +1,12 @@
 <div class="row">
   <div class="span4">
     <div class="inner">
-      <%= partial "/users/mini", :user => @user %>
+      <%= partial "/users/mini", :user => user %>
     </div>
   </div>
   <div class="span8">
     <div class="inner">
-    <%= form_for @user, :html => { :method => "delete" } do |form| %>
+    <%= form_for user, :html => { :method => "delete" } do |form| %>
       <%= hidden_field_tag :tab, params[:tab] %>
       <legend><%= I18n.t(:"user.unregister.legend")%></legend>
       <p>

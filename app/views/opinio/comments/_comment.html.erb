@@ -9,7 +9,7 @@
   </div>
   <span class="interactions">
     <%= link_to(t('opinio.actions.reply'), reply_comment_path(comment), :remote => true) if Opinio.accept_replies && !reply %>
-    <%= link_to(t('opinio.actions.delete'), comment_path(comment), :method => :delete, :remote => true) %>
+    <%= link_to(t('opinio.actions.delete'), comment_path(comment), :method => :delete, :remote => true) if comment.writable? %>
   </span>
   <%# this enables only 1 level of replies %>
   <% if Opinio.accept_replies && !reply %>

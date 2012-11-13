@@ -316,6 +316,31 @@ class User < ActiveRecord::Base
   attr :description, true
   attr_accessible :description
   
+  serialized_attr :image
+  attr_accessible :image, :images
+
+  # even though we support a single image attribute, we still use 
+  # pluralized attributes to access it, because some parts of the 
+  # filepicker form helpers expect it that way.
+  def images(size = {})
+    width, height = size.values_at(:width, :height)
+    urls = [ image ].compact
+
+    if width && height
+      expect! width => Fixnum, height => Fixnum
+
+      # set width and height; see https://developers.filepicker.io/docs/web/#fpurl
+      urls = urls.map { |url| "#{url}/convert?w=#{width}&h=#{height}" }
+    end
+
+    # set content disposition; see https://developers.filepicker.io/docs/web/#fpurl
+    urls.map { |url| "#{url}?dl=false" }
+  end
+
+  def images=(images)
+    self.image = images && images.first
+  end
+
   # -- deletion -------------------------------------------------------
 
   # we dont let a user delete her account; instead we "hide" it. This
