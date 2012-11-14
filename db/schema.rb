@@ -30,10 +30,9 @@ ActiveRecord::Schema.define(:version => 22) do
 
   create_table "deferred_actions", :force => true do |t|
     t.string   "secret",       :null => false
-    t.integer  "actor_id",     :null => false
+    t.integer  "actor_id"
     t.string   "action"
     t.text     "args"
-    t.string   "redirection"
     t.datetime "expires_at"
     t.datetime "performed_at"
     t.text     "error"
