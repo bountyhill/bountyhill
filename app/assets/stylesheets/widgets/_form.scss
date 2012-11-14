@@ -4,38 +4,6 @@
   background-color: $background_inverse;
   position: relative;
   color: $text_inverse;
-  .tape {
-    position:absolute;
-    width: 120px;
-    height: 35px;
-    background-color: $background_inverse;
-    opacity:0.6;
-    border-left: 1px dashed rgba(0, 0, 0, 0.1);
-    border-right: 1px dashed rgba(0, 0, 0, 0.1);
-    @include box-shadow(#cccccc 0px 0px 1px 0px);
-    &.top {
-      top: 0px;
-      &.left {
-        left: -40px;
-        @include transform(rotate(-45deg) skew(0,0));
-      }
-      &.right {
-        right: -40px;
-        @include transform(rotate(45deg) skew(0,0));
-      }
-    }
-    &.bottom {
-      bottom: 0px;
-      &.left {
-        left: -40px;
-        @include transform(rotate(45deg) skew(0,0));
-      }
-      &.right {
-        right: -40px;
-        @include transform(rotate(-45deg) skew(0,0));
-      }
-    }
-  }
 }
 
 .toggle_signin_signup {

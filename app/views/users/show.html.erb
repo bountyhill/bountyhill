@@ -1,15 +1,11 @@
-<div class="row-fluid">
-  <div class="span12">
-    <%= render_tabs %>
+<div class="row bg-main">
+  <div class="span2">&nbsp;</div>
+  <div class="user sheet lined span8">
+    <div class="tape top left"></div>
+      <div class="inner">
+        <%= render_sections(@user) %>
+      </div>
+    <div class="tape top right"></div>
   </div>
+  <div class="span2">&nbsp;</div>
 </div>
-
-<%= 
-  begin
-    partial "users/tabs/#{active_tab}", :user => @user
-  rescue ActionView::MissingTemplate
-    content_tag :pre do
-      "Missing partial users/tabs/#{active_tab}"
-    end
-  end
-%>

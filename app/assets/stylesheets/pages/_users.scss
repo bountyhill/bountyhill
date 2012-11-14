@@ -1,0 +1,80 @@
+.user {
+  &.sheet {
+    min-height: 600px;
+    @include box-shadow(rgba(0, 0, 0, .3) 0px 7px 7px);
+  }
+  .inner {
+    padding: 40px;
+    padding-right: 20px;
+  }
+}
+.section {
+  clear: both;
+  &#profile {
+    margin-top: 20px;
+    position: relative;
+    min-height: 275px;
+    font-family: 'Special Elite', normal;
+    .avatar {
+      position: absolute;
+      top: 4px;
+      height: 144px;
+      width: 144px;
+    }
+    h1, dl {
+      position: absolute;
+      left: 188px;
+    }
+    h1 {
+      top: 5px;
+      line-height: 1;
+    }
+    dl {
+      top: 65px;
+      margin: 0;
+      font-size: 18px;
+      dt, dd {
+        line-height: 1.4;
+        float: left;
+        margin-bottom: 5px;
+      }
+      dt {
+        clear: left;
+        width: 100px;
+        font-weight: normal;
+        text-decoration: underline;
+      }
+      dd {
+        font-weight: bold;
+      }
+    }
+  }
+  .stats {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    &.sticker {
+      li {
+        left: 0;
+        float: left;
+        width: 125px;
+        margin: 10px 5px;
+        overflow: hidden;
+        border: 1px solid $sticker_blue;
+        background-color: $sticker_blue;
+        &:first-child {  
+          border: 1px solid $sticker_violet;
+          background-color: $sticker_violet;
+        }  
+        &:nth-child(even) {  
+          border: 1px solid $sticker_green;
+          background-color: $sticker_green;
+        }  
+        &:nth-child(3n) {  
+          border: 1px solid $sticker_violet;
+          background-color: $sticker_violet;
+        }
+      }
+    }
+  }
+}
