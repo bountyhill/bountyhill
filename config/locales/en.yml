@@ -102,6 +102,8 @@ en:
     follow_bountyhermes:
       Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> 
       to receive updates about your bounties via Twitter.
+    using_agrees_to_terms:
+      "By using bountyhill.com you agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
     agree_to_terms:
       "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
     to_signup:    I am new here. Let me sign up.
