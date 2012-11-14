@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 21) do
+ActiveRecord::Schema.define(:version => 22) do
 
   create_table "accounts", :force => true do |t|
     t.integer "owner_id"
@@ -103,13 +103,16 @@ ActiveRecord::Schema.define(:version => 21) do
   add_index "quests", ["visibility"], :name => "index_quests_on_visibility"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "remember_token"
     t.text     "serialized"
     t.datetime "deleted_at"
+    t.text     "badges"
+    t.integer  "points",         :default => 0, :null => false
   end
 
+  add_index "users", ["points"], :name => "index_users_on_points"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

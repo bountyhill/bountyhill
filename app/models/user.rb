@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   with_metrics! "accounts"
 
+  serialize :badges, Array
+
   private
 
   def create_remember_token
