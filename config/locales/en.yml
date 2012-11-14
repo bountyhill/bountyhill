@@ -113,7 +113,7 @@ en:
       following:  "Thank you for signing in with Twitter and for following @bountyhermes."
       success:    "Thank you for signing in with Twitter."
       title:      Sign in with Twitter
-      legend:     "You must be signed in via Twitter to share a quest and to secure your chance to win a part of the bounty. If you choose to follow @bountyhermes by checking the checkbox below, we'll send you a direct message on succes."
+      legend:     "You must be signed in via Twitter to share a quest and to secure your chance to win a part of the bounty. If you choose to follow @bountyhermes by checking the checkbox below, we'll send you a direct message on success."
       signin:     Sign in
     email:
       reset: Reset my password
@@ -121,8 +121,8 @@ en:
       signup: Sign up
       title: Enter your email and password
       legend: 
-        signin: "By signing in with your email and password you may start quests and post offers. Your email will not be displayed to other users."
-        signup: "By signing up with your email and password you may start quests and post offers. Your email will not be displayed to other users."
+        signin: "By signing in with your email and password you may start quests and post offers. Your email will not be shown to other users."
+        signup: "By signing up with your email and password you may start quests and post offers. Your email will not be shown to other users."
         reset: "Enter you email address. You will receive instructions to reset your password in your email."
       confirmation_reminder: 
         "You have signed up with bountyhill, but didn't confirm your email address yet."
