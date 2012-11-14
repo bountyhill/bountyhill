@@ -9,7 +9,6 @@ class SharesController < ApplicationController
     request_identity! :twitter
   end
   
-  # start the run. This action receives the form from "runs/show".
   def update
     # Re-render the form, if the quest is not valid.
     quest.attributes = params[:quest]

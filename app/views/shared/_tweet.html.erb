@@ -1,6 +1,5 @@
 <%-
-  # Prepare a tweet. This form works mostlybut not completely on
-  # virtual attributes.
+  # Prepare a tweet. This form works mostly but not exclusively on virtual attributes.
   #
   # :tweet
   # :message the message part of the tweet, prefilled with the quest title
@@ -10,7 +9,7 @@
   # form the controller saves the bounty in the quest and sends a tweet with the :tweet
   # message and the quest url.
   #
-  # Parameters:
+  # Parameters for this partial:
   # - +quest+: the Quest object.
   # - +retweet+: when set, this is a retweet. That means that the user cannot change
   #   the bounty value or the run time.
@@ -18,7 +17,7 @@
     retweet = false
   end
 
-  url = retweet ? share_path(quest) : run_path(quest)
+  url = retweet ? share_url(quest) : run_url(quest)
   
   bounty = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 -%> 
@@ -76,7 +75,10 @@
     var bounty = node_bounty.val();
     if(parseInt(bounty) > 0)
       message = message + " €" + parseInt(bounty);
-    
+
+    var url = <%= url.to_json.html_safe %>;
+    var link = $('<div>').append($('<a>').attr('href', url).text(url)).html();
+    message = message + " " + link;
     node_form_tweet.val(message);
     node_tweet.html(message);
   }
