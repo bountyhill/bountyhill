@@ -104,10 +104,6 @@ en:
       to receive updates about your bounties via Twitter.
     agree_to_terms:
       "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
-    agree_to_full_terms:  
-      "I agree to the <a href='/terms' target='_blank'>terms and conditions</a>
-      and state that I took notice of the the 
-      <a href='/terms#extra' target='_blank'>payment obligations.</a>"
     to_signup:    I am new here. Let me sign up.
     to_signin:    I have already an account. Let me sign in.
     to_reset:     I forgot my password.

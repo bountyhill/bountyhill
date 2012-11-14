@@ -165,18 +165,17 @@ class ActionView::Helpers::FormBuilder
     end
   end
 
+  def note(note="KJH")
+    div :class => 'control-group' do
+      tag :label, note
+    end
+  end
+  
   def agree_to_terms!
-    html = <<-HTML
-<div class='control-group'>
-  <div class='controls'>
-    <label>
-      <input id="agree_to_terms" type="checkbox" />
-      #{I18n.t "sessions.agree_to_full_terms"}
-    </label>
-  </div>
-</div>
-HTML
-    html.html_safe
+    note <<-HTML
+<input id="agree_to_terms" type="checkbox" />
+#{I18n.t "sessions.agree_to_terms"}
+    HTML
   end
   
   # Render form actions.
