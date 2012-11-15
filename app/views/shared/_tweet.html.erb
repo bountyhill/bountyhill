@@ -53,9 +53,12 @@
     <div class="tweet-container">
       <%= form.control_group :tweet, :hidden_field %>
       <%= avatar current_user, :size => 48 %>
-      <div id="tweet"> </div>
+      <div id="tweet">
+        <span class="preview"><%= link_to url, url, :target => "_blank" %></span>
+        <span><%= link_to url, url, :target => "_blank" %></span>
+      </div>
     </div>
-    <%= form.actions :label => "Start", :cancel_url => quest_path(quest) %>
+    <%= form.actions :label => (retweet ? "Share" : "Start"), :cancel_url => quest_path(quest) %>
   </fieldset>
 <% end %>
 
@@ -64,10 +67,12 @@
   var node_bounty = $("#quest_bounty"), 
     node_message = $("#quest_message"), 
     node_form_tweet = $("#quest_tweet");
-    node_tweet = $("#tweet");
+    node_tweet = $("#tweet span.preview");
   
   function update_message() {
     // This is a rough JS re-implementation of Quest#message
+    
+    // Build a message to write into the form
     var message = node_message.val();
     if(message.length > 99)
       message = message.substr(0, 99) + "…";
@@ -76,9 +81,6 @@
     if(parseInt(bounty) > 0)
       message = message + " €" + parseInt(bounty);
 
-    var url = <%= quest.url.to_json.html_safe %>;
-    var link = $('<div>').append($('<a>').attr('href', url).attr('target', '_blank').text(url)).html();
-    message = message + " " + link;
     node_form_tweet.val(message);
     node_tweet.html(message);
   }
