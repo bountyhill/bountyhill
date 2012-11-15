@@ -174,7 +174,7 @@ class Quest < ActiveRecord::Base
   end
   
   def start!
-    unless active?
+    unless started?
       Bountybase.reward owner, :points => 20
     end
 
