@@ -12,7 +12,7 @@ require_dependency "identity/email"
 class User < ActiveRecord::Base
   include ActiveRecord::RandomID
 
-  before_create :create_remember_token
+  before_save :create_remember_token
 
   with_metrics! "accounts"
 
@@ -20,8 +20,21 @@ class User < ActiveRecord::Base
 
   private
 
+  # The create_remember_token method will be called on each save, 
+  # because a User object could be created from bountybase, in 
+  # which case the remember_token does not exist.
+  #
+  # Only after the first "real login" the remember_token must exist,
+  # and it must not change during the User object's lifetime.
+  #
+  # As a lucky sideeffect we use this as a flag to see whether we
+  # have to reward some points to the user.
   def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
+    unless self.remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+      self.points ||= 0
+      self.points += 10
+    end
   end
   
   public

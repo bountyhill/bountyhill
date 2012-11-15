@@ -174,6 +174,10 @@ class Quest < ActiveRecord::Base
   end
   
   def start!
+    unless active?
+      Bountybase.reward owner, :points => 20
+    end
+
     duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
     if duration_in_days > 0
       expires_at = (Date.today + duration_in_days + 1).to_time - 1
