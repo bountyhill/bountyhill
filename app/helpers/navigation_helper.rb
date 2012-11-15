@@ -38,8 +38,12 @@ module NavigationHelper
   }
   
   def nav_profile_label
-    info = span(" &#10003;") if current_user && current_user.identity(:confirmed, :twitter)
+    info = span(" &#10003;") if current_user.identity(:confirmed, :twitter)
     "#{h current_user.name}#{info}".html_safe
+  end
+
+  def nav_points_label
+    current_user.points
   end
 
   def link_to_nav_item(nav_item)
@@ -50,6 +54,8 @@ module NavigationHelper
       link_to "·", "#", :class => "separator"
     when :profile
       link_to nav_profile_label, "/profile"
+    when :points
+      link_to nav_points_label, "/profile"
     when :your_offers
       link_to I18n.t("nav.#{nav_item}"), offers_path(:owner_id => current_user.id)
     when :your_quests
@@ -83,7 +89,7 @@ module NavigationHelper
       nav_items
     when :right
       if current_user
-        [ :profile, :signout ]
+        [ :profile, :points, :signout ]
       else
         [ :signin ]
       end
