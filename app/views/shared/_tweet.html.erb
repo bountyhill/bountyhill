@@ -76,8 +76,8 @@
     if(parseInt(bounty) > 0)
       message = message + " €" + parseInt(bounty);
 
-    var url = <%= url.to_json.html_safe %>;
-    var link = $('<div>').append($('<a>').attr('href', url).text(url)).html();
+    var url = <%= quest.url.to_json.html_safe %>;
+    var link = $('<div>').append($('<a>').attr('href', url).attr('target', '_blank').text(url)).html();
     message = message + " " + link;
     node_form_tweet.val(message);
     node_tweet.html(message);
