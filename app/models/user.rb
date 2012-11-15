@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
   # Quests submitted by the user
   has_many :quests, :foreign_key => "owner_id", :dependent => :destroy
 
+  has_and_belongs_to_many :shared_quests, :class_name => "Quest", 
+    :join_table => :users_quests_sharings,
+    :uniq => true
+  
   #
   # Offers submitted by the user
   has_many :offers, :foreign_key => "owner_id", :dependent => :destroy
