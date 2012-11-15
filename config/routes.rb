@@ -31,6 +31,7 @@ Bountyhill::Application.routes.draw do
   resources :runs
   match "/runs/:id" => "runs#update", :via => :post
   match "/runs/:id/start" => "runs#start", :via => :get
+  match "/runs/:id/cancel" => "runs#cancel", :via => :get
   
   resources :offers do
     opinio

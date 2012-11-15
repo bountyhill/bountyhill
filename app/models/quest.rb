@@ -66,6 +66,14 @@ class Quest < ActiveRecord::Base
   serialized_attr :duration_in_days
   
   attr_accessible :title, :description, :bounty, :location, :duration_in_days
+
+  # -- Cancellation ---------------------------------------------------
+
+  # reason for cancellation
+  CANCELLATIONS = %w(bountyhill_success other_success no_longer_needed)
+
+  serialized_attr :cancellation, :cancellation_reason
+  attr_accessible :cancellation, :cancellation_reason
   
   # -- Criteria -------------------------------------------------------
   
@@ -187,10 +195,15 @@ class Quest < ActiveRecord::Base
     self.started_at = Time.now
     self.expires_at = expires_at
 
+    # clear out cancellation reasons from potential previous cancellation
+    self.cancellation = nil
+    self.cancellation_reason = nil
+
     save!
   end
 
-  def cancel!
+  def cancel!(attributes = {})
+    self.attributes = attributes
     self.visibility = nil
     self.expires_at = Time.now
     save!

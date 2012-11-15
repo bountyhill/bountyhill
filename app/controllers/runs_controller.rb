@@ -46,9 +46,13 @@ class RunsController < ApplicationController
   # DELETE /quests/1
   # DELETE /quests/1.json
   def destroy
-    quest.cancel!
+    quest.cancel!(params[:quest])
     flash[:success] = I18n.t("quest.cancelled", :title => quest.title)
     redirect_to quest_path(quest)
+  end
+  
+  def cancel
+    # render the cancel form, which will end in the destroy action.
   end
 
   private

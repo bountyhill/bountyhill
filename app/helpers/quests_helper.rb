@@ -12,7 +12,8 @@ module QuestsHelper
 
   def stop_quest_button(quest)
     return unless personal_page? && quest.active?
-    header_button(:stop, run_path(quest), :title => t("quest.actions.stop.title"), :rel => "nofollow", :method => :delete)
+
+    header_button(:stop, url_for(:controller => :runs, :action => :cancel, :id => quest))
   end
 
   def start_quest_button(quest)
