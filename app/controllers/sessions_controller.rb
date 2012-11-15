@@ -145,8 +145,8 @@ class SessionsController < ApplicationController
 
       # follow @bountyhermes?
       if follow_bountyhermes
-        current_user.identity(:twitter).tap do |twitter|
-          twitter.follow
+        twitter = current_user.identity(:twitter)
+        if twitter.follow
           twitter.direct_message "sessions.tweet.thanks_for_following".t
         end
         flash[:success] = "sessions.twitter.following".t

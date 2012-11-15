@@ -87,7 +87,7 @@ class Identity::Twitter < Identity
       identity.user = user if user
       identity.name = name if name
       identity.save! if identity.changed?
-      identity    
+      identity
     end
   end
   
@@ -109,9 +109,12 @@ class Identity::Twitter < Identity
   # -- Twitter actions ------------------------------------------------
 
   # This method makes the user follow @bountyhermes. If the user followed
-  # @bountyhermes before, this method is a no-op.
+  # @bountyhermes before, this method is a no-op, and the method returns
+  # false. 
   def follow
-    follow! unless followed_at?
+    return false if followed_at?
+    follow!
+    return true
   end
   
   def follow!
