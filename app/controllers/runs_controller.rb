@@ -47,6 +47,8 @@ class RunsController < ApplicationController
   # DELETE /quests/1.json
   def destroy
     quest.cancel!(params[:quest])
+    current_user.retweet(quest, :message => "This quest was cancelled")
+
     flash[:success] = I18n.t("quest.cancelled", :title => quest.title)
     redirect_to quest_path(quest)
   end
