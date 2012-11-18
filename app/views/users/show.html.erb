@@ -1,11 +1,17 @@
+<%= header_ribbon(
+    header_action_button_for_user(@user),
+    interaction_buttons(
+      edit_user_button(@user),
+      follow_user_button(@user)
+    )
+  ) %>
+
 <div class="row bg-main">
   <div class="span2">&nbsp;</div>
-  <div class="user sheet lined span8">
-    <div class="tape top left"></div>
-      <div class="inner">
-        <%= render_sections(@user) %>
-      </div>
-    <div class="tape top right"></div>
+  <div class="user sheet span8">
+    <div class="inner">
+      <%= render_sections(@user) %>
+    </div>
   </div>
   <div class="span2">&nbsp;</div>
 </div>

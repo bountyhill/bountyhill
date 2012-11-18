@@ -200,6 +200,11 @@ class User < ActiveRecord::Base
     avatar || Gravatar.url(:size => options[:size])
   end
   
+  # checks if some address data is given
+  def address?
+    %w(address1 address2 city zipcode country).any?{|address_attribute| self.send(address_attribute).present?}
+  end
+  
   # -- special System users -------------------------------------------
 
   module SystemUsers

@@ -161,7 +161,9 @@ module ApplicationHelper
     :rect     => "c",
     :twitter  => "t",
     :start    => "V",
-    :stop     => "W"
+    :stop     => "W",
+    :user     => "U",
+    :settings => "S"
   }
 
   def interaction_buttons(*buttons)
@@ -226,11 +228,19 @@ module ApplicationHelper
     ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
   end
 
+  def url_for_follow_twitter_account(options = {})
+    expect! options => { :account => [String, nil] }
+
+    account = options[:account] || Bountybase.config.twitter_app["user"]
+    account = account.gsub("@", "")
+    
+    "http://twitter.com/#{account}"
+  end
+
   def link_to_follow_twitter_account(options = {}, &block)
     expect! options => { :account => [String, nil] }
-    account = options[:account] || Bountybase.config.twitter_app["user"]
-    
-    link_to "http://twitter.com/#{account}", :target => :blank do
+
+    link_to url_for_follow_twitter_account(options), :target => :blank do
       yield block if block_given?
     end
   end

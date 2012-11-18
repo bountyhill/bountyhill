@@ -42,9 +42,9 @@ Bountyhill::Application.routes.draw do
       post "withdraw"
     end
   end
-  resources :users
 
-  match 'profile(/:tab)' => "users#show"
+  resources :users
+  match 'profile' => "users#show"
 
   # manual routes for signup, signin, signout, twitter signin
   match "signin" => "sessions#signin_get",      :via => :get

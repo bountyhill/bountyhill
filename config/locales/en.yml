@@ -20,8 +20,9 @@ en:
   status:
     loading: "Loading..."
   profile:
-    add_twitter: "Add your twitter account"
-    add_email: "Add your email"
+    add_twitter:  "Add your twitter account"
+    add_email:    "Add your email"
+    add_address:  "Add your postal address"
   restriction:
     expires_on: 
       zero:   "ends today"
@@ -99,9 +100,7 @@ en:
     # must be changed here, too. 
     tweet:
       thanks_for_following: "Thank you for signing up with @bountyhill and for following @bountyhermes."
-    follow_bountyhermes:
-      Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> 
-      to receive updates about your bounties via Twitter.
+    follow_bountyhermes: "Follow <a href='http://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> to receive updates about your bounties via Twitter."
     using_agrees_to_terms:
       "By using bountyhill.com you agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
     agree_to_terms:
@@ -164,6 +163,9 @@ en:
   "identity/email":
     form:
       field_hint:
+        password_old:           Enter your current password.
+        password:               Enter your new password.
+        password_confirmation:  Confirm your new password.
         signup[email]: "What's your email address?"
         signin[email]: "Please enter your email address."
         signup[password]: "Your password should contain at least %{value} characters."
@@ -302,14 +304,38 @@ en:
     message:
       error:            Please review your input.
       check_delete_me:  You must check this box to unregister.
-    unregister:
-      legend:           Delete your account
-      label:            Delete your account!
-    passwd:
-      legend:           Change your password
-      label:            Save
-    stats:
-      title:  ""
+    form:
+      unregister:
+        legend: We are sorry to see you leave.
+        text:   Do you mind us asking why you decided to leave bountyhill?
+        button: Delete your account
+      passwd:
+        legend: Set a new password for your account
+        text:   To change your password you have to provide your old password as well as enter and confirm your new one.
+        button: Change your password
+      contact:
+        legend: Update your contact information
+        text:   Please let us know your postal address to get in touch with you via snail mail if needed.
+        button: Update
+      field_hint:
+        first_name:   Enter your given name.
+        last_name:    Enter your family name.
+        address1:     Enter the street you are living in.
+        address2:     Add a supplement to the street you are living in.
+        city:         Enter the city you are living in.
+        zipcode:      Enter the postal code of your city.
+        country:      Enter the country you are living in.
+        description:  We would really appriciate knowing why you decided to leave bounthill.
+        delete_me:    Confirm deleting your account.
+        
+    actions:
+      edit:
+        title: "Edit your profile"
+        sub:   "or change your password"
+      follow:
+        title: "Follow this user"
+        sub:   "on twitter"
+    
   requires_identity:
     any:        "Please sign in with your email address or twitter."
     email:      "Please sign in with your email address."
