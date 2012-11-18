@@ -44,6 +44,7 @@ Bountyhill::Application.routes.draw do
   end
 
   resources :users
+  match "/users/:id/delete" => "users#delete", :via => :get
   match 'profile' => "users#show"
 
   # manual routes for signup, signin, signout, twitter signin

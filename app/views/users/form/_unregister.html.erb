@@ -9,6 +9,7 @@
   <%= form.control_group :delete_me, :check_box, :hint => false %>
   
   <div class='buttons'>
+    <%= link_to "cancel".t, user_path, :class => "btn btn-small" %>
     <%= submit_tag I18n.t("user.form.unregister.button"), :class => "btn btn-danger" %>
   </div>
 <% end %>

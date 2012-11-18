@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   def edit
   end
   
+  def delete
+  end
+  
   def update
     case params["section"]
     when "passwd"

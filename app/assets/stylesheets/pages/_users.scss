@@ -3,6 +3,9 @@
     min-height: 400px;
     @include box-shadow(rgba(0, 0, 0, .3) 0px 7px 7px);
   }
+  .inner {
+    padding: 40px;
+  }
 }
 .user_forms {
   .form {
@@ -103,9 +106,10 @@
   &#profile {
     clear: left;
     p {
+      margin: 0;
       font-size: 20px;
-      font-family: 'Amaranth', normal !important;
       line-height: 1.2;
+      font-family: 'Amaranth', normal !important;
     }
     span {
       color: orange;

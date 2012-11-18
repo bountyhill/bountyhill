@@ -1,0 +1,9 @@
+<%= header_ribbon h1(I18n.t("user.actions.delete.title")).html_safe %>
+
+<div class="user_forms">
+  <div class="row-fluid form">
+    <%= render_form do %>
+      <%= partial "users/form/unregister", :user => @user, :email => @email %>
+    <% end %>
+  </div>
+</div>

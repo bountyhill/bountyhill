@@ -49,6 +49,11 @@ module UsersHelper
     end
   end
   
+  def delete_user_button(user)
+    return unless personal_page?
+    header_button(:delete, url_for(:controller => :users, :action => :delete, :id => user.id))
+  end
+  
   def edit_user_button(user)
     return unless personal_page?
     header_button(:user, edit_user_path(user))

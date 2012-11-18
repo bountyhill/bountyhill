@@ -334,6 +334,8 @@ en:
       endurance:  Endurance
       teamwork:   Teamwork
     actions:
+      delete:
+        title: "Delete your account"
       edit:
         title: "Edit your profile"
         sub:   "or change your password"

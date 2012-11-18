@@ -175,7 +175,7 @@ module ApplicationHelper
     :start    => "V",
     :stop     => "W",
     :user     => "U",
-    :settings => "S"
+    :delete   => "'"
   }
 
   def interaction_buttons(*buttons)
