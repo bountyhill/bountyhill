@@ -17,18 +17,21 @@ module UsersHelper
   
   def render_sections(user)
     scope = personal_page? ? "private" : "public"
-    %w(card).map do |section|
+    %w(card badge stats profile).map do |section|
+      partial_path = case section
+        when "card" then "users/show/#{scope}/#{section}"
+        else "users/show/#{section}"
+        end
       div :id => section, :class => "section" do
-        partial "users/show/#{scope}/#{section}", :user => user
+        partial partial_path, :user => user
       end
     end.join.html_safe
   end
     
-  def render_stats_note(options={})
-    li :class => options[:html_class] do
-      small(options[:title]) +
-      p("#{strong(options[:count])} #{options[:subtitle]}")
-    end
+  def render_stats(user)
+    dl(%w(strenght charism swiftness endurance teamwork).map do |stat|
+      dt(I18n.t("user.stats.#{stat}")) + dd(user.send(stat))
+    end.join.html_safe)
   end
 
   def header_action_button_for_user(user)

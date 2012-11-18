@@ -62,7 +62,19 @@ module ApplicationHelper
   def xmp(s)
     content_tag :xmp, s
   end
+  
+  def dl(*content, &block)
+    _content_tag(:dl, *content, &block)
+  end
 
+  def dt(*content, &block)
+    _content_tag(:dt, *content, &block)
+  end
+
+  def dd(*content, &block)
+    _content_tag(:dd, *content, &block)
+  end
+  
   def debug(s)
     content_tag :pre, s
   end

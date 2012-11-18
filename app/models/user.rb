@@ -200,6 +200,36 @@ class User < ActiveRecord::Base
     avatar || Gravatar.url(:size => options[:size])
   end
   
+  # represents followers
+  def strenght
+    # TODO!
+    rand 100
+  end
+  
+  # represents followers who already retweeted
+  def charism
+    # TODO!
+    rand 100
+  end
+  
+  # represents position of users in all his retweet chains
+  def swiftness
+    # TODO!
+    rand 100
+  end 
+  
+  # represents all retweets of user
+  def endurance
+    # TODO!
+    rand 100
+  end
+  
+  # represents rope teams
+  def teamwork
+    # TODO!
+    rand 100
+  end
+  
   # checks if some address data is given
   def address?
     %w(address1 address2 city zipcode country).any?{|address_attribute| self.send(address_attribute).present?}

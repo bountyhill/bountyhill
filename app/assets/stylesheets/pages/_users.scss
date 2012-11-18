@@ -1,11 +1,7 @@
 .user {
   &.sheet {
-    min-height: 600px;
+    min-height: 400px;
     @include box-shadow(rgba(0, 0, 0, .3) 0px 7px 7px);
-  }
-  .inner {
-    padding: 0 20px;
-    padding-right: 20px;
   }
 }
 .user_forms {
@@ -14,8 +10,6 @@
   }
 }
 .section {
-  clear: both;
-  position: relative;
   &#card {
     position: absolute;
     right: 10px;
@@ -76,32 +70,48 @@
       }
     }
   }
-  .stats {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
-    &.sticker {
-      li {
-        left: 0;
+  &#badge {
+    font-family: 'Permanent Marker', cursive;
+    min-height: 120px;
+  }
+  &#stats {
+    min-height: 188px;
+    img {
+      @include square(128px);
+      float: left;
+    }
+    dl {
+      margin-left: 20px;
+      float: left;
+      dt, dd {
+        line-height: 1.2;
+        font-family: 'Amaranth', normal;
         float: left;
-        width: 125px;
-        margin: 10px 5px;
-        overflow: hidden;
-        border: 1px solid $sticker_blue;
-        background-color: $sticker_blue;
-        &:first-child {  
-          border: 1px solid $sticker_violet;
-          background-color: $sticker_violet;
-        }  
-        &:nth-child(even) {  
-          border: 1px solid $sticker_green;
-          background-color: $sticker_green;
-        }  
-        &:nth-child(3n) {  
-          border: 1px solid $sticker_violet;
-          background-color: $sticker_violet;
-        }
+        margin-bottom: 5px;
       }
+      dt {
+        clear: left;
+        width: 80px;
+        font-weight: normal;
+        color: $text_inverse_minor;
+      }
+      dd {
+        font-weight: bold;
+      }
+    }
+  }  
+  &#profile {
+    clear: left;
+    p {
+      font-size: 20px;
+      font-family: 'Amaranth', normal !important;
+      line-height: 1.2;
+    }
+    span {
+      color: orange;
+    }
+    strong {
+      font-size: 160%;
     }
   }
 }

@@ -327,7 +327,12 @@ en:
         country:      Enter the country you are living in.
         description:  We would really appriciate knowing why you decided to leave bounthill.
         delete_me:    Confirm deleting your account.
-        
+    stats:
+      strenght:   Strenght
+      charism:    Charism
+      swiftness:  Swiftness
+      endurance:  Endurance
+      teamwork:   Teamwork
     actions:
       edit:
         title: "Edit your profile"
