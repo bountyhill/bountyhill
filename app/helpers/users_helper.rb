@@ -17,9 +17,9 @@ module UsersHelper
   
   def render_sections(user)
     scope = personal_page? ? "private" : "public"
-    %w(card badge stats profile).map do |section|
+    %w(card badge stats activities).map do |section|
       partial_path = case section
-        when "card" then "users/show/#{scope}/#{section}"
+        when "card", "activities" then "users/show/#{scope}/#{section}"
         else "users/show/#{section}"
         end
       div :id => section, :class => "section" do
