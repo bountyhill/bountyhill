@@ -14,26 +14,19 @@ module UsersHelper
       link_to twitter_handle, "https://twitter.com/#{twitter_handle[1..-1]}"
     end
   end
-  
-  def render_sections(user)
-    scope = personal_page? ? "private" : "public"
-    %w(card badge stats activities).map do |section|
-      partial_path = case section
-        when "card", "activities" then "users/show/#{scope}/#{section}"
-        else "users/show/#{section}"
-        end
-      div :id => section, :class => "section" do
-        partial partial_path, :user => user
-      end
-    end.join.html_safe
-  end
-    
-  def render_stats(user)
-    dl(%w(strenght charism swiftness endurance teamwork).map do |stat|
-      dt(I18n.t("user.stats.#{stat}")) + dd(user.send(stat))
-    end.join.html_safe)
-  end
 
+  def render_user_section(user, section)
+    if section.in? ["card"] 
+      partial_path = personal_page? ? "users/show/private/#{section}" : "users/show/public/#{section}"
+    else
+      partial_path = "users/show/#{section}"
+    end
+    
+    div :id => section, :class => "section" do
+      partial partial_path, :user => user
+    end
+  end
+  
   def header_action_button_for_user(user)
     if personal_page?
       header_action(:user, edit_user_path(user), :title => t("user.actions.edit.title"), :text => t("user.actions.edit.sub"))
