@@ -1,0 +1,28 @@
+<%
+  if personal_page?
+    user_name, user_name_small = "You".t, "you".t
+  else
+    user_name, user_name_small = user.name, user.name
+  end
+%>
+<p>
+  <%= user_name %> posted <%= quests user.quests.count %>, shared <%= quests user.shared_quests.count %>.
+</p>
+<% if user.quests.active.first or user.shared_quests.active.first %>
+<p>
+  <%= quests user.quests.active.count %> posted by <%= user_name_small %> and 
+  <%= quests user.shared_quests.active.count %> shared by <%= user_name_small %> are still running.
+</p>
+<% end %>
+<% if user.offers.first %>
+<p>
+  <%= user_name %> posted <%= offers user.offers.count %> offers.
+  <% if nil %>
+  By sharing quests <%= user_name_small %>'s network came up with 
+  <%= offers 123 %>.
+  <% end %>
+</p>
+<% end %>
+<p>
+  <%= user_name %> earned <%= points(user.points) %> so far.
+</p>

@@ -337,11 +337,6 @@ en:
       swiftness:  Swiftness
       endurance:  Endurance
       teamwork:   Teamwork
-    activities:
-      common: "%{user} posted <span><strong>%{quests_posted}</strong> quests</span>, shared <span><strong>%{quests_shared}</strong> quests</span>, and answered with <span><strong>%{offers_made}</strong> offers</span>."
-      quests: "<span><strong>%{own_quests_running}</strong> quests that %{user_small} posted</span> and <span><strong>%{shared_quests_running}</strong> quests</span> that %{user_small} shared are still running."
-      offers: "<span><strong>%{own_offers_open}</strong> offers %{user_small} made</span> are still open and <span><strong>%{offers_for_shared_quests_open}</strong> offers</span> have been made for quests %{user_small} did share."
-      points: "%{user} received <span><strong>%{points_received}</strong> points</span> so far but %{user_small} still have the chance to get additional <span><strong>%{points_perspective}</strong> points</span> on yet to close quests."
     actions:
       delete:
         title: "Delete your account"
@@ -360,3 +355,14 @@ en:
   retweets:
     title:    Share this quest on twitter
     legend:   You may edit your message below. We will then add the bounty amount and a quest link.
+  word_with_count: <span><strong>%{count}</strong> %{word}</span>
+  words:
+    quests: 
+      one: quest
+      other: quests
+    offers: 
+      one: offer
+      other: offers
+    points: 
+      one: point
+      other: points
