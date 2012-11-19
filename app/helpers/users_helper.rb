@@ -9,9 +9,9 @@ module UsersHelper
     image_tag url, :alt => user.name, :title => user.name, :class => "avatar", :width => size, :height => size
   end
 
-  def link_to_twitter_account(user)
+  def link_to_twitter(user, options = {})
     if twitter_handle = user.twitter_handle
-      link_to twitter_handle, "https://twitter.com/#{twitter_handle[1..-1]}"
+      link_to twitter_handle, "https://twitter.com/#{twitter_handle[1..-1]}", options
     end
   end
 
