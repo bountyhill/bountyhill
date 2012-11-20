@@ -36,7 +36,7 @@ live:
 arena:
   pre:
     - git rm -r --force --quiet public/assets || true
-    - rake assets:rebuild
+    - rake assets:clean:all assets:precompile:all RAILS_ENV=production RAILS_GROUPS=assets
     - kibo compress --quiet public/assets
     - git add -f public/assets
     - "git commit -m '[kibo] Updated assets'"

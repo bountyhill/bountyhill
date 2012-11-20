@@ -1,5 +1,5 @@
 namespace :assets do
-  desc "Rebuild and commit assets"
+  desc "Rebuild assets"
   task :rebuild => %W(clean precompile remove_jquery)
 
   task :instance do
