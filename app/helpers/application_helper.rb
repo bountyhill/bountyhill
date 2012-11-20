@@ -284,4 +284,31 @@ module ApplicationHelper
   def random_even_unenven
     (rand(99) % 2).zero? ? "even" : "uneven"
   end
+
+  # fetches a word from translation, matching for the count. The keys are in words.<word>; 
+  # e.g. words.offers. This method is mainly used from the word_with_count helper method below.
+  def word(s, count)
+    I18n.t("words.#{s}", :count => count)
+  end
+  
+  # builds markup for words with counts.
+  def word_with_count(s, count, url = nil, link_options = {})
+    # word_with_count translation example: 
+    #   <span><strong>%{count}</strong> %{word}</span>
+    translated = I18n.t(:word_with_count, :count => count, :word => word(s, count)).html_safe
+    return translated unless url
+    link_to translated, url, link_options
+  end
+
+  def quests(value, url = nil, link_options = {})
+    word_with_count(:quests, value, url, link_options)
+  end
+  
+  def offers(value, url = nil, link_options = {})
+    word_with_count(:offers, value, url, link_options)
+  end
+
+  def points(value, url = nil, link_options = {})
+    word_with_count(:points, value, url, link_options)
+  end
 end

@@ -82,8 +82,6 @@ module Bountyhill
     # TwitterAuthMiddleware: handles twitter authentication
     
     # Fetch the twitter configuration from Bountybase.
-    TWITTER_CONFIG = Bountybase.config.twitter_app
-    
     config.middleware.use ::TwitterAuthMiddleware, {
       path:             'tw',
       consumer_key:     Bountybase.config.twitter_app["consumer_key"],

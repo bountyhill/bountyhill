@@ -3,7 +3,7 @@
   <h1><%= user.name %></h1>
   <% if user.identities(:twitter) %>
   <dl>
-    <dt>Twitter:</dt> <dd><%= user.twitter_handle %></dd>
+    <dt>Twitter:</dt> <dd><%= link_to_twitter(user, :target => "_blank") %></dd>
   </dl>
   <% end %>
 </div>
