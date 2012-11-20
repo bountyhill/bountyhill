@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  tagline: The Social Bulletin Wall
   permission_denied: Permission denied
   update: Update
   show:   Show

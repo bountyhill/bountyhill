@@ -164,7 +164,7 @@ module ApplicationHelper
 
     div :class => "flash alert #{BOOTSTRAP_ALERT_CLASS[flash_key]}" do
       link_to("x", "#", :class => "close", :"data-dismiss" => "alert") +
-      flash_msg
+      span(flash_msg, :class => "message")
     end
   end
   

@@ -27,6 +27,7 @@ body {
     min-height: 800px;
     background-color: $background;
     background-image: url("/images/drock028.jpg");
+    position: relative;
   }
 }
 .bg-main {
@@ -35,11 +36,12 @@ body {
 .inner {
   clear: both;
 }
-.topspace {
-  margin-top: 95px;
+.topspace{
+  margin-top: 170px;
 }
+
 .bottomspace {
-  margin-bottom: 55px;
+  margin-bottom: 50px;
 }
 .main-space {
   min-height: 600px;
@@ -47,12 +49,6 @@ body {
 .endless_scroll_hook {
   display: block;
   text-align: center;
-}
-
-@media (max-width: 979px) {
-  .topspace {
-    margin-top: 55px;
-  }
 }
 
 @media (max-width: 320px) {

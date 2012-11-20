@@ -1,6 +1,66 @@
+/* ------- flash ------- */
+.flash {
+  text-align: center;
+  width: 100%;
+  border-radius: 0;
+  position: absolute;
+  top: 50px;
+  z-index: 1;
+  margin: 0 0 0 -1px;
+  padding: 8px 0px 8px 0px;
+  &.alert {
+    .close {
+     right: 10px;
+    }
+    .message {
+      padding: 0 40px;
+    }
+  } 
+}
+/*
+.flash {
+  text-align: center;
+  border-radius: 0;
+  &.alert {
+    margin: 10px 0 -85px 0;
+  }
+}
+
+@media (min-width: 980px) {
+  .flash {
+    &.alert {
+      margin-top: 50px;
+    }
+  }
+}
+
+@media (max-width: 979px) {
+  .flash {
+    &.alert {
+      margin-bottom: -45px;
+    }
+  }
+}
+*/
+
+/* ------- tagline ------- */
+.wall-tagline {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 50px;
+  margin: 0;
+  color: $background;
+  font: 36px 'Seymour One';
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.4;
+  text-shadow: -1px -1px 1px rgba($background_highlight, .9), 1px 1px 1px rgba(0, 0, 0, .9);
+}
+
 /* ------- ribbon ------- */
 .horizontal-ribbon {
-  margin: 40px -10px 20px -10px;
+  margin: 95px -10px 20px -10px;
   color: $highlight;
   font-weight: bold;
   font-style: italic;
