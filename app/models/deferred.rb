@@ -1,3 +1,5 @@
+require "girl_friday"
+
 # Deferred runs methods asynchonously.
 module Deferred
 
