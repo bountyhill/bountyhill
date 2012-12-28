@@ -24,11 +24,28 @@ class Quest < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
 
+  # Each status matches the name of a scope, as defined below. (Except
+  # for all, probably?)
+  STATUSES = [ 
+    :all,
+    :prepared,
+    :active,
+    :with_offers,
+    :pending,
+    :expired
+  ]
+  
   # prepared: not yet started
   scope :prepared,  lambda { where("quests.started_at IS NULL") }
 
   # active: started and no yet expired
   scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
+
+  # pending: not yet started
+  scope :pending,    lambda { where("quests.started_at IS NULL") }
+
+  # with_offers: quests that received offers
+  scope :with_offers,  lambda { include(:offers).where("offers.id") }
 
   # expired: well, expired
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
@@ -39,9 +56,6 @@ class Quest < ActiveRecord::Base
   def self.draft(id)
     ActiveRecord.as(User.admin) do |previous_user| 
       quest = Quest.find(id)
-
-      W "quest.owner", quest.owner
-      W "previous_user", previous_user
       
       if quest.owner != previous_user 
         if !quest.owner.draft?
@@ -54,6 +68,15 @@ class Quest < ActiveRecord::Base
       quest
     end
   end
+
+  # -- CATEGORIES -----------------------------------------------------
+  
+  CATEGORIES = %w(all estate jobs)
+  
+  scope :with_category, lambda { |category| 
+    expect! category => CATEGORIES
+    where("quests.category = ?", category) 
+  }
   
   # -- Validations ----------------------------------------------------
   
@@ -207,6 +230,34 @@ class Quest < ActiveRecord::Base
     self.visibility = nil
     self.expires_at = Time.now
     save!
+  end
+  
+  # -- quest statistics -----------------------------------------------
+  
+  # returns an array of top quests visible to all users.
+  #
+  # Parameters:
+  
+  def self.top_quests(options = {})
+    expect! options => { 
+      :limit => [Fixnum, nil] 
+    }
+    
+    # We show active quests only. They are available to all users anyways
+    # so there is no point in running with less then admin clearance. 
+    ActiveRecord.as(User.admin) do
+      Quest.active.all(:limit => options[:limit], :order => "bounty DESC")
+    end
+  end
+  
+  # return a Hash of stats for the current_user; e.g.
+  #
+  # { :all => 12, :pending => 10, ... }
+  def self.stats
+    STATUSES.inject({}) do |hash, scope_name|
+      scope = scope_name == :all ? self : self.send(scope_name)
+      hash.update scope_name => scope.count
+    end 
   end
   
   # -- Quest stats ----------------------------------------------------
