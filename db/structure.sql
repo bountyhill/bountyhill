@@ -129,6 +129,40 @@ ALTER SEQUENCE deferred_actions_id_seq OWNED BY deferred_actions.id;
 
 
 --
+-- Name: forwards; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE forwards (
+    id integer NOT NULL,
+    quest_id integer,
+    sender_id integer,
+    text text,
+    original_data text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: forwards_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE forwards_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: forwards_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE forwards_id_seq OWNED BY forwards.id;
+
+
+--
 -- Name: identities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -356,6 +390,13 @@ ALTER TABLE ONLY deferred_actions ALTER COLUMN id SET DEFAULT nextval('deferred_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY forwards ALTER COLUMN id SET DEFAULT nextval('forwards_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY identities ALTER COLUMN id SET DEFAULT nextval('identities_id_seq'::regclass);
 
 
@@ -412,6 +453,14 @@ ALTER TABLE ONLY deferred_actions
 
 
 --
+-- Name: forwards_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY forwards
+    ADD CONSTRAINT forwards_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -456,6 +505,20 @@ ALTER TABLE ONLY users
 --
 
 CREATE UNIQUE INDEX index_accounts_on_owner_id ON accounts USING btree (owner_id);
+
+
+--
+-- Name: index_forwards_on_quest_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_forwards_on_quest_id ON forwards USING btree (quest_id);
+
+
+--
+-- Name: index_forwards_on_sender_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_forwards_on_sender_id ON forwards USING btree (sender_id);
 
 
 --
@@ -591,6 +654,8 @@ INSERT INTO schema_migrations (version) VALUES ('21');
 INSERT INTO schema_migrations (version) VALUES ('22');
 
 INSERT INTO schema_migrations (version) VALUES ('23');
+
+INSERT INTO schema_migrations (version) VALUES ('24');
 
 INSERT INTO schema_migrations (version) VALUES ('3');
 

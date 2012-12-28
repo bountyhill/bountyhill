@@ -53,9 +53,16 @@ class User < ActiveRecord::Base
   # Quests submitted by the user
   has_many :quests, :foreign_key => "owner_id", :dependent => :destroy
 
+  # TODO: REMOVE ME! The forwards infrastructure duplicates shared_quests,
+  # but with added functionality.
   has_and_belongs_to_many :shared_quests, :class_name => "Quest", 
     :join_table => :users_quests_sharings,
     :uniq => true
+  
+  #
+  # 
+  has_many  :forwards, :foreign_key => :sender_id
+  has_many  :forwarded_quests, :through => :forwards, :source => :quest
   
   #
   # Offers submitted by the user

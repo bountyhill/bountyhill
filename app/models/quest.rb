@@ -18,6 +18,9 @@ class Quest < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   validates  :owner, presence: true
   
+  has_many  :forwards
+  has_many  :forwarders, :through => :forwards, :source => :sender
+  
   # Quests are visible by the owner and when set to visibility public.
   access_control :visibility
   write_access_control :owner
