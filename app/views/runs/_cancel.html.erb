@@ -16,6 +16,6 @@
     </div>
 
     <%= form.control_group :cancellation_reason, :text_area, :rows => 2, :hint => false %>
-    <%= form.actions :label => "Stop this quest", :cancel_url => quest_path(quest) %>
+    <%= form.actions quest_path(quest), :label => "Stop this quest" %>
   </fieldset>
 <% end %>

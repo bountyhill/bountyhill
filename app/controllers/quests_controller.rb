@@ -1,5 +1,6 @@
 class QuestsController < ApplicationController
   include ApplicationController::ImageParameters
+  layout false, :only => [:new, :edit]
   
   # GET /quests
   def index
@@ -47,15 +48,6 @@ class QuestsController < ApplicationController
     if @quest.save
       redirect_to! run_path(@quest), notice: 'Quest was successfully created.'
     end
-
-    # rerender form if quest could not be saved
-    flash.now[:error] = if (base_errors = @quest.errors[:base]).present?
-      I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
-    else
-      I18n.t("quest.message.error")
-    end
-
-    render action: "new"
   end
   
   # PUT /quests/1

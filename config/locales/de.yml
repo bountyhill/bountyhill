@@ -1,0 +1,99 @@
+# Sample localization file for German. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  button:
+    save:     Speichern
+    update:   Aktualisieren
+    show:     Anzeigen
+    edit:     Bearbeiten
+    create:   Anlegen
+    cancel:   Abbrechen
+    start:    Starten
+    share:    Teilen
+    signin:   Anmelden
+    register: Registrieren
+    reset:    Zurücksetzen
+  nav:
+    start_quest:  Neue Suche starten
+    quests:       Alle Suchen anzeigen
+    your_quests:  Suchen
+    your_offers:  Angebote
+    your_profile: Profil
+    signin:       Anmelden/Registrieren
+    signout:      Abmelden
+    about:        Information
+    contact:      Kontakt
+    imprint:      Impressum
+    terms:        AGB
+    privacy:      Datenschutz
+    stats:        Stats
+    logs:         Logs
+    jobs:         Jobs
+  identity:
+    form:
+      title: Anmelden/Registrieren
+      terms: "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
+      error:
+        signup: Bitte prüfen Sie Ihre Eingaben.
+        signin: Die angegebene Email-Adresse und/oder das angegebene Password sind nicht gültig.
+        reset:  Die angegebene Email-Adresse ist uns nicht bekannt.
+      success:
+        signup: Willkommen bei bountyhill!
+        signin: Willkommen bei bountyhill!
+        reset:  "Wir haben Ihnen eine Email zugesandt, die Ihnen erläutert, wie Sie Ihr Passwort zurücksetzen können."
+  identity/email:
+    form:
+      title:  Anmeldung via Email
+      legend: "Melden Sie sich mit Ihrer Email-Adresse an, wenn Sie bereits ein bounthill Konto besitzen."
+      field_hint:
+        signin[email]:                  "Geben Sie Ihre Email Adresse ein."
+        signin[password]:               "Geben Sie Ihr Passwort ein."
+        signin[password_confirmation]:  "Bestätigen Sie Ihr Passwort."
+        forgot_password:                Ich habe mein Passwort vergessen und möchte es zurücksetzen.
+        newsletter_subscription:        Ich möchte den bountyhill Newsletter abonnieren.
+  identity/twitter:
+    form:
+      title:    Anmeldung via Twitter
+      legend:   "Wenn Sie einen Twitter-Account besitzen, können Sie bei bountyhill über Twitters OAuth Schnittstelle anmelden."
+      legend2:  "Bitte folgen Sie @bountyhermes damit wir Ihnen aktuelle Informationen via Twitters Direktnachrichten zusenden können."
+      field_hint:
+        follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
+  identity/new:
+    form:
+      title:    Registrieren
+      legend:   "Sie können Suchen starten und Angebote abgeben, wenn sie sich mit Ihrer Email-Adresse registrieren."
+      legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
+  quest:
+    categories:
+      misc:           Verschiedenes
+      jobs:           Arbeitsstellen
+      estate:         Immobilien
+      lost:           Verloren
+      missing:        Vermisst
+      crime:          Verbrechen
+      electronics:    Elektronik
+      sports:         Sport
+      entertainment:  Unterhaltung
+      cars:           Autos
+      boats:          Boote
+    form:
+      message:
+        error:      Bitte prüfen Sie Ihre Eingaben.
+        base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
+      field_hint:
+        title:        "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
+        description:  "Hier können Sie Ihre Anfrage detailiert darstellen."
+        location:     "Beschränken Sie Ihr Suche auf einen bestimmten Ort."
+        bounty:       "Loben Sie eine Belohung für Ihre Suche aus."
+        criteria:     "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
+        message:      "Falls notwendig, können Sie Ihre Nachricht hier ändern."
+        duration:
+          one:    "1 Tag"
+          other:  "%{count} Tage"
+      create:
+        title:  Suchanfrage anlegen
+        legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
+      start:
+        title:  Suchanfrage starten
+        legend: "Loben Sie eine Belohnung aus und geben Sie die Laufzeit ihrer Suchanfrage an. Die Nachricht zu Ihrer Suchanfrage können Sie gern anpassen."

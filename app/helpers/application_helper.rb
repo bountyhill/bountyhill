@@ -1,11 +1,17 @@
 module ApplicationHelper
-  def i18n_title_for(model, attrs = {})
-    key = if model.readonly?  then "show"
-    elsif model.new_record?   then "create"
-    else                           "edit"
+  def i18n_title_for(model, options={})
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.title", options).html_safe
+  end
+  
+  def i18n_legend_for(model, options={})
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.legend", options).html_safe
+  end
+  
+  def translation_key_for(model)
+    if    model.readonly?   then "show"
+    elsif model.new_record? then "create"
+    else                         "edit"
     end
-    
-    I18n.t("#{model.class.name.downcase}.title.#{key}", attrs).html_safe
   end
 
   def _content_tag(name, *content, &block)
@@ -75,6 +81,14 @@ module ApplicationHelper
     _content_tag(:dd, *content, &block)
   end
   
+  def button(*content, &block)
+    _content_tag(:button, *content, &block)
+  end
+  
+  def label(*content, &block)
+    _content_tag(:label, *content, &block)
+  end
+  
   def debug(s)
     content_tag :pre, s
   end
@@ -96,6 +110,10 @@ module ApplicationHelper
     render options
   end
 
+  def modal_link_to(name, options, html_options={})
+    link_to name, options, html_options.merge(:"data-toggle" => "modal", :"data-target" => "#myModal")
+  end
+  
   def render_restriction(model, what)
     expect! model => ActiveRecord::Base, what => [:location, :expires_at, :created_at, :compliance]
     value = model.send(what)
@@ -135,6 +153,32 @@ module ApplicationHelper
     end
     
     super(object, options, &block)
+  end
+  
+  def modal_dialog(title, options={}, &block)
+    expect! title => String
+    
+    header = [
+      button("&times;", :type => "button", :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => "true"),
+      h3(title, :id => "modal-headline")
+    ].join.html_safe
+    
+    [
+      div(header, :class => "modal-header"),
+      div(yield, :id => "modal-content")
+    ].join.html_safe
+  end
+  
+  def modal_body(options={}, &block)
+    div :class => "modal-body" do 
+      yield
+    end
+  end
+  
+  def modal_footer(options={}, &block)
+    div :class => "modal-footer" do
+      yield
+    end
   end
   
   ALLOWED_PARAMS_FOR = {

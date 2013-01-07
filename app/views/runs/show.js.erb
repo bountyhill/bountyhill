@@ -1,0 +1,2 @@
+$("#modal-headline").html("<%= escape_javascript(I18n.t('quest.form.start.title').html_safe) %>");
+$("#modal-content").html("<%= escape_javascript(partial 'shared/tweet', :quest => @quest) %>");

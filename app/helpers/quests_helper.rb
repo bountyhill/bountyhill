@@ -1,5 +1,9 @@
 module QuestsHelper
   
+  def categories_select_options
+    I18n.t(:categories, :scope => :quest).map { |key, value| [ value, key ] }
+  end
+  
   def share_button(quest)
     return unless quest.active?
     header_button(:twitter, share_path(quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow")

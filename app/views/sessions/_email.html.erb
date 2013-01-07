@@ -1,25 +1,46 @@
-<div class="accordion-group">
-  <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSignin">
-      <h3><%= I18n.t("sessions.email.title")%></h3>
-    </a>
-  </div>
-  <div id="collapseSignin" class="accordion-body <%='in' if expand %> collapse">
-    <div class="accordion-inner">
-      <%= form_for @identity ||= Identity::Email.new, :url => "/signin", :method => :post, :id => "signin_email" do |form| %>
-        <%= hidden_field_tag :req, params[:req] %>
-        <div class="tab-content">
-          <div id="signin_subform" class="tab-pane fade<%= " active in" if @mode == :signin %>">
-            <%= partial "email_signin", :form => form %>
-          </div>
-          <div id="reset_subform" class="tab-pane fade<%= " active in" if @mode == :reset %>">
-            <%= partial "email_reset", :form => form %>
-          </div>
-          <div id="signup_subform" class="tab-pane fade<%= " active in" if @mode == :signup %>">
-            <%= partial "email_signup", :form => form %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEmail">
+    <h4>
+      <%= I18n.t("identity/email.form.title")%>
+      <%= awesome_icon(:icon_envelope, :class => "pull-right") %>
+    </h4>
+  </a>
 </div>
+<div id="collapseEmail" class="accordion-body <%= collapse(:email) %> collapse">
+  <div class="accordion-inner">
+    <%= form_for @identity ||= Identity::Email.new, :url => "/signin", :remote => true do |form| %>
+      <p><%= I18n.t("identity/email.form.legend")%></p>
+
+      <%= hidden_field_tag :req, params[:req] %>
+      <%= form.error_messages @error if @error %>
+
+      <%= form.control_group :email,    :text_field %>
+      <%= form.control_group :password, :password_field %>
+      <%= form.forgot_password %>
+
+      <div class="buttons">
+        <%= link_to_cancel_signin %>
+        <%= form.submit I18n.t("button.signin"),  :name => "do_signin", :id => "do_signin", :class => "btn btn-primary btn-inverse" %>
+        <%= form.submit I18n.t("button.reset"),   :name => "do_reset",  :id => "do_reset",  :class => "btn btn-primary btn-inverse hide" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $("#forgot_password").change(function() {
+    if($(this).is(':checked')){
+      $("#identity_password").attr("disabled", "disabled");
+      $("input[name=do_signin]").toggleClass('hide');
+      $("input[name=do_reset]").toggleClass('hide');
+    }
+    else {
+      $("#identity_password").removeAttr("disabled");
+      $("input[name=do_signin]").toggleClass('hide');
+      $("input[name=do_reset]").toggleClass('hide');
+    }
+  });
+  <% if @mode.to_sym == :reset %>
+    $("#forgot_password").trigger('click')
+  <% end %>
+</script>

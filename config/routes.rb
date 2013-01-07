@@ -10,12 +10,7 @@ Bountyhill::Application.routes.draw do
 
   mount app, :at => "/jobs"
 
-  # just temporary...
-  %w(quests offers).each do |mock|
-    match "mocks/#{mock}/:page" => "mocks##{mock}"
-  end
-
-  %w(help about privacy terms contact).each do |static_page|
+  %w(about contact imprint terms privacy).each do |static_page|
     match static_page => "static##{static_page}"    
   end
 
@@ -49,7 +44,9 @@ Bountyhill::Application.routes.draw do
 
   # manual routes for signup, signin, signout, twitter signin
   match "signin" => "sessions#signin_get",      :via => :get
+  match "signup" => "sessions#signin_get",      :via => :get
   match "signin" => "sessions#signin_post",     :via => :post
+  match "signup" => "sessions#signin_post",     :via => :post
   match "signout" => "sessions#signout_delete", :via => :delete
   match "sessions/cancel" => "sessions#cancel", :via => :post
 
@@ -112,7 +109,7 @@ Bountyhill::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'static#home'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

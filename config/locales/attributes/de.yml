@@ -1,0 +1,28 @@
+de: 
+  activerecord:
+    attributes:
+      identity:
+        email:                  Email
+        password:               Passwort
+        password_confirmation:  Bestätigung
+      user:
+        name:       Name
+        email:      Email
+        password:   Passwort
+        delete_me:  Account Löschen
+      quest:
+        title:            Betreff
+        category:         Kategorie
+        description:      Beschreibung
+        message:          Nachricht
+        duration_in_days: Laufzeit
+        criterium_0:      Kriterium 1
+        criterium_1:      Kriterium 2
+        criterium_2:      Kriterium 3
+        criterium_3:      Kriterium 4
+        criterium_4:      Kriterium 5
+        criterium_5:      Kriterium 6
+        criterium_6:      Kriterium 7
+        criterium_7:      Kriterium 8
+        criterium_8:      Kriterium 9
+        criterium_9:      Kriterium 10

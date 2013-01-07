@@ -1,0 +1,68 @@
+/* ------- navigation ------- */
+.navbar {
+  margin: 0;
+  -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
+  .nav {
+    font-weight: bold;
+    li {
+      &.active > a, &.active > a:hover, a:hover {
+        background:  $navigation_item_highlight;
+      }
+      a:focus {
+        outline: none;
+      }
+    }
+  }
+  .navbar-inner {
+    background-color: $navigation_background;
+    background-image: linear-gradient(top, $navigation_background_top, $navigation_background_bottom);
+    .brand {
+      width: 33%;
+      padding: 0 20px;
+    }
+    .nav-user {
+      li {
+        &.active > a, &.active > a:hover, a:hover {
+          background:  inherit;
+          color: inherit;
+        }
+        a {
+          padding: 0 0 0 10px;
+        }
+      }
+      .user_ident {
+        float: left;
+        text-align: right;
+        padding-right:10px;
+        .name {
+          font-size: 110%;
+        }
+        .handle {
+          font-size: 90%;
+        }
+      }
+      .dropdown {
+        .dropdown-menu {
+          margin-top: 0;
+          min-width: 60%;
+          &::after {
+            right: 40px;
+          }
+        }
+        li {
+          a {
+            padding: 4px 10px;
+          }
+          &.active > a, &.active > a:hover, a:hover {
+            background:  $navigation_item_highlight;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* drop user menu automatically on hover */
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block;
+}

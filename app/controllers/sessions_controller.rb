@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :show_confirmation_reminder
+  layout false, :only => [:signin_get]
 
   # This action renders signin forms. 
   #
@@ -31,57 +32,53 @@ class SessionsController < ApplicationController
 
   # This action received the email signin/signup form.
   def signin_post
-    @mode = if params[:do_signup] then :signup 
+    attrs = params[:identity] || {}
+    @mode = if params[:do_reset] then :reset
       elsif params[:do_signin] then :signin
-      else :reset
+      elsif params[:do_signup] then :signup
+      else  raise "Unknown signin mode"
       end
       
-    attrs = params[@mode] || {}
-    
-    case @mode
-    when :signin
-      email, password = attrs.values_at(:email, :password)
-      @identity = Identity::Email.authenticate(email, password)
-    when :signup
-      @identity = Identity::Email.create(attrs)
-    when :reset
-      @identity = if attrs[:email]
-        Identity::Email.where("lower(email)=?", attrs[:email].downcase).first
+    email, password = attrs.values_at(:email, :password)
+    @identity = case @mode
+      when :signin  then Identity::Email.authenticate(email, password)
+      when :signup  then Identity::Email.create(attrs)
+      when :reset   then Identity::Email.where("lower(email)=?", email.downcase).first
+      end || Identity::Email.new(attrs)
+      
+    if @identity.id
+      # Success! Set flash, and go somewhere...
+      
+      flash[:success] = I18n.t("identity.form.success.#{@mode}", :name => @identity.name)
+      
+      case @mode
+      when :signup, :signin
+        signin @identity.user
+        identity_presented!
+      when :reset
+        Deferred.mail UserMailer.reset_password(@identity.user)
+        redirect_to signin_path
       end
     end
-
-    @identity ||= Identity::Email.new(attrs)
     
     # Error: @identity is not in the database. 
     # -> validation failed, invalid email/password, etc.
-    unless @identity.id
-      @error = I18n.t("sessions.email.error.#{@mode}")
-      flash.now[:error] = @error
-      render_signin!
-    end
-
-    # Success! Set flash, and go somewhere...
-
-    flash[:success] = I18n.t("sessions.email.success.#{@mode}", :name => @identity.name)
-
-    case @mode
-    when :signup, :signin
-      signin @identity.user
-      identity_presented!
-    when :reset
-      Deferred.mail UserMailer.reset_password(@identity.user)
-      redirect_to signin_path
-    end
+    @error = I18n.t("identity.form.error.#{@mode}")
+    @partial = case @mode
+      when :signin  then "email"
+      when :reset   then "email"
+      when :signup  then "register"
+      end
   end
 
   private
 
   def render_signin!
     partials = case params[:req]
-    when "confirmed"  then identity?(:email) ? %w(email_confirmation) : %w(email)
+    when "confirmed"  then identity?(:email) ? %w(confirm) : %w(email)
     when "twitter"    then %w(twitter)
     when "email"      then %w(email)
-    else              %w(email twitter)
+    else              %w(email twitter register)
     end
 
     render! :action => "new", :locals => { :partials => partials }
@@ -128,12 +125,13 @@ class SessionsController < ApplicationController
 
     if screen_name
       # After a successful twitter signin
-      identity = ::Identity::Twitter.find_or_create :info => info, 
-                    :user => current_user,
-                    :screen_name  => screen_name,
-                    :oauth_token  => oauth_token,
-                    :oauth_secret => oauth_secret
-
+      identity = ::Identity::Twitter.find_or_create(
+        :info => info,
+        :user => current_user,
+        :screen_name  => screen_name,
+        :oauth_token  => oauth_token,
+        :oauth_secret => oauth_secret
+      )
       signin(User.find(identity.user.id))
 
       # At this point an existing user might have signed in for the first time,

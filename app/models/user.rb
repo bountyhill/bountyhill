@@ -441,6 +441,8 @@ class User < ActiveRecord::Base
   
   # -- retweet a quest ------------------------------------------------
   def retweet(quest, options = {})
+    return if ENV["RAILS_ENV"] == "development" # prevents sending tweets in dev mode
+    
     if options[:message]
       message = options[:message].gsub(/(^\s+)|(\s+$)/, "").gsub(/\s\s+/, " ")
     end

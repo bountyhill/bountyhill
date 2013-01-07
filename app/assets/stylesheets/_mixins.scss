@@ -1,26 +1,20 @@
-/* geometry */
-
 @mixin square($size) {
   width: $size;
   height: $size;
 }
-
-@mixin comment($font-size) {
-  font-size: $font-size;
-  font-weight: bold;
-  font-family: 'Amaranth', normal;
+@mixin message($background_color, $border_color) {
   line-height: 1.2;
-  background-color: $comment;
-  border: 2px solid $comment;
+  background-color: $background_color;
+  border: 2px solid $border_color;
   @include border-radius(3px);
   &:before {
     content: "";
     display: block;
     height: 0;
     width: 0;
-    border: 10px solid $comment;
+    border: 10px solid $border_color;
     border-width: 10px 10px 10px 0;
-    border-color: transparent $comment transparent transparent;
+    border-color: transparent $border_color transparent transparent;
     position: absolute;
     left: 50px;
     top: 15px;

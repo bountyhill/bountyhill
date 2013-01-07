@@ -1,7 +1,3 @@
-<%= header_ribbon h1(i18n_title_for(@quest)) %>
-
-<div class="row-fluid main-space">
-  <%= render_form do
-    render "form"
-  end %>
-</div>
+<%= modal_dialog i18n_title_for(@quest) do
+  render "form"
+end %>

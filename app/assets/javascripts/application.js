@@ -15,8 +15,6 @@
 //  no_require jquery_ujs
 //
 //= require bootstrap.js
-//= require_tree ./components
-//= require custom.js
 //= require filepicker.js
 
 // dummy console, just in case
@@ -27,88 +25,20 @@ if(typeof console === "undefined") {
 }
 
 $(document).ready(function() {
+  // enable endless scrolling
+  // see ???
   $('.endless_scroll_hook').bind('inview', function(e,visible) {
     if( visible ) {
       $.getScript($(this).attr("href"));
     }
   });
-});
-
-
-(function( $ ) {
-
-  $.fn.extend({ 
-    // sets focus to the first control element in a form
-    // displays explanation message in addition
-    setFocus: function() {
-      return this.each(function() {
-        
-        //  Show message hint on fokus
-        $(".control-group textarea, .control-group input").focus(function() {
-          $(this).closest(".control-group").find(".message").removeClass("hidden");
-        });
-
-        //  Hide message hint when fokus is gone
-        $(".control-group textarea, .control-group input").blur(function() {
-          $(this).closest(".control-group").find(".message").addClass("hidden");
-        });
-
-        //  Set fokus in first text input field
-        $(".control-group textarea, .control-group input").first().focus();
-        
-      });
-    }
-  });
   
-  /*
-  var DEFAULTS = {
-    zoom:               8,
-    center:             '52.5, 13.5', 
-    mapTypeControl:     false,
-    panControl:         false,
-    rotateControl:      false,
-    streetViewControl:  false,
-    backgroundColor:    "black",
-    draggable:          false,
-    scrollwheel:        false
-  };
-
-  $.fn.map_widget = function() {
-    var self = this;
-    
-    var location = self.data("location");
-    
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode(
-      { 'address': location }, 
-      function(results, status) {
-        if (status !== 'OK') {
-          console.log("Could not locate " + location + ": " + status);
-          return;
-        }
-
-        console.log("located " + location);
-
-        // We found the location -> build a gmap and put a marker on it.
-        var options = DEFAULTS;
-        options.center = results[0].geometry.location;
-        options.fitBounds = results[0].geometry.viewport;
-        
-        self.gmap(options).
-          bind('init', function(ev, map) {
-            self.gmap('addMarker', {'position': results[0].geometry.location}).
-              click(function() { });
-          });
-      });
-      
-      return this;
-  }; // $.fn.map_widget = ...
-  */
-
-})(jQuery);
-
-/*
-jQuery(function() {
-  jQuery("[data-location]").map_widget();
+  // To use Ajax Content in Twitter Bootstrap Modal
+  // see http://blog.assimov.net/blog/2012/03/09/ajax-content-in-twitter-bootstrap-modal/
+  $("a[data-toggle=modal]").click(function (e) {
+   lv_target = $(this).attr('data-target');
+   lv_url = $(this).attr('href');
+   $(lv_target).load(lv_url);
+  });
 });
-*/
+

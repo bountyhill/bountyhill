@@ -1,12 +1,12 @@
-<%= form_for @quest, :id => "quest_form" do |form| %>
-  <fieldset>
-    <legend><%= I18n.t(:"quest.form.legend", :count => Quest::NUMBER_OF_CRITERIA) %></legend>
-    <%#= form.error_messages %>
+<%= form_for @quest, :remote => true do |form| %>
+  <%= modal_body do %>
+    <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
+    <%= form.error_messages %>
 
-    <%= form.control_group :title, :text_area, :rows => 2 %>
-    <%= form.control_group :description, :text_area, :rows => 3 %>
+    <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
+    <%= form.control_group :title,        :text_area, :rows => 2 %>
+    <%= form.control_group :description,  :text_area, :rows => 4 %>
     <%#= form.control_group :location %>
-    <%#= form.control_group :bounty, :class => "input-xxxsmall", :unit => "EURO" %>
 
     <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
@@ -26,7 +26,7 @@
         var count = 0;
         $(".criterium-group").each(function() {
           // array with true entries when there is input.
-          var inputsHaveVals = jQuery.map($("input", this), function(input) {
+          var inputsHaveVals = jQuery.map($("textarea", this), function(input) {
             return $(input).val() !== "" ? true : false;
           });
 
@@ -49,6 +49,8 @@
         
       })(jQuery);
     </script>
-    <%= form.actions :cancel_url => quests_path %>
-  </fieldset>
+  <% end %>
+  <%= modal_footer do %>
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
 <% end %>

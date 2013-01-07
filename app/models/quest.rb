@@ -16,7 +16,7 @@ class Quest < ActiveRecord::Base
   # -- Access control -------------------------------------------------
 
   belongs_to :owner, :class_name => "User"
-  validates  :owner, presence: true
+  validates  :owner, :presence => true
   
   has_many  :forwards
   has_many  :forwarders, :through => :forwards, :source => :sender
@@ -74,24 +74,29 @@ class Quest < ActiveRecord::Base
 
   # -- CATEGORIES -----------------------------------------------------
   
-  CATEGORIES = %w(all estate jobs)
+  CATEGORIES = %w(misc jobs estate lost missing crime electronics sports entertainment cars boats)
   
-  scope :with_category, lambda { |category| 
+  scope :with_category, lambda { |category|
     expect! category => CATEGORIES
-    where("quests.category = ?", category) 
+    where("quests.category = ?", category)
   }
   
-  # -- Validations ----------------------------------------------------
+  def category_t
+    I18n.t(category, :scope => "quest.categories")
+  end
   
-  validates :title,       presence: true, length: { maximum: 100 }
-  validates :description, presence: true, length: { maximum: 2400 }
+  # -- Validations ----------------------------------------------------
+
+  validates :category,    :presence => true
+  validates :title,       :presence => true, :length => { :maximum => 100 }
+  validates :description, :presence => true, :length => { :maximum => 2400 }
   
   money :bounty
 
   serialize :serialized, Hash
   serialized_attr :duration_in_days
   
-  attr_accessible :title, :description, :bounty, :location, :duration_in_days
+  attr_accessible :title, :description, :bounty, :location, :duration_in_days, :category
 
   # -- Cancellation ---------------------------------------------------
 

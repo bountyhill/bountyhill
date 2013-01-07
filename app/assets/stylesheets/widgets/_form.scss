@@ -1,190 +1,37 @@
-.form-container {
-  height: auto;
-  padding: 40px 35px 40px 40px;
-  background-color: $background_inverse;
-  position: relative;
-  color: $text_inverse;
-}
-
-.toggle_signin_signup {
-  float: left;
-}
-
+/* ------- form ------- */
 form {
-  margin: 0;
-  padding: 0;
-  input, select, textarea {
-    color: $text_inverse;
-    /* ensure placeholder is always gray, even on error - see: http://stackoverflow.com/questions/2610497/change-an-inputs-html5-placeholder-color-with-css */
-    &::-webkit-input-placeholder {
-      color: $text_minor !important;
-    }
-    &:-moz-placeholder {
-      color: $text_inverse_minor !important;
-    }
-    &:-ms-input-placeholder {
-      color: $text_inverse_minor !important;
-    }
-  }
-  &.form-horizontal {
-    .control-label {
-      padding-top: 0;
-      width: 130px;
-      text-align: left;
+  .control-group {
+    label {
       font-weight: bold;
+      &.radio {
+        font-weight: normal;
+        margin-right: 10px;
+      }
     }
   }
-  label {
-    color: $text_inverse;
-    font-size: inherit;
-  }
-  .input-xxxsmall {
-    width: 100px;
-  }
-  /* input must not have $text (which would be whitish, because inputs most of the time have a whitish background already */
-  input[type=text], input[type=password], textarea, .unit {
-    vertical-align: top;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
-  }
-  input[type=text], input[type=password], textarea {
-    margin-right: 10px;
-  }
-  .unit {
-    width: 50px;
-  }
-  input[type=file] {
-    color: $text;
-  }
-  input[type=checkbox] {
-    margin-right: 5px;
+  .tweet-container {
     position: relative;
-    top: -0.2em;
+    img {
+      float: left;
+      @include square(48px);
+    }
+    #tweet {
+      @include message($tweet_message_background, $tweet_message_border);
+      margin-left: 60px;
+      min-height: 35px;
+      padding: 5px 10px;
+    }
   }
-  legend {
-    color: $text_inverse;
-    border: none;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.2;
-    font-weight: bold;
+  .checkbox-group {
+    margin: 18px 0;
+    .checkbox {
+      .control-group {
+        margin-bottom: 0;
+      }
+    }
   }
   .buttons {
-    clear: both;
-    text-align: right;
-/*
-    padding-left: 10px; // to compensate padding of input fields and text areas
-*/
+    float: right;
+    margin-bottom: 10px;
   }
-  .control-group {
-    clear: both;
-    position: relative;
-    &.error {
-      input, select, textarea {
-        color: $text_inverse;
-      }
-      .message {
-        display: inline-block !important;
-        visibility: visible;
-        color: $text_error;
-      }
-    }
-    .controls {
-      margin: 0;
-      .unit {
-        display: inline-block;
-        color: $text_inverse_major;
-      }
-    }
-    .message {
-      position: absolute;
-      left: 560px;
-      top: 0px;
-      display: inline-block;
-      color: $text_inverse_major;
-      &.hidden {
-        display: none;
-      }
-    }
-    ul {
-      margin: 0;
-      &.radio_button_group {
-        li {
-          float:left;
-          margin-left: 30px;
-          input {
-            margin-top: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-.runs_form {
-  padding-right: 15px;
-  .input-xxlarge {
-    width: 100%;
-    min-height: 60px;
-  }
-  input {
-    &.bounty {
-      width: 60px;
-    }
-  }
-  textarea {
-   box-sizing: border-box;
-  }
-}
-
-.tweet-container {
-  position: relative;
-  margin-top: 36px;
-  #tweet {
-    @include comment(22px);
-    min-height: 60px;
-    padding: 10px;
-    margin: 0 0 20px 60px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .input-xxlarge {
-    width: 470px;
-  }
-  form {
-    .control-group {
-      .message {
-        left: 500px;
-      }
-    }
-  }
-}
-@media (max-width: 979px) {
-  .input-xxlarge {
-    width: 100%;
-  }
-  form {
-    .control-group {
-      .message {
-        position: relative;
-        left: 0;
-        margin-top: 3px;
-        visibility: visible;
-        display: inline-block !important;
-      }
-    }
-  }
-}
-@media (max-width: 767px) {
-  .form-container {
-    border: none;
-    border-radius: 0px;
-  }
-}
-@media (max-width: 480px) {
-}
-@media (max-width: 320px) {
 }

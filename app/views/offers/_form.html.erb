@@ -16,7 +16,7 @@
       <%= form.control_group Offer.criteria_compliances[idx], :compliance_chooser, :label => "#{criterium[:title]}?" %>
     <% end %>
     
-    <%= form.actions :cancel_url => offers_path %>
+    <%= form.actions offers_path %>
   </fieldset>
 <% end %>
 

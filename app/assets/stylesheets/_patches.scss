@@ -1,0 +1,36 @@
+/*
+ * patches.scss
+ *
+ * add your well documented css patches here
+ */
+ 
+/*
+  modal dialoges patches
+*/
+.modal-open {
+  .modal {
+    border: none;               /* removes ovelapping border in modal dialoge */
+    &.fade {
+      &.in {
+        top: 40%;               /* brings modal dialoge closer to top */
+      }
+    }
+    .modal-body {
+      max-height: 480px;        /* enables sign in/up form to fit into modal dialoge */
+    }
+    form {
+      margin: 0;                /* aligns modal dialoge's footer and body */
+      textarea {
+        line-height: 1.2;       /* better line high - default is 18px which is much to hight */
+      }
+    }
+  }
+}
+
+/*
+  icon patches
+*/
+li [class^="icon-"], 
+li [class*=" icon-"] {
+  text-align: left;            /* usually awsome font icons are centered - brings them to close to following text on the right */
+}

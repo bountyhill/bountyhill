@@ -36,34 +36,29 @@ module NavigationHelper
     :logs  => "https://papertrailapp.com/systems/#{Bountybase.environment}/events",
     :jobs  => "/jobs"
   }
-  
-  def nav_profile_label
-    info = span(" &#10003;") if current_user.identity(:confirmed, :twitter)
-    "#{h current_user.name}#{info}".html_safe
-  end
-
-  def nav_points_label
-    current_user.points
-  end
 
   def link_to_nav_item(nav_item)
     expect! nav_item => [Symbol]
 
     case nav_item
-    when :dot
-      link_to "·", "#", :class => "separator"
-    when :profile
-      link_to nav_profile_label, "/profile"
-    when :points
-      link_to nav_points_label, "/profile"
-    when :your_offers
-      link_to I18n.t("nav.#{nav_item}"), offers_path(:owner_id => current_user.id)
+    when :start_quest
+      modal_link_to content_tag(:i, nil, :class => "icon-edit") + I18n.t("nav.start_quest"), new_quest_path
+    when :quests
+      link_to content_tag(:i, nil, :class => "icon-list") + I18n.t("nav.quests"), quests_path
     when :your_quests
-      link_to I18n.t("nav.#{nav_item}"), quests_path(:owner_id => current_user.id)
-    when :copyright
-      link_to "&copy; bountyhill, 2012".html_safe, contact_path
+      link_to content_tag(:i, nil, :class => "icon-list") + I18n.t("nav.your_quests"), quests_path(:owner_id => current_user.id)
+    when :your_offers
+      link_to content_tag(:i, nil, :class => "icon-th-list") + I18n.t("nav.your_offers"), offers_path(:owner_id => current_user.id)
+    when :profile
+      link_to content_tag(:i, nil, :class => "icon-user") + I18n.t("nav.your_profile"), "/profile"
     when :signout
-      link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path"), :method => "delete"
+      link_to content_tag(:i, nil, :class => "icon-signout") +  I18n.t("nav.signout"), send("#{nav_item}_path"), :method => "delete"
+    when :divider
+      ""
+    when :copyright
+      link_to "<strong>&copy; bountyhill, #{Time.now.year}</strong>".html_safe, root_path
+    when :signin
+      modal_link_to content_tag(:i, nil, :class => "icon-signin") + I18n.t("nav.signin"), signin_path
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     else
@@ -72,51 +67,75 @@ module NavigationHelper
   end
   
   def navigation_items(position)
-    expect! position => [:left, :right, :bottom_left, :bottom_right]
+    expect! position => [:header_center, :user, :footer_left, :footer_right]
     
     case position
-    when :left
-      nav_items = [ :about, :quests ]
-      user_items = []
-      
-      user_items << :your_quests if current_user && current_user.quests.first
-      user_items << :your_offers if current_user && current_user.offers.first
-
-      unless user_items.empty?
-        nav_items << :dot
-        nav_items.concat user_items
-      end
-      nav_items
-    when :right
-      if current_user
-        [ :profile, :points, :signout ]
-      else
-        [ :signin ]
-      end
-    when :bottom_left
-      [ :terms, :privacy, :contact ]
-    when :bottom_right
-      if admin?
-        ADMIN_NAVIGATION.keys + [ :copyright ]
-      else
-        [ :copyright ]
-      end
+    when :user
+      [ :your_quests, :your_offers, :profile, :divider, :signout ]
+    when :header_center
+      [ :start_quest, :quests ]
+    when :footer_right
+      (admin? ? ADMIN_NAVIGATION.keys : []) + [ :copyright ]
+    when :footer_left
+      [ :about, :contact, :imprint, :terms, :privacy ]
     end
   end
   
   def render_navigation_items(position)
-    show_active_links = position == :right || position == :left
+    show_active_links = position == :header_center
+    css = ""
+    css += " nav-main"    if position == :header_center
+    css += " pull-right"  if position =~ /right/
     
-    ul :class => "nav #{" pull-right" if position == :right || position == :bottom_right }" do
-      navigation_items(position).map do |navigation_item|
-        if link = link_to_nav_item(navigation_item)
-          css = {}
-          if show_active_links && navigation_item_active?(navigation_item)
-            css = { :class => "active" }
-          end
-          
-          content_tag :li, link, css
+    ul :class => "nav #{css}" do
+      navigation_items(position).map do |nav_item|
+        navigation_item(nav_item)
+      end.compact.join.html_safe
+    end
+  end
+  
+  def navigation_item(nav_item)
+    if link = link_to_nav_item(nav_item)
+      css = {}
+      css[:class] = "active"  if navigation_item_active?(nav_item)
+      css[:class] = "divider" if nav_item == :divider
+      
+      content_tag :li, link, css
+    end
+  end
+  
+  def user_navigation
+    if current_user
+      ul :class => "nav nav-user pull-right" do
+        content_tag :li, :class => "dropdown" do
+            user_dropdown_menu
         end
+      end
+    else
+      ul :class => "nav pull-right" do
+        navigation_item(:signin)
+      end
+    end
+  end
+  
+  def user_dropdown_menu
+    return unless user = current_user
+
+    avatar_size = 40
+    img = image_tag user.avatar(:size => avatar_size),
+     :alt => user.name,
+     :class => "avatar",
+     :width => avatar_size,
+     :height => avatar_size
+    ident = div :class => "user_ident" do
+      div(user.name, :class => "name") + 
+      div(user.twitter_handle, :class => "handle")
+    end
+    
+    link_to(ident + img, "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown") + 
+    ul(:class => "dropdown-menu", :role => "menu") do
+      navigation_items(:user).map do |nav_item|
+        navigation_item(nav_item)
       end.compact.join.html_safe
     end
   end

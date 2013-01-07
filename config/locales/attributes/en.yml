@@ -1,33 +1,28 @@
-en: 
-  activerecord: 
-    attributes: 
-      user: 
-        name: "Name"
-        email: "Email"
-        password: "Password"
-        confirmation: "Confirmation"
-        delete_me: "Delete my account"
+en:
+  activerecord:
+    attributes:
+      identity:
+        email:                  Email
+        password:               Password
+        password_confirmation:  Confirm
+      user:
+        name:       Name
+        email:      Email
+        password:   Password
+        delete_me:  Delete my account
       quest:
-        title:                    Subject
-        message:                  Message
-        duration_in_days:         Duration
-        criterium_0:              "Criteria 1"
-        criterium_description_0:  "Description (opt.)"
-        criterium_1:              "Criteria 2"
-        criterium_description_1:  "Description (opt.)"
-        criterium_2:              "Criteria 3"
-        criterium_description_2:  "Description (opt.)"
-        criterium_3:              "Criteria 4"
-        criterium_description_3:  "Description (opt.)"
-        criterium_4:              "Criteria 5"
-        criterium_description_4:  "Description (opt.)"
-        criterium_5:              "Criteria 6"
-        criterium_description_5:  "Description (opt.)"
-        criterium_6:              "Criteria 7"
-        criterium_description_6:  "Description (opt.)"
-        criterium_7:              "Criteria 8"
-        criterium_description_7:  "Description (opt.)"
-        criterium_8:              "Criteria 9"
-        criterium_description_8:  "Description (opt.)"
-        criterium_9:              "Criteria 10"
-        criterium_description_9:  "Description (opt.)"
+        title:            Subject
+        category:         Category
+        description:      Description
+        message:          Message
+        duration_in_days: Duration
+        criterium_0:      Criteria 1
+        criterium_1:      Criteria 2
+        criterium_2:      Criteria 3
+        criterium_3:      Criteria 4
+        criterium_4:      Criteria 5
+        criterium_5:      Criteria 6
+        criterium_6:      Criteria 7
+        criterium_7:      Criteria 8
+        criterium_8:      Criteria 9
+        criterium_9:      Criteria 10

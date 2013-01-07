@@ -1,19 +1,11 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="btn btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'bounty<strong>hill</strong>'.html_safe, root_path, :class => "brand" %>
-      <div class="nav-collapse">
-        <%= render_navigation_items :left %>
-        <%= render_navigation_items :right %>
+    <div class="container-fluid">
+      <div class="brand">
+        <%= link_to image_tag('/images/logo.png'), root_path %>
       </div>
+      <%= render_navigation_items :header_center %>
+      <%= user_navigation %>
     </div>
   </div>
 </div>
-<div class="wall-tagline"><%= I18n.t("tagline") %></div>
-<%= render_flash %>

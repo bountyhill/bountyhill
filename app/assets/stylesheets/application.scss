@@ -21,34 +21,24 @@
 }
 
 // import twitter bootstrap
-@import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap_awesome";
 @import "compass_twitter_bootstrap_responsive";
 
-// import inception stylesheets
-@import "inception/css/styles";
-@import "inception/css/styles-responsive";
+// import font awesome
+@import "font-awesome";
+@import "font-awesome-scss";
 
-// import baiscs
+// import basics
+@import "patches";
 @import "colors";
-@import "fonts";
 @import "mixins";
 
-// import pagewise stylesheets
-@import "pages/layout";
+// import pages' stylesheets
 @import "pages/home";
 @import "pages/quests";
+@import "pages/offers";
 @import "pages/users";
 
-// import widget stylesheets
- @import "widgets/avatar";
- @import "widgets/buttons";
- @import "widgets/comments";
- @import "widgets/datepicker";
- @import "widgets/form";
- @import "widgets/header";
- @import "widgets/pagination";
- @import "widgets/fixes";
- @import "widgets/backgrounds";
- @import "widgets/navi";
- @import "widgets/sheets";
- 
+// import widgets' stylesheets
+@import "widgets/navigation";
+@import "widgets/form";

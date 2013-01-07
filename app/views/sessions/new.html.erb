@@ -1,12 +1,11 @@
-<%#= header_ribbon h1(I18n.t("sessions.title")).html_safe %>
-
-<div class="row-fluid main-space">
-  <%= render_form do %>
-    <div id="accordion" class="accordion" style="height:<%= partials.size > 1 ? '400px' : 'auto' %>">
-      <% partials.each_with_index do |form_partial, index| %>
-        <%= partial form_partial, :expand => index.zero? %>
-        <div class="separator"><span>or</span></div>
+<%= modal_dialog I18n.t("identity.form.title") do %>
+  <% div :class =>"modal-body" do %>
+    <% div :class =>"accordion", :id => "accordion" do %>
+      <% partials.each do |partial, index| %>
+        <%= div :class => "accordion-group", :id => partial do %>
+          <%= render partial %>
+        <% end %>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
-</div>
+<% end %>

@@ -177,7 +177,8 @@ CREATE TABLE identities (
     user_id integer,
     serialized text,
     followed_at timestamp without time zone,
-    confirmed_at timestamp without time zone
+    confirmed_at timestamp without time zone,
+    newsletter_subscription boolean
 );
 
 
@@ -287,7 +288,8 @@ CREATE TABLE quests (
     visibility character varying(255),
     location character varying(255),
     serialized text,
-    number_of_criteria integer DEFAULT 0 NOT NULL
+    number_of_criteria integer DEFAULT 0 NOT NULL,
+    category text
 );
 
 
@@ -571,6 +573,13 @@ CREATE INDEX index_offers_on_state ON offers USING btree (state);
 
 
 --
+-- Name: index_quests_on_category; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_quests_on_category ON quests USING btree (category);
+
+
+--
 -- Name: index_quests_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -656,6 +665,10 @@ INSERT INTO schema_migrations (version) VALUES ('22');
 INSERT INTO schema_migrations (version) VALUES ('23');
 
 INSERT INTO schema_migrations (version) VALUES ('24');
+
+INSERT INTO schema_migrations (version) VALUES ('25');
+
+INSERT INTO schema_migrations (version) VALUES ('26');
 
 INSERT INTO schema_migrations (version) VALUES ('3');
 
