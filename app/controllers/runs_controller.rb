@@ -23,8 +23,7 @@ class RunsController < ApplicationController
   def update
     W "runs/update: current_user", current_user
     
-    
-    if false #quest.update_attributes params[:quest]
+    if quest.update_attributes params[:quest]
       quest.start!
     
       # quest.tweet is a pseudo-attribute; it will be set from the form data.
