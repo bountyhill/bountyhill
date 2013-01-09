@@ -82,12 +82,13 @@ en:
         error:      Please review your input.
         base_error: "%{base_error}: please review your input."
       field_hint:
-        title:        "Enter a subject describing your quest in a few words."
-        description:  "Add a detailed description for your quest."
-        location:     "Restrict your quest to a particular location."
-        bounty:       "Set up a bounty for your quest."
-        criteria:     "Define criteria to better assess incoming offers."
-        message:      "You can change your message here if necessary."
+        title:              "Enter a subject describing your quest in a few words."
+        description:        "Add a detailed description for your quest."
+        location:           "Enter the name of the quest's location."
+        restrict_location:  "I want to restrict my quest to a particular location."
+        bounty:             "Set up a bounty for your quest."
+        criteria:           "Define criteria to better assess incoming offers."
+        message:            "You can change your message here if necessary."
         duration:
           one:    "one day"
           other:  "%{count} days"

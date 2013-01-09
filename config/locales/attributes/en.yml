@@ -11,9 +11,11 @@ en:
         password:   Password
         delete_me:  Delete my account
       quest:
+        bounty:           Bounty
         title:            Subject
         category:         Category
         description:      Description
+        location:         Location
         message:          Message
         duration_in_days: Duration
         criterium_0:      Criteria 1

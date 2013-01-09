@@ -82,12 +82,13 @@ de:
         error:      Bitte prüfen Sie Ihre Eingaben.
         base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
       field_hint:
-        title:        "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
-        description:  "Hier können Sie Ihre Anfrage detailiert darstellen."
-        location:     "Beschränken Sie Ihr Suche auf einen bestimmten Ort."
-        bounty:       "Loben Sie eine Belohung für Ihre Suche aus."
-        criteria:     "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
-        message:      "Falls notwendig, können Sie Ihre Nachricht hier ändern."
+        title:              "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
+        description:        "Hier können Sie Ihre Anfrage detailiert darstellen."
+        location:           "Geben Sie den Namen des Ortes ein."
+        restrict_location:  "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
+        bounty:             "Loben Sie eine Belohung für Ihre Suche aus."
+        criteria:           "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
+        message:            "Falls notwendig, können Sie Ihre Nachricht hier ändern."
         duration:
           one:    "1 Tag"
           other:  "%{count} Tage"

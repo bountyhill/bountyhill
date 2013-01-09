@@ -13,16 +13,13 @@
   # - +quest+: the Quest object.
   # - +retweet+: when set, this is a retweet. That means that the user cannot change
   #   the bounty value or the run time.
-  if !defined?(retweet)
-    retweet = false
-  end
-
-  url = retweet ? share_url(quest) : run_url(quest)
   
-  bounty = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
+  retweet = false if !defined?(retweet)
+  url     = retweet ? share_url(quest) : run_url(quest)
+  bounty  = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 -%>
 
-<%= form_for quest, :remote => true, :url => url do |form| %>
+<%= form_for(quest, :remote => true, :url => url) do |form| %>
   <%= modal_body do %>
     <p><%= retweet ? I18n.t("retweets.legend") : I18n.t("quest.form.start.legend") %></p>
     <%= form.error_messages %>
@@ -45,6 +42,15 @@
     <% end %>
     
     <%= form.control_group :message, :text_area, :rows => 3, :value => quest.title, :hint => false %>
+    
+    <% unless retweet %>
+      <div id="location_fields" class="hide">
+        <%= form.control_group :location, :text_field %>
+        <%= form.location_map("quest_location") %>
+      </div>
+      <%= form.restrict_location %>
+    <% end %>
+
     <div class="tweet-container">
       <%= form.control_group :tweet, :hidden_field %>
       <%= avatar current_user, :size => 48 %>
@@ -54,12 +60,23 @@
       </div>
     </div>
   <% end %>
+
   <%= modal_footer do
     form.actions quest_path(quest), :label => I18n.t("button.#{retweet ? 'share' : 'start'}"), :class => "btn btn-primary"
   end %>
+  
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
+
+// toggles location restriction
+$("#restrict_location").change(function() {
+  $("#location_fields").toggleClass('hide');
+});
+<% if quest.location.present? %>
+  $("#restrict_location").trigger('click')
+<% end %>
+
 (function($) {
   var node_bounty   = $("#quest_bounty"),
     node_message    = $("#quest_message"),
