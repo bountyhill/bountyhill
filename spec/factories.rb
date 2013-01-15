@@ -28,9 +28,10 @@ FactoryGirl.define do
   end
 
   factory :quest do
-    bounty "12"
-    title "bountytitle"
+    bounty      "12"
+    title       "bountytitle"
     description "bounty description"
+    category    "misc"
   end
 
   factory :offer do
