@@ -1,16 +1,17 @@
-<%#= header_ribbon(
-  header_action(:bubble, new_quest_path, :title => t("quest.actions.new.title"), :text => t("quest.actions.new.sub")),
-  partial("quests/index/head"), 
-  "&nbsp") %>
-
-<div class="row bg-main">
-  <div class="span12">
-    <ul class="row quests">
-      <%= render :partial => 'quests/list' %>
-    </ul>
-    <%= link_to I18n.t("status.loading"), 
-      quests_path(params.merge(:page => (params[:page].to_i || 1)+1)), 
-      :class => 'endless_scroll_hook', 
-      :remote => true %>
+<div class="row-fluid main">
+  <div class="sidebar span3">
+    <div style="background-color:#00c; min-height:200px">
+      <h1>placeholder: Category-Filter</h1>
+    </div>
+    <div class="spacer" style="min-height:30px">
+    </div>
+    <div style="background-color:#ccc; min-height:200px">
+      <h1>placeholder: Top-Quest-List</h1>
+    </div>
   </div>
+  <div class="span1">&nbsp;</div>
+  <div class="main span7">
+    <%= quests_list_box(@quests) %>
+  </div>
+  <div class="span1">&nbsp;</div>
 </div>

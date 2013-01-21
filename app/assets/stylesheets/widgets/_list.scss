@@ -1,0 +1,97 @@
+.loader {
+  text-align: center;
+}
+
+
+ul.list {
+  margin: 0;
+  & > li {
+    clear: both;
+    min-height: 10ex;
+    margin-bottom: 5ex;
+    
+    /* ------- colors ------- */
+    &.quest {
+      .message-box {
+        @include message($quests_box_content_color, $quests_box_content_color);
+      }
+      dl.statistic {
+        background-color: $quests_box_content_color;
+        border-color: $quests_box_content_color;
+      }
+    }
+
+    /* ------- avatar ------- */
+    .avatar {
+    }
+
+    /* ------- message ------- */
+    .message-container {
+      position: relative;
+      margin-bottom: 1ex;
+      img {
+        float: left;
+      }
+      .message-box {
+        display: block;
+        min-height: 10ex;
+        margin-left: 84px;
+        &:before {
+          left: 74px;
+        }
+        &:hover {
+          .interactions {
+            display: block;
+          }
+        }
+        .owner {
+          float: left;
+        }
+        .time {
+          float: right;
+          font-style: italic;
+          font-size: 0.8em;
+        }
+        .tweet {
+/*          clear: both; */
+          display: block;
+          margin-top: 3ex;
+          padding-right: 5ex;
+        }
+        .interactions {
+          display: none;
+          position: absolute;
+          bottom: 0px;
+          right: 10px;
+          margin: 0;
+          & > li {
+            float: left;
+            margin-left: 1em;
+          }
+        }
+      }
+    }
+    /* ------- statistic ------- */
+    dl.statistic {
+      border: 2px solid;
+      margin: 0;
+      padding: 5px 10px;
+      min-height: 10ex;
+      dt, dd {
+        height: 3ex;
+      }
+      dt {
+        float: left;
+        clear: both;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: 1.5ex;
+      }
+      dd {
+        float: right;
+        font-size: 2.5ex;
+        font-weight: bold;
+      }
+    }
+  }
+}

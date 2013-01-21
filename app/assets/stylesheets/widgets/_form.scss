@@ -5,7 +5,9 @@ form {
       font-weight: bold;
       &.radio {
         font-weight: normal;
-        margin-right: 10px;
+        &.inline {
+          width: 3.8em;
+        }
       }
     }
   }
@@ -16,7 +18,10 @@ form {
       @include square(48px);
     }
     #tweet {
-      @include message($tweet_message_background, $tweet_message_border);
+      @include message($message_background, $message_border);
+      &:before {
+        left: 50px;
+      }
       margin-left: 60px;
       min-height: 35px;
       padding: 5px 10px;

@@ -1,5 +1,5 @@
 <% @quests.each do |quest| %>
-  <li class="span4">
-    <%= render :partial => 'pin', :locals => { :quest => quest } %>
+  <li class="quest" id="<%= dom_id(quest) %>">
+    <%= partial "list_item", :quest => quest %>
   </li>
 <% end %>

@@ -11,7 +11,8 @@ class Quest < ActiveRecord::Base
   # If no duration is set when starting a quest this is the duration
   # to use instead.
   
-  DEFAULT_DURATION_IN_DAYS = 7
+  DURATIONS_IN_DAYS         = [ 3, 7, 14, 21 ]
+  DEFAULT_DURATION_IN_DAYS  = 7
   
   # -- Access control -------------------------------------------------
 

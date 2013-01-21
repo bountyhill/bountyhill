@@ -1,4 +1,14 @@
 module ApplicationHelper
+  def endless_scroll_loader(type)
+    expect! type => Symbol
+    div :class => "loader" do
+      link_to(content_tag(:i, nil, :class => "icon-refresh") + "&nbsp;".html_safe + I18n.t("link.loading"),
+        send("#{type}_path", params.merge(:page => (params[:page].to_i || 1)+1)),
+        :class => 'endless_scroll_hook',
+        :remote => true)
+    end
+  end
+  
   def i18n_title_for(model, options={})
     I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.title", options).html_safe
   end

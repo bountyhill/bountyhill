@@ -22,7 +22,7 @@ class QuestsController < ApplicationController
   end
 
   def new
-    @quest = Quest.new
+    @quest ||= Quest.new
 
     # When we come from the start page, we might have a quest title.
     @quest.title = params[:q]

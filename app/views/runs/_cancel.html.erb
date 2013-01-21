@@ -1,21 +1,22 @@
-<%= form_for quest, :url => run_url(quest), :method => :delete, :html => { :class => "runs_form" } do |form| %>
-  <fieldset>
-    <legend><%= I18n.t("cancel_run.legend") %></legend>
+<%= form_for quest, :url => run_url(quest), :method => :delete, :remote => true do |form| %>
+
+  <%= modal_body do %>
+    <p><%= I18n.t("quest.form.stop.legend") %></p>
     <%= form.error_messages %>
 
-    <div class="pull-right">
-    <%= form.control_group :cancellation, :radio_button, :hint => false do 
-      ul :class => "radio_button_group" do
-        Quest::CANCELLATIONS.map do |value|
-          radio_button = form.radio_button :cancellation, value,
-            :checked => ((quest.cancellation || Quest::CANCELLATIONS.first) == value)
-          li "#{radio_button} #{I18n.t("cancel_run.#{value}")}"
+    <%= form.control_group :cancellation, :radio_button, :hint => false do
+      Quest::CANCELLATIONS.map do |value|
+          label :class => "radio" do
+            form.radio_button(:cancellation, value, :checked => ((quest.cancellation || Quest::CANCELLATIONS.first) == value)) +
+            I18n.t("quest.form.field_hint.cancellation.#{value}")
+          end
         end.join.html_safe
-      end 
     end %>
-    </div>
+    <%= form.control_group :cancellation_reason, :text_area, :rows => 3, :hint => false %>
+  <% end %>
 
-    <%= form.control_group :cancellation_reason, :text_area, :rows => 2, :hint => false %>
-    <%= form.actions quest_path(quest), :label => "Stop this quest" %>
-  </fieldset>
+  <%= modal_footer do %>
+    <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.stop") %>
+  <% end %>
+  
 <% end %>

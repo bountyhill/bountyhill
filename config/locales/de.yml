@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  link:
+    loading: "Loading..."
   button:
     save:     Speichern
     update:   Aktualisieren
@@ -10,6 +12,7 @@ de:
     create:   Anlegen
     cancel:   Abbrechen
     start:    Starten
+    stop:     Beenden
     share:    Teilen
     signin:   Anmelden
     register: Registrieren
@@ -65,6 +68,14 @@ de:
       legend:   "Sie können Suchen starten und Angebote abgeben, wenn sie sich mit Ihrer Email-Adresse registrieren."
       legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
   quest:
+    status:
+      active:       "Aktiv"
+      not_started:  "Nicht gestarted"
+      expired:      "Abgelaufen"
+    list:
+      title:
+        one:    "1 Suche"
+        other:  "%{count} Suchen"
     categories:
       misc:           Verschiedenes
       jobs:           Arbeitsstellen
@@ -82,19 +93,33 @@ de:
         error:      Bitte prüfen Sie Ihre Eingaben.
         base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
       field_hint:
-        title:              "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
-        description:        "Hier können Sie Ihre Anfrage detailiert darstellen."
-        location:           "Geben Sie den Namen des Ortes ein."
-        restrict_location:  "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
-        bounty:             "Loben Sie eine Belohung für Ihre Suche aus."
-        criteria:           "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
-        message:            "Falls notwendig, können Sie Ihre Nachricht hier ändern."
+        title:                "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
+        description:          "Hier können Sie Ihre Anfrage detailiert darstellen."
+        location:             "Geben Sie den Namen des Ortes ein."
+        restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
+        bounty:               "Loben Sie eine Belohung für Ihre Suche aus."
+        criteria:             "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
+        message:              "Falls notwendig, können Sie Ihre Nachricht hier ändern."
+        cancellation_reason:  "Sie können hier erklären, warum Sie diese Suche beenden möchten."
+        cancellation:
+          bountyhill_success: "Meine Suche auf Bountyhill war erfolgreich."
+          other_success:      "Meine Suche hatte ausserhalb von Bountyhill Erfolg."
+          no_longer_needed:   "Ich benötige diese Suche nicht mehr."
         duration:
           one:    "1 Tag"
           other:  "%{count} Tage"
       create:
         title:  Suchanfrage anlegen
         legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
+      edit: 
+        title:  Suchanfrage bearbeiten
+        legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
       start:
         title:  Suchanfrage starten
         legend: "Loben Sie eine Belohnung aus und geben Sie die Laufzeit ihrer Suchanfrage an. Die Nachricht zu Ihrer Suchanfrage können Sie gern anpassen."
+      stop:
+        title:  Suchanfrage beenden
+        legend: "Teilen Sie uns bitte den Grund dafür mit, warum Sie Ihre Suchanfrage vor deren Ablaufdatum beenden möchten."
+      share:
+        title:  Suchanfrage teilen
+        legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen möchten. Die Nachricht Ihrer Mitteilung können Sie gern anpassen."

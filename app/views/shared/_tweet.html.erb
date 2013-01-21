@@ -21,7 +21,7 @@
 
 <%= form_for(quest, :remote => true, :url => url) do |form| %>
   <%= modal_body do %>
-    <p><%= retweet ? I18n.t("retweets.legend") : I18n.t("quest.form.start.legend") %></p>
+    <p><%= I18n.t("quest.form.#{retweet ? 'share' : 'start'}.legend") %></p>
     <%= form.error_messages %>
 
     <% if retweet %>
@@ -32,7 +32,7 @@
 
     <% unless retweet %>
       <%= form.control_group :duration_in_days, :radio_button, :hint => false do
-          [3, 7, 14, 21].map do |value|
+          Quest::DURATIONS_IN_DAYS.map do |value|
             label :class => "radio inline" do
               form.radio_button(:duration_in_days, value, :checked => ((quest.duration_in_days || 7) == value)) +
               I18n.t('quest.form.field_hint.duration', :count => value)
@@ -62,7 +62,7 @@
   <% end %>
 
   <%= modal_footer do
-    form.actions quest_path(quest), :label => I18n.t("button.#{retweet ? 'share' : 'start'}"), :class => "btn btn-primary"
+    form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.#{retweet ? 'share' : 'start'}"), :class => "btn btn-primary"
   end %>
   
 <% end %>
@@ -74,15 +74,16 @@ $("#restrict_location").change(function() {
   $("#location_fields").toggleClass('hide');
 });
 <% if quest.location.present? %>
-  $("#restrict_location").trigger('click')
+  $("#restrict_location").trigger('click');
 <% end %>
 
 (function($) {
+  
   var node_bounty   = $("#quest_bounty"),
     node_message    = $("#quest_message"),
     node_form_tweet = $("#quest_tweet");
     node_tweet      = $("#tweet span.preview");
-  
+    
   function update_message() {
     // This is a rough JS re-implementation of Quest#message
     

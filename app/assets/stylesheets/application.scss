@@ -24,9 +24,11 @@
 @import "compass_twitter_bootstrap_awesome";
 @import "compass_twitter_bootstrap_responsive";
 
+/*
 // import font awesome
 @import "font-awesome";
 @import "font-awesome-scss";
+*/
 
 // import basics
 @import "patches";
@@ -41,4 +43,6 @@
 
 // import widgets' stylesheets
 @import "widgets/navigation";
+@import "widgets/box";
 @import "widgets/form";
+@import "widgets/list";

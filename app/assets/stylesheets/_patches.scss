@@ -3,10 +3,8 @@
  *
  * add your well documented css patches here
  */
- 
-/*
-  modal dialoges patches
-*/
+
+/* -------- modal dialoge --------- */
 .modal-open {
   .modal {
     border: none;               /* removes ovelapping border in modal dialoge */
@@ -27,9 +25,7 @@
   }
 }
 
-/*
-  icon patches
-*/
+/* -------- icon ---------- */
 li [class^="icon-"], 
 li [class*=" icon-"] {
   text-align: left;            /* usually awsome font icons are centered - brings them to close to following text on the right */

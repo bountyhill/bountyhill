@@ -1,0 +1,22 @@
+<div class="message-container span9">
+  <%= link_to user_path(quest.owner), :class => "avatar" do
+    avatar quest.owner, :size => 64
+  end %>
+  <div class="message-box">
+    <%= link_to user_path(quest.owner), :class => "owner" do %>
+      <%= strong(quest.owner.name) %>
+      <%= quest.owner.twitter_handle %>
+    <% end %>
+    <div class="time">
+      <%= time_ago_in_words(quest.started_at || quest.created_at) %>
+    </div>
+    <%= link_to quest_path(quest), :class => "tweet" do
+      truncate(quest.title, :length => 200)
+    end %>
+    <%= quest_buttons(quest) %>
+  </div>
+</div>
+
+<div class="span3">
+  <%= quest_statistic(quest) %>
+</div>

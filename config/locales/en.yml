@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  link:
+    loading: "Lade..."
   button:
     save:     Save
     update:   Update
@@ -10,6 +12,7 @@ en:
     create:   Create
     cancel:   Cancel
     start:    Start
+    stop:     Stop
     share:    Share
     signin:   Sign in
     register: Register
@@ -65,6 +68,14 @@ en:
       legend:   By signing up with your email and password you may start quests and post offers.
       legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
   quest:
+    status:
+      active:       "Active"
+      not_started:  "Not started"
+      expired:      "Expired"
+    list:
+      title:
+        one:    "1 quest"
+        other:  "%{count} quests"
     categories:
       misc:           Miscellaneous
       jobs:           Jobs
@@ -82,19 +93,33 @@ en:
         error:      Please review your input.
         base_error: "%{base_error}: please review your input."
       field_hint:
-        title:              "Enter a subject describing your quest in a few words."
-        description:        "Add a detailed description for your quest."
-        location:           "Enter the name of the quest's location."
-        restrict_location:  "I want to restrict my quest to a particular location."
-        bounty:             "Set up a bounty for your quest."
-        criteria:           "Define criteria to better assess incoming offers."
-        message:            "You can change your message here if necessary."
+        title:                "Enter a subject describing your quest in a few words."
+        description:          "Add a detailed description for your quest."
+        location:             "Enter the name of the quest's location."
+        restrict_location:    "I want to restrict my quest to a particular location."
+        bounty:               "Set up a bounty for your quest."
+        criteria:             "Define criteria to better assess incoming offers."
+        message:              "You can change your message here if necessary."
+        cancellation_reason:  "Feel free to provide an explanation about your reason to stop this quest."
+        cancellation:
+          bountyhill_success: "My quest succeeded on bountyhill."
+          other_success:      "My quest succeeded outside of bountyhill."
+          no_longer_needed:   "I don't need this quest any more."
         duration:
           one:    "one day"
           other:  "%{count} days"
       create: 
         title:  Define a new quest
         legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
+      edit: 
+        title:  Edit your quest
+        legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
       start:
         title:  Start your quest
         legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
+      stop:
+        title:  Stop your quest
+        legend: "Please tell us the reason why you want to stop your quest before it's expiration."
+      share:
+        title:  Share this quest
+        legend: "Thanx a lot for sharing this quest with your friends and followers. Feel free to adjust our share's message to your needs."

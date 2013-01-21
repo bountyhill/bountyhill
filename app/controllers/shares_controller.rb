@@ -3,6 +3,8 @@
 class SharesController < ApplicationController
   before_filter :quest
   attr :quest
+
+  layout false, :only => [:show]
   
   # Show the form to share a quest
   def show

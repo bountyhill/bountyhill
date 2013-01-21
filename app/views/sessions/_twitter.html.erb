@@ -16,7 +16,7 @@
       <%= form.error_messages @error if @error %>
 
       <div class="checkbox-group">
-        <%= form.follow_bountyhermes %>
+        <%= form.control_group :follow_bountyhermes, :check_box %>
         <%= form.agree_to_terms(:id => "agree_to_terms_twitter") %>
       </div>
 

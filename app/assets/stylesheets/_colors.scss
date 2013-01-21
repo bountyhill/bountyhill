@@ -1,7 +1,36 @@
+$camin:         #AA063B;
+$camin_bright:  #EECDD8;
+$camin_dark:    #77042B;
+
+$blue:          #39B3DC;
+$blue_bright:   #CEECF6;
+$blue_dark:     #2B84A2;
+
+$purple:        #863884;
+$purple_bright: #E1CEE1;
+$purple_dark:   #611657;
+
+$green:         #549926;
+$green_bright:  #D2E0C7;
+$green_dark:    #396A19;
+
+$orange:        #CC9902;
+$orange_bright: #F1E0B2;
+$orange_dark:   #9D6802;
+
+$red:           #E02202;
+$red_bright:    #F7C8C0;
+$red_dark:      #A41902;
+
 $navigation_background:         #252525;
 $navigation_background_top:     #272727;
 $navigation_background_bottom:  #232323;
 $navigation_item_highlight:     #6d6d6d;
+$navigation_text_highlight:     #cccccc;
 
-$tweet_message_background:      #dddddd;
-$tweet_message_border:          #cccccc;
+$message_background:    #dddddd;
+$message_border:        #cccccc;
+
+$quests_box_color:          $blue_bright;
+$quests_box_title_color:    $blue_dark;
+$quests_box_content_color:  $blue;

@@ -11,20 +11,24 @@ en:
         password:   Password
         delete_me:  Delete my account
       quest:
-        bounty:           Bounty
-        title:            Subject
-        category:         Category
-        description:      Description
-        location:         Location
-        message:          Message
-        duration_in_days: Duration
-        criterium_0:      Criteria 1
-        criterium_1:      Criteria 2
-        criterium_2:      Criteria 3
-        criterium_3:      Criteria 4
-        criterium_4:      Criteria 5
-        criterium_5:      Criteria 6
-        criterium_6:      Criteria 7
-        criterium_7:      Criteria 8
-        criterium_8:      Criteria 9
-        criterium_9:      Criteria 10
+        bounty:               Bounty
+        title:                Subject
+        category:             Category
+        description:          Description
+        location:             Location
+        message:              Message
+        duration_in_days:     Duration
+        criterium_0:          Criteria 1
+        criterium_1:          Criteria 2
+        criterium_2:          Criteria 3
+        criterium_3:          Criteria 4
+        criterium_4:          Criteria 5
+        criterium_5:          Criteria 6
+        criterium_6:          Criteria 7
+        criterium_7:          Criteria 8
+        criterium_8:          Criteria 9
+        criterium_9:          Criteria 10
+        forwards:             Forwards
+        offers:               Offers
+        cancellation:         Reason
+        cancellation_reason:  Explanation

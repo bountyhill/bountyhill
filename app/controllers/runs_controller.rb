@@ -1,5 +1,6 @@
 class RunsController < ApplicationController
   before_filter :quest
+  layout false, :only => [:show, :cancel]
   
   # Show the form to start a new run of a quest.
   #

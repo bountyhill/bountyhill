@@ -16,6 +16,7 @@
 //
 //= require bootstrap.js
 //= require filepicker.js
+//= require jquery.inview.js
 
 // dummy console, just in case
 if(typeof console === "undefined") {
@@ -25,10 +26,11 @@ if(typeof console === "undefined") {
 }
 
 $(document).ready(function() {
+
   // enable endless scrolling
   // see ???
   $('.endless_scroll_hook').bind('inview', function(e,visible) {
-    if( visible ) {
+    if(visible) {
       $.getScript($(this).attr("href"));
     }
   });
@@ -40,5 +42,6 @@ $(document).ready(function() {
    lv_url = $(this).attr('href');
    $(lv_target).load(lv_url);
   });
+  
 });
 
