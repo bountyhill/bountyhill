@@ -16,6 +16,11 @@ class OffersController < ApplicationController
     end
     
     @offers = scope.paginate(:include => :quest, :page => params[:page], :per_page => per_page)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /offers/1

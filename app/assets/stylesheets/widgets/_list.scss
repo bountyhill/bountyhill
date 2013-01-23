@@ -5,12 +5,16 @@
 
 ul.list {
   margin: 0;
+  li {
+    list-style: none;
+    position: relative;
+  }
   & > li {
     clear: both;
     min-height: 10ex;
     margin-bottom: 5ex;
     
-    /* ------- colors ------- */
+    /* ------- message boxes ------- */
     &.quest {
       .message-box {
         @include message($quests_box_content_color, $quests_box_content_color);
@@ -20,7 +24,15 @@ ul.list {
         border-color: $quests_box_content_color;
       }
     }
-
+    &.offer {
+      .message-box {
+        @include message($offers_box_content_color, $offers_box_content_color);
+      }
+      dl.statistic {
+        background-color: $offers_box_content_color;
+        border-color: $offers_box_content_color;
+      }
+    }
     /* ------- avatar ------- */
     .avatar {
     }
@@ -78,7 +90,7 @@ ul.list {
       padding: 5px 10px;
       min-height: 10ex;
       dt, dd {
-        height: 3ex;
+        height: 3.5ex;
       }
       dt {
         float: left;
@@ -89,7 +101,7 @@ ul.list {
       }
       dd {
         float: right;
-        font-size: 2.5ex;
+        font-size: 2.0ex;
         font-weight: bold;
       }
     }

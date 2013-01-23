@@ -17,6 +17,8 @@ de:
     signin:   Anmelden
     register: Registrieren
     reset:    Zurücksetzen
+    offer:    Anbieten
+    withdraw: Zurückziehen
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
@@ -67,6 +69,14 @@ de:
       title:    Registrieren
       legend:   "Sie können Suchen starten und Angebote abgeben, wenn sie sich mit Ihrer Email-Adresse registrieren."
       legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
+  offer:
+    status:
+      viewed:     "Angesehen"
+      compliance: "Erfüllungsgrad"
+    list:
+      title:
+        one:    "1 Angebot"
+        other:  "%{count} Angebote"
   quest:
     status:
       active:       "Aktiv"

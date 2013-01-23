@@ -1,23 +1,12 @@
-<%#= header_ribbon(
-  header_action(:rect, "/offers", :title => I18n.t("offers.all.title", :count => @offers.total_entries), :text => t("offers.all.sub"))
-) %>
-
-<div class="row bg-main" >
-  <!-- tiles -->
-  <div class="span12 bg-black">
-    <% @offers.each_slice(3) do |slice| %>
-    <div class="row">
-      <% slice.each do |offer| %>
-        <%= render :partial => "cell", :locals => { :offer => offer } %>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-
-  <!-- pagination -->
-  <div class="span12 bg-black">
-    <div class="pagination pagination-centered inner">
-      <%= paginate @offers %>
+<div class="row-fluid main">
+  <div class="sidebar span3">
+    <div style="background-color:#00c; min-height:200px">
+      <h1>placeholder: Status-Filter</h1>
     </div>
   </div>
+  <div class="span1">&nbsp;</div>
+  <div class="main span7">
+    <%= offers_list_box(@offers) %>
+  </div>
+  <div class="span1">&nbsp;</div>
 </div>

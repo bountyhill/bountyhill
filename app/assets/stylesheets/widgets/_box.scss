@@ -10,12 +10,8 @@
   }
 
   /* ------- background colors ------- */
-  &.quests {
-    background-color: $quests_box_color;
-    .title {
-      background-color: $quests_box_title_color;
-    }
-  }
+  &.quests { @include box_colors(quests); }
+  &.offers { @include box_colors(offers); }
   
   /* ------- title ------- */
   .title {

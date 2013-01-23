@@ -1,7 +1,7 @@
 module QuestsHelper
 
   def quests_list_box(quests)
-    expect! quests  => ActiveRecord::Relation
+    expect! quests        => ActiveRecord::Relation
     expect! quests.first  => [Quest, nil]
     
     list_box(:quests, quests)

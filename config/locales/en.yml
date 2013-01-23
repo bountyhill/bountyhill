@@ -17,6 +17,8 @@ en:
     signin:   Sign in
     register: Register
     reset:    Reset
+    offer:    Offer
+    withdraw: Withdraw
   nav:
     start_quest:  Start a quest
     quests:       See all quests
@@ -67,6 +69,14 @@ en:
       title:    Sign up
       legend:   By signing up with your email and password you may start quests and post offers.
       legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+  offer:
+    status:
+      viewed:     "Viewed"
+      compliance: "Compliance"
+    list:
+      title:
+        one:    "1 offer"
+        other:  "%{count} offers"
   quest:
     status:
       active:       "Active"

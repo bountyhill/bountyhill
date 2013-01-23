@@ -52,7 +52,7 @@ module NavigationHelper
     when :profile
       link_to content_tag(:i, nil, :class => "icon-user") + I18n.t("nav.your_profile"), "/profile"
     when :signout
-      link_to content_tag(:i, nil, :class => "icon-signout") +  I18n.t("nav.signout"), send("#{nav_item}_path"), :method => "delete"
+      link_to content_tag(:i, nil, :class => "icon-signout") +  I18n.t("nav.signout"), signout_path, :method => :delete
     when :divider
       ""
     when :copyright

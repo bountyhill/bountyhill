@@ -1,0 +1,5 @@
+<% @offers.each do |offer| %>
+  <li class="offer" id="<%= dom_id(offer) %>">
+    <%= partial "list_item", :offer => offer %>
+  </li>
+<% end %>

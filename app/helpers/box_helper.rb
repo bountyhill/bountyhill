@@ -21,7 +21,7 @@ module BoxHelper
     
     content = div :class => "content" do
       ul(:class => "#{type} list") do
-        render :partial => "#{type}/list"
+        render :partial => "#{type}/list", type => models
       end + endless_scroll_loader(type)
     end
 
