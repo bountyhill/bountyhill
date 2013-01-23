@@ -42,7 +42,7 @@ class QuestsController < ApplicationController
   def create
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
-    @quest.bounty_in_cents ||= 1000 # 10 EUR
+    @quest.bounty_in_cents ||= Quest::DEFAULT_BOUNTY
 
     # Start the quest after saving.
     if @quest.save
