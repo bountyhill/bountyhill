@@ -17,6 +17,10 @@ module ApplicationHelper
     I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.legend", options).html_safe
   end
   
+  def i18n_form_hint_for(model, options={})
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.hint", options).html_safe
+  end
+  
   def translation_key_for(model)
     if    model.readonly?   then "show"
     elsif model.new_record? then "create"

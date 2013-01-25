@@ -77,6 +77,19 @@ de:
       title:
         one:    "1 Angebot"
         other:  "%{count} Angebote"
+    form:
+      range_slider:
+        prefix:   "gar nicht"
+        postfix:  "völlig"
+      field_hint:
+        title:        "Geben Sie hier eine kurze Beschreibung Ihres Angebots ein."
+        description:  "Hier können Sie Ihr Angebot detailiert beschreiben."
+      create:
+        title:  Angebot abgeben
+        legend: "Bitte beschreiben Sie detailiert was Sie dem Suchenden anbieten können. Sie können Ihrer Beschreibung gern Dateien hinzufügen."
+        hint:
+          one:    "Des weiteren geben Sie bitte für das aufgestellte Kriterium an, in wie weit Ihr Angebot dieses erfüllt."
+          other:  "Des weiteren geben Sie bitte für jedes der %{count} aufgestellten Suchkriterien an, in wie weit Ihr Angebot dieses erfüllt."
   quest:
     status:
       active:       "Aktiv"
@@ -104,7 +117,7 @@ de:
         base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
       field_hint:
         title:                "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
-        description:          "Hier können Sie Ihre Anfrage detailiert darstellen."
+        description:          "Hier können Sie Ihre Anfrage detailiert beschreiben."
         location:             "Geben Sie den Namen des Ortes ein."
         restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
         bounty:               "Loben Sie eine Belohung für Ihre Suche aus."

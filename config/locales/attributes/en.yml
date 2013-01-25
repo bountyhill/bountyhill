@@ -10,6 +10,13 @@ en:
         email:      Email
         password:   Password
         delete_me:  Delete my account
+      offer:
+        title:        Subject
+        description:  Description
+        compliance:   Compliance
+        images:       Images
+        fulfillment:  Fulfillment
+        comment:      Remark
       quest:
         bounty:               Bounty
         title:                Subject

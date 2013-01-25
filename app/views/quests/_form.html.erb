@@ -6,7 +6,6 @@
     <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
     <%= form.control_group :title,        :text_area, :rows => 2 %>
     <%= form.control_group :description,  :text_area, :rows => 4 %>
-    <%#= form.control_group :location %>
 
     <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>

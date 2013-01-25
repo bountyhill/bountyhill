@@ -7,19 +7,19 @@ class Offer < ActiveRecord::Base
   with_metrics! "offers"
 
   extend Forwardable
-  delegate [:title, :bounty] => :quest
+  delegate [:bounty] => :quest
   
   # -- Associations ---------------------------------------------------
   
   belongs_to :quest
   serialize :serialized, Hash
   
-  attr_accessible :location, :description, :images, :quest_id, :quest, :state
+  attr_accessible :title, :description, :images, :location, :quest_id, :quest, :state
   
   # -- Access control -------------------------------------------------
 
   belongs_to :owner, :class_name => "User"
-  validates  :owner, presence: true
+  validates  :owner, :presence => true
   
   # Offers are visible to both its owner and to the quest owner, but 
   # they can be written by its owner only.
@@ -43,8 +43,9 @@ class Offer < ActiveRecord::Base
   
   # -- Validation -----------------------------------------------------
 
-  validates :quest, presence: true
-  validates :description, presence: true, length: { maximum: 2400 }
+  validates :quest, :presence => true
+  validates :title,       :presence => true, :length => { :maximum => 100 }
+  validates :description, :presence => true, :length => { :maximum => 2400 }
   
   # Can make an offer on an active quest only.
   validate :validate_quest_is_active, :on => :create
@@ -97,15 +98,23 @@ class Offer < ActiveRecord::Base
         "criterium_id_#{idx}"
       end
   end
+
+  # returns the names of the criteria comment attributes
+  def self.criteria_comments
+    @criteria_comments ||= 
+      0.upto(NUMBER_OF_CRITERIA-1).map do |idx| 
+        "criterium_comment_#{idx}"
+      end
+  end
   
-  serialized_attr *criteria_compliances, *criteria_ids
-  attr_accessible *criteria_compliances, *criteria_ids
+  serialized_attr *criteria_compliances, *criteria_ids, *criteria_comments
+  attr_accessible *criteria_compliances, *criteria_ids, *criteria_comments
 
   validates_numericality_of *criteria_compliances,
     :only_integer => true,
-    :allow_nil => true,
+    :allow_nil    => false,
     :greater_than_or_equal_to => 0,
-    :less_than_or_equal_to => 10
+    :less_than_or_equal_to    => 10
 
   # returns an array of hashes a la
   #
@@ -114,7 +123,8 @@ class Offer < ActiveRecord::Base
   #     :criterium_id => 176257652,
   #     :title => "I am the first criterium", 
   #     :description => "And I tell more about the first criterium." 
-  #     :compliance => (0..10)
+  #     :comment => "I fullfil this criterum partially because of ..."
+  #     :compliance => (0..100)
   #   } 
   # ] 
   #
@@ -132,7 +142,7 @@ class Offer < ActiveRecord::Base
     end.compact.by(:criterium_id)
     
     criteria = quest_criteria.map do |criterium_id, quest_criterium|
-      if offer_criterium = offer_criteria[criterium_id]
+      if (offer_criterium = offer_criteria[criterium_id])
         quest_criterium = quest_criterium.merge(offer_criterium)
       end
       
@@ -144,14 +154,16 @@ class Offer < ActiveRecord::Base
   private
   
   def get_criterium(idx)
-    criterium_id = self.send(Offer.criteria_ids[idx])
-    compliance = self.send(Offer.criteria_compliances[idx] || 5)
-
+    criterium_id  = self.send(Offer.criteria_ids[idx])
+    compliance    = self.send(Offer.criteria_compliances[idx] || 5)
+    comment       = self.send(Offer.criteria_comments[idx])
+    
     return {} unless criterium_id
     
     {
       :criterium_id => criterium_id,
-      :compliance => compliance
+      :compliance   => compliance,
+      :comment      => comment
     }
   end
 

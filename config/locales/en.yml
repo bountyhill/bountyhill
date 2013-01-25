@@ -77,6 +77,19 @@ en:
       title:
         one:    "1 offer"
         other:  "%{count} offers"
+    form:
+      range_slider:
+        prefix:   "not at all"
+        postfix:  "entirely"
+      field_hint:
+        title:        "Enter a subject describing your offer in a few words."
+        description:  "Add a detailed description for your offer."
+      create:
+        title:  Submit an Offer
+        legend: "Provide a detailed description about what you have to offer. Feel free to add any files to your offer."
+        hint:
+          one:    "For the given criteria to be matched, please specify the compliance of your offer with it."
+          other:  "For each of the %{count} given criteria to be matched, please specify the compliance of your offer with it."
   quest:
     status:
       active:       "Active"

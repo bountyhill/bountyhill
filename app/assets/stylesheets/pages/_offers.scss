@@ -1,7 +1,55 @@
+.progress {
+  .bar {
+    &:after {
+      content:"%";
+    }
+  }
+}
+
 li.offer {
   .statistic {
     .progress {
       margin-bottom: 6px;
+    }
+  }
+}
+
+form {
+  .criteria_compliances {
+    margin: 0;
+    list-style: none;
+    
+    & > li {
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      .range-slider-prefix, .range-slider-postfix {
+        margin-top: 6px;
+        display: inline-block;
+        text-align: center;
+      }
+      .range-slider-prefix {
+        padding-right: 10px;
+      }
+      .range-slider-postfix {
+        padding-left: 10px;
+      }
+      .control-group {
+        margin-bottom: 6px;
+      }
+    }
+  }
+  .control-group {
+    .controls {
+      .progress {
+        margin-top: 6px;
+        width: 280px
+      }
+      input[type='range'] {
+        @include appearance(none);
+        @include border-radius(10px);
+        padding: 0;
+        height: 15px;
+      }
     }
   }
 }

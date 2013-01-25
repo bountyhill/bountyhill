@@ -62,12 +62,14 @@ module OffersHelper
         dt(I18n.t("offer.status.viewed")),
         dd(time_ago_in_words(offer.created_at))
       ]
-    statistic_entries.flatten
+    statistic_entries.compact.flatten
   end
   
   def offer_compliance(offer)
+    return unless offer.quest.criteria.present?
+    
     div :class => "progress" do
-      div "#{offer.compliance}%", :class => "bar", :style => "width: #{offer.compliance}%;"
+      div "#{offer.compliance}", :class => "bar", :style => "width: #{offer.compliance}%;"
     end
   end
   

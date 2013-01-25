@@ -42,7 +42,8 @@ class ActionView::Helpers::FormBuilder
     :text_field     => { :class => "input-xlarge" },
     :password_field => { :class => "input-xlarge" },
     :text_area      => { :class => "input-xlarge" },
-    :select         => { :class => "input-xlarge" }
+    :select         => { :class => "input-xlarge" },
+    :range_slider   => { :class => "input-small" }
   }
   
   # Creating a control_group.
@@ -108,7 +109,7 @@ class ActionView::Helpers::FormBuilder
           controls + content_tag(:span, unit_text, :class => "add-on") + message
         end
       else
-        controls + message
+        controls + message.to_s
       end
     end
   end
@@ -145,6 +146,8 @@ class ActionView::Helpers::FormBuilder
   end
   
   def field_hint(name, options)
+    return if options[:hint] == false
+    
     value = case name.to_s
       when "password" then Identity::Email::MIN_PASSWORD_LENGTH
       end
@@ -152,26 +155,22 @@ class ActionView::Helpers::FormBuilder
   end
     
   def compliance(name, options)
-    div :class => :compliance do
-      object.send(name)
-    end
+    @template.offer_compliance(object)
   end
 
-  COMPLIANCES = {
-    0   => "red",
-    5   => "yellow", 
-    10  =>  "green"
-  }  
-  
-  def compliance_chooser(name, options)
-    current_value = object.send(name) || 5
+  def range_slider(name, options)
+    prefix  = options[:prefix]  || I18n.t("#{object.class.name.underscore}.form.range_slider.prefix")
+    postfix = options[:postfix] || I18n.t("#{object.class.name.underscore}.form.range_slider.postfix")
     
-    hidden_field = self.hidden_field(name, options)
-    COMPLIANCES.map do |value, klass|
-      div :class => "compliance_chooser #{klass}" do
-        radio_button name, value, :checked => (current_value == value)
-      end
-    end.join("")
+    div(prefix, :class => "range-slider-prefix") +
+    content_tag(:input,
+      :type   => :range,
+      :class  => options[:class],
+      :min    => options[:min]      || 0,
+      :max    => options[:max]      || 10,
+      :step   => options[:step]     || 5,
+      :value  => object.send(name)  || 5
+    ) + div(postfix, :class => "range-slider-postfix")
   end
 
   def note(note="KJH")

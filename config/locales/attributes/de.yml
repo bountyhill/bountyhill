@@ -10,6 +10,13 @@ de:
         email:      Email
         password:   Passwort
         delete_me:  Account Löschen
+      offer:
+        title:        Betreff
+        description:  Beschreibung
+        compliance:   Erfüllungsgrad
+        images:       Bilder
+        fulfillment:  Übereinstimmung
+        comment:      Anmerkung
       quest:
         bounty:               Belohnung
         title:                Betreff
