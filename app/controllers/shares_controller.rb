@@ -16,9 +16,9 @@ class SharesController < ApplicationController
     quest.attributes = params[:quest]
     unless quest.valid?
       flash.now[:error] = if base_errors = @quest.errors[:base]
-        I18n.t("quest.message.base_error", :base_error => base_errors.join(", "))
+        I18n.t("message.base_error", :base_error => base_errors.join(", "))
       else
-        I18n.t("quest.message.error")
+        I18n.t("message.error")
       end
 
       render! action: "show"

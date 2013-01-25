@@ -18,8 +18,8 @@
           <li>
             <p><%= "#{idx +1 })" %> <strong><%= criterium[:title] %></strong></p>
             <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
-            <%= form.control_group Offer.criteria_compliances[idx], :range_slider,  :label => Offer.human_attribute_name(:fulfillment), :hint => false %>
-            <%= form.control_group Offer.criteria_comments[idx],    :text_field,    :label => Offer.human_attribute_name(:comment),     :hint => false %>
+            <%= form.control_group Offer.criteria_compliances[idx], :range_slider,        :label => Offer.human_attribute_name(:fulfillment), :hint => false %>
+            <%= form.control_group Offer.criteria_comments[idx], :text_area, :rows => 1,  :label => Offer.human_attribute_name(:comment),     :hint => false %>
           </li>
         <% end %>
       </ol>

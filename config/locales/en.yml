@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  message:
+    error:      Please review your input.
+    base_error: "%{base_error}: please review your input."
   link:
     loading: "Lade..."
   button:
@@ -112,9 +115,6 @@ en:
       cars:           Cars
       boats:          Boats
     form:
-      message:
-        error:      Please review your input.
-        base_error: "%{base_error}: please review your input."
       field_hint:
         title:                "Enter a subject describing your quest in a few words."
         description:          "Add a detailed description for your quest."

@@ -43,7 +43,7 @@ class Offer < ActiveRecord::Base
   
   # -- Validation -----------------------------------------------------
 
-  validates :quest, :presence => true
+  validates :quest,       :presence => true
   validates :title,       :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true, :length => { :maximum => 2400 }
   
@@ -112,7 +112,7 @@ class Offer < ActiveRecord::Base
 
   validates_numericality_of *criteria_compliances,
     :only_integer => true,
-    :allow_nil    => false,
+    :allow_nil    => true,
     :greater_than_or_equal_to => 0,
     :less_than_or_equal_to    => 10
 
@@ -201,10 +201,7 @@ class Offer < ActiveRecord::Base
     criteria = self.criteria
     return 50 if criteria.blank?
 
-    sum = criteria.inject(0) do |s, criterium|
-      s + criterium[:compliance]
-    end
-
+    sum = criteria.inject(0) { |s, criterium| s + criterium[:compliance] }
     (sum * 100.0 / (criteria.length * 10)).round
   end
 

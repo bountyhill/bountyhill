@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  message:
+    error:      Bitte prüfen Sie Ihre Eingaben.
+    base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
   link:
     loading: "Loading..."
   button:
@@ -112,9 +115,6 @@ de:
       cars:           Autos
       boats:          Boote
     form:
-      message:
-        error:      Bitte prüfen Sie Ihre Eingaben.
-        base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
       field_hint:
         title:                "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
         description:          "Hier können Sie Ihre Anfrage detailiert beschreiben."

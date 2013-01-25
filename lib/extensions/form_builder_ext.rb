@@ -165,6 +165,7 @@ class ActionView::Helpers::FormBuilder
     div(prefix, :class => "range-slider-prefix") +
     content_tag(:input,
       :type   => :range,
+      :name   => "#{@object_name}[#{name}]",
       :class  => options[:class],
       :min    => options[:min]      || 0,
       :max    => options[:max]      || 10,

@@ -49,13 +49,8 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(params[:offer])
 
-    # (Try to) save
-    if @offer.valid?
-      @offer.save!
-      
+    if @offer.save
       redirect_to @offer, notice: 'Offer was successfully created.'
-    else
-      render action: "new"
     end
   end
 
