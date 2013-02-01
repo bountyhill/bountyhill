@@ -10,7 +10,7 @@
     <div class="time">
       <%= time_ago_in_words(quest.started_at || quest.created_at) %>
     </div>
-    <%= link_to quest_path(quest), :class => "tweet" do
+    <%= link_to quest_path(quest), :class => "message" do
       truncate(quest.title, :length => 200)
     end %>
     <%= quest_buttons(quest) %>

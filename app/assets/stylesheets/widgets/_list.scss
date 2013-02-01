@@ -33,8 +33,16 @@ ul.list {
         border-color: $offers_box_content_color;
       }
     }
-    /* ------- avatar ------- */
-    .avatar {
+    &.comment {
+      .message-container {
+        .message-box {
+          @include message($comments_box_content_color, $comments_box_content_color);
+          margin-left: 64px;
+          &:before {
+            left: 54px;
+          }
+        }
+      }
     }
 
     /* ------- message ------- */
@@ -64,16 +72,14 @@ ul.list {
           font-style: italic;
           font-size: 0.8em;
         }
-        .tweet {
-/*          clear: both; */
+        .message {
           display: block;
-          margin-top: 3ex;
-          padding-right: 5ex;
+          margin: 3ex 0;
         }
         .interactions {
           display: none;
           position: absolute;
-          bottom: 0px;
+          bottom: 0.5em;
           right: 10px;
           margin: 0;
           & > li {
@@ -85,6 +91,7 @@ ul.list {
     }
     /* ------- statistic ------- */
     dl.statistic {
+      @include border-radius(3px);
       border: 2px solid;
       margin: 0;
       padding: 5px 10px;

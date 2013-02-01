@@ -1,0 +1,25 @@
+.box {
+  &.comments { 
+    @include box_colors(comments);
+    .content {
+      padding-top: 5px;
+    }
+  }
+  form {
+    padding-top: 20px;
+    input[type="submit"] {
+       float: right;
+     }
+  }
+  ul#comments {
+    margin: 0;
+    & > li {
+      min-height: 0;
+      margin: 10px 0;
+    }
+  }
+  #new_comment {
+    clear: both;
+  }
+}
+

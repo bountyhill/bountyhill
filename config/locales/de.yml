@@ -22,6 +22,7 @@ de:
     reset:    Zurücksetzen
     offer:    Anbieten
     withdraw: Zurückziehen
+    comment:  Kommentieren
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
@@ -72,10 +73,20 @@ de:
       title:    Registrieren
       legend:   "Sie können Suchen starten und Angebote abgeben, wenn sie sich mit Ihrer Email-Adresse registrieren."
       legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
+  comment:
+    messages:
+      no_comments_found: Es wurden noch keine Kommentare abgegeben.
+    list:
+      title:
+        one:    "1 Kommentar"
+        other:  "%{count} Kommentare"
   offer:
     status:
       viewed:     "Angesehen"
       compliance: "Erfüllungsgrad"
+    box:
+      title:    "Angebot mit %{precentage}% Erfüllungsgrad"
+      criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
     list:
       title:
         one:    "1 Angebot"
@@ -98,6 +109,9 @@ de:
       active:       "Aktiv"
       not_started:  "Nicht gestarted"
       expired:      "Abgelaufen"
+    box:
+      title:    "Suche mit %{amount} Belohnung"
+      criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
     list:
       title:
         one:    "1 Suche"

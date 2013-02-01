@@ -42,9 +42,9 @@ module NavigationHelper
 
     case nav_item
     when :start_quest
-      modal_link_to content_tag(:i, nil, :class => "icon-edit") + I18n.t("nav.start_quest"), new_quest_path
+      modal_link_to content_tag(:i, nil, :class => "icon-edit") + span(I18n.t("nav.start_quest")), new_quest_path
     when :quests
-      link_to content_tag(:i, nil, :class => "icon-list") + I18n.t("nav.quests"), quests_path
+      link_to content_tag(:i, nil, :class => "icon-list") + span(I18n.t("nav.quests")), quests_path
     when :your_quests
       link_to content_tag(:i, nil, :class => "icon-list") + I18n.t("nav.your_quests"), quests_path(:owner_id => current_user.id)
     when :your_offers

@@ -1,45 +1,45 @@
-<%#= header_ribbon(
-    header_action(:rect, "/offers", :title => t("show.actions.offer.title")),
-    t("show.actions.offer.sub"),
-    "&nbsp"
-  ) %>
-
-<div class="row bg-main" >
-  <div class="span12 bg-solid-black">
-    <% if mobile? %>
-    <div class="row">
-      <div class="span6">
-        <%= partial "offers/show/head", :offer => @offer %>
-      </div>
-      <div class="span6">
-        <%= partial "offers/show/actions", :offer => @offer %>
-      </div>
+<div class="row-fluid">
+  <div class="span1">&nbsp;</div>
+  <div class="main span8">
+    <div style="background-color:#c00; padding: 10px; min-height:100px">
+      <h2>placeholder: User info</h2>
     </div>
-    <div class="row">
-      <div class="span6">
-        <%#= partial "offers/show/image", :offer => @offer %>
-        <%= partial "offers/show/criteria", :offer => @offer %>
-      </div>
-      <div class="span6">
-        <%= partial "quests/show/expires_at", :quest => @offer.quest %>
-      </div>
-    </div>
-    <% else %>
-    <div class="row">
-      <div class="span8">
-        <%= partial "offers/show/head", :offer => @offer %>
-        <%= partial "offers/show/images", :offer => @offer %>
-        <%= partial "offers/show/criteria", :offer => @offer %>
-
-        <%= partial "shared/comments", :commentable => @offer %>
-      </div>
-      <div class="span1">&nbsp;</div>
-      <div class="span3">
-        <%= partial "offers/show/actions", :offer => @offer %>
-        <%= partial "quests/show/expires_at", :quest => @offer.quest %>
-        <%#= partial "offers/show/location", :offer => @offer %>
-      </div>
-    </div>
-    <% end %>
   </div>
+  <div class="sidebar span2">
+    <div style="background-color:#c00; padding: 10px; min-height:100px">
+      <h2>placeholder: Offers info</h2>
+    </div>
+  </div>
+  <div class="span1">&nbsp;</div>
+</div>
+
+<div class="spacer" style="min-height:30px"></div>
+
+<div class="row-fluid main">
+  <div class="span1">&nbsp;</div>
+  <div class="main span8">
+    <%= offer_box(@offer) %>
+    <div class="spacer" style="min-height:30px"></div>
+    <div class="row-fluid">
+      <div class="span6">
+        <%= comments_box(@offer) %>
+      </div>
+      <div class="span6">&nbsp;</div>
+    </div>
+  </div>
+  <div class="sidebar span2">
+    <div style="background-color:#ccc; padding: 10px; min-height:200px">
+      <h2>placeholder: Quest referred</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#0c0; padding: 10px; min-height:100px">
+      <h2>placeholder: First viewed</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#0a3; padding: 10px; min-height:600px">
+      <h2>placeholder: Forwards</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+  </div>
+  <div class="span1">&nbsp;</div>
 </div>

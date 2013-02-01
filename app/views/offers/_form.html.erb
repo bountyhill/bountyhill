@@ -10,13 +10,13 @@
     <%= form.control_group :images,       :filepicker %>
 
     <% if @offer.criteria.present? %>
-      <p><%= i18n_form_hint_for(@offer, :count => @offer.quest.criteria.size) %></p>
       <%= form.control_group :compliance, :compliance %>
+      <p><%= i18n_form_hint_for(@offer, :count => @offer.quest.criteria.size) %></p>
 
       <ol class="criteria_compliances">
         <% @offer.criteria.each_with_index do |criterium, idx| %>
           <li>
-            <p><%= "#{idx +1 })" %> <strong><%= criterium[:title] %></strong></p>
+            <p><%= criterium[:title] %></p>
             <%= form.control_group Offer.criteria_ids[idx], :hidden_field %>
             <%= form.control_group Offer.criteria_compliances[idx], :range_slider,        :label => Offer.human_attribute_name(:fulfillment), :hint => false %>
             <%= form.control_group Offer.criteria_comments[idx], :text_area, :rows => 1,  :label => Offer.human_attribute_name(:comment),     :hint => false %>

@@ -10,7 +10,7 @@
     <div class="time">
       <%= time_ago_in_words(offer.created_at) %>
     </div>
-    <%= link_to offer_path(offer), :class => "tweet" do
+    <%= link_to offer_path(offer), :class => "message" do
       truncate(offer.title, :length => 200)
     end %>
     <%= offer_buttons(offer) %>

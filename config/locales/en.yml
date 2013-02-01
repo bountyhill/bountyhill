@@ -22,6 +22,7 @@ en:
     reset:    Reset
     offer:    Offer
     withdraw: Withdraw
+    comment:  Comment
   nav:
     start_quest:  Start a quest
     quests:       See all quests
@@ -72,10 +73,20 @@ en:
       title:    Sign up
       legend:   By signing up with your email and password you may start quests and post offers.
       legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+  comment:
+    messages:
+      no_comments_found: No comments posted so far.
+    list:
+      title:
+        one:    "1 comment"
+        other:  "%{count} comments"
   offer:
     status:
       viewed:     "Viewed"
       compliance: "Compliance"
+    box:
+      title:    "Offer with %{precentage}% compliance"
+      criteria: "The criteria defined for this quest are complied as follows:"
     list:
       title:
         one:    "1 offer"
@@ -98,6 +109,9 @@ en:
       active:       "Active"
       not_started:  "Not started"
       expired:      "Expired"
+    box:
+      title:    "Quest with %{amount} bounty"
+      criteria: "The following criteria are defined for this quest:"
     list:
       title:
         one:    "1 quest"

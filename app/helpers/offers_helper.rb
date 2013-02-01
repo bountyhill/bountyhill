@@ -1,4 +1,10 @@
 module OffersHelper
+
+  def offer_box(offer)
+    expect! offer => Offer
+    
+    box(:offer, offer, :title => I18n.t("offer.box.title", :precentage => offer.send(:compliance).to_s))
+  end
   
   def offers_list_box(offers)
     expect! offers        => ActiveRecord::Relation
@@ -25,7 +31,7 @@ module OffersHelper
   def accept_offer_button(offer)
     return unless !offer.active? && offer.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-ok-circle") + t("button.accept"),
+    modal_link_to(content_tag(:i, nil, :class => "icon-ok-circle") + content_tag(:span, t("button.accept")),
       accept_offer_path(offer),
       :title => t("button.accept"), :rel => "nofollow")
   end
@@ -33,7 +39,7 @@ module OffersHelper
   def reject_offer_button(offer)
     return unless !offer.active? && offer.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + t("button.reject"),
+    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + content_tag(:span, t("button.reject")),
       reject_offer_path(offer),
       :title => t("button.reject"), :rel => "nofollow")
   end
@@ -41,7 +47,7 @@ module OffersHelper
   def withdraw_offer_button(offer)
     return unless !offer.active? && offer.owner == current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + t("button.withdraw"),
+    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + content_tag(:span, t("button.withdraw")),
       withdraw_offer_path(offer),
       :title => t("button.withdraw"), :rel => "nofollow")
   end

@@ -54,30 +54,6 @@ class Offer < ActiveRecord::Base
     return if quest && quest.active?
     errors.add(:base, "quest is not active") 
   end
-
-  # -- Attributes and accessors ---------------------------------------
-  
-  # -- Images ---------------------------------------------------------
-  
-  def images(size = {})
-    width, height = size.values_at(:width, :height)
-    urls = serialized[:images] || []
-    
-    if width && height
-      expect! width => Fixnum, height => Fixnum
-    
-      # set width and height; see https://developers.filepicker.io/docs/web/#fpurl
-      urls = urls.map { |url| "#{url}/convert?w=#{width}&h=#{height}" }
-    end
-
-    # set content disposition; see https://developers.filepicker.io/docs/web/#fpurl
-    urls.map { |url| "#{url}?dl=false" }
-  end
-  
-  def images=(urls)
-    expect! urls => [ Array, nil ]
-    serialized[:images] = urls
-  end
   
   # -- Criteria -------------------------------------------------------
   

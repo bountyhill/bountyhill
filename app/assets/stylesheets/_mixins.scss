@@ -30,4 +30,16 @@
     background-color: $offers_box_color;
     .title { background-color: $offers_box_title_color; }
   }
+  @else if  $box_type == quest { 
+    background-color: $quest_box_color;
+    .title { background-color: $quest_box_title_color; }
+  }
+  @else if  $box_type == offer { 
+    background-color: $offer_box_color;
+    .title { background-color: $offer_box_title_color; }
+  }
+  @else if  $box_type == comments { 
+    background-color: $comments_box_color;
+    .title { background-color: $comments_box_title_color; }
+  }
 }

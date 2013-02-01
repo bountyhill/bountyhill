@@ -1,3 +1,12 @@
+.box {
+  &.offers { 
+    @include box_colors(offers);
+  }
+  &.offer { 
+    @include box_colors(offer);
+  }
+}
+
 .progress {
   .bar {
     &:after {
@@ -16,16 +25,18 @@ li.offer {
 
 form {
   .criteria_compliances {
-    margin: 0;
-    list-style: none;
-    
     & > li {
       margin-bottom: 18px;
-      padding-bottom: 10px;
-      .range-slider-prefix, .range-slider-postfix {
-        margin-top: 6px;
-        display: inline-block;
-        text-align: center;
+      .control-label {
+        width: 115px;
+      }
+      .controls {
+        margin-left: 135px;
+        .range-slider-prefix, .range-slider-postfix {
+          margin-top: 6px;
+          display: inline-block;
+          text-align: center;
+        }
       }
       .range-slider-prefix {
         padding-right: 10px;

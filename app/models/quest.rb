@@ -98,7 +98,7 @@ class Quest < ActiveRecord::Base
   serialize :serialized, Hash
   serialized_attr :duration_in_days
   
-  attr_accessible :title, :description, :bounty, :location, :duration_in_days, :category
+  attr_accessible :title, :description, :images, :bounty, :location, :duration_in_days, :category
 
   # -- Cancellation ---------------------------------------------------
 
@@ -108,6 +108,7 @@ class Quest < ActiveRecord::Base
   serialized_attr :cancellation, :cancellation_reason
   attr_accessible :cancellation, :cancellation_reason
   
+    
   # -- Criteria -------------------------------------------------------
   
   NUMBER_OF_CRITERIA = 10

@@ -1,0 +1,14 @@
+<h1><%= offer.title %></h1>
+<h3 class="description"><%= offer.description %></h3>
+
+<% if offer.criteria.present? %>
+<div class="criteria-section">
+  <p><%= I18n.t("offer.box.criteria") %></p>
+  <ol class="criteria">
+    <% @offer.criteria.each_with_index do |criterium, idx| %>
+      <li><%= criterium[:title] %></li>
+    <% end %>
+  </ol>
+</div>
+<% end %>
+

@@ -1,0 +1,8 @@
+.box {
+  &.quests { 
+    @include box_colors(quests);
+  }
+  &.quest {
+    @include box_colors(quest);
+  }
+}

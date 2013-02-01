@@ -13,6 +13,14 @@
       }
     }
   }
+  &.navbar-fixed-bottom {
+    .btn-navbar {
+      float: left;
+    }
+    .nav-collapse {
+      clear: none;
+    }
+  }
   .navbar-inner {
     background-color: $navigation_background;
     background-image: linear-gradient(top, $navigation_background_top, $navigation_background_bottom);
@@ -65,4 +73,31 @@
 /* drop user menu automatically on hover */
 ul.nav li.dropdown:hover ul.dropdown-menu {
   display: block;
+}
+
+@media (max-width: 979px) {
+  .navbar {
+    .navbar-inner {
+      padding: 0;
+      .brand {
+        width: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    .navbar-inner {
+      .nav-main {
+        & > li {
+          & > a {
+            & > span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
