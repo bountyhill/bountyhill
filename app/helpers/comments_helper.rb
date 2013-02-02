@@ -9,18 +9,24 @@ module CommentsHelper
   def comment_buttons(comment, options={})
     ul :class => "interactions" do
       [
-        reply_comment_button(comment),
-        delete_comment_button(comment, options)
+        delete_comment_button(comment),
+        reply_comment_button(comment, options)
       ].compact.map{|button| li(button)}.join.html_safe
     end
   end
   
-  def reply_comment_button(comment)
-    link_to(t('opinio.actions.delete'), comment_path(comment), :method => :delete, :remote => true) if comment.writable?
+  def delete_comment_button(comment)
+    return unless comment.writable?
+
+    link_to(content_tag(:i, nil, :class => " icon-trash") + I18n.t('opinio.actions.delete'),
+      comment_path(comment), :method => :delete, :remote => true)
   end
   
-  def delete_comment_button(comment, options={})
-    link_to(t('opinio.actions.reply'), reply_comment_path(comment), :remote => true) if Opinio.accept_replies && !options[:reply]
+  def reply_comment_button(comment, options={})
+    return unless Opinio.accept_replies && !options[:reply]
+      
+    link_to(content_tag(:i, nil, :class => " icon-share-alt") + I18n.t('opinio.actions.reply'),
+      reply_comment_path(comment), :remote => true)
   end
 
   def add_comment_button

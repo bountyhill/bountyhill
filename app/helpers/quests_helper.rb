@@ -50,7 +50,7 @@ module QuestsHelper
   def offer_quest_button(quest)
     return unless quest.active? && quest.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => " icon-share-alt") + content_tag(:span, t("button.offer")),
+    modal_link_to(content_tag(:i, nil, :class => " icon-share") + content_tag(:span, t("button.offer")),
       new_offer_path(:quest_id => quest), 
       :title => t("button.offer"), :rel => "nofollow")
   end
