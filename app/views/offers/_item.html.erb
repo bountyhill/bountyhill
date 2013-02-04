@@ -1,0 +1,19 @@
+<div class="message-container span12">
+  <%= link_to user_path(offer.owner), :class => "avatar" do
+    avatar offer.owner, :size => 64
+  end %>
+  <div class="message-box">
+    <%= link_to user_path(offer.owner), :class => "owner" do %>
+      <%= strong(offer.owner.name) %>
+      <%= offer.owner.twitter_handle %>
+    <% end %>
+    <div class="time">
+      <%= time_ago_in_words(offer.created_at) %>
+    </div>
+    <%= link_to offer_path(offer), :class => "message" do
+      truncate(offer.title, :length => 200)
+    end %>
+    <%= offer_buttons(offer) %>
+    <%= offer_compliance(offer) %>
+  </div>
+</div>

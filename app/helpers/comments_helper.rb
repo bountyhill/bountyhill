@@ -16,16 +16,16 @@ module CommentsHelper
   end
   
   def delete_comment_button(comment)
-    return unless comment.writable?
+    return unless comment.writable? && comment.owner == current_user
 
-    link_to(content_tag(:i, nil, :class => " icon-trash") + I18n.t('opinio.actions.delete'),
+    link_to(content_tag(:i, nil, :class => " icon-trash") + I18n.t('button.delete'),
       comment_path(comment), :method => :delete, :remote => true)
   end
   
   def reply_comment_button(comment, options={})
     return unless Opinio.accept_replies && !options[:reply]
       
-    link_to(content_tag(:i, nil, :class => " icon-share-alt") + I18n.t('opinio.actions.reply'),
+    link_to(content_tag(:i, nil, :class => " icon-share-alt") + I18n.t('button.reply'),
       reply_comment_path(comment), :remote => true)
   end
 
@@ -37,22 +37,25 @@ module CommentsHelper
       :title => t("button.comment"), :rel => "nofollow"
   end
   
-  def comments_box(commentable)
+  def comment_title(commentable)
     expect! commentable => [Quest, Offer]
-    
-    title = h2 :class => "title" do
+    h2 :class => "title" do
       [
         div(I18n.t("comment.list.title", :count => commentable.comments.count), :class => "pull-left"),
         div((comments_list_box_buttons), :class => "pull-right")
       ].compact.join.html_safe
     end
+  end
+  
+  def comments_box(commentable)
+    expect! commentable => [Quest, Offer]
     
     content = div :class => "content" do
       partial "shared/comments", :commentable => commentable
     end
 
     div :class => "comments box row-fluid" do
-      title + content
+      comment_title(commentable) + content
     end
   end
 end

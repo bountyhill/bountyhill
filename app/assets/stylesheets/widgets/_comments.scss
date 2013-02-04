@@ -14,8 +14,10 @@
   ul#comments {
     margin: 0;
     & > li {
-      min-height: 0;
       margin: 10px 0;
+      &#no_comments {
+        min-height: 0;
+      }
     }
   }
   #new_comment {

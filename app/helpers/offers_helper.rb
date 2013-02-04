@@ -79,6 +79,36 @@ module OffersHelper
     end
   end
   
+  
+  def offers_box(offerable)
+    expect! offerable => [Quest]
+    
+    title = h2 :class => "title" do
+      [
+        div(I18n.t("offer.list.title", :count => offerable.offers.count), :class => "pull-left"),
+        div(:class => "pull-right") do
+          ul :class => "interactions" do
+            li offer_quest_button(offerable)
+          end
+        end
+      ].compact.join.html_safe
+    end
+    
+    content = div :class => "content" do
+      ul(:class => "offers list") do
+        offerable.offers.map do |offer|
+          li :class => "offer", :id => dom_id(offer) do
+            partial "offers/item", :offer => offer
+          end
+        end.compact.join.html_safe
+      end
+    end
+
+    div :class => "offers box row-fluid" do
+      title + content
+    end
+    
+  end
 end
 
 __END__

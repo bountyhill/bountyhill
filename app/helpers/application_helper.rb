@@ -357,6 +357,9 @@ module ApplicationHelper
     return translated unless url
     link_to translated, url, link_options
   end
+end
+
+__END__
 
   def quests(value, url = nil, link_options = {})
     word_with_count(:quests, value, url, link_options)

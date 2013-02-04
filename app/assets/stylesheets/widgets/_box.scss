@@ -19,7 +19,11 @@
       & > li {
         list-style: none;
         float: left;
-        margin-left: 0.2em;
+        margin-left: 0.5em;
+        & [class^="icon-"],
+        & [class*=" icon-"] {
+          width: 1em;
+        }
         span {
           display: none;
         }

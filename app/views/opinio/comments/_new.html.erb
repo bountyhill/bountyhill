@@ -5,9 +5,9 @@
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
       
       <%= f.text_area :body, :class => "input-xlarge", :rows => 5 %>
-      <%= f.submit t('opinio.actions.add') %>
+      <%= f.submit t('button.post'), :class => "btn" %>
     <% end %>
   <% else %>
-    <p><%= t('opinio.messages.must_be_logged_in_to_comment') %></p>
+    <p><%= t('comment.messages.must_be_logged_in_to_comment') %></p>
   <% end %>
 </div>

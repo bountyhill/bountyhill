@@ -23,6 +23,9 @@ de:
     offer:    Anbieten
     withdraw: Zurückziehen
     comment:  Kommentieren
+    delete:   Löschen
+    reply:    Antworten
+    post:     Absenden
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
@@ -75,9 +78,11 @@ de:
       legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
   comment:
     messages:
-      no_comments_found: Es wurden noch keine Kommentare abgegeben.
+      no_comments_found:            Es wurden noch keine Kommentare abgegeben.
+      must_be_logged_in_to_comment: "Sie müssen sich Anmelden, um einen Kommentar abgeben zu können."
     list:
       title:
+        zero:   "Kommentare"
         one:    "1 Kommentar"
         other:  "%{count} Kommentare"
   offer:
