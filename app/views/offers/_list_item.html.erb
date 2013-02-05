@@ -3,12 +3,14 @@
     avatar offer.owner, :size => 64
   end %>
   <div class="message-box">
-    <%= link_to user_path(offer.owner), :class => "owner" do %>
-      <%= strong(offer.owner.name) %>
-      <%= offer.owner.twitter_handle %>
-    <% end %>
-    <div class="time">
-      <%= time_ago_in_words(offer.created_at) %>
+    <div class="message-head">
+      <%= link_to user_path(offer.owner), :class => "owner" do %>
+        <%= strong(offer.owner.name) %>
+        <%= offer.owner.twitter_handle %>
+      <% end %>
+      <div class="time">
+        <%= time_ago_in_words(offer.created_at) %>
+      </div>
     </div>
     <%= link_to offer_path(offer), :class => "message" do
       truncate(offer.title, :length => 200)

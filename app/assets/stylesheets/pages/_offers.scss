@@ -1,9 +1,6 @@
 .box {
-  &.offers { 
+  &.offers, &.offer {
     @include box_colors(offers);
-  }
-  &.offer { 
-    @include box_colors(offer);
   }
 }
 

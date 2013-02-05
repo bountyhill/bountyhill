@@ -21,9 +21,23 @@
   .message-container {
     .message-box {
       @include message($comments_box_content_color, $comments_box_content_color);
-      margin-left: 64px;
-      &:before {
-        left: 54px;
+    }
+  }
+}
+
+.span6 {
+  ul.list {
+    li.offer, li.comment {
+      .message-container {
+        .message-box {
+          margin-left: 64px;
+          &:before {
+            left: 54px;
+          }
+          .message-head {
+            min-height: 4ex;
+          }
+        }
       }
     }
   }
@@ -48,12 +62,15 @@
         display: block;
       }
     }
+    .message-head {
+      min-height: 2ex;
+    }
     .owner {
-      width: 66%;
+      width: 50%;
       float: left;
     }
     .time {
-      width: 33%;
+      width: 50%;
       float: right;
       text-align: right;
       font-style: italic;
@@ -62,7 +79,7 @@
     }
     .message {
       display: block;
-      margin: 3ex 0;
+      margin: 1ex 0;
     }
     .interactions {
       display: none;

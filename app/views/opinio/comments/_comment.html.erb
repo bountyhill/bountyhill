@@ -5,11 +5,13 @@
       avatar comment.owner, :size => 48
     end %>
     <div class="message-box">
-      <%= link_to user_path(comment.owner), :class => "owner" do %>
-        <%= strong(comment.owner.name) %>
-        <%= comment.owner.twitter_handle %>
-      <% end %>
-      <div class="time"><%= time_ago_in_words(comment.created_at) %></div>
+      <div class="message-head">
+        <%= link_to user_path(comment.owner), :class => "owner" do %>
+          <%= strong(comment.owner.name) %>
+          <%= comment.owner.twitter_handle %>
+        <% end %>
+        <div class="time"><%= time_ago_in_words(comment.created_at) %></div>
+      </div>
       <%= simple_format(comment.body, :class => "message") %>
       <%= comment_buttons(comment, :reply => reply) %>
     </div>
