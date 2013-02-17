@@ -1,32 +1,27 @@
-<div class="accordion-heading">
-  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwitter">
-    <h4>
-      <%= I18n.t("identity/twitter.form.title")%>
-      <%= awesome_icon(:icon_twitter, :class => "pull-right") %>
-    </h4>
-  </a>
-</div>
-<div id="collapseTwitter" class="accordion-body <%= collapse(:twitter) %> collapse">
-  <div class="accordion-inner">
-    <%= form_for Identity::Twitter.new(:follow_bountyhermes => true), :url => "/sessions/twitter" do |form| %>
-      <p><%= I18n.t("identity/twitter.form.legend") %></p>
-      <p><%= I18n.t("identity/twitter.form.legend2") %></p>
+<%= accordion_heading(:twitter) do %>
+  <%= I18n.t("identity/twitter.form.title")%>
+  <%= awesome_icon(:icon_twitter, :class => "pull-right") %>
+<% end %>
 
-      <%= hidden_field_tag :req, params[:req] %>
-      <%= form.error_messages @error if @error %>
+<%= accordion_body(:twitter) do %>
+  <%= form_for Identity::Twitter.new(:follow_bountyhermes => true), :url => "/sessions/twitter" do |form| %>
+    <p><%= I18n.t("identity/twitter.form.legend") %></p>
+    <p><%= I18n.t("identity/twitter.form.legend2") %></p>
 
-      <div class="checkbox-group">
-        <%= form.control_group :follow_bountyhermes, :check_box %>
-        <%= form.agree_to_terms(:id => "agree_to_terms_twitter") %>
-      </div>
+    <%= hidden_field_tag :req, params[:req] %>
+    <%= form.error_messages @error if @error %>
 
-      <div class="buttons">
-        <%= link_to_cancel_signin %>
-        <%= form.submit I18n.t("button.signin"), :name => "do_signup_twitter", :id => "do_signup_twitter", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
-      </div>
-    <% end %>
-  </div>
-</div>
+    <div class="checkbox-group">
+      <%= form.control_group :follow_bountyhermes, :check_box %>
+      <%= form.agree_to_terms(:id => "agree_to_terms_twitter") %>
+    </div>
+
+    <div class="buttons">
+      <%= link_to_cancel_signin %>
+      <%= form.submit I18n.t("button.signin"), :name => "do_signup_twitter", :id => "do_signup_twitter", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
+    </div>
+  <% end %>
+<% end %>
 
 <script type="text/javascript" charset="utf-8">
   $("#agree_to_terms_twitter").change(function() {

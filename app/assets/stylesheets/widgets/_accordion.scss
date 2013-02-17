@@ -1,5 +1,45 @@
-.accordion-heading {
-  h4 {
-    margin: 0;
+.accordion-group {
+  overflow: hidden;
+  .accordion-heading {
+    a {
+      color: $text;
+      &:hover {
+        color: $text;
+        text-decoration: none;
+      };
+      &.email {
+        background-color: $email;
+        &:hover {
+          background-color: $email_highlight;
+        };
+      }
+      &.twitter {
+        background-color: $twitter;
+        &:hover {
+          background-color: $twitter_highlight;
+        };
+      }
+      &.register {
+        background-color: $register;
+        &:hover {
+          background-color: $register_highlight;
+        };
+      }
+      &.address {
+        background-color: $address;
+        &:hover {
+          background-color: $address_highlight;
+        };
+      }
+      &.profile {
+        background-color: $profile;
+        &:hover {
+          background-color: $profile_highlight;
+        };
+      }
+    }
+    h4 {
+      margin: 0;
+    }
   }
 }

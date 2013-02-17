@@ -1,36 +1,31 @@
-<div class="accordion-heading">
-  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseRegister">
-    <h4>
-      <%= I18n.t("identity/new.form.title")%>
-      <%= awesome_icon(:icon_user, :size => :large, :class => "pull-right") %>
-    </h4>
-  </a>
-</div>
-<div id="collapseRegister" class="accordion-body <%= collapse(:register) %> collapse">
-  <div class="accordion-inner">
-    <%= form_for @identity ||= Identity::Email.new(:newsletter_subscription => true), :url => "/signup", :remote => true do |form| %>
-      <p><%= I18n.t("identity/new.form.legend") %></p>
-      <p><%= I18n.t("identity/new.form.legend2") %></p>
+<%= accordion_heading(:register) do %>
+  <%= I18n.t("identity/new.form.title")%>
+  <%= awesome_icon(:icon_user, :size => :large, :class => "pull-right") %>
+<% end %>
 
-      <%= hidden_field_tag :req, params[:req] %>
-      <%= form.error_messages @error if @error %>
+<%= accordion_body(:register) do %>
+  <%= form_for @identity ||= Identity::Email.new(:newsletter_subscription => true), :url => "/signup", :remote => true do |form| %>
+    <p><%= I18n.t("identity/new.form.legend") %></p>
+    <p><%= I18n.t("identity/new.form.legend2") %></p>
 
-      <%= form.control_group :email,                  :text_field %>
-      <%= form.control_group :password,               :password_field %>
-      <%= form.control_group :password_confirmation,  :password_field %>
+    <%= hidden_field_tag :req, params[:req] %>
+    <%= form.error_messages @error if @error %>
 
-      <div class="checkbox-group">
-        <%= form.control_group :newsletter_subscription, :check_box %>
-        <%= form.agree_to_terms(:id => "agree_to_terms_signup") %>
-      </div>
+    <%= form.control_group :email,                  :text_field %>
+    <%= form.control_group :password,               :password_field %>
+    <%= form.control_group :password_confirmation,  :password_field %>
 
-      <div class="buttons">
-        <%= link_to_cancel_signin %>
-        <%= form.submit I18n.t("button.signin"), :name => "do_signup", :id => "do_signup", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
-      </div>
-    <% end %>
-  </div>
-</div>
+    <div class="checkbox-group">
+      <%= form.control_group :newsletter_subscription, :check_box %>
+      <%= form.agree_to_terms(:id => "agree_to_terms_signup") %>
+    </div>
+
+    <div class="buttons">
+      <%= link_to_cancel_signin %>
+      <%= form.submit I18n.t("button.signin"), :name => "do_signup", :id => "do_signup", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
+    </div>
+  <% end %>
+<% end %>
 
 <script type="text/javascript" charset="utf-8">
   $("#agree_to_terms_signup").change(function() {

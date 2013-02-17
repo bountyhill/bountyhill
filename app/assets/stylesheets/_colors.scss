@@ -22,6 +22,9 @@ $red:           #E02202;
 $red_bright:    #F7C8C0;
 $red_dark:      #A41902;
 
+$text:          white;
+$text_inverse:  black;
+
 $navigation_background:         black;
 $navigation_background_top:     black;
 $navigation_background_bottom:  black;
@@ -57,11 +60,15 @@ $comments_box_color:          $green_bright;
 $comments_box_title_color:    $green_dark;
 $comments_box_content_color:  $green;
 
-$twitter:                     #00ACED;
-$twitter_highlight:           #00ACED;
-
-$facebook:                    #3B5998;
-$facebook_highlight:          #3B5998;
-
-$email:                       #4C9E46;
-$email_highlight:             #4C9E46;
+$twitter:             #00ACED;
+$twitter_highlight:   #21C2FF;
+$facebook:            #3B5998;
+$facebook_highlight:  #4C70BA;
+$profile:             #4C9E46;
+$profile_highlight:   #51AA4B;
+$email:               #CC8800;
+$email_highlight:     #FFAA00;
+$address:             #006699;
+$address_highlight:   #0088CC;
+$register:            $profile;
+$register_highlight:  $profile_highlight;

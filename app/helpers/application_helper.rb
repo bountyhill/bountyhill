@@ -195,24 +195,6 @@ module ApplicationHelper
       yield
     end
   end
-
-  def accordion_heading(part, &block)
-    div :class => "accordion-heading" do
-      link_to "#collapse-#{part}", :class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion" do
-        h4 do
-          yield
-        end
-      end
-    end
-  end
-
-  def accordion_body(part, options={}, &block)
-    div :id => "collapse-#{part}",  :class => "accordion-body collapse #{collapse(part, options)}" do
-      div :class => "accordion-inner" do
-        yield
-      end
-    end
-  end
   
   ALLOWED_PARAMS_FOR = {
     :quests => [:filter, :category, :sort, :order],
