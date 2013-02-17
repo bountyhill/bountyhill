@@ -23,12 +23,11 @@ gem 'rack-contrib'
 group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'sass'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'compass-colors'
   gem 'compass_twitter_bootstrap'
-  gem 'font_awesome-sass-rails'
+  # gem 'font_awesome-sass-rails'
   # gem 'sassy-buttons'
 end
 
