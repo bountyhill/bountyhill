@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'thin'
-gem 'rails', '~> 3.2.11'
+gem 'rails', '~> 3.2.12'
 gem 'psych'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
