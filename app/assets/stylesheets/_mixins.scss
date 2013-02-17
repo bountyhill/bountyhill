@@ -42,4 +42,8 @@
     background-color: $comments_box_color;
     .title { background-color: $comments_box_title_color; }
   }
+  @else if  $box_type == user { 
+    background-color: $user_box_color;
+    .title { background-color: $user_box_title_color; }
+  }
 }

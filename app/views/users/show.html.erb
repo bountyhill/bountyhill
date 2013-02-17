@@ -1,19 +1,40 @@
-<%#= header_ribbon(
-    header_action_button_for_user(@user),
-    interaction_buttons(
-      delete_user_button(@user),
-      edit_user_button(@user),
-      follow_user_button(@user)
-    )
-  ) %>
-
-<div class="row bg-main">
+<div class="row-fluid main">
   <div class="span2">&nbsp;</div>
-  <div class="user sheet span8">
-    <div class="inner">
-      <%= render_user_section(@user, "card") %>
-      <%= render_user_section(@user, "badge") %>
-      <%= render_user_section(@user, "activities") %>
+  <div class="sidebar span2">
+    <%= avatar @user, :size => 128 %>
+  </div>
+  <div class="main span6">
+    <%= profile_box(@user) %>
+  </div>
+  <div class="span2">&nbsp;</div>
+</div>
+<div class="spacer" style="min-height:30px"></div>
+<div class="row-fluid">
+  <div class="span2">&nbsp;</div>
+  <div class="sidebar span2">
+    <div style="background-color:#c00; padding: 10px; min-height:60px">
+      <h2>placeholder: Points</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#c00; padding: 10px; min-height:60px">
+      <h2>placeholder: Activity</h2>
+    </div>
+  </div>
+  <div class="main span6">
+    <div style="background-color:#0c0; padding: 10px; min-height:60px">
+      <h2>placeholder: Quests</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#00c; padding: 10px; min-height:60px">
+      <h2>placeholder: Retweets</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#ccc; padding: 10px; min-height:60px">
+      <h2>placeholder: Offers</h2>
+    </div>
+    <div class="spacer" style="min-height:30px"></div>
+    <div style="background-color:#c00; padding: 10px; min-height:300px">
+      <h2>placeholder: Activities</h2>
     </div>
   </div>
   <div class="span2">&nbsp;</div>

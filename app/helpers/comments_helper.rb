@@ -18,28 +18,28 @@ module CommentsHelper
   def delete_comment_button(comment)
     return unless comment.writable? && comment.owner == current_user
 
-    link_to(content_tag(:i, nil, :class => " icon-trash") + I18n.t('button.delete'),
+    link_to(awesome_icon(:icon_trash) + I18n.t('button.delete'),
       comment_path(comment), :method => :delete, :remote => true)
   end
   
   def reply_comment_button(comment, options={})
     return unless Opinio.accept_replies && !options[:reply]
       
-    link_to(content_tag(:i, nil, :class => " icon-share-alt") + I18n.t('button.reply'),
+    link_to(awesome_icon(:icon_share_alt) + I18n.t('button.reply'),
       reply_comment_path(comment), :remote => true)
   end
 
   def add_comment_button
     return unless current_user
 
-    link_to content_tag(:i, nil, :class => "icon-comment"),
+    link_to awesome_icon(:icon_comment),
       "#new_comment",
       :title => t("button.comment"), :rel => "nofollow"
   end
   
   def comment_title(commentable)
     expect! commentable => [Quest, Offer]
-    h2 :class => "title" do
+    h3 :class => "title" do
       [
         div(I18n.t("comment.list.title", :count => commentable.comments.count), :class => "pull-left"),
         div((comments_list_box_buttons), :class => "pull-right")

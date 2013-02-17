@@ -6,7 +6,7 @@
     </h4>
   </a>
 </div>
-<div id="collapseEmail" class="accordion-body <%= collapse(:email) %> collapse">
+<div id="collapseEmail" class="accordion-body <%= collapse(:email, :default => true) %> collapse">
   <div class="accordion-inner">
     <%= form_for @identity ||= Identity::Email.new, :url => "/signin", :remote => true do |form| %>
       <p><%= I18n.t("identity/email.form.legend")%></p>

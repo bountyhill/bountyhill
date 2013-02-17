@@ -6,10 +6,21 @@ en:
         password:               Password
         password_confirmation:  Confirm
       user:
-        name:       Name
-        email:      Email
-        password:   Password
-        delete_me:  Delete my account
+        name:         Name
+        first_name:   First name
+        last_name:    Last name
+        description:  Description
+        image:        Image
+        address1:     Address
+        address2:     Address supplement
+        city:         City
+        zipcode:      Zip code
+        country:      Country
+        phone:        Phone
+        twitter:      Twitter
+        email:        Email
+        password:     Password
+        delete_me:    Delete my account
       offer:
         title:        Subject
         description:  Description

@@ -1,11 +1,11 @@
-<%#= header_ribbon h1(I18n.t("user.actions.edit.title")).html_safe %>
-
-<div class="user_forms">
-  <% %w(contact passwd).each do |form_partial| %>
-    <div class="row-fluid form">
-      <%= render_form do %>
-        <%= partial "users/form/#{form_partial}", :user => @user, :email => @email %>
+<%= modal_dialog I18n.t("user.form.title") do %>
+  <% div :class =>"modal-body" do %>
+    <% div :class =>"accordion", :id => "accordion" do %>
+      <% @partials.each do |partial, index| %>
+        <%= div :class => "accordion-group", :id => partial do %>
+          <%= render "users/forms/#{partial}" %>
+        <% end %>
       <% end %>
-    </div>
+    <% end %>
   <% end %>
-</div>
+<% end %>

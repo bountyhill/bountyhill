@@ -1,0 +1,20 @@
+<%= accordion_heading(:address) do %>
+  <%= I18n.t("user.form.address.title")%>
+  <%= awesome_icon(:icon_home, :class => "pull-right") %>
+<% end %>
+
+<%= accordion_body(:address) do %>
+  <%= form_for @user, :remote => true do |form| %>
+  <p><%= I18n.t("user.form.address.legend")%></p>
+    <%= form.error_messages %>
+    
+    <%= hidden_field_tag :partial, :address %>
+    <%= form.control_group :address1 %>
+    <%= form.control_group :address2 %>
+    <%= form.control_group :city %>
+    <%= form.control_group :zipcode %>
+    <%= form.control_group :country %>
+
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
+<% end %>

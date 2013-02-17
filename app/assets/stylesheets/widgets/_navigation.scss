@@ -7,9 +7,14 @@
     li {
       &.active > a, &.active > a:hover, a:hover {
         background:  $navigation_item_highlight;
+        color: $navigation_text_inverse;
       }
-      a:focus {
-        outline: none;
+      a {
+        color: $navigation_text;
+        text-shadow: none;
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
@@ -23,22 +28,28 @@
   }
   .navbar-inner {
     background-color: $navigation_background;
-    background-image: linear-gradient(top, $navigation_background_top, $navigation_background_bottom);
+    background-image: none;
     .brand {
       width: 33%;
       padding: 0 20px;
+      img {
+        height: 40px; 
+      }
+    }
+    .container-fluid {
+      margin: 0 10px;
     }
     .nav-user {
       li {
         &.active > a, &.active > a:hover, a:hover {
           background:  inherit;
-          color: inherit;
+          color: $navigation_text;
         }
         a {
           padding: 0 0 0 10px;
         }
       }
-      .user_ident {
+      .user-ident {
         float: left;
         text-align: right;
         padding-right:10px;
@@ -52,13 +63,14 @@
       .dropdown {
         .dropdown-menu {
           margin-top: 0;
-          min-width: 60%;
+          min-width: 80%;
           &::after {
             right: 40px;
           }
         }
         li {
           a {
+            color: $navigation_text_inverse;
             padding: 4px 10px;
           }
           &.active > a, &.active > a:hover, a:hover {
@@ -96,6 +108,18 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
               display: none;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    .navbar-inner {
+      .nav-user {
+        .user-ident {
+          display: none;
         }
       }
     }

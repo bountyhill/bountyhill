@@ -1,9 +1,3 @@
-<%#= header_ribbon h1(I18n.t("user.actions.delete.title")).html_safe %>
-
-<div class="user_forms">
-  <div class="row-fluid form">
-    <%= render_form do %>
-      <%= partial "users/form/unregister", :user => @user, :email => @email %>
-    <% end %>
-  </div>
-</div>
+<%= modal_dialog i18n_title_for(@user, :translation_key => "delete") do
+  render "delete"
+end %>

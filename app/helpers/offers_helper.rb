@@ -31,7 +31,7 @@ module OffersHelper
   def accept_offer_button(offer)
     return unless !offer.active? && offer.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-ok-circle") + content_tag(:span, t("button.accept")),
+    modal_link_to(awesome_icon(:icon_ok_circle) + content_tag(:span, t("button.accept")),
       accept_offer_path(offer),
       :title => t("button.accept"), :rel => "nofollow")
   end
@@ -39,7 +39,7 @@ module OffersHelper
   def reject_offer_button(offer)
     return unless !offer.active? && offer.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + content_tag(:span, t("button.reject")),
+    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.reject")),
       reject_offer_path(offer),
       :title => t("button.reject"), :rel => "nofollow")
   end
@@ -47,7 +47,7 @@ module OffersHelper
   def withdraw_offer_button(offer)
     return unless !offer.active? && offer.owner == current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + content_tag(:span, t("button.withdraw")),
+    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.withdraw")),
       withdraw_offer_path(offer),
       :title => t("button.withdraw"), :rel => "nofollow")
   end
@@ -83,7 +83,7 @@ module OffersHelper
   def offers_box(offerable)
     expect! offerable => [Quest]
     
-    title = h2 :class => "title" do
+    title = h3 :class => "title" do
       [
         div(I18n.t("offer.list.title", :count => offerable.offers.count), :class => "pull-left"),
         div(:class => "pull-right") do

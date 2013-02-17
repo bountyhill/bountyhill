@@ -149,7 +149,9 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    if identity = self.identity(:email)
+    name = "#{first_name} #{last_name}"
+    
+    if name.blank? && identity = self.identity(:email)
       name = identity.name
     end
     
@@ -384,6 +386,28 @@ class User < ActiveRecord::Base
   attr :description, true
   attr_accessible :description
   
+  # user could have provided his profile description excplicitly
+  # or we try to take one from his identities
+  def description
+    self[:description] || [:twitter].map{ |identity| find_identity(identity).description }.first
+  end
+
+
+  attr :phone, true
+  attr_accessible :phone
+  
+  def phone
+    "placeholder: TODO!"
+  end
+
+  attr :address, true
+  attr_accessible :address
+  
+  def address
+    [:name, :address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }
+  end
+
+
   serialized_attr :image
   attr_accessible :image, :images
 

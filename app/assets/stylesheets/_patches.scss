@@ -4,23 +4,29 @@
  * add your well documented css patches here
  */
 
+.row-fluid {
+  clear: both;               /* reset all floatings within next row */
+}
+
+.container-fluid {
+  padding: 0;               /* reset all floatings within next row */
+}
+
 /* -------- modal dialoge --------- */
 .modal-open {
   .modal {
-    border: none;               /* removes ovelapping border in modal dialoge */
+    
+    border: none;                /* removes ovelapping border in modal dialoge */
     &.fade {
       &.in {
-        top: 40%;               /* brings modal dialoge closer to top */
+/*        top: 40%; */              /* brings modal dialoge closer to top */
       }
     }
     .modal-body {
-      max-height: 480px;        /* enables sign in/up form to fit into modal dialoge */
+      max-height: 500px;        /* enables large forms to fit into modal dialoge */
     }
     form {
       margin: 0;                /* aligns modal dialoge's footer and body */
-      textarea {
-        line-height: 1.2;       /* better line high - default is 18px which is much to hight */
-      }
     }
   }
 }

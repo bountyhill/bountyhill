@@ -1,9 +1,0 @@
-<div class="content public">
-  <%= avatar user, :size => 64 %>
-  <h1><%= user.name %></h1>
-  <% if user.identities(:twitter) %>
-  <dl>
-    <dt>Twitter:</dt> <dd><%= link_to_twitter(user, :target => "_blank") %></dd>
-  </dl>
-  <% end %>
-</div>

@@ -1,10 +1,10 @@
 module BoxHelper
 
   def box(type, object, options={})
-    expect! type    => [:quest, :offer]
-    expect! object  => [Quest, Offer]
+    expect! type    => [:quest, :offer, :user]
+    expect! object  => [Quest, Offer, User]
     
-    title = h2 :class => "title" do
+    title = h3 :class => "title" do
       [
         div(options[:title], :class => "pull-left"),
         div(send("#{type}_buttons", object), :class => "pull-right")
@@ -24,7 +24,7 @@ module BoxHelper
     expect! type    => [:quests, :offers]
     expect! models  => ActiveRecord::Relation
     
-    title = h2 :class => "title" do
+    title = h3 :class => "title" do
       [
         div(I18n.t("#{type.to_s.singularize}.list.title", :count => models.total_entries), :class => "pull-left"),
         div(send("#{type}_list_box_buttons"), :class => "pull-right")

@@ -20,7 +20,7 @@ module QuestsHelper
   end
   
   def new_quest_button
-    modal_link_to(content_tag(:i, nil, :class => "icon-edit"), content_tag(:span, new_quest_path))
+    modal_link_to(awesome_icon(:icon_edit), content_tag(:span, new_quest_path))
   end
 
   def categories_select_options
@@ -42,7 +42,7 @@ module QuestsHelper
   def share_quest_button(quest)
     return unless quest.active?
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-retweet") + content_tag(:span, t("button.share")),
+    modal_link_to(awesome_icon(:icon_retweet) + content_tag(:span, t("button.share")),
       share_path(quest),
       :title => t("button.share"), :rel => "nofollow")
   end
@@ -50,7 +50,7 @@ module QuestsHelper
   def offer_quest_button(quest)
     return unless quest.active? && quest.owner != current_user
 
-    modal_link_to(content_tag(:i, nil, :class => " icon-share") + content_tag(:span, t("button.offer")),
+    modal_link_to(awesome_icon(:icon_share) + content_tag(:span, t("button.offer")),
       new_offer_path(:quest_id => quest), 
       :title => t("button.offer"), :rel => "nofollow")
   end
@@ -58,7 +58,7 @@ module QuestsHelper
   def start_quest_button(quest)
     return unless !quest.active? && quest.owner == current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-ok-circle") + content_tag(:span, t("button.start")),
+    modal_link_to(awesome_icon(:icon_ok_circle) + content_tag(:span, t("button.start")),
       run_path(quest),
       :title => t("button.start"), :rel => "nofollow")
   end
@@ -66,7 +66,7 @@ module QuestsHelper
   def stop_quest_button(quest)
     return unless quest.active? && quest.owner == current_user
     
-    modal_link_to(content_tag(:i, nil, :class => "icon-remove-sign") + content_tag(:span, t("button.stop")),
+    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.stop")),
       url_for(:controller => :runs, :action => :cancel, :id => quest),
       :title => t("button.stop"), :rel => "nofollow")
   end
@@ -74,7 +74,7 @@ module QuestsHelper
   def edit_quest_button(quest)
     return unless !quest.active? && quest.owner == current_user
 
-    modal_link_to(content_tag(:i, nil, :class => "icon-edit") + content_tag(:span, t("button.edit")),
+    modal_link_to(awesome_icon(:icon_edit) + content_tag(:span, t("button.edit")),
       edit_quest_path(quest),
       :title => t("button.edit"), :rel => "nofollow")
   end

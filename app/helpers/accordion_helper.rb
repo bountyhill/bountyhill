@@ -1,4 +1,16 @@
 module AccordionHelper
+  
+  def collapse(partial, options={})
+    expect! partial => Symbol
+    expect! options => Hash
+
+    return 'in' if @partial.blank? && options[:default]
+    @partial.to_s == partial.to_s ? 'in' : 'out'
+  end
+  
+end
+
+__END__
   class Accordion
     extend Forwardable
     delegate [:div, :span, :ul, :li, :link_to, :h3, :capture] => "@template"

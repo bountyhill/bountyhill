@@ -1,0 +1,17 @@
+<%= accordion_heading(:email) do %>
+  <%= I18n.t("user.form.email.title")%>
+  <%= awesome_icon(:icon_envelope_alt, :class => "pull-right") %>
+<% end %>
+
+<%= accordion_body(:email) do %>
+  <%= form_for @user, :remote => true do |form| %>
+  <p><%= I18n.t("user.form.email.legend")%></p>
+    <%= form.error_messages %>
+    
+    <%= hidden_field_tag :partial, :email %>
+
+    <p>paceholder: TODO</p>
+
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
+<% end %>

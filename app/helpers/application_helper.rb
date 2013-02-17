@@ -2,7 +2,7 @@ module ApplicationHelper
   def endless_scroll_loader(type)
     expect! type => Symbol
     div :class => "loader" do
-      link_to(content_tag(:i, nil, :class => "icon-refresh") + "&nbsp;".html_safe + I18n.t("link.loading"),
+      link_to(awesome_icon(:icon_refresh) + "&nbsp;".html_safe + I18n.t("link.loading"),
         send("#{type}_path", params.merge(:page => (params[:page].to_i || 1)+1)),
         :class => 'endless_scroll_hook',
         :remote => true)
@@ -10,21 +10,22 @@ module ApplicationHelper
   end
   
   def i18n_title_for(model, options={})
-    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.title", options).html_safe
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model, options)}.title", options).html_safe
   end
   
   def i18n_legend_for(model, options={})
-    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.legend", options).html_safe
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model, options)}.legend", options).html_safe
   end
   
   def i18n_form_hint_for(model, options={})
-    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model)}.hint", options).html_safe
+    I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model, options)}.hint", options).html_safe
   end
   
-  def translation_key_for(model)
-    if    model.readonly?   then "show"
-    elsif model.new_record? then "create"
-    else                         "edit"
+  def translation_key_for(model, options={})
+    if    (key = options.delete(:translation_key))  then key
+    elsif model.readonly?                           then "show"
+    elsif model.new_record?                         then "create"
+    else                                                 "edit"
     end
   end
 
@@ -192,6 +193,24 @@ module ApplicationHelper
   def modal_footer(options={}, &block)
     div :class => "modal-footer" do
       yield
+    end
+  end
+
+  def accordion_heading(part, &block)
+    div :class => "accordion-heading" do
+      link_to "#collapse-#{part}", :class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion" do
+        h4 do
+          yield
+        end
+      end
+    end
+  end
+
+  def accordion_body(part, options={}, &block)
+    div :id => "collapse-#{part}",  :class => "accordion-body collapse #{collapse(part, options)}" do
+      div :class => "accordion-inner" do
+        yield
+      end
     end
   end
   

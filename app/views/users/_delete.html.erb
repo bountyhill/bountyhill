@@ -1,0 +1,17 @@
+<%= form_for @user, :html => { :method => "delete" }, :remote => true do |form| %>
+  <%= modal_body do %>
+    <p><%= i18n_legend_for(@user, :translation_key => "delete") %></p>
+    <%= form.error_messages %>
+
+    <p>paceholder: TODO</p>
+
+    <%#= form.control_group :delete_reason, :text_area, :rows => 2 %>
+    <%#= form.control_group :delete_me, :check_box, :hint => false %>
+
+  <% end %>
+  
+  <%= modal_footer do %>
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
+
+<% end %>

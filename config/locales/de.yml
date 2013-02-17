@@ -26,12 +26,14 @@ de:
     delete:   Löschen
     reply:    Antworten
     post:     Absenden
+    follow:   Folgen
+    change:   Ändern
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
-    your_quests:  Suchen
-    your_offers:  Angebote
-    your_profile: Profil
+    your_quests:  Meine Suchen
+    your_offers:  Meine Angebote
+    your_profile: Mein Profil
     signin:       Anmelden/Registrieren
     signout:      Abmelden
     about:        Information
@@ -85,6 +87,36 @@ de:
         zero:   "Kommentare"
         one:    "1 Kommentar"
         other:  "%{count} Kommentare"
+  user:
+    box:
+      title:  "Ihr Profil"
+    form:
+      title:  Persönliche Daten Bearbeiten
+      profile:
+        title:  Nutzerprofil bearbeiten
+        legend: Die Angaben zu Ihrem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
+      address:
+        title:  Adressangaben bearbeiten
+        legend: Ihre Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
+      email:
+        title:  Email ändern
+        legend: "Wenn Sie Ihre Email ändern, senden wir Ihnen eine Bestätigungsemail an Ihre neu Emailadresse."
+      twitter:
+        title:  Twitter Account wechseln
+        legend: "Wenn Sie Ihren Twitter Account wechleln, müssen Sie bountyhill gegenüber Twitter erneut authorisieren."
+      delete:
+        title:  Zugang Löschen
+        legend: "Wir bedauern es sehr, dass Sie uns verlassen. Bitte teilen Sie uns mit warum Sie bountyhill verlassen möchten."
+      field_hint:
+        first_name:   Ihr Vorname
+        last_name:    Ihr Nachname
+        description:  Beschreibung Ihrer Person
+        image:        Ihr Profilbild
+        address1:     Ihre Strasse + Hausnummer
+        address2:     Weiter Adressinformationen
+        city:         Ihre Stadt
+        zipcode:      Die Postleitzahl ihrer Stadt
+        country:      Ihr Land
   offer:
     status:
       viewed:     "Angesehen"

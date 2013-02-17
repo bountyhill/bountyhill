@@ -42,23 +42,23 @@ module NavigationHelper
 
     case nav_item
     when :start_quest
-      modal_link_to content_tag(:i, nil, :class => "icon-edit") + span(I18n.t("nav.start_quest")), new_quest_path
+      modal_link_to awesome_icon(:icon_edit) + span(I18n.t("nav.start_quest")), new_quest_path
     when :quests
-      link_to content_tag(:i, nil, :class => "icon-list") + span(I18n.t("nav.quests")), quests_path
+      link_to awesome_icon(:icon_list) + span(I18n.t("nav.quests")), quests_path
     when :your_quests
-      link_to content_tag(:i, nil, :class => "icon-list") + I18n.t("nav.your_quests"), quests_path(:owner_id => current_user.id)
+      link_to awesome_icon(:icon_list) + I18n.t("nav.your_quests"), quests_path(:owner_id => current_user.id)
     when :your_offers
-      link_to content_tag(:i, nil, :class => "icon-th-list") + I18n.t("nav.your_offers"), offers_path(:owner_id => current_user.id)
+      link_to awesome_icon(:icon_th_list) + I18n.t("nav.your_offers"), offers_path(:owner_id => current_user.id)
     when :profile
-      link_to content_tag(:i, nil, :class => "icon-user") + I18n.t("nav.your_profile"), "/profile"
+      link_to awesome_icon(:icon_user) + I18n.t("nav.your_profile"), "/profile"
     when :signout
-      link_to content_tag(:i, nil, :class => "icon-signout") +  I18n.t("nav.signout"), signout_path, :method => :delete
+      link_to awesome_icon(:icon_signout) +  I18n.t("nav.signout"), signout_path, :method => :delete
     when :divider
       ""
     when :copyright
       link_to "<strong>&copy; bountyhill, #{Time.now.year}</strong>".html_safe, root_path
     when :signin
-      modal_link_to content_tag(:i, nil, :class => "icon-signin") + I18n.t("nav.signin"), signin_path
+      modal_link_to awesome_icon(:icon_signin) + I18n.t("nav.signin"), signin_path
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     else
@@ -127,7 +127,7 @@ module NavigationHelper
      :class => "avatar",
      :width => avatar_size,
      :height => avatar_size
-    ident = div :class => "user_ident" do
+    ident = div :class => "user-ident" do
       div(user.name, :class => "name") + 
       div(user.twitter_handle, :class => "handle")
     end

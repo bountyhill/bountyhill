@@ -1,0 +1,56 @@
+.box {
+  &.user {
+    @include box_colors(user);
+    .title {
+      .handle {
+        font-size: 18px;
+        font-weight: normal;
+      }
+    }
+    .contact-section {
+      font-weight: bold;
+      dt, dd {
+        float: left;
+      }
+      dt {
+        clear: both;
+        width: 60px;
+      }
+      dd {
+        font-size: 120%;
+      }
+    }
+  }
+}
+
+.sidebar {
+  img {
+    &.avatar {
+      float: right;
+      min-width: 128px;
+      min-height: 128px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    img {
+      &.avatar {
+        display: none;
+      }
+    }
+  }
+}
+
+/* TODO: move to somewhere else! */
+
+.two-columns {
+  width: 50%;
+  &.left {
+    float: left;
+  }
+  &.right {
+    float: right;
+  }
+}

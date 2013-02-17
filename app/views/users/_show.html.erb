@@ -1,0 +1,21 @@
+<h3 class="description">
+  <%= user.description %>
+</h3>
+
+<div class="contact-section clearfix">
+  <div class="two-columns left">
+    <dl>
+      <dt><%= User.human_attribute_name(:name) -%></dt>     <dd><%= user.name -%></dd>
+      <dt><%= User.human_attribute_name(:twitter) -%></dt>  <dd><%= user.twitter_handle -%></dd>
+      <dt><%= User.human_attribute_name(:email) -%></dt>    <dd><%= user.email -%></dd>
+      <dt><%= User.human_attribute_name(:phone) -%></dt>    <dd><%= user.phone -%></dd>
+    </dl>
+  </div>
+  
+  <div class="two-columns right">
+    <dl>
+      <dt><%= User.human_attribute_name(:address1) -%></dt> <dd><%= user.address.join("<br>").html_safe -%></dd>
+    </dl>
+  </div>
+</div>
+<div class="clearfix"/>

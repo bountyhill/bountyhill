@@ -22,14 +22,20 @@ $red:           #E02202;
 $red_bright:    #F7C8C0;
 $red_dark:      #A41902;
 
-$navigation_background:         #252525;
-$navigation_background_top:     #272727;
-$navigation_background_bottom:  #232323;
+$navigation_background:         black;
+$navigation_background_top:     black;
+$navigation_background_bottom:  black;
+$navigation_text:               #aaa;
+$navigation_text_inverse:       #333;
+$navigation_text_highlight:     #ccc;
 $navigation_item_highlight:     #6d6d6d;
-$navigation_text_highlight:     #cccccc;
 
 $message_background:    #dddddd;
 $message_border:        #cccccc;
+
+$user_box_color:          $red_bright;
+$user_box_title_color:    $red_dark;
+$user_box_content_color:  $red;
 
 $quests_box_color:          $blue_bright;
 $quests_box_title_color:    $blue_dark;
