@@ -34,7 +34,7 @@ module UsersHelper
   def delete_user_button(user)
     return unless personal_page?
     
-    modal_link_to(awesome_icon(:icon_ban_circle) + content_tag(:span, t("button.delete")),
+    modal_link_to(awesome_icon(:icon_trash) + content_tag(:span, t("button.delete")),
       { :controller => :users, :action  => :delete, :id => user.id },
       :title => t("button.delete"), :rel => "nofollow")
   end
@@ -54,7 +54,7 @@ module UsersHelper
   def edit_user_button(user)
     return unless personal_page?
 
-    modal_link_to(awesome_icon(:icon_edit) + content_tag(:span, t("button.edit")),
+    modal_link_to(awesome_icon(:icon_pencil) + content_tag(:span, t("button.edit")),
       edit_user_path(user),
       :title => t("button.edit"), :rel => "nofollow")
   end
