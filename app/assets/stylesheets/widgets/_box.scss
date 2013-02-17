@@ -24,6 +24,11 @@
         & [class*=" icon-"] {
           width: 1em;
         }
+        a {
+          &:focus {
+            outline: none;
+          }
+        }
         span {
           display: none;
         }

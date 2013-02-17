@@ -14,23 +14,19 @@
   
   <!-- navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570 -->
   <style type="text/css">
-    body { padding: 60px 0; }
+    body { padding: 100px 0; }
   </style>
   
   <!-- stylesheets -->
   <%= stylesheet_link_tag "application", :media => "all" %>
   
   <!-- javascripts -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-  <!-- <script src="/javascripts/jquery_ujs.js"></script> -->
-
-  <%= filepicker_tags %>
-
   <%= javascript_include_tag "application" %>
+  <%= filepicker_tags %>
 
   <!-- security -->
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
   <%= div "", :id => "myModal", :class => "modal hide fade", :role => "dialog", :"aria-labelledby" => "myModalLabel", :"aria-hidden" => "true" %>

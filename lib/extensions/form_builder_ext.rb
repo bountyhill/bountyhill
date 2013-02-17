@@ -268,7 +268,7 @@ class ActionView::Helpers::FormBuilder
     end
     input = tag :input, :type => :filepicker, :data => data
 
-    "#{slides}#{input}"
+    "#{input}#{slides}"
   end
   
   # returns a hash of filepicker.io options to set in the filepicker's
