@@ -14,6 +14,7 @@
 //  no_require jquery
 //  no_require jquery_ujs
 //
+//= require jquery_ujs.js
 //= require bootstrap.js
 //= require filepicker.js
 //= require jquery.inview.js
