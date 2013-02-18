@@ -30,6 +30,8 @@ module IconHelper
     options = args.extract_options!
     size = options[:size] if options[:size]
     type = options.delete(:type) if options[:type]
+    text = options.delete(:text) if options[:text]
+    text ||= args.last if args.last.kind_of?(String)
 
     clazz = "btn "
     clazz << " btn-#{size}" if size

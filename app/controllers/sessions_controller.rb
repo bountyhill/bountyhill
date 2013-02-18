@@ -74,14 +74,14 @@ class SessionsController < ApplicationController
   private
 
   def render_signin!
-    partials = case params[:req]
+    @partials = case params[:req]
     when "confirmed"  then identity?(:email) ? %w(confirm) : %w(email)
     when "twitter"    then %w(twitter)
     when "email"      then %w(email)
     else              %w(email twitter register)
     end
 
-    render! :action => "new", :locals => { :partials => partials }
+    render! :action => "new"
   end
 
   public

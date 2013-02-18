@@ -23,34 +23,13 @@ module UsersHelper
     
     ul :class => "interactions" do
       [
-        delete_user_button(user),
-        change_password_button(user),
         edit_user_button(user),
         follow_user_button(user)
       ].compact.map{|button| li(button)}.join.html_safe
     end
   end
 
-  def delete_user_button(user)
-    return unless personal_page?
-    
-    modal_link_to(awesome_icon(:icon_trash) + content_tag(:span, t("button.delete")),
-      { :controller => :users, :action  => :delete, :id => user.id },
-      :title => t("button.delete"), :rel => "nofollow")
-  end
 
-  def change_password_button(user)
-    return 
-    
-    #TODO: proper controller action missing!
-    
-    return unless personal_page?
-    
-    modal_link_to(awesome_icon(:icon_lock) + content_tag(:span, t("button.change")),
-    { :controller => :users, :action  => :change, :id => user.id },
-      :title => t("button.change"), :rel => "nofollow")
-  end
-  
   def edit_user_button(user)
     return unless personal_page?
 

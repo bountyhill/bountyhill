@@ -5,11 +5,8 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @partials = %w(profile address email twitter)
-    @partial = params[:partial]
-  end
-  
-  def delete
+    @partials = %w(profile address email twitter delete)
+    @partial = params[:partial] # || @partials.first
   end
   
   def update

@@ -37,6 +37,12 @@
           background-color: $profile_highlight;
         };
       }
+      &.delete {
+        background-color: $delete;
+        &:hover {
+          background-color: $delete_highlight;
+        };
+      }
     }
     h4 {
       margin: 0;

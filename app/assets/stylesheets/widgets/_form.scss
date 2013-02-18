@@ -13,9 +13,10 @@ form {
   }
   .tweet-container {
     position: relative;
-    img {
+    .avatar {
       float: left;
       @include square(48px);
+      @include border-radius(3px);
     }
     #tweet {
       @include message($message_background, $message_border);

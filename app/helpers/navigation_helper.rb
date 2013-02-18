@@ -87,7 +87,7 @@ module NavigationHelper
     css += " nav-main"    if position == :header_center
     css += " pull-right"  if position =~ /right/
     
-    ul :class => "nav #{css}" do
+    ul :class => "nav #{css}", :role => "menu" do
       navigation_items(position).map do |nav_item|
         navigation_item(nav_item)
       end.compact.join.html_safe
@@ -96,7 +96,7 @@ module NavigationHelper
   
   def navigation_item(nav_item)
     if link = link_to_nav_item(nav_item)
-      css = {}
+      css = { :role => "menuitem"}
       css[:class] = "active"  if navigation_item_active?(nav_item)
       css[:class] = "divider" if nav_item == :divider
       

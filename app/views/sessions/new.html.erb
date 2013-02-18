@@ -1,9 +1,9 @@
 <%= modal_dialog I18n.t("identity.form.title") do %>
   <% div :class =>"modal-body" do %>
     <% div :class =>"accordion", :id => "accordion" do %>
-      <% partials.each do |partial, index| %>
+      <% @partials.each do |partial, index| %>
         <%= div :class => "accordion-group", :id => partial do %>
-          <%= render partial %>
+          <%= render "sessions/forms/#{partial}" %>
         <% end %>
       <% end %>
     <% end %>

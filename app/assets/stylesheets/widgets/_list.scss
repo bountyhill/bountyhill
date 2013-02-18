@@ -13,5 +13,8 @@ ul.list {
     clear: both;
     min-height: 10ex;
     margin-bottom: 5ex;
+    .avatar {
+      @include border-radius(3px);
+    }
   }
 }
