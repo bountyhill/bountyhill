@@ -43,15 +43,6 @@
   }
 }
 
-/* ------- progress bar ------- */
-.statistic, .message-container {
-  .progress {
-    line-height: 16px; /* let the progress bar look slimmer */
-    height: auto;
-    margin-bottom: 5px;
-  }
-}
-
 /* ------- message ------- */
 .message-container {
   position: relative;

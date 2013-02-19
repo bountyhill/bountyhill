@@ -39,6 +39,7 @@ li [class^="icon-"], li [class*=" icon-"] {
 
 .progress {
   .bar {
+    font-weight: bold;                        /* font looks much nicer when bold */
     &:after {
       content:"%";                            /* display progress bar value always as percentage */
     }
