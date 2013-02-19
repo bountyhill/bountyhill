@@ -31,6 +31,13 @@ en:
     change:   Change
     accept:   Accept
     reject:   Reject
+  mail:
+    confirm_email:    "[Bountyhill] Please verify your email '%{email}'"
+    reset_password:   "[Bountyhill] Reset your password"
+    offer_received:   "[Bountyhill] You received an offer on your quest '%{title}'"
+    offer_accepted:   "[Bountyhill] Your offer has been accepted '%{title}'"
+    offer_declined:   "[Bountyhill] Your offer has been declined '%{title}'"
+    offer_withdrawn:  "[Bountyhill] An offer has been withdrawn '%{title}'"
   nav:
     start_quest:  Start a quest
     quests:       See all quests

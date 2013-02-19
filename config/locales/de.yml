@@ -31,6 +31,13 @@ de:
     change:   Ändern
     accept:   Annehmen
     reject:   Ablehnen
+  mail:
+    confirm_email:    "[Bountyhill] Bitte bestätigen Sie Ihre Email '%{email}'"
+    reset_password:   "[Bountyhill] Sie können Ihr Passwort jetzt zurücksetzen"
+    offer_received:   "[Bountyhill] Sie haben ein Angebot auf Ihre Suche '%{title}' erhalten"
+    offer_accepted:   "[Bountyhill] Ihr Angebot '%{title}' wurde angenommen"
+    offer_declined:   "[Bountyhill] Ihr Angebot '%{title}' wurde abgelehnt"
+    offer_withdrawn:  "[Bountyhill] Ein Angebot auf Ihre Suche '%{title}' wurde zurückgezogen"
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
