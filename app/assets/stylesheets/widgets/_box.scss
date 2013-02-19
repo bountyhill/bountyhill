@@ -1,8 +1,7 @@
 .box {
   /* ------- text colors ------- */
-  color: white;
   a {
-    color: white;
+    color: $text;
     &:hover {
       text-decoration: none;
       color: $navigation_text_highlight;
@@ -34,6 +33,7 @@
 
   /* ------- title ------- */
   .title {
+    color: $text;
     padding: 0px 7px 3px 20px;
     height: 38px;
     margin: 0 0 10px 0;
@@ -45,8 +45,12 @@
   
   /* ------- content ------- */
   .content {
+    color: $text_inverse;
     padding: 20px 20px 0 20px;
     clear: both;
+    .message-box, .statistic {
+      color: $text;
+    }
     .description {
       margin: 10px 0 20px 0;
       line-height: 120%;

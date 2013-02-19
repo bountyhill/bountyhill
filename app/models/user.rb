@@ -395,7 +395,11 @@ class User < ActiveRecord::Base
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
   def description
-    self[:description] || [:twitter].map{ |identity| find_identity(identity).description }.first
+    self[:description] || [:twitter].detect do |identity|
+      if (twitter_identity = find_identity(identity))
+        twitter_identity.description 
+      end
+    end
   end
 
 
