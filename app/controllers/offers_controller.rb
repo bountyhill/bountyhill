@@ -78,7 +78,7 @@ class OffersController < ApplicationController
   # Withdraw the offer
   def withdraw
     @offer = Offer.find(params[:id])
-    if @offer.owner == current_user
+    if current_user.owns?(@offer)
       @offer.withdraw!
     end
     
@@ -88,18 +88,18 @@ class OffersController < ApplicationController
   # Accept the offer
   def accept
     @offer = Offer.find(params[:id])
-    if @offer.quest.owner == current_user
+    if current_user.owns?(@offer.quest)
       @offer.accept!
     end
     
     redirect_to @offer.quest
   end
 
-  # Decline the offer
-  def decline
+  # Reject the offer
+  def reject
     @offer = Offer.find(params[:id])
-    if @offer.quest.owner == current_user
-      @offer.decline! 
+    if current_user.owns?(@offer.quest)
+      @offer.reject! 
     end
     
     redirect_to @offer.quest

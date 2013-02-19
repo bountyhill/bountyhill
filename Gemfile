@@ -28,7 +28,7 @@ group :assets do
   gem 'compass-colors'
   gem 'compass_twitter_bootstrap'
   gem 'font-awesome-sass-rails'
-  # gem 'sassy-buttons'
+  gem 'sassy-buttons'
 end
 
 group :development, :test do

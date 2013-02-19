@@ -124,41 +124,7 @@ module ApplicationHelper
 
     render options
   end
-
-  def modal_link_to(name, options, html_options={})
-    link_to name, options, html_options.merge(:"data-toggle" => "modal", :"data-target" => "#myModal")
-  end
   
-  def render_restriction(model, what)
-    expect! model => ActiveRecord::Base, what => [:location, :expires_at, :created_at, :compliance]
-    value = model.send(what)
-    return if value.blank?
-    
-    case what
-    when :location
-      icon = image_tag '/images/icon/location.png', :class => 'locality'
-      span = self.span value, :class => "locality"
-    when :expires_at
-      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
-      days = (value.to_date - Date.today).to_i
-      span = if value > Time.now
-        self.span t('restriction.expires_on', :count => days), :class => "temporality"
-      else
-        self.span t('restriction.expired_on', :count => -days), :class => "temporality"
-      end
-    when :created_at
-      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
-      days = (value.to_date - Date.today).to_i
-      span = self.span t('restriction.created_on', :count => -days), :class => "temporality"
-    when :compliance
-      icon = image_tag '/images/icon/location.png', :class => 'compliance'
-      span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"
-    end
-    
-    # div icon, span, :class => "restriction"
-    div span, :class => "restriction"
-  end
-
   def form_for(object, options = {}, &block)
     html = options[:html] ||= {}
     if html[:class]
@@ -227,6 +193,97 @@ module ApplicationHelper
     end
   end
   
+  def url_for_follow_twitter_account(options = {})
+    expect! options => { :account => [String, nil] }
+
+    account = options[:account] || Bountybase.config.twitter_app["user"]
+    account = account.gsub("@", "")
+    
+    "http://twitter.com/#{account}"
+  end
+
+  # This method returns true, 
+  # - if the current_user was referenced in the URL as the owner, 
+  # - or if a user was referenced and it's the current user
+  # - or if a single quest or offer was referenced and belongs the user 
+  def personal_page?
+    return false unless current_user
+    return true if params[:owner_id].to_i == current_user.id
+    return true if @user  && current_user == @user
+    return true if @quest && current_user.owns?(@quest)
+    return true if @offer && current_user.owns?(@offer)
+  
+    false
+  end
+
+  def filepicker_tags
+    apikey = Bountybase.config.filepicker["apikey"]
+    html = <<-HTML
+      <script src="https://api.filepicker.io/v1/filepicker.js"></script>
+      <script type="text/javascript">filepicker.setKey(#{apikey.to_json});</script>
+    HTML
+    
+    html.html_safe
+  end
+  
+end
+
+__END__
+
+  def random_even_unenven
+    (rand(99) % 2).zero? ? "even" : "uneven"
+  end
+
+  def render_restriction(model, what)
+    expect! model => ActiveRecord::Base, what => [:location, :expires_at, :created_at, :compliance]
+    value = model.send(what)
+    return if value.blank?
+  
+    case what
+    when :location
+      icon = image_tag '/images/icon/location.png', :class => 'locality'
+      span = self.span value, :class => "locality"
+    when :expires_at
+      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
+      days = (value.to_date - Date.today).to_i
+      span = if value > Time.now
+        self.span t('restriction.expires_on', :count => days), :class => "temporality"
+      else
+        self.span t('restriction.expired_on', :count => -days), :class => "temporality"
+      end
+    when :created_at
+      icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
+      days = (value.to_date - Date.today).to_i
+      span = self.span t('restriction.created_on', :count => -days), :class => "temporality"
+    when :compliance
+      icon = image_tag '/images/icon/location.png', :class => 'compliance'
+      span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"
+    end
+  
+    # div icon, span, :class => "restriction"
+    div span, :class => "restriction"
+  end
+
+  def quests(value, url = nil, link_options = {})
+    word_with_count(:quests, value, url, link_options)
+  end
+  
+  def offers(value, url = nil, link_options = {})
+    word_with_count(:offers, value, url, link_options)
+  end
+
+  def points(value, url = nil, link_options = {})
+    word_with_count(:points, value, url, link_options)
+  end
+  
+  def link_to_follow_twitter_account(options = {}, &block)
+    expect! options => { :account => [String, nil] }
+
+    link_to url_for_follow_twitter_account(options), :target => :blank do
+      yield block if block_given?
+    end
+  end
+
   HEADER_ICONS = {
     :bubble   => "d",
     :rect     => "c",
@@ -299,51 +356,6 @@ module ApplicationHelper
     ].join.html_safe + javascript_tag("$(document).ready(function() { $('form').setFocus(); });")
   end
 
-  def url_for_follow_twitter_account(options = {})
-    expect! options => { :account => [String, nil] }
-
-    account = options[:account] || Bountybase.config.twitter_app["user"]
-    account = account.gsub("@", "")
-    
-    "http://twitter.com/#{account}"
-  end
-
-  def link_to_follow_twitter_account(options = {}, &block)
-    expect! options => { :account => [String, nil] }
-
-    link_to url_for_follow_twitter_account(options), :target => :blank do
-      yield block if block_given?
-    end
-  end
-  
-  # This method returns true, 
-  # - if the current_user was referenced in the URL as the owner, 
-  # - or if a user was referenced and it's the current user
-  # - or if a single quest or offer was referenced and belongs the user 
-  def personal_page?
-    return false unless current_user
-    return true if params[:owner_id].to_i == current_user.id
-    return true if @user  && current_user == @user
-    return true if @quest && current_user == @quest.owner
-    return true if @offer && current_user == @offer.owner
-  
-    false
-  end
-
-  def filepicker_tags
-    apikey = Bountybase.config.filepicker["apikey"]
-    html = <<-HTML
-      <script src="https://api.filepicker.io/v1/filepicker.js"></script>
-      <script type="text/javascript">filepicker.setKey(#{apikey.to_json});</script>
-    HTML
-    
-    html.html_safe
-  end
-  
-  def random_even_unenven
-    (rand(99) % 2).zero? ? "even" : "uneven"
-  end
-
   # fetches a word from translation, matching for the count. The keys are in words.<word>; 
   # e.g. words.offers. This method is mainly used from the word_with_count helper method below.
   def word(s, count)
@@ -357,20 +369,5 @@ module ApplicationHelper
     translated = I18n.t(:word_with_count, :count => count, :word => word(s, count)).html_safe
     return translated unless url
     link_to translated, url, link_options
-  end
-end
-
-__END__
-
-  def quests(value, url = nil, link_options = {})
-    word_with_count(:quests, value, url, link_options)
-  end
-  
-  def offers(value, url = nil, link_options = {})
-    word_with_count(:offers, value, url, link_options)
-  end
-
-  def points(value, url = nil, link_options = {})
-    word_with_count(:points, value, url, link_options)
   end
 end

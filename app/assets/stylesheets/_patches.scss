@@ -15,13 +15,7 @@
 /* -------- modal dialoge --------- */
 .modal-open {
   .modal {
-    
-    border: none;                /* removes ovelapping border in modal dialoge */
-    &.fade {
-      &.in {
-/*        top: 40%; */              /* brings modal dialoge closer to top */
-      }
-    }
+    border: none;               /* removes ovelapping border in modal dialoge */
     .modal-body {
       max-height: 500px;        /* enables large forms to fit into modal dialoge */
     }
@@ -32,7 +26,21 @@
 }
 
 /* -------- icon ---------- */
-li [class^="icon-"], 
-li [class*=" icon-"] {
-  text-align: left;            /* usually awsome font icons are centered - brings them to close to following text on the right */
+li [class^="icon-"], li [class*=" icon-"] {
+  text-align: left;                           /* usually awsome font icons are centered - brings them to close to following text on the right */
+}
+
+/* -------- button ---------- */
+.btn {
+  text-shadow: none !important;               /* get rif of the text shadow defined for all buttons */
+}
+
+/* -------- progress bar ---------- */
+
+.progress {
+  .bar {
+    &:after {
+      content:"%";                            /* display progress bar value always as percentage */
+    }
+  }
 }

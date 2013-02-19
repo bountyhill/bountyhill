@@ -41,13 +41,5 @@ module BoxHelper
       title + content
     end
   end
-
-  def box_buttons(buttons)
-    expect! buttons => Array
-    
-    div :class => "btn-group" do
-      buttons.join.html_safe
-    end
-  end
   
 end

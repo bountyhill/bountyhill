@@ -14,43 +14,30 @@ module OffersHelper
   end
   
   def offers_list_box_buttons
-    box_buttons [
-      TODO
-    ]
+    # TODO
   end
 
   def offer_buttons(offer)
-    ul :class => "interactions" do
-      [
-        accept_offer_button(offer),
-        reject_offer_button(offer),
-        withdraw_offer_button(offer)
-      ].compact.map{|button| li(button)}.join.html_safe
-    end
+    button_group [
+      accept_offer_button(offer),
+      reject_offer_button(offer),
+      withdraw_offer_button(offer)
+    ]
   end
 
   def accept_offer_button(offer)
-    return unless !offer.active? && offer.owner != current_user
-
-    modal_link_to(awesome_icon(:icon_ok_circle) + content_tag(:span, t("button.accept")),
-      accept_offer_path(offer),
-      :title => t("button.accept"), :rel => "nofollow")
+    return unless offer.active? && !current_user.owns?(offer)
+    modal_awesome_button(:ok_circle, accept_offer_path(offer), :rel => "nofollow") { I18n.t("button.accept") }
   end
 
   def reject_offer_button(offer)
-    return unless !offer.active? && offer.owner != current_user
-
-    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.reject")),
-      reject_offer_path(offer),
-      :title => t("button.reject"), :rel => "nofollow")
+    return unless offer.active? && !current_user.owns?(offer)
+    modal_awesome_button(:remove_sign, reject_offer_path(offer), :rel => "nofollow") { I18n.t("button.reject") }
   end
   
   def withdraw_offer_button(offer)
-    return unless !offer.active? && offer.owner == current_user
-
-    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.withdraw")),
-      withdraw_offer_path(offer),
-      :title => t("button.withdraw"), :rel => "nofollow")
+    return unless offer.active? && current_user.owns?(offer)
+    modal_awesome_button(:remove_sign, withdraw_offer_path(offer), :rel => "nofollow") { I18n.t("button.withdraw") }
   end
     
   def offer_statistic(offer)
@@ -88,9 +75,9 @@ module OffersHelper
       [
         div(I18n.t("offer.list.title", :count => offerable.offers.count), :class => "pull-left"),
         div(:class => "pull-right") do
-          ul :class => "interactions" do
-            li offer_quest_button(offerable)
-          end
+          button_group [
+            offer_quest_button(offerable)
+          ]
         end
       ].compact.join.html_safe
     end
@@ -109,18 +96,5 @@ module OffersHelper
       title + content
     end
     
-  end
-end
-
-__END__
-  # Actions to show on top of /offers/show
-  def offer_actions(offer)
-    return [] unless @offer.quest.active?
-
-    if current_user == @offer.quest.owner
-      [:accept, :decline]
-    elsif current_user == @offer.owner
-      [:withdraw]
-    end
   end
 end

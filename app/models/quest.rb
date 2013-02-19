@@ -61,7 +61,7 @@ class Quest < ActiveRecord::Base
     ActiveRecord.as(User.admin) do |previous_user| 
       quest = Quest.find(id)
       
-      if quest.owner != previous_user 
+      if !previous_user.owns?(quest)
         if !quest.owner.draft?
           raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" 
         elsif quest.created_at < Time.now - 10.minutes

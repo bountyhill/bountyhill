@@ -21,29 +21,24 @@ module UsersHelper
   def user_buttons(user)
     expect! user => User
     
-    ul :class => "interactions" do
-      [
-        edit_user_button(user),
-        follow_user_button(user)
-      ].compact.map{|button| li(button)}.join.html_safe
-    end
+    button_group [
+      edit_user_button(user),
+      follow_user_button(user)
+    ]
   end
 
 
   def edit_user_button(user)
     return unless personal_page?
 
-    modal_link_to(awesome_icon(:icon_pencil) + content_tag(:span, t("button.edit")),
-      edit_user_path(user),
-      :title => t("button.edit"), :rel => "nofollow")
+    modal_awesome_button(:pencil, edit_user_path(user)) { I18n.t("button.edit") }
   end
   
   def follow_user_button(user)
     return if personal_page? || user.identities(:twitter).blank?
-    
-    link_to(awesome_icon(:icon_twitter) + content_tag(:span, t("button.follow")),
-      url_for_follow_twitter_account(:account => user.twitter_handle),
-      :target => :blank, :title => t("button.follow"), :rel => "nofollow")
+
+    awesome_button(:twitter, url_for_follow_twitter_account(:account => user.twitter_handle),
+      :html => { :target => :blank, :rel => "nofollow" }) { I18n.t("button.follow") }
   end
   
 end

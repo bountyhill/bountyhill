@@ -8,6 +8,7 @@ de:
   link:
     loading: "Loading..."
   button:
+    new:      Neu
     save:     Speichern
     update:   Aktualisieren
     show:     Anzeigen
@@ -28,6 +29,8 @@ de:
     post:     Absenden
     follow:   Folgen
     change:   Ändern
+    accept:   Annehmen
+    reject:   Ablehnen
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen

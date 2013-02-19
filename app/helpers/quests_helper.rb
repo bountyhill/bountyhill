@@ -14,13 +14,13 @@ module QuestsHelper
   end
   
   def quests_list_box_buttons
-    box_buttons [
+    button_group [
       new_quest_button
     ]
   end
   
   def new_quest_button
-    modal_link_to(awesome_icon(:icon_edit), content_tag(:span, new_quest_path))
+    modal_awesome_button(:edit, new_quest_path) { I18n.t("nav.start_quest") }
   end
 
   def categories_select_options
@@ -28,55 +28,38 @@ module QuestsHelper
   end
   
   def quest_buttons(quest)
-    ul :class => "interactions" do
-      [
-        share_quest_button(quest),
-        offer_quest_button(quest),
-        stop_quest_button(quest),
-        start_quest_button(quest),
-        edit_quest_button(quest)
-      ].compact.map{|button| li(button)}.join.html_safe
-    end
+    button_group [
+      share_quest_button(quest),
+      offer_quest_button(quest),
+      stop_quest_button(quest),
+      start_quest_button(quest),
+      edit_quest_button(quest)
+    ]
   end
   
   def share_quest_button(quest)
     return unless quest.active?
-
-    modal_link_to(awesome_icon(:icon_retweet) + content_tag(:span, t("button.share")),
-      share_path(quest),
-      :title => t("button.share"), :rel => "nofollow")
+    modal_awesome_button(:retweet, share_path(quest), :rel => "nofollow") { I18n.t("button.share") }
   end
 
   def offer_quest_button(quest)
-    return unless quest.active? && quest.owner != current_user
-
-    modal_link_to(awesome_icon(:icon_share) + content_tag(:span, t("button.offer")),
-      new_offer_path(:quest_id => quest), 
-      :title => t("button.offer"), :rel => "nofollow")
+    return unless quest.active? && !current_user.owns?(quest)
+    modal_awesome_button(:share, new_offer_path(:quest_id => quest), :rel => "nofollow") { I18n.t("button.offer") }
   end
 
   def start_quest_button(quest)
-    return unless !quest.active? && quest.owner == current_user
-
-    modal_link_to(awesome_icon(:icon_ok_circle) + content_tag(:span, t("button.start")),
-      run_path(quest),
-      :title => t("button.start"), :rel => "nofollow")
+    return unless !quest.active? && current_user.owns?(quest)
+    modal_awesome_button(:ok_circle, run_path(quest), :rel => "nofollow") { I18n.t("button.start") }
   end
 
   def stop_quest_button(quest)
-    return unless quest.active? && quest.owner == current_user
-    
-    modal_link_to(awesome_icon(:icon_remove_sign) + content_tag(:span, t("button.stop")),
-      url_for(:controller => :runs, :action => :cancel, :id => quest),
-      :title => t("button.stop"), :rel => "nofollow")
+    return unless quest.active? && current_user.owns?(quest)
+    modal_awesome_button(:remove_sign, url_for(:controller => :runs, :action => :cancel, :id => quest), :rel => "nofollow") { I18n.t("button.stop") }
   end
   
   def edit_quest_button(quest)
-    return unless !quest.active? && quest.owner == current_user
-
-    modal_link_to(awesome_icon(:icon_edit) + content_tag(:span, t("button.edit")),
-      edit_quest_path(quest),
-      :title => t("button.edit"), :rel => "nofollow")
+    return unless !quest.active? && current_user.owns?(quest)
+    modal_awesome_button(:edit, edit_quest_path(quest), :rel => "nofollow") { I18n.t("button.edit") }
   end
   
   def quest_statistic(quest)

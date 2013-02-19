@@ -8,36 +8,39 @@
       color: $navigation_text_highlight;
     }
   }
+  
+  /* buttons */
+  &.quest, &.quests {
+    .title {
+      .btn { @include sassy-button-gradient("simple", $quest_button_color, $quest_button_color); }
+    }
+  } 
+  &.offer, &.offers {
+    .title {
+      .btn { @include sassy-button-gradient("simple", $offer_button_color, $offer_button_color); }
+    }
+  }
+  &.user, &.users {
+    .title {
+      .btn { @include sassy-button-gradient("simple", $user_button_color, $user_button_color); }
+    }
+  }
+  &.comments, &.comment {
+    .title {
+      .btn { @include sassy-button-gradient("simple", $comment_button_color, $comment_button_color); }
+    }
+  }
+  
 
   /* ------- title ------- */
   .title {
-    padding: 0 20px;
+    padding: 0px 7px 3px 20px;
     height: 38px;
     margin: 0 0 10px 0;
     line-height: 40px;
     font-size: 24.5px;
     font-weight: bold;
     text-rendering: optimizelegibility;
-    .interactions {
-      padding: 8px 0;
-      & > li {
-        list-style: none;
-        float: left;
-        margin-left: 10px;
-        & [class^="icon-"],
-        & [class*=" icon-"] {
-          width: 1em;
-        }
-        a {
-          &:focus {
-            outline: none;
-          }
-        }
-        span {
-          display: none;
-        }
-      }
-    }
   }
   
   /* ------- content ------- */

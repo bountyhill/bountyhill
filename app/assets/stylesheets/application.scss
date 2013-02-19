@@ -24,16 +24,13 @@
 @import "compass_twitter_bootstrap_awesome";
 @import "compass_twitter_bootstrap_responsive";
 
-/*
-// import font awesome
-@import "font-awesome";
-@import "font-awesome-scss";
-*/
-
-// import basics
+// import basics stylesheets
 @import "patches";
 @import "colors";
 @import "mixins";
+
+// import vendors' stylesheets
+@import "vendor/sassybuttons";
 
 // import pages' stylesheets
 @import "pages/home";

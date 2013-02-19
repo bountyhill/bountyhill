@@ -41,12 +41,12 @@ class UserMailer < ActionMailer::Base
       :subject => I18n.t("mail.offer_accepted", :title => @quest.title))
   end
   
-  # "[Bountyhill] Your offer has been declined %{title}"
-  def offer_declined(offer)
+  # "[Bountyhill] Your offer has been rejected %{title}"
+  def offer_rejected(offer)
     @quest, @offer = offer.quest, offer
     
     mail(:to => @offer.owner.email, 
-      :subject => I18n.t("mail.offer_declined", :title => @quest.title))
+      :subject => I18n.t("mail.offer_rejected", :title => @quest.title))
   end
   
   # "[Bountyhill] An offer has been withdrawn"

@@ -33,7 +33,7 @@ Bountyhill::Application.routes.draw do
 
     member do
       post "accept"
-      post "decline"
+      post "reject"
       post "withdraw"
     end
   end

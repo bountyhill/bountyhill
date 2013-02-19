@@ -4,22 +4,6 @@
   }
 }
 
-.progress {
-  .bar {
-    &:after {
-      content:"%";
-    }
-  }
-}
-
-li.offer {
-  .statistic {
-    .progress {
-      margin-bottom: 6px;
-    }
-  }
-}
-
 form {
   .criteria_compliances {
     & > li {

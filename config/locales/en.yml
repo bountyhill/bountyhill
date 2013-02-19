@@ -8,6 +8,7 @@ en:
   link:
     loading: "Lade..."
   button:
+    new:      New
     save:     Save
     update:   Update
     show:     Show
@@ -28,6 +29,8 @@ en:
     post:     Post
     follow:   Follow
     change:   Change
+    accept:   Accept
+    reject:   Reject
   nav:
     start_quest:  Start a quest
     quests:       See all quests

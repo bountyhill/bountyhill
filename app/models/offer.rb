@@ -206,9 +206,9 @@ class Offer < ActiveRecord::Base
     update_attributes! "state" => "accepted"
   end
   
-  def decline!
+  def reject!
     raise ArgumentError, "Quest is no longer active" unless active?
-    update_attributes! "state" => "declined"
+    update_attributes! "state" => "rejected"
   end
 
   def withdrawn?
@@ -219,8 +219,8 @@ class Offer < ActiveRecord::Base
     state == "accepted"
   end
   
-  def declined?
-    state == "declined"
+  def rejected?
+    state == "rejected"
   end
 
   # -- send out emails
@@ -232,7 +232,7 @@ class Offer < ActiveRecord::Base
     mail = case state
     when "withdrawn"  then UserMailer.offer_withdrawn(self)
     when "accepted"   then UserMailer.offer_accepted(self)
-    when "declined"   then UserMailer.offer_declined(self)
+    when "rejected"   then UserMailer.offer_rejected(self)
     when nil          then UserMailer.offer_received(self) # after creation
     end
     

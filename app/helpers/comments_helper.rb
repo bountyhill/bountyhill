@@ -1,22 +1,20 @@
 module CommentsHelper
 
   def comments_list_box_buttons
-    box_buttons [
+    button_group [
       add_comment_button
     ]
   end
   
   def comment_buttons(comment, options={})
-    ul :class => "interactions" do
-      [
-        delete_comment_button(comment),
-        reply_comment_button(comment, options)
-      ].compact.map{|button| li(button)}.join.html_safe
-    end
+    button_group [
+      delete_comment_button(comment),
+      reply_comment_button(comment, options)
+    ]
   end
   
   def delete_comment_button(comment)
-    return unless comment.writable? && comment.owner == current_user
+    return unless comment.writable? && current_user.owns?(comment)
 
     link_to(awesome_icon(:icon_trash) + I18n.t('button.delete'),
       comment_path(comment), :method => :delete, :remote => true)
@@ -32,9 +30,7 @@ module CommentsHelper
   def add_comment_button
     return unless current_user
 
-    link_to awesome_icon(:icon_comment),
-      "#new_comment",
-      :title => t("button.comment"), :rel => "nofollow"
+    modal_awesome_button(:comment, "#new_comment") { I18n.t("button.comment") }
   end
   
   def comment_title(commentable)

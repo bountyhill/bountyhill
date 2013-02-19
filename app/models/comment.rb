@@ -15,6 +15,6 @@ class Comment < ActiveRecord::Base
     return false unless user
     return false unless commentable
 
-    user.admin? or (owner == user) or (commentable.owner == user)
+    user.admin? or (owner == user) or (user.owns?(commentable))
   end
 end

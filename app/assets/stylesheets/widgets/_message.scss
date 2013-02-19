@@ -43,6 +43,15 @@
   }
 }
 
+/* ------- progress bar ------- */
+.statistic, .message-container {
+  .progress {
+    line-height: 16px; /* let the progress bar look slimmer */
+    height: auto;
+    margin-bottom: 5px;
+  }
+}
+
 /* ------- message ------- */
 .message-container {
   position: relative;
@@ -57,10 +66,9 @@
     &:before {
       left: 74px;
     }
-    &:hover {
-      .interactions {
-        display: block;
-      }
+    .message {
+      display: block;
+      margin: 1ex 0;
     }
     .message-head {
       min-height: 2ex;
@@ -77,24 +85,16 @@
       font-size: 0.9em;
       line-height: 1.5;
     }
-    .message {
-      display: block;
-      margin: 1ex 0;
-    }
-    .interactions {
-      display: none;
-      position: absolute;
-      bottom: 0.5em;
-      right: 10px;
-      margin: 0;
-      font-size: 0.9em;
-      & > li {
-        float: left;
-        margin-left: 1em;
+    &:hover {
+      .btn-group {
+/*        display: block; */
       }
     }
-    .progress {
-      margin: 0;
+    .btn-group {
+/*      display: none; */
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
     }
   }
 }

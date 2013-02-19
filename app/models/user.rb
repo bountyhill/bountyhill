@@ -144,6 +144,12 @@ class User < ActiveRecord::Base
     identity(*modi) || raise(MissingIdentity, "No identity for #{modi.join(", ")}")
   end
 
+  #
+  # helper method to decide if on object belongs to the use
+  def owns?(object)
+    self == object.owner
+  end
+
   # -- automatic pseudo "attributes" : these methods try to return
   # a sensible attribute value from one of the user's identities.
 
@@ -344,7 +350,7 @@ class User < ActiveRecord::Base
       expect! target_user => ActiveRecord.current_user
       expect! object => ActiveRecord::Base
 
-      next if object.owner == target_user
+      next if target_user.owns?(object)
       raise ArgumentError, "#{object.uid} is not owned by draft" unless object.owner.draft?
 
       object

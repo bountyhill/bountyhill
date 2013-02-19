@@ -4,8 +4,9 @@
   end %>
   <div class="message-box">
     <div class="message-head">
+      <%= offer_compliance(offer) %>
       <%= link_to user_path(offer.owner), :class => "owner" do %>
-        <%= strong(offer.owner.name) %><br/>
+        <%= strong(offer.owner.name) %>
         <%= offer.owner.twitter_handle %>
         <% end %>
         <div class="time">
@@ -16,6 +17,5 @@
       truncate(offer.title, :length => 200)
     end %>
     <%= offer_buttons(offer) %>
-    <%= offer_compliance(offer) %>
   </div>
 </div>
