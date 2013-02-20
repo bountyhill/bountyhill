@@ -26,17 +26,23 @@ module OffersHelper
   end
 
   def accept_offer_button(offer)
+    return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
+
     modal_awesome_button(:ok_circle, accept_offer_path(offer), :rel => "nofollow") { I18n.t("button.accept") }
   end
 
   def reject_offer_button(offer)
+    return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
+
     modal_awesome_button(:remove_sign, reject_offer_path(offer), :rel => "nofollow") { I18n.t("button.reject") }
   end
   
   def withdraw_offer_button(offer)
+    return unless current_user
     return unless offer.active? && current_user.owns?(offer)
+
     modal_awesome_button(:remove_sign, withdraw_offer_path(offer), :rel => "nofollow") { I18n.t("button.withdraw") }
   end
     

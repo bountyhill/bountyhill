@@ -39,26 +39,35 @@ module QuestsHelper
   
   def share_quest_button(quest)
     return unless quest.active?
+
     modal_awesome_button(:retweet, share_path(quest), :rel => "nofollow") { I18n.t("button.share") }
   end
 
   def offer_quest_button(quest)
+    return unless current_user
     return unless quest.active? && !current_user.owns?(quest)
+
     modal_awesome_button(:share, new_offer_path(:quest_id => quest), :rel => "nofollow") { I18n.t("button.offer") }
   end
 
   def start_quest_button(quest)
+    return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
+
     modal_awesome_button(:ok_circle, run_path(quest), :rel => "nofollow") { I18n.t("button.start") }
   end
 
   def stop_quest_button(quest)
+    return unless current_user
     return unless quest.active? && current_user.owns?(quest)
+
     modal_awesome_button(:remove_sign, url_for(:controller => :runs, :action => :cancel, :id => quest), :rel => "nofollow") { I18n.t("button.stop") }
   end
   
   def edit_quest_button(quest)
+    return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
+
     modal_awesome_button(:edit, edit_quest_path(quest), :rel => "nofollow") { I18n.t("button.edit") }
   end
   
