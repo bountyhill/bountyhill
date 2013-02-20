@@ -75,11 +75,12 @@ de:
       title:  Anmeldung via Email
       legend: "Melden Sie sich mit Ihrer Email-Adresse an, wenn Sie bereits ein bounthill Konto besitzen."
       field_hint:
-        signin[email]:                  "Geben Sie Ihre Email Adresse ein."
-        signin[password]:               "Geben Sie Ihr Passwort ein."
-        signin[password_confirmation]:  "Bestätigen Sie Ihr Passwort."
-        forgot_password:                Ich habe mein Passwort vergessen und möchte es zurücksetzen.
-        newsletter_subscription:        Ich möchte den bountyhill Newsletter abonnieren.
+        email:                    "Geben Sie Ihre Email Adresse ein."
+        password:                 "Geben Sie Ihr Passwort ein."
+        password_reset:           "Wir senden Ihnen ein neues Passwort zu."
+        password_confirmation:    "Bestätigen Sie Ihr Passwort."
+        forgot_password:          Ich habe mein Passwort vergessen und möchte es zurücksetzen.
+        newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
   identity/twitter:
     form:
       title:    Anmeldung via Twitter

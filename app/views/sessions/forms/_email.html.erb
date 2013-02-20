@@ -26,6 +26,7 @@
   $("#forgot_password").change(function() {
     if($(this).is(':checked')){
       $("#identity_password").attr("disabled", "disabled");
+      $("#identity_password").attr("placeholder", '<%= I18n.t("identity/email.form.field_hint.password_reset") %>');
       $("input[name=do_signin]").toggleClass('hide');
       $("input[name=do_reset]").toggleClass('hide');
     }
