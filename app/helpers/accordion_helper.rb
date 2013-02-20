@@ -36,8 +36,10 @@ module AccordionHelper
     expect! partial => Symbol
     expect! options => Hash
 
-    return 'in' if @partial.blank? && options[:default]
-    @partial.to_s == partial.to_s ? 'in' : 'out'
+    return 'in'  if @partial.blank? && options[:default]
+    return 'out' if @partial.blank?
+    
+    File.basename(@partial).to_s == partial.to_s ? 'in' : 'out'
   end
   
 end
