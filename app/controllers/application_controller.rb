@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  include ApplicationController::XHRRedirection
   include ApplicationController::Halt
   include ApplicationController::Sessions
   include ApplicationController::RequiredIdentity
@@ -113,7 +114,7 @@ class ApplicationController < ActionController::Base
   # Keep the value of the incoming session. It then can be displayed in
   # the application layout. To disable just dactivate the before_filter.
 
-  before_filter :debug_session # if Rails.env.development?
+  before_filter :debug_session if Rails.env.development?
   
   def debug_session
     session.each do |k,v| 

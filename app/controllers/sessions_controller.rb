@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
         identity_presented!
       when :reset
         Deferred.mail UserMailer.reset_password(@identity.user)
-        redirect_to signin_path
+        redirect_to "/"
       end
     end
     
@@ -65,9 +65,9 @@ class SessionsController < ApplicationController
     # -> validation failed, invalid email/password, etc.
     @error = I18n.t("identity.form.error.#{@mode}")
     @partial = case @mode
-      when :signin  then "email"
-      when :reset   then "email"
-      when :signup  then "register"
+      when :signin  then "sessions/forms/email"
+      when :reset   then "sessions/forms/email"
+      when :signup  then "sessions/forms/register"
       end
   end
 
