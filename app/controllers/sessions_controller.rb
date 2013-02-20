@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
         identity_presented!
       when :reset
         Deferred.mail UserMailer.reset_password(@identity.user)
-        redirect_to signin_path
+        redirect_to "/"
       end
     end
     
