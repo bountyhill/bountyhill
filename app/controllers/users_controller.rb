@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :set_user
+  layout false, :only => [:edit]
   
   def show
   end

@@ -1,6 +1,6 @@
 class OffersController < ApplicationController
   include ApplicationController::ImageParameters
-  layout false, :only => [:new, :edit]
+  layout false, :only => [:new, :edit, :accept, :reject, :withdraw]
   
   public
   
