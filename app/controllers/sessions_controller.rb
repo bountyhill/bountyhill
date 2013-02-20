@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   # - all other values: show "email" and "twitter" login forms.
   #
   def signin_get
-    @identity = Identity::Email.new(:email => params[:email])
+    @identity = Identity::Email.new(:newsletter_subscription => true)
     @mode = :signin
     
     if params[:req].present? && !ApplicationController::RequiredIdentity.payload(session)
