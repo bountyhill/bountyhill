@@ -1,5 +1,15 @@
 module AccordionHelper
   
+  def accordion(options={}, &block)
+    output = div(capture(&block), { :class =>"accordion", :id => "accordion" }.merge(options))
+    block_given? ? concat(output) : output
+  end
+  
+  def accordion_group(options={}, &block)
+    output = div(capture(&block), { :class => "accordion-group" }.merge(options))
+    block_given? ? concat(output) : output
+  end
+  
   def accordion_heading(part, &block)
     output = div(:class => "accordion-heading") do
       link_to("#collapse-#{part}", :class => "accordion-toggle #{part}", :"data-toggle" => "collapse", :"data-parent" => "#accordion") do
