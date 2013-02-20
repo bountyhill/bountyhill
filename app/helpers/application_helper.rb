@@ -144,22 +144,24 @@ module ApplicationHelper
       h3(title, :id => "modal-headline")
     ].join.html_safe
     
-    [
-      div(header, :class => "modal-header"),
-      div(yield, :id => "modal-content")
+    output = [
+      div(header,           :class  => "modal-header"),
+      div(capture(&block),  :id     => "modal-content")
     ].join.html_safe
+    
+    block_given? ? concat(output) : output
   end
   
   def modal_body(options={}, &block)
-    div :class => "modal-body" do 
-      yield
-    end
+    output = div(capture(&block), :class => "modal-body")
+
+    block_given? ? concat(output) : output
   end
   
   def modal_footer(options={}, &block)
-    div :class => "modal-footer" do
-      yield
-    end
+    output = div(capture(&block), :class => "modal-footer")
+
+    block_given? ? concat(output) : output
   end
   
   ALLOWED_PARAMS_FOR = {

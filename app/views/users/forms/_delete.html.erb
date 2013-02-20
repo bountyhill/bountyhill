@@ -1,9 +1,9 @@
-<%= accordion_heading(:delete) do %>
+<% accordion_heading(:delete) do %>
   <%= I18n.t("user.form.delete.title")%>
   <%= awesome_icon(:icon_ban_circle, :size => :large, :class => "pull-right") %>
 <% end %>
 
-<%= accordion_body(:delete) do %>
+<% accordion_body(:delete) do %>
   <%= form_for @user, :remote => true do |form| %>
   <p><%= I18n.t("user.form.delete.legend")%></p>
     <%= form.error_messages %>

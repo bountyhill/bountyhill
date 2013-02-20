@@ -9,6 +9,12 @@
   }
   
   /* buttons */
+  .btn-group {
+    .btn { 
+      &:focus { outline: none; }
+      &:hover { box-shadow: none !important; }
+    }
+  }
   &.quest, &.quests {
     .title {
       .btn { @include sassy-button-gradient("simple", $quest_button_color, $quest_button_color); }

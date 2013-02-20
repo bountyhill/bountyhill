@@ -1,9 +1,9 @@
-<%= accordion_heading(:profile) do %>
+<% accordion_heading(:profile) do %>
   <%= I18n.t("user.form.profile.title")%>
   <%= awesome_icon(:icon_user, :class => "pull-right") %>
 <% end %>
 
-<%= accordion_body(:profile, :default => true) do %>
+<% accordion_body(:profile, :default => true) do %>
   <%= form_for @user, :remote => true do |form| %>
   <p><%= I18n.t("user.form.profile.legend")%></p>
     <%= form.error_messages %>

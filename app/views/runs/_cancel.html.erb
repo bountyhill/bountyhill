@@ -1,6 +1,5 @@
 <%= form_for quest, :url => run_url(quest), :method => :delete, :remote => true do |form| %>
-
-  <%= modal_body do %>
+  <% modal_body do %>
     <p><%= I18n.t("quest.form.stop.legend") %></p>
     <%= form.error_messages %>
 
@@ -15,7 +14,7 @@
     <%= form.control_group :cancellation_reason, :text_area, :rows => 3, :hint => false %>
   <% end %>
 
-  <%= modal_footer do %>
+  <% modal_footer do %>
     <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.stop") %>
   <% end %>
   

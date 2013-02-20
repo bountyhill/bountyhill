@@ -5,6 +5,10 @@ en:
   message:
     error:      Please review your input.
     base_error: "%{base_error}: please review your input."
+    create:
+      success: "%{record} was successfully created."
+    update:
+      success: "%{record} was successfully updated."
   link:
     loading: "Lade..."
   button:
@@ -134,6 +138,15 @@ en:
     box:
       title:    "Offer with %{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
+    accept: 
+      title:  Accept offer
+      legend: Please let the offerer know why you want to accept his offer.
+    reject: 
+      title:  Reject offer
+      legend: Please let the offerer know why you want to reject his offer.
+    withdraw: 
+      title:  Withdraw offer
+      legend: Please let the searcher know why you want to withdraw your offer.
     list:
       title:
         one:    "1 offer"

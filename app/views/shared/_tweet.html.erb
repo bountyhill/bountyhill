@@ -20,7 +20,7 @@
 -%>
 
 <%= form_for(quest, :remote => true, :url => url) do |form| %>
-  <%= modal_body do %>
+  <% modal_body do %>
     <p><%= I18n.t("quest.form.#{retweet ? 'share' : 'start'}.legend") %></p>
     <%= form.error_messages %>
 
@@ -61,7 +61,7 @@
     </div>
   <% end %>
 
-  <%= modal_footer do
+  <% modal_footer do
     form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.#{retweet ? 'share' : 'start'}"), :class => "btn btn-primary"
   end %>
   

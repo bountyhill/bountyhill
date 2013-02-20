@@ -1,5 +1,5 @@
 <%= form_for @quest, :remote => true do |form| %>
-  <%= modal_body do %>
+  <% modal_body do %>
     <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
     <%= form.error_messages %>
 
@@ -50,7 +50,7 @@
       })(jQuery);
     </script>
   <% end %>
-  <%= modal_footer do %>
+  <% modal_footer do %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% end %>
 <% end %>

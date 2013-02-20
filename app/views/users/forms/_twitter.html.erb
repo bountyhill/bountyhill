@@ -1,9 +1,9 @@
-<%= accordion_heading(:twitter) do %>
+<% accordion_heading(:twitter) do %>
   <%= I18n.t("user.form.twitter.title")%>
   <%= awesome_icon(:icon_twitter, :class => "pull-right") %>
 <% end %>
 
-<%= accordion_body(:twitter) do %>
+<% accordion_body(:twitter) do %>
   <%= form_for @user, :remote => true do |form| %>
   <p><%= I18n.t("user.form.twitter.legend")%></p>
     <%= form.error_messages %>

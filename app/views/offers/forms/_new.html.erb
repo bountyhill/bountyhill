@@ -1,5 +1,5 @@
 <%= form_for @offer, :remote => true do |form| %>
-  <%= modal_body do %>
+  <% modal_body do %>
     <p><%= i18n_legend_for(@offer) %></p>
     <%= form.error_messages %>
 
@@ -26,8 +26,8 @@
     <% end %>
   <% end %>
   
-  <%= modal_footer do %>
-    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% modal_footer do %>
+    <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.offer") %>
   <% end %>
 
 <% end %>

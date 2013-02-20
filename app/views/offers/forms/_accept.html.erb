@@ -1,0 +1,13 @@
+<%= form_for @offer, :remote => true do |form| %>
+  <% modal_body do %>
+    <p><%= I18n.t("offer.accept.legend") %></p>
+    <%= form.error_messages %>
+    
+      placeholder: TODO
+    
+  <% end %>
+  
+  <% modal_footer do %>
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
+<% end %>

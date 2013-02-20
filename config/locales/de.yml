@@ -5,6 +5,10 @@ de:
   message:
     error:      Bitte prüfen Sie Ihre Eingaben.
     base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
+    create:
+      success: "%{record} wurde erfolgreich angelegt."
+    update:
+      success: "%{record} wurde erfolgreich aktualisiert."
   link:
     loading: "Loading..."
   button:
@@ -134,6 +138,15 @@ de:
     box:
       title:    "Angebot mit %{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
+    accept: 
+      title:  Angebot annehmen
+      legend: "Bitte teilen Sie dem Anbieter mit, warum Sie Ihr Angebot annehmen möchten."
+    reject: 
+      title:  Angebot ablehnen
+      legend: "Bitte teilen Sie dem Anbieter mit, warum Sie Ihr Angebot ablehnen möchten."
+    withdraw: 
+      title:  Angebot zurückziehen
+      legend: "Bitte teilen Sie dem Suchenden mit, warum Sie Ihr Angebot zurückziehen möchten."
     list:
       title:
         one:    "1 Angebot"

@@ -1,21 +1,25 @@
 module AccordionHelper
   
   def accordion_heading(part, &block)
-    div :class => "accordion-heading" do
-      link_to "#collapse-#{part}", :class => "accordion-toggle #{part}", :"data-toggle" => "collapse", :"data-parent" => "#accordion" do
+    output = div(:class => "accordion-heading") do
+      link_to("#collapse-#{part}", :class => "accordion-toggle #{part}", :"data-toggle" => "collapse", :"data-parent" => "#accordion") do
         h4 do
-          yield
+          capture(&block)
         end
       end
     end
+    
+    block_given? ? concat(output) : output
   end
 
   def accordion_body(part, options={}, &block)
-    div :id => "collapse-#{part}",  :class => "accordion-body collapse #{collapse(part, options)}" do
-      div :class => "accordion-inner" do
-        yield
+    output = div(:id => "collapse-#{part}",  :class => "accordion-body collapse #{collapse(part, options)}") do
+      div(:class => "accordion-inner") do
+        capture(&block)
       end
     end
+    
+    block_given? ? concat(output) : output
   end
 
   def collapse(partial, options={})

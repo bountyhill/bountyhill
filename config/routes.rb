@@ -17,21 +17,23 @@ Bountyhill::Application.routes.draw do
   resources :quests do
     opinio
   end
+  match "/q/:id" => "quests#show", :via => :get
   
   resources :shares
   match "/shares/:id" => "shares#update", :via => :post
-
-  match "/q/:id" => "quests#show", :via => :get
   
   resources :runs
-  match "/runs/:id" => "runs#update", :via => :post
-  match "/runs/:id/start" => "runs#start", :via => :get
-  match "/runs/:id/cancel" => "runs#cancel", :via => :get
+  match "/runs/:id"         => "runs#update", :via => :post
+  match "/runs/:id/start"   => "runs#start",  :via => :get
+  match "/runs/:id/cancel"  => "runs#cancel", :via => :get
   
   resources :offers do
     opinio
 
     member do
+      get "accept"
+      get "reject"
+      get "withdraw"
       post "accept"
       post "reject"
       post "withdraw"
@@ -43,22 +45,21 @@ Bountyhill::Application.routes.draw do
   match 'profile' => "users#show"
 
   # manual routes for signup, signin, signout, twitter signin
-  match "signin" => "sessions#signin_get",      :via => :get
-  match "signup" => "sessions#signin_get",      :via => :get
-  match "signin" => "sessions#signin_post",     :via => :post
-  match "signup" => "sessions#signin_post",     :via => :post
+  match "signin"  => "sessions#signin_get",     :via => :get
+  match "signup"  => "sessions#signin_get",     :via => :get
+  match "signin"  => "sessions#signin_post",    :via => :post
+  match "signup"  => "sessions#signin_post",    :via => :post
   match "signout" => "sessions#signout_delete", :via => :delete
   match "sessions/cancel" => "sessions#cancel", :via => :post
 
   match "sessions/twitter" => "sessions#twitter_post", :via => :post
   match "sessions/twitter" => "sessions#twitter", :via => :get
   
-  # 
 
   resources :deferred_actions, :only => [:show]
-  match 'act'  => 'deferred_actions#show'
-  match 'confirm' => 'deferred_actions#confirm'
-  match 'reset_password' => 'deferred_actions#reset_password'
+  match 'act'             => 'deferred_actions#show'
+  match 'confirm'         => 'deferred_actions#confirm'
+  match 'reset_password'  => 'deferred_actions#reset_password'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

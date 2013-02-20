@@ -42,7 +42,7 @@ class OffersController < ApplicationController
   # GET /offers/1/edit
   def edit
     @offer = Offer.find(params[:id])
-    render action: "new"
+    render :action => "new"
   end
 
   # POST /quests
@@ -50,7 +50,7 @@ class OffersController < ApplicationController
     @offer = Offer.new(params[:offer])
 
     if @offer.save
-      redirect_to @offer, notice: 'Offer was successfully created.'
+      redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.name)
     end
   end
 
@@ -61,9 +61,9 @@ class OffersController < ApplicationController
     if @offer.valid?
       @offer.update_attributes(params[:offer])
       
-      redirect_to quests_path, notice: 'The offer was successfully updated.'
+      redirect_to quests_path, :notice => I18n.t("message.update.success", :record => Offer.name)
     else
-      render action: "edit"
+      render :action => "edit"
     end
   end
 
@@ -78,30 +78,30 @@ class OffersController < ApplicationController
   # Withdraw the offer
   def withdraw
     @offer = Offer.find(params[:id])
-    if current_user.owns?(@offer)
-      @offer.withdraw!
-    end
     
-    redirect_to @offer.quest
+    unless request.get?
+      @offer.withdraw! if current_user.owns?(@offer)
+      redirect_to @offer.quest
+    end
   end
 
   # Accept the offer
   def accept
     @offer = Offer.find(params[:id])
-    if current_user.owns?(@offer.quest)
-      @offer.accept!
+
+    unless request.get?
+      @offer.accept! if current_user.owns?(@offer.quest)
+      redirect_to @offer.quest
     end
-    
-    redirect_to @offer.quest
   end
 
   # Reject the offer
   def reject
     @offer = Offer.find(params[:id])
-    if current_user.owns?(@offer.quest)
-      @offer.reject! 
+
+    unless request.get?
+      @offer.reject! if current_user.owns?(@offer.quest)
+      redirect_to @offer.quest
     end
-    
-    redirect_to @offer.quest
   end
 end

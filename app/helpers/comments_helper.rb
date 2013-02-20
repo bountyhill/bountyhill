@@ -30,7 +30,7 @@ module CommentsHelper
   def add_comment_button
     return unless current_user
 
-    modal_awesome_button(:comment, "#new_comment") { I18n.t("button.comment") }
+    awesome_button(:comment, "#new_comment") { I18n.t("button.comment") }
   end
   
   def comment_title(commentable)
