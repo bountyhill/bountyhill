@@ -32,6 +32,7 @@
     }
     else {
       $("#identity_password").removeAttr("disabled");
+      $("#identity_password").attr("placeholder", '<%= I18n.t("identity/email.form.field_hint.password") %>');
       $("input[name=do_signin]").toggleClass('hide');
       $("input[name=do_reset]").toggleClass('hide');
     }

@@ -77,7 +77,7 @@ de:
       field_hint:
         email:                    "Geben Sie Ihre Email Adresse ein."
         password:                 "Geben Sie Ihr Passwort ein."
-        password_reset:           "Wir senden Ihnen ein neues Passwort zu."
+        password_reset:           "Sie erhalten eine Email zum Zurücksetzen."
         password_confirmation:    "Bestätigen Sie Ihr Passwort."
         forgot_password:          Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
