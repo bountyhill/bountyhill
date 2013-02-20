@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  include ApplicationController::XHRRedirection
   include ApplicationController::Halt
   include ApplicationController::Sessions
   include ApplicationController::RequiredIdentity
