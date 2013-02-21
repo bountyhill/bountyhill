@@ -1,10 +1,14 @@
 <%- # This layout is used to render the an action into a modal dialog.
 -%><%= 
-  locals = { 
-    :content        => render(:template => "home/index"), 
-    :modal_content  => yield,
-    :extra_script   => "$('#myModal').modal('show');"
-  }
+  if request.xhr? 
+    yield
+  else
+    locals = { 
+      :content        => render(:template => "home/index"), 
+      :modal_content  => yield,
+      :extra_script   => "$('#myModal').modal('show');"
+    }
 
-  render :template => 'layouts/application', :locals => locals
+    render :template => 'layouts/application', :locals => locals
+  end
 %>

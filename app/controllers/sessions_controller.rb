@@ -80,7 +80,7 @@ class SessionsController < ApplicationController
     else              %w(email twitter register)
     end
 
-    render! :action => "new", :layout => (request.xhr? ? nil : "dialog")
+    render! :action => "new", :layout => "dialog"
   end
 
   public
