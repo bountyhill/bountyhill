@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   skip_before_filter :show_confirmation_reminder
-  layout false, :only => [:signin_get]
 
   # This action renders signin forms. 
   #
@@ -81,7 +80,7 @@ class SessionsController < ApplicationController
     else              %w(email twitter register)
     end
 
-    render! :action => "new"
+    render! :action => "new", :layout => (request.xhr? ? nil : "dialog")
   end
 
   public
