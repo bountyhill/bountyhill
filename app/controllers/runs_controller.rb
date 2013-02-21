@@ -18,6 +18,7 @@ class RunsController < ApplicationController
     quest.duration_in_days = 7
     
     # Show the form.  When the user submits the form it will end up in "runs/start".
+    render :action => "show", :layout => "dialog"
   end
   
   # start the run. This action receives the form from "runs/show".
