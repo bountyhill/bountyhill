@@ -5,7 +5,7 @@ ActionView::Helpers::FormBuilder
 
 class ActionView::Helpers::FormBuilder
   extend Forwardable
-  delegate [:link_to, :image_for] => :@template
+  delegate [:link_to, :image_for, :javascript_tag] => :@template
 
   # content_tag reimplementation for FormBuilder.
   #
@@ -266,9 +266,20 @@ class ActionView::Helpers::FormBuilder
       @template.render_slide_image(thumbnail) +
       link_to("DEL", '#', :class => "fp-delete")
     end
-    input = tag :input, :type => :filepicker, :data => data
+    
+    # If this is a XHR request, we must activate the filepicker code explicitely
+    # for this input node by running filepicker.constructWidget.
+    if @template.request.xhr?
+      node_id = "fp-#{Time.now.usec}"
 
-    "#{input}#{slides}"
+      js = javascript_tag <<-JS
+        filepicker.constructWidget(document.getElementById('#{node_id}'));
+      JS
+    end
+
+    input = tag :input, :type => :filepicker, :data => data, :id => node_id
+
+    "#{input}#{slides}#{js}"
   end
   
   # returns a hash of filepicker.io options to set in the filepicker's
