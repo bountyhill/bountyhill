@@ -13,8 +13,27 @@ module ApplicationController::XHRRedirection
   # an XHR action somewhere else...
   def redirect_to(*args)
     return super unless request.xhr?
+
+    # Note: this code modifies the options hash **in place**. This is intended: 
+    # if this method is called with 
+    #
+    #   redirect_to :controller => "x", :action => "y", :notice => "z"
+    #
+    # then we want to extract the :notice key and call url_for with just the 
+    # :controller and :action keys.
     
-    js = "window.location = #{url_for(*args).to_json};\n"
+    # Extract flash
+    options = args.last.is_a?(Hash) ? args.last : {}
+    if flash = options.delete(:flash)
+      self.flash.each do |key, value|
+        self.flash[key] = value
+      end
+    elsif notice = options.delete(:notice)
+      self.flash[:notice] = notice
+    end
+    
+    # determine redirection URL.
+    js = "window.location = #{url_for(args.first).to_json};\n"
     
     respond_to do |format|
       format.html   { render :text => javascript_tag(js); }
