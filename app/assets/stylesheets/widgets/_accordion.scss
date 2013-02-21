@@ -7,6 +7,12 @@
         color: $text;
         text-decoration: none;
       };
+      &.password {
+        background-color: $password;
+        &:hover {
+          background-color: $password_highlight;
+        };
+      }
       &.email {
         background-color: $email;
         &:hover {

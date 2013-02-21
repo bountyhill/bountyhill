@@ -3,12 +3,14 @@
 
 de:
   message:
-    error:      Bitte prüfen Sie Ihre Eingaben.
-    base_error: "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
+    error:            Bitte prüfen Sie Ihre Eingaben.
+    base_error:       "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
     create:
-      success: "%{record} wurde erfolgreich angelegt."
+      success:        "%{record} wurde erfolgreich angelegt."
     update:
-      success: "%{record} wurde erfolgreich aktualisiert."
+      success:        "%{record} wurde erfolgreich aktualisiert."
+    check_delete_me:  Bitte bestätigen Sie das Löschen Ihres Accounts.
+    password_invalid: Das eingegeben Passwort ist nicht gültig.
   link:
     loading: "Loading..."
   button:
@@ -77,8 +79,8 @@ de:
       field_hint:
         email:                    "Geben Sie Ihre Email Adresse ein."
         password:                 "Geben Sie Ihr Passwort ein."
-        password_reset:           "Sie erhalten eine Email zum Zurücksetzen."
         password_confirmation:    "Bestätigen Sie Ihr Passwort."
+        password_reset:           "Sie erhalten eine Email zum Zurücksetzen."
         forgot_password:          Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
   identity/twitter:
@@ -113,9 +115,14 @@ de:
       address:
         title:  Adressangaben bearbeiten
         legend: Ihre Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
+      password:
+        title:    Passwort ändern
+        legend:
+          change: Bitte geben Sie Ihr neues Passwort ein und bestätigen Sie die Änderung mit Ihrem aktuellen Passwort.
+          reset:  Sie können ihr Passwort jetzt zurücksetzen indem Sie ein neues Passwort eingeben.
       email:
         title:  Email ändern
-        legend: "Wenn Sie Ihre Email ändern, senden wir Ihnen eine Bestätigungsemail an Ihre neu Emailadresse."
+        legend: Geben Sie Ihre neue Email-Adresse ein und bestätigen Sie die Änderung mit ihrem Passwort.
       twitter:
         title:  Twitter Account wechseln
         legend: "Wenn Sie Ihren Twitter Account wechleln, müssen Sie bountyhill gegenüber Twitter erneut authorisieren."
@@ -123,15 +130,20 @@ de:
         title:  Zugang Löschen
         legend: "Wir bedauern es sehr, dass Sie uns verlassen. Bitte teilen Sie uns mit warum Sie bountyhill verlassen möchten."
       field_hint:
-        first_name:   Ihr Vorname
-        last_name:    Ihr Nachname
-        description:  Beschreibung Ihrer Person
-        image:        Ihr Profilbild
-        address1:     Ihre Strasse + Hausnummer
-        address2:     Weiter Adressinformationen
-        city:         Ihre Stadt
-        zipcode:      Die Postleitzahl ihrer Stadt
-        country:      Ihr Land
+        first_name:                 Ihr Vorname
+        last_name:                  Ihr Nachname
+        description:                Beschreibung Ihrer Person
+        image:                      Ihr Profilbild
+        address1:                   Ihre Strasse + Hausnummer
+        address2:                   Weiter Adressinformationen
+        city:                       Ihre Stadt
+        zipcode:                    Die Postleitzahl ihrer Stadt
+        country:                    Ihr Land
+        email:                      Email
+        email_new:                  Neue Email
+        password:                   Geben Sie Ihr aktuelles Passwort ein.
+        password_new:               Geben Sie Ihr neues Passwort ein.
+        password_new_confirmation:  Bestätigen Sie Ihr neues Passwort.
   offer:
     status:
       viewed:     "Angesehen"

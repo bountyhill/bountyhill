@@ -6,17 +6,16 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @partials = %w(profile address email twitter delete)
-    @partial = params[:partial] # || @partials.first
+    @partials = %w(profile address password email twitter delete)
   end
   
   def update
     case params["section"]
     when "passwd"
       identity = params["identity"] || {}
-      password_old = params["identity"].delete("password_old")
-      unless Identity::Email.authenticate @email.email, password_old  
-        @email.errors.add :password_old, "Invalid password."
+      password = params["identity"].delete("password")
+      unless Identity::Email.authenticate @email.email, password  
+        @email.errors.add :password, I18n.t("message.password_invalid")
       else
         @email.attributes = identity
         @email.valid?
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
   def destroy
     user = params["user"] || {}
     if user["delete_me"].to_i == 0
-      @user.errors.add :delete_me, I18n.t("user.message.check_delete_me")
+      @user.errors.add :delete_me, I18n.t("message.check_delete_me")
       render! :action => :show
     end
     
@@ -64,7 +63,10 @@ class UsersController < ApplicationController
   end
   
   module DummyParameters
+    attr :password
+    attr :password_new
+    attr :password_new_confirmation
+    attr :email_new
     attr :delete_me
-    attr :password_old
   end
 end

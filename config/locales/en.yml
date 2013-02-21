@@ -3,12 +3,14 @@
 
 en:
   message:
-    error:      Please review your input.
-    base_error: "%{base_error}: please review your input."
+    error:            Please review your input.
+    base_error:       "%{base_error}: please review your input."
     create:
-      success: "%{record} was successfully created."
+      success:        "%{record} was successfully created."
     update:
-      success: "%{record} was successfully updated."
+      success:        "%{record} was successfully updated."
+    check_delete_me:  Please confirm the deletion of your account.
+    password_invalid: The pasword entered is not valid.
   link:
     loading: "Lade..."
   button:
@@ -77,8 +79,8 @@ en:
       field_hint:
         email:                    "Enter your email address."
         password:                 "Enter your password."
-        password_reset:           "You will receive an email to reset."
         password_confirmation:    "Confirm your password"
+        password_reset:           "You will receive an email to reset."
         forgot_password:          I did forget my password and want to reset it.
         newsletter_subscription:  I want to subscribe to bountyhill's newsletter.
   identity/twitter:
@@ -113,9 +115,14 @@ en:
       address:
         title:  Edit address
         legend: Your address information cannot be viewed by any other bountyhill user.
+      password:
+        title:    Change password
+        legend:
+          change: Please enter your new passord and confirm the change by providing your current one.
+          reset:  You can reset your password by entering a new one.
       email:
         title:  Change email
-        legend: If you change your email we will send you a confirmation email to your neu email address.
+        legend: Please enter your new email address and confirm the change by providing your current password.
       twitter:
         title:  Change twitter account
         legend: If you change your twitter account you will have to renew the bountyhill authorize against twitter.
@@ -123,15 +130,20 @@ en:
         title:  Delete Account
         legend: We are very sorry to see you leave. Please let us know why you decided to leave bountyhill.
       field_hint:
-        first_name:   Your first name
-        last_name:    Your family name
-        description:  Description of you
-        image:        Your profile picture
-        address1:     Your street
-        address2:     Further address information
-        city:         Your town
-        zipcode:      Zipcode of your town
-        country:      Your country
+        first_name:                 Your first name
+        last_name:                  Your family name
+        description:                Description of you
+        image:                      Your profile picture
+        address1:                   Your street
+        address2:                   Further address information
+        city:                       Your town
+        zipcode:                    Zipcode of your town
+        country:                    Your country
+        email:                      Email
+        email_new:                  New email
+        password:                   Enter your current password.
+        password_new:               Enter your new password.
+        password_new_confirmation:  Confirm your new password
   offer:
     status:
       viewed:     "Viewed"
