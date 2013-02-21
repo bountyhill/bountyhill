@@ -57,11 +57,17 @@ class Quest < ActiveRecord::Base
   # Find a quest, even if it does not belong to the current_user, but to
   # User.draft. We'll need this when a user enters a quest before she is
   # registered: in that case the quest will be attached to User.draft.
+  #
+  # Note that this code is a bit insecure: one could try to guess a quest
+  # id of a quest which is still a draft and then take over this quest. 
+  # Lucky for us we have randomized quest ids.
   def self.draft(id)
     ActiveRecord.as(User.admin) do |previous_user| 
       quest = Quest.find(id)
-      
-      if !previous_user.owns?(quest)
+
+      # Verify that this quest is actually a draft or a quest which belongs
+      # the the current_user (which is available here as previous_user). 
+      if !previous_user || !previous_user.owns?(quest)
         if !quest.owner.draft?
           raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" 
         elsif quest.created_at < Time.now - 10.minutes
