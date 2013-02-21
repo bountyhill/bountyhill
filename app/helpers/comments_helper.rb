@@ -16,14 +16,14 @@ module CommentsHelper
   def delete_comment_button(comment)
     return unless comment.writable? && current_user.owns?(comment)
 
-    link_to(awesome_icon(:icon_trash) + I18n.t('button.delete'),
+    link_to(awesome_icon(:trash) + I18n.t('button.delete'),
       comment_path(comment), :method => :delete, :remote => true)
   end
   
   def reply_comment_button(comment, options={})
     return unless Opinio.accept_replies && !options[:reply]
       
-    link_to(awesome_icon(:icon_share_alt) + I18n.t('button.reply'),
+    link_to(awesome_icon(:share_alt) + I18n.t('button.reply'),
       reply_comment_path(comment), :remote => true)
   end
 
