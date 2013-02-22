@@ -10,9 +10,9 @@
         color: $navigation_text_inverse;
       }
       a {
-        color: $navigation_text;
-        text-shadow: none;
-        &:focus {
+        &, &:focus {
+          color: $navigation_text;
+          text-shadow: none;
           outline: none;
         }
       }
