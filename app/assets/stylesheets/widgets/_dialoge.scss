@@ -1,4 +1,10 @@
 /* ------- filepicker ------- */
-.filepicker_dialog_container {
-  top: 10% !important;
+#filepicker_dialog_container, #myModal {
+  top: 7% !important;
+}
+
+@media (max-height: 768px) {
+  .modal-open .modal .modal-body {
+    max-height: 400px;
+  }
 }
