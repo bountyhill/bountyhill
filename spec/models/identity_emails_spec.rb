@@ -26,11 +26,6 @@ describe Identity do
     end
   end
 
-  describe "when name is too long" do
-    before { @identity.name = "a" * (Identity::Email::MAX_NAME_LENGTH+1) }
-    it { should_not be_valid }
-  end
-
   describe "with a password that's too short" do
     before { @identity.password = @identity.password_confirmation = "a" * (Identity::Email::MIN_PASSWORD_LENGTH-1) }
     it { should be_invalid }
