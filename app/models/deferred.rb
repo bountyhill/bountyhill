@@ -66,6 +66,9 @@ module Deferred
   # does a Twitter API call. The parameters include a oauth options
   # hash with all required oauth entries.
   def twitter(*args)
+    W "TRY twitter", *args
+    return if Rails.env.development?
+    
     oauth = args.extract_options!
     
     expect! oauth => {
@@ -83,7 +86,9 @@ module Deferred
   # -- deliver an email -----------------------------------------------
   
   def mail(email)
-    W "send email to #{email.to}", email.subject
+    W "TRY email to #{email.to}", email.subject
+    return if Rails.env.development?
+    
     email.deliver
   end
 end
