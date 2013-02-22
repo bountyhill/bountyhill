@@ -2,6 +2,8 @@
 # ApplicationController::XHRRedirection adds a redirect_to method, which responds
 # "properly" to XHR requests.
 module ApplicationController::XHRRedirection
+  M = ApplicationController::XHRRedirection
+
   # This method works like ActionController::Redirecting#redirect_to for non
   # XHR requests. For XHR requests accepting JS or HTML it renders a proper 
   # JS redirection, using "window.location = <url>;"
@@ -36,9 +38,23 @@ module ApplicationController::XHRRedirection
     js = "window.location = #{url_for(args.first).to_json};\n"
     
     respond_to do |format|
-      format.html   { render :text => javascript_tag(js); }
+      format.html   { render :text => M.javascript_tag(js); }
       format.js     { render :text => js }
       format.any    { super }
+    end
+  end
+
+  def self.javascript_tag(*args)
+    javascript_helper.javascript_tag(*args)
+  end
+  
+  def self.javascript_helper
+    @javascript_helper ||= begin
+      # Uuu! Magic! The next line builds a ruby object and extends it with
+      # all helpers needed for javascript_tag to work. Reason: This makes 
+      # XHRRedirection work with controllers that don't support JavaScriptHelper 
+      # themselves.
+      "".extend(ActionView::Helpers::TagHelper).extend(ActionView::Helpers::JavaScriptHelper)
     end
   end
 end
