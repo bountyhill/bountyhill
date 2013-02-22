@@ -87,6 +87,8 @@ module Deferred
   
   def mail(email)
     W "TRY email to #{email.to}", email.subject
+    W email.to_s
+    
     return if Rails.env.development?
     
     email.deliver
