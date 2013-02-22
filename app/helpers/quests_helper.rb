@@ -44,8 +44,8 @@ module QuestsHelper
   end
 
   def offer_quest_button(quest)
-    return unless current_user
-    return unless quest.active? && !current_user.owns?(quest)
+    return unless quest.active?
+    return if current_user && current_user.owns?(quest)
 
     modal_awesome_button(:share, new_offer_path(:quest_id => quest), :rel => "nofollow") { I18n.t("button.offer") }
   end
