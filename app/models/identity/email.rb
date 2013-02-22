@@ -12,21 +12,17 @@ class Identity::Email < Identity
   
   with_metrics! "accounts.email"
    
-  attr_accessible :name, :email, :password, :password_confirmation, :newsletter_subscription
+  attr_accessible :email, :password, :password_confirmation, :newsletter_subscription
   has_secure_password
   
   # -- validation -----------------------------------------------------
   
-  # constant to use with name validation
-  MAX_NAME_LENGTH     = 256
-
   # constant to use with password validation
   MIN_PASSWORD_LENGTH = 6
 
   # constant to use with email validation
   EMAIL_ADDRESS_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i
 
-  # validates :name,      presence: true, length: { maximum: MAX_NAME_LENGTH }
   validates :password, :length => { minimum: MIN_PASSWORD_LENGTH }, :on => :create
   validates :email,     presence: true, format: { with: EMAIL_ADDRESS_REGEX }, 
                                         uniqueness: { case_sensitive: false }

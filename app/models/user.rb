@@ -156,11 +156,7 @@ class User < ActiveRecord::Base
   # return the user's name
   def name
     name = "#{first_name} #{last_name}"
-    
-    if name.blank? && identity = self.identity(:email)
-      name = identity.name
-    end
-    
+
     if name.blank? && identity = self.identity(:twitter)
       name = identity.name
     end
@@ -244,12 +240,7 @@ class User < ActiveRecord::Base
     # TODO!
     rand 100
   end
-  
-  # checks if some address data is given
-  def address?
-    %w(address1 address2 city zipcode country).any?{|address_attribute| self.send(address_attribute).present?}
-  end
-  
+    
   # -- special System users -------------------------------------------
 
   module SystemUsers
@@ -386,11 +377,8 @@ class User < ActiveRecord::Base
   
   # -- user information -----------------------------------------------
   serialize :serialized, Hash
-  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
-  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country
-
-  attr :description, true
-  attr_accessible :description
+  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description
+  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description
   
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
@@ -401,22 +389,10 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-
-  attr :phone, true
-  attr_accessible :phone
-  
-  def phone
-    "placeholder: TODO!"
-  end
-
-  attr :address, true
-  attr_accessible :address
   
   def address
     [:name, :address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }
   end
-
 
   serialized_attr :image
   attr_accessible :image, :images
