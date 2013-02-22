@@ -208,6 +208,7 @@ de:
         location:             "Geben Sie den Namen des Ortes ein."
         restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
         bounty:               "Loben Sie eine Belohung für Ihre Suche aus."
+        images:               Bilder hinzufügen
         criteria:             "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
         message:              "Falls notwendig, können Sie Ihre Nachricht hier ändern."
         cancellation_reason:  "Sie können hier erklären, warum Sie diese Suche beenden möchten."

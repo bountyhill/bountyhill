@@ -208,6 +208,7 @@ en:
         location:             "Enter the name of the quest's location."
         restrict_location:    "I want to restrict my quest to a particular location."
         bounty:               "Set up a bounty for your quest."
+        images:               Add images
         criteria:             "Define criteria to better assess incoming offers."
         message:              "You can change your message here if necessary."
         cancellation_reason:  "Feel free to provide an explanation about your reason to stop this quest."

@@ -37,6 +37,7 @@ de:
         category:             Kategorie
         description:          Beschreibung
         location:             Ortsangabe
+        images:               Bilder
         message:              Nachricht
         duration_in_days:     Laufzeit
         criterium_0:          Kriterium 1
