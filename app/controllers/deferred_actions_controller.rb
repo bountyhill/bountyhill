@@ -58,7 +58,7 @@ class DeferredActionsController < ApplicationController
   def perform_reset_password
     action.actor.confirm_email!
     signin(action.actor)
-    identity_presented!
+    redirect_to edit_user_path(action.actor, :password => 1)
   end
 
   # confirm email address.

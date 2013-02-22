@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
   before_filter :set_user
-  layout false, :only => [:edit]
   
   def show
   end
   
+  EDIT_PARTIALS = %w(profile address password email twitter delete)
   def edit
-    @partials = %w(profile address password email twitter delete)
+    @partials = EDIT_PARTIALS.select{ |partial| params[partial] }
+    @partials = EDIT_PARTIALS if @partials.blank?
+    
+    render :layout => 'dialog'
   end
   
   def update
