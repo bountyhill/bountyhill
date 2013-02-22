@@ -37,6 +37,7 @@ en:
         category:             Category
         description:          Description
         location:             Location
+        images:               Images
         message:              Message
         duration_in_days:     Duration
         criterium_0:          Criteria 1
