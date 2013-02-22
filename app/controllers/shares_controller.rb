@@ -9,6 +9,7 @@ class SharesController < ApplicationController
   # Show the form to share a quest
   def show
     request_identity! :twitter
+    render :layout => "dialog"
   end
   
   def update
