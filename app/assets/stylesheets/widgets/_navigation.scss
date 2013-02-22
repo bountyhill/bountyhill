@@ -5,16 +5,16 @@
   .nav {
     font-weight: bold;
     li {
-      &.active > a, &.active > a:hover, a:hover {
-        background:  $navigation_item_highlight;
-        color: $navigation_text_inverse;
-      }
       a {
         &, &:focus {
           color: $navigation_text;
           text-shadow: none;
           outline: none;
         }
+      }
+      &.active > a, &.active > a:hover, a:hover {
+        background:  $navigation_item_highlight;
+        color: $navigation_text_inverse;
       }
     }
   }
