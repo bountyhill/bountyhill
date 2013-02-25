@@ -1,18 +1,13 @@
 module ImageAttributes
   
-  def images(size = {})
-    width, height = size.values_at(:width, :height)
+  def images(options = {})
+    expect! options => {
+      :width => [Fixnum, nil],
+      :height => [Fixnum, nil]
+    }
+    
     urls = serialized[:images] || []
-    
-    if width && height
-      expect! width => Fixnum, height => Fixnum
-    
-      # set width and height; see https://developers.filepicker.io/docs/web/#fpurl
-      urls = urls.map { |url| "#{url}/convert?w=#{width}&h=#{height}" }
-    end
-
-    # set content disposition; see https://developers.filepicker.io/docs/web/#fpurl
-    urls.map { |url| "#{url}?dl=false" }
+    urls.map { |url| Filepicker.url url, options }
   end
   
   def images=(urls)
@@ -20,14 +15,49 @@ module ImageAttributes
     serialized[:images] = urls
   end
 
-  def original_image_url
-    original = image && image["original"]
-    url = original && original["url"]
+  module Filepicker
+    extend self
+    
+    # return a filepicker.io URL constructed from the base_url and the
+    # passed in options.
+    #
+    # Supported options include:
+    # - :width
+    # - :height
+    def url(base_url, options)
+      base_url + instruction(options)
+    end
+    
+    private
+    
+    FORMAT = "jpg&quality=20"
 
-    # If the original URL already points to an imgio instance; i.e. if it looks like
-    # this: "http://imgio.heroku.com/jpg/fill/90x90/http://some.where/123456.jpg",
-    # the following line extracts the original URL from the imgio URL.
-    url.gsub(/.*\d\/http/, "http") if url
+    # generate Filepicker conversion instruction from options.
+    # This method can easily be memoized.
+    def instruction(options)
+      width, height = options.values_at :width, :height
+
+      # conversion needed?
+      command = "/convert" if width || height 
+      
+      #
+      params = []
+      
+      # evaluate width and height
+      if width && height
+        params << "fit=crop&w=#{width}&h=#{height}&format=#{FORMAT}"
+      elsif width
+        params << "fit=crop&w=#{width}&format=#{FORMAT}"
+      elsif height
+        params << "fit=crop&h=#{height}&format=#{FORMAT}"
+      end
+      
+      # enable caching, set content disposition
+      params << "cache=true"
+      params << "dl=false"
+
+      "#{command}?" + params.join("&")
+    end
   end
   
 end
