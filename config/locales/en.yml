@@ -171,6 +171,7 @@ en:
       field_hint:
         title:        "Enter a subject describing your offer in a few words."
         description:  "Add a detailed description for your offer."
+        images:       Add images
       create:
         title:  Submit an Offer
         legend: "Provide a detailed description about what you have to offer. Feel free to add any files to your offer."

@@ -1,25 +1,21 @@
 <div class="row-fluid">
   <div class="span1">&nbsp;</div>
   <div class="main span8">
-    <div style="background-color:#c00; padding: 10px; min-height:100px">
-      <h2>placeholder: User info</h2>
-    </div>
+    <%= placeholder "User info" %>
   </div>
   <div class="sidebar span2">
-    <div style="background-color:#c00; padding: 10px; min-height:100px">
-      <h2>placeholder: Quests info</h2>
-    </div>
+    <%= placeholder "Quest info" %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>
 
-<div class="spacer" style="min-height:30px"></div>
+<%= spacer %>
 
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
   <div class="main span8">
     <%= quest_box(@quest) %>
-    <div class="spacer" style="min-height:30px"></div>
+    <%= spacer %>
     <div class="row-fluid">
       <div class="span6">
         <%= comments_box(@quest) %>
@@ -30,18 +26,12 @@
     </div>
   </div>
   <div class="sidebar span2">
-    <div style="background-color:#00c; padding: 10px; min-height:100px">
-      <h2>placeholder: Days left</h2>
-    </div>
-    <div class="spacer" style="min-height:30px"></div>
-    <div style="background-color:#0c0; padding: 10px; min-height:100px">
-      <h2>placeholder: Offers made</h2>
-    </div>
-    <div class="spacer" style="min-height:30px"></div>
-    <div style="background-color:#0a3; padding: 10px; min-height:600px">
-      <h2>placeholder: Forwards</h2>
-    </div>
-    <div class="spacer" style="min-height:30px"></div>
+    <%= placeholder "Days left" %>
+    <%= spacer %>
+    <%= placeholder "Offers made" %>
+    <%= spacer %>
+    <%= placeholder "Forwards" %>
+    <%= spacer %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>

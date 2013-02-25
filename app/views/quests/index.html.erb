@@ -1,17 +1,12 @@
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
-  <div class="sidebar span3">
-    <div style="background-color:#00c; padding: 10px; min-height:200px">
-      <h2>placeholder: Category-Filter</h2>
-    </div>
-    <div class="spacer" style="min-height:30px">
-    </div>
-    <div style="background-color:#ccc; padding: 10px; min-height:200px">
-      <h2>placeholder: Top-Quest-List</h2>
-    </div>
+  <div class="sidebar span2">
+    <%= placeholder "Category-Filter" %>
+    <%= spacer %>
+    <%= placeholder "Top-Quest-List" %>
   </div>
   <div class="main span7">
     <%= quests_list_box(@quests) %>
   </div>
-  <div class="span1">&nbsp;</div>
+  <div class="span2">&nbsp;</div>
 </div>

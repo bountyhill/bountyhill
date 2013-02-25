@@ -171,6 +171,7 @@ de:
       field_hint:
         title:        "Geben Sie hier eine kurze Beschreibung Ihres Angebots ein."
         description:  "Hier können Sie Ihr Angebot detailiert beschreiben."
+        images:       Bilder hinzufügen
       create:
         title:  Angebot abgeben
         legend: "Bitte beschreiben Sie detailiert was Sie dem Suchenden anbieten können. Sie können Ihrer Beschreibung gern Dateien hinzufügen."
