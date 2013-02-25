@@ -12,9 +12,10 @@
 </div>
 <% end %>
 
-  <div class="image-section row-fluid">
-    <ul class="thumbnails">
-      <% (quest.images(:width => 185, :height => 180) * 7).each do |url| %>
+<div class="image-section">
+  <% quest.images(:width => 185, :height => 180).each_slice(4) do |urls| %>
+    <ul class="thumbnails row-fluid">
+      <% urls.each do |url| %>
         <li class="span3">
           <a href="#" class="thumbnail">
             <%= image_tag url, :width => 185, :height => 180 %>
@@ -22,6 +23,6 @@
         </li>
       <% end %>
     </ul>
-  </div>
-
+  <% end %>
+</div>
 

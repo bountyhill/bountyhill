@@ -49,3 +49,9 @@ li [class^="icon-"], li [class*=" icon-"] {
     }
   }
 }
+
+/* -------- thumbnail gallery ---------- */
+
+.row-fluid .thumbnails {
+  margin: 0;                                  /* removes bottom margin to avoid gap between thumbnail rows */
+}

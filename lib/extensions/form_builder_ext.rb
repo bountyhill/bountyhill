@@ -264,7 +264,7 @@ class ActionView::Helpers::FormBuilder
     slides = @template.render_slides(object, :id => slide_name, :class => "fp-slides-edit") do |image, thumbnail|
       tag(:input, :type => :hidden, :name => target_name, :value => image) +
       @template.render_slide_image(thumbnail) +
-      awesome_button(:trash, "#", :class => "fp-delete", :rel => "nofollow")
+      @template.awesome_button(:trash, "#", :class => "fp-delete")
     end
     
     # If this is a XHR request, we must activate the filepicker code explicitely
