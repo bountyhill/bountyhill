@@ -27,10 +27,10 @@ jQuery(document).on("change", "input[type=filepicker]", function(event) {
     var url = this.url;
     var slide_url = url + "/convert?w=" + width + "&h=" + height;
   
-    var slide = $('<li><input type="hidden"></input><img src=""></img><span></span></li>');
+    var slide = $('<li><input type="hidden"></input><div class="image-container"><img src=""></img></div><a href="#" class="fp-delete"><i class="icon-trash icon-large""></i></a></div></li>');
     slide.find("input").attr("name", self.data("fp-name")).val(url);
     slide.find("img").attr("src", slide_url).attr("width", width).attr("height", height);
-    slide.find("span").text(this.filename);
+//    slide.find("span").text(this.filename);
     
     slideshow.append(slide);
   });
