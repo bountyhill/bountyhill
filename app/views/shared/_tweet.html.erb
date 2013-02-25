@@ -88,7 +88,7 @@ $("#restrict_location").change(function() {
     // This is a rough JS re-implementation of Quest#message
     
     // Build a message to write into the form
-    var message = node_message.val();
+    var message = jQuery.escapeHTML(node_message.val());
     if(message.length > 99)
       message = message.substr(0, 99) + "…";
     message = message + " #bounty";
