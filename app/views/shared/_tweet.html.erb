@@ -1,10 +1,6 @@
 <%-
   # Prepare a tweet. This form works mostly but not exclusively on virtual attributes.
   #
-  # :tweet
-  # :message the message part of the tweet, prefilled with the quest title
-  # :bounty the bounty value; preset with the bounty from the quest, but without currency and such.
-  #
   # By editing message and bounty the user edits the "tweet" entry. When submitting the
   # form the controller saves the bounty in the quest and sends a tweet with the :tweet
   # message and the quest url.
@@ -15,7 +11,7 @@
   #   the bounty value or the run time.
   
   retweet = false if !defined?(retweet)
-  url     = retweet ? share_url(quest) : run_url(quest)
+  url     = quest_url(quest)
   bounty  = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 -%>
 
