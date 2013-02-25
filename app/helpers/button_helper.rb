@@ -4,7 +4,7 @@ module ButtonHelper
     expect! buttons => Array
     
     div :class => "btn-group" do
-      buttons.join.html_safe
+      buttons.compact.join.html_safe
     end
   end
   

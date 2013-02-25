@@ -1,9 +1,6 @@
 .box {
   &.comments { 
     @include box_colors(comment);
-    .content {
-      padding-top: 5px;
-    }
   }
   form {
     padding-top: 20px;
@@ -12,9 +9,7 @@
      }
   }
   ul#comments {
-    margin: 0;
     & > li {
-      margin: 10px 0;
       &#no_comments {
         min-height: 0;
       }
