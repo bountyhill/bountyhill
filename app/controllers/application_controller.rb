@@ -114,7 +114,7 @@ class ApplicationController < ActionController::Base
   # Keep the value of the incoming session. It then can be displayed in
   # the application layout. To disable just dactivate the before_filter.
 
-  before_filter :debug_session if Rails.env.development?
+  # before_filter :debug_session if Rails.env.development?
   
   def debug_session
     session.each do |k,v| 
