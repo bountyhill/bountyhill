@@ -4,6 +4,10 @@
  * add your well documented css patches here
  */
 
+.alert {
+  text-align: center;        /* centers flash message text */
+}
+
 .row-fluid {
   clear: both;               /* reset all floatings within next row */
 }
