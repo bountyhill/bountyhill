@@ -62,18 +62,20 @@
       margin: 1ex 0;
     }
     .message-head {
-      min-height: 2ex;
+      position: relative;
+      min-height: 3.5ex;
     }
     .owner {
-      width: 50%;
-      float: left;
+      position: absolute;
+      width: 70%;
     }
     .time {
-      width: 50%;
-      float: right;
+      position: absolute;
+      right: 0;
+      width: 70%;
       text-align: right;
       font-style: italic;
-      font-size: 0.9em;
+      font-size: 12px;
       line-height: 1.5;
     }
     &:hover {
