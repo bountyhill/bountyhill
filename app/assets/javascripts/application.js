@@ -24,6 +24,11 @@ if(typeof console === "undefined") {
   };
 }
 
+// HTML escape
+jQuery.escapeHTML = function(str) {
+  return jQuery('<div/>').text(str).html();
+};
+
 $(document).ready(function() {
 
   // enable endless scrolling
