@@ -1,0 +1,10 @@
+<div class='lightbox-header'>
+  <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+</div>
+<div class='lightbox-content'>
+  <% if images.size == 1 %>
+    <%= image_tag(images.first) %>
+  <% else %>
+    <%= render "shared/carousel", :images => images, :active => active %>
+  <% end %>
+</div>

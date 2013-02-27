@@ -1,5 +1,5 @@
 class QuestsController < ApplicationController
-  include ApplicationController::ImageParameters
+  include ApplicationController::ImageInteractions
   layout false, :only => [:new, :edit]
   
   # GET /quests

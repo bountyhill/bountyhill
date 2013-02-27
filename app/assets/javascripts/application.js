@@ -16,6 +16,7 @@
 //= require bootstrap.js
 //= require filepicker.js
 //= require jquery.inview.js
+//= require bootstrap-lightbox.js
 
 // dummy console, just in case
 if(typeof console === "undefined") {

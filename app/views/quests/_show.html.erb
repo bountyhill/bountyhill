@@ -13,16 +13,16 @@
 <% end %>
 
 <div class="image-section">
-  <% quest.images(:width => 185, :height => 180).each_slice(4) do |urls| %>
+  <% quest.images(:width => 185, :height => 180).each_slice(4).with_index do |image_urls, offset| %>
     <ul class="thumbnails row-fluid">
-      <% urls.each do |url| %>
+      <% image_urls.each_with_index do |image_url, index| %>
         <li class="span3">
-          <a href="#" class="thumbnail">
-            <%= image_tag url, :width => 185, :height => 180 %>
-          </a>
+          <%= link_to(image_tag(image_url, :width => 185, :height => 180),
+            "/quests/#{quest.id}/lightbox/#{(offset*4)+index}",
+            :class => 'thumbnail',
+            :remote => true) %>
         </li>
       <% end %>
     </ul>
   <% end %>
 </div>
-

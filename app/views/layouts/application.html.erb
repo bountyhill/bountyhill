@@ -29,18 +29,20 @@
   
 </head>
 <body>
-  <%= 
-    modal_content ||= ""
-    div modal_content.html_safe, :id => "myModal", :class => "modal hide fade", 
-      :role => "dialog", :"aria-hidden" => true
-  %>
+  <!-- modal placeholders -->
+  <%= div (modal_content ||= "").html_safe,     :id => "myModal",     :class => "modal hide fade",    :role => "dialog", :"aria-hidden" => true %>
+  <%= div (lightbox_content ||= "").html_safe,  :id => "myLightbox",  :class => "lightbox hide fade", :role => "dialog", :"aria-hidden" => true, :tabindex => "-1" %>
+  
   <%= render 'layouts/header' %>
   <%#= render 'layouts/debug' if Rails.env.development? %>
+
   <%= render_flash %>
     <div class="container-fluid">
       <%= defined?(content) ? content.html_safe : yield %>
     </div>
+
   <%= render 'layouts/footer' %>
+  
   <%=
     extra_script ||= nil
     javascript_tag(extra_script) if extra_script

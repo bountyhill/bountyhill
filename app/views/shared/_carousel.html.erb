@@ -1,0 +1,18 @@
+<div id="myCarousel" class="carousel slide">
+  <!-- Carousel indicators -->
+  <!-- no styles nor interactions defined for carousel indicators :( -->
+  <ol class="carousel-indicators" style="display:none;"> 
+    <% images.each_with_index do |image, index| %>
+      <li data-target="#myCarousel" data-slide-to="<%= index.to_s %>" class="<%= index == active ? 'active' : '' %>"></li>
+    <% end %>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <% images.each_with_index do |image, index| %>
+      <%= div image_tag(image), :class => "item #{index == active ? 'active' : ''}" %>
+    <% end %>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left hide fade" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right hide fade" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>

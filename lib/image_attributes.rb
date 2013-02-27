@@ -47,9 +47,9 @@ module ImageAttributes
       if width && height
         params << "fit=crop&w=#{width}&h=#{height}&format=#{FORMAT}"
       elsif width
-        params << "fit=crop&w=#{width}&format=#{FORMAT}"
+        params << "fit=scale&w=#{width}&format=#{FORMAT}"
       elsif height
-        params << "fit=crop&h=#{height}&format=#{FORMAT}"
+        params << "fit=scale&h=#{height}&format=#{FORMAT}"
       end
       
       # enable caching, set content disposition

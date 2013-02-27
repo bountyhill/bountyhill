@@ -1,0 +1,2 @@
+$("#myLightbox").html("<%= escape_javascript(render 'shared/lightbox', :images => @images, :active => @active) %>");
+$('#myLightbox').lightbox('show');

@@ -31,6 +31,7 @@
 
 // import vendors' stylesheets
 @import "vendor/sassybuttons";
+@import "vendor/bootstrap-lightbox.css";
 
 // import pages' stylesheets
 @import "pages/home";
@@ -40,6 +41,7 @@
 
 // import widgets' stylesheets
 @import "widgets/temp";
+@import "widgets/carousel";
 @import "widgets/navigation";
 @import "widgets/box";
 @import "widgets/dialoge";
