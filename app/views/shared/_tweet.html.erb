@@ -11,7 +11,8 @@
   #   the bounty value or the run time.
   
   retweet = false if !defined?(retweet)
-  url     = quest_url(quest)
+  url     = retweet ? share_url(quest) : run_url(quest)
+  tweet_url = quest_url(quest)
   bounty  = quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 -%>
 
@@ -51,8 +52,8 @@
       <%= form.control_group :tweet, :hidden_field %>
       <%= avatar current_user, :size => 48 %>
       <div id="tweet">
-        <span class="preview"><%= link_to url, url, :target => "_blank" %></span>
-        <span><%= link_to url, url, :target => "_blank" %></span>
+        <span class="preview"><%= link_to tweet_url, tweet_url, :target => "_blank" %></span>
+        <span><%= link_to tweet_url, tweet_url, :target => "_blank" %></span>
       </div>
     </div>
   <% end %>
