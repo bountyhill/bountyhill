@@ -9,7 +9,11 @@
         <%= quest.owner.twitter_handle %>
       <% end %>
       <div class="time">
-        <%= time_ago_in_words(quest.started_at || quest.created_at) %>
+        <% if quest.active? %>
+          <%= I18n.t("time.distance.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at)) %>
+        <% else %>
+          <%= I18n.t("time.distance.creation", :distance_of_time => distance_of_time_in_words_to_now(quest.created_at)) %>
+        <% end %>
       </div>
     </div>
     <%= link_to quest_path(quest), :class => "message" do

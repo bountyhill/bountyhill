@@ -60,7 +60,7 @@ module OffersHelper
         dt(I18n.t("offer.status.compliance")),
         dd("#{offer.compliance}%"),
         dt(I18n.t("offer.status.viewed")),
-        dd(time_ago_in_words(offer.created_at))
+        dd("TODO")
       ]
     statistic_entries.compact.flatten
   end

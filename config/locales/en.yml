@@ -37,6 +37,10 @@ en:
     change:   Change
     accept:   Accept
     reject:   Reject
+  time:
+    distance:
+      creation:   "%{distance_of_time} ago"
+      expiration: "%{distance_of_time} left"
   mail:
     confirm_email:    "[Bountyhill] Please verify your email '%{email}'"
     reset_password:   "[Bountyhill] Reset your password"

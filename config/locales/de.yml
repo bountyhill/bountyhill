@@ -37,6 +37,10 @@ de:
     change:   Ändern
     accept:   Annehmen
     reject:   Ablehnen
+  time:
+    distance:
+      creation:   "%{distance_of_time} her"
+      expiration: "noch %{distance_of_time}"
   mail:
     confirm_email:    "[Bountyhill] Bitte bestätigen Sie Ihre Email '%{email}'"
     reset_password:   "[Bountyhill] Sie können Ihr Passwort jetzt zurücksetzen"
