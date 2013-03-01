@@ -6,7 +6,7 @@
 </div>
 <div class="inner">
   <h2>
-    <span class="bounty"><strong><%= offer.quest.bounty.to_s(:cents => false) %></strong> <%=t "quest.actions.bounty.title" %></span>
+    <span class="bounty"><strong><%= number_to_currency(offer.quest.bounty, :precision => 0, :unit => '&euro;') %></strong> <%=t "quest.actions.bounty.title" %></span>
     <small><%=t "quest.actions.bounty.sub" %></small>
   </h2>
   <%#= 

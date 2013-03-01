@@ -149,7 +149,7 @@ en:
       viewed:     "Viewed"
       compliance: "Compliance"
     box:
-      title:    "Offer with %{precentage}% compliance"
+      title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
     accept: 
       title:  Accept offer
@@ -184,7 +184,7 @@ en:
       not_started:  "Not started"
       expired:      "Expired"
     box:
-      title:    "Quest with %{amount} bounty"
+      title:    "%{amount} bounty"
       criteria: "The following criteria are defined for this quest:"
     list:
       title:

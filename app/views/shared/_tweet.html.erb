@@ -20,6 +20,8 @@
     <p><%= I18n.t("quest.form.#{retweet ? 'share' : 'start'}.legend") %></p>
     <%= form.error_messages %>
 
+    <%= hidden_field_tag :bounty_with_unit, number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;') %>
+    
     <% if retweet %>
       <%= form.control_group :bounty, :hidden_field, :value => bounty %>
     <% else %>
@@ -90,7 +92,7 @@ $("#restrict_location").change(function() {
     message = message + " #bounty";
     var bounty = node_bounty.val();
     if(parseInt(bounty) > 0)
-      message = message + " €" + parseInt(bounty);
+      message = message + ' ' + $("#bounty_with_unit").val();
 
     node_form_tweet.val(message);
     node_tweet.html(message);

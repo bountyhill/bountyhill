@@ -149,7 +149,7 @@ de:
       viewed:     "Angesehen"
       compliance: "Erfüllungsgrad"
     box:
-      title:    "Angebot mit %{precentage}% Erfüllungsgrad"
+      title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
     accept: 
       title:  Angebot annehmen
@@ -184,7 +184,7 @@ de:
       not_started:  "Nicht gestarted"
       expired:      "Abgelaufen"
     box:
-      title:    "Suche mit %{amount} Belohnung"
+      title:    "%{amount} Belohnung"
       criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
     list:
       title:

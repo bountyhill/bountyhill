@@ -3,7 +3,7 @@ module QuestsHelper
   def quest_box(quest)
     expect! quest => Quest
     
-    box(:quest, quest, :title => I18n.t("quest.box.title", :amount => quest.send(:bounty).to_s))
+    box(:quest, quest, :title => I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')))
   end
 
   def quests_list_box(quests)
@@ -82,7 +82,7 @@ module QuestsHelper
     statistic_entries << if quest.active?
       [
         dt(Quest.human_attribute_name(:bounty)),
-        dd(quest.bounty.to_s(:cents => false)),
+        dd(number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')),
         dt(Quest.human_attribute_name(:forwards)),
         dd(quest.forwards.count),
         dt(Quest.human_attribute_name(:offers)),
