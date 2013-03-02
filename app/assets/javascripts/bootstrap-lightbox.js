@@ -223,7 +223,10 @@
 			{
 				
 				resizedOffs = 10;
-				$img = that.$element.find('.lightbox-content').find('img:first');
+				
+				// find image to center
+				$img = that.$element.find('.lightbox-content').find(".item.active").find('img');
+
 				// Save original filesize
 				if(!$img.data('osizew')) $img.data('osizew', $img.width());
 				if(!$img.data('osizeh')) $img.data('osizeh', $img.height());
