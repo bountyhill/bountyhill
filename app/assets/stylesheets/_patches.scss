@@ -4,6 +4,14 @@
  * add your well documented css patches here
  */
 
+
+@media (max-width: 767px) {
+ body {                      /* removes wasted left and right padding */
+   padding-left: 0px;
+   padding-right: 0px;
+  }
+}
+ 
 .alert {
   text-align: center;        /* centers flash message text */
 }
