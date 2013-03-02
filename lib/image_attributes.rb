@@ -30,7 +30,7 @@ module ImageAttributes
     
     private
     
-    FORMAT = "jpg&quality=20"
+    FORMAT = "jpg&quality=60"
 
     # generate Filepicker conversion instruction from options.
     # This method can easily be memoized.

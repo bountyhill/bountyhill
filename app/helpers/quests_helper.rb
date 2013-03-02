@@ -81,12 +81,12 @@ module QuestsHelper
     statistic_entries = []
     statistic_entries << if quest.active?
       [
-        dt(Quest.human_attribute_name(:bounty)),
-        dd(number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')),
-        dt(Quest.human_attribute_name(:forwards)),
-        dd(quest.forwards.count),
-        dt(Quest.human_attribute_name(:offers)),
-        dd(quest.offers.count)
+        dt(I18n.t("quest.list.statistic.bounty", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))),
+        dd(""),        
+        dt(I18n.t("quest.list.statistic.offers", :count => quest.offers.count)),
+        dd(""),
+        dt(I18n.t("quest.list.statistic.forwards", :count => quest.forwards.count)),
+        dd("")
       ] 
     elsif quest.expired?
       [
@@ -99,6 +99,11 @@ module QuestsHelper
         dd("")
       ]
     end
+    
+    statistic_entries << [
+      dt(I18n.t("quest.list.statistic.images", :count => quest.images.size)),
+      dd(image_stack(quest))
+    ]
     
     statistic_entries.flatten
   end

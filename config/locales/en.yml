@@ -194,6 +194,20 @@ en:
       title:
         one:    "1 quest"
         other:  "%{count} quests"
+      statistic:
+        bounty:   "%{amount} bounty"
+        images:
+          zero:   " "
+          one:    "%{count} image"
+          other:  "%{count} images"
+        offers:
+          zero:   " "
+          one:    "%{count} offer"
+          other:  "%{count} offers"
+        forwards:
+          zero:   " "
+          one:    "%{count} forward"
+          other:  "%{count} forwards"
     categories:
       misc:           Miscellaneous
       jobs:           Jobs

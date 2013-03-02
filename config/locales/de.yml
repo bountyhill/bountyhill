@@ -194,6 +194,20 @@ de:
       title:
         one:    "1 Suche"
         other:  "%{count} Suchen"
+      statistic:
+        bounty:   "%{amount} Belohnung"
+        images:
+          zero:   " "
+          one:    "%{count} Bild"
+          other:  "%{count} Bilder"
+        offers:
+          zero:   " "
+          one:    "%{count} Angebot"
+          other:  "%{count} Angebote"
+        forwards:
+          zero:   " "
+          one:    "%{count} Weiterleitung"
+          other:  "%{count} Weiterleitungen"
     categories:
       misc:           Verschiedenes
       jobs:           Arbeitsstellen

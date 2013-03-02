@@ -6,6 +6,7 @@
   dl.statistic {
     background-color: $quests_box_content_color;
     border-color: $quests_box_content_color;
+    color: $quests_box_title_color !important;
   }
 }
 .offer {
@@ -15,6 +16,7 @@
   dl.statistic {
     background-color: $offers_box_content_color;
     border-color: $offers_box_content_color;
+    color: $offers_box_title_color !important;
   }
 }
 .comment {
@@ -98,19 +100,16 @@ dl.statistic {
   margin: 0;
   padding: 5px 10px;
   min-height: 10ex;
-  dt, dd {
-    height: 3.5ex;
-  }
   dt {
     float: left;
     clear: both;
-    text-transform: uppercase;
-    font-weight: normal;
     font-size: 1.5ex;
+    &:first-child { 
+      font-size: 2ex;
+      margin-bottom: 1ex; 
+    }
   }
   dd {
     float: right;
-    font-size: 2.0ex;
-    font-weight: bold;
   }
 }
