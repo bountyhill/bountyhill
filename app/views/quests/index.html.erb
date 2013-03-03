@@ -1,12 +1,12 @@
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
   <div class="sidebar span2">
-    <%= placeholder "Category-Filter" %>
+    <%= quest_category_filters(@filters) %>
     <%= spacer %>
     <%= placeholder "Top-Quest-List" %>
   </div>
   <div class="main span7">
-    <%= quests_list_box(@quests) %>
+    <%= quests_list_box(@quests, :filter => params[:category] ) %>
   </div>
   <div class="span2">&nbsp;</div>
 </div>

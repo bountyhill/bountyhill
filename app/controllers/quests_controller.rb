@@ -4,12 +4,23 @@ class QuestsController < ApplicationController
   
   # GET /quests
   def index
-    scope = if params[:owner_id] then User.find(params[:owner_id]).quests
+    scope = if params[:owner_id] then Quest
             else                      Quest.active
             end
-            
-    @quests = scope.paginate(:page => params[:page], :per_page => per_page, :include => {:owner => :identities})
-    
+
+    conditions = {}
+
+    conditions[:owner_id] = params[:owner_id] if params[:owner_id].present?
+    @filters = Filter.filters_for(Quest, :category, scope, conditions)
+
+    conditions[:category] = params[:category] if params[:category].present?
+    @quests = scope.paginate(
+      :page       => params[:page],
+      :per_page   => per_page,
+      :order      => "quests.created_at desc",
+      :conditions => conditions,
+      :include    => { :owner => :identities })
+      
     respond_to do |format|
       format.html
       format.js

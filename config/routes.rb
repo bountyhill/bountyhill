@@ -23,7 +23,8 @@ Bountyhill::Application.routes.draw do
   resources :quests do
     opinio
   end
-  match "/q/:id"                        => "quests#show",     :via => :get
+  match "/q/:id"                      => "quests#show",   :via => :get
+  match "/quests/category/:category"  => "quests#index",  :via => :get
   
   resources :shares
   match "/shares/:id" => "shares#update", :via => :post

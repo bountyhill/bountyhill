@@ -4,9 +4,8 @@
     @include message($quests_box_content_color, $quests_box_content_color);
   }
   dl.statistic {
-    background-color: $quests_box_content_color;
     border-color: $quests_box_content_color;
-    color: $quests_box_title_color !important;
+    color: $quests_box_content_color !important;
   }
 }
 .offer {
@@ -14,9 +13,8 @@
     @include message($offers_box_content_color, $offers_box_content_color);
   }
   dl.statistic {
-    background-color: $offers_box_content_color;
     border-color: $offers_box_content_color;
-    color: $offers_box_title_color !important;
+    color: $offers_box_content_color !important;
   }
 }
 .comment {

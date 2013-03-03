@@ -6,11 +6,16 @@ module QuestsHelper
     box(:quest, quest, :title => I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')))
   end
 
-  def quests_list_box(quests)
+  def quests_list_box(quests, options={})
     expect! quests        => ActiveRecord::Relation
     expect! quests.first  => [Quest, nil]
+    expect! options       => Hash
     
-    list_box(:quests, quests)
+    if options[:filter]
+       options.merge!({ :filter => I18n.t("quest.categories.#{options[:filter]}") })
+    end
+    
+    list_box(:quests, quests, options)
   end
   
   def quests_list_box_buttons
@@ -25,6 +30,10 @@ module QuestsHelper
 
   def categories_select_options
     I18n.t(:categories, :scope => :quest).map { |key, value| [ value, key ] }
+  end
+  
+  def quest_category_filters(filters=[])
+    filter_box(:quests, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
   end
   
   def quest_buttons(quest)

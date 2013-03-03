@@ -1,0 +1,17 @@
+.filter {
+  &.quests.box {
+    @include box_colors(quest-filter);
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    width: 100%;
+    li {
+      margin-bottom: 5px;
+      .count { float: right; }
+    }
+  }
+}
+
+

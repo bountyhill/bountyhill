@@ -37,6 +37,10 @@ de:
     change:   Ändern
     accept:   Annehmen
     reject:   Ablehnen
+  filter:
+    filter_by: "nach %{filter}"
+    categories:
+      title:  Kategorien
   time:
     distance:
       creation:   "%{distance_of_time} her"
@@ -214,9 +218,11 @@ de:
           one:    "%{count} Weiterleitung"
           other:  "%{count} Weiterleitungen"
     categories:
+      all:            Alle
       misc:           Verschiedenes
       jobs:           Arbeitsstellen
       estate:         Immobilien
+      service:        Dienstleistung
       lost:           Verloren
       missing:        Vermisst
       crime:          Verbrechen

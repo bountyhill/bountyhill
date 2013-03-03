@@ -38,4 +38,11 @@
     background-color: $user_box_color;
     .title { background-color: $user_box_title_color; }
   }
+  @else if  $box_type == quest-filter { 
+    background-color: $quests_box_title_color;
+    .title { 
+      background-color: $quests_box_color; 
+      color: $quests_box_content_color;
+    }
+  }
 }

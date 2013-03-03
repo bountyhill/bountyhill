@@ -37,6 +37,10 @@ en:
     change:   Change
     accept:   Accept
     reject:   Reject
+  filter:
+    filter_by: "for %{filter}"
+    categories:
+      title:  Categories
   time:
     distance:
       creation:   "%{distance_of_time} ago"
@@ -214,9 +218,11 @@ en:
           one:    "%{count} forward"
           other:  "%{count} forwards"
     categories:
+      all:            All
       misc:           Miscellaneous
       jobs:           Jobs
       estate:         Real estate
+      service:        Service
       lost:           Lost
       missing:        Missing
       crime:          Crime
