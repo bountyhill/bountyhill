@@ -12,3 +12,18 @@
 </div>
 <% end %>
 
+<div class="image-section">
+  <% offer.images(:width => 185, :height => 180).each_slice(4).with_index do |image_urls, offset| %>
+    <ul class="thumbnails row-fluid">
+      <% image_urls.each_with_index do |image_url, index| %>
+        <li class="span3">
+          <%= link_to(image_tag(image_url, :width => 185, :height => 180),
+            "/offers/#{offer.id}/lightbox/#{(offset*4)+index}",
+            :class => 'thumbnail',
+            :remote => true) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+

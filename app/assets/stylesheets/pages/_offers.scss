@@ -9,12 +9,18 @@
   .progress {
     line-height: 16px; /* let the progress bar look slimmer */
     height: auto;
-    margin-bottom: 5px;
     .bar {
       @include background-image(linear-gradient($offer_comliance_bar_color_dark, $offer_comliance_bar_color));
       background-color: $offer_comliance_bar_color;
     }
   }
+}
+.statistic {
+  .progress { margin-bottom: 10px; }
+}
+.message-container {
+  .progress { margin-bottom: 5px; }
+  
 }
 
 form {

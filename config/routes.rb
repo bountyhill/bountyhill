@@ -10,15 +10,20 @@ Bountyhill::Application.routes.draw do
 
   mount app, :at => "/jobs"
 
+  # static pages routes
   %w(about contact imprint terms privacy).each do |static_page|
     match static_page => "static##{static_page}"    
+  end
+
+  # images container routes
+  %w(quests offers).each do |images_container|
+    match "/#{images_container}/:id/lightbox/:active"  => "#{images_container}#lightbox", :via => :get
   end
 
   resources :quests do
     opinio
   end
   match "/q/:id"                        => "quests#show",     :via => :get
-  match "/quests/:id/lightbox/:active"  => "quests#lightbox", :via => :get
   
   resources :shares
   match "/shares/:id" => "shares#update", :via => :post

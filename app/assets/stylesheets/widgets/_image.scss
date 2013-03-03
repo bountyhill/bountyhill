@@ -1,3 +1,16 @@
+.quest {
+  a.thumbnail {
+    border-color: $quest_image_border;
+    &:hover { border-color: $quest_image_border_highlight;}
+  }
+}
+.offer {
+  a.thumbnail {
+    border-color: $offer_image_border;
+    &:hover { border-color: $offer_image_border_highlight;} 
+  }
+}
+
 .image-stack, .image-single {
   margin: 0 0 0 5%;
   position: relative;

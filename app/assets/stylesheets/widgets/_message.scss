@@ -60,7 +60,7 @@
       left: 74px;
     }
     .message {
-      display: block;
+      display: inline-block;
       margin: 1ex 0;
     }
     .message-head {
@@ -69,12 +69,12 @@
     }
     .owner {
       position: absolute;
-      width: 70%;
+      width: 60%;
     }
     .time {
       position: absolute;
       right: 0;
-      width: 70%;
+      width: 40%;
       text-align: right;
       font-style: italic;
       font-size: 12px;

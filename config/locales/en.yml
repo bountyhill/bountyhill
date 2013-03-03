@@ -168,6 +168,11 @@ en:
       title:
         one:    "1 offer"
         other:  "%{count} offers"
+      statistic:
+        images:
+          zero:   " "
+          one:    "%{count} image"
+          other:  "%{count} images"
     form:
       range_slider:
         prefix:   "not at all"

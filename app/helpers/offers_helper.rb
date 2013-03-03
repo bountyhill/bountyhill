@@ -53,15 +53,13 @@ module OffersHelper
   end
   
   def offer_statistic_entries(offer)
-    statistic_entries = []
-    statistic_entries << 
-      [
-        offer_compliance(offer),
-        dt(I18n.t("offer.status.compliance")),
-        dd("#{offer.compliance}%"),
-        dt(I18n.t("offer.status.viewed")),
-        dd("TODO")
-      ]
+    statistic_entries = [offer_compliance(offer)]
+      
+    statistic_entries << [
+      dt(I18n.t("offer.list.statistic.images", :count => offer.images.size)),
+      dd(image_stack(offer))
+    ]
+      
     statistic_entries.compact.flatten
   end
   
