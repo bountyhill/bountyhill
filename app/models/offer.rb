@@ -143,11 +143,11 @@ class Offer < ActiveRecord::Base
     }
   end
 
-  def set_criterium(idx, uid, compliance)
-    criterium_id_attr = Offer.criteria_ids[idx]
-    criterium_compliance_attr = Offer.criteria_compliances[idx]
-    self.send "#{criterium_id_attr}=", uid
-    self.send "#{criterium_compliance_attr}=", compliance
+  def set_criterium(idx, uid, compliance, comment=nil)
+    self.send "#{Offer.criteria_ids[idx]}=",          uid
+    self.send "#{Offer.criteria_compliances[idx]}=",  compliance
+    self.send "#{Offer.criteria_comments[idx]}=",     comment
+    get_criterium(idx)
   end
   
   # -- Compliance: The compliance value is the average of the individual
