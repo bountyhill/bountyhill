@@ -11,7 +11,7 @@ class QuestsController < ApplicationController
     conditions = {}
 
     conditions[:owner_id] = params[:owner_id] if params[:owner_id].present?
-    @filters = Filter.filters_for(Quest, :category, scope, conditions)
+    @filters = Filter.filters_for(Quest, :category, scope, conditions).sort_by{ |f| I18n.t(f.name, :scope => "quest.categories") }
 
     conditions[:category] = params[:category] if params[:category].present?
     @quests = scope.paginate(
