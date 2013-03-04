@@ -81,7 +81,7 @@ module QuestsHelper
   end
   
   def quest_statistic(quest)
-    dl :class => "statistic" do
+    dl do
       quest_statistic_entries(quest).join.html_safe
     end
   end
@@ -115,6 +115,14 @@ module QuestsHelper
     ]
     
     statistic_entries.flatten
+  end
+  
+  def quest_bounty_height(quest, options={})
+    value = options[:value] ||= offer.compliance.to_s
+    
+    div :class => "progress" do
+      div value, :class => "bar", :style => "width: #{quest.bounty_height}%;"
+    end
   end
   
 end

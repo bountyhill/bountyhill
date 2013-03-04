@@ -263,7 +263,7 @@ class Quest < ActiveRecord::Base
     # We show active quests only. They are available to all users anyways
     # so there is no point in running with less then admin clearance. 
     ActiveRecord.as(User.admin) do
-      Quest.active.all(:limit => options[:limit], :order => "bounty DESC")
+      Quest.active.all(:limit => options[:limit], :order => "bounty_in_cents DESC")
     end
   end
   
@@ -311,5 +311,18 @@ class Quest < ActiveRecord::Base
   
   def url
     Bountyhill::Application.url_for "/q/#{self.id}"
+  end
+  
+  def bounty_height
+    return 0 unless self.active?
+    return 5 if bounty_in_cents.zero?
+    
+    case (bounty_in_cents/100).to_s.size
+    when 1 then 15
+    when 2 then 30
+    when 3 then 60
+    when 4 then 90
+    else        100
+    end
   end
 end

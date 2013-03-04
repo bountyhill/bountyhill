@@ -155,7 +155,7 @@ de:
   offer:
     status:
       viewed:     "Angesehen"
-      compliance: "Erfüllungsgrad"
+      compliance: "%{precentage}% Erfüllungsgrad"
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"

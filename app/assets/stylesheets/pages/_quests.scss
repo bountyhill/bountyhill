@@ -1,5 +1,27 @@
+/* ------- boxes ------- */
+
 .box {
   &.quests, &.quest { 
     @include box_colors(quest);
+  }
+
+  /* ------- messages ------- */
+  .quest {
+    .message-box {
+      @include message($quests_box_content_color, $quests_box_content_color);
+    }
+    .statistic { 
+      dl {
+        color: $quests_box_content_color !important;
+      }
+      /* ------- bounty  bar ------- */
+      .progress {
+        .bar {
+          @include background-image(linear-gradient($quest_bounty_bar_color_dark, $quest_bounty_bar_color));
+          background-color: $quest_bounty_bar_color;
+        }
+      }
+    }
+  
   }
 }

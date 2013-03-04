@@ -1,48 +1,3 @@
-/* ------- message boxes ------- */
-.quest {
-  .message-box {
-    @include message($quests_box_content_color, $quests_box_content_color);
-  }
-  dl.statistic {
-    border-color: $quests_box_content_color;
-    color: $quests_box_content_color !important;
-  }
-}
-.offer {
-  .message-box {
-    @include message($offers_box_content_color, $offers_box_content_color);
-  }
-  dl.statistic {
-    border-color: $offers_box_content_color;
-    color: $offers_box_content_color !important;
-  }
-}
-.comment {
-  .message-container {
-    .message-box {
-      @include message($comments_box_content_color, $comments_box_content_color);
-    }
-  }
-}
-
-.span6 {
-  ul.list {
-    li.offer, li.comment {
-      .message-container {
-        .message-box {
-          margin-left: 64px;
-          &:before {
-            left: 54px;
-          }
-          .message-head {
-            min-height: 4ex;
-          }
-        }
-      }
-    }
-  }
-}
-
 /* ------- message ------- */
 .message-container {
   position: relative;
@@ -89,25 +44,5 @@
       bottom: 0px;
       right: 0px;
     }
-  }
-}
-/* ------- statistic ------- */
-dl.statistic {
-  @include border-radius(3px);
-  border: 2px solid;
-  margin: 0;
-  padding: 5px 10px;
-  min-height: 10ex;
-  dt {
-    float: left;
-    clear: both;
-    font-size: 1.5ex;
-    &:first-child { 
-      font-size: 2ex;
-      margin-bottom: 1ex; 
-    }
-  }
-  dd {
-    float: right;
   }
 }

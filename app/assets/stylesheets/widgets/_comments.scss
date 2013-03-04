@@ -19,3 +19,11 @@
   }
 }
 
+/* ------- message boxes ------- */
+.comment {
+  .message-container {
+    .message-box {
+      @include message($comments_box_content_color, $comments_box_content_color);
+    }
+  }
+}

@@ -155,7 +155,7 @@ en:
   offer:
     status:
       viewed:     "Viewed"
-      compliance: "Compliance"
+      compliance: "%{precentage}% compliance"
     box:
       title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"

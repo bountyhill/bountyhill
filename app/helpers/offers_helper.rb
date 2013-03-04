@@ -47,14 +47,17 @@ module OffersHelper
   end
     
   def offer_statistic(offer)
-    dl(:class => "statistic") do
+    dl do
       offer_statistic_entries(offer).join.html_safe
     end
   end
   
   def offer_statistic_entries(offer)
-    statistic_entries = [offer_compliance(offer)]
-      
+    statistic_entries = [
+      dt(I18n.t("offer.status.compliance", :precentage => offer.compliance)),
+      dd("")
+    ]
+    
     statistic_entries << [
       dt(I18n.t("offer.list.statistic.images", :count => offer.images.size)),
       dd(image_stack(offer))
@@ -63,14 +66,13 @@ module OffersHelper
     statistic_entries.compact.flatten
   end
   
-  def offer_compliance(offer)
-    return unless offer.quest.criteria.present?
+  def offer_compliance(offer, options={})
+    value = options[:value] ||= offer.compliance.to_s
     
     div :class => "progress" do
-      div "#{offer.compliance}", :class => "bar", :style => "width: #{offer.compliance}%;"
+      div value, :class => "bar", :style => "width: #{offer.compliance}%;"
     end
   end
-  
   
   def offers_box(offerable)
     expect! offerable => [Quest]

@@ -2,26 +2,54 @@
   &.offers, &.offer {
     @include box_colors(offer);
   }
-}
 
-/* ------- compliance bar ------- */
-.statistic, .message-container {
-  .progress {
-    line-height: 16px; /* let the progress bar look slimmer */
-    height: auto;
-    .bar {
-      @include background-image(linear-gradient($offer_comliance_bar_color_dark, $offer_comliance_bar_color));
-      background-color: $offer_comliance_bar_color;
+  /* ------- message boxes ------- */
+  .offer {
+    .message-box {
+      @include message($offers_box_content_color, $offers_box_content_color);
+    }
+    &, .statistic {
+      .progress {
+        .bar {
+          @include background-image(linear-gradient($offer_comliance_bar_color_dark, $offer_comliance_bar_color));
+          background-color: $offer_comliance_bar_color;
+        }
+      }
+      dl {
+        color: $offers_box_content_color !important;
+      }
     }
   }
 }
-.statistic {
-  .progress { margin-bottom: 10px; }
+
+/* ------- small offer messages ------- */
+.span6 {
+  ul.list {
+    li.offer, li.comment {
+      .message-container {
+        .message-box {
+          margin-left: 64px;
+          &:before {
+            left: 54px;
+          }
+          .message {
+            min-height: 4ex;
+          }
+          .message-head {
+            min-height: 5ex;
+            .progress {
+              height: auto;
+              margin-bottom: 5px;
+              @include border-radius(5px);
+              .bar:after { content:"%"; }
+            }
+          }
+        }
+      }
+    }
+  }
 }
-.message-container {
-  .progress { margin-bottom: 5px; }
-  
-}
+
 
 form {
   .criteria_compliances {
