@@ -55,6 +55,19 @@ class Offer < ActiveRecord::Base
     errors.add(:base, "quest is not active") 
   end
   
+  # -- Initial setup -------------------------------------------------------
+  
+  def initialize(attributes={})
+    super
+
+    # init criteria ids from quest if not provided by attributes hash, 
+    # e.g. on initial setup of offer
+    self.criteria.each_with_index do |criterium, idx|
+      next if self.send("criterium_id_#{idx}").present?
+      self.send("criterium_id_#{idx}=", criterium[:criterium_id])
+    end
+  end
+    
   # -- Criteria -------------------------------------------------------
   
   NUMBER_OF_CRITERIA = Quest::NUMBER_OF_CRITERIA
@@ -118,7 +131,7 @@ class Offer < ActiveRecord::Base
     end.compact.by(:criterium_id)
     
     criteria = quest_criteria.map do |criterium_id, quest_criterium|
-      if (offer_criterium = offer_criteria[criterium_id])
+      if (offer_criterium = (offer_criteria[criterium_id] || offer_criteria[criterium_id.to_s]))
         quest_criterium = quest_criterium.merge(offer_criterium)
       end
       
@@ -177,7 +190,7 @@ class Offer < ActiveRecord::Base
     criteria = self.criteria
     return 50 if criteria.blank?
 
-    sum = criteria.inject(0) { |s, criterium| s + criterium[:compliance] }
+    sum = criteria.inject(0) { |s, criterium| s + criterium[:compliance].to_i }
     (sum * 100.0 / (criteria.length * 10)).round
   end
 
