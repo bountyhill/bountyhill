@@ -67,6 +67,7 @@ class QuestsController < ApplicationController
     @quest.attributes = params[:quest]
 
     if @quest.valid?
+      @quest.save!
       redirect_to! quests_path, notice: 'Quest was successfully updated.'
     end
 
