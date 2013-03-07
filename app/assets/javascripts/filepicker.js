@@ -36,8 +36,7 @@ jQuery(document).on("change", "input[type=filepicker]", function(event) {
   });
 });
 
-jQuery(function() {
-  jQuery("ul.fp-slides-edit li a.fp-delete").click(function() {
+$(document).on("click", "ul.fp-slides-edit li a.fp-delete", 
+  function(){ 
     $(this).closest("li").remove();
-  });
 });
