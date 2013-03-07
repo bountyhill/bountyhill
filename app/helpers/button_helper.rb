@@ -38,6 +38,10 @@ module ButtonHelper
     css_class = "btn btn-link"
     css_class << " btn-#{size}" if size
     
+    if original_class = options.delete(:class)
+      css_class << " #{original_class}"
+    end
+
     content_tag :a, html.merge(:class => css_class, :href => href) do
       awesome_icon name, options, &block
     end
