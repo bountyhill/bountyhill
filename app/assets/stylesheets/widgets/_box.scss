@@ -90,6 +90,7 @@
         padding-top: 10px;
         & > li {
           margin: 10px 0;
+          clear: both;
           .criterium-title, .criterium-comment {
             width: 66%;
           }
