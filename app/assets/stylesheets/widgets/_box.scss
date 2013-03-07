@@ -90,11 +90,12 @@
         padding-top: 10px;
         & > li {
           margin: 10px 0;
-          .progress, .criterium-title, .criterium-comment {
-            width: 50%;
+          .criterium-title, .criterium-comment {
+            width: 66%;
           }
           .progress { 
             float: right;
+            width: 33%;
           }
           .criterium-comment {
             font-weight: normal;
