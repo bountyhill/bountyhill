@@ -84,7 +84,7 @@ namespace :demo do
   task :start => :setup do
     count = 0
     ActiveRecord.as User.admin do
-      Quest.prepared.each do |quest|
+      Quest.pending.each do |quest|
         quest.start!
         count += 1
       end

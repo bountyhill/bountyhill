@@ -32,16 +32,12 @@ class Quest < ActiveRecord::Base
   # for all, probably?)
   STATUSES = [ 
     :all,
-    :prepared,
     :active,
     :with_offers,
     :pending,
     :expired
   ]
   
-  # prepared: not yet started
-  scope :prepared,  lambda { where("quests.started_at IS NULL") }
-
   # active: started and no yet expired
   scope :active,    lambda { where("quests.started_at IS NOT NULL AND quests.expires_at > ?", Time.now) }
 
