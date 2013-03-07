@@ -3,6 +3,14 @@
 .box {
   &.quests, &.quest { 
     @include box_colors(quest);
+
+    /* ------- bounty bar colors ------- */
+    .progress {
+      .bar {
+        @include background-image(linear-gradient($quest_bounty_bar_color_dark, $quest_bounty_bar_color));
+        background-color: $quest_bounty_bar_color;
+      }
+    }
   }
 
   /* ------- messages ------- */
@@ -13,13 +21,6 @@
     .statistic { 
       dl {
         color: $quests_box_content_color !important;
-      }
-      /* ------- bounty  bar ------- */
-      .progress {
-        .bar {
-          @include background-image(linear-gradient($quest_bounty_bar_color_dark, $quest_bounty_bar_color));
-          background-color: $quest_bounty_bar_color;
-        }
       }
     }
   

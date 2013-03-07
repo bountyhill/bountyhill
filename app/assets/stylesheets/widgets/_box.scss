@@ -84,15 +84,22 @@
     }
     .criteria-section {
       margin-top: 40px;
-      font-weight: bold;
       font-size: 120%;
-      p {
-        font-size: 100%
-      }
-      ol {
-        margin-bottom: 40px;
+      font-weight: bold;
+      .criteria {
+        padding-top: 10px;
         & > li {
-          margin: 5px 0;
+          margin: 10px 0;
+          .progress, .criterium-title, .criterium-comment {
+            width: 50%;
+          }
+          .progress { 
+            float: right;
+          }
+          .criterium-comment {
+            font-weight: normal;
+            font-style: italic;
+          }
         }
       }
     }

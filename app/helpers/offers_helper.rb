@@ -70,7 +70,7 @@ module OffersHelper
     value = options[:value] ||= offer.compliance.to_s
     
     div :class => "progress" do
-      div value, :class => "bar", :style => "width: #{offer.compliance}%;"
+      div value, :class => "bar", :style => "width: #{value}%;"
     end
   end
   

@@ -5,8 +5,12 @@
 <div class="criteria-section">
   <p><%= I18n.t("offer.box.criteria") %></p>
   <ol class="criteria">
-    <% @offer.criteria.each_with_index do |criterium, idx| %>
-      <li><%= criterium[:title] %></li>
+    <% @offer.criteria.each do |criterium| %>
+      <li>
+        <%= offer_compliance(@offer, :value => (criterium[:compliance].to_i * 10)) %>
+        <div class="criterium-title"><%= criterium[:title] %></div>
+        <div class="criterium-comment"><%= criterium[:comment] %></div>
+      </li>
     <% end %>
   </ol>
 </div>
