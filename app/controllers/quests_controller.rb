@@ -5,7 +5,7 @@ class QuestsController < ApplicationController
   # GET /quests
   def index
     scope = if params[:owner_id] then Quest
-            else                      Quest.active
+            else                      Quest.personal # active or (pending and owned by current user pending)
             end
 
     conditions = {}

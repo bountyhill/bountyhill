@@ -49,6 +49,18 @@ class Quest < ActiveRecord::Base
 
   # expired: well, expired
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
+
+  # This is what the current_user sees on the /quests list
+  scope :personal, lambda { 
+    if !ActiveRecord.current_user
+      # active. 
+      where("quests.expires_at > ?", Time.now) 
+    else
+      # active or pending. Note: a non admin user would only see her own
+      # pending quests. An admin user sees all pending quests.
+      where("(quests.started_at IS NULL OR quests.expires_at > ?", Time.now) 
+    end
+  }
   
   # Find a quest, even if it does not belong to the current_user, but to
   # User.draft. We'll need this when a user enters a quest before she is
