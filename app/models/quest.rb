@@ -58,7 +58,7 @@ class Quest < ActiveRecord::Base
     else
       # active or pending. Note: a non admin user would only see her own
       # pending quests. An admin user sees all pending quests.
-      where("(quests.started_at IS NULL OR quests.expires_at > ?", Time.now) 
+      where("quests.started_at IS NULL OR quests.expires_at > ?", Time.now) 
     end
   }
   
