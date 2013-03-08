@@ -19,10 +19,6 @@ module Filter
         url_for_filter(attribute, value))     # url   
     end
     
-    def filter_for_all(scope, attribute)
-      filter_item(attribute, "all", scope.count)
-    end                                                       
-
     def url_for_filter(attribute, group)
       url_params = params.dup
       url_params.delete attribute
@@ -41,7 +37,7 @@ module Filter
         I18n.t(filter.name, :scope => "#{scope.klass.name.downcase}.#{attribute.to_s.pluralize}") 
       end
 
-      filters.unshift filter_for_all(scope, attribute)
+      filters.unshift filter_item(attribute, "all", filters.sum(&:count))
       filters
     end  
   end
