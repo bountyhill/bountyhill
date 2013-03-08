@@ -1,30 +1,24 @@
 class QuestsController < ApplicationController
   include ApplicationController::ImageInteractions
   layout false, :only => [:new, :edit]
+
+  include Filter::Builder
   
   # GET /quests
   def index
-    scope = if params[:owner_id] then Quest
-            else                      Quest.personal # active or (pending and owned by current user pending)
+    scope = if params[:owner_id] then User.find(params[:owner_id]).quests
+            else                      Quest.for_current_user # active or (pending and owned by current user pending)
             end
 
-    conditions = {}
+    @filters = filters_for(scope, :category)
+    
+    scope = scope.with_category(params[:category]) if params[:category]
 
-    conditions[:owner_id] = params[:owner_id] if params[:owner_id].present?
-    @filters = Filter.filters_for(Quest, :category, scope, conditions).sort_by{ |f| I18n.t(f.name, :scope => "quest.categories") }
-
-    conditions[:category] = params[:category] if params[:category].present?
     @quests = scope.paginate(
       :page       => params[:page],
       :per_page   => per_page,
       :order      => "quests.created_at desc",
-      :conditions => conditions,
       :include    => { :owner => :identities })
-      
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # GET /quests/1

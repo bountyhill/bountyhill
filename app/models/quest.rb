@@ -51,7 +51,7 @@ class Quest < ActiveRecord::Base
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
 
   # This is what the current_user sees on the /quests list
-  scope :personal, lambda { 
+  scope :for_current_user, lambda { 
     if !ActiveRecord.current_user
       # active. 
       where("quests.expires_at > ?", Time.now) 
