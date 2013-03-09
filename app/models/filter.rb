@@ -25,9 +25,7 @@ module Filter
 
     def url_for_filter(attribute, group)
       url_params = params.dup
-      url_params.delete attribute
-
-      url_params[attribute] = group if group != "all"
+      url_params[attribute] = (group == "all") ? nil : group
 
       url_for url_params
     end
