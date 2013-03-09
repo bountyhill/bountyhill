@@ -102,6 +102,10 @@ module OffersHelper
     div :class => "offers box row-fluid" do
       title + content
     end
-    
   end
+  
+  def offers_state_filters(filters=[])
+    filter_box(:offer, :states, filters, :title => I18n.t("filter.states.title"), :active => params[:state])
+  end
+  
 end

@@ -41,6 +41,8 @@ de:
     filter_by: "nach %{filter}"
     categories:
       title:  Kategorien
+    states:
+        title:  Status
   time:
     distance:
       creation:   "%{distance_of_time} her"
@@ -177,6 +179,13 @@ de:
           zero:   " "
           one:    "%{count} Bild"
           other:  "%{count} Bilder"
+    states:
+      all:        Alle
+      offered:    Angeboten
+      viewed:     Angesehen
+      withdrawn:  Zurückgezogen
+      accepted:   Angenommen
+      rejected:   Abgelehnt
     form:
       range_slider:
         prefix:   "gar nicht"

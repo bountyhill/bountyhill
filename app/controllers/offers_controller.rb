@@ -1,26 +1,31 @@
 class OffersController < ApplicationController
   include ApplicationController::ImageInteractions
+  include Filter::Builder
+
   layout false, :only => [:new, :edit, :accept, :reject, :withdraw]
   
-  public
-  
-  # GET /quests
+  # GET /offers
   def index
-    scope = Offer.order("offers.created_at DESC")
+    scope = Offer
+    order = "offers.created_at DESC"
+    
     if params[:quest_id]
-      scope = scope.where(:quest_id => params[:quest_id]).order("offers.compliance DESC, offers.created_at DESC")
+      scope = scope.where(:quest_id => params[:quest_id])
+      order = "offers.compliance DESC, offers.created_at DESC"
     end
+    
     if params[:owner_id]
       # relevant_for: owned by user or sent to user
       scope = scope.relevant_for(User.find(params[:owner_id]))
     end
     
-    @offers = scope.paginate(:include => :quest, :page => params[:page], :per_page => per_page)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @filters = filters_for(scope, :state)
+    
+    @offers = scope.paginate(
+      :page     => params[:page],
+      :per_page => per_page,
+      :order    => order,
+      :include  => :quest)
   end
 
   # GET /offers/1
@@ -47,7 +52,7 @@ class OffersController < ApplicationController
 
   # POST /quests
   def create
-    @offer = Offer.new(params[:offer])
+    @offer = Offer.new(params[:offer].merge(:state => 'offered'))
 
     if @offer.save
       redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.name)

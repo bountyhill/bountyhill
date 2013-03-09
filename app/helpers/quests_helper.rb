@@ -32,8 +32,8 @@ module QuestsHelper
     I18n.t(:categories, :scope => :quest).map { |key, value| [ value, key ] }
   end
   
-  def quest_category_filters(filters=[])
-    filter_box(:quests, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
+  def quests_category_filters(filters=[])
+    filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
   end
   
   def quest_buttons(quest)

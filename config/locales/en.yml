@@ -41,6 +41,8 @@ en:
     filter_by: "for %{filter}"
     categories:
       title:  Categories
+    states:
+        title:  States
   time:
     distance:
       creation:   "%{distance_of_time} ago"
@@ -177,6 +179,13 @@ en:
           zero:   " "
           one:    "%{count} image"
           other:  "%{count} images"
+    states:
+      all:        All
+      offered:    Offered
+      viewed:     Viewed
+      withdrawn:  Withdrawn
+      accepted:   Accepted
+      rejected:   Rejected
     form:
       range_slider:
         prefix:   "not at all"

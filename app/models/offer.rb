@@ -9,6 +9,8 @@ class Offer < ActiveRecord::Base
   extend Forwardable
   delegate [:bounty] => :quest
   
+  STATES = %w(offered viewed withdrawn accepted rejected)
+  
   # -- Associations ---------------------------------------------------
   
   belongs_to :quest
@@ -16,11 +18,10 @@ class Offer < ActiveRecord::Base
   
   attr_accessible :title, :description, :images, :location, :quest_id, :quest, :state
   
-  # -- Access control -------------------------------------------------
-
   belongs_to :owner, :class_name => "User"
   validates  :owner, :presence => true
   
+  # -- Access control -------------------------------------------------
   # Offers are visible to both its owner and to the quest owner, but 
   # they can be written by its owner only.
 
@@ -46,6 +47,7 @@ class Offer < ActiveRecord::Base
   validates :quest,       :presence => true
   validates :title,       :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true, :length => { :maximum => 2400 }
+  validates :state,       :presence => true, :inclusion => Offer::STATES
   
   # Can make an offer on an active quest only.
   validate :validate_quest_is_active, :on => :create
