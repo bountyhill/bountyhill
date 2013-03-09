@@ -155,9 +155,7 @@ en:
         password_new:               Enter your new password.
         password_new_confirmation:  Confirm your new password
   offer:
-    status:
-      viewed:     "Viewed"
-      compliance: "%{precentage}% compliance"
+    compliance: "%{precentage}% compliance"
     box:
       title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
@@ -181,8 +179,7 @@ en:
           other:  "%{count} images"
     states:
       all:        All
-      offered:    Offered
-      viewed:     Viewed
+      active:     Active
       withdrawn:  Withdrawn
       accepted:   Accepted
       rejected:   Rejected

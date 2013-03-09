@@ -155,9 +155,7 @@ de:
         password_new:               Geben Sie Ihr neues Passwort ein.
         password_new_confirmation:  Bestätigen Sie Ihr neues Passwort.
   offer:
-    status:
-      viewed:     "Angesehen"
-      compliance: "%{precentage}% Erfüllungsgrad"
+    compliance: "%{precentage}% Erfüllungsgrad"
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
@@ -181,8 +179,7 @@ de:
           other:  "%{count} Bilder"
     states:
       all:        Alle
-      offered:    Angeboten
-      viewed:     Angesehen
+      active:     Aktiv
       withdrawn:  Zurückgezogen
       accepted:   Angenommen
       rejected:   Abgelehnt

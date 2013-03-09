@@ -248,7 +248,7 @@ CREATE TABLE offers (
     updated_at timestamp without time zone NOT NULL,
     location character varying(255),
     serialized text,
-    state character varying(255) DEFAULT 'offered'::character varying,
+    state character varying(255) DEFAULT 'active'::character varying,
     title character varying(255)
 );
 

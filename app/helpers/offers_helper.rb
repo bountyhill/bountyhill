@@ -54,10 +54,17 @@ module OffersHelper
   
   def offer_statistic_entries(offer)
     statistic_entries = [
-      dt(I18n.t("offer.status.compliance", :precentage => offer.compliance)),
+      dt(I18n.t("offer.compliance", :precentage => offer.compliance)),
       dd("")
     ]
     
+    unless offer.active?
+      statistic_entries << [
+        dt(I18n.t("offer.states.#{offer.state}")),
+        dd("")
+      ]
+    end
+
     statistic_entries << [
       dt(I18n.t("offer.list.statistic.images", :count => offer.images.size)),
       dd(image_stack(offer))

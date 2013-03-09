@@ -1,6 +1,6 @@
 class ChangeStateColumnInOffersToSetDefaultState < ActiveRecord::Migration
   def up
-    change_column :offers, :state, :string, :default => "offered"
+    change_column :offers, :state, :string, :default => "active"
   end
 
   def down

@@ -9,7 +9,7 @@ class Offer < ActiveRecord::Base
   extend Forwardable
   delegate [:bounty] => :quest
   
-  STATES = %w(offered viewed withdrawn accepted rejected)
+  STATES = %w(active withdrawn accepted rejected)
   
   # -- Associations ---------------------------------------------------
   
@@ -209,7 +209,7 @@ class Offer < ActiveRecord::Base
   
   # The offer is not decided upon, and the quest is still active?
   def active?
-    quest.active? && state.nil?
+    quest.active? && state == "active"
   end 
 
   def withdraw!
