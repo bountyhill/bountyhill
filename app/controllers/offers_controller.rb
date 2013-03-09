@@ -52,7 +52,7 @@ class OffersController < ApplicationController
 
   # POST /quests
   def create
-    @offer = Offer.new(params[:offer].merge(:state => 'offered'))
+    @offer = Offer.new(params[:offer])
 
     if @offer.save
       redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.name)

@@ -41,7 +41,9 @@ module Filter
         I18n.t(filter.name, :scope => "#{scope.klass.name.downcase}.#{attribute.to_s.pluralize}") 
       end
 
-      filters.unshift filter_for_all(scope, attribute)
+      # add 'all' filter unless there is nothing to filter
+      filters.unshift(filter_for_all(scope, attribute)) unless filters.size == 1
+      
       filters
     end  
   end

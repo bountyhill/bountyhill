@@ -58,7 +58,7 @@ module BoxHelper
       ul :class => "btn-group" do
         filters.map do |f|
           css_class =  "btn btn-link btn-small"
-          css_class += " active" if f.active?(options[:active])
+          css_class += " active" if f.active?(options[:active]) || filters.size == 1
           
           name = (I18n.t(f.name, :scope => "#{type}.#{atribute}") + span(f.count, :class => 'count')).html_safe
           li link_to(name, f.url, :class => css_class)

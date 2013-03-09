@@ -61,7 +61,8 @@ class Offer < ActiveRecord::Base
   
   def initialize(attributes={})
     super
-
+    return unless quest
+    
     # init criteria ids from quest if not provided by attributes hash, 
     # e.g. on initial setup of offer
     self.criteria.each_with_index do |criterium, idx|
