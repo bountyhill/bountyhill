@@ -1,26 +1,32 @@
-$camin:         #AA063B;
-$camin_bright:  #EECDD8;
-$camin_dark:    #77042B;
+$camin:           #AA063B;
+$camin_bright:    #EECDD8;
+$camin_dark:      #77042B;
+$camin_darkest:   #660423;
 
-$blue:          #39B3DC;
-$blue_bright:   #CEECF6;
-$blue_dark:     #2B84A2;
+$blue:            #39B3DC;
+$blue_bright:     #CEECF6;
+$blue_dark:       #2B84A2;
+$blue_darkest:    #226B84;
 
-$purple:        #863884;
-$purple_bright: #E1CEE1;
-$purple_dark:   #611657;
+$purple:          #863884;
+$purple_bright:   #E1CEE1;
+$purple_dark:     #611657;
+$purple_darkest:  #50224F;
 
 $green:         #549926;
 $green_bright:  #D2E0C7;
 $green_dark:    #396A19;
+$green_darkest: #325C17;
 
-$orange:        #CC9902;
-$orange_bright: #F1E0B2;
-$orange_dark:   #9D6802;
+$orange:          #CC9902;
+$orange_bright:   #F1E0B2;
+$orange_dark:     #9D6802;
+$orange_darkest:  #7A5C01;
 
-$red:           #E02202;
-$red_bright:    #F7C8C0;
-$red_dark:      #A41902;
+$red:             #E02202;
+$red_bright:      #F7C8C0;
+$red_dark:        #A41902;
+$red_darkest:     #861401;
 
 $text:          white;
 $text_inverse:  black;
@@ -60,8 +66,12 @@ $comments_box_color:          $green_bright;
 $comments_box_title_color:    $green_dark;
 $comments_box_content_color:  $green;
 
-$quest_button_color:    $blue_dark;
-$offer_button_color:    $orange_dark;
+$quest_button_color:        $blue_dark;
+$quest_active_button_color: $blue_darkest;
+
+$offer_button_color:        $orange_dark;
+$offer_active_button_color: $orange_darkest;
+
 $user_button_color:     $red_dark;
 $comment_button_color:  $green_dark;
 
