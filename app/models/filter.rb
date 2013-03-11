@@ -38,8 +38,11 @@ module Filter
       # filters.unshift filter_item(attribute, "all", filters.sum(&:count))
 
       # add 'all' filter unless there is nothing to filter
-      filters.unshift(filter_for_all(scope, attribute)) unless filters.size == 1
-      
+      unless filters.size == 1
+        filter_for_all = filter_item(attribute, "all", filters.sum(&:count))
+        filters.unshift(filter_for_all)
+      end
+
       filters
     end  
   end
