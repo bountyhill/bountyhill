@@ -25,7 +25,7 @@ module ApplicationHelper
     ol :class => "step-indicator" do
       [
         li(I18n.t("create", :scope => "button"),  :class => "step #{model.new_record? ? 'active' : ''}"),
-        li(I18n.t("post",   :scope => "button"),  :class => "step #{model.new_record? ? '' : 'active'}"),
+        li(I18n.t("start",  :scope => "button"),  :class => "step #{model.new_record? ? '' : 'active'}"),
       ].join.html_safe
     end
   end

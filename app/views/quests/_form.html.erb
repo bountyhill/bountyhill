@@ -1,56 +1,81 @@
+<%
+  bounty  = @quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
+%>
+
 <%= form_for @quest, :remote => true do |form| %>
-  <% modal_body do %>
-    <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
-    <%= form.error_messages %>
+  <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
+  <%= form.error_messages %>
 
-    <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
-    <%= form.control_group :title,        :text_area, :rows => 2 %>
-    <%= form.control_group :description,  :text_area, :rows => 6 %>
-    <%= form.control_group :images,       :filepicker, :multiple => true %>
-
-    <div class="criteria">
-    <% Quest.criteria_titles.each_with_index do |name, idx| %>
-      <div class="criterium-group">
-        <%= form.control_group name, :text_area, :rows => 2, :hint => I18n.t("quest.form.field_hint.criteria") %>
-        <%#= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
-      </div>
-    <% end %>
+  <%= form.control_group :bounty, :class => "input-small", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
+  <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
+  <%= form.control_group :title,        :text_area, :rows => 1, :class => "input-xxlarge" %>
+  <%= form.control_group :description,  :text_area, :rows => 6, :class => "input-xxlarge" %>
+  <div class="criteria">
+  <% Quest.criteria_titles.each_with_index do |name, idx| %>
+    <div class="criterium-group">
+      <%= form.control_group name, :text_area, :rows => 2, :hint => I18n.t("quest.form.field_hint.criteria"), :class => "input-xxlarge" %>
+      <%#= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
     </div>
-    
-    <script type="text/javascript" charset="utf-8">
-      (function($) {
-        /*
-            Hide all criterium groups that have no value in its input 
-            nodes except the first one.
-         */
-        var count = 0;
-        $(".criterium-group").each(function() {
-          // array with true entries when there is input.
-          var inputsHaveVals = jQuery.map($("textarea", this), function(input) {
-            return $(input).val() !== "" ? true : false;
-          });
-
-          var visible = (jQuery.inArray(true, inputsHaveVals) != -1) ||
-            (count++ == 0);
-
-          if(!visible)
-            $(this).hide();
-        });
-        
-        /*
-            Whenever a criterium grou gets focus we are showing the next 
-            criterium group already: the user might want to enter some data
-            there.
-         */
-        $(".criterium-group textarea").focus(function() {
-          $(this).closest(".criterium-group").
-            next(".criterium-group").show();
-        });
-        
-      })(jQuery);
-    </script>
   <% end %>
-  <% modal_footer do %>
-    <%= form.actions "#", :"data-dismiss" => "modal" %>
-  <% end %>
+  </div>
+  <%= form.control_group :images,       :filepicker, :multiple => true %>
+  <%= form.control_group :duration_in_days, :radio_button, :hint => false do
+      Quest::DURATIONS_IN_DAYS.map do |value|
+        label :class => "radio inline" do
+          form.radio_button(:duration_in_days, value, :checked => ((@quest.duration_in_days || 7) == value)) +
+          I18n.t('quest.form.field_hint.duration', :count => value)
+        end
+      end.join.html_safe
+  end %>
+  <div class="location">
+    <div id="location_fields" class="hide">
+      <%= form.control_group :location, :text_field, :class => "input-xxlarge" %>
+      <%= form.location_map("quest_location") %>
+    </div>
+    <%= form.restrict_location %>
+  </div>
+  
+  <%= form.actions quests_path %>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  // toggles location restriction
+  $("#restrict_location").change(function() {
+    $("#location_fields").toggleClass('hide');
+  });
+  <% if @quest.location.present? %>
+    $("#restrict_location").trigger('click');
+  <% end %>
+
+
+  (function($) {
+    /*
+        Hide all criterium groups that have no value in its input 
+        nodes except the first one.
+     */
+    var count = 0;
+    $(".criterium-group").each(function() {
+      // array with true entries when there is input.
+      var inputsHaveVals = jQuery.map($("textarea", this), function(input) {
+        return $(input).val() !== "" ? true : false;
+      });
+
+      var visible = (jQuery.inArray(true, inputsHaveVals) != -1) ||
+        (count++ == 0);
+
+      if(!visible)
+        $(this).hide();
+    });
+    
+    /*
+        Whenever a criterium grou gets focus we are showing the next 
+        criterium group already: the user might want to enter some data
+        there.
+     */
+    $(".criterium-group textarea").focus(function() {
+      $(this).closest(".criterium-group").
+        next(".criterium-group").show();
+    });
+    
+  })(jQuery);
+</script>

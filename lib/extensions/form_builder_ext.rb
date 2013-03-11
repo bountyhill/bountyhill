@@ -68,7 +68,7 @@ class ActionView::Helpers::FormBuilder
   end
 
   def render_control_group(field_type, name, options, &block)
-    ctrl_grp = div(:class => control_group_class(name)) do
+    ctrl_grp = div(:class => control_group_class(field_type, name)) do
         "#{render_control_group_label(    field_type, name, options)}\n" +
         "#{render_control_group_controls( field_type, name, options, &block)}\n"
       end
@@ -86,8 +86,9 @@ class ActionView::Helpers::FormBuilder
 
   def render_control_group_label(field_type, name, options)
     return if field_type == :check_box
-
-    label = options.delete(:label) || object.class.human_attribute_name(name)
+    return if (label = options.delete(:label)) == false
+    
+    label ||= object.class.human_attribute_name(name)
     content_tag :label, label, :class => "control-label"
   end
 
@@ -121,11 +122,11 @@ class ActionView::Helpers::FormBuilder
     end
   end
   
-  def control_group_class(name)
+  def control_group_class(field_type, name)
     if object.error_message_for(name)
       "control-group error"
     else
-      "control-group"
+      "control-group #{field_type.to_s.dasherize}"
     end
   end
 
@@ -155,7 +156,7 @@ class ActionView::Helpers::FormBuilder
   end
     
   def compliance(name, options)
-    @template.offer_compliance(object)
+    @template.offer_compliance(object, options)
   end
 
   def range_slider(name, options)
@@ -169,7 +170,7 @@ class ActionView::Helpers::FormBuilder
       :class  => options[:class],
       :min    => options[:min]      || 0,
       :max    => options[:max]      || 10,
-      :step   => options[:step]     || 5,
+      :step   => options[:step]     || 1,
       :value  => object.send(name)  || 5
     ) + div(postfix, :class => "range-slider-postfix")
   end
@@ -232,7 +233,7 @@ class ActionView::Helpers::FormBuilder
       save_btn   = submit(label, :class => css)
       cancel_btn = link_to(I18n.t("button.cancel"), url, { :class => "btn" }.merge(html_options))
 
-      "#{cancel_btn} #{save_btn}"
+      "#{cancel_btn}&nbsp;#{save_btn}"
     end
   end
   

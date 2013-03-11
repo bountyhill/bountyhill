@@ -21,6 +21,7 @@ de:
     edit:     Bearbeiten
     create:   Anlegen
     cancel:   Abbrechen
+    preview:  Vorschau
     start:    Starten
     stop:     Beenden
     share:    Teilen
@@ -191,6 +192,7 @@ de:
         title:        "Geben Sie hier eine kurze Beschreibung Ihres Angebots ein."
         description:  "Hier können Sie Ihr Angebot detailiert beschreiben."
         images:       Bilder hinzufügen
+        comment:      "Falls Sie eine Anmerkung zu diesem Kriterium haben, geben Sie diese hier ein."
       create:
         title:  Angebot abgeben
         legend: "Bitte beschreiben Sie detailiert was Sie dem Suchenden anbieten können. Sie können Ihrer Beschreibung gern Dateien hinzufügen."
@@ -257,13 +259,13 @@ de:
           other:  "%{count} Tage"
       create:
         title:  Suchanfrage anlegen
-        legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
+        legend: "Bitte loben Sie eine Belohnung aus, beschreiben Sie detailiert was Sie suchen und geben Sie die Laufzeit ihrer Suchanfrage an. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können. "
       edit: 
         title:  Suchanfrage bearbeiten
         legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
       start:
         title:  Suchanfrage starten
-        legend: "Loben Sie eine Belohnung aus und geben Sie die Laufzeit ihrer Suchanfrage an. Die Nachricht zu Ihrer Suchanfrage können Sie gern anpassen."
+        legend: "Ihre Suchanfrage wird mit der unten dargestellten Nachricht in den ausgewählten sozialen Netzwerken publiziert. Die Nachricht zu Ihrer Suchanfrage können Sie gern anpassen."
       stop:
         title:  Suchanfrage beenden
         legend: "Teilen Sie uns bitte den Grund dafür mit, warum Sie Ihre Suchanfrage vor deren Ablaufdatum beenden möchten."

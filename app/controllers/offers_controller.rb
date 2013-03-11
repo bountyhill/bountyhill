@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   include ApplicationController::ImageInteractions
   include Filter::Builder
 
-  layout false, :only => [:new, :edit, :accept, :reject, :withdraw]
+  layout false, :only => [:accept, :reject, :withdraw]
   
   # GET /offers
   def index
@@ -57,6 +57,8 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.name)
     end
+    
+    render action: "new"
   end
 
   # PUT /offers/1

@@ -26,3 +26,9 @@
     </ul>
   <% end %>
 </div>
+
+<% if preview %>
+  <div class="button-section">
+    <%= start_quest_button(quest, :button => "btn btn-inverse", :size => "default") %>
+  </div>
+<% end %>

@@ -4,15 +4,16 @@ module BoxHelper
     expect! type    => [:quest, :offer, :user]
     expect! object  => [Quest, Offer, User]
     
+    preview = options[:preview]
     title = div :class => "title" do
       [
         div(options[:title], :class => "pull-left"),
-        div(send("#{type}_buttons", object), :class => "pull-right")
+        div(preview ? step_indicator_for(object) : send("#{type}_buttons", object), :class => "pull-right")
       ].compact.join.html_safe
     end
     
     content = div :class => "content" do
-      partial "#{type.to_s.pluralize}/show", type => object
+      partial "#{type.to_s.pluralize}/show", type => object, :preview => preview
     end
     
     div :class => "#{type} box row-fluid" do
@@ -67,6 +68,30 @@ module BoxHelper
     end
     
     div :class => "#{type} filter box row-fluid" do
+      title + content
+    end
+  end
+  
+  def form_box(model, options={})
+    expect! model  => [Quest, Offer]
+    expect! options => Hash
+    
+    type = model.class.name.downcase
+    
+    title = div :class => "title" do
+      [
+        div(i18n_title_for(model), :class => "pull-left"),
+        div(step_indicator_for(model), :class => "pull-right")
+      ].compact.join.html_safe
+    end
+    
+    content = div :class => "content" do
+      div(:class => "#{type} form") do
+        partial "#{type.pluralize}/form", type => model
+      end
+    end
+
+    div :class => "#{type} box row-fluid" do
       title + content
     end
   end

@@ -42,7 +42,7 @@ module NavigationHelper
 
     case nav_item
     when :start_quest
-      modal_link_to awesome_icon(:edit) + span(I18n.t("nav.start_quest")), new_quest_path
+      link_to awesome_icon(:edit) + span(I18n.t("nav.start_quest")), new_quest_path
     when :quests
       link_to awesome_icon(:list) + span(I18n.t("nav.quests")), quests_path
     when :your_quests

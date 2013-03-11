@@ -11,6 +11,11 @@ form {
       }
     }
   }
+  .location {
+    label {
+      &.checkbox { margin-left: 180px; }
+    }
+  }
   .tweet-container {
     position: relative;
     .avatar {

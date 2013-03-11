@@ -16,7 +16,7 @@ module ButtonHelper
     expect! name => Symbol
     expect! url => String
     
-    awesome_button(name, url, { :html => { :"data-toggle" => "modal", :"data-target" => "#myModal" }.merge(options) }, &block)
+    awesome_button(name, url, { :html => { :"data-toggle" => "modal", :"data-target" => "#myModal", :rel => "nofollow" }}.merge(options), &block)
   end
   
   def awesome_icon name, *args, &block
@@ -35,14 +35,14 @@ module ButtonHelper
     html = (options.delete(:html) || {})
     text = options.delete(:text)
     
-    css_class = "btn btn-link"
-    css_class << " btn-#{size}" if size
+    button = options.delete(:button) || "btn btn-link"
+    button << " btn-#{size}" if size
     
     if original_class = options.delete(:class)
-      css_class << " #{original_class}"
+      button << " #{original_class}"
     end
 
-    content_tag :a, html.merge(:class => css_class, :href => href) do
+    content_tag :a, html.merge(:class => button, :href => href) do
       awesome_icon name, options, &block
     end
   end

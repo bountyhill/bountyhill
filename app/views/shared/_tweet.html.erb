@@ -22,34 +22,12 @@
     <%= form.error_messages %>
 
     <%= hidden_field_tag :bounty_with_unit, number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;') %>
+    <%= form.control_group :bounty, :hidden_field, :value => bounty %>
     
-    <% if retweet %>
-      <%= form.control_group :bounty, :hidden_field, :value => bounty %>
-    <% else %>
-      <%= form.control_group :bounty, :class => "input-mini", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
-    <% end %>
-
-    <% unless retweet %>
-      <%= form.control_group :duration_in_days, :radio_button, :hint => false do
-          Quest::DURATIONS_IN_DAYS.map do |value|
-            label :class => "radio inline" do
-              form.radio_button(:duration_in_days, value, :checked => ((quest.duration_in_days || 7) == value)) +
-              I18n.t('quest.form.field_hint.duration', :count => value)
-            end
-          end.join.html_safe
-      end %>
-    <% end %>
+    TODO: social network chooser
     
     <%= form.control_group :message, :text_area, :rows => 3, :value => quest.title, :hint => false %>
     
-    <% unless retweet %>
-      <div id="location_fields" class="hide">
-        <%= form.control_group :location, :text_field %>
-        <%= form.location_map("quest_location") %>
-      </div>
-      <%= form.restrict_location %>
-    <% end %>
-
     <div class="tweet-container">
       <%= form.control_group :tweet, :hidden_field %>
       <%= avatar current_user, :size => 48 %>
@@ -67,14 +45,6 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-
-// toggles location restriction
-$("#restrict_location").change(function() {
-  $("#location_fields").toggleClass('hide');
-});
-<% if quest.location.present? %>
-  $("#restrict_location").trigger('click');
-<% end %>
 
 (function($) {
   
