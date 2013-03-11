@@ -2,7 +2,7 @@
   bounty  = @quest.bounty.to_s(:currency => false, :thousands_separators => false, :cents => false)
 %>
 
-<%= form_for @quest, :remote => true do |form| %>
+<%= form_for @quest do |form| %>
   <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
   <%= form.error_messages %>
 
@@ -28,11 +28,11 @@
       end.join.html_safe
   end %>
   <div class="location">
+    <%= form.restrict_location %>
     <div id="location_fields" class="hide">
       <%= form.control_group :location, :text_field, :class => "input-xxlarge" %>
       <%= form.location_map("quest_location") %>
     </div>
-    <%= form.restrict_location %>
   </div>
   
   <%= form.actions quests_path %>
@@ -41,7 +41,11 @@
 <script type="text/javascript" charset="utf-8">
   // toggles location restriction
   $("#restrict_location").change(function() {
-    $("#location_fields").toggleClass('hide');
+    if($(this).is(':checked')) {
+      $("#location_fields").slideDown('hide');
+    } else {
+      $("#location_fields").slideUp('hide');
+    }
   });
   <% if @quest.location.present? %>
     $("#restrict_location").trigger('click');
