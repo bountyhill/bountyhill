@@ -45,4 +45,11 @@
       color: $quests_box_content_color;
     }
   }
+  @else if  $box_type == offer-filter { 
+    background-color: $offers_box_title_color;
+    .title { 
+      background-color: $offers_box_color; 
+      color: $offers_box_content_color;
+    }
+  }
 }

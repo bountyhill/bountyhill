@@ -8,19 +8,36 @@
     }
   }
   
+  /* forms */
+  .form {
+    padding: 0 50px;
+    .buttons { margin: 30px 0; }
+    a { color: $text_inverse; }
+  }
+  
   /* filter */
   &.filter {
     .btn { 
       width: 85%; 
       text-align: left;
     }
-    &.quests {
+    &.quest {
       .btn { 
         @include sassy-button-gradient("simple", $quest_button_color, $quest_button_color); 
         &.active, &:hover {
-          background-color: #26748E;
-          @include background-image(linear-gradient(#26748E, #26748E));
           @include box-shadow(none);
+          background-color: $quest_active_button_color;
+          @include background-image(linear-gradient($quest_active_button_color, $quest_active_button_color));
+        };
+      }
+    }
+    &.offer {
+      .btn { 
+        @include sassy-button-gradient("simple", $offer_button_color, $offer_button_color);
+        &.active, &:hover {
+          @include box-shadow(none);
+          background-color: $offer_active_button_color;
+          @include background-image(linear-gradient($offer_active_button_color, $offer_active_button_color));
         };
       }
     }
@@ -81,6 +98,10 @@
     }
     .image-section {
       margin-top: 40px;
+    }
+    .button-section {
+      float: right;
+      margin-bottom: 30px;
     }
     .criteria-section {
       margin-top: 40px;

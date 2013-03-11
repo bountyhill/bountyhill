@@ -11,6 +11,11 @@ form {
       }
     }
   }
+  .location {
+    label {
+      &.checkbox { margin-left: 180px; }
+    }
+  }
   .tweet-container {
     position: relative;
     .avatar {
@@ -41,3 +46,41 @@ form {
     margin-bottom: 10px;
   }
 }
+
+/* code by @naoisegolden */
+
+.step-indicator {
+  counter-reset: item;
+  font-weight: normal;
+  padding-right: 10px;
+  li {
+    display: block;
+    float: left;
+    line-height: 40px;
+    font-size: 13px;
+    font-weight: bold;
+    color: gray;
+    margin-right: 10px;
+    &:last-child { margin-right: 0; }
+    &.active {
+      color: white;
+      &:before {
+        background-color: black;
+      }
+    }
+    &:before {
+      content: counter(item);
+      counter-increment: item;
+      display: inline-block;
+      text-align: center;
+      line-height: 25px;
+      width: 25px;
+      height: 25px;
+      background-color: #ccc;
+      border-radius: 50%;
+      margin: 0 .5em;
+      margin-bottom: .25em;
+    }
+  }
+}
+

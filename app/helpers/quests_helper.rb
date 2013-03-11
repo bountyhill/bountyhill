@@ -1,9 +1,10 @@
 module QuestsHelper
 
-  def quest_box(quest)
+  def quest_box(quest, options={})
     expect! quest => Quest
     
-    box(:quest, quest, :title => I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')))
+    title = I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))
+    box(:quest, quest, { :title => title }.merge(options))
   end
 
   def quests_list_box(quests, options={})
@@ -25,21 +26,21 @@ module QuestsHelper
   end
   
   def new_quest_button
-    modal_awesome_button(:edit, new_quest_path) { I18n.t("nav.start_quest") }
+    awesome_button(:edit, new_quest_path) { I18n.t("nav.start_quest") }
   end
 
   def categories_select_options
     I18n.t(:categories, :scope => :quest).map { |key, value| [ value, key ] }
   end
   
-  def quest_category_filters(filters=[])
-    filter_box(:quests, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
+  def quests_category_filters(filters=[])
+    filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
   end
   
   def quest_buttons(quest)
     button_group [
       share_quest_button(quest),
-      offer_quest_button(quest),
+      new_offer_button(quest),
       stop_quest_button(quest),
       start_quest_button(quest),
       edit_quest_button(quest)
@@ -49,35 +50,35 @@ module QuestsHelper
   def share_quest_button(quest)
     return unless quest.active?
 
-    modal_awesome_button(:retweet, share_path(quest), :rel => "nofollow") { I18n.t("button.share") }
+    modal_awesome_button(:retweet, share_path(quest)) { I18n.t("button.share") }
   end
 
-  def offer_quest_button(quest)
+  def new_offer_button(quest)
     return unless quest.active?
     return if current_user && current_user.owns?(quest)
 
-    modal_awesome_button(:share, new_offer_path(:quest_id => quest), :rel => "nofollow") { I18n.t("button.offer") }
+    awesome_button(:share, new_offer_path(:quest_id => quest)) { I18n.t("button.offer") }
   end
 
-  def start_quest_button(quest)
+  def start_quest_button(quest, options={})
     return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
-
-    modal_awesome_button(:ok_circle, run_path(quest), :rel => "nofollow") { I18n.t("button.start") }
+    
+    modal_awesome_button(:ok_circle, run_path(quest), options) { I18n.t("button.start") }
   end
 
   def stop_quest_button(quest)
     return unless current_user
     return unless quest.active? && current_user.owns?(quest)
 
-    modal_awesome_button(:remove_sign, url_for(:controller => :runs, :action => :cancel, :id => quest), :rel => "nofollow") { I18n.t("button.stop") }
+    modal_awesome_button(:remove_sign, url_for(:controller => :runs, :action => :cancel, :id => quest)) { I18n.t("button.stop") }
   end
   
   def edit_quest_button(quest)
     return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
 
-    modal_awesome_button(:edit, edit_quest_path(quest), :rel => "nofollow") { I18n.t("button.edit") }
+    modal_awesome_button(:edit, edit_quest_path(quest)) { I18n.t("button.edit") }
   end
   
   def quest_statistic(quest)
@@ -130,12 +131,12 @@ end
 __END__
   def share_button(quest)
     return unless quest.active?
-    header_button(:twitter, share_path(quest), :title => t("quest.actions.tweet.title"), :rel => "nofollow")
+    header_button(:twitter, share_path(quest), :title => t("quest.actions.tweet.title"))
   end
 
   def offer_button(quest)
     return unless !personal_page? && quest.active?
-    header_button(:rect, new_offer_path(:quest_id => quest), :title => t("quest.actions.offer.title"), :rel => "nofollow")
+    header_button(:rect, new_offer_path(:quest_id => quest), :title => t("quest.actions.offer.title"))
   end
 
   def stop_quest_button(quest)

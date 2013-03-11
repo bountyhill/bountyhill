@@ -21,9 +21,7 @@ module Filter
     
     def url_for_filter(attribute, group)
       url_params = params.dup
-      url_params.delete attribute
-
-      url_params[attribute] = group if group != "all"
+      url_params[attribute] = (group == "all") ? nil : group
 
       url_for url_params
     end
@@ -37,7 +35,11 @@ module Filter
         I18n.t(filter.name, :scope => "#{scope.klass.name.downcase}.#{attribute.to_s.pluralize}") 
       end
 
-      filters.unshift filter_item(attribute, "all", filters.sum(&:count))
+      # filters.unshift filter_item(attribute, "all", filters.sum(&:count))
+
+      # add 'all' filter unless there is nothing to filter
+      filters.unshift(filter_for_all(scope, attribute)) unless filters.size == 1
+      
       filters
     end  
   end

@@ -21,6 +21,7 @@ en:
     edit:     Edit
     create:   Create
     cancel:   Cancel
+    preview:  Preview
     start:    Start
     stop:     Stop
     share:    Share
@@ -41,6 +42,8 @@ en:
     filter_by: "for %{filter}"
     categories:
       title:  Categories
+    states:
+        title:  States
   time:
     distance:
       creation:   "%{distance_of_time} ago"
@@ -153,9 +156,7 @@ en:
         password_new:               Enter your new password.
         password_new_confirmation:  Confirm your new password
   offer:
-    status:
-      viewed:     "Viewed"
-      compliance: "%{precentage}% compliance"
+    compliance: "%{precentage}% compliance"
     box:
       title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
@@ -177,6 +178,12 @@ en:
           zero:   " "
           one:    "%{count} image"
           other:  "%{count} images"
+    states:
+      all:        All
+      active:     Active
+      withdrawn:  Withdrawn
+      accepted:   Accepted
+      rejected:   Rejected
     form:
       range_slider:
         prefix:   "not at all"
@@ -185,6 +192,7 @@ en:
         title:        "Enter a subject describing your offer in a few words."
         description:  "Add a detailed description for your offer."
         images:       Add images
+        comment:      "If you should have a remark about this criteria, please enter it here."
       create:
         title:  Submit an Offer
         legend: "Provide a detailed description about what you have to offer. Feel free to add any files to your offer."
@@ -251,13 +259,13 @@ en:
           other:  "%{count} days"
       create: 
         title:  Define a new quest
-        legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
+        legend: "Please set up a bounty, provide a detailed description about what you are looking and specify your quest's run time. In addition feel free to define up to %{count} criteria to be matched for your quest."
       edit: 
         title:  Edit your quest
         legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
       start:
         title:  Start your quest
-        legend: "Please set up a bounty and specify your quest's run time. Feel free to adjust your quest's message to your needs."
+        legend: "Your quest will be published in the choosen social networks with the message below. Feel free to adjust your quest's message to your needs."
       stop:
         title:  Stop your quest
         legend: "Please tell us the reason why you want to stop your quest before it's expiration."

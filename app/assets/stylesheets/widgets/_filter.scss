@@ -1,6 +1,9 @@
 .filter {
-  &.quests.box {
+  &.quest.box {
     @include box_colors(quest-filter);
+  }
+  &.offer.box {
+    @include box_colors(offer-filter);
   }
   
   ul {

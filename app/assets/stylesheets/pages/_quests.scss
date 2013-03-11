@@ -23,6 +23,27 @@
         color: $quests_box_content_color !important;
       }
     }
+  }
   
+  /* ------- step indicator colors------- */
+  &.quest {
+    .title {
+      .step-indicator {
+        li {
+          color: $quest_step_color;
+          &.active {
+            color: $quest_step_active_color;
+            &:before {
+              color: $quest_step_active_color;
+              background-color: $quest_step_active_bg_color;
+            }
+          }
+          &:before {
+            color: $quest_step_inactive_color;
+            background-color: $quest_step_bg_color;
+          }
+        }
+      }
+    }
   }
 }

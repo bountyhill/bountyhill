@@ -1,7 +1,5 @@
 class QuestsController < ApplicationController
   include ApplicationController::ImageInteractions
-  layout false, :only => [:new, :edit]
-
   include Filter::Builder
   
   # GET /quests
@@ -24,6 +22,10 @@ class QuestsController < ApplicationController
   # GET /quests/1
   def show
     @quest = Quest.find(params[:id])
+
+    if params[:preview]
+      render action: "preview"
+    end
   end
 
   def new
@@ -51,8 +53,10 @@ class QuestsController < ApplicationController
 
     # Start the quest after saving.
     if @quest.save
-      redirect_to! run_path(@quest), notice: 'Quest was successfully created.'
+      redirect_to! quest_path(@quest, preview: true), notice: 'Quest was successfully created.'
     end
+
+    render action: "new"
   end
   
   # PUT /quests/1

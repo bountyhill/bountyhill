@@ -29,21 +29,21 @@ module OffersHelper
     return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
 
-    modal_awesome_button(:ok_circle, accept_offer_path(offer), :rel => "nofollow") { I18n.t("button.accept") }
+    modal_awesome_button(:ok_circle, accept_offer_path(offer)) { I18n.t("button.accept") }
   end
 
   def reject_offer_button(offer)
     return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
 
-    modal_awesome_button(:remove_sign, reject_offer_path(offer), :rel => "nofollow") { I18n.t("button.reject") }
+    modal_awesome_button(:remove_sign, reject_offer_path(offer)) { I18n.t("button.reject") }
   end
   
   def withdraw_offer_button(offer)
     return unless current_user
     return unless offer.active? && current_user.owns?(offer)
 
-    modal_awesome_button(:remove_sign, withdraw_offer_path(offer), :rel => "nofollow") { I18n.t("button.withdraw") }
+    modal_awesome_button(:remove_sign, withdraw_offer_path(offer)) { I18n.t("button.withdraw") }
   end
     
   def offer_statistic(offer)
@@ -54,10 +54,17 @@ module OffersHelper
   
   def offer_statistic_entries(offer)
     statistic_entries = [
-      dt(I18n.t("offer.status.compliance", :precentage => offer.compliance)),
+      dt(I18n.t("offer.compliance", :precentage => offer.compliance)),
       dd("")
     ]
     
+    unless offer.active?
+      statistic_entries << [
+        dt(I18n.t("offer.states.#{offer.state}")),
+        dd("")
+      ]
+    end
+
     statistic_entries << [
       dt(I18n.t("offer.list.statistic.images", :count => offer.images.size)),
       dd(image_stack(offer))
@@ -69,8 +76,9 @@ module OffersHelper
   def offer_compliance(offer, options={})
     value = options[:value] || offer.compliance.to_s
     label = options[:label] || value
+    css   = options[:class] || "progress"
     
-    div :class => "progress" do
+    div :class => css do
       div label, :class => "bar", :style => "width: #{value}%;"
     end
   end
@@ -83,7 +91,7 @@ module OffersHelper
         div(I18n.t("offer.list.title", :count => offerable.offers.count), :class => "pull-left"),
         div(:class => "pull-right") do
           button_group [
-            offer_quest_button(offerable)
+            new_offer_button(offerable)
           ]
         end
       ].compact.join.html_safe
@@ -102,6 +110,10 @@ module OffersHelper
     div :class => "offers box row-fluid" do
       title + content
     end
-    
   end
+  
+  def offers_state_filters(filters=[])
+    filter_box(:offer, :states, filters, :title => I18n.t("filter.states.title"), :active => params[:state])
+  end
+  
 end
