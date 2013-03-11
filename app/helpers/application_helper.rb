@@ -21,6 +21,15 @@ module ApplicationHelper
     I18n.t("#{model.class.name.downcase}.form.#{translation_key_for(model, options)}.hint", options).html_safe
   end
   
+  def step_indicator_for(model, options={})
+    ol :class => "step-indicator" do
+      [
+        li(I18n.t("create", :scope => "button"),  :class => "step #{model.new_record? ? 'active' : ''}"),
+        li(I18n.t("post",   :scope => "button"),  :class => "step #{model.new_record? ? '' : 'active'}"),
+      ].join.html_safe
+    end
+  end
+  
   def translation_key_for(model, options={})
     if    (key = options.delete(:translation_key))  then key
     elsif model.readonly?                           then "show"
@@ -66,6 +75,10 @@ module ApplicationHelper
 
   def ul(*content, &block)
     _content_tag(:ul, *content, &block)
+  end
+
+  def ol(*content, &block)
+    _content_tag(:ol, *content, &block)
   end
 
   def li(*content, &block)

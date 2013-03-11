@@ -11,7 +11,6 @@
     }
   }
 
-
   /* ------- message box colors------- */
   .offer {
     .message-box {
@@ -20,6 +19,28 @@
     .statistic {
       dl {
         color: $offers_box_content_color !important;
+      }
+    }
+  }
+  
+  /* ------- step indicator colors------- */
+  &.offer {
+    .title {
+      .step-indicator {
+        li {
+          color: $offer_step_color;
+          &.active {
+            color: $offer_step_active_color;
+            &:before {
+              color: $offer_step_active_color;
+              background-color: $offer_step_active_bg_color;
+            }
+          }
+          &:before {
+            color: $offer_step_inactive_color;
+            background-color: $offer_step_bg_color;
+          }
+        }
       }
     }
   }
@@ -55,14 +76,28 @@
 
 
 form {
+  
+  .control-group {
+    &.compliance {
+      .progress {
+        &.main {
+          width: 542px;
+          height: 26px;
+          line-height: 25px;
+        }
+      }
+    }
+  }
+  
   .criteria_compliances {
     & > li {
+      .criteria { font-weight: bold; }
       margin-bottom: 18px;
       .control-label {
-        width: 115px;
+        width: 135px;
       }
       .controls {
-        margin-left: 135px;
+        margin-left: 155px;
         .range-slider-prefix, .range-slider-postfix {
           margin-top: 6px;
           display: inline-block;
@@ -77,6 +112,8 @@ form {
       }
       .control-group {
         margin-bottom: 6px;
+        &.range-slider { float:left; }
+        &.compliance { margin-right: 35px; }
       }
     }
   }
