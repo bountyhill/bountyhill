@@ -102,7 +102,7 @@ class Quest < ActiveRecord::Base
   
   # -- Validations ----------------------------------------------------
 
-  validates :category,    :presence => true
+  validates :category,    :presence => true, :inclusion => CATEGORIES
   validates :title,       :presence => true, :length => { :maximum => 100 }
   validates :description, :presence => true, :length => { :maximum => 2400 }
   

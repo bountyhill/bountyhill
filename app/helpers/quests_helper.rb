@@ -30,7 +30,9 @@ module QuestsHelper
   end
 
   def categories_select_options
-    I18n.t(:categories, :scope => :quest).map { |key, value| [ value, key ] }
+    Quest::CATEGORIES.inject([]) do |options, category|
+      options << [I18n.t(category, :scope => "quest.categories"), category]
+    end
   end
   
   def quests_category_filters(filters=[])
