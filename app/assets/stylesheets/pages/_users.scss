@@ -1,5 +1,5 @@
-.box {
-  &.user {
+.user {
+  &.box {
     @include box_colors(user);
     .title {
       .handle {
@@ -21,6 +21,61 @@
       }
     }
   }
+  
+  &.bar {
+    background-color: $user_box_title_color;
+/*
+    &.quest { background-color: $quest_box_title_color; }
+    &.offer { background-color: $offer_box_title_color; }
+*/
+    display: block;
+    padding: 10px 7px 10px 10px;
+    height: 64px;
+    position: relative;
+    color: white;
+    .profile {
+      width: 82%;
+      .name, .handle {
+        position: absolute;
+        left: 84px;
+        font-weight: bold;
+      }
+      .name   { 
+        top : 6px;
+        line-height: 1.2;
+        font-size: 140%;
+      }
+      .handle { 
+        top : 30px;
+        font-size: 110%;
+      }
+    }
+    .rating {
+      width: 150px;
+      font-weight: bold;
+      position: absolute;
+      right: 10px;
+      top: 18px;
+      ul.stars {
+        margin: 0;
+        float: right;
+        list-style: none;
+        li {
+          float: left;
+          line-height: 15px;
+        }
+      }
+      .points {
+        font-size: 36px;
+        line-height: 30px;
+      }
+      .text {
+        font-size: 80%;
+        border-top: 7px solid white;
+        margin-top: 4px;
+      }
+    }
+  }
 }
 
 .sidebar {
@@ -32,6 +87,7 @@
     }
   }
 }
+
 
 @media (max-width: 767px) {
   .sidebar {

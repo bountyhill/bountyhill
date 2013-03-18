@@ -41,6 +41,36 @@ module UsersHelper
       :html => { :target => :blank, :rel => "nofollow" }) { I18n.t("button.follow") }
   end
   
+  def user_bar(user, type)
+    expect! type => [:quest, :offer]
+    
+    link_to user_path(user), :class => "user bar #{type}" do
+      div(
+        [
+          avatar(user, :size => 64),
+          div(user.name, :class => "name"),
+          div(user.twitter_handle, :class => "handle")
+        ].join.html_safe, :class => "profile") + 
+        user_points(user)
+    end
+  end
+  
+  def user_points(user)
+    div :class => "rating" do
+      [
+        user_stars(user),
+        div(user.points, :class => "points"),
+        div(I18n.t("user.statistic.points", :count => user.points), :class => "text")
+      ].join.html_safe
+    end
+  end
+  
+  def user_stars(user)
+    ul :class => "stars" do
+      user.score.times.map{ li(awesome_icon(:star)) }.join.html_safe
+    end
+  end
+  
 end
 __END__
 

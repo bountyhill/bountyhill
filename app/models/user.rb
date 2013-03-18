@@ -211,36 +211,11 @@ class User < ActiveRecord::Base
     avatar || Gravatar.url(:size => options[:size])
   end
   
-  # represents followers
-  def strenght
-    # TODO!
-    rand 100
+  # represents stars
+  def score
+    points.to_s.size
   end
   
-  # represents followers who already retweeted
-  def charism
-    # TODO!
-    rand 100
-  end
-  
-  # represents position of users in all his retweet chains
-  def swiftness
-    # TODO!
-    rand 100
-  end 
-  
-  # represents all retweets of user
-  def endurance
-    # TODO!
-    rand 100
-  end
-  
-  # represents rope teams
-  def teamwork
-    # TODO!
-    rand 100
-  end
-    
   # -- special System users -------------------------------------------
 
   module SystemUsers

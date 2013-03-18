@@ -116,6 +116,10 @@ en:
         one:    "1 comment"
         other:  "%{count} comments"
   user:
+    statistic:
+      points:
+        one:    "point"
+        other:  "points"
     box:
       title:  "Your profile"
     form:
