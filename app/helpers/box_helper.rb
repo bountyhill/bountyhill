@@ -16,7 +16,7 @@ module BoxHelper
       partial "#{type.to_s.pluralize}/show", type => object, :preview => preview
     end
     
-    div :class => "#{type} box row-fluid" do
+    div :class => "#{type} box row-fluid #{options[:class]}" do
       title + content
     end
   end

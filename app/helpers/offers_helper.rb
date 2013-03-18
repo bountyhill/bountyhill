@@ -1,9 +1,10 @@
 module OffersHelper
 
-  def offer_box(offer)
+  def offer_box(offer, options={})
     expect! offer => Offer
     
-    box(:offer, offer, :title => I18n.t("offer.box.title", :precentage => offer.send(:compliance).to_s))
+    title =  I18n.t("offer.box.title", :precentage => offer.send(:compliance).to_s)
+    box(:offer, offer, { :title => title }.merge(options))
   end
   
   def offers_list_box(offers)
@@ -83,7 +84,7 @@ module OffersHelper
     end
   end
   
-  def offers_box(offerable)
+  def offers_box(offerable, options={})
     expect! offerable => [Quest]
     
     title = h3 :class => "title" do
@@ -107,7 +108,7 @@ module OffersHelper
       end
     end
 
-    div :class => "offers box row-fluid" do
+    div :class => "offers box row-fluid  #{options[:class]}" do
       title + content
     end
   end

@@ -2,6 +2,23 @@
   width: $size;
   height: $size;
 }
+
+@mixin opener($color) {
+  &.with-opener {
+    &:before {
+      content: "";
+      border: 60px solid $color;
+      border-width: 0 30px 30px 30px;
+      border-color: $color transparent $color transparent;
+      position: relative;
+      top: -30px;           /* height of spaceer */
+      left: 50%;            /* align centric */
+      margin-bottom: -30px; /* don't push box' title down */
+    }
+  }
+}
+
+
 @mixin message($background_color, $border_color) {
   line-height: 1.2;
   min-height: 35px;
@@ -21,6 +38,7 @@
     top: 15px;
   }
 }
+
 @mixin box_colors($box_type) {
   @if       $box_type == quest { 
     background-color: $quests_box_color;

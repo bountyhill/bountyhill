@@ -1,6 +1,10 @@
 .box {
   &.comments { 
+    /* common box colors */
     @include box_colors(comment);
+    
+    /* opener triangle */
+    @include opener($comments_box_title_color);
   }
   form {
     input[type="submit"] {

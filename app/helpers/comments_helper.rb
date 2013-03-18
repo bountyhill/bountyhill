@@ -50,7 +50,7 @@ module CommentsHelper
       partial "shared/comments", :commentable => commentable
     end
 
-    div :class => "comments box row-fluid" do
+    div :class => "comments box row-fluid with-opener" do
       comment_title(commentable) + content
     end
   end

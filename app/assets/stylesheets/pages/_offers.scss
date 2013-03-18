@@ -1,6 +1,10 @@
 .box {
   &.offers, &.offer {
+    /* ------- common box colors ------- */
     @include box_colors(offer);
+
+    /* opener triangle */
+    @include opener($offers_box_title_color);
 
     /* ------- compliance bar colors ------- */
     .progress {
@@ -11,8 +15,10 @@
     }
   }
 
-  /* ------- message box colors------- */
+  /* ------- offers/list ------- */
   .offer {
+
+    /* ------- message box colors------- */
     .message-box {
       @include message($offers_box_content_color, $offers_box_content_color);
     }
@@ -23,8 +29,10 @@
     }
   }
   
-  /* ------- step indicator colors------- */
+  /* ------- offers/show ------- */
   &.offer {
+
+    /* ------- step indicator colors------- */
     .title {
       .step-indicator {
         li {
