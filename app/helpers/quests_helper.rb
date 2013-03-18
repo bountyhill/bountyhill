@@ -121,7 +121,7 @@ module QuestsHelper
   end
   
   def quest_bounty_height(quest, options={})
-    value = options[:value] ||= offer.compliance.to_s
+    value = options[:value] ||= quest.bounty_height.to_s
     
     div :class => "progress" do
       div value, :class => "bar", :style => "width: #{quest.bounty_height}%;"
