@@ -96,4 +96,19 @@ module BoxHelper
     end
   end
   
+  def statistic_box(count, text, icon=nil, options={})
+    expect! count   => [Integer, String]
+    expect! text    => String
+    expect! icon    => [String, nil]
+    expect! options => Hash
+    
+    div :class => "statistic box #{options[:css_class]}" do
+      [
+        div(icon,  :class => "icon"),
+        div(count, :class => "count"),
+        div(text,  :class => "text")
+      ].compact.join.html_safe
+    end
+  end
+  
 end

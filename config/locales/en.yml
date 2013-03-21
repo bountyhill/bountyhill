@@ -43,11 +43,7 @@ en:
     categories:
       title:  Categories
     states:
-        title:  States
-  time:
-    distance:
-      creation:   "%{distance_of_time} ago"
-      expiration: "%{distance_of_time} left"
+      title:  States
   mail:
     confirm_email:    "[Bountyhill] Please verify your email '%{email}'"
     reset_password:   "[Bountyhill] Reset your password"
@@ -118,8 +114,8 @@ en:
   user:
     statistic:
       points:
-        one:    "point"
-        other:  "points"
+        one:    "point collected"
+        other:  "points collected"
     box:
       title:  "Your profile"
     form:
@@ -177,11 +173,12 @@ en:
       title:
         one:    "1 offer"
         other:  "%{count} offers"
-      statistic:
-        images:
-          zero:   " "
-          one:    "%{count} image"
-          other:  "%{count} images"
+      creation:   "%{distance_of_time} ago"
+      expiration: "%{distance_of_time} left"
+      images:
+        zero:   " "
+        one:    "%{count} image"
+        other:  "%{count} images"
     states:
       all:        All
       active:     Active
@@ -215,20 +212,31 @@ en:
       title:
         one:    "1 quest"
         other:  "%{count} quests"
-      statistic:
-        bounty:   "%{amount} bounty"
-        images:
-          zero:   " "
-          one:    "%{count} image"
-          other:  "%{count} images"
-        offers:
-          zero:   " "
-          one:    "%{count} offer"
-          other:  "%{count} offers"
-        forwards:
-          zero:   " "
-          one:    "%{count} forward"
-          other:  "%{count} forwards"
+      bounty:   "%{amount} bounty"
+      offers:
+        zero:   " "
+        one:    "%{count} offer"
+        other:  "%{count} offers"
+      forwards:
+        zero:   " "
+        one:    "%{count} forward"
+        other:  "%{count} forwards"
+      creation:   "%{distance_of_time} ago"
+      expiration: "%{distance_of_time} left"
+      images:
+        zero:   " "
+        one:    "%{count} image"
+        other:  "%{count} images"
+    statistic:
+      bounty:     "bounty promised"
+      offers:     "offers made"
+      forwards:   "forwards done"
+      expiration:
+        one:      "day left"
+        other:    "days left"
+      creation:
+        one:      "day ago created"
+        other:    "days ago created"
     categories:
       all:            All
       misc:           Miscellaneous

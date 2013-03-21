@@ -3,9 +3,7 @@
   <div class="main span8">
     <%= user_bar(@quest.owner, :quest) %>
   </div>
-  <div class="sidebar span2">
-    <%= placeholder "Quest info" %>
-  </div>
+  <div class="sidebar span2">&nbsp;</div>
   <div class="span1">&nbsp;</div>
 </div>
 
@@ -26,11 +24,13 @@
     </div>
   </div>
   <div class="sidebar span2">
-    <%= placeholder "Days left" %>
+    <%= quest_bounty_statistic_box(@quest) %>
     <%= spacer %>
-    <%= placeholder "Offers made" %>
+    <%= quest_days_statistic_box(@quest) %>
     <%= spacer %>
-    <%= placeholder "Forwards" %>
+    <%= quest_offers_statistic_box(@quest) %>
+    <%= spacer %>
+    <%= quest_forwards_statistic_box(@quest) %>
     <%= spacer %>
   </div>
   <div class="span1">&nbsp;</div>

@@ -67,7 +67,7 @@ module OffersHelper
     end
 
     statistic_entries << [
-      dt(I18n.t("offer.list.statistic.images", :count => offer.images.size)),
+      dt(I18n.t("offer.list.images", :count => offer.images.size)),
       dd(image_stack(offer))
     ]
       

@@ -127,4 +127,28 @@
       }
     }
   }
+  
+  &.statistic {
+    position: relative;
+    display: block;
+    padding: 10px 10px 10px 20%;
+    height: 64px;
+    color: $text;
+    font-weight: bold;
+    .icon {
+      margin: 8px 8px 0 0;
+      float: right;
+      line-height: 15px;
+    }
+    .count {
+      font-size: 36px;
+      line-height: 30px;
+      margin-top: 8px;
+    }
+    .text {
+      font-size: 90%;
+      border-top: 7px solid white;
+      margin-top: 4px;
+    }
+  }
 }

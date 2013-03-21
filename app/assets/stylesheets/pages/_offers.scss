@@ -24,13 +24,17 @@
     }
     .statistic {
       dl {
-        color: $offers_box_content_color !important;
+        color: $offers_box_statistic_color !important;
       }
     }
   }
   
   /* ------- offers/show ------- */
   &.offer {
+    /* ------- statistic boxes ------- */
+    &.statistic {
+      background-color: $offer_box_statistic_color;
+    }
 
     /* ------- step indicator colors------- */
     .title {

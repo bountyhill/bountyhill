@@ -26,13 +26,16 @@
     }
     .statistic { 
       dl {
-        color: $quests_box_content_color !important;
+        color: $quests_box_statistic_color !important;
       }
     }
   }
   
-  /* ------- quests/show ------- */
   &.quest {
+    /* ------- statistic boxes ------- */
+    &.statistic {
+      background-color: $quest_box_statistic_color;
+    }
     
     /* ------- step indicator colors------- */
     .title {

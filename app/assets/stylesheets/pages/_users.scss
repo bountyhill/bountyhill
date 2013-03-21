@@ -24,10 +24,10 @@
   
   &.bar {
     background-color: $user_box_title_color;
-/*
-    &.quest { background-color: $quest_box_title_color; }
-    &.offer { background-color: $offer_box_title_color; }
-*/
+    /*
+    &.quest { background-color: $quest_box_statistic_color; }
+    &.offer { background-color: $offer_box_statistic_color; }
+    */
     display: block;
     padding: 10px 7px 10px 10px;
     height: 64px;
@@ -51,7 +51,7 @@
       }
     }
     .rating {
-      width: 150px;
+      width: 160px;
       font-weight: bold;
       position: absolute;
       right: 10px;
@@ -70,7 +70,7 @@
         line-height: 30px;
       }
       .text {
-        font-size: 80%;
+        font-size: 90%;
         border-top: 7px solid white;
         margin-top: 4px;
       }

@@ -9,7 +9,7 @@
         <%= offer.owner.twitter_handle %>
       <% end %>
       <div class="time">
-        <%= I18n.t("time.distance.creation", :distance_of_time => distance_of_time_in_words_to_now(offer.created_at)) %>
+        <%= I18n.t("offer.list.creation", :distance_of_time => distance_of_time_in_words_to_now(offer.created_at)) %>
       </div>
     </div>
     <%= link_to offer_path(offer), :class => "message" do

@@ -43,11 +43,7 @@ de:
     categories:
       title:  Kategorien
     states:
-        title:  Status
-  time:
-    distance:
-      creation:   "%{distance_of_time} her"
-      expiration: "noch %{distance_of_time}"
+      title:  Status
   mail:
     confirm_email:    "[Bountyhill] Bitte bestätigen Sie Ihre Email '%{email}'"
     reset_password:   "[Bountyhill] Sie können Ihr Passwort jetzt zurücksetzen"
@@ -118,8 +114,8 @@ de:
   user:
     statistic:
       points:
-        one:    "Punkt"
-        other:  "Punkte"
+        one:    "Punkt gesammelt"
+        other:  "Punkte gesammelt"
     box:
       title:  "Ihr Profil"
     form:
@@ -177,11 +173,12 @@ de:
       title:
         one:    "1 Angebot"
         other:  "%{count} Angebote"
-      statistic:
-        images:
-          zero:   " "
-          one:    "%{count} Bild"
-          other:  "%{count} Bilder"
+      creation:   "%{distance_of_time} her"
+      expiration: "noch %{distance_of_time}"
+      images:
+        zero:   " "
+        one:    "%{count} Bild"
+        other:  "%{count} Bilder"
     states:
       all:        Alle
       active:     Aktiv
@@ -215,20 +212,31 @@ de:
       title:
         one:    "1 Suche"
         other:  "%{count} Suchen"
-      statistic:
-        bounty:   "%{amount} Belohnung"
-        images:
-          zero:   " "
-          one:    "%{count} Bild"
-          other:  "%{count} Bilder"
-        offers:
-          zero:   " "
-          one:    "%{count} Angebot"
-          other:  "%{count} Angebote"
-        forwards:
-          zero:   " "
-          one:    "%{count} Weiterleitung"
-          other:  "%{count} Weiterleitungen"
+      bounty:   "%{amount} Belohnung"
+      offers:
+        zero:   " "
+        one:    "%{count} Angebot"
+        other:  "%{count} Angebote"
+      forwards:
+        zero:   " "
+        one:    "%{count} Weiterleitung"
+        other:  "%{count} Weiterleitungen"
+      creation:   "%{distance_of_time} her"
+      expiration: "noch %{distance_of_time}"
+      images:
+        zero:   " "
+        one:    "%{count} Bild"
+        other:  "%{count} Bilder"
+    statistic:
+      bounty:     "Belohnung ausgesetzt"
+      offers:     "Angebote abgegeben"
+      forwards:   "mal weitergeleitet"
+      expiration:
+        one:      "Tag noch aktiv"
+        other:    "Tage noch aktiv"
+      creation:
+        one:      "Tag zuvor angelegt"
+        other:    "Tage zuvor angelegt"
     categories:
       all:            Alle
       misc:           Verschiedenes

@@ -93,11 +93,11 @@ module QuestsHelper
     statistic_entries = []
     statistic_entries << if quest.active?
       [
-        dt(I18n.t("quest.list.statistic.bounty", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))),
+        dt(I18n.t("quest.list.bounty", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))),
         dd(""),        
-        dt(I18n.t("quest.list.statistic.offers", :count => quest.offers.count)),
+        dt(I18n.t("quest.list.offers", :count => quest.offers.count)),
         dd(""),
-        dt(I18n.t("quest.list.statistic.forwards", :count => quest.forwards.count)),
+        dt(I18n.t("quest.list.forwards", :count => quest.forwards.count)),
         dd("")
       ] 
     elsif quest.expired?
@@ -113,7 +113,7 @@ module QuestsHelper
     end
     
     statistic_entries << [
-      dt(I18n.t("quest.list.statistic.images", :count => quest.images.size)),
+      dt(I18n.t("quest.list.images", :count => quest.images.size)),
       dd(image_stack(quest))
     ]
     
@@ -126,6 +126,33 @@ module QuestsHelper
     div :class => "progress" do
       div value, :class => "bar", :style => "width: #{quest.bounty_height}%;"
     end
+  end
+  
+  def quest_days_statistic_box(quest)
+    days, translation = if quest.active? then [distance_of_time_in_days_to_now(quest.expires_at), "quest.statistic.expiration"]
+                        else                  [distance_of_time_in_days_to_now(quest.created_at), "quest.statistic.creation"]
+                        end
+    statistic_box days,
+      I18n.t(translation, :count => days),
+      awesome_icon(:time, :size => :large), :css_class => "quest"
+  end
+  
+  def quest_bounty_statistic_box(quest)
+    statistic_box number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'),
+      I18n.t("quest.statistic.bounty"),
+      awesome_icon(:money, :size => :large), :css_class => "quest"
+  end
+  
+  def quest_offers_statistic_box(quest)
+    statistic_box quest.offers.size,
+      I18n.t("quest.statistic.offers"),
+      awesome_icon(:share, :size => :large), :css_class => "quest"
+  end
+
+  def quest_forwards_statistic_box(quest)
+    statistic_box quest.forwards.size,
+      I18n.t("quest.statistic.forwards"),
+      awesome_icon(:retweet, :size => :large), :css_class => "quest"
   end
   
 end
