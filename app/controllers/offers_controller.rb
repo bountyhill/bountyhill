@@ -31,6 +31,10 @@ class OffersController < ApplicationController
   # GET /offers/1
   def show
     @offer = Offer.find(params[:id])
+
+    unless offer.viewed_at.present? || current_user.owns?(@offer)
+      @offer.update_attribute(:viewed_at, Time.now)
+    end
   end
 
   # GET /offers/new
