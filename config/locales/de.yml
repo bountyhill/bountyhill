@@ -185,6 +185,15 @@ de:
       withdrawn:  Zurückgezogen
       accepted:   Angenommen
       rejected:   Abgelehnt
+    statistic:
+      compliance: "Erfüllungsgrad erreicht"
+      forwards:   "Weiterleitungen vorangegangen"
+      viewed:
+        one:      "Tag zuvor angesehen"
+        other:    "Tage zuvor angesehen"
+      created:
+        one:      "Tag zuvor angeboten"
+        other:    "Tage zuvor angeboten"
     form:
       range_slider:
         prefix:   "gar nicht"

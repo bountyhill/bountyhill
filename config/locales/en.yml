@@ -185,6 +185,15 @@ en:
       withdrawn:  Withdrawn
       accepted:   Accepted
       rejected:   Rejected
+    statistic:
+      compliance: "compliance reached"
+      forwards:   "forwards preceeded"
+      viewed:
+        one:      "day ago viewed first time"
+        other:    "days ago viewed first time"
+      created:
+        one:      "day ago offered"
+        other:    "days ago offered"
     form:
       range_slider:
         prefix:   "not at all"

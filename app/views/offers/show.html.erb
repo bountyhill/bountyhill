@@ -3,9 +3,7 @@
   <div class="main span8">
     <%= user_bar(@offer.owner, :offer) %>
   </div>
-  <div class="sidebar span2">
-    <%= placeholder "Offers info" %>
-  </div>
+  <div class="sidebar span2">&nbsp;</div>
   <div class="span1">&nbsp;</div>
 </div>
 
@@ -26,10 +24,7 @@
   <div class="sidebar span2">
     <%= placeholder "Quest referred" %>
     <%= spacer %>
-    <%= placeholder "First viewed" %>
-    <%= spacer %>
-    <%= placeholder "Forwards" %>
-    <%= spacer %>
+    <%= offer_statistic_boxes(@offer) %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>

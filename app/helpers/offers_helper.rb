@@ -116,5 +116,49 @@ module OffersHelper
   def offers_state_filters(filters=[])
     filter_box(:offer, :states, filters, :title => I18n.t("filter.states.title"), :active => params[:state])
   end
+
+  def offer_statistic_boxes(offer)
+    [
+      offer_compliance_statistic_box(offer),
+      offer_created_statistic_box(offer),
+      offer_viewed_statistic_box(offer),
+      offer_forwards_statistic_box(offer),
+    ].compact.map{ |box| box + spacer }.join.html_safe
+  end
+
+  def offer_compliance_statistic_box(offer)
+    statistic_box "#{offer.compliance}%",
+      I18n.t("offer.statistic.compliance"),
+      awesome_icon(:bar_chart, :size => :large), :css_class => "offer"
+  end
+  
+  def offer_viewed_statistic_box(offer)
+    return unless offer.viewed_at
+
+    days = distance_of_time_in_days_to_now(offer.viewed_at)
+    return if days.zero?
+
+    statistic_box days,
+      I18n.t("offer.statistic.viewed", :count => days),
+      awesome_icon(:eye_open, :size => :large), :css_class => "offer"
+  end
+  
+  def offer_created_statistic_box(offer)
+    days = distance_of_time_in_days_to_now(offer.created_at)
+    return if days.zero?
+    
+    statistic_box days,
+      I18n.t("offer.statistic.created", :count => days),
+      awesome_icon(:time, :size => :large), :css_class => "offer"
+  end
+  
+  def offer_forwards_statistic_box(offer)
+    return # TODO
+    
+    statistic_box offer.forwards.size,
+      I18n.t("offer.statistic.forwards"),
+      awesome_icon(:retweet, :size => :large), :css_class => "offer"
+  end
+  
   
 end
