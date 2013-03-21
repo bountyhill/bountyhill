@@ -80,7 +80,7 @@ module QuestsHelper
     return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
 
-    modal_awesome_button(:edit, edit_quest_path(quest)) { I18n.t("button.edit") }
+    awesome_button(:edit, edit_quest_path(quest)) { I18n.t("button.edit") }
   end
   
   def quest_statistic(quest)
