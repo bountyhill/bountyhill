@@ -128,6 +128,15 @@ module QuestsHelper
     end
   end
   
+  def quest_statistic_boxes(quest)
+    [
+      quest_bounty_statistic_box(quest),
+      quest_days_statistic_box(quest),
+      quest_offers_statistic_box(quest),
+      quest_forwards_statistic_box(quest)
+    ].compact.map{ |box| box + spacer }.join.html_safe
+  end
+
   def quest_days_statistic_box(quest)
     days, translation = if quest.active? then [distance_of_time_in_days_to_now(quest.expires_at), "quest.statistic.expiration"]
                         else                  [distance_of_time_in_days_to_now(quest.created_at), "quest.statistic.creation"]
