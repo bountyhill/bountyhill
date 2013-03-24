@@ -1,4 +1,4 @@
-<div id="new_comment">
+<div id="new_comment_form" style="display:none">
   <% if send(Opinio.current_user_method) %>
     <%= form_for Comment.new, :remote => false do |f| %>
       <%= hidden_field_tag :commentable_id, commentable.id %>
@@ -11,3 +11,14 @@
     <p><%= t('comment.messages.must_be_logged_in_to_comment') %></p>
   <% end %>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(".new-comment")[0].onclick = function() {
+    if( $('#new_comment_form').is(':visible') ) {
+      $("#new_comment_form").slideUp('hide');
+    } else {
+      $("#new_comment_form").slideDown('show');
+    }
+    return false;
+  };
+</script>

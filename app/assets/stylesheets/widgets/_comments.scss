@@ -7,6 +7,7 @@
     @include opener($comments_box_title_color);
   }
   form {
+    margin: 0;
     input[type="submit"] {
        float: right;
      }
