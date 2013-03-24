@@ -38,8 +38,8 @@
 }
 
 /* -------- icon ---------- */
-li [class^="icon-"], li [class*=" icon-"] {
-  text-align: left;                           /* usually awsome font icons are centered - brings them to close to following text on the right */
+a [class^="icon-"], a [class*=" icon-"] {
+  text-align: left;                           /* usually awsome font icons are centered - align them left to leave some spaceto following text */
 }
 
 /* -------- button ---------- */

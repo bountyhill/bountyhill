@@ -60,24 +60,22 @@
 
 /* ------- small offer messages ------- */
 .span6 {
-  ul.list {
-    li.offer, li.comment {
-      .message-container {
-        .message-box {
-          margin-left: 64px;
-          &:before {
-            left: 54px;
-          }
-          .message {
-            min-height: 4ex;
-          }
-          .message-head {
-            min-height: 5ex;
-            .progress {
-              height: auto;
-              margin-bottom: 5px;
-              @include border-radius(5px);
-              .bar:after { content:"%"; }
+  .offers {
+    ul.list {
+      li.offer {
+        .message-container {
+          .message-box {
+            .message {
+              min-height: 4ex;
+            }
+            .message-head {
+              min-height: 5ex;
+              .progress {
+                height: auto;
+                margin-bottom: 5px;
+                @include border-radius(5px);
+                .bar:after { content:"%"; }
+              }
             }
           }
         }

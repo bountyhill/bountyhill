@@ -132,7 +132,7 @@ module QuestsHelper
     [
       quest_bounty_statistic_box(quest),
       quest_days_statistic_box(quest),
-      quest_offers_statistic_box(quest),
+      # quest_offers_statistic_box(quest),
       quest_forwards_statistic_box(quest)
     ].compact.map{ |box| box + spacer }.join.html_safe
   end
@@ -159,6 +159,8 @@ module QuestsHelper
   end
 
   def quest_forwards_statistic_box(quest)
+    return if quest.forwards.size.zero?
+    
     statistic_box quest.forwards.size,
       I18n.t("quest.statistic.forwards"),
       awesome_icon(:retweet, :size => :large), :css_class => "quest"

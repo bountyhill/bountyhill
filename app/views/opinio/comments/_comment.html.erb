@@ -11,7 +11,7 @@
           <%= comment.owner.twitter_handle %>
         <% end %>
         <div class="time">
-          <%= I18n.t("time.distance.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
+          <%= I18n.t("comment.list.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
         </div>
       </div>
       <%= simple_format(comment.body, :class => "message") %>

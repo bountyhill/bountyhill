@@ -110,6 +110,7 @@ de:
         zero:   "Kommentare"
         one:    "1 Kommentar"
         other:  "%{count} Kommentare"
+      creation:   "%{distance_of_time} her"
   user:
     statistic:
       points:

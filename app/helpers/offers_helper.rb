@@ -122,7 +122,7 @@ module OffersHelper
       offer_compliance_statistic_box(offer),
       offer_created_statistic_box(offer),
       offer_viewed_statistic_box(offer),
-      offer_forwards_statistic_box(offer),
+      # offer_forwards_statistic_box(offer),
     ].compact.map{ |box| box + spacer }.join.html_safe
   end
 
