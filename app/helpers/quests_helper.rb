@@ -164,6 +164,10 @@ module QuestsHelper
       awesome_icon(:retweet, :size => :large), :css_class => "quest"
   end
   
+  def quest_sidebar_box(quest)
+    partial "quests/sidebar/box", :quest => quest
+  end
+  
 end
 
 __END__

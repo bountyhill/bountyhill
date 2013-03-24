@@ -145,3 +145,43 @@ form {
     }
   }
 }
+
+.sidebar {
+  .quest {
+    &.box {
+      min-height: 84px;
+      position: relative;
+      padding: 10px;
+      background-color: $quests_box_title_color;
+      color: $text;
+      .avatar {
+        float: left;
+        min-width: 32px;
+        min-height: 32px;
+      }
+      .user {
+        display: block;
+        margin-left: 37px;
+        height: 32px;
+        line-height: 120%;
+        .name { font-weight: bold; }
+        .handle { font-size: 90% }
+      }
+      .title {
+        display: block;
+        height: 100%;
+        padding: 0;
+        margin: 10px 0 15px 0;
+        font-size: 110%;
+        line-height: 110%;
+      }
+      .time {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 80%;
+        line-height: 80%;
+      }
+    }
+  }
+}
