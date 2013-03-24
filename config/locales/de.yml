@@ -104,7 +104,6 @@ de:
       legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
   comment:
     messages:
-      no_comments_found:            Es wurden noch keine Kommentare abgegeben.
       must_be_logged_in_to_comment: "Sie müssen sich Anmelden, um einen Kommentar abgeben zu können."
     list:
       title:
@@ -171,6 +170,7 @@ de:
       legend: "Bitte teilen Sie dem Suchenden mit, warum Sie Ihr Angebot zurückziehen möchten."
     list:
       title:
+        zero:   "Angebote"
         one:    "1 Angebot"
         other:  "%{count} Angebote"
       creation:   "%{distance_of_time} her"
@@ -219,6 +219,7 @@ de:
       criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
     list:
       title:
+        zero:   "Suchen"
         one:    "1 Suche"
         other:  "%{count} Suchen"
       bounty:   "%{amount} Belohnung"

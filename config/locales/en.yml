@@ -104,7 +104,6 @@ en:
       legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
   comment:
     messages:
-      no_comments_found:            No comments posted so far.
       must_be_logged_in_to_comment: You have to be logged in to post a comment.
     list:
       title:
@@ -171,6 +170,7 @@ en:
       legend: Please let the searcher know why you want to withdraw your offer.
     list:
       title:
+        zero:   "Offers"
         one:    "1 offer"
         other:  "%{count} offers"
       creation:   "%{distance_of_time} ago"
@@ -219,6 +219,7 @@ en:
       criteria: "The following criteria are defined for this quest:"
     list:
       title:
+        zero:   "Quests"
         one:    "1 quest"
         other:  "%{count} quests"
       bounty:   "%{amount} bounty"
