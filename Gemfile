@@ -9,7 +9,7 @@ gem 'money'
 gem 'rdiscount'
 gem 'twitter_oauth'
 gem 'opinio'
-
+gem 'tinymce-rails'
 gem 'will_paginate', '~> 3.0.0'
 gem 'bountydeps'
 gem 'geoip'

@@ -15,6 +15,7 @@
 //= require jquery_ujs.js
 //= require bootstrap.js
 //= require filepicker.js
+//= require tinymce
 //= require jquery.inview.js
 //= require bootstrap-lightbox.js
 

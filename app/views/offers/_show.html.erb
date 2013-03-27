@@ -1,5 +1,5 @@
 <h1><%= offer.title %></h1>
-<div class="description"><%= offer.description %></div>
+<div class="description"><%= offer.description.html_safe %></div>
 
 <% if offer.criteria.present? %>
 <div class="criteria-section">

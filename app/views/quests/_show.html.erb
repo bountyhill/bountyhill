@@ -1,5 +1,5 @@
 <h1><%= quest.title %></h1>
-<div class="description"><%= quest.description %></div>
+<div class="description"><%= quest.description.html_safe %></div>
 
 <% if quest.criteria.present? %>
 <div class="criteria-section">

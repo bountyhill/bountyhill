@@ -63,3 +63,9 @@ a [class^="icon-"], a [class*=" icon-"] {
 .row-fluid .thumbnails {
   margin: 0;                                  /* removes bottom margin to avoid gap between thumbnail rows */
 }
+
+
+/* -------- mce wysiwyg editor ---------- */
+table.mceLayout {
+  background-color: white;                   /* hides space between text area and status bar */
+}
