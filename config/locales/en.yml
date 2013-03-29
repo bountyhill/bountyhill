@@ -295,3 +295,13 @@ en:
       share:
         title:  Share this quest
         legend: "Thanx a lot for sharing this quest with your friends and followers. Feel free to adjust our share's message to your needs."
+  sessions:
+    twitter:
+      following:  "You successfully signed in with Twitter. Thank you for following @bountyhermes."
+      success:    "You successfully signed in with Twitter."
+    email:
+      confirmation:
+        reminder: "You have signed up with bountyhill, but didn't confirm your email address yet."
+        resend:    Resend confirmation email
+        sent:      You should receive a confirmation email shortly.
+      confirmed: "Thank you for confirming your email address."

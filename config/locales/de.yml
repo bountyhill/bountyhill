@@ -295,3 +295,13 @@ de:
       share:
         title:  Suchanfrage teilen
         legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen möchten. Die Nachricht Ihrer Mitteilung können Sie gern anpassen."
+  sessions:
+    twitter:
+      following:  "Sie haben sich erfolgreich über Twitter angemeldet. Vielen Dank, dass Sie @bountyhermes folgen."
+      success:    "Sie haben sich erfolgreich über Twitter angemeldet."
+    email:
+      confirmation:
+        reminder: "Sie haben sich bei bountyhill registriert, aber Ihre Email-Adresse wurde noch nicht bestätigt."
+        resend:    Bestätigungsemail erneut senden
+        sent:      Sie erhalten in Kürze eine Bestätigungsemail von uns.
+      confirmed: "Vielen Dank für die Bestätigung Ihrer Email-Adresse."

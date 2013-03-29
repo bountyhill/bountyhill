@@ -47,7 +47,7 @@ class DeferredActionsController < ApplicationController
   #
   def confirm
     Deferred.mail UserMailer.confirm_email(current_user)
-    flash[:success] = I18n.t("sessions.email.confirmation_sent")
+    flash[:success] = I18n.t("sessions.email.confirmation.sent")
     
     redirect_to :back
   end
