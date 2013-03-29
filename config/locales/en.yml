@@ -11,6 +11,16 @@ en:
       success:        "%{record} was successfully updated."
     check_delete_me:  Please confirm the deletion of your account.
     password_invalid: The pasword entered is not valid.
+  notice:
+    tweet:
+      thanks_for_following: "Thank you for following @bountyhermes. We will keep you informed..."
+    mail:
+      confirm_email:    "Please verify your email '%{email}'"
+      reset_password:   "Reset your password"
+      offer_received:   "You received an offer on your quest '%{title}'"
+      offer_accepted:   "Your offer has been accepted '%{title}'"
+      offer_declined:   "Your offer has been declined '%{title}'"
+      offer_withdrawn:  "An offer has been withdrawn '%{title}'"
   link:
     loading: "Lade..."
   button:
@@ -44,13 +54,6 @@ en:
       title:  Categories
     states:
       title:  States
-  mail:
-    confirm_email:    "[Bountyhill] Please verify your email '%{email}'"
-    reset_password:   "[Bountyhill] Reset your password"
-    offer_received:   "[Bountyhill] You received an offer on your quest '%{title}'"
-    offer_accepted:   "[Bountyhill] Your offer has been accepted '%{title}'"
-    offer_declined:   "[Bountyhill] Your offer has been declined '%{title}'"
-    offer_withdrawn:  "[Bountyhill] An offer has been withdrawn '%{title}'"
   nav:
     start_quest:  Start a quest
     quests:       See all quests
@@ -297,7 +300,6 @@ en:
         legend: "Thanx a lot for sharing this quest with your friends and followers. Feel free to adjust our share's message to your needs."
   sessions:
     twitter:
-      following:  "You successfully signed in with Twitter. Thank you for following @bountyhermes."
       success:    "You successfully signed in with Twitter."
     email:
       confirmation:

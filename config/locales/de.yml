@@ -11,6 +11,16 @@ de:
       success:        "%{record} wurde erfolgreich aktualisiert."
     check_delete_me:  Bitte bestätigen Sie das Löschen Ihres Accounts.
     password_invalid: Das eingegeben Passwort ist nicht gültig.
+  notice:
+    tweet:
+      thanks_for_following: "Vielen Dank, dass Sie @bountyhermes folgen. Wir halten Sie auf dem Laufenden..."
+  mail:
+    confirm_email:    "Bitte bestätigen Sie Ihre Email '%{email}'"
+    reset_password:   "Sie können Ihr Passwort jetzt zurücksetzen"
+    offer_received:   "Sie haben ein Angebot auf Ihre Suche '%{title}' erhalten"
+    offer_accepted:   "Ihr Angebot '%{title}' wurde angenommen"
+    offer_declined:   "Ihr Angebot '%{title}' wurde abgelehnt"
+    offer_withdrawn:  "Ein Angebot auf Ihre Suche '%{title}' wurde zurückgezogen"
   link:
     loading: "Loading..."
   button:
@@ -44,13 +54,6 @@ de:
       title:  Kategorien
     states:
       title:  Status
-  mail:
-    confirm_email:    "[Bountyhill] Bitte bestätigen Sie Ihre Email '%{email}'"
-    reset_password:   "[Bountyhill] Sie können Ihr Passwort jetzt zurücksetzen"
-    offer_received:   "[Bountyhill] Sie haben ein Angebot auf Ihre Suche '%{title}' erhalten"
-    offer_accepted:   "[Bountyhill] Ihr Angebot '%{title}' wurde angenommen"
-    offer_declined:   "[Bountyhill] Ihr Angebot '%{title}' wurde abgelehnt"
-    offer_withdrawn:  "[Bountyhill] Ein Angebot auf Ihre Suche '%{title}' wurde zurückgezogen"
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
@@ -297,7 +300,6 @@ de:
         legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen möchten. Die Nachricht Ihrer Mitteilung können Sie gern anpassen."
   sessions:
     twitter:
-      following:  "Sie haben sich erfolgreich über Twitter angemeldet. Vielen Dank, dass Sie @bountyhermes folgen."
       success:    "Sie haben sich erfolgreich über Twitter angemeldet."
     email:
       confirmation:

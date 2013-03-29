@@ -144,14 +144,12 @@ class SessionsController < ApplicationController
       if follow_bountyhermes
         twitter = current_user.identity(:twitter)
         if twitter.follow
-          twitter.direct_message "sessions.tweet.thanks_for_following".t
+          twitter.direct_message "notice.tweet.thanks_for_following".t
         end
-        flash[:success] = "sessions.twitter.following".t
       end
 
       identity_presented!
     else
-      session.delete(:follow_bountyhermes)
       identity_cancelled!
     end
   end
