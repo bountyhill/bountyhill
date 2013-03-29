@@ -246,11 +246,12 @@ class Offer < ActiveRecord::Base
   
   def send_state_change_mail
     mail = case state
-    when "withdrawn"  then UserMailer.offer_withdrawn(self)
-    when "accepted"   then UserMailer.offer_accepted(self)
-    when "rejected"   then UserMailer.offer_rejected(self)
-    when nil          then UserMailer.offer_received(self) # after creation
-    end
+      when "withdrawn"  then UserMailer.offer_withdrawn(self)
+      when "accepted"   then UserMailer.offer_accepted(self)
+      when "rejected"   then UserMailer.offer_rejected(self)
+      when "active"     then UserMailer.offer_received(self) # after creation
+      else raise "Unknown state: #{state}"
+      end
     
     Deferred.mail mail
   end

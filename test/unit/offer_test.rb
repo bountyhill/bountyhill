@@ -13,13 +13,16 @@ class OfferTest < ActiveSupport::TestCase
   def test_validation
     quest.start!
     
-    assert_invalid Offer.new, :description, :quest
+    assert_invalid Offer.new, :title, :description, :quest
 
     # quest
     assert_valid   Offer.new(:quest => quest), :quest
 
+    # title
+    assert_valid   Offer.new(:title => "Test title"), :title
+
     # description
-    assert_valid   Offer.new(:quest => quest, :description => "This is a description")
+    assert_valid   Offer.new(:quest => quest, :title => "Test title", :description => "This is a description")
     assert_invalid Offer.new(:description => "This is a description" * 200), :description
 
     # needs a user. Note that the owner will be set when saving, not on #new!

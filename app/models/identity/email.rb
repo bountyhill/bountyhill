@@ -12,7 +12,7 @@ class Identity::Email < Identity
   
   with_metrics! "accounts.email"
    
-  attr_accessible :email, :password, :password_confirmation, :newsletter_subscription
+  attr_accessible :name, :email, :password, :password_confirmation, :newsletter_subscription
   has_secure_password
   
   # -- validation -----------------------------------------------------
