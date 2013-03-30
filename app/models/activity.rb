@@ -56,7 +56,7 @@ class Activity < ActiveRecord::Base
       :object => object,
       :points => points)
     
-    Bountybase.reward user, :points => points
+    Bountybase.reward user
     activity
   end
   

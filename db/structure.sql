@@ -369,8 +369,7 @@ CREATE TABLE users (
     remember_token character varying(255),
     serialized text,
     deleted_at timestamp without time zone,
-    badges text,
-    points integer DEFAULT 0 NOT NULL
+    badges text
 );
 
 
@@ -646,13 +645,6 @@ CREATE INDEX index_quests_on_visibility ON quests USING btree (visibility);
 
 
 --
--- Name: index_users_on_points; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_users_on_points ON users USING btree (points);
-
-
---
 -- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -731,6 +723,8 @@ INSERT INTO schema_migrations (version) VALUES ('29');
 INSERT INTO schema_migrations (version) VALUES ('3');
 
 INSERT INTO schema_migrations (version) VALUES ('30');
+
+INSERT INTO schema_migrations (version) VALUES ('31');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

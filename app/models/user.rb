@@ -26,14 +26,9 @@ class User < ActiveRecord::Base
   #
   # Only after the first "real login" the remember_token must exist,
   # and it must not change during the User object's lifetime.
-  #
-  # As a lucky sideeffect we use this as a flag to see whether we
-  # have to reward some points to the user.
   def create_remember_token
     unless self.remember_token
       self.remember_token = SecureRandom.urlsafe_base64
-      self.points ||= 0
-      self.points += 10
     end
   end
   
@@ -215,6 +210,10 @@ class User < ActiveRecord::Base
     end
 
     avatar || Gravatar.url(:size => options[:size])
+  end
+  
+  def points
+    activities.sum(&:points)
   end
   
   # represents stars
