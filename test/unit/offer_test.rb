@@ -32,6 +32,18 @@ class OfferTest < ActiveSupport::TestCase
       assert_invalid offer, :owner
     end
   end
+  
+  def test_activities
+    offer = Offer.new(:quest => quest, :title => "Test title", :description => "This is a description")
+    quest.stubs(:active?).returns(true)
+    offer.stubs(:active?).returns(true)
+
+    assert_activity_logged(offer, :create)    { offer.save! }
+    assert_activity_logged(offer, :withdraw)  { offer.withdraw! }
+    assert_activity_logged(offer, :accept)    { offer.accept! }
+    assert_activity_logged(offer, :reject)    { offer.reject! }
+    assert_activity_logged(offer, :comment)   { Factory(:comment, :commentable => offer, :owner => offer.owner) }
+  end
 end
 
 __END__

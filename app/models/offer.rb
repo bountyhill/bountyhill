@@ -196,6 +196,12 @@ class Offer < ActiveRecord::Base
     sum = criteria.inject(0) { |s, criterium| s + criterium[:compliance].to_i }
     (sum * 100.0 / (criteria.length * 10)).round
   end
+  
+  after_create :reward_creator
+  
+  def reward_creator
+    owner.reward_for(self)
+  end
 
   public
   
@@ -213,18 +219,24 @@ class Offer < ActiveRecord::Base
   end 
 
   def withdraw!
-    raise ArgumentError, "Quest is no longer active" unless active?
+    raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "withdrawn"
+    
+    owner.reward_for(self, :withdraw)
   end
   
   def accept!
-    raise ArgumentError, "Quest is no longer active" unless active?
+    raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "accepted"
+
+    owner.reward_for(self, :accept)
   end
   
   def reject!
-    raise ArgumentError, "Quest is no longer active" unless active?
+    raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "rejected"
+    
+    owner.reward_for(self, :reject)
   end
 
   def withdrawn?
