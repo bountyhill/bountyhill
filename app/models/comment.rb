@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
   after_create :reward_commentor
   
   def reward_commentor
-    Bountybase.reward owner, :points => 2
+    owner.reward_for(self.commentable, :comment)
   end
   
   def writable?(user = ActiveRecord::AccessControl.current_user)

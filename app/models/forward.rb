@@ -6,4 +6,11 @@ class Forward < ActiveRecord::Base
 
   belongs_to :sender, :class_name => "User"
   belongs_to :quest
+  
+  after_create :reward_sender
+  
+  def reward_sender
+    sender.reward_for(self.quest, :forward)
+  end
+  
 end
