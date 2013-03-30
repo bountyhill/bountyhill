@@ -62,9 +62,11 @@ class Test::Unit::UI::Console::TestRunner
 end
 
 require_relative "access_control_assertions"
+require_relative "activity_assertions"
 
 class ActiveSupport::TestCase
   include AccessControlAssertions
+  include ActivityAssertions
   
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #

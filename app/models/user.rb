@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
   validates_presence_of :identities
 
   #
+  # Activities performed by the user
+  has_many :activities, :dependent => :destroy
+
+  #
   # Quests submitted by the user
   has_many :quests, :foreign_key => "owner_id", :dependent => :destroy
   
@@ -192,7 +196,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  # returns a user's avatar URL
+  #
+  # return's the user's avatar image if the user has uploaded one, or if not
+  # returns the Gravatar URL from http://gravatar.com/ for the given user.
   def avatar(options = {})
     if avatar = self.image
       width, height = options.values_at(:width, :height)
@@ -214,6 +220,10 @@ class User < ActiveRecord::Base
   # represents stars
   def score
     points.to_s.size
+  end
+  
+  def reward_for(object, action = :create)
+    Activity.log(self, action, object)
   end
   
   # -- special System users -------------------------------------------

@@ -175,6 +175,13 @@ class Quest < ActiveRecord::Base
     self.number_of_criteria = criteria.count
   end
   
+  after_create :reward_creator
+  
+  def reward_creator
+    owner.reward_for(self)
+  end
+  
+  
   public
   
   # returns an array of hashes a la
@@ -230,9 +237,7 @@ class Quest < ActiveRecord::Base
   end
   
   def start!
-    unless started?
-      Bountybase.reward owner, :points => 20
-    end
+    return if started?
 
     duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
     if duration_in_days > 0
@@ -248,13 +253,16 @@ class Quest < ActiveRecord::Base
     self.cancellation_reason = nil
 
     save!
+    owner.reward_for(self, :start)
   end
 
   def cancel!(attributes = {})
     self.attributes = attributes
     self.visibility = nil
     self.expires_at = Time.now
+    
     save!
+    owner.reward_for(self, :stop)
   end
   
   # -- quest statistics -----------------------------------------------
@@ -333,4 +341,5 @@ class Quest < ActiveRecord::Base
     else        100
     end
   end
+  
 end

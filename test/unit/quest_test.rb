@@ -28,4 +28,14 @@ class QuestTest < ActiveSupport::TestCase
       assert_invalid quest, :owner
     end
   end
+  
+  def test_activities
+    quest = Quest.new(:bounty => "12", :title => "title", :description => "description", :category => "misc")
+    
+    assert_activity_logged(quest, :create)  { quest.save! }
+    assert_activity_logged(quest, :start)   { quest.start! }
+    assert_activity_logged(quest, :stop)    { quest.cancel! }
+    assert_activity_logged(quest, :forward) { Factory(:forward, :quest => quest, :sender => quest.owner) }
+    assert_activity_logged(quest, :comment) { Factory(:comment, :commentable => quest, :owner => quest.owner) }
+  end
 end
