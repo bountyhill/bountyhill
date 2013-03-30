@@ -1,0 +1,5 @@
+<% @activities.each do |activity| %>
+  <li class="activity" id="<%= dom_id(activity) %>">
+    <%= partial "activities/list_item", :activity => activity %>
+  </li>
+<% end %>

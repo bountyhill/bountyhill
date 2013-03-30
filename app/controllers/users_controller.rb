@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :set_user
   
   def show
+    @per_page = per_page
   end
   
   EDIT_PARTIALS = %w(profile address password email twitter delete)

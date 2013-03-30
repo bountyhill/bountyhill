@@ -158,6 +158,9 @@ de:
         password:                   Geben Sie Ihr aktuelles Passwort ein.
         password_new:               Geben Sie Ihr neues Passwort ein.
         password_new_confirmation:  Bestätigen Sie Ihr neues Passwort.
+  activity:
+    list:
+      title:  "Letzte Aktivitäten"
   offer:
     compliance: "%{precentage}% Erfüllungsgrad"
     box:

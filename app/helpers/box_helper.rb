@@ -22,7 +22,7 @@ module BoxHelper
   end
   
   def list_box(type, models, options={})
-    expect! type    => [:quests, :offers]
+    expect! type    => [:quests, :offers, :activities]
     expect! models  => ActiveRecord::Relation
     expect! options => Hash
     
@@ -37,12 +37,14 @@ module BoxHelper
     end
     
     content = div :class => "content" do
-      ul(:class => "#{type} list") do
-        partial "#{type}/list", type => models
-      end + endless_scroll_loader(type)
+      if models.present?
+        ul(:class => "#{type} list") do
+          partial "#{type}/list", type => models
+        end + endless_scroll_loader(type)
+      end
     end
 
-    div :class => "#{type} box row-fluid" do
+    div :class => "#{type} box row-fluid #{options[:class]}" do
       title + content
     end
   end

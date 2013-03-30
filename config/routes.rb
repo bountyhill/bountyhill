@@ -48,14 +48,16 @@ Bountyhill::Application.routes.draw do
   end
 
   resources :users
-  match "/users/:id/delete" => "users#delete", :via => :get
-  match 'profile' => "users#show"
+  match 'profile'           => "users#show",    :via => :get
+  match "/users/:id/delete" => "users#delete",  :via => :get
 
+  resources :activities
+  
   # manual routes for signup, signin, signout, twitter signin
   match "signin"  => "sessions#signin_get",     :via => :get
-  match "signup"  => "sessions#signin_get",     :via => :get
+#  match "signup"  => "sessions#signin_get",     :via => :get
   match "signin"  => "sessions#signin_post",    :via => :post
-  match "signup"  => "sessions#signin_post",    :via => :post
+#  match "signup"  => "sessions#signin_post",    :via => :post
   match "signout" => "sessions#signout_delete", :via => :delete
   match "sessions/cancel" => "sessions#cancel", :via => :post
 

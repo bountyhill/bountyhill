@@ -158,6 +158,9 @@ en:
         password:                   Enter your current password.
         password_new:               Enter your new password.
         password_new_confirmation:  Confirm your new password
+  activity:
+    list:
+      title:  "Recent activities"
   offer:
     compliance: "%{precentage}% compliance"
     box:

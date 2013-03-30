@@ -1,0 +1,6 @@
+<ul>
+  <li class='action'><%= "#{activity.action} #{activity.object_type.downcase}" %></li>
+  <li class='object'><%= activity.object.title %></li>
+  <li class='time'><%= distance_of_time_in_words_to_now activity.created_at %></li>
+  <li class='points'><%= activity.points %> POINTS</li>
+</ul>

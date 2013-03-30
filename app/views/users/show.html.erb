@@ -14,16 +14,14 @@
   <div class="sidebar span2">
     <%= placeholder "Points" %>
     <%= spacer %>
-    <%= placeholder "Activity" %>
-  </div>
-  <div class="main span7">
     <%= placeholder "Quests" %>
     <%= spacer %>
     <%= placeholder "Retweets" %>
     <%= spacer %>
     <%= placeholder "Offers" %>
-    <%= spacer %>
-    <%= placeholder "Activities" %>
+  </div>
+  <div class="main span7">
+    <%= activities_box(@user, :per_page => @per_page) if @user == current_user %>
   </div>
   <div class="span2">&nbsp;</div>
 </div>

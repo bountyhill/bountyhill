@@ -1,3 +1,39 @@
+.activities {
+  &.box {
+    @include box_colors(activities);
+    
+    /* opener triangle */
+    @include opener($activities_box_title_color);
+    
+    ul.activities {
+      color: $text;
+      li {
+        background-color: $activities_box_content_color;
+        padding: 0 10px;
+        line-height: 6ex;
+        min-height: 6ex;
+        margin-bottom: 3ex;
+      }
+    }
+    
+    li.activity {
+      ul {
+        margin: 0;
+        li {
+          float: left;
+          margin-right: 5px;
+          &.action { width: 15%; }
+          &.object { width: 45%; }
+          &.time   { width: 10%; }
+          &.points { 
+            width: 10%;
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}
 .user {
   &.box {
     @include box_colors(user);
