@@ -32,8 +32,10 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails'#, '2.8.1'
-  gem 'capybara'#, '1.1.2'
+  gem 'rspec-rails' #, '2.8.1'
+  gem 'capybara'    #, '1.1.2'
+  gem 'launchy'
+  gem 'database_cleaner'
   gem 'test-unit', :require => "test/unit"
   gem 'mocha'
   gem 'factory_girl_rails'
