@@ -21,9 +21,11 @@ class Activity < ActiveRecord::Base
       :accept   => 20,
       :reject   => 5
     },
-    :user => {
-      :login    => 10,
-      :signin   => 1
+    :"identity/twitter" => {
+      :create => 5
+    },
+    :"identity/email" => {
+      :create => 10
     }
   }.with_indifferent_access
 
@@ -39,7 +41,7 @@ class Activity < ActiveRecord::Base
   validates :points, :presence => true, :numericality => true
   
   def self.log(user, action, object)
-    klass = object.class.name.downcase
+    klass = object.class.name.underscore
     
     unless Activity::GRADING[klass].present?
       raise ArgumentError, "Cannot handle object class: #{klass}! Allowed are only: #{Activity::GRADING.keys.to_sentence}."

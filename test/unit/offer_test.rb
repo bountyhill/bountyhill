@@ -33,16 +33,16 @@ class OfferTest < ActiveSupport::TestCase
     end
   end
   
-  def test_activities
+  def test_activity_logging
     offer = Offer.new(:quest => quest, :title => "Test title", :description => "This is a description")
     quest.stubs(:active?).returns(true)
     offer.stubs(:active?).returns(true)
 
-    assert_activity_logged(offer, :create)    { offer.save! }
-    assert_activity_logged(offer, :withdraw)  { offer.withdraw! }
-    assert_activity_logged(offer, :accept)    { offer.accept! }
-    assert_activity_logged(offer, :reject)    { offer.reject! }
-    assert_activity_logged(offer, :comment)   { Factory(:comment, :commentable => offer, :owner => offer.owner) }
+    assert_activity_logged(:create,   offer)  { offer.save! }
+    assert_activity_logged(:withdraw, offer)  { offer.withdraw! }
+    assert_activity_logged(:accept,   offer)  { offer.accept! }
+    assert_activity_logged(:reject,   offer)  { offer.reject! }
+    assert_activity_logged(:comment,  offer)  { Factory(:comment, :commentable => offer, :owner => offer.owner) }
   end
 end
 

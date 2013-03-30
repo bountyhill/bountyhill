@@ -20,6 +20,9 @@ class Identity < ActiveRecord::Base
   
   validates_presence_of :user, :on => :save
   
+  after_create :create_user_if_missing
+  after_create :reward_user
+  
   after_destroy :delete_user_if_deleted_last_identity
 
   serialize :serialized, Hash
@@ -33,10 +36,6 @@ class Identity < ActiveRecord::Base
     user.destroy
   end
 
-  public
-  
-  after_create :create_user_if_missing
-
   def create_user_if_missing
     return if self.user
   
@@ -44,4 +43,9 @@ class Identity < ActiveRecord::Base
     user.identities << self
     user.save!
   end
+  
+  def reward_user
+    user.reward_for(self)
+  end
+  
 end

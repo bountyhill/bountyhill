@@ -24,4 +24,9 @@ class IdentityTest < ActiveSupport::TestCase
     r = identity.reload
     assert_equal({}, r.serialized)
   end
+  
+  def test_activity_logging
+    assert_activity_logged { Factory(:identity) }
+    assert_activity_logged { Factory(:twitter_identity) }
+  end
 end

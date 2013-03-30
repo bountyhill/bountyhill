@@ -29,13 +29,13 @@ class QuestTest < ActiveSupport::TestCase
     end
   end
   
-  def test_activities
+  def test_activity_logging
     quest = Quest.new(:bounty => "12", :title => "title", :description => "description", :category => "misc")
     
-    assert_activity_logged(quest, :create)  { quest.save! }
-    assert_activity_logged(quest, :start)   { quest.start! }
-    assert_activity_logged(quest, :stop)    { quest.cancel! }
-    assert_activity_logged(quest, :forward) { Factory(:forward, :quest => quest, :sender => quest.owner) }
-    assert_activity_logged(quest, :comment) { Factory(:comment, :commentable => quest, :owner => quest.owner) }
+    assert_activity_logged(:create,   quest)  { quest.save! }
+    assert_activity_logged(:start,    quest)  { quest.start! }
+    assert_activity_logged(:stop,     quest)  { quest.cancel! }
+    assert_activity_logged(:forward,  quest)  { Factory(:forward, :quest => quest, :sender => quest.owner) }
+    assert_activity_logged(:comment,  quest)  { Factory(:comment, :commentable => quest, :owner => quest.owner) }
   end
 end
