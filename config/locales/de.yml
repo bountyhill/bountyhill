@@ -119,6 +119,15 @@ de:
       points:
         one:    "Punkt gesammelt"
         other:  "Punkte gesammelt"
+      quests:
+        one:    "Suche angelegt"
+        other:  "Suchen angelegt"
+      offers:
+        one:    "Angebot abgeben"
+        other:  "Angebote abgeben"
+      forwards:
+        one:    "Anfrage geteilt"
+        other:  "Anfragen geteilt"
     box:
       title:  "Ihr Profil"
     form:

@@ -84,6 +84,39 @@ module UsersHelper
     end
   end
   
+  def user_statistic_boxes(user)
+    [
+      user_points_statistic_box(user),
+      user_quests_statistic_box(user),
+      user_offers_statistic_box(user),
+      user_forwards_statistic_box(user)
+    ].compact.map{ |box| box + spacer }.join.html_safe
+  end
+  
+  def user_points_statistic_box(user)
+    statistic_box user.points,
+      I18n.t("user.statistic.points", :count => user.points),
+      user_stars(user), :css_class => "user"
+  end
+  
+  def user_quests_statistic_box(user)
+    statistic_box user.quests.size,
+      I18n.t("user.statistic.quests", :count => user.quests.size),
+      awesome_icon(:edit, :size => :large), :css_class => "user"
+  end
+  
+  def user_offers_statistic_box(user)
+    statistic_box user.offers.size,
+      I18n.t("user.statistic.offers", :count => user.offers.size),
+      awesome_icon(:share, :size => :large), :css_class => "user"
+  end
+
+  def user_forwards_statistic_box(user)
+    statistic_box user.forwards.size,
+      I18n.t("user.statistic.forwards", :count => user.forwards.size),
+      awesome_icon(:retweet, :size => :large), :css_class => "user"
+  end
+  
 end
 __END__
 

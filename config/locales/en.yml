@@ -119,6 +119,15 @@ en:
       points:
         one:    "point collected"
         other:  "points collected"
+      quests:
+        one:    "Quest created"
+        other:  "Quests created"
+      offers:
+        one:    "Offer made"
+        other:  "Offers made"
+      forwards:
+        one:    "Request shared"
+        other:  "Requests shared"
     box:
       title:  "Your profile"
     form:

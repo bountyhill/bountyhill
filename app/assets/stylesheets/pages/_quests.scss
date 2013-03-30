@@ -32,11 +32,6 @@
   }
   
   &.quest {
-    /* ------- statistic boxes ------- */
-    &.statistic {
-      background-color: $quest_box_statistic_color;
-    }
-    
     /* ------- step indicator colors------- */
     .title {
       .step-indicator {

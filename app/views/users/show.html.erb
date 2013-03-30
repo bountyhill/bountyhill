@@ -12,13 +12,7 @@
 <div class="row-fluid">
   <div class="span1">&nbsp;</div>
   <div class="sidebar span2">
-    <%= placeholder "Points" %>
-    <%= spacer %>
-    <%= placeholder "Quests" %>
-    <%= spacer %>
-    <%= placeholder "Retweets" %>
-    <%= spacer %>
-    <%= placeholder "Offers" %>
+    <%= user_statistic_boxes(@user) %>
   </div>
   <div class="main span7">
     <%= activities_box(@user, :per_page => @per_page) if @user == current_user %>

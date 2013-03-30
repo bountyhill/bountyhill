@@ -43,17 +43,20 @@
         font-weight: normal;
       }
     }
-    .contact-section {
-      font-weight: bold;
-      dt, dd {
-        float: left;
-      }
-      dt {
-        clear: both;
-        width: 60px;
-      }
-      dd {
-        font-size: 120%;
+    .content {
+      min-height: 46px;
+      .contact-section {
+        font-weight: bold;
+        dt, dd {
+          float: left;
+        }
+        dt {
+          clear: both;
+          width: 60px;
+        }
+        dd {
+          font-size: 120%;
+        }
       }
     }
   }
