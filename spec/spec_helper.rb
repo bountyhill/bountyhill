@@ -54,6 +54,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rspec' #Load RSpec 2.x support 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -81,6 +82,22 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+  # Database Cleaner is a set of strategies for cleaning your database in Ruby.
+  # The original use case was to ensure a clean state during tests. 
+  # Each strategy is a small amount of code but is code that is usually needed in any ruby app that is testing with a database.
+  # see https://github.com/bmabey/database_cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
 
 def Factory(*args)
