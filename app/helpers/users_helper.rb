@@ -2,9 +2,12 @@ module UsersHelper
   def profile_box(user)
     expect! user => User
     
-    title = user.name
-    title += " #{span(user.twitter_handle, :class => 'handle')}" if user.twitter_handle
-
+    if @current_user == user
+      title = I18n.t("user.box.title")
+    else
+      title = user.name
+      title += " #{span(user.twitter_handle, :class => 'handle')}" if user.twitter_handle
+    end
     box(:user, user, :title => title || I18n.t("user.box.profile.title"))
   end
   
