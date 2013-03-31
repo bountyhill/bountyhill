@@ -14,11 +14,12 @@
     }
     .message {
       display: inline-block;
-      margin-bottom: 2ex;
+      width: 100%;
+      min-height: 3.5ex;
+      margin: 3.0ex 0 2.5ex 0;
     }
     .message-head {
       position: relative;
-      min-height: 3.5ex;
     }
     .owner {
       position: absolute;
