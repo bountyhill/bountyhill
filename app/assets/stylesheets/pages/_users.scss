@@ -7,28 +7,35 @@
     
     ul.activities {
       color: $text;
-      li {
-        background-color: $activities_box_content_color;
-        padding: 0 10px;
-        line-height: 6ex;
+      li.activity {
+        margin-bottom: 2ex;
         min-height: 6ex;
-        margin-bottom: 3ex;
-      }
-    }
-    
-    li.activity {
-      ul {
-        margin: 0;
-        li {
+        ul {
           float: left;
-          margin-right: 5px;
-          &.action { width: 15%; }
-          &.object { width: 45%; }
-          &.time   { width: 10%; }
-          &.points { 
-            width: 10%;
-            float: right;
+          padding: 0 10px;
+          background-color: $activities_box_content_color;
+          width: 80%;
+          margin: 0;
+          li {
+            float: left;
+            line-height: 6ex;
+            min-height: 6ex;
+            margin-right: 5px;
+            &.time   { float: right; margin-right: 0;}
+            &.action { 
+              margin-right: 10px; 
+              font-weight: bold;
+            }
           }
+        }
+        .points { 
+          float: right;
+          background-color: $activities_box_statistic_color;
+          width: 15%;
+          line-height: 6ex;
+          min-height: 6ex;
+          text-align: center;
+          font-weight: bold;
         }
       }
     }

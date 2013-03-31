@@ -171,7 +171,17 @@ de:
         password_new_confirmation:  Bestätigen Sie Ihr neues Passwort.
   activity:
     list:
-      title:  "Letzte Aktivitäten"
+      title:    "Letzte Aktivitäten"
+      creation: "%{distance_of_time} her"
+    action:
+      accept:   "%{item} akzeptiert"
+      comment:  "%{item} abgegeben"
+      create:   "%{item} angelegt"
+      forward:  "%{item} geteilt"
+      reject:   "%{item} abgelehnt"
+      start:    "%{item} gestartet"
+      stop:     "%{item} gestoppt"
+      withdraw: "%{item} zurückgezogen"
   offer:
     compliance: "%{precentage}% Erfüllungsgrad"
     box:

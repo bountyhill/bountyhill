@@ -171,7 +171,17 @@ en:
         password_new_confirmation:  Confirm your new password
   activity:
     list:
-      title:  "Recent activities"
+      title:    "Recent activities"
+      creation: "about %{distance_of_time} ago"
+    action:
+      accept:   "%{item} accepted"
+      comment:  "%{item} posted"
+      create:   "%{item} created"
+      forward:  "%{item} shared"
+      reject:   "%{item} rejected"
+      start:    "%{item} started"
+      stop:     "%{item} stopped"
+      withdraw: "%{item} withdrawn"
   offer:
     compliance: "%{precentage}% compliance"
     box:

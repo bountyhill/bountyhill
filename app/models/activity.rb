@@ -33,7 +33,7 @@ class Activity < ActiveRecord::Base
      @actions ||= Activity::GRADING.keys.inject([]) do |arr, obj|
         arr << Activity::GRADING[obj].keys
         arr.flatten
-      end
+      end.uniq
   end
   
   validates :user, :object, :presence => true
