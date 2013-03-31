@@ -129,7 +129,8 @@ en:
         one:    "Request shared"
         other:  "Requests shared"
     box:
-      title:  "Your profile"
+      title:      "Your profile"
+      info_icon:  "This information cannot be seen by other users."
     form:
       title:  Edit Personal Data
       profile:
@@ -155,13 +156,14 @@ en:
       field_hint:
         first_name:                 Your first name
         last_name:                  Your family name
-        description:                Description of you
+        description:                Describe yourself
         image:                      Your profile picture
         address1:                   Your street
         address2:                   Further address information
         city:                       Your town
         zipcode:                    Zipcode of your town
         country:                    Your country
+        phone:                      Your phone number
         email:                      Email
         email_new:                  New email
         password:                   Enter your current password.

@@ -46,16 +46,22 @@
     .content {
       min-height: 46px;
       .contact-section {
+        background-color: $user_box_title_color;
+        color: $text;
+        margin: 30px -20px -20px -20px;
+        padding: 10px 20px 20px 20px ;
         font-weight: bold;
-        dt, dd {
-          float: left;
+        .info-icon {
+          float: right;
         }
-        dt {
+        .contact-info {
           clear: both;
-          width: 60px;
-        }
-        dd {
-          font-size: 120%;
+          dt, dd { float: left; }
+          dd { font-size: 120%; }
+          dt { 
+            clear: both;
+            width: 60px;
+          }
         }
       }
     }

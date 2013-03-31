@@ -129,7 +129,8 @@ de:
         one:    "Anfrage geteilt"
         other:  "Anfragen geteilt"
     box:
-      title:  "Ihr Profil"
+      title:      "Ihr Profil"
+      info_icon:  "Diese Angaben können anderen Nutzer nicht einsehen."
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
@@ -155,13 +156,14 @@ de:
       field_hint:
         first_name:                 Ihr Vorname
         last_name:                  Ihr Nachname
-        description:                Beschreibung Ihrer Person
+        description:                Beschreiben Sie Ihre Person
         image:                      Ihr Profilbild
         address1:                   Ihre Strasse + Hausnummer
         address2:                   Weiter Adressinformationen
         city:                       Ihre Stadt
         zipcode:                    Die Postleitzahl ihrer Stadt
         country:                    Ihr Land
+        phone:                      Ihre Telefonnummer
         email:                      Email
         email_new:                  Neue Email
         password:                   Geben Sie Ihr aktuelles Passwort ein.

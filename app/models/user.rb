@@ -367,7 +367,7 @@ class User < ActiveRecord::Base
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
   def description
-    self[:description] || [:twitter].detect do |identity|
+    self.serialized[:description] || [:twitter].detect do |identity|
       if (twitter_identity = find_identity(identity))
         twitter_identity.description 
       end
@@ -375,7 +375,7 @@ class User < ActiveRecord::Base
   end
   
   def address
-    [:name, :address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }
+    [:address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }
   end
 
   serialized_attr :image

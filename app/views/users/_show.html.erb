@@ -3,18 +3,31 @@
 </h3>
 
 <div class="contact-section clearfix">
-  <div class="two-columns left">
-    <dl>
-      <dt><%= User.human_attribute_name(:name) -%></dt>     <dd><%= user.name -%></dd>
-      <dt><%= User.human_attribute_name(:twitter) -%></dt>  <dd><%= user.twitter_handle -%></dd>
-      <dt><%= User.human_attribute_name(:email) -%></dt>    <dd><%= user.email -%></dd>
-      <dt><%= User.human_attribute_name(:phone) -%></dt>    <dd><%= user.phone -%></dd>
-    </dl>
+  <div class="info-icon">
+    <%= link_to awesome_icon(:eye_close, :size => :large), "#", 
+      :id               => "info-icon",
+      :"data-toggle"    => "tooltip",
+      :"data-placement" => "right",
+      :title            => I18n.t("user.box.info_icon") %>
   </div>
+  <div class="contact-info">
+    <div class="two-columns left">
+      <dl>
+        <dt><%#= User.human_attribute_name(:name) -%></dt>     <dd><%#= user.name -%></dd>
+        <dt><%= User.human_attribute_name(:twitter) -%></dt>  <dd><%= user.twitter_handle -%></dd>
+        <dt><%= User.human_attribute_name(:email) -%></dt>    <dd><%= user.email -%></dd>
+        <dt><%= User.human_attribute_name(:phone) -%></dt>    <dd><%= user.phone -%></dd>
+      </dl>
+    </div>
   
-  <div class="two-columns right">
-    <dl>
-      <dt><%= User.human_attribute_name(:address1) -%></dt> <dd><%= user.address.join("<br>").html_safe -%></dd>
-    </dl>
+    <div class="two-columns right">
+      <dl>
+        <dt><%= User.human_attribute_name(:address1) -%></dt> <dd><%= user.address.join("<br>").html_safe -%></dd>
+      </dl>
+    </div>
   </div>
 </div>
+
+<script>
+  $('#info-icon').tooltip();
+</script/>
