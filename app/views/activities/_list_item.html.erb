@@ -1,8 +1,14 @@
 <ul>
-  <li class='action'><%= I18n.t("activity.action.#{activity.action}", :item => activity.object.class.name) %>:</li>
-  <li class='object'>"<%= truncate(activity.object.title, :length => 50) %>"</li>
-  <li class='time'>(<%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>)</li>
+  <li class='action'>
+    <%= I18n.t("activity.action.#{activity.action}", :item => activity.object.class.name) %>:
+  </li>
+  <li class='object'>
+    "<%= truncate(activity.object.title, :length => 50) %>"
+  </li>
+  <li class='time'>
+    ... <%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>
+  </li>
 </ul>
 <div class="points">
-  <%= activity.points %> points
+  <%= I18n.t("activity.list.points", :count => activity.points) %>
 </div>

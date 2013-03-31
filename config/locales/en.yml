@@ -173,6 +173,9 @@ en:
     list:
       title:    "Recent activities"
       creation: "about %{distance_of_time} ago"
+      points:   
+        one:    "%{count} point"
+        other:  "%{count} points"
     action:
       accept:   "%{item} accepted"
       comment:  "%{item} posted"

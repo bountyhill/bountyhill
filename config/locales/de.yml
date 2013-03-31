@@ -173,6 +173,9 @@ de:
     list:
       title:    "Letzte Aktivitäten"
       creation: "%{distance_of_time} her"
+      points:   
+        one:    "%{count} Punkt"
+        other:  "%{count} Punkte"
     action:
       accept:   "%{item} akzeptiert"
       comment:  "%{item} abgegeben"
