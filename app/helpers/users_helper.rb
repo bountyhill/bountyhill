@@ -54,7 +54,14 @@ module UsersHelper
     size = options[:size] ||= 128
     
     url = user.avatar(:size => size)
-    image_tag url, :alt => user.name, :title => user.name, :class => "avatar #{options[:class]}", :width => size, :height => size
+    image_tag url, 
+      :alt              => user.name,
+      :class            => "avatar #{options[:class]}",
+      :width            => size,
+      :height           => size,
+      :title            => "#{strong(user.name)}<br>#{user.twitter_handle}",
+      :"data-toggle"    => "tooltip",
+      :"data-placement" => "bottom"
   end
   
   def user_bar(user, type)
