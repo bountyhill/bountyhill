@@ -24,6 +24,8 @@
     .owner {
       position: absolute;
       width: 60%;
+      font-size: 85%;
+      strong { margin-right: 5px; }
     }
     .time {
       position: absolute;
@@ -31,7 +33,7 @@
       width: 40%;
       text-align: right;
       font-style: italic;
-      font-size: 12px;
+      font-size: 85%;
       line-height: 1.5;
     }
     &:hover {
