@@ -96,10 +96,14 @@ de:
   identity/twitter:
     form:
       title:    Anmeldung via Twitter
-      legend:   "Wenn Sie einen Twitter-Account besitzen, können Sie bei bountyhill über Twitters OAuth Schnittstelle anmelden."
+      legend:   "Wenn Sie einen Twitter-Account besitzen, können Sie sich bei bountyhill über Twitters OAuth Schnittstelle anmelden."
       legend2:  "Bitte folgen Sie @bountyhermes damit wir Ihnen aktuelle Informationen via Twitters Direktnachrichten zusenden können."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
+  identity/facebook:
+    form:
+      title:    Anmeldung via Facebook
+      legend:   "Wenn Sie einen Facebook-Account besitzen, können Sie sich bei bountyhill über Facebooks OAuth Schnittstelle anmelden."
   identity/new:
     form:
       title:    Registrieren
@@ -328,6 +332,10 @@ de:
   sessions:
     twitter:
       success:    "Sie haben sich erfolgreich über Twitter angemeldet."
+      error:      "Twitter konnte Sie nicht erfolgreich anmelden."
+    facebook:
+      success:    "Sie haben sich erfolgreich über Facebook angemeldet."
+      error:      "Facebook konnte Sie nicht erfolgreich anmelden."
     email:
       confirmation:
         reminder: "Sie haben sich bei bountyhill registriert, aber Ihre Email-Adresse wurde noch nicht bestätigt."

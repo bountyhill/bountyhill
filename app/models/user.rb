@@ -2,6 +2,7 @@
 
 require_dependency "identity"
 require_dependency "identity/twitter"
+require_dependency "identity/facebook"
 require_dependency "identity/email"
 
 # The User model.
@@ -116,11 +117,12 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [ :email, :twitter, :confirmed, :any ]
+    expect! mode => [ :email, :twitter, :facebook, :confirmed, :any ]
     
     case mode
     when :email     then identities.detect { |i| i.is_a?(Identity::Email) }
     when :twitter   then identities.detect { |i| i.is_a?(Identity::Twitter) }
+    when :facebook  then identities.detect { |i| i.is_a?(Identity::Facebook) }
     when :confirmed then identities.detect { |i| i.is_a?(Identity::Email) && i.confirmed? }
     else            identities.first
     end
@@ -157,6 +159,10 @@ class User < ActiveRecord::Base
     name = "#{first_name} #{last_name}"
 
     if name.blank? && identity = self.identity(:twitter)
+      name = identity.name
+    end
+
+    if name.blank? && identity = self.identity(:facebook)
       name = identity.name
     end
 
@@ -202,13 +208,9 @@ class User < ActiveRecord::Base
       end
     end
     
-    avatar ||= [ :twitter, :email ].inject(nil) do |avatar, sym|
-      if identity = self.identity(sym)
-        avatar = identity.avatar(options.merge(:default => avatar))
+    avatar ||= if (ident = [:twitter, :facebook].detect{ |id| self.identity(id) && self.identity(id).respond_to?(:avatar) })
+        identity(ident).avatar
       end
-      avatar
-    end
-
     avatar || Gravatar.url(:size => options[:size])
   end
   
@@ -350,6 +352,10 @@ class User < ActiveRecord::Base
       parts << "@#{identity.email}"
     end
 
+    if identity = self.identity(:facebook)
+      parts << "@#{identity.facebook}"
+    end
+
     if identity = self.identity(:confirmed)
       parts << "#{identity.email} (✓)"
     elsif identity = self.identity(:email)
@@ -367,11 +373,7 @@ class User < ActiveRecord::Base
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
   def description
-    self.serialized[:description] || [:twitter].detect do |identity|
-      if (twitter_identity = find_identity(identity))
-        twitter_identity.description 
-      end
-    end
+    self.serialized[:description] || self.identities.detect{ |identity| identity.description}
   end
   
   def address
@@ -426,6 +428,11 @@ class User < ActiveRecord::Base
         twitter.destroy
       end
 
+      # remove its facebook acount  to "release" the facebook auth token
+      if twitter = identity(:facebook)
+        twitter.destroy
+      end
+
       # adjust the email identity so, that the email address is kept for 
       # future references and that the user might re-signup with same email
       # again.
@@ -441,6 +448,7 @@ class User < ActiveRecord::Base
     
     message = quest.title if message.blank?
     
+    #TODO: enable sharing of quest via facebook and email as well!
     identity(:twitter).update_status "#{message} #{quest.url}"
   end
 end

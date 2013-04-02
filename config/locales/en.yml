@@ -100,6 +100,10 @@ en:
       legend2:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
+  identity/facebook:
+    form:
+      title:    Sign in with Facebook
+      legend:   If you have a facebook account bountyhill allows you to sign in via Facebook's OAuth interface.
   identity/new:
     form:
       title:    Sign up
@@ -328,6 +332,10 @@ en:
   sessions:
     twitter:
       success:    "You successfully signed in with Twitter."
+      error:      "Twitter could not successfully sign you in."
+    facebook:
+      success:    "You successfully signed in with Facebook."
+      error:      "Facebook could not successfully sign you in."
     email:
       confirmation:
         reminder: "You have signed up with bountyhill, but didn't confirm your email address yet."

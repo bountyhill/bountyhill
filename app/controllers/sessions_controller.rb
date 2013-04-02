@@ -76,8 +76,9 @@ class SessionsController < ApplicationController
     @partials = case params[:req]
     when "confirmed"  then identity?(:email) ? %w(confirm) : %w(email register)
     when "twitter"    then %w(twitter)
+    when "facebook"   then %w(facebook)
     when "email"      then %w(email register)
-    else              %w(email twitter register)
+    else              %w(email twitter facebook register)
     end
 
     render! :action => "new", :layout => "dialog"
@@ -93,6 +94,55 @@ class SessionsController < ApplicationController
     signout
     redirect_to root_path
   end
+
+  # --- Facebook callbacks ---------------------------------------------
+  
+  # The "facebook_post" action initiates a facebook signup. It is a front
+  # for the OmniAuthMiddleware. OmniAuthMiddleware redirects to
+  # the "facebook" action after the Facebook oauth dance is over.
+  def facebook_post
+    # the create method receives the sessions/by_facebook form
+
+    # We store the form data in the session, to be evaluated in the
+    # "facebook" action.
+    identity = params[:identity] || {}
+    # TODO:
+    # session[:like_bountyhill] = identity[:like_bountyhill]
+    
+    # The OmniAuthMiddleware intercepts "/auth/" URLs. The "/auth/facebook" 
+    # URL sets up and redirects to facebook auth. When Facebook oauth
+    # returns to OmniAuthMiddleware, which then redirects to the 
+    # "facebook" action.
+    redirect_to "/auth/facebook"
+  end
+  
+  # The created action is where the OmniAuthMiddleware will redirect 
+  # to after the user logged in successfully.
+  def facebook
+    if (uid = env["omniauth.auth"].uid)
+      # After a successful facebook signin
+      identity = ::Identity::Facebook.find_or_create(
+        :uid              => uid,
+        :oauth_token      => env["omniauth.auth"].credentials.token,
+        :oauth_expires_at => Time.at(env["omniauth.auth"].credentials.expires_at),
+        :info             => env["omniauth.auth"].info,
+        :user             => current_user
+      )
+      signin(User.find(identity.user.id))
+
+      # At this point an existing user might have signed in for the first time,
+      # or might just revisit the site. In the latter case we don't produce a 
+      # flash message.
+      if Time.now - current_user.created_at < 5
+        flash[:success] = "sessions.facebook.success".t
+      end
+
+      identity_presented!
+    else
+      flash[:error] = "sessions.facebook.error".t
+      identity_cancelled!
+    end
+  end
   
   # --- Twitter callbacks ---------------------------------------------
   
@@ -106,7 +156,7 @@ class SessionsController < ApplicationController
     # We store the form data in the session, to be evaluated in the
     # "twitter" action.
     identity = params[:identity] || {}
-    session[:follow_bountyhermes] = identity[:follow_bountyhermes] if identity
+    session[:follow_bountyhermes] = identity[:follow_bountyhermes]
 
     # The TwitterAuthMiddleware intercepts "/tw/" URLs. The "/tw/login" 
     # URL sets up and redirects to twitter auth. When Twitter oauth
@@ -150,6 +200,7 @@ class SessionsController < ApplicationController
 
       identity_presented!
     else
+      flash[:error] = "sessions.twitter.error".t
       identity_cancelled!
     end
   end

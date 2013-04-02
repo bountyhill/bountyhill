@@ -53,7 +53,7 @@ Bountyhill::Application.routes.draw do
 
   resources :activities
   
-  # manual routes for signup, signin, signout, twitter signin
+  # manual routes for signup, signin, signout, twitter and facebook signin
   match "signin"  => "sessions#signin_get",     :via => :get
 #  match "signup"  => "sessions#signin_get",     :via => :get
   match "signin"  => "sessions#signin_post",    :via => :post
@@ -63,7 +63,13 @@ Bountyhill::Application.routes.draw do
 
   match "sessions/twitter" => "sessions#twitter_post", :via => :post
   match "sessions/twitter" => "sessions#twitter", :via => :get
+
+  match "sessions/facebook" => "sessions#facebook_post",    :via => :post
+  match "sessions/facebook" => "sessions#facebook",         :via => :get
   
+  # omniauth
+  match 'auth/:provider/callback' => 'sessions#facebook'
+  # match 'auth/failure'            => 'home#index'
 
   resources :deferred_actions, :only => [:show]
   match 'act'             => 'deferred_actions#show'

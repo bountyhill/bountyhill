@@ -8,6 +8,7 @@ class Identity::Twitter < Identity
 
   with_metrics! "accounts.twitter"
 
+  # stores user's twitter screen_name
   validates :email, presence: true, format: { with: /^[^@]/ }, 
                                    uniqueness: { case_sensitive: false }
 
@@ -94,10 +95,9 @@ class Identity::Twitter < Identity
   def description
     # TODO
     # info["description"]
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
   end
   
-  def avatar(options)
+  def avatar(options={})
     expect! options => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
 
     # url = info["profile_image_url"] # use http URL

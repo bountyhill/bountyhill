@@ -24,6 +24,9 @@ class Activity < ActiveRecord::Base
     :"identity/twitter" => {
       :create => 5
     },
+    :"identity/facebook" => {
+      :create => 10
+    },
     :"identity/email" => {
       :create => 10
     }

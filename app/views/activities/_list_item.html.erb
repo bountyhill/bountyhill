@@ -1,10 +1,12 @@
 <ul>
   <li class='action'>
-    <%= I18n.t("activity.action.#{activity.action}", :item => activity.object.class.name) %>:
+    <%= I18n.t("activity.action.#{activity.action}", :item => activity.object.class.name) %>
   </li>
+  <% if activity.object.respond_to?(:title) %>
   <li class='object'>
     "<%= truncate(activity.object.title, :length => 50) %>"
   </li>
+  <% end %>
   <li class='time'>
     ... <%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>
   </li>

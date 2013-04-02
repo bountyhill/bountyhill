@@ -9,45 +9,35 @@
       };
       &.password {
         background-color: $password;
-        &:hover {
-          background-color: $password_highlight;
-        };
+        &:hover { background-color: $password_highlight; };
       }
       &.email {
         background-color: $email;
-        &:hover {
-          background-color: $email_highlight;
-        };
+        &:hover { background-color: $email_highlight; };
       }
       &.twitter {
         background-color: $twitter;
-        &:hover {
-          background-color: $twitter_highlight;
-        };
+        &:hover { background-color: $twitter_highlight; };
+      }
+      &.facebook {
+        background-color: $facebook;
+        &:hover { background-color: $facebook_highlight; };
       }
       &.register {
         background-color: $register;
-        &:hover {
-          background-color: $register_highlight;
-        };
+        &:hover { background-color: $register_highlight; };
       }
       &.address {
         background-color: $address;
-        &:hover {
-          background-color: $address_highlight;
-        };
+        &:hover { background-color: $address_highlight; };
       }
       &.profile {
         background-color: $profile;
-        &:hover {
-          background-color: $profile_highlight;
-        };
+        &:hover { background-color: $profile_highlight; };
       }
       &.delete {
         background-color: $delete;
-        &:hover {
-          background-color: $delete_highlight;
-        };
+        &:hover { background-color: $delete_highlight; };
       }
     }
     h4 {
