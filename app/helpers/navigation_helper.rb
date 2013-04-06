@@ -52,13 +52,13 @@ module NavigationHelper
     when :profile
       link_to awesome_icon(:user) + I18n.t("nav.your_profile"), "/profile"
     when :signout
-      link_to awesome_icon(:signout) +  I18n.t("nav.signout"), signout_path, :method => :delete
+      link_to awesome_icon(:signout) +  span(I18n.t("nav.signout")), signout_path, :method => :delete
     when :divider
       ""
     when :copyright
       link_to "<strong>&copy; bountyhill, #{Time.now.year}</strong>".html_safe, root_path
     when :signin
-      modal_link_to awesome_icon(:signin) + I18n.t("nav.signin"), signin_path
+      modal_link_to awesome_icon(:signin) + span(I18n.t("nav.signin")), signin_path
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     else
