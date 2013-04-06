@@ -84,7 +84,7 @@ de:
         reset:  "Wir haben Ihnen eine Email zugesandt, die Ihnen erläutert, wie Sie Ihr Passwort zurücksetzen können."
   identity/email:
     form:
-      title:  Anmeldung via Email
+      title:  Anmelden via Email
       legend: "Melden Sie sich mit Ihrer Email-Adresse an, wenn Sie bereits ein bounthill Konto besitzen."
       field_hint:
         email:                    "Geben Sie Ihre Email Adresse ein."
@@ -95,14 +95,14 @@ de:
         newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
   identity/twitter:
     form:
-      title:    Anmeldung via Twitter
+      title:    Anmelden via Twitter
       legend:   "Wenn Sie einen Twitter-Account besitzen, können Sie sich bei bountyhill über Twitters OAuth Schnittstelle anmelden."
       legend2:  "Bitte folgen Sie @bountyhermes damit wir Ihnen aktuelle Informationen via Twitters Direktnachrichten zusenden können."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
   identity/facebook:
     form:
-      title:    Anmeldung via Facebook
+      title:    Anmelden via Facebook
       legend:   "Wenn Sie einen Facebook-Account besitzen, können Sie sich bei bountyhill über Facebooks OAuth Schnittstelle anmelden."
   identity/new:
     form:
