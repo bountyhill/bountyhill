@@ -69,7 +69,7 @@ Bountyhill::Application.routes.draw do
   
   # omniauth
   match 'auth/:provider/callback' => 'sessions#facebook'
-  # match 'auth/failure'            => 'home#index'
+  match 'auth/failure'            => 'sessions#facebook'
 
   resources :deferred_actions, :only => [:show]
   match 'act'             => 'deferred_actions#show'

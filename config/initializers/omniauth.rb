@@ -1,4 +1,6 @@
 OmniAuth.config.logger = Rails.logger
+OmniAuth.config.on_failure = SessionsController.action(:facebook)
+
 
 # OmniAuthMiddleware: handles facebook authentication
 
