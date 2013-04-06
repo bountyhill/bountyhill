@@ -196,6 +196,15 @@ class User < ActiveRecord::Base
       "@" + identity.screen_name
     end
   end
+  alias_method :twitter, :twitter_handle
+  
+  # return the user's facebook nickname
+  def facebook_nickname
+    if identity = self.identity(:facebook)
+      identity.nickname_name
+    end
+  end
+  alias_method :facebook, :facebook_nickname
 
   #
   # return's the user's avatar image if the user has uploaded one, or if not

@@ -127,6 +127,25 @@ module UsersHelper
       awesome_icon(:retweet, :size => :large), :css_class => "user"
   end
   
+  CONTACT_INFO_FIELDS = %w(name email phone twitter facebook)
+  def user_contact_info(user)
+    dl do
+      CONTACT_INFO_FIELDS.map do |attribute|
+        next unless (contact_info = user.send(attribute)).present?
+        dt(User.human_attribute_name(attribute)) +
+        dd(contact_info)
+      end.compact.join.html_safe
+    end
+  end
+
+  def user_address_info(user)
+    return unless (address_info = user.address).present?
+    dl do
+      dt(User.human_attribute_name(:address1)) +
+      dd(address_info.join("<br>").html_safe)
+    end
+  end
+  
 end
 __END__
 

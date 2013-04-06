@@ -92,6 +92,10 @@ class Identity::Facebook < Identity
     # info["description"]
   end
   
+  def nickname_name
+    info["nickname"]
+  end
+  
   def avatar(options={})
     expect! options => { :default => [ String, nil ], :size => [ Fixnum, nil ]}
 
