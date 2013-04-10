@@ -11,17 +11,13 @@ class RunsController < ApplicationController
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! @quest => current_user
     
-    # Show the form.  When the user submits the form it will end up in "runs/start".
-    redirect_to new_share_path(:quest_id => @quest)
-  end
-
-  #
-  # Starts the run of a quest
-  def update
-    @quest.start!
-
-    flash[:success] = I18n.t("quest.action.started", :quest => @quest.title)
-    redirect_to quest_path(@quest)
+    # Redirect to shares/new since this will handle posting in social networks.
+    # FIXME: redirecting an xhr request does notresult in an xhr request 
+    # in the target controller/action
+    # redirect_to new_share_path(:quest_id => @quest)
+    
+    @share = Share.new(:quest => @quest, :owner => current_user)
+    render :template => "shares/new", :layout => "dialog"
   end
 
   #
@@ -37,7 +33,6 @@ class RunsController < ApplicationController
     flash[:success] = I18n.t("quest.action.cancelled", :quest => @quest.title)
     redirect_to quest_path(@quest)
   end
-  
 
 private
   
