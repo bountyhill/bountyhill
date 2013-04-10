@@ -1,6 +1,6 @@
 <ul>
   <li class='action'>
-    <%= I18n.t("activity.action.#{activity.action}", :item => activity.object.class.name) %>
+    <%= I18n.t("activity.action.#{activity.action}", :item => I18n.t("activerecord.models.#{activity.object.class.name.underscore}", :count => 1)) %>
   </li>
   <% if activity.object.respond_to?(:title) %>
   <li class='object'>

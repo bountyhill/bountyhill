@@ -359,6 +359,40 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: shares; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE shares (
+    id integer NOT NULL,
+    owner_id integer,
+    quest_id integer,
+    message character varying(255),
+    identities text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: shares_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE shares_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: shares_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE shares_id_seq OWNED BY shares.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -470,6 +504,13 @@ ALTER TABLE ONLY quests ALTER COLUMN id SET DEFAULT nextval('quests_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY shares ALTER COLUMN id SET DEFAULT nextval('shares_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -543,6 +584,14 @@ ALTER TABLE ONLY offers
 
 ALTER TABLE ONLY quests
     ADD CONSTRAINT quests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: shares_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY shares
+    ADD CONSTRAINT shares_pkey PRIMARY KEY (id);
 
 
 --
@@ -645,6 +694,20 @@ CREATE INDEX index_quests_on_visibility ON quests USING btree (visibility);
 
 
 --
+-- Name: index_shares_on_owner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_shares_on_owner_id ON shares USING btree (owner_id);
+
+
+--
+-- Name: index_shares_on_quest_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_shares_on_quest_id ON shares USING btree (quest_id);
+
+
+--
 -- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -725,6 +788,8 @@ INSERT INTO schema_migrations (version) VALUES ('3');
 INSERT INTO schema_migrations (version) VALUES ('30');
 
 INSERT INTO schema_migrations (version) VALUES ('31');
+
+INSERT INTO schema_migrations (version) VALUES ('32');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

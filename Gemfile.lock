@@ -140,6 +140,10 @@ GEM
       rake
       thor
       trollop
+    koala (1.6.0)
+      addressable (~> 2.2)
+      faraday (~> 0.8)
+      multi_json (~> 1.3)
     launchy (2.1.2)
       addressable (~> 2.3)
     libwebsocket (0.1.5)
@@ -349,6 +353,7 @@ DEPENDENCIES
   geoip
   jquery-rails
   kibo (~> 0.4)
+  koala
   launchy
   mobile-fu
   mocha

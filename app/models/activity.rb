@@ -8,18 +8,18 @@ class Activity < ActiveRecord::Base
   
   GRADING = {
     :quest => {
-      :forward => 3,
-      :comment => 1,
-      :create  => 5,
       :start   => 10,
+      :create  => 5,
+      :share   => 3,
+      :comment => 1,
       :stop    => -5
     },
     :offer => {
-      :comment  => 2,
       :create   => 10,
-      :withdraw => -5,
-      :accept   => 20,
-      :reject   => 5
+      :accept   => 10,
+      :reject   => 5,
+      :comment  => 2,
+      :withdraw => -5
     },
     :"identity/twitter" => {
       :create => 5

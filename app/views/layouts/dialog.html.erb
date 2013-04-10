@@ -4,7 +4,7 @@
     yield
   else
     locals = { 
-      :content        => render(:template => "home/index"), 
+      :content        => render(:template => "home/index"),
       :modal_content  => yield,
       :extra_script   => "$('#myModal').modal('show');"
     }

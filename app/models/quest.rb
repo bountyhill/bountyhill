@@ -78,7 +78,7 @@ class Quest < ActiveRecord::Base
       if !previous_user || !previous_user.owns?(quest)
         if !quest.owner.draft?
           raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" 
-        elsif quest.created_at < Time.now - 10.minutes
+        elsif quest.created_at < Time.now - 30.minutes
           raise ActiveRecord::RecordNotFound, "#{quest.uid} is too old" 
         end
       end
@@ -317,10 +317,6 @@ class Quest < ActiveRecord::Base
 
   # -- Pseudo attributes ----------------------------------------------
   
-  attr :message, true
-  attr :tweet, true
-  attr_accessible :message, :tweet
-
   def compliance
     offers.all.map(&:compliance).sort.last
   end

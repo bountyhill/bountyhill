@@ -130,7 +130,9 @@ class User < ActiveRecord::Base
 
   public
   
-  alias :identity? :identity
+  def identity?(*modi)
+    identity(*modi).present?
+  end
   
   # Exception class for User#identity!
   class MissingIdentity < RuntimeError; end
@@ -201,7 +203,7 @@ class User < ActiveRecord::Base
   # return the user's facebook nickname
   def facebook_nickname
     if identity = self.identity(:facebook)
-      identity.nickname_name
+      identity.nickname
     end
   end
   alias_method :facebook, :facebook_nickname
@@ -358,15 +360,15 @@ class User < ActiveRecord::Base
     parts = []
 
     if identity = self.identity(:twitter)
-      parts << "@#{identity.email}"
+      parts << "t:#{identity.screen_name}"
     end
 
     if identity = self.identity(:facebook)
-      parts << "@#{identity.facebook}"
+      parts << "f:#{identity.nickname}"
     end
 
     if identity = self.identity(:confirmed)
-      parts << "#{identity.email} (✓)"
+      parts << "@:#{identity.email} (✓)"
     elsif identity = self.identity(:email)
       parts << identity.email
     end
@@ -382,11 +384,11 @@ class User < ActiveRecord::Base
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
   def description
-    self.serialized[:description] || self.identities.detect{ |identity| identity.description}
+    self.serialized[:description] || self.identities.detect{ |identity| identity.description if identity.respond_to?(:description)}
   end
   
   def address
-    [:address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }
+    [:address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }.compact
   end
 
   serialized_attr :image
@@ -449,15 +451,4 @@ class User < ActiveRecord::Base
     end
   end
   
-  # -- retweet a quest ------------------------------------------------
-  def retweet(quest, options = {})
-    if options[:message]
-      message = options[:message].gsub(/(^\s+)|(\s+$)/, "").gsub(/\s\s+/, " ")
-    end
-    
-    message = quest.title if message.blank?
-    
-    #TODO: enable sharing of quest via facebook and email as well!
-    identity(:twitter).update_status "#{message} #{quest.url}"
-  end
 end

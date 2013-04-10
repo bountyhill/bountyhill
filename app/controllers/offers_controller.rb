@@ -59,7 +59,7 @@ class OffersController < ApplicationController
     @offer = Offer.new(params[:offer])
 
     if @offer.save
-      redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.name)
+      redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.model_name.human)
     end
     
     render action: "new"
@@ -72,7 +72,7 @@ class OffersController < ApplicationController
     if @offer.valid?
       @offer.update_attributes(params[:offer])
       
-      redirect_to quests_path, :notice => I18n.t("message.update.success", :record => Offer.name)
+      redirect_to quests_path, :notice => I18n.t("message.update.success", :record => Offer.model_name.human)
     else
       render :action => "edit"
     end

@@ -184,7 +184,7 @@ en:
       accept:   "%{item} accepted"
       comment:  "%{item} posted"
       create:   "%{item} created"
-      forward:  "%{item} shared"
+      share:    "%{item} shared"
       reject:   "%{item} rejected"
       start:    "%{item} started"
       stop:     "%{item} stopped"
@@ -249,6 +249,10 @@ en:
       active:       "Active"
       not_started:  "Not started"
       expired:      "Expired"
+    action:
+      started:  "Your quest '%{quest}' was successfully started."
+      canceled: "Your quest '%{quest}' was successfully canceled."
+      shared:   "Your quest '%{quest}' was successfully shared."
     box:
       title:    "%{amount} bounty"
       criteria: "The following criteria are defined for this quest:"
@@ -326,9 +330,15 @@ en:
       stop:
         title:  Stop your quest
         legend: "Please tell us the reason why you want to stop your quest before it's expiration."
-      share:
-        title:  Share this quest
-        legend: "Thanx a lot for sharing this quest with your friends and followers. Feel free to adjust our share's message to your needs."
+  share:
+    errors:
+      identities: "No network was chosen"
+    form:
+      title:  Share this quest
+      legend: "Thanx a lot for sharing this quest with your friends and followers. Please choose the social networks you want to post in."
+      twitter:  "Twitter %{identity_required}"
+      facebook: "Facebook %{identity_required}"
+      identity_required:  "signed required"
   sessions:
     twitter:
       success:    "You successfully signed in with Twitter."

@@ -6,5 +6,5 @@ OmniAuth.config.on_failure = SessionsController.action(:facebook)
 
 # Fetch the facebook configuration from Bountybase.
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, Bountybase.config.facebook_app["app_id"], Bountybase.config.facebook_app["app_secret"]
+  provider :facebook, Bountybase.config.facebook_app["app_id"], Bountybase.config.facebook_app["app_secret"], { :scope => 'email, publish_stream' }
 end

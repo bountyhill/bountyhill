@@ -52,7 +52,7 @@ module QuestsHelper
   def share_quest_button(quest)
     return unless quest.active?
 
-    modal_awesome_button(:retweet, share_path(quest)) { I18n.t("button.share") }
+    modal_awesome_button(:retweet, new_share_path(:quest_id => quest)) { I18n.t("button.share") }
   end
 
   def new_offer_button(quest)

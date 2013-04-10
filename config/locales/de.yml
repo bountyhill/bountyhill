@@ -184,7 +184,7 @@ de:
       accept:   "%{item} akzeptiert"
       comment:  "%{item} abgegeben"
       create:   "%{item} angelegt"
-      forward:  "%{item} geteilt"
+      share:    "%{item} geteilt"
       reject:   "%{item} abgelehnt"
       start:    "%{item} gestartet"
       stop:     "%{item} gestoppt"
@@ -247,8 +247,12 @@ de:
   quest:
     status:
       active:       "Aktiv"
-      not_started:  "Nicht gestarted"
+      not_started:  "Nicht gestartet"
       expired:      "Abgelaufen"
+    action:
+      started:  "Ihre Suchanfrage '%{quest}' wurde erfolgreich gestartet."
+      canceled: "Ihre Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
+      shared:   "Ihre Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     box:
       title:    "%{amount} Belohnung"
       criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
@@ -326,9 +330,15 @@ de:
       stop:
         title:  Suchanfrage beenden
         legend: "Teilen Sie uns bitte den Grund dafür mit, warum Sie Ihre Suchanfrage vor deren Ablaufdatum beenden möchten."
-      share:
-        title:  Suchanfrage teilen
-        legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen möchten. Die Nachricht Ihrer Mitteilung können Sie gern anpassen."
+  share:
+    errors:
+      identities: "Es wurde kein Netzwerk ausgewählt"
+    form:
+      title:  Suchanfrage teilen
+      legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen wollen. Bitte wählen Sie die sozialen Netzwerke aus, welche Sie dafür verwenden möchten."
+      twitter:  "Twitter %{identity_required}"
+      facebook: "Facebook %{identity_required}"
+      identity_required: "erfordert Anmeldung"
   sessions:
     twitter:
       success:    "Sie haben sich erfolgreich über Twitter angemeldet."

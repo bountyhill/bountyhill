@@ -1,0 +1,72 @@
+<%-
+  # By editing tweet the user edits the "message" entry. When submitting the
+  # form the controller posts the message with all choosen identities.
+  #
+  # Parameters for this partial:
+  # - +share+: the Share object.
+-%>
+
+<%= form_for(@share, :remote => true) do |form| %>
+  <% modal_body do %>
+    <% if @share.quest.active? %>
+      <p><%= I18n.t("share.form.legend") %></p>
+    <% else %>
+      <p><%= I18n.t("quest.form.start.legend") %></p>
+    <% end %>
+    <%= form.error_messages %>
+    
+    <%= form.control_group :quest_id, :hidden_field %>
+    <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '&euro;') %>
+    
+    <% Share::IDENTITIES.each do |identity| %>
+      <div class="checkbox-group <%= identity %>">
+        <%= form.share_with identity,
+          :checked            => @share.identities[identity],
+          :identity_required  => current_user.identity(identity).nil? %>
+        <%= awesome_icon("#{identity}_sign", :size => :large) %>
+      </div>
+    <% end %>
+    
+    <div class="tweet-message">
+      <%= form.control_group :title, :text_area, :rows => 2, :hint => false, :label => false, :class => "input-xxlarge" %>
+    </div>
+    
+    <div class="tweet-container">
+      <%= form.control_group :message, :hidden_field %>
+      <%= avatar current_user, :size => 48 %>
+      <div id="tweet">
+        <span class="preview"/>
+        <span><%= link_to quest_url(@share.quest), quest_url(@share.quest), :target => "_blank" %></span>
+      </div>
+    </div>
+  <% end %>
+
+  <% modal_footer do
+    form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.#{@share.quest.active? ? 'share' : 'start'}"), :class => "btn btn-primary"
+  end %>
+  
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+
+(function($) {
+  
+  var node_title    = $("#share_title"),
+    node_message  = $("#share_message");
+    node_tweet    = $("#tweet span.preview");
+    
+  function update_message() {
+    // Build a message to write into the form
+    var message = jQuery.escapeHTML(node_title.val());
+    if(message.length > 99)
+      message = message.substr(0, 99) + "…";
+    message = message + " #bounty";
+    message = message + ' ' + $("#bounty_with_unit").val();
+
+    node_message.val(message);
+    node_tweet.html(message);
+  }
+  node_title.change(update_message).keyup(update_message);
+  update_message();
+})(jQuery);
+</script>

@@ -1,40 +1,59 @@
-# The SharesController is used to retweet (and later potentially refacebook and whatever) 
-# a quest.
+# The SharesController is used to share a quest via selected social networks, 
+# e.g. twitter, facebook or ...
 class SharesController < ApplicationController
-  before_filter :quest
-  attr :quest
-
-  layout false, :only => [:show]
+  before_filter :quest, :only => [:new]
+  layout false, :only => [:new]
   
+  #
   # Show the form to share a quest
-  def show
-    request_identity! :twitter
+  def new
+    @share = Share.new(:quest => @quest, :owner => current_user)
     render :layout => "dialog"
   end
   
-  def update
-    # Re-render the form, if the quest is not valid.
-    quest.attributes = params[:quest]
-    unless quest.valid?
-      flash.now[:error] = if base_errors = @quest.errors[:base]
-        I18n.t("message.base_error", :base_error => base_errors.join(", "))
-      else
-        I18n.t("message.error")
-      end
-
-      render! action: "show"
-    end
+  #
+  # Create a share object
+  def create
+    @share = Share.new(params[:share].merge(:owner => current_user))
     
-    # quest.tweet is a pseudo-attribute; it will be set from the form data.
-    current_user.retweet(quest, :message => quest.tweet)
+    # if we have a valid share object, we redirect to
+    # the show action to trigger the actual sharing
+    if @share.save
+      redirect_to share_path(@share)
+    end
+  end
+  
+  #
+  # Post the quest in social networks
+  def show
+    @share = Share.find(params[:id])
+    
+    # Share quest with identities user did choose
+    @share.identities.each do |identity, shared_at|
+      next if shared_at.kind_of?(Time)
+      
+      # request identity user wants to share with
+      request_identity! identity.to_sym, :on_cancel => @share.quest
+      @share.post(identity.to_sym)
+    end
 
-    flash[:success] = I18n.t("quest.shared", :title => quest.title)
-    redirect_to quests_path(:owner_id => current_user.id)
+    # 
+    # if the quest is alreday active, we are done if not,
+    # we have to start the quest
+    flash[:success] = if @share.quest.active? then
+        I18n.t("quest.action.shared", :quest => @share.title)
+      else
+        @share.quest.start!
+        I18n.t("quest.action.started", :quest => @share.title)
+      end
+    redirect_to quest_path(@share.quest)
   end
 
-  private
+
+private
   
   def quest
-    @quest ||= Quest.find(params[:id])
+    @quest ||= Quest.find(params[:quest_id])
   end
+    
 end

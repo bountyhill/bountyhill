@@ -20,7 +20,7 @@ module ApplicationController::RequiredIdentity
   #  - request_identity! mode
   #
   # The +mode+ parameter is one of the supported authentication modi
-  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:any</tt>)
+  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:facebook</tt>, <tt>:any</tt>)
   # and defaults to :any.
   #
   # - <tt>:on_cancel</tt> URL to redirect to when user cancels authentication.
@@ -47,7 +47,7 @@ module ApplicationController::RequiredIdentity
   #
   #   def do_start
   #     request_identity! :twitter, :on_cancel => "/"
-  #     current_user.twitter.status "Hey, I am in here!"
+  #     share.post(:twitter)
   #   end
   
   def request_identity!(*args)
@@ -56,7 +56,7 @@ module ApplicationController::RequiredIdentity
 
     expect! request.method => "GET"
     expect! args.length => [0, 1]
-    expect! kind => [ :confirmed, :email, :twitter, :any ]
+    expect! kind => [ :confirmed, :email, :twitter, :facebook, :any ]
     expect! options => {
       :on_success  => [ nil, ActiveRecord::Base, String ],
       :on_cancel   => [ nil, ActiveRecord::Base, String ],
@@ -124,7 +124,7 @@ module ApplicationController::RequiredIdentity
     
     # validate identity payload, just to be sure.
     return unless payload.is_a?(Hash)
-    return unless payload[:kind].in?([:confirmed, :email, :twitter, :any])
+    return unless payload[:kind].in?([:confirmed, :email, :twitter, :facebook, :any])
     
     payload
   end

@@ -16,6 +16,34 @@ form {
       &.checkbox { margin-left: 180px; }
     }
   }
+  .checkbox-group {
+    &.twitter, &.facebook {
+      position: relative;
+      margin: 5px 0;
+      @include border-radius(4px);
+      padding: 0px 10px;
+      color: $text;
+      label { padding-top: 3px; }
+      i {
+        position: absolute;
+        right: 10px;
+        bottom: 7px;
+      }
+    }
+    &.twitter  { 
+      background-color: $twitter; 
+      &:hover {background-color: $twitter_highlight; }
+    }
+    &.facebook { 
+      background-color: $facebook; 
+      &:hover {background-color: $facebook_highlight; }
+    }
+  }
+  .tweet-message {
+    margin-top: 18px;
+    .controls { margin-left: 0; }
+    textarea  { width: 516px; }
+  }
   .tweet-container {
     position: relative;
     .avatar {

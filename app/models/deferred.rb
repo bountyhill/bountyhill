@@ -61,6 +61,23 @@ module Deferred
     end
   end
 
+  # -- run a facebook request ------------------------------------------
+  
+  def facebook(*args)
+    W "TRY facebook", *args
+    return if Rails.env.development?
+
+    oauth = args.extract_options!
+    expect! oauth => {
+      :oauth_token      => String,
+      :oauth_expires_at => Time,
+    }
+    
+    client = Koala::Facebook::API.new(oauth[:oauth_token])
+    client.put_connections(*args)
+    W "OK facebook", *args
+  end
+
   # -- run a twitter request ------------------------------------------
   
   # does a Twitter API call. The parameters include a oauth options

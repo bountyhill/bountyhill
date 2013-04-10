@@ -1,5 +1,30 @@
 de: 
   activerecord:
+    models:
+      quest:
+        one:    Suche
+        other:  Suchen
+      offer:
+        one:    Angebot
+        other:  Angebote
+      share:
+        one:    Empfehlung
+        other:  Empfehlungen
+      user:
+        one:    Nutzer
+        other:  Nutzer
+      identity:
+        one:    Identitität
+        other:  Identititäten
+      identity/email:
+        one:    Email Identitität
+        other:  Email Identititäten
+      identity/twitter:
+        one:  Twitter Identitität
+        other:  Twitter Identititäten
+      identity/facebook:
+        one: Facebook Identitität
+        other: Facebook Identititäten
     attributes:
       identity:
         email:                  Email

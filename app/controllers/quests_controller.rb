@@ -30,6 +30,7 @@ class QuestsController < ApplicationController
 
   def new
     @quest ||= Quest.new
+    @quest.bounty_in_cents = Quest::DEFAULT_BOUNTY
 
     # When we come from the start page, we might have a quest title.
     @quest.title = params[:q]

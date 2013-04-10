@@ -27,7 +27,6 @@ Bountyhill::Application.routes.draw do
   match "/quests/category/:category"  => "quests#index",  :via => :get
   
   resources :shares
-  match "/shares/:id" => "shares#update", :via => :post
   
   resources :runs
   match "/runs/:id"         => "runs#update", :via => :post

@@ -12,6 +12,7 @@
 # There are specific subclasses:
 #
 # - Identity::Twitter
+# - Identity::Facebook
 # - Identity::Email
 # - Identity::Deleted
 #
