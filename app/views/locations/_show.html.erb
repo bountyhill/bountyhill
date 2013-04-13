@@ -1,0 +1,47 @@
+<div id="map" style="width: 100%; height: 360px"></div>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+  var defaultZoom = 15; // Why zoomed in? Because it looks good.
+
+  var lat = <%= location.latitude %>;
+  var lng = <%= location.longitude %>;
+
+  // create map and add controls
+  var mapOptions = {
+    center: new google.maps.LatLng(lat, lng),
+    zoom: defaultZoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scrollwheel: false,
+    scaleControl: false
+  };
+  var map = new google.maps.Map(document.getElementById('map'),mapOptions);
+
+  // set center point of map to be of the Marker or the Default City
+  var centrePoint = new google.maps.LatLng(lat, lng);
+
+  map.setCenter(centrePoint);
+  map.setZoom(defaultZoom);
+
+  // add a draggable marker
+  marker = new google.maps.Marker({
+    map:map,
+    draggable: false,
+    animation: google.maps.Animation.DROP,
+    position: centrePoint
+  });
+
+  // Set marker image
+  var defaultImage = new google.maps.MarkerImage(
+      "http://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+      new google.maps.Size(71, 71),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(17, 34),
+      new google.maps.Size(35, 35)
+  );
+  marker.setIcon(defaultImage);
+
+//-->
+</script>

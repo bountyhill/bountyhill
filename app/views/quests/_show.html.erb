@@ -29,6 +29,10 @@
   </div>
 <% end %>
 
+<% if quest.location.present? %>
+  <%= partial "locations/show", :location => quest.location %>
+<% end %>
+
 <% if preview %>
   <div class="button-section">
     <%= start_quest_button(quest, :button => "btn btn-inverse", :size => "default") %>

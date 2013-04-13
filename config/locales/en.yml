@@ -330,6 +330,14 @@ en:
       stop:
         title:  Stop your quest
         legend: "Please tell us the reason why you want to stop your quest before it's expiration."
+  location:
+    radius:
+      unlimited: limited
+      limited:  "%{radius} km"
+    form:
+      field_hint:
+        address: "Enter the location you want to restrict this quest to."
+        radius:  "The radius around the location."
   share:
     errors:
       identities: "No network was chosen"

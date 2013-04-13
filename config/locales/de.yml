@@ -330,6 +330,14 @@ de:
       stop:
         title:  Suchanfrage beenden
         legend: "Teilen Sie uns bitte den Grund dafür mit, warum Sie Ihre Suchanfrage vor deren Ablaufdatum beenden möchten."
+  location:
+    radius:
+      unlimited: unbegrenzt
+      limited:  "%{radius} km"
+    form:
+      field_hint:
+        address: "Geben Sie den Ort an, auf den Sie Ihre Suche beschränken möchten."
+        radius:  "Der Umkreis des Ortes."
   share:
     errors:
       identities: "Es wurde kein Netzwerk ausgewählt"

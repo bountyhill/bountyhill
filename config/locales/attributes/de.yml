@@ -20,11 +20,12 @@ de:
         one:    Email Identitität
         other:  Email Identititäten
       identity/twitter:
-        one:  Twitter Identitität
+        one:    Twitter Identitität
         other:  Twitter Identititäten
       identity/facebook:
-        one: Facebook Identitität
-        other: Facebook Identititäten
+        one:    Facebook Identitität
+        other:  Facebook Identititäten
+      location: Ort
     attributes:
       identity:
         email:                  Email
@@ -79,3 +80,8 @@ de:
         offers:               Angebote
         cancellation:         Beweggrund
         cancellation_reason:  Erklärung
+      location:
+        stationary: Ortsbezug
+        address:    Adresse
+        radius:     Umkreis
+        

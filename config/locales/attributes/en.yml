@@ -25,6 +25,7 @@ en:
       identity/facebook:
         one:    Facebook identity
         other:  Facebook identities
+      location: location
     attributes:
       identity:
         email:                  Email
@@ -79,3 +80,7 @@ en:
         offers:               Offers
         cancellation:         Reason
         cancellation_reason:  Explanation
+      location:
+        stationary: Dependency
+        address:    address
+        radius:     radius

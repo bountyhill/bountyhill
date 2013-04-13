@@ -23,41 +23,33 @@ class QuestsController < ApplicationController
   def show
     @quest = Quest.find(params[:id])
 
-    if params[:preview]
-      render action: "preview"
-    end
+    render :action => "preview" if params[:preview]
   end
 
   def new
     @quest ||= Quest.new
     @quest.bounty_in_cents = Quest::DEFAULT_BOUNTY
-
-    # When we come from the start page, we might have a quest title.
-    @quest.title = params[:q]
-    
-    # fill in location, if the server provides one.
-    if location = request.location
-      @quest.location = location.name 
-    end
+    @quest.build_location(:location => request.location)
   end
 
   def edit
     @quest = Quest.find(params[:id])
-    render action: "new"
+    @quest.build_location unless @quest.location.present?
+    
+    render :action => "new"
   end
 
   # POST /quests
   def create
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
-    @quest.bounty_in_cents ||= Quest::DEFAULT_BOUNTY
-
+    
     # Start the quest after saving.
     if @quest.save
-      redirect_to! quest_path(@quest, preview: true), notice: 'Quest was successfully created.'
+      redirect_to! quest_path(@quest, :preview => true), :notice => 'Quest was successfully created.'
     end
 
-    render action: "new"
+    render :action => "new"
   end
   
   # PUT /quests/1
@@ -65,12 +57,16 @@ class QuestsController < ApplicationController
     @quest = Quest.find(params[:id])
     @quest.attributes = params[:quest]
 
-    if @quest.valid?
-      @quest.save!
-      redirect_to! quests_path, notice: 'Quest was successfully updated.'
+    if @quest.location && @quest.restrict_location.blank?
+      @quest.location.mark_for_destruction
     end
 
-    render action: "new"
+    if @quest.valid?
+      @quest.save!
+      redirect_to! quest_path(@quest), :notice => 'Quest was successfully updated.'
+    end
+
+    render :action => "new"
   end
 
   # DELETE /quests/1

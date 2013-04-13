@@ -15,6 +15,11 @@ form {
     label {
       &.checkbox { margin-left: 180px; }
     }
+    #googlemap {
+      margin-left: 182px;
+      width: 540px;
+      height: 300px;
+    }
   }
   .checkbox-group {
     &.twitter, &.facebook {

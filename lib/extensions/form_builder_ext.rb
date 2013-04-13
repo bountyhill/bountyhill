@@ -221,19 +221,9 @@ class ActionView::Helpers::FormBuilder
   def restrict_location
     content_tag :label, :class => "checkbox" do
       note <<-HTML
-  <input id="restrict_location" type="checkbox" />
+  <input id="restrict_location" name="quest[restrict_location]" type="checkbox" />
   #{ I18n.t("quest.form.field_hint.restrict_location")}
       HTML
-    end
-  end
-
-  def location_map(location_field_id)
-    div :class => "control-group" do
-      div :class => "controls" do
-        div :class => "map" do
-          "placeholder: location map"
-        end
-      end
     end
   end
 

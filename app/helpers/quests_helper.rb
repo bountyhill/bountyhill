@@ -35,6 +35,14 @@ module QuestsHelper
     end
   end
   
+  def location_radius_select_options
+    Location::RADIUS.inject([]) do |options, radius|
+      options <<  if radius.to_i.zero? then [I18n.t(radius, :scope => "location.radius"), radius]
+                  else                      [I18n.t('limited',  :radius => radius, :scope => "location.radius"), radius]
+                  end
+    end
+  end
+  
   def quests_category_filters(filters=[])
     filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
   end

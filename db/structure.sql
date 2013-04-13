@@ -270,6 +270,43 @@ ALTER SEQUENCE liabilities_id_seq OWNED BY liabilities.id;
 
 
 --
+-- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE locations (
+    id integer NOT NULL,
+    address character varying(255),
+    radius character varying(255),
+    latitude double precision,
+    longitude double precision,
+    gmaps boolean,
+    stationary_type character varying(255) NOT NULL,
+    stationary_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
+
+
+--
 -- Name: offers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -490,6 +527,13 @@ ALTER TABLE ONLY liabilities ALTER COLUMN id SET DEFAULT nextval('liabilities_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY offers ALTER COLUMN id SET DEFAULT nextval('offers_id_seq'::regclass);
 
 
@@ -568,6 +612,14 @@ ALTER TABLE ONLY identities
 
 ALTER TABLE ONLY liabilities
     ADD CONSTRAINT liabilities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY locations
+    ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
 
 
 --
@@ -790,6 +842,8 @@ INSERT INTO schema_migrations (version) VALUES ('30');
 INSERT INTO schema_migrations (version) VALUES ('31');
 
 INSERT INTO schema_migrations (version) VALUES ('32');
+
+INSERT INTO schema_migrations (version) VALUES ('33');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

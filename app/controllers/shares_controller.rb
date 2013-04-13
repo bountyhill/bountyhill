@@ -38,15 +38,15 @@ class SharesController < ApplicationController
     end
 
     # 
-    # if the quest is alreday active, we are done if not,
+    # if the quest is alreday active we are done if not,
     # we have to start the quest
-    flash[:success] = if @share.quest.active? then
+    message = if @share.quest.active? then
         I18n.t("quest.action.shared", :quest => @share.title)
       else
         @share.quest.start!
         I18n.t("quest.action.started", :quest => @share.title)
       end
-    redirect_to quest_path(@share.quest)
+    redirect_to! quest_path(@share.quest), :success => message
   end
 
 

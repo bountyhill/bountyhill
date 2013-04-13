@@ -1,0 +1,22 @@
+<%= form.control_group :radius,     :hidden_field %>
+<%= form.control_group :latitude,   :hidden_field, :id => 'location_lat' %>
+<%= form.control_group :longitude,  :hidden_field, :id => 'location_lng' %>
+
+<%= form.control_group :address, :text_field, :type => "search", :id => 'location_search', :class => "input-xxlarge" %>
+<%#= form.control_group :radius,  :select, :select_options => location_radius_select_options, :label => false, :class => "pull-right" %>
+<%= partial "locations/forms/map" %>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  
+  // This disable submiting the form with the ENTER key
+  // since it could be used to select a auto suggested location address
+  $('input').keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+  
+});
+</script>

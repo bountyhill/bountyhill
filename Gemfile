@@ -17,7 +17,7 @@ gem 'bountydeps'
 gem 'geoip'
 gem 'mobile-fu'
 gem 'nokogiri'
-
+gem 'geocoder'
 gem 'faker'
 gem 'rack-contrib'
 

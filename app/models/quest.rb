@@ -18,6 +18,9 @@ class Quest < ActiveRecord::Base
 
   belongs_to :owner, :class_name => "User"
   validates  :owner, :presence => true
+
+  has_one   :location, :as => :stationary
+  accepts_nested_attributes_for :location, :allow_destroy => true
   
   has_many  :forwards
   has_many  :forwarders, :through => :forwards, :source => :sender
@@ -112,7 +115,9 @@ class Quest < ActiveRecord::Base
   serialize :serialized, Hash
   serialized_attr :duration_in_days
   
-  attr_accessible :title, :description, :images, :bounty, :location, :duration_in_days, :category
+  attr_accessor :restrict_location
+   
+  attr_accessible :title, :description, :images, :bounty, :duration_in_days, :category, :restrict_location, :location_attributes
 
   # -- Cancellation ---------------------------------------------------
 
@@ -323,6 +328,10 @@ class Quest < ActiveRecord::Base
   
   def url
     Bountyhill::Application.url_for "/q/#{self.id}"
+  end
+  
+  def restrict_location?
+    restrict_location.present?
   end
   
   def bounty_height
