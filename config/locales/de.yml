@@ -50,6 +50,9 @@ de:
     reject:   Ablehnen
   filter:
     filter_by: "nach %{filter}"
+    location:
+      title:  Umgebung
+      legend: "Wählen Sie einen Radius, um die Suchen um Ihrem Ort einzugrenzen."
     categories:
       title:  Kategorien
     states:

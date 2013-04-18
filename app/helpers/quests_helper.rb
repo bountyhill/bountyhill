@@ -36,15 +36,44 @@ module QuestsHelper
   end
   
   def location_radius_select_options
-    Location::RADIUS.inject([]) do |options, radius|
-      options <<  if radius.to_i.zero? then [I18n.t(radius, :scope => "location.radius"), radius]
-                  else                      [I18n.t('limited',  :radius => radius, :scope => "location.radius"), radius]
-                  end
-    end
+    options_for_select(
+      Location::RADIUS.inject([]) do |options, radius|
+        options <<  if radius.to_i.zero? then [I18n.t('unlimited', :scope => "location.radius"), radius]
+                    else                      [I18n.t('limited',  :radius => radius, :scope => "location.radius"), radius]
+                    end
+      end, 'unlimited')
   end
   
   def quests_category_filters(filters=[])
     filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
+  end
+  
+  def quests_location_filter(location)
+    expect! location => OpenStruct
+    
+    title = div :class => "title" do
+      div(I18n.t("filter.location.title"), :class => "pull-left")
+    end
+    
+    js = javascript_tag <<-JS
+      $("#radius").change(function() {
+         $.get('#{quests_path}?format=js&radius='+$(this).val());
+      });
+    JS
+    
+    content = div :class => "content" do
+      [
+        # p(I18n.t("filter.location.legend")),
+        p(location.name, :class => "location"),
+        select_tag("radius", location_radius_select_options, :class => "input-medium"),
+        js
+      ].join.html_safe
+    end
+    
+    div :class => "quest filter box row-fluid" do
+      title + content
+    end
+    
   end
   
   def quest_buttons(quest)

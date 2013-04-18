@@ -50,6 +50,9 @@ en:
     reject:   Reject
   filter:
     filter_by: "for %{filter}"
+    location:
+      title:  Surroundings
+      legend: Choose a radius to restrict the quests around your location.
     categories:
       title:  Categories
     states:

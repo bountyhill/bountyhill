@@ -4,14 +4,20 @@ class QuestsController < ApplicationController
   
   # GET /quests
   def index
+    # init quest scope
     scope = if params[:owner_id] then User.find(params[:owner_id]).quests
             else                      Quest.for_current_user # active or (pending and owned by current user pending)
             end
-
-    @filters = filters_for(scope, :category)
     
-    scope = scope.with_category(params[:category]) if params[:category]
-
+    # init filters
+    @filters  = filters_for(scope, :category)
+    @location = request.location
+    
+    # set additional filter scopes
+    scope = scope.with_category(params[:category])        if params[:category].present?
+    scope = scope.nearby(@location.name, params[:radius]) if params[:radius].present?
+    
+    # fetch quests
     @quests = scope.paginate(
       :page       => params[:page],
       :per_page   => per_page,

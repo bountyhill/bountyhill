@@ -99,6 +99,21 @@ class Quest < ActiveRecord::Base
     where("quests.category = ?", category)
   }
   
+  scope :nearby, lambda { |location, radius|
+    expect! location  => String
+    expect! radius    => Location::RADIUS
+    
+    # set radius to maximum
+    # TODO: there has to be a better way, 
+    # e.g. # see http://stackoverflow.com/questions/6695752/using-a-rails-scope-as-a-proxy-for-the-scope-of-a-related-object    
+    return if Location.unlimited?(radius)
+    
+    where("quests.id IN (?)", Location.near(location, radius, :units => :km, :select => "locations.stationary_id", :order => :distance).
+      where("locations.stationary_type = ?", 'Quest').map(&:stationary_id))
+#      :select => "quests.id",
+#      :joins => "LEFT OUTER JOIN `locations` ON `locations`.`stationary_id` = `quests`.`id` AND `locations`.`stationary_type` = 'Quest'"))
+  }
+  
   def category_t
     I18n.t(category, :scope => "quest.categories")
   end

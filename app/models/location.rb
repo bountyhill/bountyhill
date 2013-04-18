@@ -3,22 +3,17 @@
 #
 # The Location model records one objects location
 class Location < ActiveRecord::Base 
-  attr_accessor :location
-  # let geocoder perform the geocoding by setting latitude and longitude from address
-  # geocoded_by :address
-  # after_validation :geocode, :if => :address_changed?
-
-  # Gmaps4rails has an optional geocoding feature which calculates the lat and long needed to plot a location.
-  # It's turned off here since geocoder provides latitude and longitude already.
-  # see https://github.com/apneadiving/Google-Maps-for-Rails/wiki/Model-Customization
-  acts_as_gmappable :process_geocoding => false 
-
   # the located object
   belongs_to :stationary, :polymorphic => true, :autosave => true
 
+  # let geocoder perform the geocoding by setting latitude and longitude from address
+  geocoded_by :address
+  before_validation :geocode, :if => :geocode?
+
+  attr_accessor :location
   attr_accessible :stationary, :stationary_id, :address, :radius, :location, :latitude, :longitude
 
-  RADIUS = %w(1 2 5 10 25 50 100 200 500 unlimited)
+  RADIUS = %w(1 2 5 10 25 50 100 250 500 1000 unlimited)
   
   validates_associated :stationary
   validates :address,   :presence => true
@@ -36,6 +31,18 @@ class Location < ActiveRecord::Base
     end
     
     self
+  end
+
+  def geocode?
+    address_changed? and (latitude.blank? or longitude.blank?)
+  end
+
+  def unlimited?
+    self.radius == 'unlimited'
+  end
+  
+  def self.unlimited?(radius)
+    radius.to_s == 'unlimited'
   end
 
 end
