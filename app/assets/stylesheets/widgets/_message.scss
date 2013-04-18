@@ -16,15 +16,18 @@
       display: inline-block;
       width: 100%;
       min-height: 3.5ex;
-      margin: 3.0ex 0 2.5ex 0;
+      margin: 3.5ex 0 1.5ex 0;
     }
     .message-head {
       position: relative;
+      font-size: 85%;
+    }
+    .message-footer {
+      font-size: 85%;
     }
     .owner {
       position: absolute;
       width: 60%;
-      font-size: 85%;
       strong { margin-right: 5px; }
     }
     .time {
@@ -33,7 +36,6 @@
       width: 40%;
       text-align: right;
       font-style: italic;
-      font-size: 85%;
       line-height: 1.5;
     }
     &:hover {

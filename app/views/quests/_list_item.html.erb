@@ -19,7 +19,10 @@
     <%= link_to quest_path(quest), :class => "message" do
       truncate(quest.title, :length => 200)
     end %>
-    <%= quest_buttons(quest) %>
+    <div class="message-footer">
+      <%= quest.location ? quest.location.address : "&nbsp;".html_safe %>
+      <%= quest_buttons(quest) %>
+    </div>
   </div>
 </div>
 
