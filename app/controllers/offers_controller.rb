@@ -24,8 +24,7 @@ class OffersController < ApplicationController
     @offers = scope.paginate(
       :page     => params[:page],
       :per_page => per_page,
-      :order    => order,
-      :include  => :quest)
+      :order    => order)
   end
 
   # GET /offers/1
