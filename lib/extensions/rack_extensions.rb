@@ -11,7 +11,7 @@ class Rack::Request
   def location
     return unless city = geo_lite_city
 
-    city[:name] = LOCATION_PARTS.map { |key| city[key] }.compact.join(", ")
+    city[:name] = LOCATION_PARTS.map { |key| city[key] }.reject(&:blank?).join(", ")
     OpenStruct.new city
   end
 
