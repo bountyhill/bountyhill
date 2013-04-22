@@ -3,7 +3,7 @@
     avatar quest.owner, :size => 64
   end %>
   <div class="message-box">
-    <div class="message-head">
+    <div class="message-head clearfix">
       <%= link_to user_path(quest.owner), :class => "owner" do %>
         <%= strong(quest.owner.name) %>
         <%= quest.owner.twitter_handle %>

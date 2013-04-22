@@ -3,7 +3,7 @@
     avatar offer.owner, :size => 64
   end %>
   <div class="message-box">
-    <div class="message-head">
+    <div class="message-head clearfix">
       <%= link_to user_path(offer.owner), :class => "owner" do %>
         <%= strong(offer.owner.name) %>
         <%= offer.owner.twitter_handle %>

@@ -15,12 +15,13 @@
     .message {
       display: inline-block;
       width: 100%;
-      min-height: 3.5ex;
-      margin: 3.5ex 0 1.5ex 0;
+      min-height: 3ex;
+      margin-bottom: 1.5ex;
     }
     .message-head {
       position: relative;
       font-size: 85%;
+      height: 5ex;
     }
     .message-footer {
       font-size: 85%;

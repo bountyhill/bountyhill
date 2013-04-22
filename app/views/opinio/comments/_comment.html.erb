@@ -5,7 +5,7 @@
       avatar comment.owner, :size => 48
     end %>
     <div class="message-box">
-      <div class="message-head">
+      <div class="message-head clearfix">
         <%= link_to user_path(comment.owner), :class => "owner" do %>
           <%= strong(comment.owner.name) %>
           <%= comment.owner.twitter_handle %>
