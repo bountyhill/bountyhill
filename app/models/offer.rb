@@ -20,6 +20,7 @@ class Offer < ActiveRecord::Base
   
   belongs_to :owner, :class_name => "User"
   validates  :owner, :presence => true
+  validates_associated :quest
   
   # -- Access control -------------------------------------------------
   # Offers are visible to both its owner and to the quest owner, but 
@@ -215,7 +216,7 @@ class Offer < ActiveRecord::Base
   
   # The offer is not decided upon, and the quest is still active?
   def active?
-    quest.active? && state == "active"
+    quest && quest.active? && state == "active"
   end 
 
   def withdraw!
