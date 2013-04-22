@@ -1,8 +1,10 @@
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
   <div class="sidebar span2">
-    <%= quests_location_filter(@location) %>
-    <%= spacer %>
+    <% if @location.present? %>
+      <%= quests_location_filter(@location) %>
+      <%= spacer %>
+    <% end %>
     <%= quests_category_filters(@filters) %>
   </div>
   <div class="main span7">
