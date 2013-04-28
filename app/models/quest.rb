@@ -26,6 +26,7 @@ class Quest < ActiveRecord::Base
   has_many  :forwarders, :through => :forwards, :source => :sender
   
   # Quests are visible by the owner and when set to visibility public.
+  # TODO: quests should be visible to offerer as well, even if no longer active
   access_control :visibility
   write_access_control :owner
 
