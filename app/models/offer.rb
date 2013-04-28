@@ -14,13 +14,14 @@ class Offer < ActiveRecord::Base
   # -- Associations ---------------------------------------------------
   
   belongs_to :quest
-  serialize :serialized, Hash
-  
-  attr_accessible :title, :description, :images, :location, :quest_id, :quest, :state
-  
+  validates_associated :quest
+
   belongs_to :owner, :class_name => "User"
   validates  :owner, :presence => true
-  validates_associated :quest
+
+  serialize :serialized, Hash
+  
+  attr_accessible :title, :description, :images, :location, :quest_id, :quest, :state  
   
   # -- Access control -------------------------------------------------
   # Offers are visible to both its owner and to the quest owner, but 
@@ -41,6 +42,11 @@ class Offer < ActiveRecord::Base
   scope :relevant_for,  lambda { |user|
     joins(:quest).
     where("quests.owner_id=? OR offers.owner_id=?", user, user) 
+  }
+  
+  scope :with_state, lambda { |state|
+    expect! state => STATES
+    where("offers.state = ?", state)
   }
   
   # -- Validation -----------------------------------------------------
@@ -216,7 +222,7 @@ class Offer < ActiveRecord::Base
   
   # The offer is not decided upon, and the quest is still active?
   def active?
-    quest && quest.active? && state == "active"
+    quest.active? && state == "active"
   end 
 
   def withdraw!
