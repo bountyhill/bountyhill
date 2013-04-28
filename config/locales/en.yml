@@ -185,7 +185,7 @@ en:
         other:  "%{count} points"
     action:
       accept:   "%{item} accepted"
-      comment:  "%{item} posted"
+      comment:  "%{item} commented"
       create:   "%{item} created"
       share:    "%{item} shared"
       reject:   "%{item} rejected"

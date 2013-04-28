@@ -185,7 +185,7 @@ de:
         other:  "%{count} Punkte"
     action:
       accept:   "%{item} akzeptiert"
-      comment:  "%{item} abgegeben"
+      comment:  "%{item} kommentiert"
       create:   "%{item} angelegt"
       share:    "%{item} geteilt"
       reject:   "%{item} abgelehnt"
