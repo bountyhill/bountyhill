@@ -14,13 +14,13 @@ class OffersController < ApplicationController
       order = "offers.compliance DESC, offers.created_at DESC"
     end
     
-    if params[:owner_id]
-      # relevant_for: owned by user or sent to user
-      scope = scope.relevant_for(User.find(params[:owner_id]))
-    end
+    # relevant_for: owned by user or sent to user
+    scope = scope.relevant_for(User.find(params[:owner_id])) if params[:owner_id]
     
+    # set additional state scope
     @filters = filters_for(scope, :state)
-    
+    scope = scope.with_state(params[:state]) if params[:state]
+
     @offers = scope.paginate(
       :page     => params[:page],
       :per_page => per_page,
