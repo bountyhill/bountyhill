@@ -9,13 +9,13 @@ class QuestsController < ApplicationController
             else                      Quest.for_current_user # active or (pending and owned by current user pending)
             end
     
-    # init filters
-    @filters  = filters_for(scope, :category)
+    # set additional location scope
     @location = request.location
-    
-    # set additional filter scopes
-    scope = scope.with_category(params[:category])        if params[:category].present?
     scope = scope.nearby(@location.name, params[:radius]) if params[:radius].present?
+    
+    # set additional category scope
+    @filters = filters_for(scope, :category)
+    scope = scope.with_category(params[:category]) if params[:category].present?
     
     # fetch quests
     @quests = scope.paginate(
