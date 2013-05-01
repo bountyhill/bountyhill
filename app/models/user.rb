@@ -213,9 +213,10 @@ class User < ActiveRecord::Base
   # returns the Gravatar URL from http://gravatar.com/ for the given user.
   def avatar(options = {})
     if avatar = self.image
+      avatar = avatar.first if avatar.kind_of?(Array)
       width, height = options.values_at(:width, :height)
       if width && height
-        avatar = "#{url}/convert?w=#{width}&h=#{height}"
+        avatar = "#{avatar}/convert?w=#{width}&h=#{height}"
       end
     end
     

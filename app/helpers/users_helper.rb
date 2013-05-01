@@ -59,7 +59,7 @@ module UsersHelper
       :class            => "avatar #{options[:class]}",
       :width            => size,
       :height           => size,
-      :title            => "#{strong(user.name)}<br>#{user.twitter_handle}",
+      :title            => user.name,
       :"data-toggle"    => "tooltip",
       :"data-placement" => "bottom"
   end

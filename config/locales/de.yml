@@ -137,7 +137,7 @@ de:
         other:  "Anfragen geteilt"
     box:
       title:      "Ihr Profil"
-      info_icon:  "Diese Angaben können von anderen Nutzer nicht einsehen."
+      info_icon:  "Diese Angaben können von anderen Nutzer nicht eingesehen werden."
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
