@@ -2,7 +2,7 @@
   <div class="span1">&nbsp;</div>
   <div class="sidebar span2">
     <% if @location.present? %>
-      <%= quests_location_filter(@location) %>
+      <%= quests_location_filter(@location, params[:radius]) %>
       <%= spacer %>
     <% end %>
     <%= quests_category_filters(@filters) %>

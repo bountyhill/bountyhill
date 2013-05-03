@@ -178,8 +178,8 @@ module ApplicationHelper
   end
   
   ALLOWED_PARAMS_FOR = {
-    :quests => [:filter, :category, :sort, :order],
-    :offers => [:filter, :category, :sort, :order]
+    :quests => [:owner_id, :category, :radius, :sort, :order],
+    :offers => [:owner_id, :state, :sort, :order]
   }
   def params_for(controller)
     expect! controller => ALLOWED_PARAMS_FOR.keys

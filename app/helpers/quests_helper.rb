@@ -35,20 +35,27 @@ module QuestsHelper
     end
   end
   
-  def location_radius_select_options
+  def location_radius_select_options(radius)
+    expect! radius => (Location::RADIUS.dup << nil)
+    radius ||= 'unlimited'
+    
+    url_params  = params.slice(*params_for(:quests))
+    selected    = quests_path(url_params.merge(:radius => radius))
+    
     options_for_select(
-      Location::RADIUS.inject([]) do |options, radius|
-        options <<  if radius.to_i.zero? then [I18n.t('unlimited', :scope => "location.radius"), radius]
-                    else                      [I18n.t('limited',  :radius => radius, :scope => "location.radius"), radius]
+      Location::RADIUS.inject([]) do |options, r|
+        url = quests_path(url_params.merge(:radius => r))
+        options <<  if Location.unlimited?(r) then  [I18n.t('unlimited', :scope => "location.radius"),               url]
+                    else                            [I18n.t('limited',   :scope => "location.radius", :radius => r), url]
                     end
-      end, 'unlimited')
+      end, selected)
   end
   
   def quests_category_filters(filters=[])
     filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
   end
   
-  def quests_location_filter(location)
+  def quests_location_filter(location, radius)
     expect! location => OpenStruct
     
     title = div :class => "title" do
@@ -56,16 +63,14 @@ module QuestsHelper
     end
     
     js = javascript_tag <<-JS
-      $("#radius").change(function() {
-         $.get('#{quests_path}?format=js&radius='+$(this).val());
-      });
+      $("#radius").change(function() { window.location = $(this).val(); });
     JS
     
     content = div :class => "content" do
       [
         # p(I18n.t("filter.location.legend")),
         p(location.name, :class => "location"),
-        select_tag("radius", location_radius_select_options, :class => "input-medium"),
+        select_tag("radius", location_radius_select_options(radius), :class => "input-medium"),
         js
       ].join.html_safe
     end
