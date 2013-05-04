@@ -22,7 +22,7 @@ class QuestsController < ApplicationController
       :page       => params[:page],
       :per_page   => per_page,
       :order      => "quests.created_at desc",
-      :include    => { :owner => :identities })
+      :include    => [{ :owner => :identities }, :location])
   end
 
   # GET /quests/1
