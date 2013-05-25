@@ -30,7 +30,7 @@ class Quest < ActiveRecord::Base
   
   access_control do |user|
     if user
-      joins(:offers).
+      joins("LEFT JOIN offers ON offers.quest_id=quests.id").
       where("quests.visibility=? OR offers.owner_id=? OR quests.owner_id=?", "public", user.id, user.id)
     else
       where("quests.visibility=?", "public")
