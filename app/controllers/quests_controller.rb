@@ -6,7 +6,7 @@ class QuestsController < ApplicationController
   def index
     # init quest scope
     scope = if params[:owner_id] then User.find(params[:owner_id]).quests
-            else                      Quest.for_current_user # active or (pending and owned by current user pending)
+            else                      Quest.active
             end
     
     # set additional location scope

@@ -47,9 +47,4 @@ FactoryGirl.define do
     association :commentable, :factory => :quest
     association :owner, :factory => :user
   end
-  
-  factory :forward do
-    association :quest, :factory => :quest
-    association :sender, :factory => :user
-  end
 end

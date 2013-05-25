@@ -22,7 +22,8 @@ class QuestAccessControlTest < ActiveSupport::TestCase
     
     as(foo_user) do
       assert_cannot_read admin_quest
-      assert_can_read foo_quest, public_quest
+      assert_can_read public_quest
+      assert_can_read foo_quest
     end
     
     as(nil) do
