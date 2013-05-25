@@ -14,7 +14,7 @@ class ActivityTest < ActiveSupport::TestCase
 
     # activity logs creation of quest
     Bountybase.stubs :reward
-    %w(create start stop comment forward).each do |action|
+    %w(create start stop comment share).each do |action|
       assert_difference "Activity.count", +1 do
         activity = Activity.log(user, action, quest)
         assert_equal user, activity.user
