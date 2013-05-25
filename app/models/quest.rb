@@ -25,9 +25,18 @@ class Quest < ActiveRecord::Base
   has_many  :forwards
   has_many  :forwarders, :through => :forwards, :source => :sender
   
-  # Quests are visible by the owner and when set to visibility public.
-  # TODO: quests should be visible to offerer as well, even if no longer active
-  access_control :visibility
+  # Quests are visible by the owner and when set to visibility public and
+  # quests should be visible to offerer as well
+  
+  access_control do |user|
+    if user
+      joins(:offers).
+      where("quests.visibility=? OR offers.owner_id=? OR quests.owner_id=?", "public", user.id, user.id)
+    else
+      where("quests.visibility=?", "public")
+    end
+  end
+  
   write_access_control :owner
 
   # -- scopes and filters ---------------------------------------------
@@ -53,18 +62,6 @@ class Quest < ActiveRecord::Base
 
   # expired: well, expired
   scope :expired,   lambda { where("quests.expires_at <= ?", Time.now) }
-
-  # This is what the current_user sees on the /quests list
-  scope :for_current_user, lambda { 
-    if !ActiveRecord.current_user
-      # active. 
-      where("quests.expires_at > ?", Time.now) 
-    else
-      # active or pending. Note: a non admin user would only see her own
-      # pending quests. An admin user sees all pending quests.
-      where("quests.started_at IS NULL OR quests.expires_at > ?", Time.now) 
-    end
-  }
   
   # Find a quest, even if it does not belong to the current_user, but to
   # User.draft. We'll need this when a user enters a quest before she is
