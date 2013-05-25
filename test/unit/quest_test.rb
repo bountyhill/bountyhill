@@ -35,7 +35,6 @@ class QuestTest < ActiveSupport::TestCase
     assert_activity_logged(:create,   quest)  { quest.save! }
     assert_activity_logged(:start,    quest)  { quest.start! }
     assert_activity_logged(:stop,     quest)  { quest.cancel! }
-    assert_activity_logged(:forward,  quest)  { Factory(:forward, :quest => quest, :sender => quest.owner) }
     assert_activity_logged(:comment,  quest)  { Factory(:comment, :commentable => quest, :owner => quest.owner) }
   end
 end
