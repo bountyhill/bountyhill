@@ -31,7 +31,7 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu|Oswald' rel='stylesheet' type='text/css'>
   
 </head>
-<body>
+<body class="<%= controller.controller_name %>">
   <!-- modal placeholders -->
   <%= div (modal_content ||= "").html_safe,     :id => "myModal",     :class => "modal hide fade",    :role => "dialog", :"aria-hidden" => true %>
   <%= div (lightbox_content ||= "").html_safe,  :id => "myLightbox",  :class => "lightbox hide fade", :role => "dialog", :"aria-hidden" => true, :tabindex => "-1" %>

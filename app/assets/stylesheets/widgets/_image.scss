@@ -1,3 +1,11 @@
+body {
+  @include background-size(cover);
+  &.offers { background: image-url("background/BG_1.jpg") no-repeat center center fixed; }
+  &.users  { background: image-url("background/BG_2.jpg") no-repeat center center fixed; }
+  &.quests { background: image-url("background/BG_3.jpg") no-repeat center center fixed; }
+  &.home   { background: image-url("background/BG_4.jpg") no-repeat center center fixed; }
+}
+
 .quest {
   a.thumbnail {
     border-color: $quest_image_border;

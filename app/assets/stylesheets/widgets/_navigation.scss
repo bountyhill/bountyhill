@@ -83,6 +83,9 @@
       }
       .dropdown {
         .dropdown-menu {
+          border: none;
+          border-radius: 0;
+          background-color: $petrol_transparent;
           width: 100%;
           margin-top: 0;
           min-width: 80%;
@@ -92,7 +95,7 @@
         }
         li {
           a {
-            color: $navigation_text_inverse;
+            color: $navigation_text;
             padding: 4px 10px;
           }
           &.active > a, &.active > a:hover, a:hover {
@@ -108,6 +111,15 @@
 ul.nav li.dropdown:hover ul.dropdown-menu {
   display: block;
 }
+
+/* disable dropdown open/active indication */
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background: none;
+  color: white;
+}
+
 
 @media (max-width: 979px) {
   .navbar {
