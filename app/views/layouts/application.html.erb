@@ -28,7 +28,7 @@
   <%= csrf_meta_tags %>
   
   <!-- fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu|Oswald' rel='stylesheet' type='text/css'>
   
 </head>
 <body>
@@ -40,9 +40,10 @@
   <%#= render 'layouts/debug' if Rails.env.development? %>
 
   <%= render_flash %>
-    <div class="container-fluid">
-      <%= defined?(content) ? content.html_safe : yield %>
-    </div>
+
+  <div class="container-fluid">
+    <%#= defined?(content) ? content.html_safe : yield %>
+  </div>
 
   <%= render 'layouts/footer' %>
   
