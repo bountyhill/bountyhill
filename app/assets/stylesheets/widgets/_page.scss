@@ -1,10 +1,12 @@
 body {
   padding-top: 128px; 
+  background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed;
   @include background-size(cover);
-  background-color: $petrol;
-  &.offers { background: $petrol image-url("background/BG_1.jpg") no-repeat center center fixed; }
-  &.users  { background: $petrol image-url("background/BG_2.jpg") no-repeat center center fixed; }
-  &.quests { background: $petrol image-url("background/BG_3.jpg") no-repeat center center fixed; }
+  /*
+  &.offers { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
+  &.users  { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
+  &.quests { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
   &.home   { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
+  */
 }
 
