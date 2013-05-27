@@ -1,11 +1,17 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <div class="brand">
-        <%= link_to image_tag('/images/logo.png'), root_path %>
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10">
+          <div class="brand">
+            <%= link_to image_tag('/images/logo.png'), root_path %>
+          </div>
+          <%= render_navigation_items :header_center %>
+          <%= user_navigation %>
+        </div>
+        <div class="span1"></div>
       </div>
-      <%= render_navigation_items :header_center %>
-      <%= user_navigation %>
     </div>
   </div>
 </div>
