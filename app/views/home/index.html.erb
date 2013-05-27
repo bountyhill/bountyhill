@@ -3,55 +3,9 @@
 <div class="row-fluid">
   <div class="span2"></div>
   <div class="span8">
-    <%= placeholder "Explanation-Slider", :style => "min-height:300px" %>
-  </div>
-  <div class="span2"></div>
-</div>
-
-<%= spacer :style => "min-height:60px" %>
-
-<div class="row-fluid">
-  <div class="span1"></div>
-  <div class="span3">
-     <%= placeholder "Quests", :style => "min-height:50px" %>
-  </div>
-  <div class="span4">
-    <%= placeholder "New Quests", :style => "min-height:50px" %>
-  </div>
-  <div class="span3">
-    <%= placeholder "Offers", :style => "min-height:50px" %>
-  </div>
-  <div class="span1"></div>
-</div>
-
-<%= spacer :style => "min-height:60px" %>
-
-<div class="row-fluid">
-  <div class="span2"></div>
-  <div class="span2">
-     <%= placeholder "Quests-Statistics", :style => "min-height:100px" %>
-  </div>
-  <div class="span2">
-     <%= placeholder "Bounties-Graph", :style => "min-height:100px" %>
-  </div>
-  <div class="span2">
-     <%= placeholder "Activities-Statistics", :style => "min-height:100px" %>
-  </div>
-  <div class="span2">
-     <%= placeholder "Forwards-Graph", :style => "min-height:100px" %>
-  </div>
-  <div class="span2"></div>
-</div>
-  
-<%= spacer :style => "min-height:60px" %>
-  
-<div class="row-fluid">
-  <div class="span2"></div>
-  <div class="span4">
-     <%= placeholder "Top-Quests", :style => "min-height:400px" %>
-  </div>
-  <div class="span4">
-     <%= placeholder "Bounties-Graph", :style => "min-height:400px" %>
+    <% 5.times do |index| %>
+      <%= image_tag asset_path("home/key_0#{index+1}.png") %>
+    <% end %>
   </div>
   <div class="span2"></div>
 </div>

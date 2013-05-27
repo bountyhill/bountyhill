@@ -3,7 +3,7 @@
   margin: 0;
   -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
   .nav {
-    font-size: 16px;
+    font-size: 140%;
     font-weight: bold;
     li {
       a {
@@ -91,12 +91,13 @@
           margin-top: 0;
           min-width: 80%;
           &::after {
-            right: 40px;
+            display:none;
           }
         }
         li {
           a {
             color: $navigation_text;
+            font-size: 80%;
             padding: 4px 10px;
           }
           &.active > a, &.active > a:hover, a:hover {
