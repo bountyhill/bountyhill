@@ -28,10 +28,10 @@
   <%= csrf_meta_tags %>
   
   <!-- fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu|Oswald' rel='stylesheet' type='text/css'>
   
 </head>
-<body>
+<body class="<%= controller.controller_name %>">
   <!-- modal placeholders -->
   <%= div (modal_content ||= "").html_safe,     :id => "myModal",     :class => "modal hide fade",    :role => "dialog", :"aria-hidden" => true %>
   <%= div (lightbox_content ||= "").html_safe,  :id => "myLightbox",  :class => "lightbox hide fade", :role => "dialog", :"aria-hidden" => true, :tabindex => "-1" %>
@@ -40,9 +40,10 @@
   <%#= render 'layouts/debug' if Rails.env.development? %>
 
   <%= render_flash %>
-    <div class="container-fluid">
-      <%= defined?(content) ? content.html_safe : yield %>
-    </div>
+
+  <div class="container-fluid">
+    <%= defined?(content) ? content.html_safe : yield %>
+  </div>
 
   <%= render 'layouts/footer' %>
   

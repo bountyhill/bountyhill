@@ -3,6 +3,7 @@
   margin: 0;
   -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
   .nav {
+    font-size: 16px;
     font-weight: bold;
     li {
       a {
@@ -13,12 +14,19 @@
         }
       }
       &.active > a, &.active > a:hover, a:hover {
-        background:  $navigation_item_highlight;
-        color: $navigation_text_inverse;
+        color: $navigation_text;
+        background: transparent;
+        box-shadow: none;
+      }
+      &.active > a:hover, a:hover {
+        background: $navigation_item_highlight;
       }
     }
   }
   &.navbar-fixed-bottom {
+    .navbar-inner {
+      height: 32px;
+    }
     .btn-navbar {
       float: left;
     }
@@ -27,41 +35,59 @@
     }
   }
   .navbar-inner {
+    border: none;
     background-color: $navigation_background;
     background-image: none;
     .brand {
       width: 33%;
-      padding: 0 20px;
-      img {
-        height: 40px; 
-      }
+      padding: 0;
+      margin-top: 16px;
     }
     .container-fluid {
-      margin: 0 10px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .nav-main {
+      height: 32px;
+      margin-top: 16px;
+      li {
+        margin-right:16px;
+      }
+    }
+    .span10 {
+      position: relative;
+      height: 80px;
     }
     .nav-user {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: inherit;
       li {
         &.active > a, &.active > a:hover, a:hover {
           background:  inherit;
           color: $navigation_text;
         }
-        a {
-          padding: 0 0 0 10px;
-        }
+        a { padding: 0; }
       }
       .user-ident {
         float: left;
-        text-align: right;
         padding-right:10px;
         .name {
-          font-size: 110%;
+          text-align: right;
+          font-size: 100%;
         }
         .handle {
-          font-size: 90%;
+          text-align: left;
+          font-size: 80%;
         }
       }
       .dropdown {
         .dropdown-menu {
+          border: none;
+          border-radius: 0;
+          background-color: $petrol_transparent;
+          width: 100%;
           margin-top: 0;
           min-width: 80%;
           &::after {
@@ -70,7 +96,7 @@
         }
         li {
           a {
-            color: $navigation_text_inverse;
+            color: $navigation_text;
             padding: 4px 10px;
           }
           &.active > a, &.active > a:hover, a:hover {
@@ -86,6 +112,15 @@
 ul.nav li.dropdown:hover ul.dropdown-menu {
   display: block;
 }
+
+/* disable dropdown open/active indication */
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  background: none;
+  color: white;
+}
+
 
 @media (max-width: 979px) {
   .navbar {

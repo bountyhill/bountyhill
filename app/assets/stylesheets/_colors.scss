@@ -1,3 +1,11 @@
+$petrol:              #009AB1;
+$petrol_transparent:  rgba(0, 154, 177, 0.8);
+
+$green:               #97BF0D;
+$green_transparent:   rgba(97, 191, 13, 0.8);
+
+
+
 $camin:           #AA063B;
 $camin_bright:    #EECDD8;
 $camin_dark:      #77042B;
@@ -13,7 +21,6 @@ $purple_bright:   #E1CEE1;
 $purple_dark:     #611657;
 $purple_darkest:  #50224F;
 
-$green:         #549926;
 $green_bright:  #D2E0C7;
 $green_dark:    #396A19;
 $green_darkest: #325C17;
@@ -31,13 +38,12 @@ $red_darkest:     #861401;
 $text:          white;
 $text_inverse:  black;
 
-$navigation_background:         black;
-$navigation_background_top:     black;
-$navigation_background_bottom:  black;
-$navigation_text:               #aaa;
-$navigation_text_inverse:       #333;
+$navigation_background:         $petrol_transparent;
+$navigation_text:               white;
+
+$navigation_text_inverse:       black;
 $navigation_text_highlight:     #ccc;
-$navigation_item_highlight:     #ccc;
+$navigation_item_highlight:     $petrol;
 
 $message_background:    #dddddd;
 $message_border:        #cccccc;
