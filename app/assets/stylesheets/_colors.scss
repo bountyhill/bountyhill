@@ -2,7 +2,7 @@ $petrol:              #009AB1;
 $petrol_transparent:  rgba(0, 154, 177, 0.8);
 
 $green:               #97BF0D;
-$green_transparent:   rgba(97, 191, 13, 0.8);
+$green_transparent:   rgba(151, 191, 13, 0.8);
 
 
 
@@ -36,7 +36,7 @@ $red_dark:        #A41902;
 $red_darkest:     #861401;
 
 $text:          white;
-$text_inverse:  black;
+$text_inverse:  white;
 
 $navigation_background:         $petrol_transparent;
 $navigation_text:               white;
@@ -58,8 +58,8 @@ $activities_box_title_color:      $green_dark;
 $activities_box_content_color:    $green;
 $activities_box_statistic_color:  $green_darkest;
 
-$quests_box_color:            $blue_bright;
-$quests_box_title_color:      $blue_dark;
+$quests_box_color:            $green;
+$quests_box_title_color:      $petrol_transparent;
 $quests_box_content_color:    $blue;
 $quests_box_statistic_color:  $blue_darkest;
 

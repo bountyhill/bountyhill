@@ -3,6 +3,7 @@
   margin: 0;
   -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
   .nav {
+    margin-top: 20px;
     font-size: 140%;
     font-weight: bold;
     li {
@@ -25,7 +26,11 @@
   }
   &.navbar-fixed-bottom {
     .navbar-inner {
+      background-color: $petrol;
       height: 32px;
+      .nav {
+        margin-top: 0;
+      }
     }
     .btn-navbar {
       float: left;
@@ -49,7 +54,6 @@
     }
     .nav-main {
       height: 32px;
-      margin-top: 16px;
       li {
         margin-right:16px;
       }
@@ -72,15 +76,19 @@
       }
       .user-ident {
         float: left;
-        padding-right:10px;
+        padding-right: 8px;
+        margin-top: -2px;
         .name {
           text-align: right;
-          font-size: 100%;
         }
         .handle {
           text-align: left;
           font-size: 80%;
         }
+      }
+      img {
+        height: 48px;
+        width:  48px;
       }
       .dropdown {
         .dropdown-menu {
@@ -90,7 +98,7 @@
           width: 100%;
           margin-top: 0;
           min-width: 80%;
-          &::after {
+          &:after, &:before {
             display:none;
           }
         }

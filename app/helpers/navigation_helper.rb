@@ -121,7 +121,7 @@ module NavigationHelper
   def user_dropdown_menu
     return unless user = current_user
 
-    avatar_size = 40
+    avatar_size = 48
     img = image_tag user.avatar(:size => avatar_size),
      :alt => user.name,
      :class => "avatar",
