@@ -12,8 +12,15 @@
   }
 }
  
-.alert {
-  text-align: center;        /* centers flash message text */
+.alert.flash {
+  text-align: center;         /* centers flash message text */
+  @include border-radius(0);  /* remove border radius */
+  position:fixed;
+  top:80px;
+  width: 100%;
+  .close {
+    right: 32px;
+  }
 }
 
 .row-fluid {
