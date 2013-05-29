@@ -1,0 +1,49 @@
+.home {
+  .claim {
+    color: $text;
+    margin: 96px 0 64px 0;
+    font-size: 400%;
+    text-align: center;
+  }
+  .explanation {
+    color: $text;
+    .item {
+      position: relative;
+      .headline, .text {
+        position: absolute;
+        background-color: $petrol;
+        line-height: 120%;
+      }
+      .headline {
+        bottom: 70px;
+        font-size: 250%;
+      }
+      .text {
+        bottom: 5px;
+        font-size: 180%;
+        text-align: center;
+        width: 80%;
+      }
+      &.item1 {
+        .headline { right:  180px; }
+        .text     { right:   50px; }
+      }
+      &.item2 {
+        .headline { left:   300px; }
+        .text     { left:    50px; }
+      }
+      &.item3 {
+        .headline { right:  400px; }
+        .text     { right:  100px; }
+      }
+      &.item4 {
+        .headline { left:   250px; }
+        .text     { left:   100px; }
+      }
+      &.item5 {
+        .headline { right:  300px; }
+        .text     { right:   50px; }
+      }
+    }
+  }
+}

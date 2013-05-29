@@ -73,6 +73,19 @@ de:
     stats:        Stats
     logs:         Logs
     jobs:         Jobs
+  home:
+    claim:  Gemeinsam in sozialen Netzwerken finden
+    explanation:
+      headline1:  Wir suchen ständig
+      text1:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+      headline2:  Biete eine Belohnung an
+      text2:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+      headline3:  Verbreite Deine Suchanfrage
+      text3:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+      headline4:  Jeder profitiert durch seine Mithilfe
+      text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+      headline5:  Mach jemanden glücklich
+      text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
   identity:
     form:
       title: Anmelden/Registrieren
