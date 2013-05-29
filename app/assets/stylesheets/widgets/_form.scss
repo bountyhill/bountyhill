@@ -10,6 +10,9 @@ form {
         }
       }
     }
+    .input-append {
+      .add-on { color: $text_inverse; }
+    }
   }
   .location {
     label {
