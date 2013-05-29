@@ -24,13 +24,19 @@
       }
     }
   }
+  &.navbar-fixed-top {
+    .navbar-inner {
+      .span10 { 
+        position: relative; 
+        height: 80px;
+      }
+    }
+  }
   &.navbar-fixed-bottom {
     .navbar-inner {
       background-color: $petrol;
       height: 32px;
-      .nav {
-        margin-top: 0;
-      }
+      .nav { margin-top: 0; }
     }
     .btn-navbar {
       float: left;
@@ -57,10 +63,6 @@
       li {
         margin-right:16px;
       }
-    }
-    .span10 {
-      position: relative;
-      height: 80px;
     }
     .nav-user {
       position: absolute;
@@ -95,6 +97,7 @@
           border: none;
           border-radius: 0;
           background-color: $petrol_transparent;
+          box-shadow: none;
           width: 100%;
           margin-top: 0;
           min-width: 80%;
