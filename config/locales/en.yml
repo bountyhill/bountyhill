@@ -335,7 +335,7 @@ en:
         legend: "Please tell us the reason why you want to stop your quest before it's expiration."
   location:
     radius:
-      unlimited: limited
+      unlimited: unlimited
       limited:  "%{radius} km"
     form:
       field_hint:
