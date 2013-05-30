@@ -1,8 +1,8 @@
 <!-- offset doesn't work with row-fluid - see: http://stackoverflow.com/questions/10163163/offsets-dont-work-when-using-row-fluid-in-twitters-bootstrap-->
 <%= spacer %>
 <div class="row-fluid">
-  <div class="span2"></div>
-  <div class="span8 explanation">
+  <div class="span1"></div>
+  <div class="span10 explanation">
     <% (1..5).each do |index| %>
       <div class="item item<%= index %>">
         <div class="headline"><%= I18n.t("home.explanation.headline#{index}") %></div>
@@ -12,5 +12,5 @@
     <% end %>
     <div class="claim"><%= I18n.t("home.claim")%></div>
   </div>
-  <div class="span2"></div>
+  <div class="span1"></div>
 </div>

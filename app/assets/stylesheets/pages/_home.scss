@@ -7,8 +7,10 @@
   }
   .explanation {
     color: $text;
+    text-align: center;
     .item {
       position: relative;
+      min-width: 1024px;
       .headline, .text {
         position: absolute;
         line-height: 120%;
@@ -24,24 +26,24 @@
         width: 768px;
       }
       &.item1 {
-        .headline { left: 320px;  bottom: 100px; }
-        .text     { left:  50px;  bottom:  30px; }
+        .headline { left: 33%;  bottom: 100px; }
+        .text     { left:  8%;  bottom:  30px; }
       }
       &.item2 {
-        .headline { left: 350px;  bottom:  80px; }
-        .text     { left: 290px;  bottom:  10px; }
+        .headline { left: 37%;  bottom:  80px; }
+        .text     { left: 26%;  bottom:  10px; }
       }
       &.item3 {
-        .headline { left: 300px;  bottom:  80px; }
-        .text     { left:  30px;  bottom:  10px; }
+        .headline { left: 33%;  bottom:  80px; }
+        .text     { left:  8%;  bottom:  10px; }
       }
       &.item4 {
-        .headline { left: 320px;  bottom:  80px; }
-        .text     { left: 250px;  bottom:  10px; }
+        .headline { left: 33%;  bottom:  80px; }
+        .text     { left: 22%;  bottom:  10px; }
       }
       &.item5 {
-        .headline { left: 300px;  bottom:  80px; }
-        .text     { left:  60px;  bottom:  10px; }
+        .headline { left: 33%;  bottom:  80px; }
+        .text     { left:  8%;  bottom:  10px; }
       }
     }
   }

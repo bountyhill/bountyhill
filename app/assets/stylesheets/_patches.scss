@@ -6,10 +6,13 @@
 
 
 @media (max-width: 767px) {
- body {                      /* removes wasted left and right padding */
-   padding-left: 0px;
-   padding-right: 0px;
+ body {                      /* removes useless padding */
+   padding: 0px;
   }
+}
+
+.span10 {
+  min-width: 1024px;          /* until we have a real floating layout, ensure that we have at least 1024px available */
 }
  
 .alert.flash {

@@ -1,5 +1,4 @@
 body {
-  padding-top: 128px; 
   background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed;
   @include background-size(cover);
   /*
@@ -10,3 +9,6 @@ body {
   */
 }
 
+.main {
+  padding-top: 64px;
+}
