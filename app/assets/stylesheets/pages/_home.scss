@@ -1,8 +1,8 @@
 .home {
   .claim {
     color: $text;
-    margin: 96px 0 64px 0;
-    font-size: 400%;
+    margin: 128px 0 64px 0;
+    font-size: 500%;
     text-align: center;
   }
   .explanation {
@@ -11,38 +11,37 @@
       position: relative;
       .headline, .text {
         position: absolute;
-        background-color: $petrol;
         line-height: 120%;
       }
       .headline {
-        bottom: 70px;
-        font-size: 250%;
+        bottom: 100px;
+        font-size: 300%;
       }
       .text {
-        bottom: 5px;
+        bottom: 0px;
         font-size: 180%;
         text-align: center;
-        width: 80%;
+        width: 768px;
       }
       &.item1 {
-        .headline { right:  180px; }
-        .text     { right:   50px; }
+        .headline { left: 320px;  bottom: 100px; }
+        .text     { left:  50px;  bottom:  30px; }
       }
       &.item2 {
-        .headline { left:   300px; }
-        .text     { left:    50px; }
+        .headline { left: 350px;  bottom:  80px; }
+        .text     { left: 290px;  bottom:  10px; }
       }
       &.item3 {
-        .headline { right:  400px; }
-        .text     { right:  100px; }
+        .headline { left: 300px;  bottom:  80px; }
+        .text     { left:  30px;  bottom:  10px; }
       }
       &.item4 {
-        .headline { left:   250px; }
-        .text     { left:   100px; }
+        .headline { left: 320px;  bottom:  80px; }
+        .text     { left: 250px;  bottom:  10px; }
       }
       &.item5 {
-        .headline { right:  300px; }
-        .text     { right:   50px; }
+        .headline { left: 300px;  bottom:  80px; }
+        .text     { left:  60px;  bottom:  10px; }
       }
     }
   }

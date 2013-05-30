@@ -74,17 +74,17 @@ de:
     logs:         Logs
     jobs:         Jobs
   home:
-    claim:  Gemeinsam in sozialen Netzwerken finden
+    claim:  bountyhill - gemeinsam finden
     explanation:
       headline1:  Wir suchen ständig
       text1:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline2:  Biete eine Belohnung an
+      headline2:  Biete eine Belohnung
       text2:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline3:  Verbreite Deine Suchanfrage
+      headline3:  Starte Deine Suchanfrage
       text3:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline4:  Jeder profitiert durch seine Mithilfe
+      headline4:  Sammele Bounty-Points
       text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline5:  Mach jemanden glücklich
+      headline5:  Freut Euch des Lebens
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
   identity:
     form:
