@@ -26,6 +26,7 @@
   }
   &.navbar-fixed-top {
     .navbar-inner {
+      height: 80px;
       .span10 { 
         position: relative; 
         height: 80px;
@@ -49,6 +50,7 @@
     border: none;
     background-color: $navigation_background;
     background-image: none;
+    text-align: center;
     .brand {
       width: 33%;
       padding: 0;
@@ -61,8 +63,12 @@
     .nav-main {
       height: 32px;
       li {
-        margin-right:16px;
+        margin-right:10px;
       }
+    }
+    .nav-login {
+      float: right;
+      margin-right: 0;
     }
     .nav-user {
       position: absolute;
@@ -133,29 +139,16 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
   color: white;
 }
 
-
-@media (max-width: 979px) {
+@media (max-width: 1200px) {
   .navbar {
     .navbar-inner {
-      padding: 0;
-      .brand {
-        width: auto;
+      min-width: 1024px;
+      .span1 {
+        display: none;
+        padding: 0 20px;
       }
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  .navbar {
-    .navbar-inner {
-      .nav {
-        & > li {
-          & > a {
-            & > span {
-              display: none;
-            }
-          }
-        }
+      .span10 {
+        width: auto;
       }
     }
   }
@@ -163,10 +156,39 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 @media (max-width: 480px) {
   .navbar {
-    .navbar-inner {
-      .nav-user {
-        .user-ident {
-          display: none;
+    &.navbar-fixed-top {
+      .navbar-inner {
+        padding: 0 10px;
+        height: 64px;
+        .span10 { 
+          height: 64px;
+        }
+        .nav {
+          & > li {
+            & > a {
+              & > span {
+                display: none;
+              }
+            }
+          }
+        }
+        .brand {
+          width: 196px;
+          margin-top: 16px;
+        }
+        .nav-main {
+          margin: 16px 16px 0 16px;
+          li { margin-right: 0 }
+        }
+        .nav-user {
+          position: relative;
+          .user-ident {
+            display: none;
+          }
+        }
+        .nav-login {
+          float: left;
+          margin-top: 16px;
         }
       }
     }

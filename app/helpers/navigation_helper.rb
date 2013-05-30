@@ -106,13 +106,13 @@ module NavigationHelper
   
   def user_navigation
     if current_user
-      ul :class => "nav nav-user pull-right" do
+      ul :class => "nav nav-user" do
         content_tag :li, :class => "dropdown" do
             user_dropdown_menu
         end
       end
     else
-      ul :class => "nav pull-right" do
+      ul :class => "nav nav-login" do
         navigation_item(:signin)
       end
     end
