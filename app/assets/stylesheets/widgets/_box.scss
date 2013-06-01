@@ -1,13 +1,4 @@
 .box {
-  /* ------- text colors ------- */
-  a {
-    color: $text;
-    &:hover {
-      text-decoration: none;
-      color: $navigation_text_highlight;
-    }
-  }
-  
   /* forms */
   .form {
     padding: 0 50px;
@@ -86,7 +77,6 @@
   
   /* ------- content ------- */
   .content {
-    color: $text;
     padding: 20px;
     clear: both;
     h1 {
@@ -94,8 +84,8 @@
       font-size: 24.5px;
       margin-top: 0;
     }
-    .message-box, .statistic {
-      color: $text;
+    .statistic {
+      color: $text_inverse;
     }
     .description {
       line-height: 120%;

@@ -1,4 +1,5 @@
-$opacity: 0.6;
+$opacity: 0.8;
+$transparent: rgba(255, 255, 255, 0);
 
 $petrol:              #009AB1;
 $petrol_transparent:  rgba(0, 154, 177, $opacity);
@@ -13,6 +14,8 @@ $red_transparent:     rgba(209, 85, 18, $opacity);
 $magenta:             #D12B85;
 $magenta_transparent: rgba(209, 43, 133, $opacity);
 
+$white: white;
+$black: black;
 
 /*
 $blue:            #39B3DC;
@@ -65,18 +68,36 @@ $red_bright:      $red_transparent;
 $red_dark:        #A41902;
 $red_darkest:     #861401;
 
-$text:          white;
-$text_inverse:  black;
+$text:            $white;
+$text_inverse:    $black;
+$text_highlight:  #ccc;
 
-$navigation_background:         $petrol_transparent;
-$navigation_text:               white;
+$navigation_text:           $text;
+$navigation_background:     $petrol_transparent;
+$navigation_item_highlight: $petrol;
 
-$navigation_text_inverse:       black;
-$navigation_text_highlight:     #ccc;
-$navigation_item_highlight:     $petrol;
+$quests_box_color:            $transparent;
+$quests_box_title_color:      $petrol;
+$quests_box_content_color:    $white;
+$quests_box_statistic_color:  $white;
 
-$message_background:    #dddddd;
-$message_border:        #cccccc;
+$quest_box_color:           $white;
+$quest_box_title_color:     $petrol;
+$quest_box_content_color:   $petrol;
+$quest_box_statistic_color: $petrol;
+
+$offers_box_color:            $transparent;
+$offers_box_title_color:      $green;
+$offers_box_content_color:    $white;
+$offers_box_statistic_color:  $green;
+
+$offer_box_color:           $green_transparent;
+$offer_box_title_color:     $green;
+$offer_box_content_color:   $white;
+$offer_box_statistic_color: $green;
+
+
+
 
 $user_box_color:            $red_bright;
 $user_box_title_color:      $red_dark;
@@ -87,26 +108,6 @@ $activities_box_color:            $green_bright;
 $activities_box_title_color:      $green_dark;
 $activities_box_content_color:    $green;
 $activities_box_statistic_color:  $green_darkest;
-
-$quests_box_color:            $orange_transparent;
-$quests_box_title_color:      $orange;
-$quests_box_content_color:    $blue;
-$quests_box_statistic_color:  $blue_darkest;
-
-$offers_box_color:            $orange_bright;
-$offers_box_title_color:      $orange_dark;
-$offers_box_content_color:    $orange;
-$offers_box_statistic_color:  $orange_darkest;
-
-$quest_box_color:           $blue;
-$quest_box_title_color:     $blue_dark;
-$quest_box_content_color:   $blue_bright;
-$quest_box_statistic_color: $blue_darkest;
-
-$offer_box_color:           $orange;
-$offer_box_title_color:     $orange_dark;
-$offer_box_content_color:   $orange_bright;
-$offer_box_statistic_color: $orange_darkest;
 
 $comments_box_color:          $camin_bright;
 $comments_box_title_color:    $camin_dark;
@@ -144,6 +145,9 @@ $offer_step_active_color:     $orange_bright;
 $offer_step_inactive_color:   $orange_dark;
 $offer_step_bg_color:         $orange_darkest;
 $offer_step_active_bg_color:  $orange;
+
+$message_background:    #dddddd;
+$message_border:        #cccccc;
 
 $twitter:             #00ACED;
 $twitter_highlight:   #21C2FF;

@@ -75,11 +75,8 @@
   }
   
   &.bar {
-    background-color: $user_box_title_color;
-    /*
-    &.quest { background-color: $quest_box_statistic_color; }
-    &.offer { background-color: $offer_box_statistic_color; }
-    */
+    &.quest { background-color: $quest_box_title_color; }
+    &.offer { background-color: $offer_box_title_color; }
     display: block;
     padding: 10px 7px 10px 10px;
     position: relative;

@@ -42,12 +42,16 @@
 
 @mixin box_colors($box_type) {
   @if       $box_type == quest { 
+    background-color: $quest_box_color;
+    .title { background-color: $quest_box_title_color; }
+  }
+  @else if  $box_type == quests { 
     background-color: $quests_box_color;
     .title { background-color: $quests_box_title_color; }
   }
   @else if  $box_type == offer { 
-    background-color: $offers_box_color;
-    .title { background-color: $offers_box_title_color; }
+    background-color: $offer_box_color;
+    .title { background-color: $offer_box_title_color; }
   }
   @else if  $box_type == comment { 
     background-color: $comments_box_color;

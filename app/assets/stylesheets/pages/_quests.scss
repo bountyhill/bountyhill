@@ -2,12 +2,6 @@
 
 .box {
   &.quests, &.quest { 
-    /* ------- common box colors ------- */
-    @include box_colors(quest);
-
-    /* opener triangle */
-    @include opener($quests_box_title_color);
-
     /* ------- bounty bar colors ------- */
     .progress {
       .bar {
@@ -18,7 +12,9 @@
   }
 
   /* ------- quests/list ------- */
-  .quest {
+  &.quests {
+    @include box_colors(quests);
+    @include opener($quests_box_title_color);
 
     /* ------- messages ------- */
     .message-box {
@@ -31,7 +27,12 @@
     }
   }
   
+  /* ------- quests/show ------- */
   &.quest {
+    /* colors */
+    @include box_colors(quest);
+    @include opener($quest_box_title_color);
+    
     /* ------- step indicator colors------- */
     .title {
       .step-indicator {
