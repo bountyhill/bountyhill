@@ -1,37 +1,67 @@
+$opacity: 0.6;
+
 $petrol:              #009AB1;
-$petrol_transparent:  rgba(0, 154, 177, 0.8);
+$petrol_transparent:  rgba(0, 154, 177, $opacity);
+$grass:               #11B184;
+$grass_transparent:   rgba(17, 177, 132, $opacity);
+$green:               #99CC33;
+$green_transparent:   rgba(153, 204, 51, $opacity);
+$orange:              #D1A212;
+$orange_transparent:  rgba(209, 162, 18, $opacity);
+$red:                 #D15512;
+$red_transparent:     rgba(209, 85, 18, $opacity);
+$magenta:             #D12B85;
+$magenta_transparent: rgba(209, 43, 133, $opacity);
 
-$green:               #97BF0D;
-$green_transparent:   rgba(151, 191, 13, 0.8);
 
-
-
-$camin:           #AA063B;
-$camin_bright:    #EECDD8;
-$camin_dark:      #77042B;
-$camin_darkest:   #660423;
-
+/*
 $blue:            #39B3DC;
 $blue_bright:     #CEECF6;
+*/
+$blue:            $petrol;
+$blue_bright:     $petrol_transparent;
 $blue_dark:       #2B84A2;
 $blue_darkest:    #226B84;
 
+/*
+$camin:           #AA063B;
+$camin_bright:    #EECDD8;
+*/
+$camin:           $magenta;
+$camin_bright:    $magenta_transparent;
+$camin_dark:      #77042B;
+$camin_darkest:   #660423;
+
+/*
 $purple:          #863884;
 $purple_bright:   #E1CEE1;
+*/
+$purple:          $grass;
+$purple_bright:   $grass_transparent;
 $purple_dark:     #611657;
 $purple_darkest:  #50224F;
 
+/*
+$green:         #5CA92A;
 $green_bright:  #D2E0C7;
+*/
+$green_bright:  $green_transparent;
 $green_dark:    #396A19;
 $green_darkest: #325C17;
 
+/*
 $orange:          #CC9902;
 $orange_bright:   #F1E0B2;
+*/
+$orange_bright:   $orange_transparent;
 $orange_dark:     #9D6802;
 $orange_darkest:  #7A5C01;
 
+/*
 $red:             #E02202;
 $red_bright:      #F7C8C0;
+*/
+$red_bright:      $red_transparent;
 $red_dark:        #A41902;
 $red_darkest:     #861401;
 
@@ -58,8 +88,8 @@ $activities_box_title_color:      $green_dark;
 $activities_box_content_color:    $green;
 $activities_box_statistic_color:  $green_darkest;
 
-$quests_box_color:            $green;
-$quests_box_title_color:      $petrol_transparent;
+$quests_box_color:            $orange_transparent;
+$quests_box_title_color:      $orange;
 $quests_box_content_color:    $blue;
 $quests_box_statistic_color:  $blue_darkest;
 
