@@ -48,35 +48,21 @@ module OffersHelper
   end
     
   def offer_statistic(offer)
-    dl do
-      offer_statistic_entries(offer).join.html_safe
-    end
-  end
-  
-  def offer_statistic_entries(offer)
-    statistic_entries = [
-      dt(I18n.t("offer.compliance", :precentage => offer.compliance)),
-      dd("")
-    ]
+    statistic_entries = [] # I18n.t("offer.compliance", :precentage => offer.compliance) ]
     
-    unless offer.active?
-      statistic_entries << [
-        dt(I18n.t("offer.states.#{offer.state}")),
-        dd("")
-      ]
-    end
-
-    statistic_entries << [
-      dt(I18n.t("offer.list.images", :count => offer.images.size)),
-      dd(image_stack(offer))
-    ]
+    statistic_entries << [ awesome_icon(:bar_chart) + I18n.t("offer.states.#{offer.state}") ] unless offer.active?
+    statistic_entries << [ awesome_icon(:picture)   + I18n.t("offer.list.images", :count => offer.images.size) ] if offer.images.present?
       
     statistic_entries.compact.flatten
+
+    ul :class => "stats-list" do
+      statistic_entries.map{ |entry| li(entry) }.join.html_safe
+    end
   end
   
   def offer_compliance(offer, options={})
     value = options[:value] || offer.compliance.to_s
-    label = options[:label] || value
+    label = options[:label] || I18n.t("offer.compliance", :precentage => value)
     css   = options[:class] || "progress"
     
     div :class => css do
@@ -102,7 +88,7 @@ module OffersHelper
       ul(:class => "offers list") do
         offerable.offers.map do |offer|
           li :class => "offer", :id => dom_id(offer) do
-            partial "offers/item", :offer => offer
+            partial "offers/list_item", :offer => offer
           end
         end.compact.join.html_safe
       end

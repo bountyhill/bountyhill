@@ -206,7 +206,7 @@ en:
       stop:     "%{item} stopped"
       withdraw: "%{item} withdrawn"
   offer:
-    compliance: "%{precentage}% compliance"
+    compliance: "%{precentage}% compliant"
     box:
       title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
@@ -221,7 +221,7 @@ en:
       legend: Please let the searcher know why you want to withdraw your offer.
     list:
       title:
-        zero:   "Offers"
+        zero:   "No offers made"
         one:    "1 offer"
         other:  "%{count} offers"
       creation:   "%{distance_of_time} ago"

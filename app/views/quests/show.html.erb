@@ -14,14 +14,9 @@
   <div class="main span8">
     <%= quest_box(@quest, :class => "with-opener") %>
     <%= spacer %>
-    <div class="row-fluid">
-      <div class="span6">
-        <%= comments_box(@quest) %>
-      </div>
-      <div class="span6">
-        <%= offers_box(@quest, :class => "with-opener") %>
-      </div>
-    </div>
+    <%= offers_box(@quest, :class => "with-opener") %>
+    <%= spacer %>
+    <%= comments_box(@quest) %>
   </div>
   <div class="sidebar span2">
     <%= quest_statistic_boxes(@quest) %>

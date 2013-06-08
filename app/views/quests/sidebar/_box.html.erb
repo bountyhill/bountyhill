@@ -1,10 +1,7 @@
 <div class="side quest box">
   <%= link_to user_path(quest.owner) do
     avatar(quest.owner, :size => 32) +
-    div(:class => "user") do
-      div(quest.owner.name, :class => "name") +
-      div(quest.owner.twitter_handle, :class => "handle")
-    end
+    div(quest.owner.name, :class => "user")
   end %>
   
   <%= link_to quest_path(quest), :class => "title" do

@@ -10,10 +10,6 @@
    padding: 0px;
   }
 }
-
-.span10 {
-  min-width: 1024px;          /* until we have a real floating layout, ensure that we have at least 1024px available */
-}
  
 .alert.flash {
   text-align: center;         /* centers flash message text */
@@ -63,6 +59,7 @@ li [class^="icon-"], li [class*=" icon-"],
 /* -------- progress bar ---------- */
 
 .progress {
+  background-image: none;
   .bar {
     font-weight: bold;                        /* font looks much nicer when bold */
     &:after {

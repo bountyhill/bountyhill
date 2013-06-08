@@ -206,7 +206,7 @@ de:
       stop:     "%{item} gestoppt"
       withdraw: "%{item} zurückgezogen"
   offer:
-    compliance: "%{precentage}% Erfüllungsgrad"
+    compliance: "%{precentage}% erfüllt"
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
@@ -221,7 +221,7 @@ de:
       legend: "Bitte teilen Sie dem Suchenden mit, warum Sie Ihr Angebot zurückziehen möchten."
     list:
       title:
-        zero:   "Angebote"
+        zero:   "Noch keine Angebote"
         one:    "1 Angebot"
         other:  "%{count} Angebote"
       creation:   "%{distance_of_time} her"

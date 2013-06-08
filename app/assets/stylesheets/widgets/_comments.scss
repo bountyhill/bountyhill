@@ -5,22 +5,34 @@
     
     /* opener triangle */
     @include opener($comments_box_title_color);
-  }
-  form {
-    margin: 0;
-    input[type="submit"] {
-       float: right;
-     }
-  }
-  ul#comments {
-    & > li {
-      &#no_comments {
-        min-height: 0;
+    
+    .content {
+      background-color: $comments_box_form_background;
+      padding: 0;
+    }
+    form {
+      padding: 16px 16px 16px 0;
+      margin: 0 0 0 96px;
+      textarea { min-width: $message_width; }
+      buttons { width: message_stats_width; }
+    }
+    ul#comments {
+      & > li {
+        &#no_comments {
+          min-height: 0;
+        }
       }
     }
-  }
-  #new_comment {
-    clear: both;
+    #new_comment {
+      position: relative;
+      clear: both;
+      .buttons { 
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        margin: 0; 
+      }
+    }
   }
 }
 

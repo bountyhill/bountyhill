@@ -31,7 +31,7 @@ module ButtonHelper
     expect! name => Symbol
     expect! href => String
 
-    size = (options[:size] ||= :small)
+    size = (options[:size] ||= :normal)
     html = (options.delete(:html) || {})
     text = options.delete(:text)
     

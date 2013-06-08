@@ -1,7 +1,15 @@
-/* ------- boxes ------- */
-
 .box {
-  &.quests, &.quest { 
+  /* ------- quests/list ------- */
+  &.quests {
+    @include box_colors(quests);
+    @include opener($quests_box_title_color);
+  }
+
+  /* ------- quests/show ------- */
+  &.quest {
+    @include box_colors(quest);
+    @include opener($quest_box_title_color);
+    
     /* ------- bounty bar colors ------- */
     .progress {
       .bar {
@@ -9,47 +17,73 @@
         background-color: $quest_bounty_bar_color;
       }
     }
-  }
 
-  /* ------- quests/list ------- */
-  &.quests {
-    @include box_colors(quests);
-    @include opener($quests_box_title_color);
-
-    /* ------- messages ------- */
-    .message-box {
-      @include message($quests_box_content_color, $quests_box_content_color);
-    }
-    .statistic { 
-      dl {
-        color: $quests_box_statistic_color !important;
-      }
-    }
-  }
-  
-  /* ------- quests/show ------- */
-  &.quest {
-    /* colors */
-    @include box_colors(quest);
-    @include opener($quest_box_title_color);
-    
     /* ------- step indicator colors------- */
     .title {
       .step-indicator {
         li {
-          color: $quest_step_color;
+          color: $quest_step_bg_color;
           &.active {
             color: $quest_step_active_color;
             &:before {
               color: $quest_step_active_color;
-              background-color: $quest_step_active_bg_color;
+              background-color: $quest_step_bg_color;
             }
           }
           &:before {
-            color: $quest_step_inactive_color;
+            color: $quest_step_color;
             background-color: $quest_step_bg_color;
           }
         }
+      }
+    }
+    .content {
+      padding: 16px;
+    }
+  }
+}
+
+.quest {
+  &.side {
+    &.box {
+      min-height: 84px;
+      position: relative;
+      padding: 10px;
+      background-color: $quests_box_content_color;
+      color: $text_inverse;
+      border-top: 16px solid $quests_box_title_color;
+      border-bottom: 16px solid $quests_box_title_color;
+      .avatar {
+        float: left;
+        min-width: 32px;
+        min-height: 32px;
+      }
+      .user {
+        display: block;
+        margin-left: 37px;
+        height: 32px;
+        font-size: 80%;
+        line-height: 80%;
+        color: $quests_box_title_color;
+      }
+      .title {
+        display: block;
+        font-family: 'Open Sans', arial, sans-serif;
+        height: 100%;
+        padding: 0;
+        margin: 10px 0;
+        font-size: 90%;
+        line-height: 90%;
+        background-color: $quests_box_content_color;
+        color: $text_inverse;
+      }
+      .time {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 80%;
+        line-height: 80%;
+        color: $quests_box_title_color;
       }
     }
   }

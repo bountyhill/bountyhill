@@ -4,8 +4,12 @@
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
       
-      <%= f.text_area :body, :class => "input-xlarge", :rows => 5 %>
-      <%= f.submit t('button.post'), :class => "btn" %>
+      <%= f.text_area :body, :rows => 5 %>
+
+      <div class="buttons">
+        <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-link btn-cancel" %>
+        <%= f.submit t('button.post'), :class => "btn btn-link" %>
+      </div>
     <% end %>
   <% else %>
     <p><%= t('comment.messages.must_be_logged_in_to_comment') %></p>
@@ -13,12 +17,14 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $(".new-comment")[0].onclick = function() {
-    if( $('#new_comment_form').is(':visible') ) {
-      $("#new_comment_form").slideUp('hide');
-    } else {
-      $("#new_comment_form").slideDown('show');
-    }
-    return false;
-  };
+  $(".new-comment, #new_comment_form .btn-cancel").each( function(index, btn) {
+    btn.onclick = function() {
+      if( $('#new_comment_form').is(':visible') ) {
+        $("#new_comment_form").slideUp('hide');
+      } else {
+        $("#new_comment_form").slideDown('show');
+      }
+      return false;
+    };
+  });
 </script>

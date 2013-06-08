@@ -124,44 +124,25 @@ module QuestsHelper
 
     awesome_button(:edit, edit_quest_path(quest)) { I18n.t("button.edit") }
   end
-  
+
   def quest_statistic(quest)
-    dl do
-      quest_statistic_entries(quest).join.html_safe
-    end
-  end
-  
-  def quest_statistic_entries(quest)
     statistic_entries = []
-    statistic_entries << if quest.active?
-      [
-        dt(I18n.t("quest.list.bounty", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))),
-        dd(""),        
-        dt(I18n.t("quest.list.offers", :count => quest.offers.count)),
-        dd(""),
-        dt(I18n.t("quest.list.forwards", :count => quest.forwards.count)),
-        dd("")
-      ] 
-    elsif quest.expired?
-      [
-        dt(I18n.t("quest.status.expired")),
-        dd("")
-      ]
-    elsif !quest.started?
-      [
-        dt(I18n.t("quest.status.not_started")),
-        dd("")
-      ]
-    end
-    
-    statistic_entries << [
-      dt(I18n.t("quest.list.images", :count => quest.images.size)),
-      dd(image_stack(quest))
-    ]
-    
+
+    statistic_entries << 
+      if    quest.active?   then "#{awesome_icon(:money)}       #{I18n.t('quest.list.bounty', :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))}"
+      elsif quest.expired?  then "#{awesome_icon(:time)}        #{I18n.t('quest.status.expired')}"
+      elsif !quest.started? then "#{awesome_icon(:minus_sign)}  #{I18n.t('quest.status.not_started')}"
+      end
+
+    statistic_entries << "#{awesome_icon(:globe)}   #{quest.location.address}"                                    if quest.location.present?
+    statistic_entries << "#{awesome_icon(:picture)} #{I18n.t('quest.list.images', :count => quest.images.size)}"  if quest.images.present?
     statistic_entries.flatten
+
+    ul :class => "stats-list" do
+      statistic_entries.map{ |entry| li(entry) }.join.html_safe
+    end
   end
-  
+
   def quest_bounty_height(quest, options={})
     value = options[:value] ||= quest.bounty_height.to_s
     
@@ -206,10 +187,6 @@ module QuestsHelper
     statistic_box quest.forwards.size,
       I18n.t("quest.statistic.forwards"),
       awesome_icon(:retweet, :size => :large), :css_class => "quest"
-  end
-  
-  def quest_sidebar_box(quest)
-    partial "quests/sidebar/box", :quest => quest
   end
   
 end

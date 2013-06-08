@@ -1,20 +1,21 @@
 <% reply = defined?(reply) ? reply : false %>
 <li class="comment" id="comment_<%= comment.id %>">
   <div class="message-container span12">
-    <%= link_to user_path(comment.owner), :class => "owner" do
-      avatar comment.owner, :size => 48
+    <%= link_to user_path(comment.owner), :class => "avatar" do
+      avatar comment.owner, :size => 96
     end %>
     <div class="message-box">
       <div class="message-head clearfix">
-        <%= link_to user_path(comment.owner), :class => "owner" do %>
-          <%= strong(comment.owner.name) %>
-          <%= comment.owner.twitter_handle %>
-        <% end %>
+        <%= link_to comment.owner.name, user_path(comment.owner), :class => "owner" %>
         <div class="time">
           <%= I18n.t("comment.list.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
         </div>
       </div>
-      <%= simple_format(comment.body, :class => "message") %>
+      <div class="message-body">
+        <%= simple_format(comment.body, :class => "message") %>
+      </div>
+    </div>
+    <div class="message-stats">
       <%= comment_buttons(comment, :reply => reply) %>
     </div>
   </div>

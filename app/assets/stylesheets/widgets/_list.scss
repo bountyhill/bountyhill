@@ -9,21 +9,16 @@ ul.list {
     list-style: none;
     position: relative;
   }
-  & > li {
-    clear: both;
-    min-height: 10ex;
-    margin-bottom: 5ex;
-    .avatar {
-      @include border-radius(3px);
-    }
-  }
-  /* bar seperator */
+  & > li { min-height: 96px + 16px; }
+  & > li:last-child { min-height: 0; }
+
   .progress { 
-    margin-bottom: 3px;
+    margin: 1px 8px 6px 8px;
     line-height: 16px; /* let the progress bar look slimmer */
-    height: 5px;
+    height: 16px;
     @include border-radius(0);
-    background-color: lightgray;
+    @include box-shadow(none);
+    background-color: $progress_bar_background;
     background-image: none;
     .bar:after { content:""; }
   }

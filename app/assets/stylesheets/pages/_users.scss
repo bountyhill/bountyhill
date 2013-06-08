@@ -4,12 +4,11 @@
     
     /* opener triangle */
     @include opener($activities_box_title_color);
-    
+
     ul.activities {
-      color: $text;
       li.activity {
-        margin-bottom: 2ex;
-        min-height: 6ex;
+        margin-bottom: 32px;
+        min-height: 32px;
         ul {
           float: left;
           padding: 0 10px;
@@ -29,6 +28,7 @@
           }
         }
         .points { 
+          color: $text;
           float: right;
           background-color: $activities_box_statistic_color;
           width: 15%;
@@ -51,15 +51,17 @@
       }
     }
     .content {
+      padding: 16px;
       min-height: 46px;
       .contact-section {
         background-color: $user_box_title_color;
         color: $text;
-        margin: 30px -20px -20px -20px;
-        padding: 10px 20px 20px 20px ;
+        margin: 30px -16px -16px -16px;
+        padding: 16px ;
         font-weight: bold;
         .info-icon {
           float: right;
+          a { color: $user_box_content_color }
         }
         .contact-info {
           clear: both;

@@ -25,10 +25,10 @@
 @import "compass_twitter_bootstrap_responsive";
 
 // import basics stylesheets
-@import "patches";
 @import "colors";
 @import "mixins";
 @import "fonts";
+@import "patches";
 
 // import vendors' stylesheets
 @import "vendor/sassybuttons";

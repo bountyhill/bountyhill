@@ -61,6 +61,19 @@ form {
     }
     #tweet {
       @include message($message_background, $message_border);
+      border: 2px solid $message_border;
+      @include border-radius(3px);
+      &:before {
+        content: "";
+        display: block;
+        height: 0;
+        width: 0;
+        border: 10px solid $message_border;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent $message_border transparent transparent;
+        position: absolute;
+        top: 15px;
+      }
       &:before {
         left: 50px;
       }

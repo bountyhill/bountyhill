@@ -1,13 +1,10 @@
-<div class="message-container span9">
+<div class="message-container span12">
   <%= link_to user_path(quest.owner), :class => "avatar" do
-    avatar quest.owner, :size => 64
+    avatar quest.owner, :size => 96
   end %>
   <div class="message-box">
     <div class="message-head clearfix">
-      <%= link_to user_path(quest.owner), :class => "owner" do %>
-        <%= strong(quest.owner.name) %>
-        <%= quest.owner.twitter_handle %>
-      <% end %>
+      <%= link_to quest.owner.name, user_path(quest.owner), :class => "owner" %>
       <div class="time">
         <% if quest.active? %>
           <%= I18n.t("quest.list.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at)) %>
@@ -16,19 +13,13 @@
         <% end %>
       </div>
     </div>
-    <%= link_to quest_path(quest), :class => "message" do
-      truncate(quest.title, :length => 200)
-    end %>
-    <div class="message-footer">
-      <%= quest.location ? quest.location.address : "&nbsp;".html_safe %>
-      <%= quest_buttons(quest) %>
+    <div class="message-body">
+      <%= link_to truncate(quest.title, :length => 200), quest_path(quest), :class => "message" %>
     </div>
   </div>
-</div>
-
-<div class="span3">
-  <div class="statistic">
-    <%= quest_bounty_height(quest, :value => "") %>
+  <div class="message-stats">
+    <%#= quest_bounty_height(quest, :value => "") %>
     <%= quest_statistic(quest) %>
+    <%= quest_buttons(quest) %>
   </div>
 </div>

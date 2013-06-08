@@ -14,15 +14,10 @@
   <div class="main span8">
     <%= offer_box(@offer, :class => "with-opener") %>
     <%= spacer %>
-    <div class="row-fluid">
-      <div class="span6">
-        <%= comments_box(@offer) %>
-      </div>
-      <div class="span6">&nbsp;</div>
-    </div>
+    <%= comments_box(@offer) %>
   </div>
   <div class="sidebar span2">
-    <%= quest_sidebar_box(@offer.quest) %>
+    <%= partial "quests/sidebar/box", :quest => @offer.quest %>
     <%= spacer %>
     <%= offer_statistic_boxes(@offer) %>
   </div>

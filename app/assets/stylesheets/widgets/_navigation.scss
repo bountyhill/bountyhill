@@ -35,7 +35,6 @@
   }
   &.navbar-fixed-bottom {
     .navbar-inner {
-      background-color: $petrol;
       height: 32px;
       .nav { margin-top: 0; }
     }
@@ -55,6 +54,8 @@
       width: 33%;
       padding: 0;
       margin-top: 16px;
+      margin-left: 0;
+      text-align: left;
     }
     .container-fluid {
       margin-left:auto;
@@ -75,6 +76,7 @@
       right: 0;
       bottom: 0;
       left: inherit;
+      margin: 0;
       li {
         &.active > a, &.active > a:hover, a:hover {
           background:  inherit;
@@ -102,7 +104,7 @@
         .dropdown-menu {
           border: none;
           border-radius: 0;
-          background-color: $petrol_transparent;
+          background-color: $navigation_background;
           box-shadow: none;
           width: 100%;
           margin-top: 0;
@@ -143,13 +145,14 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 @media (max-width: 1200px) {
   .navbar {
     .navbar-inner {
-      min-width: 1024px;
-      .span1 {
-        display: none;
-        padding: 0 20px;
-      }
-      .span10 {
-        width: auto;
+      .nav {
+        & > li {
+          & > a {
+            & > span {
+              display: none;
+            }
+          }
+        }
       }
     }
   }
@@ -163,15 +166,6 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
         height: 64px;
         .span10 { 
           height: 64px;
-        }
-        .nav {
-          & > li {
-            & > a {
-              & > span {
-                display: none;
-              }
-            }
-          }
         }
         .brand {
           width: 196px;

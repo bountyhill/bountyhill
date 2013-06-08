@@ -1,3 +1,19 @@
+@mixin button($font_size, $button_color) {
+  .btn {
+    @include sassy-button("flat", 0px, $font_size, $button_color);
+    padding: 0.3em 1em;
+    &:focus { outline: none; }
+    &:hover, &.active { box-shadow: none; }
+  }  
+}
+
+@mixin active_button($font_size, $button_color, $active_button_color) {
+  @include button($font_size, $button_color);
+  .btn {
+    &.active { background-color: $active_button_color; };
+  }
+}
+
 @mixin square($size) {
   width: $size;
   height: $size;
@@ -21,22 +37,18 @@
 
 
 @mixin message($background_color, $border_color) {
-  line-height: 1.2;
-  min-height: 35px;
-  padding: 5px 10px;
-  background-color: $background_color;
-  border: 2px solid $border_color;
-  @include border-radius(3px);
-  &:before {
-    content: "";
-    display: block;
-    height: 0;
-    width: 0;
-    border: 10px solid $border_color;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent $border_color transparent transparent;
-    position: absolute;
-    top: 15px;
+  .message-container {
+    border-color: $border_color;
+    .message-box { 
+      background-color: $background_color;
+      .message-head {
+        color: $border_color;
+        a { color: $border_color; }
+      }
+    }
+    .message-stats {
+      background-color: $border_color;
+    }
   }
 }
 
@@ -52,6 +64,10 @@
   @else if  $box_type == offer { 
     background-color: $offer_box_color;
     .title { background-color: $offer_box_title_color; }
+  }
+  @else if  $box_type == offers { 
+    background-color: $offers_box_color;
+    .title { background-color: $offers_box_title_color; }
   }
   @else if  $box_type == comment { 
     background-color: $comments_box_color;

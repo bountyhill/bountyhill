@@ -1,72 +1,14 @@
 .box {
-  /* forms */
-  .form {
-    padding: 0 50px;
-    .buttons { margin: 30px 0; }
-    a { color: $text_inverse; }
-  }
-  
-  /* filter */
-  &.filter {
-    .btn { 
-      width: 85%; 
-      text-align: left;
-    }
-    &.quest {
-      .btn { 
-        @include sassy-button-gradient("simple", $quest_button_color, $quest_button_color); 
-        &.active, &:hover {
-          @include box-shadow(none);
-          background-color: $quest_active_button_color;
-          @include background-image(linear-gradient($quest_active_button_color, $quest_active_button_color));
-        };
-      }
-    }
-    &.offer {
-      .btn { 
-        @include sassy-button-gradient("simple", $offer_button_color, $offer_button_color);
-        &.active, &:hover {
-          @include box-shadow(none);
-          background-color: $offer_active_button_color;
-          @include background-image(linear-gradient($offer_active_button_color, $offer_active_button_color));
-        };
-      }
-    }
-  }
-  
-  /* buttons */
-  .btn-group {
-    .btn { 
-      &:focus { outline: none; }
-      &:hover { box-shadow: none !important; }
-    }
-  }
-  &.quest, &.quests {
-    .title {
-      .btn { @include sassy-button-gradient("simple", $quest_button_color, $quest_button_color); }
-    }
-  } 
-  &.offer, &.offers {
-    .title {
-      .btn { @include sassy-button-gradient("simple", $offer_button_color, $offer_button_color); }
-    }
-  }
-  &.user, &.users {
-    .title {
-      .btn { @include sassy-button-gradient("simple", $user_button_color, $user_button_color); }
-    }
-  }
-  &.comments, &.comment {
-    .title {
-      .btn { @include sassy-button-gradient("simple", $comment_button_color, $comment_button_color); }
-    }
-  }
-  
+
+  &.quest,    &.quests  { @include button(16px, $quest_button_color); }
+  &.offer,    &.offers  { @include button(16px, $offer_button_color); }
+  &.user,     &.users   { @include button(16px, $user_button_color); }
+  &.comments, &.comment { @include button(16px, $comment_button_color); }
 
   /* ------- title ------- */
   .title {
     color: $text;
-    padding: 0px 7px 3px 20px;
+    padding: 8px 16px;
     height: 38px;
     margin: 0;
     line-height: 40px;
@@ -77,7 +19,7 @@
   
   /* ------- content ------- */
   .content {
-    padding: 20px;
+    padding: 16px 0 0 0;
     clear: both;
     h1 {
       line-height: 30px;
@@ -121,6 +63,7 @@
     }
   }
   
+  /* ------- statistic ------- */
   &.statistic {
     &.offer { background-color: $offer_box_statistic_color; }
     &.quest { background-color: $quest_box_statistic_color; }
@@ -138,12 +81,12 @@
     
     position: relative;
     display: block;
-    padding: 10px 10px 10px 20%;
+    padding: 10px 10px 10px 10%;
     height: 64px;
     color: $text;
     font-weight: bold;
     .icon {
-      margin: 8px 8px 0 0;
+      margin: 8px 0 0 0;
       float: right;
       line-height: 15px;
     }
@@ -158,4 +101,26 @@
       margin-top: 4px;
     }
   }
+  
+  /* ------- forms ------- */
+  form {
+    padding: 0 50px;
+    .buttons { margin: 30px 0; }
+    .buttons, .controls { 
+      .btn {
+        background-image: none;
+        padding: 4px 8px;
+        &:hover { 
+          background-position: 0 -30px;
+          @include transition(none);
+        }
+        &.btn-cancel {
+          background-color: $cancel_button_bg_color;
+          &:hover { background-color: $cancel_button_hover_bg_color };
+        }
+      }
+    }
+    a { color: $text_inverse; }
+  }
+  
 }

@@ -47,7 +47,7 @@ module CommentsHelper
     expect! commentable => [Quest, Offer]
     
     content = div :class => "content" do
-      partial "shared/comments", :commentable => commentable
+      comments_for commentable
     end
 
     div :class => "comments box row-fluid with-opener" do

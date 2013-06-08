@@ -1,153 +1,116 @@
-$opacity: 0.8;
+/* transparancies */ 
+
+$opacity: 0.6;
 $transparent: rgba(255, 255, 255, 0);
 
+
+/* colors */
+
 $petrol:              #009AB1;
+$petrol_dark:         #008498;
 $petrol_transparent:  rgba(0, 154, 177, $opacity);
+
 $grass:               #11B184;
 $grass_transparent:   rgba(17, 177, 132, $opacity);
+$grass_dark:          #0F9A73;
+
 $green:               #99CC33;
 $green_transparent:   rgba(153, 204, 51, $opacity);
+$green_dark:          #8AB82E;
+
 $orange:              #D1A212;
 $orange_transparent:  rgba(209, 162, 18, $opacity);
+$orange_dark:         #BA9010;
+
 $red:                 #D15512;
 $red_transparent:     rgba(209, 85, 18, $opacity);
+$red_dark:            #BA4B10;
+
 $magenta:             #D12B85;
 $magenta_transparent: rgba(209, 43, 133, $opacity);
+$magenta_dark:        #BC2778;
 
 $white: white;
 $black: black;
 
-/*
-$blue:            #39B3DC;
-$blue_bright:     #CEECF6;
-*/
-$blue:            $petrol;
-$blue_bright:     $petrol_transparent;
-$blue_dark:       #2B84A2;
-$blue_darkest:    #226B84;
 
-/*
-$camin:           #AA063B;
-$camin_bright:    #EECDD8;
-*/
-$camin:           $magenta;
-$camin_bright:    $magenta_transparent;
-$camin_dark:      #77042B;
-$camin_darkest:   #660423;
+/* text */
 
-/*
-$purple:          #863884;
-$purple_bright:   #E1CEE1;
-*/
-$purple:          $grass;
-$purple_bright:   $grass_transparent;
-$purple_dark:     #611657;
-$purple_darkest:  #50224F;
+$text:                    $white;
+$text_highlight:          #ccc;
+$text_inverse:            $black;
+$text_inverse_highlight:  #666;
 
-/*
-$green:         #5CA92A;
-$green_bright:  #D2E0C7;
-*/
-$green_bright:  $green_transparent;
-$green_dark:    #396A19;
-$green_darkest: #325C17;
 
-/*
-$orange:          #CC9902;
-$orange_bright:   #F1E0B2;
-*/
-$orange_bright:   $orange_transparent;
-$orange_dark:     #9D6802;
-$orange_darkest:  #7A5C01;
-
-/*
-$red:             #E02202;
-$red_bright:      #F7C8C0;
-*/
-$red_bright:      $red_transparent;
-$red_dark:        #A41902;
-$red_darkest:     #861401;
-
-$text:            $white;
-$text_inverse:    $black;
-$text_highlight:  #ccc;
+/* navigation */
 
 $navigation_text:           $text;
-$navigation_background:     $petrol_transparent;
-$navigation_item_highlight: $petrol;
+$navigation_background:     $petrol;
+$navigation_item_highlight: $petrol_dark;
+
+
+/* quests */
 
 $quests_box_color:            $transparent;
 $quests_box_title_color:      $petrol;
 $quests_box_content_color:    $white;
 $quests_box_statistic_color:  $white;
+$quests_box_offers_bg_color:  $green_transparent;
 
 $quest_box_color:           $white;
 $quest_box_title_color:     $petrol;
 $quest_box_content_color:   $petrol;
 $quest_box_statistic_color: $petrol;
 
+$quest_button_color:        $quests_box_title_color;
+$quest_active_button_color: $petrol_dark;
+
+$quest_bounty_bar_color:       $quests_box_title_color;
+$quest_bounty_bar_color_dark:  $petrol_dark;
+
+$quest_image_border:            $quest_box_color;
+$quest_image_border_highlight:  $quest_box_title_color;
+
+$quest_step_color:        $petrol;
+$quest_step_active_color: $text;
+$quest_step_bg_color:     $petrol_dark;
+
+
+/* offers */
+
 $offers_box_color:            $transparent;
 $offers_box_title_color:      $green;
 $offers_box_content_color:    $white;
 $offers_box_statistic_color:  $green;
 
-$offer_box_color:           $green_transparent;
+$offer_box_color:           $white;
 $offer_box_title_color:     $green;
 $offer_box_content_color:   $white;
 $offer_box_statistic_color: $green;
 
+$offer_button_color:        $offers_box_title_color;
+$offer_active_button_color: $green_dark;
+
+$offer_comliance_bar_color:       $offers_box_title_color;
+$offer_comliance_bar_color_dark:  $green_dark;
+
+$offer_image_border:            $offer_box_color;
+$offer_image_border_highlight:  $offers_box_title_color;
+
+$offer_step_color:        $green;
+$offer_step_active_color: $text;
+$offer_step_bg_color:     $green_dark;
 
 
+/* user */
 
-$user_box_color:            $red_bright;
-$user_box_title_color:      $red_dark;
-$user_box_content_color:    $red;
-$user_box_statistic_color:  $red_darkest;
+$user_box_color:            $white;
+$user_box_title_color:      $red;
+$user_box_content_color:    $white;
+$user_box_statistic_color:  $red;
 
-$activities_box_color:            $green_bright;
-$activities_box_title_color:      $green_dark;
-$activities_box_content_color:    $green;
-$activities_box_statistic_color:  $green_darkest;
-
-$comments_box_color:          $camin_bright;
-$comments_box_title_color:    $camin_dark;
-$comments_box_content_color:  $camin;
-
-$quest_button_color:        $blue_dark;
-$quest_active_button_color: $blue_darkest;
-
-$offer_button_color:        $orange_dark;
-$offer_active_button_color: $orange_darkest;
-
-$user_button_color:     $red_dark;
-$comment_button_color:  $camin_dark;
-
-$quest_bounty_bar_color:       $blue;
-$quest_bounty_bar_color_dark:  $blue_dark;
-
-$offer_comliance_bar_color:       $orange;
-$offer_comliance_bar_color_dark:  $orange_dark;
-
-$quest_image_border:            $blue;
-$quest_image_border_highlight:  $blue_dark;
-
-$offer_image_border:            $orange;
-$offer_image_border_highlight:  $orange_dark;
-
-$quest_step_color:            $blue_darkest;
-$quest_step_active_color:     $blue_bright;
-$quest_step_inactive_color:   $blue_dark;
-$quest_step_bg_color:         $blue_darkest;
-$quest_step_active_bg_color:  $blue;
-
-$offer_step_color:            $orange_darkest;
-$offer_step_active_color:     $orange_bright;
-$offer_step_inactive_color:   $orange_dark;
-$offer_step_bg_color:         $orange_darkest;
-$offer_step_active_bg_color:  $orange;
-
-$message_background:    #dddddd;
-$message_border:        #cccccc;
+$user_button_color:         $user_box_title_color;
+$user_active_button_color:  $red_dark;
 
 $twitter:             #00ACED;
 $twitter_highlight:   #21C2FF;
@@ -155,8 +118,8 @@ $facebook:            #3B5998;
 $facebook_highlight:  #4C70BA;
 $profile:             #4C9E46;
 $profile_highlight:   #51AA4B;
-$password:            $purple_dark;
-$password_highlight:  $purple;
+$password:            $magenta_dark;
+$password_highlight:  $magenta;
 $email:               #CC8800;
 $email_highlight:     #FFAA00;
 $address:             #006699;
@@ -165,3 +128,31 @@ $register:            $profile;
 $register_highlight:  $profile_highlight;
 $delete:              $red_dark;
 $delete_highlight:    $red;
+
+
+/* activities */
+
+$activities_box_color:            $transparent;
+$activities_box_title_color:      $orange;
+$activities_box_content_color:    $white;
+$activities_box_statistic_color:  $orange;
+
+
+/* comments */
+
+$comments_box_color:            $transparent;
+$comments_box_title_color:      $grass;
+$comments_box_content_color:    $white;
+$comments_box_statistic_color:  $grass;
+$comments_box_form_background:  $grass_transparent;
+
+$comment_button_color:      $grass;
+
+
+/* common */
+$message_background:      #dddddd;
+$message_border:          #cccccc;
+$progress_bar_background: #cccccc;
+
+$cancel_button_bg_color:        #777777;
+$cancel_button_hover_bg_color:  #666666;

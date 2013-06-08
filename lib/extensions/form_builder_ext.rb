@@ -239,7 +239,7 @@ class ActionView::Helpers::FormBuilder
       css   = html_options.delete(:class) || "btn btn-primary btn-inverse"
       # 
       save_btn   = submit(label, :class => css)
-      cancel_btn = link_to(I18n.t("button.cancel"), url, { :class => "btn" }.merge(html_options))
+      cancel_btn = link_to(I18n.t("button.cancel"), url, { :class => "btn btn-cancel" }.merge(html_options))
 
       "#{cancel_btn}&nbsp;#{save_btn}"
     end

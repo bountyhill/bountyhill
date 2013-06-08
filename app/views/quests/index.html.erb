@@ -1,14 +1,11 @@
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
   <div class="sidebar span2">
-    <% if @location.present? %>
-      <%= quests_location_filter(@location, params[:radius]) %>
-      <%= spacer %>
-    <% end %>
+    <%= quests_location_filter(@location, params[:radius]) if @location.present? %>
     <%= quests_category_filters(@filters) %>
   </div>
-  <div class="main span7">
+  <div class="main span8">
     <%= quests_list_box(@quests, :filter => params[:category] ) %>
   </div>
-  <div class="span2">&nbsp;</div>
+  <div class="span1">&nbsp;</div>
 </div>

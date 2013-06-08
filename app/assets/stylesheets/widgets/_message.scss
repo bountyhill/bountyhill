@@ -1,69 +1,87 @@
+.quests   { @include message($quests_box_content_color,   $quests_box_title_color); }
+.offers   { @include message($offers_box_content_color,   $offers_box_title_color); }
+.comments { @include message($comments_box_content_color, $comments_box_title_color); }
+
 /* ------- message ------- */
+$message_height:      96px;
+$message_width:       4 * $message_height;
+$message_head_height: 32px;
+$message_padding:     8px;
+$message_border_size: 8px;
+$message_stats_width: 2.5 * $message_height;
+
 .message-container {
   position: relative;
-  margin-bottom: 1ex;
-  img {
-    float: left;
+  height: $message_height;
+  overflow: hidden;
+  border-bottom: $message_border_size solid $transparent;
+  .avatar {
+    height: $message_height;
+    img { float: left; }
   }
   .message-box {
     color: $text_inverse;
-    display: block;
-    min-height: 10ex;
-    margin-left: 84px;
-    &:before {
-      left: 74px;
-    }
-    .message {
-      display: inline-block;
-      width: 100%;
-      min-height: 3ex;
-      margin-bottom: 1.5ex;
-    }
+    min-width: $message_width;
+    margin-left:  $message_height;
+    margin-right: $message_stats_width + (2 * $message_padding);
     .message-head {
       position: relative;
-      font-size: 85%;
-      height: 5ex;
-    }
-    .message-footer {
-      font-size: 85%;
-    }
-    .owner {
-      position: absolute;
-      width: 60%;
-      strong { margin-right: 5px; }
-    }
-    .time {
-      position: absolute;
-      right: 0;
-      width: 40%;
-      text-align: right;
-      font-style: italic;
-      line-height: 1.5;
-    }
-    &:hover {
-      .btn-group {
-/*        display: block; */
+      height: $message_head_height - (2 * $message_padding);
+      padding: $message_padding (2 * $message_padding);
+      .owner {
+        position: absolute;
+        /* width: 60%; */
+        margin-right: 5px;
+      }
+      .time {
+        position: absolute;
+        right: 2 * $message_padding;
+        /* width: 40%; */
+        text-align: right;
+        font-style: italic;
       }
     }
-    .btn-group {
-/*      display: none; */
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
+    .message-body {
+      height: $message_height - $message_head_height - (2 * $message_padding);
+      padding: $message_padding (2 * $message_padding);
+      font-size: 120%;
+      a {
+        color: $text_inverse;
+        &:hover { color: $text_inverse_highlight; }
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
     }
   }
-}
-
-/* ------- small messages ------- */
-.span6 {
-  ul.list {
-    .message-container {
-      .message-box {
-        margin-left: 64px;
-        &:before {
-          left: 54px;
-        }
+  .message-stats {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $message_stats_width;
+    height: $message_height - (2 * $message_padding);
+    padding: $message_padding;
+    overflow: hidden;
+    color: $text;
+    a {
+      color: $text;
+      &:hover { 
+        color: $text_highlight; 
+        text-decoration: none;
       }
+    }
+    .stats-list {
+      margin: 0 $message_padding;
+    }
+    .btn-group {
+      display: none;
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      .btn { font-size: 12px; }
+    }
+    &:hover {
+      .btn-group  { display: block; }
     }
   }
 }

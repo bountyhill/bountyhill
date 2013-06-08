@@ -1,85 +1,54 @@
 .box {
+
+  /* ------- compliance bar colors ------- */
   &.offers, &.offer {
-    /* ------- common box colors ------- */
-    @include box_colors(offer);
-
-    /* opener triangle */
-    @include opener($offers_box_title_color);
-
-    /* ------- compliance bar colors ------- */
     .progress {
-      .bar {
-        @include background-image(linear-gradient($offer_comliance_bar_color_dark, $offer_comliance_bar_color));
-        background-color: $offer_comliance_bar_color;
-      }
-    }
-  }
-
-  /* ------- offers/list ------- */
-  .offer {
-
-    /* ------- message box colors------- */
-    .message-box {
-      @include message($offers_box_content_color, $offers_box_content_color);
-    }
-    .statistic {
-      dl {
-        color: $offers_box_statistic_color !important;
-      }
+      background-color: $offer_comliance_bar_color_dark;
+      .bar { @include background-image(linear-gradient($offer_comliance_bar_color_dark, $offer_comliance_bar_color)); }
     }
   }
   
+  /* ------- offers/list ------- */
+  &.offers {
+    @include box_colors(offers);
+    @include opener($offers_box_title_color);
+    &.with-opener {
+      background-color: $quests_box_offers_bg_color;
+    }
+  }
+
   /* ------- offers/show ------- */
   &.offer {
+    @include box_colors(offer);
+    @include opener($offer_box_title_color);
 
     /* ------- step indicator colors------- */
     .title {
       .step-indicator {
         li {
-          color: $offer_step_color;
+          color: $offer_step_bg_color;
           &.active {
             color: $offer_step_active_color;
             &:before {
               color: $offer_step_active_color;
-              background-color: $offer_step_active_bg_color;
+              background-color: $offer_step_bg_color;
             }
           }
           &:before {
-            color: $offer_step_inactive_color;
+            color: $offer_step_color;
             background-color: $offer_step_bg_color;
           }
         }
       }
     }
-  }
-}
-
-/* ------- small offer messages ------- */
-.span6 {
-  .offers {
-    ul.list {
-      li.offer {
-        .message-container {
-          .message-box {
-            .message-head {
-              min-height: 8ex;
-              .progress {
-                height: auto;
-                margin-bottom: 5px;
-                @include border-radius(5px);
-                .bar:after { content:"%"; }
-              }
-            }
-          }
-        }
-      }
+    .content {
+      padding: 16px;
     }
   }
 }
 
 
 form {
-  
   .control-group {
     &.compliance {
       .progress {
@@ -132,48 +101,6 @@ form {
         padding: 0;
         height: 15px;
         border: 1px solid;
-      }
-    }
-  }
-}
-
-.sidebar {
-  .quest {
-    &.side {
-      &.box {
-        min-height: 84px;
-        position: relative;
-        padding: 10px;
-        background-color: $quests_box_title_color;
-        color: $text;
-        .avatar {
-          float: left;
-          min-width: 32px;
-          min-height: 32px;
-        }
-        .user {
-          display: block;
-          margin-left: 37px;
-          height: 32px;
-          line-height: 120%;
-          .name { font-weight: bold; }
-          .handle { font-size: 90% }
-        }
-        .title {
-          display: block;
-          height: 100%;
-          padding: 0;
-          margin: 10px 0 15px 0;
-          font-size: 110%;
-          line-height: 110%;
-        }
-        .time {
-          position: absolute;
-          bottom: 10px;
-          right: 10px;
-          font-size: 80%;
-          line-height: 80%;
-        }
       }
     }
   }
