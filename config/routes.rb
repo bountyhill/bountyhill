@@ -54,9 +54,8 @@ Bountyhill::Application.routes.draw do
   
   # manual routes for signup, signin, signout, twitter and facebook signin
   match "signin"  => "sessions#signin_get",     :via => :get
-#  match "signup"  => "sessions#signin_get",     :via => :get
   match "signin"  => "sessions#signin_post",    :via => :post
-#  match "signup"  => "sessions#signin_post",    :via => :post
+  match "signup"  => "sessions#signin_post",    :via => :post
   match "signout" => "sessions#signout_delete", :via => :delete
   match "sessions/cancel" => "sessions#cancel", :via => :post
 
