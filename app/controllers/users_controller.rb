@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   
   def set_user
     @user = if params[:id]
-      User.find(params[:id])
+      User.find(params[:id], :readonly => (@action == "show"))
     else
       current_user
     end

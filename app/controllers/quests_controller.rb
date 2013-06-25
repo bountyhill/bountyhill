@@ -39,7 +39,7 @@ class QuestsController < ApplicationController
   end
 
   def edit
-    @quest = Quest.find(params[:id])
+    @quest = Quest.find(params[:id], :readonly => false)
     @quest.build_location unless @quest.location.present?
     
     render :action => "new"
@@ -60,13 +60,13 @@ class QuestsController < ApplicationController
   
   # PUT /quests/1
   def update
-    @quest = Quest.find(params[:id])
+    @quest = Quest.find(params[:id], :readonly => false)
     @quest.attributes = params[:quest]
 
     if @quest.location && @quest.restrict_location.blank?
       @quest.location.mark_for_destruction
     end
-
+    
     if @quest.valid?
       @quest.save!
       redirect_to! quest_path(@quest), :notice => 'Quest was successfully updated.'
@@ -77,7 +77,7 @@ class QuestsController < ApplicationController
 
   # DELETE /quests/1
   def destroy
-    @quest = Quest.find(params[:id])
+    @quest = Quest.find(params[:id], :readonly => false)
     @quest.destroy
 
     redirect_to quests_url

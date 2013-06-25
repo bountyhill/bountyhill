@@ -49,7 +49,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id], :readonly => false)
     render :action => "new"
   end
 
@@ -66,7 +66,7 @@ class OffersController < ApplicationController
 
   # PUT /offers/1
   def update
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id], :readonly => false)
 
     if @offer.valid?
       @offer.update_attributes(params[:offer])
@@ -79,7 +79,7 @@ class OffersController < ApplicationController
 
   # DELETE /offers/1
   def destroy
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id], :readonly => false)
     @offer.destroy
 
     redirect_to quests_url
@@ -87,7 +87,7 @@ class OffersController < ApplicationController
   
   # Withdraw the offer
   def withdraw
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id], :readonly => false)
     
     unless request.get?
       @offer.withdraw! if current_user.owns?(@offer)
@@ -97,7 +97,7 @@ class OffersController < ApplicationController
 
   # Accept the offer
   def accept
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id], :readonly => false)
 
     unless request.get?
       @offer.accept! if current_user.owns?(@offer.quest)
@@ -107,7 +107,7 @@ class OffersController < ApplicationController
 
   # Reject the offer
   def reject
-    @offer = Offer.find(params[:id])
+    @offer = Offer.find(params[:id],:readonly => false)
 
     unless request.get?
       @offer.reject! if current_user.owns?(@offer.quest)
