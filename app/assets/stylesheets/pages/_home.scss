@@ -1,7 +1,8 @@
 .home {
   .claim {
     color: $text;
-    margin: 128px 0 64px 0;
+    width: 1024px;
+    margin: 128px auto 64px auto;
     font-size: 500%;
     text-align: center;
   }
@@ -10,7 +11,8 @@
     text-align: center;
     .item {
       position: relative;
-      min-width: 1024px;
+      width: 1024px;
+      margin: 0 auto;
       .headline, .text {
         position: absolute;
         line-height: 120%;
