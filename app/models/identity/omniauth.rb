@@ -40,12 +40,15 @@ module Identity::Omniauth
       expect! identifier  => [String, nil]
       expect! user        => [User, nil]
       expect! attrs_hash  => Hash
-    
-      attrs_info  = attrs_hash[:info] ||= {}
-      name        = attrs_info.delete("name")
-      email       = attrs_info.delete("email")
-      provider    = self.name.split("::").last.downcase.to_sym
-    
+
+      W "Oauth Attributes Hash", attrs_hash
+      
+      provider = self.name.split("::").last.underscore.to_sym
+      
+      unless (expected_provider = attrs_hash['provider'].to_sym) == provider
+        raise "Wrong provider - actual: #{provider} vs. expected: #{expected_provider}"
+      end
+      
       transaction do
         user_identity     = user.identity(provider) if user
         current_identity  = self.where(:identifier => identifier).first
@@ -72,12 +75,25 @@ module Identity::Omniauth
           current_identity.save!
         end
       
-        identity = current_identity || user_identity || self.new
-        identity.attributes = attrs_hash.slice("info")
+        attrs_info  = attrs_hash["info"]        || {}
+        attrs_creds = attrs_hash["credentials"] || {}
+        identity    = current_identity || user_identity || self.new
+        
+        # set basics
+        identity.user       ||= user
         identity.identifier = identifier
-        identity.user       = user  if user
-        identity.name       = name  if name
-        identity.email      = email if email
+        identity.info       = attrs_info
+        
+        # TODO: these attributes could be serialized to
+        identity.name       = attrs_info["name"]  if attrs_info["name"]
+        identity.email      = attrs_info["email"] if attrs_info["email"]
+        
+        # set credentials
+        identity.oauth_token      = attrs_creds["token"]                if attrs_creds["token"]
+        identity.oauth_secret     = attrs_creds["secret"]               if attrs_creds["secret"]
+        identity.oauth_expires_at = Time.at(attrs_creds["expires_at"])  if attrs_creds["expires_at"]
+        
+        # TODO: when a serialized attribute changes e.g. oauth_expires_at, it will not be deteced by indentity.changed?
         identity.save! if identity.changed?
         identity
       end

@@ -394,7 +394,11 @@ class User < ActiveRecord::Base
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
   def description
-    self.serialized[:description] || self.identities.detect{ |identity| identity.description if identity.respond_to?(:description)}
+    return self.serialized[:description] unless self.serialized[:description].blank?
+    
+    if (identity = self.identities.detect{ |identity| identity.respond_to?(:description) && identity.description.present? })
+      identity.description
+    end
   end
   
   def address
