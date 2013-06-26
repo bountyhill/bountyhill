@@ -79,8 +79,8 @@ class User < ActiveRecord::Base
     
     identity = case handle
     when /^.+@(.*)/ then  Identity::Email.find_by_email(handle)
-    when /^@(.*)/   then  Identity::Twitter.find_by_email($1)
-    else                  Identity::Twitter.find_by_email(handle)
+    when /^@(.*)/   then  Identity::Twitter.find_by_identifier($1)
+    else                  Identity::Twitter.find_by_identifier(handle)
     end
 
     identity.user if identity
@@ -192,10 +192,17 @@ class User < ActiveRecord::Base
     self.identity(:email).confirm!(flag)
   end
 
+  # return the user's twitter identifier
+  def identifier
+    if identity = self.identity(:twitter)
+      identity.identifier
+    end
+  end
+
   # return the user's twitter handle
   def twitter_handle
     if identity = self.identity(:twitter)
-      "@" + identity.screen_name
+      identity.nickname
     end
   end
   alias_method :twitter, :twitter_handle
@@ -279,18 +286,20 @@ class User < ActiveRecord::Base
     def find_or_create_system_user(key)
       expect! key => TWITTER_HANDLES.keys
 
-      config = TWITTER_HANDLES[key]
-      twitter_handle = config["user"]
-      identity = Identity::Twitter.find_by_email(config["user"]) || 
-        Identity::Twitter.create!(:name => key, :email => config["user"])
+      config      = TWITTER_HANDLES[key]
+      identifier  = config["user"]
+      identity = Identity::Twitter.find_by_identifier(identifier) || 
+        Identity::Twitter.create!(:name => key, :identifier => identifier)
 
       # Update attributes in the database to synchronize configuration
       # with database information. As this is done only once per
       # session, the runtime overhead is negligiable.
-      identity.update_attributes! :consumer_key => config["consumer_key"],
-        :consumer_secret => config["consumer_secret"],
-        :oauth_token     => config["access_token"],
-        :oauth_secret    => config["access_token_secret"]
+      identity.update_attributes!({
+        :consumer_key     => config["consumer_key"],
+        :consumer_secret  => config["consumer_secret"],
+        :oauth_token      => config["access_token"],
+        :oauth_secret     => config["access_token_secret"]
+      })
 
       identity.user
     end
@@ -299,7 +308,7 @@ class User < ActiveRecord::Base
   
   def admin?
     self == User.admin ||
-    Bountybase.config.admins.include?(twitter_handle)
+    Bountybase.config.admins.include?(identifier)
   end
 
   def draft?
@@ -361,7 +370,7 @@ class User < ActiveRecord::Base
     parts = []
 
     if identity = self.identity(:twitter)
-      parts << "t:#{identity.screen_name}"
+      parts << "t:#{identity.nickname}"
     end
 
     if identity = self.identity(:facebook)

@@ -14,7 +14,7 @@ FactoryGirl.define do
   end
 
   factory :twitter_identity, :class => "Identity::Twitter" do
-    email "twatter"
+    identifier "twatter"
 
     after(:build) do |identity, evaluator| 
       identity.user = User.create! { |user| 

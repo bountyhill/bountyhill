@@ -28,6 +28,11 @@ class Identity < ActiveRecord::Base
 
   serialize :serialized, Hash
 
+  def self.of_provider(provider)
+    expect! provider => String
+    self.send(:subclasses).detect{|subclass| subclass.name.split("::").last.underscore == provider}
+  end
+
   private
   
   def delete_user_if_deleted_last_identity

@@ -87,6 +87,7 @@ de:
       headline5:  Freut Euch des Lebens
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
   identity:
+    required: "Wir benötigen Deine %{identity} Identität um fortfahren zu können."
     form:
       title: Anmelden/Registrieren
       terms: "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
@@ -364,12 +365,9 @@ de:
       facebook: "Facebook %{identity_required}"
       identity_required: "erfordert Anmeldung"
   sessions:
-    twitter:
-      success:    "Sie haben sich erfolgreich über Twitter angemeldet."
-      error:      "Twitter konnte Sie nicht erfolgreich anmelden."
-    facebook:
-      success:    "Sie haben sich erfolgreich über Facebook angemeldet."
-      error:      "Facebook konnte Sie nicht erfolgreich anmelden."
+    auth:
+      success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"
+      error:      "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal..."
     email:
       confirmation:
         reminder: "Sie haben sich bei bountyhill registriert, aber Ihre Email-Adresse wurde noch nicht bestätigt."

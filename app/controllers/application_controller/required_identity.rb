@@ -78,9 +78,8 @@ module ApplicationController::RequiredIdentity
     end
 
     # -- fetch notice text --------------------------------------------
-    
     notice = options.delete(:notice)
-    notice ||= I18n.t("requires_identity.#{kind}")
+    notice ||= I18n.t("identity.required", :identitiy => kind)
 
     # -- prepare payload ----------------------------------------------
     
@@ -101,7 +100,7 @@ module ApplicationController::RequiredIdentity
     H.set_payload session, options.merge(:kind => kind)
 
     # -- start signing in ---------------------------------------------
-    redirect_to! signin_path(:req => kind), notice: notice
+    redirect_to! signin_path(:req => kind), :notice => notice
   end
 
   private

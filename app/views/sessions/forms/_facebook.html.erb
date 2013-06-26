@@ -4,7 +4,7 @@
 <% end %>
 
 <% accordion_body(:facebook) do %>
-  <%= form_for Identity::Facebook.new, :url => "/sessions/facebook" do |form| %>
+  <%= form_for Identity::Facebook.new, :url => "/auth/facebook/init" do |form| %>
     <p><%= I18n.t("identity/facebook.form.legend") %></p>
 
     <%= hidden_field_tag :req, params[:req] %>

@@ -213,7 +213,8 @@ CREATE TABLE identities (
     serialized text,
     followed_at timestamp without time zone,
     confirmed_at timestamp without time zone,
-    newsletter_subscription boolean
+    newsletter_subscription boolean,
+    identifier character varying(255)
 );
 
 
@@ -844,6 +845,8 @@ INSERT INTO schema_migrations (version) VALUES ('31');
 INSERT INTO schema_migrations (version) VALUES ('32');
 
 INSERT INTO schema_migrations (version) VALUES ('33');
+
+INSERT INTO schema_migrations (version) VALUES ('34');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

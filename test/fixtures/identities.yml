@@ -1,4 +1,4 @@
 admin:
   type: Identity::Twitter
-  email: radiospiel
+  identifier: radiospiel
   user: admin

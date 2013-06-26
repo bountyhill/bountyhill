@@ -77,7 +77,7 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def self.admin
-    @admin ||= Identity::Twitter.find_by_email("radiospiel").user
+    @admin ||= Identity::Twitter.find_by_identifier("radiospiel").user
   end
   
   def admin
@@ -98,14 +98,14 @@ class ActiveSupport::TestCase
 
     case name
     when /^@(.*)/
-      Identity::Twitter.find_by_email($1) ||
-        Identity::Twitter.create!(:email => $1)
+      Identity::Twitter.find_by_identifier($1) ||
+        Identity::Twitter.create!(:identifier => $1)
     when /@/
       Identity::Email.find_by_email(name) ||
         Identity::Email.create!(:name => name, :email => name, :password => name, :password_confirmation => name)
     else
-      Identity::Twitter.find_by_email(name) ||
-        Identity::Twitter.create!(:email => name)
+      Identity::Twitter.find_by_identifier(name) ||
+        Identity::Twitter.create!(:identifier => name)
     end
   end
 

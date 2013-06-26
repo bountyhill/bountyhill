@@ -79,16 +79,6 @@ module Bountyhill
     # Fetch the I18n.locale from the Browser.
     config.middleware.use Rack::Locale
     
-    # TwitterAuthMiddleware: handles twitter authentication
-    
-    # Fetch the twitter configuration from Bountybase.
-    config.middleware.use ::TwitterAuthMiddleware, {
-      path:             'tw',
-      consumer_key:     Bountybase.config.twitter_app["consumer_key"],
-      consumer_secret:  Bountybase.config.twitter_app["consumer_secret"],
-      redirect_to:      '/sessions/twitter'
-    }
-    
     # AutoTitleMiddleware: determines the page title from the first <h1> or <h2> 
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
