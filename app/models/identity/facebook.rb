@@ -1,5 +1,5 @@
 class Identity::Facebook < Identity
-  include Identity::Omniauth
+  include Identity::Provider
   
   with_metrics! "accounts.facebook"
   
@@ -20,7 +20,7 @@ class Identity::Facebook < Identity
   def facebook_auth
     {
       :oauth_token      => oauth_token,
-      :oauth_expires_at => oauth_expires_at,
+      :oauth_expires_at => Time.at(oauth_expires_at),
     }
   end
 

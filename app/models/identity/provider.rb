@@ -1,14 +1,15 @@
-module Identity::Omniauth
+module Identity::Provider
   # can be used by identity models that are handled by omniauth
   # e.g.
   # class Identity::Twitter
-  #   include ::Identitiy::Omniauth
+  #   include ::Identitiy::Provider
   # end
 
   # Info attributes derived from auth hash schema - see: https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-  unless const_defined?(:INFO_ATTRIBUTES)
-    const_set(:INFO_ATTRIBUTES, %w(nickname first_name last_name location description image phone))
-  end
+  const_set(:INFO_ATTRIBUTES, %w(name email nickname first_name last_name location description image phone)) unless const_defined?(:INFO_ATTRIBUTES)
+
+  # Credential attributes derived from auth hash schema - see: https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
+  const_set(:CREDENTIAL_ATTRIBUTES, %w(secret token expires_at)) unless const_defined?(:CREDENTIAL_ATTRIBUTES)
 
   def self.included(base)
     base.send :include, InstanceMethods
@@ -23,13 +24,10 @@ module Identity::Omniauth
           Identity.model_name
         end
                 
-        # OAuth tokens and info
-        serialized_attr :oauth_secret, :oauth_token, :oauth_expires_at, :info
-        attr_accessible :oauth_secret, :oauth_token, :oauth_expires_at, :info
+        serialized_attr :credentials, :info
+        attr_accessible :credentials, :info, :identifier, :name, :email
         
-        attr_accessible :identifier, :name, :email
-        
-        # stores user's identifier
+        # validates user's provider's identifier
         validates :identifier, :presence => true, :format => { :with => /^[^@]/ }, :uniqueness => { :case_sensitive => false }
       end
     end
@@ -75,25 +73,13 @@ module Identity::Omniauth
           current_identity.save!
         end
       
-        attrs_info  = attrs_hash["info"]        || {}
-        attrs_creds = attrs_hash["credentials"] || {}
-        identity    = current_identity || user_identity || self.new
+        identity = current_identity || user_identity || self.new
         
-        # set basics
         identity.user       ||= user
-        identity.identifier = identifier
-        identity.info       = attrs_info
+        identity.identifier   = identifier
+        identity.info         = attrs_hash["info"]        || {}
+        identity.credentials  = attrs_hash["credentials"] || {}
         
-        # TODO: these attributes could be serialized to
-        identity.name       = attrs_info["name"]  if attrs_info["name"]
-        identity.email      = attrs_info["email"] if attrs_info["email"]
-        
-        # set credentials
-        identity.oauth_token      = attrs_creds["token"]                if attrs_creds["token"]
-        identity.oauth_secret     = attrs_creds["secret"]               if attrs_creds["secret"]
-        identity.oauth_expires_at = Time.at(attrs_creds["expires_at"])  if attrs_creds["expires_at"]
-        
-        # TODO: when a serialized attribute changes e.g. oauth_expires_at, it will not be deteced by indentity.changed?
         identity.save! if identity.changed?
         identity
       end
@@ -102,9 +88,17 @@ module Identity::Omniauth
 
   module InstanceMethods
   
-    Identity::Omniauth::INFO_ATTRIBUTES.each do |info_attribute|
+    Identity::Provider::INFO_ATTRIBUTES.each do |info_attribute|
       define_method(info_attribute) do
-        (info || {})[info_attribute]
+        hash = (info || {}).with_indifferent_access
+        hash[info_attribute]
+      end
+    end
+
+    Identity::Provider::CREDENTIAL_ATTRIBUTES.each do |credential_attribute|
+      define_method("oauth_#{credential_attribute}") do
+        hash = (credentials || {}).with_indifferent_access
+        hash[credential_attribute]
       end
     end
 

@@ -297,8 +297,10 @@ class User < ActiveRecord::Base
       identity.update_attributes!({
         :consumer_key     => config["consumer_key"],
         :consumer_secret  => config["consumer_secret"],
-        :oauth_token      => config["access_token"],
-        :oauth_secret     => config["access_token_secret"]
+        :credentials      => { 
+          :token  => config["oauth_token"],
+          :secret => config["oauth_secret"]
+        }
       })
 
       identity.user

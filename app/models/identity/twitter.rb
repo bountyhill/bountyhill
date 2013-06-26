@@ -1,7 +1,7 @@
 require "twitter"
 
 class Identity::Twitter < Identity
-  include Identity::Omniauth
+  include Identity::Provider
   
   with_metrics! "accounts.twitter"
   
@@ -61,10 +61,10 @@ class Identity::Twitter < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def twitter_auth
     oauth = {
-      :consumer_secret    => consumer_secret,
-      :consumer_key       => consumer_key,
-      :oauth_token        => oauth_token,
-      :oauth_token_secret => oauth_secret
+      :consumer_secret  => consumer_secret,
+      :consumer_key     => consumer_key,
+      :oauth_token      => oauth_token,
+      :oauth_secret     => oauth_secret
     }
 
     oauth[:consumer_secret] ||= User.admin.identity(:twitter).consumer_secret

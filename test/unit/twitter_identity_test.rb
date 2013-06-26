@@ -11,14 +11,13 @@ class TwitterIdentityTest < ActiveSupport::TestCase
     assert_invalid Identity::Twitter.new(:identifier => "TeST"), :identifier
   end
   
-  def test_can_save_and_update_oauth_attributes
-    twitter = Identity::Twitter.create!(:identifier => "test", :oauth_secret => "foo", :oauth_token => "bar")
-
-    assert_equal twitter.oauth_secret, "foo"
-    assert_equal twitter.oauth_token, "bar"
+  def test_can_save_and_update_credentials
+    twitter = Identity::Twitter.create!(:identifier => "test", :credentials => { :secret => "foo", :token => "bar" })
+    assert_equal "foo", twitter.oauth_secret
+    assert_equal "bar", twitter.oauth_token
 
     twitter = Identity::Twitter.find(twitter.id)
-    assert_equal twitter.oauth_secret, "foo"
-    assert_equal twitter.oauth_token, "bar"
+    assert_equal "foo", twitter.oauth_secret
+    assert_equal "bar", twitter.oauth_token
   end
 end

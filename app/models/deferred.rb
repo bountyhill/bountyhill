@@ -89,10 +89,10 @@ module Deferred
     oauth = args.extract_options!
     
     expect! oauth => {
-      :oauth_token  => String,
-      :oauth_token_secret => String, 
-      :consumer_key => String,
-      :consumer_secret => String
+      :oauth_token      => String,
+      :oauth_secret     => String,
+      :consumer_key     => String,
+      :consumer_secret  => String
     }
 
     client = Twitter::Client.new(oauth)
