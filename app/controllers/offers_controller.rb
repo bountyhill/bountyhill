@@ -59,9 +59,9 @@ class OffersController < ApplicationController
 
     if @offer.save
       redirect_to @offer, :notice => I18n.t("message.create.success", :record => Offer.model_name.human)
+    else
+      render action: "new"
     end
-    
-    render action: "new"
   end
 
   # PUT /offers/1
