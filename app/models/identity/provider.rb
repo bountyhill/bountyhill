@@ -6,7 +6,7 @@ module Identity::Provider
   # end
 
   # Info attributes derived from auth hash schema - see: https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-  const_set(:INFO_ATTRIBUTES, %w(name email nickname first_name last_name location description image phone)) unless const_defined?(:INFO_ATTRIBUTES)
+  const_set(:INFO_ATTRIBUTES, %w(name email nickname first_name last_name location description image phone urls)) unless const_defined?(:INFO_ATTRIBUTES)
 
   # Credential attributes derived from auth hash schema - see: https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
   const_set(:CREDENTIAL_ATTRIBUTES, %w(secret token expires expires_at)) unless const_defined?(:CREDENTIAL_ATTRIBUTES)
@@ -24,8 +24,8 @@ module Identity::Provider
           Identity.model_name
         end
                 
-        serialized_attr :credentials, :info
-        attr_accessible :credentials, :info, :identifier, :name, :email
+        serialized_attr :info, :credentials, :extra
+        attr_accessible :info, :credentials, :extra, :identifier, :name, :email
         
         # validates user's provider's identifier
         validates :identifier, :presence => true, :format => { :with => /^[^@]/ }, :uniqueness => { :case_sensitive => false }
@@ -77,10 +77,12 @@ module Identity::Provider
         
         identity.user       ||= user
         identity.identifier   = identifier
-        identity.info         = attrs_hash["info"]        || {}
         identity.credentials  = attrs_hash["credentials"] || {}
+        identity.info         = attrs_hash["info"]        || {}
+        identity.extra        = attrs_hash["extra"]       || {}
         
-        identity.save! if identity.changed?
+        # TODO: changes in serialized attributes are not detected by identity.changed?
+        identity.save! #if identity.changed?
         identity
       end
     end
