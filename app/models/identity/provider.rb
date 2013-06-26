@@ -9,7 +9,7 @@ module Identity::Provider
   const_set(:INFO_ATTRIBUTES, %w(name email nickname first_name last_name location description image phone)) unless const_defined?(:INFO_ATTRIBUTES)
 
   # Credential attributes derived from auth hash schema - see: https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema
-  const_set(:CREDENTIAL_ATTRIBUTES, %w(secret token expires_at)) unless const_defined?(:CREDENTIAL_ATTRIBUTES)
+  const_set(:CREDENTIAL_ATTRIBUTES, %w(secret token expires expires_at)) unless const_defined?(:CREDENTIAL_ATTRIBUTES)
 
   def self.included(base)
     base.send :include, InstanceMethods
