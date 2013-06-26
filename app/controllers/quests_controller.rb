@@ -50,6 +50,9 @@ class QuestsController < ApplicationController
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
     
+    # remove location if it's not given (not valid)
+    @quest.location = nil unless @quest.location && @quest.location.valid?
+    
     # Start the quest after saving.
     if @quest.save
       redirect_to! quest_path(@quest, :preview => true), :notice => 'Quest was successfully created.'
