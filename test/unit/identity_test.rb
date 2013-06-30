@@ -1,12 +1,13 @@
 require_relative "../test_helper.rb"
 
 class IdentityTest < ActiveSupport::TestCase
+
   # Can create a user and reads its identity
   def test_builds_a_user
-    identity = Factory(:identity)
+    i = Factory(:identity)
     
-    assert_kind_of User, identity.user
-    assert_equal Identity.find(identity.id).user, identity.user
+    assert_kind_of User, i.user
+    assert_equal Identity.find(i.id).user, i.user
   end
   
   # Can create a user and reads its identity
@@ -29,4 +30,11 @@ class IdentityTest < ActiveSupport::TestCase
     assert_activity_logged { Factory(:identity) }
     assert_activity_logged { Factory(:twitter_identity) }
   end
+  
+  def test_of_provider
+    %w(twitter facebook).each do |provider|
+      assert_equal "Identity::#{provider.camelize}", Identity.of_provider(provider).name
+    end
+  end
+
 end

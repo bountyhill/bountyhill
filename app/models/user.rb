@@ -201,8 +201,8 @@ class User < ActiveRecord::Base
 
   # return the user's twitter handle
   def twitter_handle
-    if identity = self.identity(:twitter)
-      identity.nickname
+    if twitter = self.identity(:twitter)
+      twitter.handle
     end
   end
   alias_method :twitter, :twitter_handle
@@ -289,7 +289,7 @@ class User < ActiveRecord::Base
       config      = TWITTER_HANDLES[key]
       identifier  = config["user"]
       identity = Identity::Twitter.find_by_identifier(identifier) || 
-        Identity::Twitter.create!(:name => key, :identifier => identifier)
+        Identity::Twitter.create!(:name => key, :identifier => identifier, :info => { :nickname => :identifier })
 
       # Update attributes in the database to synchronize configuration
       # with database information. As this is done only once per
@@ -372,7 +372,7 @@ class User < ActiveRecord::Base
     parts = []
 
     if identity = self.identity(:twitter)
-      parts << "t:#{identity.nickname}"
+      parts << "t:#{identity.handle}"
     end
 
     if identity = self.identity(:facebook)

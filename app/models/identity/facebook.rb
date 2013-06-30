@@ -8,7 +8,7 @@ class Identity::Facebook < Identity
   #
   # post a status
   def update_status(msg)
-    facebook "me", "feed", :message => msg
+    post "me", "feed", :message => msg
   end
 
   private
@@ -17,15 +17,15 @@ class Identity::Facebook < Identity
   # just use the Identity::Facebook object to pass this around, we'll
   # need it in an extra object, because it will be passed into background
   # and should not be bound to any ActiveRecord-related objects.
-  def facebook_auth
+  def oauth_hash
     {
       :oauth_token      => oauth_token,
       :oauth_expires_at => Time.at(oauth_expires_at),
     }
   end
 
-  def facebook(*args)
-    Deferred.facebook *args, facebook_auth
+  def post(*args)
+    Deferred.facebook *args, oauth_hash
   end
   
 end

@@ -1,13 +1,16 @@
 class SessionsController < ApplicationController
-  skip_before_filter :show_confirmation_reminder
-
-  # This action renders signin forms. 
+  
+  skip_before_filter  :show_confirmation_reminder
+  before_filter       :set_partials, :only => [:signin_get]
+  
   #
+  # This action renders signin forms. 
   # The "req" parameter determines which forms to show:
   #
   # - "email": show email signin form, when not logged in; show email
   #   signup form, when logged in, but no email identity is present.
   # - "twitter": show twitter signin form.
+  # - "facebook": show facebook signin form.
   # - "confirmed": show email signin form, when not logged in; show email
   #   signup form, when logged in, but no email identity is present.
   #   show "confirmed" when email identity is present but not confirmed.
@@ -23,19 +26,21 @@ class SessionsController < ApplicationController
       back = request.env["HTTP_REFERER"]
       
       ApplicationController::RequiredIdentity.set_payload(session, 
-        :on_success => back, :on_cancel => back, :kind => kind)
+        :on_success => back,
+        :on_cancel  => back,
+        :kind       => kind)
     end
     
-    render_signin!
+    render! :action => "new", :layout => "dialog"
   end
 
   # This action received the email signin/signup form.
   def signin_post
     attrs = params[:identity] || {}
-    @mode = if params[:do_reset] then :reset
-      elsif params[:do_signin] then :signin
-      elsif params[:do_signup] then :signup
-      else  raise "Unknown signin mode"
+    @mode = if  params[:do_reset]   then :reset
+      elsif     params[:do_signin]  then :signin
+      elsif     params[:do_signup]  then :signup
+      else      raise ArgumentError, "Unknown signin mode"
       end
       
     email, password = attrs.values_at(:email, :password)
@@ -87,26 +92,31 @@ class SessionsController < ApplicationController
   # the new action redirects to the given authentication provider
   # to perform the oauth dance.
   def new
-    identity = params[:identity] || {}
+    @identity_params  = params[:identity] || {}
+    provider          = params[:provider]
+
+    pre_process_method = "pre_process_#{provider}_signin"
+    self.send(pre_process_method) if self.respond_to?(pre_process_method)
+    
     # The OmniAuthMiddleware intercepts "/auth/" URLs, e.g. the "/auth/facebook" 
     # URL sets up and redirects to facebook auth. When Facebook oauth
     # returns to OmniAuthMiddleware, which then redirects to the "create" action.
-    redirect_to "/auth/#{params[:provider]}"
+    redirect_to "/auth/#{provider}"
   end
   
   #
   # OmniAuthMiddleware receives the providers (successful) oauth infos and 
   # redirects to the create action after the oauth dance is over.
   def create
-    if (uid = env["omniauth.auth"].uid).present?
-      provider = env["omniauth.auth"].provider
-
-      identity = Identity.of_provider(provider).find_or_create(uid, current_user, env["omniauth.auth"])
-      signin(User.find(identity.user.id))
-
+    if (uid = request.env["omniauth.auth"].uid).present? &&
+       (provider  = request.env["omniauth.auth"].provider).present?
+       
+      @identity = Identity.of_provider(provider).find_or_create(uid, current_user, request.env["omniauth.auth"])
+      signin(User.find(@identity.user.id))
+      
       # At this point an existing user might have signed in for the first time,
       # or might just revisit the site. In the latter case we don't produce a flash message.
-      flash[:success] = "sessions.auth.success".t if Time.now - current_user.created_at < 5
+      flash[:success] = I18n.t("sessions.auth.success") if Time.now - current_user.created_at < 5
       
       # trigger post processing of actual provider
       post_process_method = "post_process_#{provider}_signin"
@@ -114,7 +124,7 @@ class SessionsController < ApplicationController
       
       identity_presented!
     else
-      flash[:error] = "sessions.auth.error".t
+      flash[:error] = I18n.t("sessions.auth.error")
       identity_cancelled!
     end
   end
@@ -122,34 +132,32 @@ class SessionsController < ApplicationController
   # OmniAuthMiddleware receives the providers (unsuccessful) oauth and 
   # redirects to the failure action after the oauth dance is over.
   def failure
-    flash[:error] = "sessions.auth.error".t
+    flash[:error] = I18n.t("sessions.auth.error")
     identity_cancelled!
   end
 
 
 private
 
-  def render_signin!
+  def set_partials
     @partials = case params[:req]
-    when "confirmed"  then identity?(:email) ? %w(confirm) : %w(email register)
-    when "twitter"    then %w(twitter)
-    when "facebook"   then %w(facebook)
-    when "email"      then %w(email register)
-    else              %w(email twitter facebook register)
-    end
-
-    render! :action => "new", :layout => "dialog"
+      when "confirmed"  then identity?(:email) ? %w(confirm) : %w(email register)
+      when "twitter"    then %w(twitter)
+      when "facebook"   then %w(facebook)
+      when "email"      then %w(email register)
+      else              %w(email twitter facebook register)
+      end
   end
 
   def pre_process_twitter_signin
     # We store the form data in the session, to be handled after twitter oauth signin
-    session[:follow_bountyhermes] = identity[:follow_bountyhermes]
+    session[:follow_bountyhermes] = @identity_params[:follow_bountyhermes]
   end
   
   def post_process_twitter_signin
     # handle the data provided by the user before twitter oauth signin
     if (twitter_identity.follow = session.delete(:follow_bountyhermes))
-      twitter.direct_message "notice.tweet.thanks_for_following".t
+      @identity.direct_message I18n.t("notice.tweet.thanks_for_following")
     end
   end
     

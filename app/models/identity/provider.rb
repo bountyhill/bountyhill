@@ -39,16 +39,18 @@ module Identity::Provider
       expect! user        => [User, nil]
       expect! attrs_hash  => Hash
 
-      W "Oauth Attributes Hash", attrs_hash
+      unless Rails.env.test?
+        W "Oauth Attributes Hash", attrs_hash
+      end
       
-      provider = self.name.split("::").last.underscore.to_sym
+      provider = self.name.split("::").last.underscore
       
-      unless (expected_provider = attrs_hash['provider'].to_sym) == provider
+      unless (expected_provider = attrs_hash['provider'].to_s) == provider
         raise "Wrong provider - actual: #{provider} vs. expected: #{expected_provider}"
       end
       
       transaction do
-        user_identity     = user.identity(provider) if user
+        user_identity     = user.identity(provider.to_sym) if user
         current_identity  = self.where(:identifier => identifier).first
 
         # What happens if a user signs in via a provider, when he is already 

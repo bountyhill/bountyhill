@@ -7,9 +7,7 @@ FactoryGirl.define do
     password "foobar"
 
     after(:build) do |identity, evaluator| 
-      identity.user = User.create! { |user| 
-        user.identities << identity 
-      }
+      identity.user = User.create! { |user| user.identities << identity }
     end
   end
 
@@ -17,9 +15,15 @@ FactoryGirl.define do
     identifier "twatter"
 
     after(:build) do |identity, evaluator| 
-      identity.user = User.create! { |user| 
-        user.identities << identity 
-      }
+      identity.user = User.create! { |user| user.identities << identity }
+    end
+  end
+
+  factory :facebook_identity, :class => "Identity::Facebook" do
+    identifier "inyourfacebook"
+
+    after(:build) do |identity, evaluator| 
+      identity.user = User.create! { |user| user.identities << identity }
     end
   end
 

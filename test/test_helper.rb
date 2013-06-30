@@ -86,6 +86,7 @@ class ActiveSupport::TestCase
   
   def setup
     ActiveRecord.current_user = admin
+    User.stubs(:admin).returns(admin)
   end
 
   def teardown

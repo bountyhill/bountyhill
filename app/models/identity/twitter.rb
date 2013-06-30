@@ -16,9 +16,10 @@ class Identity::Twitter < Identity
   attr :follow_bountyhermes, true
   attr_accessible :follow_bountyhermes
 
-  def screen_name
+  def handle
     nickname
   end
+  alias_method :screen_name, :handle
 
   # -- Twitter actions ------------------------------------------------
 
@@ -35,7 +36,7 @@ class Identity::Twitter < Identity
     followee = Bountybase.config.twitter_notifications["user"]
     expect! followee => /^[^@]/
   
-    twitter :follow, followee
+    post :follow, followee
     update_attributes :followed_at => Time.now
     true
   end
@@ -43,14 +44,14 @@ class Identity::Twitter < Identity
   #
   # retweet a status
   def update_status(msg)
-    twitter :update, msg
+    post :update, msg
   end
   
   #
   # Send a direct message *to this user*. Note that 
   def direct_message(msg)
     hermes = User.hermes.identity(:twitter)
-    hermes.send :twitter, :direct_message_create, email, msg
+    hermes.send :post, :direct_message_create, handle, msg
   end
   
   private
@@ -59,7 +60,7 @@ class Identity::Twitter < Identity
   # just use the Identity::Twitter object to pass this around, we'll
   # need it in an extra object, because it will be passed into background
   # and should not be bound to any ActiveRecord-related objects.
-  def twitter_auth
+  def oauth_hash
     oauth = {
       :consumer_secret  => consumer_secret,
       :consumer_key     => consumer_key,
@@ -73,7 +74,7 @@ class Identity::Twitter < Identity
     oauth
   end
   
-  def twitter(*args)
-    Deferred.twitter *args, twitter_auth
+  def post(*args)
+    Deferred.twitter *args, oauth_hash
   end
 end
