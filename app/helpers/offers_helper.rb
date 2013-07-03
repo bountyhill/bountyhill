@@ -108,7 +108,7 @@ module OffersHelper
       offer_compliance_statistic_box(offer),
       offer_created_statistic_box(offer),
       offer_viewed_statistic_box(offer),
-      # offer_forwards_statistic_box(offer),
+      offer_comments_statistic_box(offer)
     ].compact.map{ |box| box + spacer }.join.html_safe
   end
 
@@ -138,12 +138,10 @@ module OffersHelper
       awesome_icon(:time, :size => :large), :css_class => "offer"
   end
   
-  def offer_forwards_statistic_box(offer)
-    return # TODO
-    
-    statistic_box offer.forwards.size,
-      I18n.t("offer.statistic.forwards"),
-      awesome_icon(:retweet, :size => :large), :css_class => "offer"
+  def offer_comments_statistic_box(offer)
+    statistic_box offer.comments.count,
+      I18n.t("offer.statistic.comments"),
+      awesome_icon(:comment, :size => :large), :css_class => "offer"
   end
   
   

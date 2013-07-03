@@ -14,8 +14,10 @@
   <div class="main span8">
     <%= quest_box(@quest, :class => "with-opener") %>
     <%= spacer %>
-    <%= offers_box(@quest, :class => "with-opener") %>
-    <%= spacer %>
+    <% if @quest.offers.any? %>
+      <%= offers_box(@quest, :class => "with-opener") %>
+      <%= spacer %>
+    <% end %>
     <%= comments_box(@quest) %>
   </div>
   <div class="sidebar span2">

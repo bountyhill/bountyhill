@@ -239,7 +239,7 @@ en:
       rejected:   Rejected
     statistic:
       compliance: "compliance reached"
-      forwards:   "forwards preceeded"
+      comments:   "comments posted"
       viewed:
         one:      "day ago viewed first time"
         other:    "days ago viewed first time"
@@ -295,7 +295,10 @@ en:
         other:  "%{count} images"
     statistic:
       bounty:     "bounty promised"
-      offers:     "offers made"
+      offers:
+        one:      "offer made"
+        other:    "offers made"
+      comments:   "comments posted"
       forwards:   "forwards done"
       expiration:
         one:      "day left"

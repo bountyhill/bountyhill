@@ -103,8 +103,6 @@ module BoxHelper
     expect! text    => String
     expect! icon    => [String, nil]
     expect! options => Hash
-
-    return if count.to_i.zero?
     
     div :class => "statistic box #{options[:css_class]}" do
       [

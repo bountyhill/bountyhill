@@ -239,7 +239,7 @@ de:
       rejected:   Abgelehnt
     statistic:
       compliance: "Erfüllungsgrad erreicht"
-      forwards:   "Weiterleitungen vorangegangen"
+      comments:   "mal kommentiert"
       viewed:
         one:      "Tag zuvor angesehen"
         other:    "Tage zuvor angesehen"
@@ -295,7 +295,10 @@ de:
         other:  "%{count} Bilder"
     statistic:
       bounty:     "Belohnung ausgesetzt"
-      offers:     "Angebote abgegeben"
+      offers:
+        one:      "Angebot abgegeben"
+        other:    "Angebote abgegeben"
+      comments:   "mal kommentiert"
       forwards:   "mal weitergeleitet"
       expiration:
         one:      "Tag noch aktiv"

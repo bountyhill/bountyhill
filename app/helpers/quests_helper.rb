@@ -155,7 +155,8 @@ module QuestsHelper
     [
       quest_bounty_statistic_box(quest),
       quest_days_statistic_box(quest),
-      # quest_offers_statistic_box(quest),
+      quest_offers_statistic_box(quest),
+      quest_comments_statistic_box(quest),
       quest_forwards_statistic_box(quest)
     ].compact.map{ |box| box + spacer }.join.html_safe
   end
@@ -176,11 +177,17 @@ module QuestsHelper
   end
   
   def quest_offers_statistic_box(quest)
-    statistic_box quest.offers.size,
-      I18n.t("quest.statistic.offers"),
+    statistic_box quest.offers.count,
+      I18n.t("quest.statistic.offers", :count => quest.offers.count),
       awesome_icon(:share, :size => :large), :css_class => "quest"
   end
 
+  def quest_comments_statistic_box(quest)
+    statistic_box quest.comments.count,
+      I18n.t("quest.statistic.comments"),
+      awesome_icon(:comment, :size => :large), :css_class => "quest"
+  end
+  
   def quest_forwards_statistic_box(quest)
     return if quest.forwards.size.zero?
     
