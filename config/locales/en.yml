@@ -18,11 +18,11 @@ en:
       confirm_email:    "Please verify your email '%{email}'"
       reset_password:   "Reset your password"
       offer_received:   "You received an offer on your quest '%{title}'"
+      offer_withdrawn:  "An offer has been withdrawn '%{title}'"
       offer_accepted:   "Your offer has been accepted '%{title}'"
       offer_declined:   "Your offer has been declined '%{title}'"
-      offer_withdrawn:  "An offer has been withdrawn '%{title}'"
   link:
-    loading: "Lade..."
+    loading: "Loading content ..."
   button:
     new:      New
     save:     Save
@@ -52,7 +52,7 @@ en:
     filter_by: "for %{filter}"
     location:
       title:  Surroundings
-      legend: Choose a radius to restrict the quests around your location.
+      legend: Choose a radius around your location.
     categories:
       title:  Categories
     states:
@@ -60,9 +60,9 @@ en:
   nav:
     start_quest:  Start a quest
     quests:       See all quests
-    your_quests:  My Quests
-    your_offers:  My Offers
-    your_profile: My Profile
+    my_quests:    My Quests
+    my_offers:    My Offers
+    my_profile:   My Profile
     signin:       Sign in/up
     signout:      Sign out
     about:        About
@@ -84,7 +84,7 @@ en:
       text3:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
       headline4:  Everyone participates
       text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline5:  Make someone happy
+      headline5:  Get happy
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
   identity:
     required: "We need your %{identity} identity to continue."
@@ -107,20 +107,20 @@ en:
         email:                    "Enter your email address."
         password:                 "Enter your password."
         password_confirmation:    "Confirm your password"
-        password_reset:           "You will receive an email to reset."
+        password_reset:           "You will receive an email to reset your password."
         forgot_password:          I did forget my password and want to reset it.
         newsletter_subscription:  I want to subscribe to bountyhill's newsletter.
   identity/twitter:
     form:
       title:    Sign in with Twitter
-      legend:   If you have a twitter account bountyhill allows you to sign in via Twitter's OAuth interface.
+      legend:   If you have a Twitter account bountyhill allows you to sign in via Twitter.
       legend2:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
   identity/facebook:
     form:
       title:    Sign in with Facebook
-      legend:   If you have a facebook account bountyhill allows you to sign in via Facebook's OAuth interface.
+      legend:   If you have a Facebook account bountyhill allows you to sign in via Facebook.
   identity/new:
     form:
       title:    Sign up
@@ -169,17 +169,17 @@ en:
         title:  Change email
         legend: Please enter your new email address and confirm the change by providing your current password.
       twitter:
-        title:  Change twitter account
-        legend: If you change your twitter account you will have to renew the bountyhill authorize against twitter.
+        title:  Change Twitter account
+        legend: If you change your twitter account you will have to signin again via Twitter on bountyhill.
       delete:
         title:  Delete Account
-        legend: We are very sorry to see you leave. Please let us know why you decided to leave bountyhill.
+        legend: We are very sorry to see you leave. Please let us know why you decided to delete your bountyhill account.
       field_hint:
         first_name:                 Your first name
         last_name:                  Your family name
         description:                Describe yourself
         image:                      Your profile picture
-        address1:                   Your street
+        address1:                   Your street and street number
         address2:                   Further address information
         city:                       Your town
         zipcode:                    Zipcode of your town
@@ -257,10 +257,10 @@ en:
         comment:      "If you should have a remark about this criteria, please enter it here."
       create:
         title:  Submit an Offer
-        legend: "Provide a detailed description about what you have to offer. Feel free to add any files to your offer."
+        legend: "Provide a detailed description about what you have to offer. Feel free to add any pictures to your offer."
         hint:
-          one:    "For the given criteria to be matched, please specify the compliance of your offer with it."
-          other:  "For each of the %{count} given criteria to be matched, please specify the compliance of your offer with it."
+          one:    "For the given criteria to be matched, please specify the compliance of your offer."
+          other:  "For each of the %{count} given criteria to be matched, please specify the compliance of your offer."
   quest:
     status:
       active:       "Active"
@@ -340,7 +340,7 @@ en:
           other:  "%{count} days"
       create: 
         title:  Define a new quest
-        legend: "Please set up a bounty, provide a detailed description about what you are looking and specify your quest's run time. In addition feel free to define up to %{count} criteria to be matched for your quest."
+        legend: "Please provide a detailed description about what you are looking, set up a bounty and specify your quest's run time. In addition feel free to define up to %{count} criteria to be matched for your quest."
       edit: 
         title:  Edit your quest
         legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
@@ -363,7 +363,7 @@ en:
       identities: "No network was chosen"
     form:
       title:  Share this quest
-      legend: "Thanx a lot for sharing this quest with your friends and followers. Please choose the social networks you want to post in."
+      legend: "Please choose the social networks you want to share this quest with your friends and followers."
       twitter:  "Twitter %{identity_required}"
       facebook: "Facebook %{identity_required}"
       identity_required:  "signed required"

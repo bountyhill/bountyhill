@@ -5,18 +5,18 @@ module NavigationHelper
   def navigation_item_active?(nav_item)
     # some navigation items takes precendence over others when determining
     # the active navigation item. For example, "/quests?owner_id=123" is
-    # *your_quests* and not *quests*.
+    # *my_quests* and not *quests*.
     @static_active_navigation_item ||= begin
       user_id = current_user.id if current_user
       
       if request.path =~ /^\/profile/
         :profile
       elsif controller_name == "offers" && personal_page?
-        :your_offers
+        :my_offers
       elsif controller_name == "offers"
         :offers
       elsif controller_name == "quests" && personal_page?
-        :your_quests
+        :my_quests
       elsif controller_name == "quests"
         :quests
       else
@@ -45,12 +45,12 @@ module NavigationHelper
       link_to awesome_icon(:edit) + span(I18n.t("nav.start_quest")), new_quest_path
     when :quests
       link_to awesome_icon(:list) + span(I18n.t("nav.quests")), quests_path
-    when :your_quests
-      link_to awesome_icon(:list) + I18n.t("nav.your_quests"), quests_path(:owner_id => current_user.id)
-    when :your_offers
-      link_to awesome_icon(:th_list) + I18n.t("nav.your_offers"), offers_path(:owner_id => current_user.id)
+    when :my_quests
+      link_to awesome_icon(:list) + I18n.t("nav.my_quests"), quests_path(:owner_id => current_user.id)
+    when :my_offers
+      link_to awesome_icon(:th_list) + I18n.t("nav.my_offers"), offers_path(:owner_id => current_user.id)
     when :profile
-      link_to awesome_icon(:user) + I18n.t("nav.your_profile"), "/profile"
+      link_to awesome_icon(:user) + I18n.t("nav.my_profile"), "/profile"
     when :signout
       link_to awesome_icon(:signout) +  span(I18n.t("nav.signout")), signout_path, :method => :delete
     when :divider
@@ -71,7 +71,7 @@ module NavigationHelper
     
     case position
     when :user
-      [ :your_quests, :your_offers, :profile, :divider, :signout ]
+      [ :my_quests, :my_offers, :profile, :divider, :signout ]
     when :header_center
       [ :start_quest, :quests ]
     when :footer_right

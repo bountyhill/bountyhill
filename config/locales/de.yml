@@ -3,26 +3,26 @@
 
 de:
   message:
-    error:            Bitte prüfen Sie Ihre Eingaben.
-    base_error:       "%{base_error}: Bitte prüfen Sie Ihre Eingaben."
+    error:            Bitte prüfe Deine Eingaben.
+    base_error:       "%{base_error}: Bitte prüfe Deine Eingaben."
     create:
       success:        "%{record} wurde erfolgreich angelegt."
     update:
       success:        "%{record} wurde erfolgreich aktualisiert."
-    check_delete_me:  Bitte bestätigen Sie das Löschen Ihres Accounts.
+    check_delete_me:  Bitte bestätige das Löschen Deines Accounts.
     password_invalid: Das eingegeben Passwort ist nicht gültig.
   notice:
     tweet:
-      thanks_for_following: "Vielen Dank, dass Sie @bountyhermes folgen. Wir halten Sie auf dem Laufenden..."
-  mail:
-    confirm_email:    "Bitte bestätigen Sie Ihre Email '%{email}'"
-    reset_password:   "Sie können Ihr Passwort jetzt zurücksetzen"
-    offer_received:   "Sie haben ein Angebot auf Ihre Suche '%{title}' erhalten"
-    offer_accepted:   "Ihr Angebot '%{title}' wurde angenommen"
-    offer_declined:   "Ihr Angebot '%{title}' wurde abgelehnt"
-    offer_withdrawn:  "Ein Angebot auf Ihre Suche '%{title}' wurde zurückgezogen"
+      thanks_for_following: "Vielen Dank, dass Du @bountyhermes folgst. Wir halten Dich auf dem Laufenden..."
+    mail:
+      confirm_email:    "Bitte bestätigen Deine Email '%{email}'"
+      reset_password:   "Du kannst Dein Passwort jetzt zurücksetzen"
+      offer_received:   "Du hast ein Angebot auf Deine Suche '%{title}' erhalten"
+      offer_withdrawn:  "Ein Angebot auf Deine Suche '%{title}' wurde zurückgezogen"
+      offer_accepted:   "Dein Angebot '%{title}' wurde angenommen"
+      offer_declined:   "Dein Angebot '%{title}' wurde abgelehnt"
   link:
-    loading: "Loading..."
+    loading: "Inhalte werden geladen ..."
   button:
     new:      Neu
     save:     Speichern
@@ -52,7 +52,7 @@ de:
     filter_by: "nach %{filter}"
     location:
       title:  Umgebung
-      legend: "Wählen Sie einen Radius, um die Suchen um Ihrem Ort einzugrenzen."
+      legend: "Wähle einen Radius um Deinen Standort."
     categories:
       title:  Kategorien
     states:
@@ -60,9 +60,9 @@ de:
   nav:
     start_quest:  Neue Suche starten
     quests:       Alle Suchen anzeigen
-    your_quests:  Meine Suchen
-    your_offers:  Meine Angebote
-    your_profile: Mein Profil
+    my_quests:    Meine Suchen
+    my_offers:    Meine Angebote
+    my_profile:   Mein Profil
     signin:       Anmelden/Registrieren
     signout:      Abmelden
     about:        Information
@@ -84,7 +84,7 @@ de:
       text3:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
       headline4:  Sammle Bounty-Points
       text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
-      headline5:  Freut Euch des Lebens
+      headline5:  Werde glücklich
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
   identity:
     required: "Wir benötigen Deine %{identity} Identität um fortfahren zu können."
@@ -92,43 +92,43 @@ de:
       title: Anmelden/Registrieren
       terms: "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
       error:
-        signup: Bitte prüfen Sie Ihre Eingaben.
+        signup: Bitte prüfe Deine Eingaben.
         signin: Die angegebene Email-Adresse und/oder das angegebene Password sind nicht gültig.
         reset:  Die angegebene Email-Adresse ist uns nicht bekannt.
       success:
         signup: Willkommen bei bountyhill!
         signin: Willkommen bei bountyhill!
-        reset:  "Wir haben Ihnen eine Email zugesandt, die Ihnen erläutert, wie Sie Ihr Passwort zurücksetzen können."
+        reset:  "Wir haben Dir eine Email zugesandt, die erläutert, wie Du Dein Passwort zurücksetzen kannst."
   identity/email:
     form:
       title:  Anmelden via Email
-      legend: "Melden Sie sich mit Ihrer Email-Adresse an, wenn Sie bereits ein bounthill Konto besitzen."
+      legend: "Melde Dich mit Deiner Email-Adresse an, wenn Du bereits ein bounthill Konto besitzt."
       field_hint:
-        email:                    "Geben Sie Ihre Email Adresse ein."
-        password:                 "Geben Sie Ihr Passwort ein."
-        password_confirmation:    "Bestätigen Sie Ihr Passwort."
-        password_reset:           "Sie erhalten eine Email zum Zurücksetzen."
+        email:                    "Gebe Deine Email Adresse ein."
+        password:                 "Gebe Dein Passwort ein."
+        password_confirmation:    "Bestätige Dein Passwort."
+        password_reset:           "Du erhälst eine Email zum Zurücksetzen Deines Passworts."
         forgot_password:          Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
   identity/twitter:
     form:
       title:    Anmelden via Twitter
-      legend:   "Wenn Sie einen Twitter-Account besitzen, können Sie sich bei bountyhill über Twitters OAuth Schnittstelle anmelden."
-      legend2:  "Bitte folgen Sie @bountyhermes damit wir Ihnen aktuelle Informationen via Twitters Direktnachrichten zusenden können."
+      legend:   "Wenn Du einen Twitter-Account besitzt, kannst Du Dich über Twitter anmelden bei bountyhill."
+      legend2:  "Folge bitte @bountyhermes damit wir Dir aktuelle Informationen via Twitters Direktnachrichten zusenden können."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
   identity/facebook:
     form:
       title:    Anmelden via Facebook
-      legend:   "Wenn Sie einen Facebook-Account besitzen, können Sie sich bei bountyhill über Facebooks OAuth Schnittstelle anmelden."
+      legend:   "Wenn Du einen Facebook-Account besitzen, kannst Du Dich über Facebook bei bountyhill anmelden."
   identity/new:
     form:
       title:    Registrieren
-      legend:   "Sie können Suchen starten und Angebote abgeben, wenn sie sich mit Ihrer Email-Adresse registrieren."
-      legend2:  Bitte abonnieren Sie unseren Newsletter damit wir sie über neue Funktionen von bountyhill informieren können.
+      legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse registrierst."
+      legend2:  Abonniere bitte unseren Newsletter damit wir Dich über neue Funktionen von bountyhill informieren können.
   comment:
     messages:
-      must_be_logged_in_to_comment: "Sie müssen sich Anmelden, um einen Kommentar abgeben zu können."
+      must_be_logged_in_to_comment: "Du musst Dich Anmelden, um einen Kommentar abzugeben."
     list:
       title:
         zero:   "Kommentare"
@@ -150,46 +150,46 @@ de:
         one:    "Anfrage geteilt"
         other:  "Anfragen geteilt"
     box:
-      title:      "Ihr Profil"
+      title:      "Dein Profil"
       info_icon:  "Diese Angaben können von anderen Nutzer nicht eingesehen werden."
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
         title:  Nutzerprofil bearbeiten
-        legend: Die Angaben zu Ihrem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
+        legend: Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
       address:
         title:  Adressangaben bearbeiten
-        legend: Ihre Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
+        legend: Deine Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
       password:
         title:    Passwort ändern
         legend:
-          change: Bitte geben Sie Ihr neues Passwort ein und bestätigen Sie die Änderung mit Ihrem aktuellen Passwort.
-          reset:  Sie können ihr Passwort jetzt zurücksetzen indem Sie ein neues Passwort eingeben.
+          change: Gebe bitte Dein neues Passwort ein und bestätige die Änderung mit Deinem aktuellen Passwort.
+          reset:  "Indem Du ein neues Passwort eingibst, setzt Du Dein bisheriges Passwort zurück."
       email:
         title:  Email ändern
-        legend: Geben Sie Ihre neue Email-Adresse ein und bestätigen Sie die Änderung mit ihrem Passwort.
+        legend: Gebe Deine neue Email-Adresse ein und bestätige die Änderung mit Deinem Passwort.
       twitter:
         title:  Twitter Account wechseln
-        legend: "Wenn Sie Ihren Twitter Account wechleln, müssen Sie bountyhill gegenüber Twitter erneut authorisieren."
+        legend: "Wenn Du Deinen Twitter Account wechselst, musst Du Dich erneut über Twitter bei bountyhill anmelden."
       delete:
         title:  Zugang Löschen
-        legend: "Wir bedauern es sehr, dass Sie uns verlassen. Bitte teilen Sie uns mit warum Sie bountyhill verlassen möchten."
+        legend: "Wir bedauern es sehr, dass Du uns verlässt. Bitte lasse uns wissen, warum Du Deinen bountyhill Zugang löschen möchtest."
       field_hint:
-        first_name:                 Ihr Vorname
-        last_name:                  Ihr Nachname
-        description:                Beschreiben Sie Ihre Person
-        image:                      Ihr Profilbild
-        address1:                   Ihre Strasse + Hausnummer
-        address2:                   Weiter Adressinformationen
-        city:                       Ihre Stadt
-        zipcode:                    Die Postleitzahl ihrer Stadt
-        country:                    Ihr Land
-        phone:                      Ihre Telefonnummer
+        first_name:                 Dein Vorname
+        last_name:                  Dein Nachname
+        description:                Beschreibe Deine Person
+        image:                      Dein Profilbild
+        address1:                   Deine Strasse und Hausnummer
+        address2:                   Weitere Adressinformationen
+        city:                       Deine Stadt
+        zipcode:                    Die Postleitzahl Deiner Stadt
+        country:                    Dein Land
+        phone:                      Deine Telefonnummer
         email:                      Email
         email_new:                  Neue Email
-        password:                   Geben Sie Ihr aktuelles Passwort ein.
-        password_new:               Geben Sie Ihr neues Passwort ein.
-        password_new_confirmation:  Bestätigen Sie Ihr neues Passwort.
+        password:                   Gebe Dein aktuelles Passwort ein.
+        password_new:               Gebe Dein neues Passwort ein.
+        password_new_confirmation:  Bestätige Dein neues Passwort.
   activity:
     list:
       title:    "Letzte Aktivitäten"
@@ -213,13 +213,13 @@ de:
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
     accept: 
       title:  Angebot annehmen
-      legend: "Bitte teilen Sie dem Anbieter mit, warum Sie Ihr Angebot annehmen möchten."
+      legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot annehmen möchtest."
     reject: 
       title:  Angebot ablehnen
-      legend: "Bitte teilen Sie dem Anbieter mit, warum Sie Ihr Angebot ablehnen möchten."
+      legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot ablehnen möchtest."
     withdraw: 
       title:  Angebot zurückziehen
-      legend: "Bitte teilen Sie dem Suchenden mit, warum Sie Ihr Angebot zurückziehen möchten."
+      legend: "Teile bitte dem Suchenden mit, warum Du Dein Angebot zurückziehen möchtest."
     list:
       title:
         zero:   "Noch keine Angebote"
@@ -251,25 +251,25 @@ de:
         prefix:   "gar nicht"
         postfix:  "völlig"
       field_hint:
-        title:        "Geben Sie hier eine kurze Beschreibung Ihres Angebots ein."
-        description:  "Hier können Sie Ihr Angebot detailiert beschreiben."
+        title:        "Gebe hier eine kurze Beschreibung Deines Angebots ein."
+        description:  "Hier kannst Du Dein Angebot detailiert beschreiben."
         images:       Bilder hinzufügen
-        comment:      "Falls Sie eine Anmerkung zu diesem Kriterium haben, geben Sie diese hier ein."
+        comment:      "Falls Du eine Anmerkung zu diesem Kriterium hast, gebe diese bitte hier ein."
       create:
         title:  Angebot abgeben
-        legend: "Bitte beschreiben Sie detailiert was Sie dem Suchenden anbieten können. Sie können Ihrer Beschreibung gern Dateien hinzufügen."
+        legend: "Beschreibe bitte detailiert was Du dem Suchenden anbieten möchtest. Du kannst Deiner Beschreibung gern Fotos hinzufügen."
         hint:
-          one:    "Des weiteren geben Sie bitte für das aufgestellte Kriterium an, in wie weit Ihr Angebot dieses erfüllt."
-          other:  "Des weiteren geben Sie bitte für jedes der %{count} aufgestellten Suchkriterien an, in wie weit Ihr Angebot dieses erfüllt."
+          one:    "Gebe bitte für das aufgestellte Kriterium an, in wie weit Dein Angebot dieses erfüllt."
+          other:  "Gebe bitte für jedes der %{count} aufgestellten Kriterien an, in wie weit Dein Angebot diese erfüllt."
   quest:
     status:
       active:       "Aktiv"
       not_started:  "Nicht gestartet"
       expired:      "Abgelaufen"
     action:
-      started:  "Ihre Suchanfrage '%{quest}' wurde erfolgreich gestartet."
-      canceled: "Ihre Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
-      shared:   "Ihre Suchanfrage '%{quest}' wurde erfolgreich geteilt."
+      started:  "Deine Suchanfrage '%{quest}' wurde erfolgreich gestartet."
+      canceled: "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
+      shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     box:
       title:    "%{amount} Belohnung"
       criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
@@ -322,15 +322,15 @@ de:
       boats:          Boote
     form:
       field_hint:
-        title:                "Geben Sie hier eine kurze Beschreibung Ihrer Suchanfrage ein."
-        description:          "Hier können Sie Ihre Anfrage detailiert beschreiben."
-        location:             "Geben Sie den Namen des Ortes ein."
+        title:                "Gebe hier eine kurze Beschreibung Deiner Suchanfrage ein."
+        description:          "Hier kannst Du Deine Suchanfrage detailiert beschreiben."
+        location:             "Gebe den Namen des Ortes Deiner Suchanfrage ein."
         restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
-        bounty:               "Loben Sie eine Belohung für Ihre Suche aus."
+        bounty:               "Lobe eine Belohung für Deine Suche aus."
         images:               Bilder hinzufügen
-        criteria:             "Definieren Sie Kriterien um Angebote auf Ihre Anfrage besser bewerten zu können."
-        message:              "Falls notwendig, können Sie Ihre Nachricht hier ändern."
-        cancellation_reason:  "Sie können hier erklären, warum Sie diese Suche beenden möchten."
+        criteria:             "Definiere Kriterien um Angebote auf Deine Suchanfrage besser bewerten zu können."
+        message:              "Falls notwendig, kannst Du Deine Nachricht hier ändern."
+        cancellation_reason:  "Teile uns bitte mit, warum Du Deine Suchanfrage Suche beenden möchtest."
         cancellation:
           bountyhill_success: "Meine Suche auf Bountyhill war erfolgreich."
           other_success:      "Meine Suche hatte ausserhalb von Bountyhill Erfolg."
@@ -340,30 +340,30 @@ de:
           other:  "%{count} Tage"
       create:
         title:  Suchanfrage anlegen
-        legend: "Bitte loben Sie eine Belohnung aus, beschreiben Sie detailiert was Sie suchen und geben Sie die Laufzeit ihrer Suchanfrage an. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können. "
+        legend: "Beschreibe detailiert was Du suchst, lobe eine Belohnung aus und lege die Laufzeit Deiner Suchanfrage fest. Du kannst in Deiner  Suchanfrage bis zu %{count} Kriterien definieren, um eingehende Angebote schneller bewerten zu können."
       edit: 
         title:  Suchanfrage bearbeiten
-        legend: "Bitte beschreiben Sie detailiert was Sie suchen. Sie können ihrer Beschreibung bis zu %{count} Kriterien hinzufügen, um Angebote zu Ihrer Suche unkompliziert bewerten zu können."
+        legend: "Beschreibe detailiert was Du suchst. Du kannst in Deiner Suchanfrage bis zu %{count} Kriterien definieren, um eingehende Angebote schneller bewerten zu können."
       start:
         title:  Suchanfrage starten
-        legend: "Ihre Suchanfrage wird mit der unten dargestellten Nachricht in den ausgewählten sozialen Netzwerken publiziert. Die Nachricht zu Ihrer Suchanfrage können Sie gern anpassen."
+        legend: "Deine Suchanfrage wird mit der unten dargestellten Nachricht in den von Dir ausgewählten sozialen Netzwerken publiziert. Die Nachricht zu Deiner Suchanfrage kannst Du vorab gern anpassen."
       stop:
         title:  Suchanfrage beenden
-        legend: "Teilen Sie uns bitte den Grund dafür mit, warum Sie Ihre Suchanfrage vor deren Ablaufdatum beenden möchten."
+        legend: "Teile uns bitte mit, warum Du Deine Suchanfrage innerhalb ihrer ursprünglichen Laufzeit beenden möchtest."
   location:
     radius:
       unlimited: unbegrenzt
       limited:  "%{radius} km"
     form:
       field_hint:
-        address: "Geben Sie den Ort an, auf den Sie Ihre Suche beschränken möchten."
+        address: "Gebe den Ort an, auf den sich Deiner Suche beschränken soll."
         radius:  "Der Umkreis des Ortes."
   share:
     errors:
       identities: "Es wurde kein Netzwerk ausgewählt"
     form:
       title:  Suchanfrage teilen
-      legend: "Vielen Dank, dass Sie diese Suchanfrage mit Ihren Freunden und Followern teilen wollen. Bitte wählen Sie die sozialen Netzwerke aus, welche Sie dafür verwenden möchten."
+      legend: "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
       twitter:  "Twitter %{identity_required}"
       facebook: "Facebook %{identity_required}"
       identity_required: "erfordert Anmeldung"
@@ -373,7 +373,7 @@ de:
       error:      "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal..."
     email:
       confirmation:
-        reminder: "Sie haben sich bei bountyhill registriert, aber Ihre Email-Adresse wurde noch nicht bestätigt."
+        reminder: "Du hast dich erfolgreich bei bountyhill registriert, aber Deine Email-Adresse ist noch nicht bestätigt."
         resend:    Bestätigungsemail erneut senden
-        sent:      Sie erhalten in Kürze eine Bestätigungsemail von uns.
-      confirmed: "Vielen Dank für die Bestätigung Ihrer Email-Adresse."
+        sent:      Du erhälst in Kürze eine Bestätigungsemail von uns.
+      confirmed: "Vielen Dank für die Bestätigung Deiner Email-Adresse."
