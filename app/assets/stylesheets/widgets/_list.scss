@@ -1,5 +1,11 @@
 .loader {
   text-align: center;
+  clear: both;
+  padding: 16px;
+  a { 
+    font-size: 120%;
+    color: $text; 
+  }
 }
 
 
