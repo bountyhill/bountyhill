@@ -10,7 +10,7 @@
         margin-bottom: 32px;
         min-height: 32px;
         ul {
-          float: left;
+          float: right;
           padding: 0 10px;
           background-color: $activities_box_content_color;
           width: 80%;
@@ -29,7 +29,7 @@
         }
         .points { 
           color: $text;
-          float: right;
+          float: left;
           background-color: $activities_box_statistic_color;
           width: 15%;
           line-height: 6ex;

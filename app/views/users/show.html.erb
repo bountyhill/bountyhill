@@ -1,21 +1,21 @@
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
-  <div class="sidebar span2">
-    <%= avatar @user, :size => 128 %>
-  </div>
   <div class="main span8">
     <%= profile_box(@user) %>
+  </div>
+  <div class="sidebar span2">
+    <%= avatar @user, :size => 128 %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>
 <%= spacer %>
 <div class="row-fluid">
   <div class="span1">&nbsp;</div>
-  <div class="sidebar span2">
-    <%= user_statistic_boxes(@user) %>
-  </div>
   <div class="main span8">
     <%= activities_box(@user, :per_page => @per_page) %>
+  </div>
+  <div class="sidebar span2">
+    <%= user_statistic_boxes(@user) %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>

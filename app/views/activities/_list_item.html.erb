@@ -1,3 +1,6 @@
+<div class="points">
+  <%= I18n.t("activity.list.points", :count => activity.points) %>
+</div>
 <ul>
   <li class='action'>
     <%= I18n.t("activity.action.#{activity.action}", :item => I18n.t("activerecord.models.#{activity.object_type.underscore}", :count => 1)) %>
@@ -11,6 +14,3 @@
     ... <%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>
   </li>
 </ul>
-<div class="points">
-  <%= I18n.t("activity.list.points", :count => activity.points) %>
-</div>
