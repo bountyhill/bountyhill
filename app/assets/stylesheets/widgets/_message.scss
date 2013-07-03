@@ -21,9 +21,11 @@ $message_stats_width: 2.5 * $message_height;
   }
   .message-box {
     color: $text_inverse;
-    min-width: $message_width;
     margin-left:  $message_height;
     margin-right: $message_stats_width + (2 * $message_padding);
+    .message-head, .message-body {
+      min-width: $message_width;
+    }
     .message-head {
       position: relative;
       height: $message_head_height - (2 * $message_padding);
