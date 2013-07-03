@@ -65,6 +65,7 @@ $message_stats_width: 2.5 * $message_height;
     padding: $message_padding;
     overflow: hidden;
     color: $text;
+    font-weight: bold;
     a {
       color: $text;
       &:hover { 
