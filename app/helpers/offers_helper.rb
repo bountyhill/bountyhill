@@ -20,10 +20,18 @@ module OffersHelper
 
   def offer_buttons(offer)
     button_group [
+      make_offer_button(offer),
       accept_offer_button(offer),
       reject_offer_button(offer),
       withdraw_offer_button(offer)
     ]
+  end
+
+  def make_offer_button(offer, options={})
+    return unless current_user
+    return unless offer.new? && current_user.owns?(offer)
+    
+    modal_awesome_button(:ok_circle, activate_offer_path(offer), options) { I18n.t("button.offer") }
   end
 
   def accept_offer_button(offer)
@@ -73,9 +81,10 @@ module OffersHelper
   def offers_box(offerable, options={})
     expect! offerable => [Quest]
     
+    offers = offerable.offers.for_user(current_user)
     title = h3 :class => "title" do
       [
-        div(I18n.t("offer.list.title", :count => offerable.offers.count), :class => "pull-left"),
+        div(I18n.t("offer.list.title", :count => offers.count), :class => "pull-left"),
         div(:class => "pull-right") do
           button_group [
             new_offer_button(offerable)
@@ -86,7 +95,7 @@ module OffersHelper
     
     content = div :class => "content" do
       ul(:class => "offers list") do
-        offerable.offers.map do |offer|
+        offers.map do |offer|
           li :class => "offer", :id => dom_id(offer) do
             partial "offers/list_item", :offer => offer
           end
@@ -122,20 +131,20 @@ module OffersHelper
     return unless offer.viewed_at
 
     days = distance_of_time_in_days_to_now(offer.viewed_at)
-    return if days.zero?
-
-    statistic_box days,
+    statistic_box((days.zero? ? "#" : days),
       I18n.t("offer.statistic.viewed", :count => days),
       awesome_icon(:eye_open, :size => :large), :css_class => "offer"
+    )
   end
   
   def offer_created_statistic_box(offer)
-    days = distance_of_time_in_days_to_now(offer.created_at)
-    return if days.zero?
+    return unless offer.active?
     
-    statistic_box days,
+    days = distance_of_time_in_days_to_now(offer.created_at)
+    statistic_box((days.zero? ? "#" : days),
       I18n.t("offer.statistic.created", :count => days),
       awesome_icon(:time, :size => :large), :css_class => "offer"
+    )
   end
   
   def offer_comments_statistic_box(offer)
@@ -143,6 +152,5 @@ module OffersHelper
       I18n.t("offer.statistic.comments"),
       awesome_icon(:comment, :size => :large), :css_class => "offer"
   end
-  
   
 end

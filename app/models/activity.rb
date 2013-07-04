@@ -8,27 +8,28 @@ class Activity < ActiveRecord::Base
   
   GRADING = {
     :quest => {
-      :start   => 10,
-      :create  => 5,
-      :share   => 3,
-      :comment => 1,
+      :create  =>  1,
+      :start   =>  5,
+      :share   =>  3,
+      :comment =>  1,
       :stop    => -5
     },
     :offer => {
-      :create   => 10,
-      :accept   => 10,
-      :reject   => 5,
-      :comment  => 2,
+      :create   =>  1,
+      :activate =>  3,
+      :accept   =>  5,
+      :reject   =>  1,
+      :comment  =>  1,
       :withdraw => -5
     },
     :"identity/twitter" => {
-      :create => 5
+      :create => 1
     },
     :"identity/facebook" => {
-      :create => 10
+      :create => 1
     },
     :"identity/email" => {
-      :create => 10
+      :create => 2
     }
   }.with_indifferent_access
 

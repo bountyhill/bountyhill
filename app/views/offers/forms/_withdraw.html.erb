@@ -1,4 +1,4 @@
-<%= form_for @offer, :remote => true do |form| %>
+<%= form_for  @offer, :url => withdraw_offer_url(@offer), :method => :put, :remote => true do |form| %>
   <% modal_body do %>
     <p><%= I18n.t("offer.withdraw.legend") %></p>
     <%= form.error_messages %>
@@ -8,6 +8,6 @@
   <% end %>
   
   <% modal_footer do %>
-    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.withdraw") %>
   <% end %>
 <% end %>

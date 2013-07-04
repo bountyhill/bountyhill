@@ -226,7 +226,11 @@ class Quest < ActiveRecord::Base
   # -- Offers ---------------------------------------------------------
   
   # Offers to the quest are ordered by their compliance value.
-  has_many :offers, :order => "compliance DESC", :dependent => :destroy
+  has_many :offers, :order => "created_at DESC", :dependent => :destroy do
+    def for_user(user)
+      all(:conditions => ["owner_id = ? OR state != ?", user, 'new'])
+    end
+  end
   
   # Answer the quest. This method is built so that the attributes
   # can be filled in from a HTML form without much hassle.

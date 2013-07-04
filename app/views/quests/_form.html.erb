@@ -8,7 +8,7 @@
 
   <%= form.control_group :bounty, :class => "input-small", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
   <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
-  <%= form.control_group :title,        :text_area, :rows => 1,  :class => "input-xxlarge" %>
+  <%= form.control_group :title,        :text_area, :rows => 2,  :class => "input-xxlarge" %>
   <%= form.control_group :description,  :text_area, :rows => 12, :class => "input-xxlarge tinymce" %>
   
   <div class="criteria">
@@ -45,7 +45,7 @@
 
 <script type="text/javascript" charset="utf-8">
   // toggles location restriction
-  $("#restrict_location").change(function() {
+  $("#quest_restrict_location").change(function() {
     if($(this).is(':checked')) {
       $("#location_fields").slideDown('hide');
       google.maps.event.trigger(map, 'resize');
@@ -55,7 +55,7 @@
     }
   });
   <% if @quest.restrict_location? %>
-    $("#restrict_location").trigger('click');
+    $("#quest_restrict_location").trigger('click');
   <% end %>
 
 

@@ -7,6 +7,8 @@ en:
     base_error:       "%{base_error}: please review your input."
     create:
       success:        "%{record} was successfully created."
+    offer:
+      success:        "%{record} was successfully submitted."
     update:
       success:        "%{record} was successfully updated."
     check_delete_me:  Please confirm the deletion of your account.
@@ -144,8 +146,8 @@ en:
         one:    "Quest created"
         other:  "Quests created"
       offers:
-        one:    "Offer made"
-        other:  "Offers made"
+        one:    "Offer submitted"
+        other:  "Offers submitted"
       forwards:
         one:    "Request shared"
         other:  "Requests shared"
@@ -198,6 +200,7 @@ en:
         one:    "%{count} point"
         other:  "%{count} points"
     action:
+      activate: "%{item} submitted"
       accept:   "%{item} accepted"
       comment:  "%{item} commented"
       create:   "%{item} created"
@@ -211,6 +214,9 @@ en:
     box:
       title:    "%{precentage}% compliance"
       criteria: "The criteria defined for this quest are complied as follows:"
+    activate:
+      title:  Make offer
+      legend: Please review your offer carefully. The quest owner will be informed about it right after you sumbit your offer.
     accept: 
       title:  Accept offer
       legend: Please let the offerer know why you want to accept his offer.
@@ -222,7 +228,7 @@ en:
       legend: Please let the searcher know why you want to withdraw your offer.
     list:
       title:
-        zero:   "No offers made"
+        zero:   "No offers present yet"
         one:    "1 offer"
         other:  "%{count} offers"
       creation:   "%{distance_of_time} ago"
@@ -233,6 +239,7 @@ en:
         other:  "%{count} images"
     states:
       all:        All
+      new:        Prepared
       active:     Active
       withdrawn:  Withdrawn
       accepted:   Accepted
@@ -241,9 +248,11 @@ en:
       compliance: "compliance reached"
       comments:   "comments posted"
       viewed:
-        one:      "day ago viewed first time"
-        other:    "days ago viewed first time"
+        zero:     "viewed today"
+        one:      "day ago viewed"
+        other:    "days ago viewed"
       created:
+        zero:     "offered today"
         one:      "day ago offered"
         other:    "days ago offered"
     form:
@@ -296,8 +305,8 @@ en:
     statistic:
       bounty:     "bounty promised"
       offers:
-        one:      "offer made"
-        other:    "offers made"
+        one:      "offer created"
+        other:    "offers created"
       comments:   "comments posted"
       forwards:   "forwards done"
       expiration:

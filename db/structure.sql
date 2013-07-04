@@ -321,7 +321,7 @@ CREATE TABLE offers (
     updated_at timestamp without time zone NOT NULL,
     location character varying(255),
     serialized text,
-    state character varying(255) DEFAULT 'active'::character varying,
+    state character varying(255) DEFAULT 'new'::character varying,
     title character varying(255),
     viewed_at timestamp without time zone
 );
@@ -847,6 +847,8 @@ INSERT INTO schema_migrations (version) VALUES ('32');
 INSERT INTO schema_migrations (version) VALUES ('33');
 
 INSERT INTO schema_migrations (version) VALUES ('34');
+
+INSERT INTO schema_migrations (version) VALUES ('35');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

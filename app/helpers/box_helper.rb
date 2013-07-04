@@ -112,5 +112,20 @@ module BoxHelper
       ].compact.join.html_safe
     end
   end
+
+  def step_indicator_for(model, options={})
+    step_titles = case model
+    when Quest then %w(create start)
+    when Offer then %w(create offer)
+    else raise "Unknown step_indicator for model #{model.inspect}!"
+    end
+    
+    ol :class => "step-indicator" do
+      [
+        li(I18n.t(step_titles[0], :scope => "button"),  :class => "step #{model.new_record? ? 'active' : ''}"),
+        li(I18n.t(step_titles[1],  :scope => "button"),  :class => "step #{model.new_record? ? '' : 'active'}"),
+      ].join.html_safe
+    end
+  end
   
 end

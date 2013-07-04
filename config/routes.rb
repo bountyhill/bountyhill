@@ -25,6 +25,7 @@ Bountyhill::Application.routes.draw do
   end
   match "/q/:id"                      => "quests#show",   :via => :get
   match "/quests/category/:category"  => "quests#index",  :via => :get
+  match "/quests/:owner_id/list"         => "quests#index",  :via => :get
   
   resources :shares
   
@@ -35,16 +36,18 @@ Bountyhill::Application.routes.draw do
   
   resources :offers do
     opinio
-
     member do
+      get "activate"
+      put "activate"
       get "accept"
+      put "accept"
       get "reject"
+      put "reject"
       get "withdraw"
-      post "accept"
-      post "reject"
-      post "withdraw"
+      put "withdraw"
     end
   end
+  match "/offers/:owner_id/list" => "offers#index",  :via => :get
 
   resources :users
   match 'profile'           => "users#show",    :via => :get

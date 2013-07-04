@@ -14,7 +14,7 @@
   <div class="main span8">
     <%= quest_box(@quest, :class => "with-opener") %>
     <%= spacer %>
-    <% if @quest.offers.any? %>
+    <% if @quest.offers.for_user(current_user).any? %>
       <%= offers_box(@quest, :class => "with-opener") %>
       <%= spacer %>
     <% end %>

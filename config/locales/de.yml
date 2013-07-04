@@ -7,6 +7,8 @@ de:
     base_error:       "%{base_error}: Bitte prüfe Deine Eingaben."
     create:
       success:        "%{record} wurde erfolgreich angelegt."
+    offer:
+      success:        "%{record} wurde erfolgreich abgegeben."
     update:
       success:        "%{record} wurde erfolgreich aktualisiert."
     check_delete_me:  Bitte bestätige das Löschen Deines Accounts.
@@ -198,6 +200,7 @@ de:
         one:    "%{count} Punkt"
         other:  "%{count} Punkte"
     action:
+      activate: "%{item} abgegeben"
       accept:   "%{item} akzeptiert"
       comment:  "%{item} kommentiert"
       create:   "%{item} angelegt"
@@ -211,6 +214,9 @@ de:
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
+    activate:
+      title:  Angebot abgeben
+      legend: "Schau Dir Dein Angebot vor der Abgabe noch einmal an. Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
     accept: 
       title:  Angebot annehmen
       legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot annehmen möchtest."
@@ -222,7 +228,7 @@ de:
       legend: "Teile bitte dem Suchenden mit, warum Du Dein Angebot zurückziehen möchtest."
     list:
       title:
-        zero:   "Noch keine Angebote"
+        zero:   "Noch keine Angebote vorhanden"
         one:    "1 Angebot"
         other:  "%{count} Angebote"
       creation:   "%{distance_of_time} her"
@@ -233,6 +239,7 @@ de:
         other:  "%{count} Bilder"
     states:
       all:        Alle
+      new:        Vorbereitet
       active:     Aktiv
       withdrawn:  Zurückgezogen
       accepted:   Angenommen
@@ -241,9 +248,11 @@ de:
       compliance: "Erfüllungsgrad erreicht"
       comments:   "mal kommentiert"
       viewed:
+        zero:     "heute angesehen"
         one:      "Tag zuvor angesehen"
         other:    "Tage zuvor angesehen"
       created:
+        zero:     "heute angeboten"
         one:      "Tag zuvor angeboten"
         other:    "Tage zuvor angeboten"
     form:
@@ -296,8 +305,8 @@ de:
     statistic:
       bounty:     "Belohnung ausgesetzt"
       offers:
-        one:      "Angebot abgegeben"
-        other:    "Angebote abgegeben"
+        one:      "Angebot angelegt"
+        other:    "Angebote angelegt"
       comments:   "mal kommentiert"
       forwards:   "mal weitergeleitet"
       expiration:

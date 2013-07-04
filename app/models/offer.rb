@@ -9,7 +9,7 @@ class Offer < ActiveRecord::Base
   extend Forwardable
   delegate [:bounty] => :quest
   
-  STATES = %w(active withdrawn accepted rejected)
+  STATES = %w(new active withdrawn accepted rejected)
   
   # -- Associations ---------------------------------------------------
   
@@ -216,20 +216,38 @@ class Offer < ActiveRecord::Base
     Bountyhill::Application.url_for "/offers/#{self.id}"
   end
 
-  # -- states ---------------------------------------------------------
-  # An offer is active if the quest is still running, and it is not
-  # decided upon.
+  # -- states and state manipulations --------------------------------------------------
   
-  # The offer is not decided upon, and the quest is still active?
-  def active?
-    quest.active? && state == "active"
-  end 
+  def new?
+    state == "new"
+  end
+  
+  def activate!
+    raise ArgumentError, "Offer is alredy active" if active?
+    update_attributes! "state" => "active"
+    
+    owner.reward_for(self, :activate)
+  end
 
+  def active?
+    # The offer is not decided upon, and the quest is still active
+    state == "active" && quest.active?
+  end
+  
+  def outdated?
+    # The offer is not decided upon, but the quest is no longer active
+    state == "active" && !quest.active?
+  end
+  
   def withdraw!
     raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "withdrawn"
     
     owner.reward_for(self, :withdraw)
+  end
+  
+  def withdrawn?
+    state == "withdrawn"
   end
   
   def accept!
@@ -239,19 +257,15 @@ class Offer < ActiveRecord::Base
     owner.reward_for(self, :accept)
   end
   
+  def accepted?
+    state == "accepted"
+  end
+  
   def reject!
     raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "rejected"
     
     owner.reward_for(self, :reject)
-  end
-
-  def withdrawn?
-    state == "withdrawn"
-  end
-  
-  def accepted?
-    state == "accepted"
   end
   
   def rejected?
@@ -268,8 +282,8 @@ class Offer < ActiveRecord::Base
       when "withdrawn"  then UserMailer.offer_withdrawn(self)
       when "accepted"   then UserMailer.offer_accepted(self)
       when "rejected"   then UserMailer.offer_rejected(self)
-      when "active"     then UserMailer.offer_received(self) # after creation
-      else raise "Unknown state: #{state}"
+      when "active"     then UserMailer.offer_received(self) # after activation
+      else # do nothing, e.g on state 'new'
       end
     
     Deferred.mail mail

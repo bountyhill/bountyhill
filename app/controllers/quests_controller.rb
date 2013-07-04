@@ -1,6 +1,8 @@
 class QuestsController < ApplicationController
   include ApplicationController::ImageInteractions
   include Filter::Builder
+
+  before_filter :set_owner
   
   # GET /quests
   def index
@@ -50,12 +52,12 @@ class QuestsController < ApplicationController
     @quest = Quest.new(params[:quest])
     @quest.owner ||= User.draft
     
-    # remove location if it's not given (not valid)
-    @quest.location = nil unless @quest.location && @quest.location.valid?
+    # remove location if it's not given or not valid
+    @quest.location = nil unless @quest.restrict_location?
     
     # Start the quest after saving.
     if @quest.save
-      redirect_to! quest_path(@quest, :preview => true), :notice => 'Quest was successfully created.'
+      redirect_to! quest_path(@quest, :preview => true), :notice => I18n.t("message.create.success", :record => Quest.model_name.human)
     end
 
     render :action => "new"
@@ -85,4 +87,10 @@ class QuestsController < ApplicationController
 
     redirect_to quests_url
   end
+  
+private
+  def set_owner
+    @owner = User.find(params[:owner_id], :readonly => true) if params[:owner_id]
+  end
+
 end

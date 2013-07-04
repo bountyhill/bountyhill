@@ -46,9 +46,9 @@ module NavigationHelper
     when :quests
       link_to awesome_icon(:list) + span(I18n.t("nav.quests")), quests_path
     when :my_quests
-      link_to awesome_icon(:list) + I18n.t("nav.my_quests"), quests_path(:owner_id => current_user.id)
+      link_to awesome_icon(:list) + I18n.t("nav.my_quests"), :controller => :quests, :owner_id => current_user
     when :my_offers
-      link_to awesome_icon(:th_list) + I18n.t("nav.my_offers"), offers_path(:owner_id => current_user.id)
+      link_to awesome_icon(:th_list) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
     when :profile
       link_to awesome_icon(:user) + I18n.t("nav.my_profile"), "/profile"
     when :signout
