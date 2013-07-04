@@ -283,10 +283,10 @@ class Offer < ActiveRecord::Base
       when "accepted"   then UserMailer.offer_accepted(self)
       when "rejected"   then UserMailer.offer_rejected(self)
       when "active"     then UserMailer.offer_received(self) # after activation
-      else # do nothing, e.g on state 'new'
+      else # no mail, e.g on state 'new'
       end
     
-    Deferred.mail mail
+    Deferred.mail(mail) if mail
   end
   
   # returns an array of users connecting the quest with the sender

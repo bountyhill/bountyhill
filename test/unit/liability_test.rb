@@ -35,7 +35,7 @@ class LiabilityTest < ActiveSupport::TestCase
     
     quest = Factory(:quest, :owner => owner, :bounty => Money.new(12000, "EUR"))
     quest.start!
-    offer = Factory(:offer, :quest => quest, :owner => offerer)
+    offer = Factory(:offer, :quest => quest, :owner => offerer, :state => "active")
     offer.accept!
     offer.stubs(:chain).returns([foo, bar, baz])
     Account.balance offer
