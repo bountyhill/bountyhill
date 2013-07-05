@@ -2,15 +2,23 @@
 <%= spacer %>
 <div class="row-fluid">
   <div class="span1"></div>
-  <div class="span10 explanation">
-    <% (1..5).each do |index| %>
-      <div class="item item<%= index %>">
-        <div class="headline"><%= I18n.t("home.explanation.headline#{index}") %></div>
-        <div class="text"><%= I18n.t("home.explanation.text#{index}") %></div>
-        <%= image_tag asset_path("home/key_0#{index}.png") %>
-      </div>
-    <% end %>
-    <div class="claim"><%= I18n.t("home.claim")%></div>
+  <div class="span10">
+    <div class=" explanation">
+      <% (1..5).each do |index| %>
+        <div class="item item<%= index %>">
+          <div class="headline"><%= I18n.t("home.explanation.headline#{index}") %></div>
+          <div class="text"><%= I18n.t("home.explanation.text#{index}") %></div>
+          <%= image_tag asset_path("home/key_0#{index}.png") %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="span1"></div>
+</div>
+<div class="row-fluid">
+  <div class="span2"></div>
+  <div class="span8">
+    <div class="claim"><%= I18n.t("home.claim")%></div>
+  </div>
+  <div class="span2"></div>
 </div>

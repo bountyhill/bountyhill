@@ -1,10 +1,13 @@
 .home {
   .claim {
+    background-color: $petrol_transparent;
     color: $text;
-    width: 1024px;
-    margin: 128px auto 64px auto;
-    font-size: 500%;
+    margin: 128px auto;
+    font-size: 400%;
+    line-height: 100%;
     text-align: center;
+    padding: 16px;
+    width: 1024px - (128px * 2);
   }
   .explanation {
     color: $text;
