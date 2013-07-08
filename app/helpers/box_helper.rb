@@ -105,11 +105,13 @@ module BoxHelper
     expect! options => Hash
     
     div :class => "statistic box #{options[:css_class]}" do
-      [
-        div(icon,  :class => "icon"),
-        div(count, :class => "count"),
-        div(text,  :class => "text")
-      ].compact.join.html_safe
+      div :class => "container" do
+        [
+          div(icon,  :class => "icon"),
+          div(count, :class => "count"),
+          div(text,  :class => "text")
+        ].compact.join.html_safe
+      end
     end
   end
 

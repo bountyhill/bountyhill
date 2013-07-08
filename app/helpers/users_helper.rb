@@ -90,7 +90,7 @@ module UsersHelper
   
   def user_stars(user)
     ul :class => "stars" do
-      user.score.times.map{ li(awesome_icon(:star, :size => :large)) }.join.html_safe
+      user.score.times.map{ li(awesome_icon(:star)) }.join.html_safe
     end
   end
   

@@ -80,49 +80,46 @@
     &.quest { background-color: $quest_box_title_color; }
     &.offer { background-color: $offer_box_title_color; }
     display: block;
-    padding: 10px 7px 10px 10px;
+    padding: 16px;
     position: relative;
     color: white;
+    font-family: 'Open Sans Condensed', arial, sans-serif;
     .profile {
-      width: 82%;
+      width: 80%;
+      img {
+        height: 64px;
+        width: 64px;
+      }
       .name, .handle {
         position: absolute;
-        left: 84px;
-        font-weight: bold;
+        left: 96px;
       }
-      .name   { 
-        top : 6px;
-        line-height: 1.2;
-        font-size: 140%;
+      .name   {
+        top : 16px;
+        font-size: 180%;
       }
       .handle { 
-        top : 30px;
-        font-size: 110%;
+        top : 44px;
+        font-size: 120%;
       }
     }
     .rating {
-      width: 160px;
-      font-weight: bold;
+      width: 20%;
       position: absolute;
-      right: 10px;
-      top: 18px;
+      right: 16px;
+      top: 16px;
+      border-bottom: 8px solid white;
       ul.stars {
-        margin: 0;
-        float: right;
+        margin: 0 -4px 0 0;
         list-style: none;
-        li {
-          float: left;
-          line-height: 15px;
-        }
+        li { float: right; }
       }
       .points {
         font-size: 36px;
-        line-height: 30px;
+        line-height: 36px;
       }
       .text {
-        font-size: 90%;
-        border-top: 7px solid white;
-        margin-top: 4px;
+        font-size: 100%;
       }
     }
   }

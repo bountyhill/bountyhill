@@ -69,36 +69,27 @@
     &.quest { background-color: $quest_box_statistic_color; }
     &.user  { background-color: $user_box_statistic_color; 
       ul.stars {
-        margin: 0;
-        float: right;
+        margin: 0 -4px 0 0;
         list-style: none;
-        li {
-          float: left;
-          line-height: 15px;
-        }
+        li { float: right; }
       }
     }
-    
     position: relative;
-    display: block;
-    padding: 10px 10px 10px 10%;
+    padding: 16px;
     height: 64px;
     color: $text;
-    font-weight: bold;
-    .icon {
-      margin: 8px 0 0 0;
-      float: right;
-      line-height: 15px;
-    }
-    .count {
-      font-size: 36px;
-      line-height: 30px;
-      margin-top: 8px;
-    }
-    .text {
-      font-size: 90%;
-      border-top: 7px solid white;
-      margin-top: 4px;
+    font-family: 'Open Sans Condensed', arial, sans-serif;
+    .container {
+      width: 100%;
+      border-bottom: 8px solid white;
+      i { float: right; }
+      .count {
+        font-size: 36px;
+        line-height: 36px;
+      }
+      .text {
+        font-size: 100%;
+      }
     }
   }
   

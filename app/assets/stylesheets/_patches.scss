@@ -45,8 +45,7 @@
 }
 
 /* -------- icon ---------- */
-a [class^="icon-"], a [class*=" icon-"],
-li [class^="icon-"], li [class*=" icon-"],
+.btn [class^="icon-"], .btn [class*=" icon-"],
 .nav li [class^="icon-"], .nav li [class*=" icon-"] {
   text-align: left;                           /* usually awsome font icons are centered - align them left to leave some spaceto following text */
   width: 1.5em;
