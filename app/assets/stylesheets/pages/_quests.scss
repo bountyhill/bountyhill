@@ -2,13 +2,13 @@
   /* ------- quests/list ------- */
   &.quests {
     @include box_colors(quests);
-    @include opener($quests_box_title_color);
+    @include opener($quests_box_title_color, $open_center);
   }
 
   /* ------- quests/show ------- */
   &.quest {
     @include box_colors(quest);
-    @include opener($quest_box_title_color);
+    @include opener($quest_box_title_color, $open_left);
     
     /* ------- bounty bar colors ------- */
     .progress {

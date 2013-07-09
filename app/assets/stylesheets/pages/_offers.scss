@@ -11,7 +11,7 @@
   /* ------- offers/list ------- */
   &.offers {
     @include box_colors(offers);
-    @include opener($offers_box_title_color);
+    @include opener($offers_box_title_color, $open_center);
     &.with-opener {
       background-color: $quests_box_offers_bg_color;
     }
@@ -20,7 +20,7 @@
   /* ------- offers/show ------- */
   &.offer {
     @include box_colors(offer);
-    @include opener($offer_box_title_color);
+    @include opener($offer_box_title_color, $open_left);
 
     /* ------- step indicator colors------- */
     .title {

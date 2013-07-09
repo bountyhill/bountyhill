@@ -3,7 +3,7 @@
     @include box_colors(activities);
     
     /* opener triangle */
-    @include opener($activities_box_title_color);
+    @include opener($activities_box_title_color, $open_center);
 
     ul.activities {
       li.activity {

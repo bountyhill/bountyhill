@@ -4,7 +4,7 @@
     @include box_colors(comment);
     
     /* opener triangle */
-    @include opener($comments_box_title_color);
+    @include opener($comments_box_title_color, $open_center);
     
     .content {
       background-color: $comments_box_form_background;

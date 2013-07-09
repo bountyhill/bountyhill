@@ -19,7 +19,7 @@
   height: $size;
 }
 
-@mixin opener($color) {
+@mixin opener($color, $position) {
   &.with-opener {
     &:before {
       content: "";
@@ -28,7 +28,7 @@
       border-color: $color transparent $color transparent;
       position: relative;
       top: -30px;           /* height of spacer */
-      left: 50%;            /* align centric */
+      left: $position;
       margin-left: -30px;   /* ensure opener is centric */
       margin-bottom: -30px; /* don't push box' title down */
     }
