@@ -118,7 +118,7 @@ module OffersHelper
       offer_created_statistic_box(offer),
       offer_viewed_statistic_box(offer),
       offer_comments_statistic_box(offer)
-    ].compact.map{ |box| box + spacer }.join.html_safe
+    ].compact.map{ |box| box + spacer(:class => "small") }.join.html_safe
   end
 
   def offer_compliance_statistic_box(offer)

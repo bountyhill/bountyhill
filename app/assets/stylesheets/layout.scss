@@ -1,3 +1,10 @@
 .sidebar {
   min-width: 200px;
 }
+
+.spacer {
+  min-height: $box_spacing;
+  &.small {
+    min-height: $box_spacing / 2;
+  }
+}

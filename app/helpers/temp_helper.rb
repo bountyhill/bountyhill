@@ -8,6 +8,6 @@ module TempHelper
   end
   
   def spacer(options={})
-    div "", :class => "spacer", :style => options[:style]
+    div "", :class => "spacer #{options[:class]}", :style => options[:style]
   end
 end

@@ -100,7 +100,7 @@ module UsersHelper
       user_quests_statistic_box(user),
       user_offers_statistic_box(user),
       user_forwards_statistic_box(user)
-    ].compact.map{ |box| box + spacer }.join.html_safe
+    ].compact.map{ |box| box + spacer(:class => "small") }.join.html_safe
   end
   
   def user_points_statistic_box(user)

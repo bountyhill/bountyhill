@@ -23,14 +23,14 @@
   &.with-opener {
     &:before {
       content: "";
-      border: 60px solid $color;
-      border-width: 0 30px 30px 30px;
+      border: ($box_spacing * 2) solid $color;
+      border-width: 0 $box_spacing $box_spacing $box_spacing;
       border-color: $color transparent $color transparent;
       position: relative;
-      top: -30px;           /* height of spacer */
-      left: $position;
-      margin-left: -30px;   /* ensure opener is centric */
-      margin-bottom: -30px; /* don't push box' title down */
+      left: $position;                /* should be 50% whne centered */
+      top: -($box_spacing);           /* height of spacer */
+      margin-left: -($box_spacing);   /* ensure opener is centric */
+      margin-bottom: -($box_spacing); /* don't push box' title down */
     }
   }
 }

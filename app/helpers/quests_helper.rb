@@ -158,7 +158,7 @@ module QuestsHelper
       quest_offers_statistic_box(quest),
       quest_comments_statistic_box(quest),
       quest_forwards_statistic_box(quest)
-    ].compact.map{ |box| box + spacer }.join.html_safe
+    ].compact.map{ |box| box + spacer(:class => "small") }.join.html_safe
   end
 
   def quest_days_statistic_box(quest)
