@@ -56,13 +56,19 @@ module OffersHelper
   end
     
   def offer_statistic(offer)
-    statistic_entries = [] # I18n.t("offer.compliance", :precentage => offer.compliance) ]
+    statistic_entries =  []
     
-    statistic_entries << [ awesome_icon(:bar_chart) + I18n.t("offer.states.#{offer.state}") ] unless offer.active?
-    statistic_entries << [ awesome_icon(:picture)   + I18n.t("offer.list.images", :count => offer.images.size) ] if offer.images.present?
-      
-    statistic_entries.compact.flatten
-
+    statistic_entries << awesome_icon(:bar_chart) + I18n.t("offer.compliance", :precentage => offer.compliance)
+    statistic_entries << awesome_icon(:picture)   + I18n.t("offer.list.images", :count => offer.images.size)   if offer.images.present?
+    statistic_entries << case offer.state
+      when 'new'        then awesome_icon(:file_alt)  + I18n.t("offer.states.new")
+      when 'active'     then awesome_icon(:spinner)   + I18n.t("offer.states.active")
+      when 'withdrawn'  then awesome_icon(:hand_down) + I18n.t("offer.states.withdrawn")
+      when 'accepted'   then awesome_icon(:smile)     + I18n.t("offer.states.accepted")
+      when 'rejected'   then awesome_icon(:frown)     + I18n.t("offer.states.rejected")
+      else raise "Unknown offer state: #{offer.state}"
+      end
+    
     ul :class => "stats-list" do
       statistic_entries.map{ |entry| li(entry) }.join.html_safe
     end

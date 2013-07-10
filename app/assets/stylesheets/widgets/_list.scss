@@ -18,20 +18,10 @@ ul.list {
   & > li { min-height: 96px + 16px; }
   & > li:last-child { min-height: 0; }
 
-  .progress { 
-    margin: 1px 8px 6px 8px;
-    line-height: 16px; /* let the progress bar look slimmer */
-    height: 16px;
-    @include border-radius(0);
-    @include box-shadow(none);
-    background-color: $progress_bar_background;
-    background-image: none;
-    .bar:after { content:""; }
-  }
-
   /* ------- statistic ------- */
   .statistic {
-    padding-left: 10%;
+    font-family: $font_system;
+    padding: $box_padding;
     dl {
       margin: 0;
       min-height: 10ex;

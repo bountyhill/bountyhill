@@ -46,7 +46,7 @@ $message_stats_width: 2.5 * $message_height;
     .message-body {
       height: $message_height - $message_head_height - (2 * $message_padding);
       padding: $message_padding (2 * $message_padding);
-      font-size: 120%;
+      font-size: 110%;
       a {
         color: $text_inverse;
         &:hover { color: $text_inverse_highlight; }
