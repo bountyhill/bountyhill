@@ -53,7 +53,7 @@ de:
   filter:
     filter_by: "nach %{filter}"
     location:
-      title:  Umgebung
+      title:  Standort
       legend: "Wähle einen Radius um Deinen Standort."
     categories:
       title:  Kategorien
@@ -214,6 +214,9 @@ de:
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
+      images:
+        one:    "1 Bild wurde diesem Angebot hinzugefügt:"
+        other:  "%{count} Bilder wurden diesem Angebot hinzugefügt:"
     activate:
       title:  Angebot abgeben
       legend: "Schau Dir Dein Angebot vor der Abgabe noch einmal an. Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
@@ -281,7 +284,11 @@ de:
       shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     box:
       title:    "%{amount} Belohnung"
-      criteria: "Die folgenden Kriterien sind für diese Suche zu erfüllen:"
+      criteria: "Aufgestellte Kriterien"
+      location: "Ortsbeschränkung: %{location}"
+      images:   
+        one:    "Hinzugefügtes Bild"
+        other:  "Hinzugefügtes Bilder"
     list:
       title:
         zero:   "Suchen"

@@ -1,0 +1,23 @@
+/* box */
+$box_padding:           16px;
+$box_section_padding:   24px;
+$box_content_v_padding: 36px;
+$box_content_h_padding: 96px;
+$box_border_size:       8px;
+$box_border_bottom:     $box_border_size solid $white;
+$box_spacing:           24px; /* vertical space between boxes */
+$box_header_height:     56px - (2*$box_padding);
+
+/* opener position */
+$open_center: 50%;
+$open_left:   16px + (64px / 2);
+
+
+.sidebar { min-width: 200px; }
+.spacer  { min-height: $box_spacing; }
+
+.two-columns {
+  width: 50%;
+  &.left  { float: left; }
+  &.right { float: right; }
+}

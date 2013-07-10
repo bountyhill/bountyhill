@@ -44,15 +44,14 @@
 .user {
   &.box {
     @include box_colors(user);
-    .title {
+    .header {
       .handle {
         font-size: 18px;
         font-weight: normal;
       }
     }
     .content {
-      padding: 16px;
-      min-height: 46px;
+      min-height: 56px;
       .contact-section {
         background-color: $user_box_title_color;
         color: $text;
@@ -80,10 +79,10 @@
     &.quest { background-color: $quest_box_title_color; }
     &.offer { background-color: $offer_box_title_color; }
     display: block;
-    padding: 16px;
+    padding: $box_padding;
     position: relative;
     color: white;
-    font-family: 'Open Sans Condensed', arial, sans-serif;
+    font-family: $font_system;
     .profile {
       width: 80%;
       img {
@@ -92,10 +91,10 @@
       }
       .name, .handle {
         position: absolute;
-        left: 96px;
+        left: $box_content_h_padding;
       }
       .name   {
-        top : 16px;
+        top : $box_padding;
         font-size: 180%;
       }
       .handle { 
@@ -106,20 +105,17 @@
     .rating {
       width: 20%;
       position: absolute;
-      right: 16px;
-      top: 16px;
-      border-bottom: 8px solid white;
+      right: $box_padding;
+      top: $box_padding;
+      border-bottom: $box_border_bottom;
       ul.stars {
         margin: 0 -4px 0 0;
         list-style: none;
         li { float: right; }
       }
       .points {
-        font-size: 36px;
-        line-height: 36px;
-      }
-      .text {
-        font-size: 100%;
+        font-size: $statistic_number_font_size;
+        line-height: $statistic_number_line_height;
       }
     }
   }
@@ -132,28 +128,5 @@
       min-width: 128px;
       min-height: 128px;
     }
-  }
-}
-
-
-@media (max-width: 767px) {
-  .sidebar {
-    img {
-      &.avatar {
-        display: none;
-      }
-    }
-  }
-}
-
-/* TODO: move to somewhere else! */
-
-.two-columns {
-  width: 50%;
-  &.left {
-    float: left;
-  }
-  &.right {
-    float: right;
   }
 }

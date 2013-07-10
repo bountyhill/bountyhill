@@ -31,8 +31,11 @@ $magenta_transparent: rgba(209, 43, 133, $opacity);
 $magenta_dark:        #BC2778;
 
 $white: white;
+$gray:  #E3E3E3;
 $black: black;
 
+/* content */
+$content_color: $gray;
 
 /* text */
 
@@ -53,11 +56,11 @@ $navigation_item_highlight: $petrol_dark;
 
 $quests_box_color:            $transparent;
 $quests_box_title_color:      $petrol;
-$quests_box_content_color:    $white;
+$quests_box_content_color:    $content_color;
 $quests_box_statistic_color:  $white;
 $quests_box_offers_bg_color:  $green_transparent;
 
-$quest_box_color:           $white;
+$quest_box_color:           $content_color;
 $quest_box_title_color:     $petrol;
 $quest_box_content_color:   $petrol;
 $quest_box_statistic_color: $petrol;
@@ -80,10 +83,10 @@ $quest_step_bg_color:     $petrol_dark;
 
 $offers_box_color:            $transparent;
 $offers_box_title_color:      $green;
-$offers_box_content_color:    $white;
+$offers_box_content_color:    $content_color;;
 $offers_box_statistic_color:  $green;
 
-$offer_box_color:           $white;
+$offer_box_color:           $content_color;
 $offer_box_title_color:     $green;
 $offer_box_content_color:   $white;
 $offer_box_statistic_color: $green;
@@ -104,7 +107,7 @@ $offer_step_bg_color:     $green_dark;
 
 /* user */
 
-$user_box_color:            $white;
+$user_box_color:            $content_color;
 $user_box_title_color:      $petrol;
 $user_box_content_color:    $white;
 $user_box_statistic_color:  $petrol;
@@ -134,7 +137,7 @@ $delete_highlight:    $red;
 
 $activities_box_color:            $transparent;
 $activities_box_title_color:      $green;
-$activities_box_content_color:    $white;
+$activities_box_content_color:    $content_color;;
 $activities_box_statistic_color:  $green;
 
 
@@ -142,7 +145,7 @@ $activities_box_statistic_color:  $green;
 
 $comments_box_color:            $transparent;
 $comments_box_title_color:      $grass;
-$comments_box_content_color:    $white;
+$comments_box_content_color:    $content_color;;
 $comments_box_statistic_color:  $grass;
 $comments_box_form_background:  $grass_transparent;
 

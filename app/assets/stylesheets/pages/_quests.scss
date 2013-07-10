@@ -19,7 +19,7 @@
     }
 
     /* ------- step indicator colors------- */
-    .title {
+    .header {
       .step-indicator {
         li {
           color: $quest_step_bg_color;
@@ -36,9 +36,6 @@
           }
         }
       }
-    }
-    .content {
-      padding: 16px;
     }
   }
 }
@@ -66,7 +63,7 @@
         line-height: 80%;
         color: $quests_box_title_color;
       }
-      .title {
+      .header {
         display: block;
         font-family: 'Open Sans', arial, sans-serif;
         height: 100%;

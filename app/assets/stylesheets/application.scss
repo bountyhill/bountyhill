@@ -24,13 +24,12 @@
 @import "compass_twitter_bootstrap_awesome";
 @import "compass_twitter_bootstrap_responsive";
 
-// import basics stylesheets
+// import basics stylesheets and definitions
 @import "colors";
-@import "definitions";
+@import "layout";
 @import "mixins";
 @import "fonts";
 @import "patches";
-@import "layout";
 
 // import vendors' stylesheets
 @import "vendor/sassybuttons";
@@ -44,7 +43,6 @@
 
 // import widgets' stylesheets
 @import "widgets/page";
-@import "widgets/temp";
 @import "widgets/carousel";
 @import "widgets/filter";
 @import "widgets/navigation";

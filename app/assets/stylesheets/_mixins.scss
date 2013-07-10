@@ -52,47 +52,55 @@
   }
 }
 
+@mixin box_border($border_bottom_color) {
+  border-bottom: $box_border_bottom;
+  border-color: $border_bottom_color;
+}
+
 @mixin box_colors($box_type) {
   @if       $box_type == quest { 
     background-color: $quest_box_color;
-    .title { background-color: $quest_box_title_color; }
+    .header  { background-color: $quest_box_title_color; }
+    .content {
+      h1, h2 { color: $quest_box_title_color; }
+    }
   }
   @else if  $box_type == quests { 
     background-color: $quests_box_color;
-    .title { background-color: $quests_box_title_color; }
+    .header { background-color: $quests_box_title_color; }
   }
   @else if  $box_type == offer { 
     background-color: $offer_box_color;
-    .title { background-color: $offer_box_title_color; }
+    .header { background-color: $offer_box_title_color; }
+    .content {
+      h1, h2 { color: $offer_box_title_color; }
+    }
   }
   @else if  $box_type == offers { 
     background-color: $offers_box_color;
-    .title { background-color: $offers_box_title_color; }
+    .header { background-color: $offers_box_title_color; }
   }
   @else if  $box_type == comment { 
     background-color: $comments_box_color;
-    .title { background-color: $comments_box_title_color; }
+    .header { background-color: $comments_box_title_color; }
   }
   @else if  $box_type == user { 
     background-color: $user_box_color;
-    .title { background-color: $user_box_title_color; }
+    .header { background-color: $user_box_title_color; }
+    .content {
+      h1, h2 { color: $user_box_title_color; }
+    }
   }
   @else if  $box_type == activities { 
     background-color: $activities_box_color;
-    .title { background-color: $activities_box_title_color; }
+    .header { background-color: $activities_box_title_color; }
   }
   @else if  $box_type == quest-filter { 
     background-color: $quests_box_title_color;
-    .title { 
-      background-color: $quests_box_color; 
-      color: $quests_box_content_color;
-    }
+    .header { background-color: $quests_box_color; }
   }
   @else if  $box_type == offer-filter { 
     background-color: $offers_box_title_color;
-    .title { 
-      background-color: $offers_box_color; 
-      color: $offers_box_content_color;
-    }
+    .header { background-color: $offers_box_color;}
   }
 }

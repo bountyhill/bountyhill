@@ -2,17 +2,18 @@
 <div class="description"><%= quest.description.html_safe %></div>
 
 <% if quest.criteria.present? %>
-<div class="criteria-section">
-  <p><%= I18n.t("quest.box.criteria") %></p>
-  <ol class="criteria">
-    <% quest.criteria.each do |criterium| %>
-      <li><%= criterium[:title] %></li>
-    <% end %>
-  </ol>
-</div>
+  <h2><%= I18n.t("quest.box.criteria") %></h2>
+  <div class="criteria-section">
+    <ol class="criteria">
+      <% quest.criteria.each do |criterium| %>
+        <li><%= criterium[:title] %></li>
+      <% end %>
+    </ol>
+  </div>
 <% end %>
 
 <% if quest.images.present? %>
+  <h2><%= I18n.t("quest.box.images", :count => quest.images.count) %></h2>
   <div class="image-section">
     <% quest.images(:width => 185, :height => 180).each_slice(4).with_index do |image_urls, offset| %>
       <ul class="thumbnails row-fluid">
@@ -30,6 +31,7 @@
 <% end %>
 
 <% if quest.location.present? %>
+  <h2><%= I18n.t("quest.box.location", :location => quest.location.address) %></h2>
   <%= partial "locations/show", :location => quest.location %>
 <% end %>
 

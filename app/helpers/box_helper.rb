@@ -5,7 +5,7 @@ module BoxHelper
     expect! object  => [Quest, Offer, User]
     
     preview = options[:preview]
-    title = div :class => "title" do
+    header = div :class => "header" do
       [
         div(options[:title], :class => "pull-left"),
         div(preview ? step_indicator_for(object) : send("#{type}_buttons", object), :class => "pull-right")
@@ -17,7 +17,7 @@ module BoxHelper
     end
     
     div :class => "#{type} box row-fluid #{options[:class]}" do
-      title + content
+      header + content
     end
   end
   
@@ -29,7 +29,7 @@ module BoxHelper
     title_text =  I18n.t("#{type.to_s.singularize}.list.title", :count => models.total_entries)
     title_text += " " + I18n.t("filter.filter_by", :filter => options[:filter]) if options[:filter]
     
-    title = div :class => "title" do
+    header = div :class => "header" do
       [
         div(title_text, :class => "pull-left"),
         div(send("#{type}_list_box_buttons"), :class => "pull-right")
@@ -44,8 +44,8 @@ module BoxHelper
       end
     end
 
-    div :class => "#{type} box row-fluid #{options[:class]}" do
-      title + content
+    div :class => "#{type} list box row-fluid #{options[:class]}" do
+      header + content
     end
   end
 
@@ -53,7 +53,7 @@ module BoxHelper
     expect! type    => [:quest, :offer]
     expect! filters => Array
     
-    title = div :class => "title" do
+    header = div :class => "header" do
       div(options[:title], :class => "pull-left")
     end
     
@@ -70,7 +70,7 @@ module BoxHelper
     end
     
     div :class => "#{type} filter box row-fluid" do
-      title + content
+      header + content
     end
   end
   
@@ -80,7 +80,7 @@ module BoxHelper
     
     type = model.class.name.downcase
     
-    title = div :class => "title" do
+    header = div :class => "header" do
       [
         div(i18n_title_for(model), :class => "pull-left"),
         div(step_indicator_for(model), :class => "pull-right")
@@ -94,7 +94,7 @@ module BoxHelper
     end
 
     div :class => "#{type} box row-fluid" do
-      title + content
+      header + content
     end
   end
   

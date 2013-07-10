@@ -1,6 +1,11 @@
+/* statistics */
+$statistic_number_font_size:    36px;
+$statistic_number_line_height:  36px;
+
+$font_system: 'Open Sans Condensed', arial, sans-serif;
+$font_user:   'Open Sans', arial, sans-serif;
+
 body {
-  font-family: 'Open Sans', arial, sans-serif;
-  .btn, .nav, .explanation, .claim, .box > .title {
-     font-family: 'Open Sans Condensed', arial, sans-serif;
-  }
+  font-family: $font_user;
+  .btn, .nav, .explanation, .claim { font-family: $font_system; }
 }

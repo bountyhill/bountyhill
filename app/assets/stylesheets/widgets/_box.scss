@@ -1,51 +1,57 @@
 .box {
-
+  /* buttons */
   &.quest,    &.quests  { @include button(16px, $quest_button_color); }
   &.offer,    &.offers  { @include button(16px, $offer_button_color); }
   &.user,     &.users   { @include button(16px, $user_button_color); }
-  &.comments, &.comment { @include button(16px, $comment_button_color); }
+  &.comments            { @include button(16px, $comment_button_color); }
+ 
+  /* bottom border */
+  &.quest { @include box_border($quest_box_title_color); }
+  &.offer { @include box_border($offer_box_title_color); }
+  &.user  { @include box_border($user_box_title_color); }
 
-  /* ------- title ------- */
-  .title {
+  /* ------- header ------- */
+  .header {
     color: $text;
-    padding: 8px 16px;
-    height: 38px;
     margin: 0;
-    line-height: 40px;
-    font-size: 24.5px;
-    font-weight: bold;
-    text-rendering: optimizelegibility;
+    padding: $box_padding;
+    height: $box_header_height;
+    font-family: $font_system;
+    font-size: 200%;
+    line-height: inherit;
   }
   
   /* ------- content ------- */
+  &.list {
+    .content { padding: $box_padding 0; }
+  }
   .content {
-    padding: 16px 0 0 0;
+    padding: $box_content_v_padding $box_content_h_padding;
     clear: both;
     h1 {
-      line-height: 30px;
-      font-size: 24.5px;
-      margin-top: 0;
+      margin: 0 0 8px 0;
+      font-size: 200%;
+      line-height: 100%;
     }
-    .statistic {
-      color: $text_inverse;
+    h2 {
+      margin: 36px 0 8px 0;
+      font-size: 120%;
+      line-height: 100%;
     }
-    .description {
-      line-height: 120%;
-      font-size: 110%;
+    .description, .image-section, .criteria-section {
+      margin: 8px 0 36px 0;
     }
-    .image-section, .criteria-section {
-      margin: 20px 0 0 0;
-      font-size: 110%;
+    #map { 
+      margin: 16px 0 0 0; 
     }
     .button-section {
       float: right;
-      margin: 20px 0 30px 0;
+      margin: 16px 0 36px 0;
     }
     .criteria-section {
-      font-weight: bold;
       .criteria {
         & > li {
-          margin: 5px 0;
+          margin: 8px 0;
           clear: both;
           .criterium-title, .criterium-comment {
             width: 66%;
@@ -65,6 +71,8 @@
   
   /* ------- statistic ------- */
   &.statistic {
+    border: none; /* no bottom border */
+    
     &.offer { background-color: $offer_box_statistic_color; }
     &.quest { background-color: $quest_box_statistic_color; }
     &.user  { background-color: $user_box_statistic_color; 
@@ -81,14 +89,11 @@
     font-family: 'Open Sans Condensed', arial, sans-serif;
     .container {
       width: 100%;
-      border-bottom: 8px solid white;
+      border-bottom: $box_border_bottom;
       i { float: right; }
       .count {
-        font-size: 36px;
-        line-height: 36px;
-      }
-      .text {
-        font-size: 100%;
+        font-size: $statistic_number_font_size;
+        line-height: $statistic_number_line_height;
       }
     }
   }

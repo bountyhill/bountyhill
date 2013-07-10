@@ -23,7 +23,7 @@
     @include opener($offer_box_title_color, $open_left);
 
     /* ------- step indicator colors------- */
-    .title {
+    .header {
       .step-indicator {
         li {
           color: $offer_step_bg_color;
@@ -40,9 +40,6 @@
           }
         }
       }
-    }
-    .content {
-      padding: 16px;
     }
   }
 }

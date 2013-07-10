@@ -199,6 +199,10 @@ module ApplicationHelper
     end
   end
   
+  def spacer(options={})
+    div "", :class => "spacer #{options[:class]}", :style => options[:style]
+  end
+  
   def url_for_follow_twitter_account(options = {})
     expect! options => { :account => [String, nil] }
 

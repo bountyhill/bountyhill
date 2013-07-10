@@ -82,7 +82,7 @@ module OffersHelper
     expect! offerable => [Quest]
     
     offers = offerable.offers.for_user(current_user)
-    title = h3 :class => "title" do
+    header = div :class => "header" do
       [
         div(I18n.t("offer.list.title", :count => offers.count), :class => "pull-left"),
         div(:class => "pull-right") do
@@ -103,8 +103,8 @@ module OffersHelper
       end
     end
 
-    div :class => "offers box row-fluid  #{options[:class]}" do
-      title + content
+    div :class => "offers list box row-fluid  #{options[:class]}" do
+      header + content
     end
   end
   
