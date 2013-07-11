@@ -68,9 +68,6 @@ $quest_box_statistic_color: $petrol;
 $quest_button_color:        $quests_box_title_color;
 $quest_active_button_color: $petrol_dark;
 
-$quest_bounty_bar_color:       $quests_box_title_color;
-$quest_bounty_bar_color_dark:  $petrol_dark;
-
 $quest_image_border:            $quest_box_color;
 $quest_image_border_highlight:  $quest_box_title_color;
 
@@ -94,8 +91,7 @@ $offer_box_statistic_color: $green;
 $offer_button_color:        $offers_box_title_color;
 $offer_active_button_color: $green_dark;
 
-$offer_comliance_bar_color:       $offers_box_title_color;
-$offer_comliance_bar_color_dark:  $green_dark;
+$offer_comliance_color: $offers_box_title_color;
 
 $offer_image_border:            $offer_box_color;
 $offer_image_border_highlight:  $offers_box_title_color;

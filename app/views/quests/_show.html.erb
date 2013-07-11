@@ -2,32 +2,13 @@
 <div class="description"><%= quest.description.html_safe %></div>
 
 <% if quest.criteria.present? %>
-  <h2><%= I18n.t("quest.box.criteria") %></h2>
-  <div class="criteria-section">
-    <ol class="criteria">
-      <% quest.criteria.each do |criterium| %>
-        <li><%= criterium[:title] %></li>
-      <% end %>
-    </ol>
-  </div>
+  <h2><%= I18n.t("quest.box.criteria", :count => quest.criteria.count) %></h2>
+  <%= partial "shared/criteria", :container => quest, :complience => false %>
 <% end %>
 
 <% if quest.images.present? %>
   <h2><%= I18n.t("quest.box.images", :count => quest.images.count) %></h2>
-  <div class="image-section">
-    <% quest.images(:width => 185, :height => 180).each_slice(4).with_index do |image_urls, offset| %>
-      <ul class="thumbnails row-fluid">
-        <% image_urls.each_with_index do |image_url, index| %>
-          <li class="span3">
-            <%= link_to(image_tag(image_url, :width => 185, :height => 180),
-              "/quests/#{quest.id}/lightbox/#{(offset*4)+index}",
-              :class => 'thumbnail',
-              :remote => true) %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
+  <%= partial "shared/images", :container => quest %>
 <% end %>
 
 <% if quest.location.present? %>

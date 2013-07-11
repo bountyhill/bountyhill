@@ -213,10 +213,12 @@ en:
     compliance: "%{precentage}% compliant"
     box:
       title:    "%{precentage}% compliance"
-      criteria: "The criteria defined for this quest are complied as follows:"
+      criteria: 
+        one:    "Complience of the defined criteria"
+        other:  "Complience of the defined criteria"
       images:
-        one:    "The image below was attached to this offer:"
-        other:  "The images below has been attached to this offer:"
+        one:    "Attached image"
+        other:  "Attached images"
     activate:
       title:  Make offer
       legend: Please review your offer carefully. The quest owner will be informed about it right after you sumbit your offer.
@@ -284,8 +286,10 @@ en:
       shared:   "Your quest '%{quest}' was successfully shared."
     box:
       title:    "%{amount} bounty"
-      criteria: "Defined Criteria"
       location: "Location restriction: %{location}"
+      criteria: 
+        one:    "Defined Criteria"
+        other:  "Defined Criteria"
       images:
         one:    "Attached image"
         other:  "Attached images"

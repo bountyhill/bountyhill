@@ -2,34 +2,14 @@
 <div class="description"><%= offer.description.html_safe %></div>
 
 <% if offer.criteria.present? %>
-<div class="criteria-section">
-  <p><%= I18n.t("offer.box.criteria") %></p>
-  <ol class="criteria">
-    <% offer.criteria.each do |criterium| %>
-      <li>
-        <%= offer_compliance(offer, :value => (criterium[:compliance].to_i * 10)) %>
-        <div class="criterium-title"><%= criterium[:title] %></div>
-        <div class="criterium-comment"><%= criterium[:comment] %></div>
-      </li>
-    <% end %>
-  </ol>
-</div>
+  <h2><%= I18n.t("offer.box.criteria", :count => offer.criteria.count) %></h2>
+  <%= partial "shared/criteria", :container => offer, :complience => true %>
 <% end %>
 
 <% if offer.images.present? %>
   <div class="image-section">
-    <% offer.images(:width => 185, :height => 180).each_slice(4).with_index do |image_urls, offset| %>
-      <ul class="thumbnails row-fluid">
-        <% image_urls.each_with_index do |image_url, index| %>
-          <li class="span3">
-            <%= link_to(image_tag(image_url, :width => 185, :height => 180),
-              "/offers/#{offer.id}/lightbox/#{(offset*4)+index}",
-              :class => 'thumbnail',
-              :remote => true) %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <h2><%= I18n.t("offer.box.images", :count => offer.images.count) %></h2>
+    <%= partial "shared/images", :container => offer %>
   </div>
 <% end %>
 

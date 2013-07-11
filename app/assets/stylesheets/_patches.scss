@@ -57,18 +57,6 @@
   text-shadow: none !important;               /* get rif of the text shadow defined for all buttons */
 }
 
-/* -------- progress bar ---------- */
-
-.progress {
-  background-image: none;
-  .bar {
-    font-weight: bold;                        /* font looks much nicer when bold */
-    &:after {
-      content:"%";                            /* display progress bar value always as percentage */
-    }
-  }
-}
-
 /* -------- thumbnail gallery ---------- */
 
 .row-fluid .thumbnails {

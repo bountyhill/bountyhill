@@ -75,11 +75,13 @@ module OffersHelper
   
   def offer_compliance(offer, options={})
     value = options[:value] || offer.compliance.to_s
-    label = options[:label] || I18n.t("offer.compliance", :precentage => value)
     css   = options[:class] || "progress"
     
     div :class => css do
-      div label, :class => "bar", :style => "width: #{value}%;"
+      [
+        div(:class => "bar-container") { div("&nbsp;", :class => "bar", :style => "width: #{value}%;") },
+        div(value,  :class => "value")
+      ].join.html_safe
     end
   end
   

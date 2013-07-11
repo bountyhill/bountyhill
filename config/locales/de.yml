@@ -213,10 +213,12 @@ de:
     compliance: "%{precentage}% erfüllt"
     box:
       title:    "%{precentage}% Erfüllungsgrad"
-      criteria: "Die für diese Suche aufgestellten Kriterien sind wie folgt erfüllt:"
+      criteria:
+        one:    "Erfüllung des aufgestellten Kriteriums"
+        other:  "Erfüllung der aufgestellte Kriterien"
       images:
-        one:    "1 Bild wurde diesem Angebot hinzugefügt:"
-        other:  "%{count} Bilder wurden diesem Angebot hinzugefügt:"
+        one:    "Hinzugefügtes Bild"
+        other:  "Hinzugefügte Bilder"
     activate:
       title:  Angebot abgeben
       legend: "Schau Dir Dein Angebot vor der Abgabe noch einmal an. Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
@@ -284,11 +286,13 @@ de:
       shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     box:
       title:    "%{amount} Belohnung"
-      criteria: "Aufgestellte Kriterien"
       location: "Ortsbeschränkung: %{location}"
+      criteria: 
+        one:    "Aufgestelltes Kriterium"
+        other:  "Aufgestellte Kriterien"
       images:   
         one:    "Hinzugefügtes Bild"
-        other:  "Hinzugefügtes Bilder"
+        other:  "Hinzugefügte Bilder"
     list:
       title:
         zero:   "Suchen"

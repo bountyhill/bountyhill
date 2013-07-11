@@ -99,9 +99,9 @@ form {
 /* code by @naoisegolden */
 
 .step-indicator {
+  margin: -8px 0 0 0;
+  padding: 0;
   counter-reset: item;
-  font-weight: normal;
-  padding-right: 10px;
   li {
     display: block;
     float: left;
@@ -126,7 +126,7 @@ form {
       width: 25px;
       height: 25px;
       background-color: #ccc;
-      border-radius: 50%;
+      @include border-radius(50%);
       margin: 0 .5em;
       margin-bottom: .25em;
     }

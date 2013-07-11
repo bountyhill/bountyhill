@@ -34,12 +34,15 @@
       line-height: 100%;
     }
     h2 {
-      margin: 36px 0 8px 0;
+      margin: 0 0 8px 0;
       font-size: 120%;
       line-height: 100%;
     }
-    .description, .image-section, .criteria-section {
+    .description, .criteria-section {
       margin: 8px 0 36px 0;
+    }
+    .image-section {
+      margin: 8px 0 16px 0; /* image list elements come with margin-bottom: 20px already */
     }
     #map { 
       margin: 16px 0 0 0; 
@@ -50,19 +53,21 @@
     }
     .criteria-section {
       .criteria {
-        & > li {
-          margin: 8px 0;
-          clear: both;
-          .criterium-title, .criterium-comment {
-            width: 66%;
-          }
-          .progress { 
-            float: right;
-            width: 33%;
-          }
-          .criterium-comment {
-            font-weight: normal;
-            font-style: italic;
+        list-style: none;
+        margin: 0;
+        li {
+          min-height: 44px;
+          margin: 0 0 16px 0;
+          .index {
+            float: left;
+            padding: 8px;
+            width: 20px;
+            height: 20px;
+            margin-left: -44px;
+            color: $text;
+            font-family: $font_system;
+            font-size: 140%;
+            text-align: center;
           }
         }
       }
@@ -100,7 +105,8 @@
   
   /* ------- forms ------- */
   form {
-    padding: 0 50px;
+    .control-label { width: 130px; }
+    .controls { margin-left: 150px; }
     .buttons { margin: 30px 0; }
     .buttons, .controls { 
       .btn {

@@ -17,7 +17,7 @@ $open_left:   16px + (64px / 2);
 .spacer  { min-height: $box_spacing; }
 
 .two-columns {
-  width: 50%;
+  width: 48%;
   &.left  { float: left; }
   &.right { float: right; }
 }

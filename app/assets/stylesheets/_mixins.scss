@@ -63,6 +63,7 @@
     .header  { background-color: $quest_box_title_color; }
     .content {
       h1, h2 { color: $quest_box_title_color; }
+      .criteria-section { .criteria { li { .index { background-color: $quest_box_title_color; }}}}
     }
   }
   @else if  $box_type == quests { 
@@ -74,6 +75,7 @@
     .header { background-color: $offer_box_title_color; }
     .content {
       h1, h2 { color: $offer_box_title_color; }
+      .criteria-section { .criteria { li { .index { background-color: $offer_box_title_color; }}}}
     }
   }
   @else if  $box_type == offers { 
