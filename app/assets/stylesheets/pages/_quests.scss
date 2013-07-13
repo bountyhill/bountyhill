@@ -32,47 +32,50 @@
   }
 }
 
-.quest {
-  &.side {
-    &.box {
-      min-height: 84px;
-      position: relative;
-      padding: 10px;
-      background-color: $quests_box_content_color;
-      color: $text_inverse;
-      border-top: 16px solid $quests_box_title_color;
-      border-bottom: 16px solid $quests_box_title_color;
-      .avatar {
-        float: left;
-        min-width: 32px;
-        min-height: 32px;
-      }
-      .user {
-        display: block;
-        margin-left: 37px;
-        height: 32px;
-        font-size: 80%;
-        line-height: 80%;
-        color: $quests_box_title_color;
-      }
-      .header {
-        display: block;
-        font-family: 'Open Sans', arial, sans-serif;
-        height: 100%;
-        padding: 0;
-        margin: 10px 0;
-        font-size: 90%;
-        line-height: 90%;
+/* quest box in sidebar */
+.sidebar {
+  .quest {
+    &.side {
+      &.box {
+        min-height: 84px;
+        position: relative;
+        padding: 10px;
         background-color: $quests_box_content_color;
         color: $text_inverse;
-      }
-      .time {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size: 80%;
-        line-height: 80%;
-        color: $quests_box_title_color;
+        border-top: 16px solid $quests_box_title_color;
+        border-bottom: 16px solid $quests_box_title_color;
+        .avatar {
+          float: left;
+          width: 32px;
+          height: 32px;
+        }
+        .user {
+          display: block;
+          margin-left: 37px;
+          height: 32px;
+          font-size: 80%;
+          line-height: 80%;
+          color: $quests_box_title_color;
+        }
+        .header {
+          display: block;
+          font-family: 'Open Sans', arial, sans-serif;
+          height: 100%;
+          padding: 0;
+          margin: 10px 0;
+          font-size: 90%;
+          line-height: 90%;
+          background-color: $quests_box_content_color;
+          color: $text_inverse;
+        }
+        .time {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          font-size: 80%;
+          line-height: 80%;
+          color: $quests_box_title_color;
+        }
       }
     }
   }
