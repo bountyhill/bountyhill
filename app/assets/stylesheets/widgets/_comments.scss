@@ -11,26 +11,27 @@
       padding: 0;
     }
     form {
-      padding: 16px 16px 16px 0;
-      margin: 0 0 0 $box_content_h_padding;
-      textarea { min-width: $message_width; }
+      adding: 16px 16px 0 0;
+      margin: 0 0 0 $avatar_size + $message_padding;
+      overflow: hidden;
+      textarea { width: 100%; }
       buttons { width: message_stats_width; }
     }
     ul#comments {
       & > li {
-        &#no_comments {
-          min-height: 0;
+        &#no_comments { min-height: 0; }
+        .message-container {
+          height: auto;
+          .message-box { margin-right: 0px; }
         }
       }
     }
-    #new_comment {
+    #new_comment_form {
       position: relative;
       clear: both;
+      padding: $box_padding;
       .buttons { 
-        position: absolute;
-        right: 16px;
-        bottom: 16px;
-        margin: 0; 
+        margin: 16px 0 0 0; 
       }
     }
   }

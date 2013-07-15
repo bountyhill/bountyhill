@@ -39,42 +39,35 @@
       &.box {
         min-height: 84px;
         position: relative;
-        padding: 10px;
+        padding: $box_padding;
         background-color: $quests_box_content_color;
         color: $text_inverse;
-        border-top: 16px solid $quests_box_title_color;
-        border-bottom: 16px solid $quests_box_title_color;
+        border-top: 8px solid $quests_box_title_color;
+        border-bottom: 8px solid $quests_box_title_color;
         .avatar {
           float: left;
           width: 32px;
           height: 32px;
         }
+        .user, .time {
+          font-family: $font_system;
+          color: $quests_box_title_color;
+        }
         .user {
           display: block;
-          margin-left: 37px;
+          margin-left: 32px + 8px;
           height: 32px;
-          font-size: 80%;
-          line-height: 80%;
-          color: $quests_box_title_color;
-        }
-        .header {
-          display: block;
-          font-family: 'Open Sans', arial, sans-serif;
-          height: 100%;
-          padding: 0;
-          margin: 10px 0;
-          font-size: 90%;
-          line-height: 90%;
-          background-color: $quests_box_content_color;
-          color: $text_inverse;
         }
         .time {
-          position: absolute;
-          bottom: 10px;
-          right: 10px;
-          font-size: 80%;
-          line-height: 80%;
-          color: $quests_box_title_color;
+          text-align: right;
+          font-style: italic;
+          font-size: 90%;
+        }
+        .title {
+          display: block;
+          margin: 8px 0 16px 0;
+          font-family: $font_user;
+          color: $text_inverse;
         }
       }
     }

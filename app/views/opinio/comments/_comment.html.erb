@@ -12,12 +12,12 @@
         </div>
       </div>
       <div class="message-body">
-        <%= simple_format(comment.body, :class => "message") %>
+        <%= comment.body %>
       </div>
     </div>
-    <div class="message-stats">
-      <%= comment_buttons(comment, :reply => reply) %>
-    </div>
+    <!-- <div class="message-stats"> -->
+      <%#= comment_buttons(comment, :reply => reply) %>
+    <!-- </div> -->
   </div>
   <% if Opinio.accept_replies && !reply %>
     <ul id="comment_<%= comment.id %>_replies" class="replies">

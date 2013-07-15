@@ -15,8 +15,7 @@ ul.list {
     list-style: none;
     position: relative;
   }
-  & > li { min-height: 96px + 16px; }
-  & > li:last-child { min-height: 0; }
+  & > li { min-height: $message_height + ($message_padding / 2); }
 
   /* ------- statistic ------- */
   .statistic {

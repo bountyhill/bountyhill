@@ -38,9 +38,9 @@
 
 @mixin message($background_color, $border_color) {
   .message-container {
-    border-color: $border_color;
+    border-color:     $border_color;
+    background-color: $background_color;
     .message-box { 
-      background-color: $background_color;
       .message-head {
         color: $border_color;
         a { color: $border_color; }

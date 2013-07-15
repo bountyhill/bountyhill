@@ -134,8 +134,8 @@ module QuestsHelper
       elsif !quest.started? then awesome_icon(:minus_sign)  + I18n.t('quest.status.not_started')
       end
 
-    statistic_entries << awesome_icon(:picture) + I18n.t('quest.list.images', :count => quest.images.size)  if quest.images.present?
     statistic_entries << awesome_icon(:globe)   + quest.location.address                                    if quest.location.present?
+    statistic_entries << awesome_icon(:picture) + I18n.t('quest.list.images', :count => quest.images.size)  if quest.images.present?
     statistic_entries.flatten
 
     ul :class => "stats-list" do

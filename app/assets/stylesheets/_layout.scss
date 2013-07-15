@@ -11,10 +11,18 @@ $box_header_height:     56px - (2*$box_padding);
 $section_top_margin:    8px;
 $section_bottom_margin: 36px;
 
+$avatar_size: 64px;
+
 /* opener position */
 $open_center: 50%;
-$open_left:   16px + (64px / 2);
+$open_left:   $box_padding + ($avatar_size / 2);
 
+/* ------- message ------- */
+$message_height:      104px;
+$message_width:       4 * $message_height;
+$message_padding:     $box_padding;
+$message_border_size: $box_border_size;
+$message_stats_width: 2.5 * $message_height;
 
 .sidebar { min-width: 200px; }
 .spacer  { min-height: $box_spacing; }

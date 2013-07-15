@@ -2,51 +2,38 @@
 .offers   { @include message($offers_box_content_color,   $offers_box_title_color); }
 .comments { @include message($comments_box_content_color, $comments_box_title_color); }
 
-/* ------- message ------- */
-$message_height:      96px;
-$message_width:       4 * $message_height;
-$message_head_height: 32px;
-$message_padding:     8px;
-$message_border_size: 8px;
-$message_stats_width: 2.5 * $message_height;
-
 .message-container {
+  padding: $box_padding;
   position: relative;
   height: $message_height;
-  overflow: hidden;
   border-bottom: $message_border_size solid $transparent;
   .avatar {
-    height: $message_height;
+    height: $avatar_size;
+    width: $avatar_size;
     img { float: left; }
   }
   .message-box {
+    height: avatar_size;
     color: $text_inverse;
-    margin-left:  $message_height;
+    overflow: hidden;
+    margin-left:  $avatar_size + $box_padding;
     margin-right: $message_stats_width + (2 * $message_padding);
-    .message-head, .message-body {
-      min-width: $message_width;
-    }
+    .message-head, .message-body { min-width: $message_width; }
     .message-head {
-      position: relative;
-      height: $message_head_height - (2 * $message_padding);
-      padding: $message_padding (2 * $message_padding);
+      font-family: $font_system;
+      height: $message_padding + 8px;
       .owner {
-        position: absolute;
-        /* width: 60%; */
-        margin-right: 5px;
+        width: 60%;
+        margin-right: 8px;
       }
       .time {
-        position: absolute;
-        right: 2 * $message_padding;
-        /* width: 40%; */
+        float: right;
+        width: 40%;
         text-align: right;
         font-style: italic;
       }
     }
     .message-body {
-      height: $message_height - $message_head_height - (2 * $message_padding);
-      padding: $message_padding (2 * $message_padding);
-      font-size: 110%;
       a {
         color: $text_inverse;
         &:hover { color: $text_inverse_highlight; }
@@ -73,9 +60,7 @@ $message_stats_width: 2.5 * $message_height;
         text-decoration: none;
       }
     }
-    .stats-list {
-      margin: 0 $message_padding;
-    }
+    .stats-list { margin: 0; }
     .btn-group {
       display: none;
       position: absolute;
