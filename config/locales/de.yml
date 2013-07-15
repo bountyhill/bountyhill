@@ -154,6 +154,8 @@ de:
     box:
       title:      "Dein Profil"
       info_icon:  "Diese Angaben können von anderen Nutzer nicht eingesehen werden."
+      profile:
+        title: Nutzerprofil
     form:
       title:  Persönliche Daten Bearbeiten
       profile:

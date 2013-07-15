@@ -154,6 +154,8 @@ en:
     box:
       title:      "Your profile"
       info_icon:  "This information cannot be seen by other users."
+      profile:
+        title: User profile
     form:
       title:  Edit Personal Data
       profile:
