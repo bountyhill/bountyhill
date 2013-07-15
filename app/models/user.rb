@@ -13,6 +13,12 @@ require_dependency "identity/email"
 class User < ActiveRecord::Base
   include ActiveRecord::RandomID
 
+  #
+  # definition of identities providing additional information
+  # TODO: the identity itself should know what info it provides
+  CONTACT_IDENTITIES  = [:email, :twitter, :facebook]
+  AVATAR_IDENTITIES   = [:twitter, :facebook]
+  
   before_save :create_remember_token
 
   with_metrics! "accounts"
@@ -159,20 +165,16 @@ class User < ActiveRecord::Base
   # return the user's name
   def name
     name = "#{first_name} #{last_name}"
-
-    if name.blank? && identity = self.identity(:twitter)
-      name = identity.name
-    end
-
-    if name.blank? && identity = self.identity(:facebook)
-      name = identity.name
-    end
-
-    if name.blank? && identity = self.identity(:email)
-      name = identity.email
+    return name unless name.blank?
+    
+    identity_with_name = CONTACT_IDENTITIES.detect do |ci| 
+      identity = find_identity(ci)
+      identity.respond_to?(:name) && !identity.name.blank?
     end
     
-    name
+    if identity_with_name
+      name = find_identity(identity_with_name).name
+    end
   end
 
   # return the user's email
@@ -227,8 +229,8 @@ class User < ActiveRecord::Base
       end
     end
     
-    avatar ||= if (ident = [:twitter, :facebook].detect{ |id| self.identity(id) && self.identity(id).respond_to?(:avatar) })
-        identity(ident).avatar
+    avatar ||= if (ident = AVATAR_IDENTITIES.detect{ |id| find_identity(id) && find_identity(id).respond_to?(:avatar) })
+        find_identity(ident).avatar
       end
     avatar || Gravatar.url(:size => options[:size])
   end
