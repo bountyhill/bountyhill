@@ -38,18 +38,18 @@
       font-size: 120%;
       line-height: 100%;
     }
-    .description, .criteria-section {
-      margin: 8px 0 36px 0;
+    .description, .criteria-section, .image-section {
+      margin: $section_top_margin 0 $section_bottom_margin 0;
     }
     .image-section {
-      margin: 8px 0 16px 0; /* image list elements come with margin-bottom: 20px already */
+      margin-bottom: $section_bottom_margin - 20px; /* image list elements come with margin-bottom: 20px already */
     }
     #map { 
       margin: 16px 0 0 0; 
     }
     .button-section {
       float: right;
-      margin: 16px 0 36px 0;
+      margin: ($section_top_margin*2) 0 $section_bottom_margin 0;
     }
     .criteria-section {
       .criteria {

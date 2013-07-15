@@ -8,6 +8,9 @@ $box_border_bottom:     $box_border_size solid $white;
 $box_spacing:           24px; /* vertical space between boxes */
 $box_header_height:     56px - (2*$box_padding);
 
+$section_top_margin:    8px;
+$section_bottom_margin: 36px;
+
 /* opener position */
 $open_center: 50%;
 $open_left:   16px + (64px / 2);
