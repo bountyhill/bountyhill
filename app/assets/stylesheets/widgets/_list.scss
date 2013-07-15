@@ -15,7 +15,10 @@ ul.list {
     list-style: none;
     position: relative;
   }
-  & > li { min-height: $message_height + ($message_padding / 2); }
+  & > li { 
+    min-height: $message_height + ($message_padding / 2); 
+    &:last-child { min-height: 0; }
+  }
 
   /* ------- statistic ------- */
   .statistic {

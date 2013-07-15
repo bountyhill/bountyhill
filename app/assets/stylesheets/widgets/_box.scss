@@ -34,12 +34,12 @@
       line-height: 100%;
     }
     h2 {
-      margin: 0 0 8px 0;
+      margin: $section_bottom_margin 0 $section_top_margin 0;
       font-size: 120%;
       line-height: 100%;
     }
     .description, .criteria-section, .image-section {
-      margin: $section_top_margin 0 $section_bottom_margin 0;
+      margin: $section_top_margin 0 0 0;
     }
     .image-section {
       margin-bottom: $section_bottom_margin - 20px; /* image list elements come with margin-bottom: 20px already */
@@ -58,6 +58,7 @@
         li {
           min-height: 44px;
           margin: 0 0 16px 0;
+          line-height: 18px;
           .index {
             float: left;
             padding: 8px;

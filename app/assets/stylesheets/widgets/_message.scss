@@ -15,7 +15,6 @@
   .message-box {
     height: avatar_size;
     color: $text_inverse;
-    overflow: hidden;
     margin-left:  $avatar_size + $box_padding;
     margin-right: $message_stats_width + (2 * $message_padding);
     .message-head, .message-body { min-width: $message_width; }
@@ -31,6 +30,7 @@
         width: 40%;
         text-align: right;
         font-style: italic;
+        font-size: 90%;
       }
     }
     .message-body {
@@ -53,13 +53,6 @@
     overflow: hidden;
     color: $text;
     font-weight: bold;
-    a {
-      color: $text;
-      &:hover { 
-        color: $text_highlight; 
-        text-decoration: none;
-      }
-    }
     .stats-list { margin: 0; }
     .btn-group {
       display: none;
