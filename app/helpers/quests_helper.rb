@@ -58,7 +58,7 @@ module QuestsHelper
   def quests_location_filter(location, radius)
     expect! location => OpenStruct
     
-    title = div :class => "title" do
+    title = div :class => "header" do
       div(I18n.t("filter.location.title"), :class => "pull-left")
     end
     
