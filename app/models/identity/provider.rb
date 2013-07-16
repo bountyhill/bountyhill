@@ -115,5 +115,11 @@ module Identity::Provider
       image || options[:default]
     end
   
+    #
+    # this implies that the model at least responds to methods 'avatar' and 'name'
+    def identity_provider?
+      true
+    end
+    
   end
 end

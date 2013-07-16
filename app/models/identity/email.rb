@@ -31,10 +31,6 @@ class Identity::Email < Identity
 
   # -- methods --------------------------------------------------------
   
-  def avatar(options={})
-    Gravatar.url(options.merge(:email => email))
-  end
-
   def confirmed?
     confirmed_at.present?
   end

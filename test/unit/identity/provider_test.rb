@@ -86,4 +86,16 @@ class Identity::ProviderTest < ActiveSupport::TestCase
     assert_equal "image",  t.avatar(:default => "foobar")
   end
   
+  def test_identity_provider?
+    tw = Identity::Twitter.new(:identifier => "foobar")
+    assert tw.identity_provider?
+    assert tw.respond_to?(:name)
+    assert tw.respond_to?(:avatar)
+    
+    fb  = Identity::Facebook.new(:identifier => "foobar")
+    assert fb.identity_provider?
+    assert fb.respond_to?(:name)
+    assert fb.respond_to?(:avatar)
+  end
+  
 end

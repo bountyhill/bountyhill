@@ -14,15 +14,6 @@ class Identity::EmailTest < ActiveSupport::TestCase
     assert !Identity::Email.authenticate(email, "barfoo")
   end
 
-  def test_avatar
-    email     = "foo.bar@example.com"
-    options   = { :foo => "foo", :bar => "bar" }
-    identity  = Identity::Email.new(:email => email)
-    
-    Gravatar.expects(:url).with(options.merge(:email => email))
-    identity.avatar(options)
-  end
-
   def test_confirmed?
     identity = Identity::Email.new
     assert !identity.confirmed?
@@ -50,5 +41,11 @@ class Identity::EmailTest < ActiveSupport::TestCase
     
     identity.send(:send_confirmation_email)
   end
+  
+  def test_identity_provider?
+    email = Identity::Email.new
+    assert_false email.identity_provider?
+  end
+  
   
 end

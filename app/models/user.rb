@@ -13,12 +13,6 @@ require_dependency "identity/email"
 class User < ActiveRecord::Base
   include ActiveRecord::RandomID
 
-  #
-  # definition of identities providing additional information
-  # TODO: the identity itself should know what info it provides
-  CONTACT_IDENTITIES  = [:email, :twitter, :facebook]
-  AVATAR_IDENTITIES   = [:twitter, :facebook]
-  
   before_save :create_remember_token
 
   with_metrics! "accounts"
@@ -164,16 +158,12 @@ class User < ActiveRecord::Base
 
   # return the user's name
   def name
-    name = "#{first_name} #{last_name}"
-    return name unless name.blank?
-    
-    identity_with_name = CONTACT_IDENTITIES.detect do |ci| 
-      identity = find_identity(ci)
-      identity.respond_to?(:name) && !identity.name.blank?
+    unless (name = "#{first_name} #{last_name}").blank?
+      return name
     end
     
-    if identity_with_name
-      name = find_identity(identity_with_name).name
+    if (identity = identities.detect { |identity| identity.identity_provider? && !identity.name.blank? })
+      identity.name
     end
   end
 
@@ -218,10 +208,11 @@ class User < ActiveRecord::Base
   alias_method :facebook, :facebook_nickname
 
   #
-  # return's the user's avatar image if the user has uploaded one, or if not
-  # returns the Gravatar URL from http://gravatar.com/ for the given user.
+  # return's the user's avatar image if the user has uploaded one, or 
+  # if one of it's identities provides one, or
+  # the Gravatar URL from http://gravatar.com/ for the given user.
   def avatar(options = {})
-    if avatar = self.image
+    if (avatar = self.image)
       avatar = avatar.first if avatar.kind_of?(Array)
       width, height = options.values_at(:width, :height)
       if width && height
@@ -229,10 +220,17 @@ class User < ActiveRecord::Base
       end
     end
     
-    avatar ||= if (ident = AVATAR_IDENTITIES.detect{ |id| find_identity(id) && find_identity(id).respond_to?(:avatar) })
-        find_identity(ident).avatar
+    # try to fetch avatar from identity providers
+    avatar ||= if (identity = identities.detect{ |identity| identity.identity_provider? && !identity.avatar.blank? })
+        identity.avatar
       end
-    avatar || Gravatar.url(:size => options[:size])
+      
+    # try to fetch avatar from Gravatar
+    if email
+      avatar ||= Gravatar.url(email, options)
+    end
+    
+    avatar
   end
   
   def points

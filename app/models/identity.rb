@@ -33,6 +33,12 @@ class Identity < ActiveRecord::Base
     self.send(:subclasses).detect{|subclass| subclass.name.split("::").last.underscore == provider}
   end
 
+  #
+  # this implies that the identity does not responds to the methods 'avatar' and 'name'
+  def identity_provider?
+    false
+  end
+  
   private
   
   def delete_user_if_deleted_last_identity

@@ -103,4 +103,24 @@ class UserTest < ActiveSupport::TestCase
     assert !foo.identity(:twitter)
     assert foo.identity?(:email)
   end
+  
+  def test_name
+    pend "TODO: add tests for name fallbacks!" do
+      assert false
+    end
+  end
+  
+  def test_avatar
+    email = "foo.bar@example.com"
+    user  = User.new
+    user.stubs(:email).returns(email)
+    
+    Gravatar.expects(:url).with(email, {})
+    user.avatar
+    
+    pend "TODO: add more tests for avatar fallbacks!" do
+      assert false
+    end
+  end
+  
 end
