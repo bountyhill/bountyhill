@@ -78,13 +78,13 @@ en:
   home:
     claim:  Together we find in social networks
     instructions:
-      headline1:    YOU - TODO:
+      headline1:    YOU - TODO
       text_left1:   "kannst Deine Suchanfrage bei bountyhill veröffentlichen ..."
       text_right1:  "... wenn Dir deren Erfolg eine finanzielle Belohnung wert ist."
-      headline2:    WE - TODO:
+      headline2:    WE - TODO
       text_left2:   "verbreiten Deine Anfrage in populären sozialen Netzwerken ..."
       text_right2:  "... wobei jede Weiterleitung Deiner Anfrage auch uns eine Belohnung wert ist."
-      headline3:    OUR - TODO:
+      headline3:    OUR - TODO
       text_left3:   "beider Bemühen Deine Suche zum Erfolg zu führen ..."
       text_right3:  "... bringt Dich so Klick für Klick Deinem gewünchten Ziel näher."
     explanation:
