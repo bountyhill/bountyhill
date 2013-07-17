@@ -77,6 +77,16 @@ de:
     jobs:         Jobs
   home:
     claim:  bountyhill - gemeinsam finden
+    instructions:
+      headline1:    DU
+      text_left1:   "veröffentlichst eine Suchanzeige bei uns..."
+      text_right1:  "... war diese erfolgreich, ist das Dir eine finanzielle Belohnung wert."
+      headline2:    WIR
+      text_left2:   "annoncieren deinen Suchauftrag in sozialen Netzwerken..."
+      text_right2:  "...jede Weiterleitung ist uns auch eine Belohnung wert."
+      headline3:    UNSER
+      text_left3:   "soziales Netzwerk wird von beiden Belohnungen animiert..."
+      text_right3:  "... jede Weiterverbreitung Deiner Suche bringt Dich deinem Ziel näher."
     explanation:
       headline1:  Wir suchen ständig
       text1:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
