@@ -32,22 +32,24 @@
 <script type="text/javascript" charset="utf-8">
 // recalculate compliance, whenever a compliance changed.
   jQuery("input[type=range]").change(function() {
-    var form    = $(this).closest("form");
-    var mainBar = jQuery("div.progress div.bar", form)[0];
-    var sliders = jQuery("input[type=range]", form);
-    var li      = $(this).closest("li");
-    var slider  = jQuery("input[type=range]", li);
-    var bar     = jQuery("div.progress div.bar", li)[0];
-    var sum     = 0;
+    var form      = $(this).closest("form");
+    var mainBar   = jQuery("div.progress div.bar", form)[0];
+    var mainValue = jQuery("div.progress div.value", form)[0];
+    var sliders   = jQuery("input[type=range]", form);
+    var li        = $(this).closest("li");
+    var slider    = jQuery("input[type=range]", li);
+    var bar       = jQuery("div.progress div.bar", li)[0];
+    var value     = jQuery("div.progress div.value", li)[0];
+    var sum       = 0;
 
     sliders.each(function() { sum += parseInt($(this).val()); });
     var compliance_sum = Math.round(sliders.length > 0 ? (sum * 100) / (10 * sliders.length) : 50);
     
-    mainBar.innerHTML = compliance_sum;
+    mainValue.innerHTML = compliance_sum;
     mainBar.setAttribute('style', 'width:' + compliance_sum + '%');
     
     var compliance = (10 * parseInt($(this).val()));
-    bar.innerHTML = compliance;
+    value.innerHTML = compliance;
     bar.setAttribute('style', 'width:' + compliance + '%');
   });
 </script>
