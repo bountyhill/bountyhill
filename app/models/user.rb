@@ -226,11 +226,7 @@ class User < ActiveRecord::Base
       end
       
     # try to fetch avatar from Gravatar
-    if email
-      avatar ||= Gravatar.url(email, options)
-    end
-    
-    avatar
+    avatar ||= Gravatar.url(email, options)
   end
   
   def points
