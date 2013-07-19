@@ -79,7 +79,7 @@ module ApplicationController::RequiredIdentity
 
     # -- fetch notice text --------------------------------------------
     notice = options.delete(:notice)
-    notice ||= I18n.t("identity.required", :identitiy => kind)
+    notice ||= I18n.t("identity.required", :identity => kind)
 
     # -- prepare payload ----------------------------------------------
     
