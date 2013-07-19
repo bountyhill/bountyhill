@@ -1,3 +1,1 @@
-# Privacy
-
-I am the privacy page, in `app/views/static/privacy.md`.
+TODO: I am the privacy page, in `app/views/static/privacy.md`.

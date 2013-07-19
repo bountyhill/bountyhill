@@ -1,0 +1,5 @@
+.box {
+  &.static {
+    @include box_colors(static);
+  }
+}

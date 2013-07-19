@@ -2,7 +2,7 @@ class StaticController < ApplicationController
   layout :layout
 
   def layout #:nodoc:
-    "page"
+    "static"
   end
 
   def help

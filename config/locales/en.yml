@@ -98,6 +98,13 @@ en:
       text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
       headline5:  Get happy
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+  static:
+    title:
+      about:    Abount bountyhill
+      contact:  Contact
+      imprint:  Imprint
+      privacy:  Privacy Policy
+      terms:    Terms of Use
   identity:
     required: "We need your %{identity} identity to continue."
     form:

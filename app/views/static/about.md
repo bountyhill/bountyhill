@@ -1,3 +1,1 @@
-# About
-
-I am the about page, in `app/views/static/about.md`.
+TODO: I am the about page, in `app/views/static/about.md`.

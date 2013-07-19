@@ -1,8 +1,4 @@
-# Contact
-
-I am the contact page, in `app/views/static/contact.md`.
-
-bountyhill.com is operated by
+TODO: bountyhill.com is operated by
 
 bountyhill UG (haftungsbeschränkt) & Co. KG
   

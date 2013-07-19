@@ -67,7 +67,7 @@ de:
     my_profile:   Mein Profil
     signin:       Anmelden/Registrieren
     signout:      Abmelden
-    about:        Information
+    about:        Über uns
     contact:      Kontakt
     imprint:      Impressum
     terms:        AGB
@@ -98,6 +98,13 @@ de:
       text4:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
       headline5:  Werde glücklich
       text5:      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+  static:
+    title:
+      about:    Über bountyhill
+      contact:  Kontakt
+      imprint:  Impressum
+      privacy:  Datenschutz
+      terms:    Allgemeine Geschäftsbedingungen
   identity:
     required: "Wir benötigen Deine %{identity} Identität um fortfahren zu können."
     form:

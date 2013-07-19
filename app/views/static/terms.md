@@ -1,6 +1,4 @@
-# Terms
-
-I am the terms page, in `app/views/static/terms.md`.
+TODO: I am the terms page, in `app/views/static/terms.md`.
 
 I have tons of content, too.
 I have tons of content.

@@ -1,0 +1,23 @@
+<%= 
+  content = yield
+  
+  html =  '<div class="row-fluid main">'
+    html << '<div class="span2">&nbsp;</div>'
+  
+    html << '<div class="main span8">'
+      html << '<div class="static box row-fluid">'
+        html << '<div class="header">'
+          html << I18n.t("static.title.#{params[:action]}")
+        html << '</div>'
+
+        html << '<div class="content">'
+          html << content
+        html << '</div>'
+      html << '</div>'
+    html << '</div>'
+
+    html << '<div class="span2">&nbsp;</div>'
+  html << '</div>'
+  
+  render :template => "layouts/application", :locals => { :content => html } 
+%>

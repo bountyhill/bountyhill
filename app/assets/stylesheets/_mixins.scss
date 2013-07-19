@@ -93,6 +93,10 @@
       h1, h2 { color: $user_box_title_color; }
     }
   }
+  @else if  $box_type == static { 
+    background-color: $static_box_color;
+    .header { background-color: $static_box_title_color;}
+  }
   @else if  $box_type == activities { 
     background-color: $activities_box_color;
     .header { background-color: $activities_box_title_color; }
