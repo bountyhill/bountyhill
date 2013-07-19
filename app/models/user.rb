@@ -162,6 +162,10 @@ class User < ActiveRecord::Base
       return name
     end
     
+    if (email = find_identity(:email))
+      return email.name unless email.name.blank?
+    end
+    
     if (identity = identities.detect { |identity| identity.identity_provider? && !identity.name.blank? })
       identity.name
     end
