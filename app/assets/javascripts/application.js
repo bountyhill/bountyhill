@@ -18,6 +18,7 @@
 //= require tinymce
 //= require jquery.inview.js
 //= require bootstrap-lightbox.js
+//= require html5slider
 
 // dummy console, just in case
 if(typeof console === "undefined") {

@@ -13,6 +13,13 @@ form {
     .input-append {
       .add-on { color: $text_inverse; }
     }
+    .controls {
+      .progress {
+        &.main {
+          width: 524px;
+        }
+      }
+    }
   }
   .location {
     label {
@@ -93,6 +100,62 @@ form {
   .buttons {
     float: right;
     margin-bottom: 10px;
+  }
+  .criteria_compliances {
+    margin-left: 0;
+    & > li {
+/*      
+      &:before {
+        content: counter(item);
+        counter-increment: item;
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        background-color: $offers_box_title_color;
+        text-align: center;
+        color: $text;
+        font-family: $font_system;
+        font-size: 140%;
+        font-weight: bold;
+        margin: auto .5em auto .5em;
+      }
+*/
+      margin-bottom: 18px;
+      .criteria { font-weight: bold; }
+      .fullfilment {
+        width: 692px;
+      }
+      .control-group {
+        margin: 8px 0;
+        &.range-slider {
+          float:left;
+          .controls {
+            width: 250px;
+            margin-left: 150px;
+            input[type='range'] {
+              @include appearance(none);
+              @include border-radius(10px);
+              padding: 0;
+              height: 15px;
+              border: 1px solid;
+            }
+            .range-slider-prefix, .range-slider-postfix {
+              margin-top: 6px;
+              display: inline-block;
+              text-align: center;
+            }
+          }
+          .range-slider-prefix  { padding-right: 10px; }
+          .range-slider-postfix { padding-left: 10px; }
+        }
+        &.compliance {
+          .progress {
+            float: right;
+            width: 250px;
+          }
+        }
+      }
+    }
   }
 }
 

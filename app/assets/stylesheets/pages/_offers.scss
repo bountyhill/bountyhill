@@ -4,6 +4,7 @@
   &.offers, &.offer {
     .progress {
       background-image: none;
+      box-shadow: none;
       @include border-radius(0);
       padding: 8px;
       background-color: $offer_comliance_color;
@@ -60,65 +61,6 @@
             background-color: $offer_step_bg_color;
           }
         }
-      }
-    }
-  }
-}
-
-
-form {
-  .control-group {
-    &.compliance {
-      .progress {
-        &.main {
-          width: 542px;
-          height: 26px;
-          line-height: 25px;
-        }
-      }
-    }
-  }
-  
-  .criteria_compliances {
-    & > li {
-      .criteria { font-weight: bold; }
-      margin-bottom: 18px;
-      .control-label {
-        width: 135px;
-      }
-      .controls {
-        margin-left: 155px;
-        .range-slider-prefix, .range-slider-postfix {
-          margin-top: 6px;
-          display: inline-block;
-          text-align: center;
-        }
-      }
-      .range-slider-prefix {
-        padding-right: 10px;
-      }
-      .range-slider-postfix {
-        padding-left: 10px;
-      }
-      .control-group {
-        margin-bottom: 6px;
-        &.range-slider { float:left; }
-        &.compliance { margin-right: 35px; }
-      }
-    }
-  }
-  .control-group {
-    .controls {
-      .progress {
-        margin-top: 6px;
-        width: 280px
-      }
-      input[type='range'] {
-        @include appearance(none);
-        @include border-radius(10px);
-        padding: 0;
-        height: 15px;
-        border: 1px solid;
       }
     }
   }
