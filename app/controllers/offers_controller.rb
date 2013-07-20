@@ -16,9 +16,11 @@ class OffersController < ApplicationController
       order = "offers.compliance DESC, offers.created_at DESC"
     end
     
-    scope = scope.where(params[:owner_id] ? 
-      { :owner_id => @owner.id } : { :quest_id => @owner.quest_ids })
-            
+    conditions = if params[:owner_id] then { :owner_id => @owner.id }
+                 else                      { :quest_id => @owner.quest_ids }
+                 end
+    scope = scope.where(conditions)
+    
     # set additional state scope
     @filters = filters_for(scope, :state)
     scope = scope.with_state(params[:state]) if params[:state]

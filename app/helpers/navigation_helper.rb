@@ -14,7 +14,7 @@ module NavigationHelper
       elsif controller_name == "offers" && personal_page?
         :my_offers
       elsif controller_name == "offers"
-        :offers
+        :received_offers
       elsif controller_name == "quests" && personal_page?
         :my_quests
       elsif controller_name == "quests"
@@ -49,6 +49,8 @@ module NavigationHelper
       link_to awesome_icon(:list) + I18n.t("nav.my_quests"), :controller => :quests, :owner_id => current_user
     when :my_offers
       link_to awesome_icon(:th_list) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
+    when :received_offers
+      link_to awesome_icon(:indent_right) + I18n.t("nav.received_offers"), offers_path
     when :profile
       link_to awesome_icon(:user) + I18n.t("nav.my_profile"), "/profile"
     when :signout
@@ -71,7 +73,7 @@ module NavigationHelper
     
     case position
     when :user
-      [ :my_quests, :my_offers, :profile, :divider, :signout ]
+      [ :my_quests, :my_offers, :received_offers, :profile, :divider, :signout ]
     when :header_center
       [ :start_quest, :quests ]
     when :footer_right
