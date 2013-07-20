@@ -48,7 +48,7 @@ module NavigationHelper
     when :my_quests
       link_to awesome_icon(:list) + I18n.t("nav.my_quests"), :controller => :quests, :owner_id => current_user
     when :my_offers
-      link_to awesome_icon(:th_list) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
+      link_to awesome_icon(:indent_left) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
     when :received_offers
       link_to awesome_icon(:indent_right) + I18n.t("nav.received_offers"), offers_path
     when :profile
