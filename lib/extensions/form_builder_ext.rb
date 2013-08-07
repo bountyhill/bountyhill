@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # -- extend FormBuilder with a control_group method which renders
 #    a default control group for Twitter Bootstrap forms. 
 

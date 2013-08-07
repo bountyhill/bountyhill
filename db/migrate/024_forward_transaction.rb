@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class ForwardTransaction < ActiveRecord::Migration
   def up
     create_table :forwards do |t|

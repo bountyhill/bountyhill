@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ImagesHelper
   
   def image_stack(object)

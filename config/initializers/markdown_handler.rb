@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # require 'action_view'
 
 class ActionView::Template::Handlers::MarkdownHandler

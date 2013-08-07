@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CreateOffers < ActiveRecord::Migration
   def change
     create_table "offers", :force => true do |t|

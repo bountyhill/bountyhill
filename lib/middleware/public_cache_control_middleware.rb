@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class PublicCacheControl
   attr_reader :path, :max_age
   

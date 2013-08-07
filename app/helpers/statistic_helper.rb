@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module StatisticHelper
   
   def distance_of_time_in_days_to_now(time)

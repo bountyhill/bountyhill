@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require "girl_friday"
 
 # Deferred runs methods asynchonously.

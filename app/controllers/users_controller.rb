@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class UsersController < ApplicationController
   before_filter :set_user
   

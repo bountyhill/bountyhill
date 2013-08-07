@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module BoxHelper
 
   def box(type, object, options={})

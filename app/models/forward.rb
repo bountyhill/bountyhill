@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Forward < ActiveRecord::Base
   # t.integer :quest_id           # the id of the quest
   # t.integer :sender_id          # the id of the sender

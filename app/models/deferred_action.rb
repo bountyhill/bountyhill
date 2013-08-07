@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # The DeferredAction class is a way to store an action in a safe way
 # and to have the user initiate it at a later moment, via a link or
 # similar.

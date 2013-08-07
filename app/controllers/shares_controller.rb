@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # The SharesController is used to share a quest via selected social networks, 
 # e.g. twitter, facebook or ...
 class SharesController < ApplicationController

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module SessionsHelper
 
   def link_to_cancel_signin

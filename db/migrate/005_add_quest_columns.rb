@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddQuestColumns < ActiveRecord::Migration
   def up
     add_column :quests, :visibility, :string

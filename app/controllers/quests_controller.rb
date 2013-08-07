@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class QuestsController < ApplicationController
   include ApplicationController::ImageInteractions
   include Filter::Builder

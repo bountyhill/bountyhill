@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AutoTitleMiddleware
   attr_reader :prefix
   

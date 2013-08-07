@@ -1,4 +1,4 @@
-# encoding: utf-8
+# encoding: UTF-8
 
 class Share < ActiveRecord::Base
   belongs_to :quest

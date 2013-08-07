@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationHelper
   def endless_scroll_loader(type)
     expect! type => Symbol

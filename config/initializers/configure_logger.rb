@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class ActiveSupport::BufferedLogger
   def formatter=(formatter)
     @log.formatter = formatter

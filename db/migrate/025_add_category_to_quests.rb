@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddCategoryToQuests < ActiveRecord::Migration
   def change
     add_column  :quests, :category, :text

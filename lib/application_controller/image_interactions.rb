@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationController::ImageInteractions
   
   def self.included(klass)

@@ -1,4 +1,5 @@
-#
+# encoding: UTF-8
+
 # ApplicationController::Halt adds a halt! method which halts the current
 # action, and render! and redirect_to! methods based on halt!, that work
 # like their non-bang counterparts but stop the action upon invocation.

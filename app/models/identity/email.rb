@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Identity::Email < Identity
   # Fix Rails' polymorphic routes
   def self.model_name #:nodoc:

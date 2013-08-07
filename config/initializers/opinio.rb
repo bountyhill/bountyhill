@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # Opinio Configuration
 
 Opinio.setup do |config|

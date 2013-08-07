@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module AccessControlAssertions
   def assert_cannot_write(*objects)
     objects.each do |object|

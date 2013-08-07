@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Offer < ActiveRecord::Base
   opinio_subjectum
 

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class SessionsController < ApplicationController
   
   skip_before_filter  :show_confirmation_reminder

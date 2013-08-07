@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class FixIdentityIndices < ActiveRecord::Migration
   def up
     remove_index "identities", ["email"]

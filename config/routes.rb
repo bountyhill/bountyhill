@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require "resque/server"
 
 Bountyhill::Application.routes.draw do

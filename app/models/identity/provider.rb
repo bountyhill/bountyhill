@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Identity::Provider
   # can be used by identity models that are handled by omniauth
   # e.g.

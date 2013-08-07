@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 if Rails.env.development?
   
 module I18n

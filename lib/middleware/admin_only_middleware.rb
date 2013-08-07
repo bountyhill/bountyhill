@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AdminOnlyMiddleware
   def initialize(app)
     @app = app

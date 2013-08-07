@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class UserMailer < ActionMailer::Base
   layout "../user_mailer/layout"
   

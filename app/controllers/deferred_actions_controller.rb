@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class DeferredActionsController < ApplicationController
   attr_reader :action
   

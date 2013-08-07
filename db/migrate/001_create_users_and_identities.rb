@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CreateUsersAndIdentities < ActiveRecord::Migration
   def change
     create_table "identities", :force => true do |t|

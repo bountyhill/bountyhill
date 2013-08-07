@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class OffersController < ApplicationController
   include ApplicationController::ImageInteractions
   include Filter::Builder

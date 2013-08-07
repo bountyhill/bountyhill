@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module QuestsHelper
 
   def quest_box(quest, options={})

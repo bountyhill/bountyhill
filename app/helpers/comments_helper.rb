@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module CommentsHelper
 
   def comments_list_box_buttons

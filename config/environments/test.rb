@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 Bountyhill::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

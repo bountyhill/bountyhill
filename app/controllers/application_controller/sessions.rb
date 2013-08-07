@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require_dependency "identity/twitter"
 
 module ApplicationController::Sessions

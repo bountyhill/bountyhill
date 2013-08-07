@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Filter
   class Item < Struct.new(:type, :name, :count, :url)
     def active?(selected_name)

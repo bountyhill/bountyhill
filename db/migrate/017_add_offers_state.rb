@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddOffersState < ActiveRecord::Migration
   def up
     add_column "offers", "state", :string

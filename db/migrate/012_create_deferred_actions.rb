@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CreateDeferredActions < ActiveRecord::Migration
   def change
     create_table :deferred_actions do |t|

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class ActivitiesController < ApplicationController
   
   def index

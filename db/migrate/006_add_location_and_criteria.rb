@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddLocationAndCriteria < ActiveRecord::Migration
   def up
     add_column :quests, :location, :string

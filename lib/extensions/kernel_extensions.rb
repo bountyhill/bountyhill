@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CGI
   def self.build_url(base_url, params = {})
     params = params.without_blank_values

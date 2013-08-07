@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # The RunsController is used to changea quest's status, 
 # e.g.to start or to stop a quest 
 class RunsController < ApplicationController

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require_relative "../test_helper.rb"
 
 class UserTest < ActiveSupport::TestCase

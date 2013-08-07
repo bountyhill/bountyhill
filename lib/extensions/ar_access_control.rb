@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # SQL-based access control
 module ActiveRecord::AccessControl
   # returns the current user for the AccessControl module.

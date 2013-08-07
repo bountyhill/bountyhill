@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class MoveRememberTokenToUsers < ActiveRecord::Migration
   def up
     remove_column "identities", "remember_token"

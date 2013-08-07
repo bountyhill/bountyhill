@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddRewards < ActiveRecord::Migration
   def change
     add_column "users", "badges", :text

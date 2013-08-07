@@ -1,4 +1,5 @@
-#
+# encoding: UTF-8
+
 # ApplicationController::Redirected provides a redirect_to! method,
 # which works like redirect_to, but stops the action at that point.
 module ApplicationController::Redirected

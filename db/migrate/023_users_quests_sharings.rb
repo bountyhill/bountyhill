@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class UsersQuestsSharings < ActiveRecord::Migration
   def up
     create_table :users_quests_sharings, :id => false do |t|

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # stores a user's identity.
 #
 # An identity is needed to

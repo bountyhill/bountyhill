@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationController::Debugging
   def debug(key=nil, value=nil)
     @debug ||= []

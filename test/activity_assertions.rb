@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ActivityAssertions
   
   def assert_activity_logged(action=:create, object=nil, &block)

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module UsersHelper
   def profile_box(user)
     expect! user => User

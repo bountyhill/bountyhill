@@ -1,4 +1,5 @@
-#
+# encoding: UTF-8
+
 # ApplicationController::XHRRedirection adds a redirect_to method, which responds
 # "properly" to XHR requests.
 module ApplicationController::XHRRedirection

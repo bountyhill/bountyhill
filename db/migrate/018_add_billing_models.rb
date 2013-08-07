@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddBillingModels < ActiveRecord::Migration
   def change
     create_table "accounts", :force => true do |t|

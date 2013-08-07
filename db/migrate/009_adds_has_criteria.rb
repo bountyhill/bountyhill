@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddsHasCriteria < ActiveRecord::Migration
   def up
     add_column :quests, :number_of_criteria, :integer, :null => false, :default => 0

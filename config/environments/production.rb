@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # Note: This file is active in "staging" *AND* in "production".
 
 Bountyhill::Application.configure do

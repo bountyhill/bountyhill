@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class RemoveQuestImage < ActiveRecord::Migration
   def up
     remove_column :quests, :image

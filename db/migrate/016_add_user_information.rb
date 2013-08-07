@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddUserInformation < ActiveRecord::Migration
   def change
     add_column :users, "serialized", :text

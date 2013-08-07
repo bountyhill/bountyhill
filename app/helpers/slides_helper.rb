@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module SlidesHelper
   WIDTH = 100
   HEIGHT = 100

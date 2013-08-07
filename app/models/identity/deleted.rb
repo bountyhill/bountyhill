@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Identity::Deleted < Identity
   # Fix Rails' polymorphic routes
   def self.model_name #:nodoc:

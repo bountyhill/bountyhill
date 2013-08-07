@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ApplicationController::RequiredIdentity
   H = ApplicationController::RequiredIdentity
 

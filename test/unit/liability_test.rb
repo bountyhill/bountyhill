@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require_relative "../test_helper.rb"
 
 load "spec/factories.rb"

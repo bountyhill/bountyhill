@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module ButtonHelper
 
   def button_group(buttons)

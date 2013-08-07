@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Bountyhill::Application
   @@url_options = {
     host: "bountyhill.local",

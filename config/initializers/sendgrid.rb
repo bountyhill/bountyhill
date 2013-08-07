@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 ActionMailer::Base.smtp_settings = {
   :address        => "smtp.sendgrid.net",
   :port           => "25",

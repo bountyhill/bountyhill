@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module AccordionHelper
   
   def accordion(options={}, &block)

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# encoding: UTF-8
 
 module NavigationHelper
   # returns "active" if the nav_item belongs to the current controller.

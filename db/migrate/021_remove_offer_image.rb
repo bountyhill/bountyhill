@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class RemoveOfferImage < ActiveRecord::Migration
   def up
     remove_column :offers, :image
