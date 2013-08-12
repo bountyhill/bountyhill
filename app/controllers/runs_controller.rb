@@ -10,6 +10,8 @@ class RunsController < ApplicationController
   # Show the form to start a new run of a quest.
   # This is valid only if the quest is not running.
   def show
+    request_identity! :any, :on_cancel => "/"
+    
     # Transfer quest ownership from the draft user to current_user, if needed.
     User.transfer! @quest => current_user
     

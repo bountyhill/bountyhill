@@ -107,8 +107,13 @@ module QuestsHelper
   end
 
   def start_quest_button(quest, options={})
-    return unless current_user
-    return unless !quest.active? && current_user.owns?(quest)
+    return if quest.active?
+    
+    # Check if the user owns quest or if
+    # the quest was created by a public user
+    if current_user then  return unless current_user.owns?(quest)
+    else                  return unless User.draft.owns?(quest)
+    end
     
     modal_awesome_button(:ok_circle, run_path(quest), options) { I18n.t("button.start") }
   end
