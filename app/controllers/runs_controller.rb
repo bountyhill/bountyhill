@@ -32,7 +32,7 @@ class RunsController < ApplicationController
   #
   # Stops the run of a quest
   def destroy
-    @quest.cancel!(params[:quest], :readonly => false)
+    @quest.cancel!(params[:quest])
     
     flash[:success] = I18n.t("quest.action.cancelled", :quest => @quest.title)
     redirect_to quest_path(@quest)
