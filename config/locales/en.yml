@@ -301,9 +301,9 @@ en:
       not_started:  "Not started"
       expired:      "Expired"
     action:
-      started:  "Your quest '%{quest}' was successfully started."
-      canceled: "Your quest '%{quest}' was successfully canceled."
-      shared:   "Your quest '%{quest}' was successfully shared."
+      started:    "Your quest '%{quest}' was successfully started."
+      cancelled:  "Your quest '%{quest}' was successfully canceled."
+      shared:     "Your quest '%{quest}' was successfully shared."
     box:
       title:    "%{amount} bounty"
       location: "Location restriction: %{location}"

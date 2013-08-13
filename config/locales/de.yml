@@ -301,9 +301,9 @@ de:
       not_started:  "Nicht gestartet"
       expired:      "Abgelaufen"
     action:
-      started:  "Deine Suchanfrage '%{quest}' wurde erfolgreich gestartet."
-      canceled: "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
-      shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
+      started:    "Deine Suchanfrage '%{quest}' wurde erfolgreich gestartet."
+      cancelled:  "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
+      shared:     "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     box:
       title:    "%{amount} Belohnung"
       location: "Ortsbeschränkung: %{location}"
