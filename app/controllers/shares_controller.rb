@@ -29,6 +29,7 @@ class SharesController < ApplicationController
   # Post the quest in social networks
   def show
     @share = Share.find(params[:id])
+    @quest = Quest.find(@share.quest_id, :readonly => false)
     
     # Share quest with identities user did choose
     @share.identities.each do |identity, shared_at|
@@ -42,13 +43,13 @@ class SharesController < ApplicationController
     # 
     # if the quest is alreday active we are done if not,
     # we have to start the quest
-    message = if @share.quest.active? then
-        I18n.t("quest.action.shared", :quest => @share.title)
+    message = if @quest.active? then
+        I18n.t("quest.action.shared", :quest => @quest.title)
       else
-        @share.quest.start!
-        I18n.t("quest.action.started", :quest => @share.title)
+        @quest.start!
+        I18n.t("quest.action.started", :quest => @quest.title)
       end
-    redirect_to! quest_path(@share.quest), :success => message
+    redirect_to! quest_path(@quest), :success => message
   end
 
 

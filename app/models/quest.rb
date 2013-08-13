@@ -228,7 +228,7 @@ class Quest < ActiveRecord::Base
   # Offers to the quest are ordered by their compliance value.
   has_many :offers, :order => "created_at DESC", :dependent => :destroy do
     def for_user(user)
-      all(:conditions => ["owner_id = ? OR state != ?", user, 'new'])
+      all(:conditions => ["offers.owner_id = ? OR offers.state != ?", user, 'new'])
     end
   end
   
