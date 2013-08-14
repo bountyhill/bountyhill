@@ -65,8 +65,7 @@ class OffersController < ApplicationController
   # POST /quests
   def create
     @offer = Offer.new(params[:offer])
-    @offer.owner = @owner
-    
+
     # Activate the offer after saving.
     if @offer.save
       redirect_to! offer_path(@offer, :preview => true), :notice => I18n.t("message.create.success", :record => Offer.model_name.human)
