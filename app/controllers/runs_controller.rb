@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-# The RunsController is used to changea quest's status, 
+# The RunsController is used to change a quest's status, 
 # e.g.to start or to stop a quest 
 class RunsController < ApplicationController
   before_filter :quest
@@ -41,7 +41,9 @@ class RunsController < ApplicationController
 private
   
   def quest
-    @quest ||= Quest.draft(params[:id])
+    @quest ||=  if current_user then  Quest.find(params[:id])
+                else                  Quest.draft(params[:id])
+                end
   end
 
 end
