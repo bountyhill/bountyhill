@@ -94,6 +94,30 @@ class ActiveSupport::TestCase
   def teardown
     ActiveRecord.current_user = nil
   end
+  
+  def login(user=nil)
+    # reset the current user
+    @controller.instance_variable_set(:@current_user, nil)
+    return unless user
+    
+    # set given user as current user
+    @controller.instance_variable_set(:@current_user, user)
+  end
+
+  def logout
+    login nil
+  end
+
+  def lorem_ipsum
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+    sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+  end
 
   # a identity "factory"
   def identity(name)

@@ -58,7 +58,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
-    @offer = Offer.find(params[:id], :readonly => false)
+    @offer = Offer.find(params[:id])
     render :action => "new"
   end
 
@@ -77,13 +77,10 @@ class OffersController < ApplicationController
   # PUT /offers/1
   def update
     @offer = Offer.find(params[:id], :readonly => false)
-
-    if @offer.valid?
-      @offer.update_attributes(params[:offer])
-      
-      redirect_to quests_path, :notice => I18n.t("message.update.success", :record => Offer.model_name.human)
+    if @offer.update_attributes(params[:offer])
+      redirect_to offer_path(@offer), :notice => I18n.t("message.update.success", :record => Offer.model_name.human)
     else
-      render :action => "edit"
+      render :action => "new"
     end
   end
 
@@ -92,7 +89,7 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id], :readonly => false)
     @offer.destroy
 
-    redirect_to quests_url
+    redirect_to offers_url(:owner => current_user)
   end
   
   def activate
@@ -137,12 +134,12 @@ class OffersController < ApplicationController
 private
   def set_owner
     @owner = if params[:owner_id]
-      User.find(params[:owner_id], :readonly => true)
+      User.find(params[:owner_id])
     else
       current_user
     end
     
-    false unless  (@owner and @owner == current_user)
+    false unless @owner && (@owner == current_user || @owner.admin?)
   end
   
 end
