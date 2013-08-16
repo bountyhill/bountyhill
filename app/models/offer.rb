@@ -14,9 +14,7 @@ class Offer < ActiveRecord::Base
   STATES = %w(new active withdrawn accepted rejected)
   
   # -- Associations ---------------------------------------------------
-  
   belongs_to :quest
-  validates_associated :quest
 
   belongs_to :owner, :class_name => "User"
   validates  :owner, :presence => true
@@ -224,13 +222,6 @@ class Offer < ActiveRecord::Base
     state == "new"
   end
   
-  def activate!
-    raise ArgumentError, "Offer is alredy active" if active?
-    update_attributes! "state" => "active"
-    
-    owner.reward_for(self, :activate)
-  end
-
   def active?
     # The offer is not decided upon, and the quest is still active
     state == "active" && quest.active?
@@ -241,15 +232,32 @@ class Offer < ActiveRecord::Base
     state == "active" && !quest.active?
   end
   
+  def withdrawn?
+    state == "withdrawn"
+  end
+  
+  def accepted?
+    state == "accepted"
+  end
+
+  def rejected?
+    state == "rejected"
+  end
+
+  def activate!
+    raise ArgumentError, "Offer is alredy active" if active?
+    update_attributes! "state" => "active"
+    
+    owner.reward_for(self, :activate)
+    self
+  end
+
   def withdraw!
     raise ArgumentError, "Offer is no longer active" unless active?
     update_attributes! "state" => "withdrawn"
     
     owner.reward_for(self, :withdraw)
-  end
-  
-  def withdrawn?
-    state == "withdrawn"
+    self
   end
   
   def accept!
@@ -257,10 +265,7 @@ class Offer < ActiveRecord::Base
     update_attributes! "state" => "accepted"
 
     owner.reward_for(self, :accept)
-  end
-  
-  def accepted?
-    state == "accepted"
+    self
   end
   
   def reject!
@@ -268,11 +273,9 @@ class Offer < ActiveRecord::Base
     update_attributes! "state" => "rejected"
     
     owner.reward_for(self, :reject)
+    self
   end
   
-  def rejected?
-    state == "rejected"
-  end
 
   # -- send out emails
   
