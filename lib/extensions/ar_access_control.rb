@@ -132,7 +132,7 @@ module ActiveRecord::AccessControl
     end
     
     def permission_denied
-      self.errors.add :base, I18n.t(:"permission_denied")
+      self.errors.add :base, :permission_denied
     end
       
     # Returns true if the currently logged in user may write this
