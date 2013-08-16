@@ -274,8 +274,11 @@ class Quest < ActiveRecord::Base
     self.cancellation = nil
     self.cancellation_reason = nil
 
+    # save quest and reward user
     save!
     owner.reward_for(self, :start)
+    
+    self
   end
 
   def cancel!(attributes = {})
@@ -283,8 +286,11 @@ class Quest < ActiveRecord::Base
     self.visibility = nil
     self.expires_at = Time.now
     
+    # save quest and reward user
     save!
     owner.reward_for(self, :stop)
+    
+    self
   end
   
   # -- quest statistics -----------------------------------------------
