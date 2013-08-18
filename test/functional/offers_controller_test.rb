@@ -158,27 +158,63 @@ class OffersControllerTest < ActionController::TestCase
   end
   
   def test_activate
-    pend "TODO: add test!" do
-      assert false
-    end
+    # get activation form
+    get :activate, :id => @offer.id
+    assert_response :success
+    assert_template :activate
+    assert_equal @offer, assigns(:offer)
+    
+    # post activation
+    Offer.any_instance.expects(:activate!).once   # TODO: @offer.reload.expects(:activate!).once
+    post :activate, :id => @offer.id
+    assert_response :redirect
+    assert_redirected_to offer_path(@offer)
+    assert_equal @offer, assigns(:offer)
   end
   
   def test_withdraw
-    pend "TODO: add test!" do
-      assert false
-    end
+    # get withdraw form
+    get :withdraw, :id => @offer.id
+    assert_response :success
+    assert_template :withdraw
+    assert_equal @offer, assigns(:offer)
+
+    # post withdrawel
+    Offer.any_instance.expects(:withdraw!).once   # TODO: @offer.expects(:withdraw!).once
+    post :withdraw, :id => @offer.id
+    assert_response :redirect
+    assert_redirected_to quest_path(@offer.quest)
+    assert_equal @offer, assigns(:offer)
   end
   
   def test_accept
-    pend "TODO: add test!" do
-      assert false
-    end
+    # get accept form
+    get :accept, :id => @offer.id
+    assert_response :success
+    assert_template :accept
+    assert_equal @offer, assigns(:offer)
+
+    # post acception
+    Offer.any_instance.expects(:accept!).once   # TODO: @offer.expects(:accept!).once
+    post :accept, :id => @offer.id
+    assert_response :redirect
+    assert_redirected_to quest_path(@offer.quest)
+    assert_equal @offer, assigns(:offer)
   end
   
   def test_reject
-    pend "TODO: add test!" do
-      assert false
-    end
+    # get reject form
+    get :reject, :id => @offer.id
+    assert_response :success
+    assert_template :reject
+    assert_equal @offer, assigns(:offer)
+
+    # post rejection
+    Offer.any_instance.expects(:reject!).once   # TODO: @offer.expects(:reject!).once
+    post :reject, :id => @offer.id
+    assert_response :redirect
+    assert_redirected_to quest_path(@offer.quest)
+    assert_equal @offer, assigns(:offer)
   end
   
 end

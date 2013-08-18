@@ -94,7 +94,7 @@ class OffersController < ApplicationController
   
   def activate
     @offer = Offer.find(params[:id], :readonly => request.get?)
-    
+
     unless request.get?
       @offer.activate!
       redirect_to @offer, :notice => I18n.t("message.offer.success", :record => Offer.model_name.human)
@@ -104,9 +104,9 @@ class OffersController < ApplicationController
   # Withdraw the offer
   def withdraw
     @offer = Offer.find(params[:id], :readonly => request.get?)
-    
+
     unless request.get?
-      @offer.withdraw! if current_user.owns?(@offer)
+      @offer.withdraw!
       redirect_to @offer.quest
     end
   end
@@ -116,17 +116,17 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id], :readonly => request.get?)
 
     unless request.get?
-      @offer.accept! if current_user.owns?(@offer.quest)
+      @offer.accept!
       redirect_to @offer.quest
     end
   end
 
   # Reject the offer
   def reject
-    @offer = Offer.find(params[:id],:readonly => request.get?)
+    @offer = Offer.find(params[:id], :readonly => request.get?)
 
     unless request.get?
-      @offer.reject! if current_user.owns?(@offer.quest)
+      @offer.reject!
       redirect_to @offer.quest
     end
   end

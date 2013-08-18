@@ -245,7 +245,7 @@ class Offer < ActiveRecord::Base
   end
 
   def activate!
-    raise ArgumentError, "Offer is alredy active" if active?
+    raise ArgumentError, "Offer: #{self.inspect} is alredy active" if active?
     update_attributes! "state" => "active"
     
     owner.reward_for(self, :activate)
@@ -253,7 +253,7 @@ class Offer < ActiveRecord::Base
   end
 
   def withdraw!
-    raise ArgumentError, "Offer is no longer active" unless active?
+    raise ArgumentError, "Offer: #{self.inspect} is no longer active" unless active?
     update_attributes! "state" => "withdrawn"
     
     owner.reward_for(self, :withdraw)
@@ -261,7 +261,7 @@ class Offer < ActiveRecord::Base
   end
   
   def accept!
-    raise ArgumentError, "Offer is no longer active" unless active?
+    raise ArgumentError, "Offer: #{self.inspect} is no longer active" unless active?
     update_attributes! "state" => "accepted"
 
     owner.reward_for(self, :accept)
@@ -269,7 +269,7 @@ class Offer < ActiveRecord::Base
   end
   
   def reject!
-    raise ArgumentError, "Offer is no longer active" unless active?
+    raise ArgumentError, "Offer: #{self.inspect} is no longer active" unless active?
     update_attributes! "state" => "rejected"
     
     owner.reward_for(self, :reject)
