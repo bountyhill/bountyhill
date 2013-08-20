@@ -70,6 +70,7 @@ class SessionsControllerTest < ActionController::TestCase
     delete :destroy
     assert_response :redirect
     assert_redirected_to root_path
+    assert_equal I18n.t("sessions.auth.destroy"), flash[:notice]
   end
   
   def test_new
@@ -103,8 +104,15 @@ class SessionsControllerTest < ActionController::TestCase
   def test_failure
     get :failure
     assert_response :redirect
-    assert_redirected_to "/"
-    assert_equal I18n.t("sessions.auth.error"), flash[:error]
+    assert_redirected_to root_path
+    assert_equal I18n.t("sessions.auth.failure"), flash[:error]
+  end
+
+  def test_cancel
+    post :cancel
+    assert_response :redirect
+    assert_redirected_to root_path
+    assert_equal I18n.t("sessions.auth.cancel"), flash[:notice]
   end
 
   def test_set_partials

@@ -78,11 +78,13 @@ class SessionsController < ApplicationController
   end
   
   def cancel
+    flash[:notice] = I18n.t("sessions.auth.cancel")
     identity_cancelled!
   end
   
   def destroy
     signout
+    flash[:notice] = I18n.t("sessions.auth.destroy")
     redirect_to root_path
   end
   
@@ -134,7 +136,7 @@ class SessionsController < ApplicationController
   # OmniAuthMiddleware receives the providers (unsuccessful) oauth and 
   # redirects to the failure action after the oauth dance is over.
   def failure
-    flash[:error] = I18n.t("sessions.auth.error")
+    flash[:error] = I18n.t("sessions.auth.failure")
     identity_cancelled!
   end
 
