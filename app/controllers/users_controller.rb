@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     # TODO: evaluate the :description field; e.g. send email to admin
     @user.soft_delete!
     signout
-    redirect_to "/"
+    redirect_to root_path
   end
   
   private

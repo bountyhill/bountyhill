@@ -16,7 +16,7 @@ class DeferredActionsController < ApplicationController
 
     unless action && action.performable?
       flash[:error] = I18n.t "deferred_actions.invalid"
-      redirect_to "/"
+      redirect_to root_path
       return
     end
     
@@ -27,7 +27,7 @@ class DeferredActionsController < ApplicationController
     show_success_message
     
     # When not rendered nor redirected, redirect to start page.
-    redirect_to "/" unless performed?
+    redirect_to root_path unless performed?
   end
 
   

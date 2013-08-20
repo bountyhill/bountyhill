@@ -48,7 +48,7 @@ module ApplicationController::RequiredIdentity
   #   end
   #
   #   def do_start
-  #     request_identity! :twitter, :on_cancel => "/"
+  #     request_identity! :twitter, :on_cancel => root_path
   #     share.post(:twitter)
   #   end
   
@@ -154,12 +154,12 @@ module ApplicationController::RequiredIdentity
   # The user presented the specified identity.
   def identity_presented!
     unless payload = H.delete_payload(session)
-      redirect_to! "/"
+      redirect_to! root_path
     end
     
     # on_success redirection if the requested identity exists now.
     if identity?(payload[:kind])
-      redirect_after_identity_provided! payload[:on_success] || "/"
+      redirect_after_identity_provided! payload[:on_success] || root_path
     end
 
     # Re-request the requested identity, when a wrong identity has been
@@ -175,6 +175,6 @@ module ApplicationController::RequiredIdentity
   # if the user pressed Cancel on a login form.
   def identity_cancelled!
     payload = H.delete_payload(session) || {}
-    redirect_after_identity_provided! payload[:on_cancel] || "/"
+    redirect_after_identity_provided! payload[:on_cancel] || root_path
   end
 end

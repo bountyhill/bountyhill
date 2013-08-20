@@ -85,7 +85,7 @@ class SessionsControllerTest < ActionController::TestCase
     @request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
     post :create
     assert_response :redirect
-    assert_redirected_to "/"
+    assert_redirected_to root_path
     assert_equal I18n.t("sessions.auth.error"), flash[:error]
         
     # succeeds
@@ -96,7 +96,7 @@ class SessionsControllerTest < ActionController::TestCase
     
     post :create
     assert_response :redirect
-    assert_redirected_to "/"
+    assert_redirected_to root_path
     assert_equal I18n.t("sessions.auth.success"), flash[:success]
   end
 
