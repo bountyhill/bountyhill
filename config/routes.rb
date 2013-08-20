@@ -59,10 +59,11 @@ Bountyhill::Application.routes.draw do
   
   resources :sessions
   # manual routes for signup, signin, signout
-  match "signin"  => "sessions#signin_get",     :via => :get
-  match "signin"  => "sessions#signin_post",    :via => :post
-  match "signup"  => "sessions#signin_post",    :via => :post
-  match "signout" => "sessions#destroy",        :via => :delete
+  match "signin"          => "sessions#signin_get",     :via => :get
+  match "signin"          => "sessions#signin_post",    :via => :post
+  match "signup"          => "sessions#signin_post",    :via => :post
+  match "signout"         => "sessions#destroy",        :via => :delete
+  match "sessions/cancel" => "sessions#cancel",         :via => :post
   
   # omniauth
   match 'auth/:provider/init'     => 'sessions#new'
