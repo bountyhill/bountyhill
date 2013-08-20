@@ -42,7 +42,7 @@ class DeferredActionsController < ApplicationController
     return if expected_method == request.method
     
     flash[:error] = "Don't know how to handle this request. Should be a #{expected_method}"
-    redirect_to :back
+    redirect_to request.env["HTTP_REFERER"]
   end
   
   # Send an email address confirmation email.
@@ -51,7 +51,7 @@ class DeferredActionsController < ApplicationController
     Deferred.mail UserMailer.confirm_email(current_user)
     flash[:success] = I18n.t("sessions.email.confirmation.sent")
     
-    redirect_to :back
+    redirect_to request.env["HTTP_REFERER"]
   end
 
   protected
