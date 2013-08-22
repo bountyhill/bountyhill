@@ -48,7 +48,7 @@ class QuestsController < ApplicationController
   end
 
   def edit
-    @quest = Quest.find(params[:id], :readonly => false)
+    @quest = Quest.find(params[:id])
     @quest.build_location unless @quest.location.present?
     
     render :action => "new"
@@ -74,9 +74,10 @@ class QuestsController < ApplicationController
   def update
     @quest = Quest.find(params[:id], :readonly => false)
     @quest.attributes = params[:quest]
-
-    if @quest.location && @quest.restrict_location.blank?
-      @quest.location.mark_for_destruction
+    
+    # remove location if user wants to
+    unless @quest.restrict_location?
+      @quest.location.mark_for_destruction if @quest.location.present?
     end
     
     if @quest.valid?

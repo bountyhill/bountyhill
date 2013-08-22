@@ -345,6 +345,14 @@ class Quest < ActiveRecord::Base
 
   # -- Pseudo attributes ----------------------------------------------
   
+  def location_attributes=(attributes={})
+    if location.present?
+      location.attributes = attributes 
+    else
+      build_location(attributes)
+    end
+  end
+  
   def compliance
     offers.all.map(&:compliance).sort.last
   end
