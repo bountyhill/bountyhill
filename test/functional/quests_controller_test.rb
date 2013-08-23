@@ -89,6 +89,20 @@ class QuestsControllerTest < ActionController::TestCase
     assert_template :show
     assert_equal @quest, assigns(:quest)
   end
+
+  def test_show_public
+    # show quest unknown user
+    logout
+    assert_raises ActiveRecord::RecordNotFound do
+      get :show, :id => @quest.id
+    end
+    
+    @quest.start!
+    get :show, :id => @quest.id
+    assert_response :success
+    assert_template :show
+    assert_equal @quest, assigns(:quest)
+  end
   
   def test_show_preview
     # show quest to owner in preview mode
