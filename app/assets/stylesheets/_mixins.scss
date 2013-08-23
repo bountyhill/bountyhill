@@ -64,6 +64,9 @@
     .content {
       h1, h2 { color: $quest_box_title_color; }
       .criteria-section { .criteria { li { .index { background-color: $quest_box_title_color; }}}}
+      form {
+        p.legend { color: $quest_box_title_color;}
+      }
     }
   }
   @else if  $box_type == quests { 
@@ -76,6 +79,10 @@
     .content {
       h1, h2 { color: $offer_box_title_color; }
       .criteria-section { .criteria { li { .index { background-color: $offer_box_title_color; }}}}
+      form {
+        p.legend { color: $offer_box_title_color;}
+        .criteria-section { .criteria { li { .index { background-color: $quest_box_title_color; }}}}
+      }
     }
   }
   @else if  $box_type == offers { 

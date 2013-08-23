@@ -1,5 +1,5 @@
 <%= form_for @offer do |form| %>
-  <p><%= i18n_legend_for(@offer) %></p>
+  <p class="legend"><%= i18n_legend_for(@offer) %></p>
   <%= form.error_messages %>
 
   <%= form.control_group(:compliance, :compliance, :class => "progress main") if @offer.criteria.present? %>
@@ -10,21 +10,24 @@
   <%= form.control_group :images,       :filepicker %>
 
   <% if @offer.criteria.present? %>
-    <p><%= i18n_form_hint_for(@offer, :count => @offer.quest.criteria.size) %></p>
+    <div class="criteria-section">
+      <p class="legend"><%= i18n_form_hint_for(@offer, :count => @offer.quest.criteria.size) %></p>
 
-    <ol class="criteria_compliances">
-      <% @offer.criteria.each_with_index do |criterium, idx| %>
-        <li>
-          <div class="criteria"><%= criterium[:title] %></div>
-          <%= form.control_group Offer.criteria_ids[idx],         :hidden_field %>
-          <div class="fullfilment">
-            <%= form.control_group Offer.criteria_compliances[idx], :range_slider,            :label => Offer.human_attribute_name(:fulfillment), :hint => false %>
-            <%= form.control_group Offer.criteria_compliances[idx], :compliance, :compliance, :label => false, :class => "progress" %>
-          </div>
-          <%= form.control_group Offer.criteria_comments[idx],    :text_area, :rows => 2,   :label => Offer.human_attribute_name(:comment),     :hint => I18n.t("offer.form.field_hint.comment"), :class => "input-xxlarge" %>
-        </li>
-      <% end %>
-    </ol>
+      <ul class="criteria">
+        <% @offer.criteria.each_with_index do |criterium, idx| %>
+          <li class="clearfix">
+            <div class="index"><%= idx + 1 %></div>
+            <div class="criteria"><%= criterium[:title] %></div>
+            <%= form.control_group Offer.criteria_ids[idx],         :hidden_field %>
+            <div class="fullfilment">
+              <%= form.control_group Offer.criteria_compliances[idx], :range_slider,            :label => Offer.human_attribute_name(:fulfillment), :hint => false %>
+              <%= form.control_group Offer.criteria_compliances[idx], :compliance, :compliance, :label => false, :class => "progress" %>
+            </div>
+            <%= form.control_group Offer.criteria_comments[idx],    :text_area, :rows => 2,   :label => Offer.human_attribute_name(:comment),     :hint => I18n.t("offer.form.field_hint.comment"), :class => "input-xxlarge" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
   <%= form.actions quest_path(@offer.quest) %>

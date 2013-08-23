@@ -1,5 +1,9 @@
 /* ------- form ------- */
 form {
+  p.legend {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
   .control-group {
     label {
       font-weight: bold;
@@ -101,10 +105,10 @@ form {
     float: right;
     margin-bottom: 10px;
   }
-  .criteria_compliances {
+  .criteria {
     margin-left: 0;
     & > li {
-/*      
+/* TODO: style criteria bullet points here...
       &:before {
         content: counter(item);
         counter-increment: item;
@@ -121,7 +125,10 @@ form {
       }
 */
       margin-bottom: 18px;
-      .criteria { font-weight: bold; }
+      .criteria { 
+        color: $quests_box_title_color;
+        font-weight: bold; 
+      }
       .fullfilment {
         width: 692px;
       }

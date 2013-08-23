@@ -3,7 +3,7 @@
 %>
 
 <%= form_for @quest do |form| %>
-  <p><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
+  <p class="legend"><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
   <%= form.error_messages %>
 
   <%= form.control_group :bounty, :class => "input-small", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
