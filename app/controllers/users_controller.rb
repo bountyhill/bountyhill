@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       redirect_to! @user if @user.save
     end
 
-    render :action => "show"
+    render :action => "edit"
   end
   
   def destroy
@@ -61,6 +61,7 @@ class UsersController < ApplicationController
       current_user
     end
     
+    # TODO: check if this really needed anymore!
     if @user and @user == current_user
       @user.extend DummyParameters
       @email = @user.identity(:email)

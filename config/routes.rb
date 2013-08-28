@@ -14,7 +14,7 @@ Bountyhill::Application.routes.draw do
 
   # static pages routes
   %w(about contact imprint terms privacy).each do |static_page|
-    match static_page => "static##{static_page}"    
+    match static_page => "static##{static_page}", :via => :get
   end
 
   # images container routes

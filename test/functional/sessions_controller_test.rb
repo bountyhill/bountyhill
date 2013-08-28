@@ -35,34 +35,63 @@ class SessionsControllerTest < ActionController::TestCase
   def test_signin_post
     identity = Factory(:identity)
 
-    #request signin
-    post :signin_post, :do_signin => true, :identity => {:email => identity.email, :password => identity.password}
+    # request signin
+    post :signin_post, :do_signin => true, :identity => { :email => identity.email, :password => identity.password }
     assert_response :redirect
-    assert_redirected_to '/'
-    assert assigns(:identity)
+    assert_redirected_to root_path
+    assert assigns(:identity).id
+    assert_equal :signin, assigns(:mode)
     assert_equal I18n.t("identity.form.success.signin", :name => assigns(:identity).name), flash[:success]
     
     # request reset
     UserMailer.expects(:reset_password).once.with(identity.user).returns("foobar")
     Deferred.expects(:mail).once.with("foobar")
     
-    post :signin_post, :do_reset => true, :identity => {:email => identity.email}
+    post :signin_post, :do_reset => true, :identity => { :email => identity.email }
     assert_response :redirect
-    assert_redirected_to '/'
-    assert assigns(:identity)
+    assert_redirected_to root_path
+    assert assigns(:identity).id
+    assert_equal :reset, assigns(:mode)
     assert_equal I18n.t("identity.form.success.reset", :name => assigns(:identity).name), flash[:success]
 
     # request signup
     Identity::Email.expects(:create).once.returns(identity)
     
-    post :signin_post, :do_signup => true, :identity => {:email => 'bar.foo@sample.com', :password => 'barfoo'}
+    post :signin_post, :do_signup => true, :identity => { :email => 'bar.foo@sample.com', :password => 'barfoo' }
     assert_response :redirect
-    assert_redirected_to '/'
-    assert assigns(:identity)
+    assert_redirected_to root_path
+    assert assigns(:identity).id
+    assert_equal :signup, assigns(:mode)
     assert_equal I18n.t("identity.form.success.signup", :name => assigns(:identity).name), flash[:success]
     
     #request unknown mode
     assert_raise(ArgumentError) { post :signin_post }
+  end
+  
+  def test_signin_post_fails
+    # request signin
+    xhr :post, :signin_post, :do_signin => true, :identity => { :email => 'unknown@sample.com', :password => '' }
+    assert_response :success
+    assert assigns(:identity).id.nil?
+    assert_equal :signin, assigns(:mode)
+    assert_equal "sessions/forms/email", assigns(:partial)
+    assert_equal I18n.t("identity.form.error.signin"), assigns(:error)
+    
+    # request reset
+    xhr :post, :signin_post, :do_reset => true, :identity => { :email => 'unknown@sample.com' }
+    assert_response :success
+    assert assigns(:identity).id.nil?
+    assert_equal :reset, assigns(:mode)
+    assert_equal "sessions/forms/email", assigns(:partial)
+    assert_equal I18n.t("identity.form.error.reset"), assigns(:error)
+    
+    # request signup
+    xhr :post, :signin_post, :do_signup => true, :identity => { :email => 'unknown@sample.com', :password => '' }
+    assert_response :success
+    assert assigns(:identity).id.nil?
+    assert_equal :signup, assigns(:mode)
+    assert_equal "sessions/forms/register", assigns(:partial)
+    assert_equal I18n.t("identity.form.error.signup"), assigns(:error)
   end
   
   def test_destroy

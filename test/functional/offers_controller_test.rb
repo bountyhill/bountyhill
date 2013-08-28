@@ -105,6 +105,16 @@ class OffersControllerTest < ActionController::TestCase
     assert_template :new
     assert assigns(:offer).new_record?
     assert_equal @quest, assigns(:offer).quest
+    
+    # test given with location
+    @request.stubs(:location).returns(OpenStruct.new(:name => "Berlin, Germany"))
+    assert_no_difference "Offer.count" do
+      get :new, :quest_id => @quest.id
+    end
+    assert_response :success
+    assert_template :new
+    assert assigns(:offer).new_record?
+    assert_equal @request.location.name, assigns(:offer).location
   end
   
   def test_edit

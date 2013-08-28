@@ -65,16 +65,16 @@ class SessionsController < ApplicationController
         Deferred.mail UserMailer.reset_password(@identity.user)
         redirect_to root_path
       end
+    else
+      # Error: @identity is not in the database. 
+      # -> validation failed, invalid email/password, etc.
+      @error = I18n.t("identity.form.error.#{@mode}")
+      @partial = case @mode
+        when :signin  then "sessions/forms/email"
+        when :reset   then "sessions/forms/email"
+        when :signup  then "sessions/forms/register"
+        end
     end
-    
-    # Error: @identity is not in the database. 
-    # -> validation failed, invalid email/password, etc.
-    @error = I18n.t("identity.form.error.#{@mode}")
-    @partial = case @mode
-      when :signin  then "sessions/forms/email"
-      when :reset   then "sessions/forms/email"
-      when :signup  then "sessions/forms/register"
-      end
   end
   
   def cancel

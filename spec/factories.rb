@@ -51,4 +51,11 @@ FactoryGirl.define do
     association :commentable, :factory => :quest
     association :owner, :factory => :user
   end
+  
+  factory :activity do
+    action      "create"
+    points      1
+    association :object, :factory => :quest
+    association :user, :factory => :user
+  end
 end
