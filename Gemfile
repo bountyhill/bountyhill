@@ -44,7 +44,7 @@ group :development, :test do
   gem 'mocha'
   gem 'factory_girl_rails'
   gem 'ruby-debug19', :require => 'ruby-debug'
-
+  gem 'simplecov', :require => false
   gem 'spork-testunit'
   gem 'awesome_print'
   gem 'kibo', '~> 0.4', :require => false

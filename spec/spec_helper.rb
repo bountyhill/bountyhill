@@ -1,3 +1,6 @@
+# encoding: UTF-8
+
+require 'simplecov'
 require 'rubygems'
 
 # uncomment the following line to use spork

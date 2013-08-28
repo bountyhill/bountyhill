@@ -20,6 +20,10 @@
 /log/*.log
 /tmp
 
+# Ignore code coverage files
+coverage
+.simplecov
+
 # Ignore other unneeded files.
 *.swp
 *~
