@@ -200,7 +200,7 @@ de:
         first_name:                 Dein Vorname
         last_name:                  Dein Nachname
         description:                Beschreibe Deine Person
-        image:                      Dein Profilbild
+        images:                     Dein Profilbild
         address1:                   Deine Strasse und Hausnummer
         address2:                   Weitere Adressinformationen
         city:                       Deine Stadt

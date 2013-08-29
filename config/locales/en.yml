@@ -200,7 +200,7 @@ en:
         first_name:                 Your first name
         last_name:                  Your family name
         description:                Describe yourself
-        image:                      Your profile picture
+        images:                     Your profile picture
         address1:                   Your street and street number
         address2:                   Further address information
         city:                       Your town

@@ -215,18 +215,22 @@ class User < ActiveRecord::Base
   # return's the user's avatar image if the user has uploaded one, or 
   # if one of it's identities provides one, or
   # the Gravatar URL from http://gravatar.com/ for the given user.
-  def avatar(options = {})
-    if (avatar = self.image)
-      avatar = avatar.first if avatar.kind_of?(Array)
+  def avatar(options={})
+    expect! options => Hash
+    
+    if (avatar = self.image).present?
+      
+      # init width and height params; https://developers.inkfilepicker.com/docs/web/#convert
       width, height = options.values_at(:width, :height)
       if width && height
-        avatar = "#{avatar}/convert?w=#{width}&h=#{height}"
+        expect! width => Fixnum, height => Fixnum
+        avatar += "/convert?w=#{width}&h=#{height}&fit=max"
       end
     end
     
     # try to fetch avatar from identity providers
     avatar ||= if (identity = identities.detect{ |identity| identity.identity_provider? && !identity.avatar.blank? })
-        identity.avatar
+        identity.avatar(options)
       end
       
     # try to fetch avatar from Gravatar
@@ -414,22 +418,12 @@ class User < ActiveRecord::Base
   # pluralized attributes to access it, because some parts of the 
   # filepicker form helpers expect it that way.
   def images(size = {})
-    width, height = size.values_at(:width, :height)
-    urls = [ image ].compact
-
-    if width && height
-      expect! width => Fixnum, height => Fixnum
-
-      # set width and height; see https://developers.filepicker.io/docs/web/#fpurl
-      urls = urls.map { |url| "#{url}/convert?w=#{width}&h=#{height}" }
-    end
-
-    # set content disposition; see https://developers.filepicker.io/docs/web/#fpurl
-    urls.map { |url| "#{url}?dl=false" }
+    expect! size => Hash
+    [avatar(size)].compact
   end
 
-  def images=(images)
-    self.image = images && images.first
+  def images=(images=[])
+    self.image = images.present? && images.flatten.first
   end
 
   # -- deletion -------------------------------------------------------
