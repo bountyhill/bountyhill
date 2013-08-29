@@ -6,14 +6,14 @@
   }
   .claim {
     background-color: $petrol_transparent;
-    margin: 96px auto;
+    margin: 0 auto 96px auto;
     font-size: 500%;
     line-height: 100%;
     padding: 16px;
     width: 1024px - (64px * 2);
   }
   .instructions {
-    margin: -36px auto 64px auto;
+    margin: 96px auto 0 auto;
     width: 1024px;
     .item {
       position: relative;
