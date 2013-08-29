@@ -18,9 +18,16 @@ class ActivitiesControllerTest < ActionController::TestCase
   end
   
   def test_index
+    # for current user
     xhr :get, :index
     assert_response :success
     assert_template "index"
     assert_equal @user.activities.reverse, assigns(:activities)
+    
+    # for fiven user
+    xhr :get, :index, :id => @admin.id
+    assert_response :success
+    assert_template "index"
+    assert_equal @admin.activities.reverse, assigns(:activities)
   end
 end
