@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_filter :set_user
+  before_filter :handle_profile_image, :only => [:update]
   
   def show
     @per_page = per_page
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    case params["section"]
+    case params[:section]
     when "passwd"
       identity = params["identity"] || {}
       password = params["identity"].delete("password")
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
         redirect_to! @user
       end
     else
-      @user.attributes = params["user"]
+      @user.attributes = params[:user]
       redirect_to! @user if @user.save
     end
 
@@ -67,6 +68,13 @@ class UsersController < ApplicationController
       @email = @user.identity(:email)
       @email.extend DummyParameters
     end
+  end
+
+  #
+  # removes user's provile image if not given in params hash
+  def handle_profile_image
+    return unless params[:user]
+    params[:user][:images] = nil unless params[:user].key?(:images)
   end
   
   module DummyParameters

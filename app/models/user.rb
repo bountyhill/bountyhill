@@ -13,8 +13,9 @@ require_dependency "identity/email"
 class User < ActiveRecord::Base
   include ActiveRecord::RandomID
 
-  before_save :create_remember_token
-
+  before_save   :create_remember_token
+  before_create :init_avatar_image 
+  
   with_metrics! "accounts"
 
   serialize :badges, Array
@@ -31,6 +32,15 @@ class User < ActiveRecord::Base
     unless self.remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
+  end
+  
+  def init_avatar_image
+    return if image.present?
+    
+    # try to fetch avatar from identity providers
+    image = if (identity = identities.detect{ |identity| identity.identity_provider? && !identity.avatar.blank? })
+        identity.avatar(options)
+      end
   end
   
   public
@@ -228,13 +238,10 @@ class User < ActiveRecord::Base
       end
     end
     
-    # try to fetch avatar from identity providers
-    avatar ||= if (identity = identities.detect{ |identity| identity.identity_provider? && !identity.avatar.blank? })
-        identity.avatar(options)
-      end
-      
     # try to fetch avatar from Gravatar
+    # if no avatar image is given
     avatar ||= Gravatar.url(email, options)
+    avatar
   end
   
   def points

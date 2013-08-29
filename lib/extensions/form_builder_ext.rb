@@ -306,7 +306,7 @@ class ActionView::Helpers::FormBuilder
       "fp-button-text"  => options[:placeholder],
       "fp-button-class" => "btn",
       "fp-mimetypes"    => mimetypes.join(","),
-      "fp-multiple"     => options.key?(:multiple) ? options[:multiple] : true,
+      "fp-multiple"     => options[:multiple] || false,
       "fp-services"     => services.join(","),
       "fp-openTo"       => services.first,
       "fp-maxSize"      => maxSize

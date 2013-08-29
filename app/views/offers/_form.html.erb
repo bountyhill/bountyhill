@@ -6,8 +6,7 @@
   <%= form.control_group :quest_id,     :hidden_field %>
   <%= form.control_group :title,        :text_area, :rows => 2,  :class => "input-xxlarge" %>
   <%= form.control_group :description,  :text_area, :rows => 12, :class => "input-xxlarge tinymce" %>
-  <%#= form.control_group :location %>
-  <%= form.control_group :images,       :filepicker %>
+  <%= form.control_group :images,       :filepicker, :multiple => true %>
 
   <% if @offer.criteria.present? %>
     <div class="criteria-section">
