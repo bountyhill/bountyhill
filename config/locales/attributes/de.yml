@@ -37,6 +37,7 @@ de:
         last_name:                  Nachname
         description:                Beschreibung
         image:                      Bild
+        images:                     Bild
         address1:                   Adresse
         address2:                   Adressergänzung
         city:                       Stadt

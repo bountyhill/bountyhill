@@ -37,6 +37,7 @@ en:
         last_name:                  Last name
         description:                Description
         image:                      Image
+        images:                     Image
         address1:                   Address
         address2:                   Address supplement
         city:                       City
