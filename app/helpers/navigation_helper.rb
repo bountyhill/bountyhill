@@ -127,7 +127,6 @@ module NavigationHelper
     img = image_tag user.avatar(:size => avatar_size),
      :alt => user.name,
      :class => "avatar",
-     :width => avatar_size,
      :height => avatar_size
     ident = div :class => "user-ident" do
       div(user.name, :class => "name") + 

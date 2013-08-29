@@ -11,6 +11,14 @@
   }
 }
 
+.image-container {
+  background-color: $gray;
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 .image-stack, .image-single {
   margin: 0 0 0 5%;
   position: relative;

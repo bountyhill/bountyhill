@@ -56,10 +56,10 @@ module UsersHelper
     size = options[:size] ||= 128
     
     url = user.avatar(:size => size)
+
     image_tag url, 
       :alt              => user.name,
       :class            => "avatar #{options[:class]}",
-      :width            => size,
       :height           => size,
       :title            => user.name,
       :"data-toggle"    => "tooltip",
@@ -69,10 +69,11 @@ module UsersHelper
   def user_bar(user, type)
     expect! type => [:quest, :offer]
     
+    avatar_size = 64
     link_to user_path(user), :class => "user bar #{type}" do
       div(
         [
-          avatar(user, :size => 64),
+          div(avatar(user, :size => avatar_size), :class => "image-container", :style => "width: #{avatar_size}px"),
           div(user.name, :class => "name"),
           div(user.twitter_handle, :class => "handle")
         ].join.html_safe, :class => "profile") + 

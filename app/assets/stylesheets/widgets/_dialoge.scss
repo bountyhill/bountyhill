@@ -12,26 +12,27 @@ ul.fp-slides {
       position: relative;
       float: left;
       margin: 0 5px 5px 0;
-      border: 1px solid #999;
-      background-color: #CCC;
+      background-color: $gray;
       overflow: hidden;
       width: 65px;
       height: 65px;
-      @include border-radius(4px);
       .image-container {
         line-height: 65px;
       }
       img {
         margin: 0 auto;
-        vertical-align: middle;
+        display: block;
+        width: auto;
+        max-height: 100%;
       }
       &:hover {
-        & > a { 
+        & > a.btn { 
           display:block; 
           text-decoration: none;
+          background-color: white;
         }
       }
-      a {
+      a.btn {
         display: none;
         position: absolute;
         top: 0;

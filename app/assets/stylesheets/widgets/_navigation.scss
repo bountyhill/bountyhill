@@ -89,18 +89,10 @@
         padding-right: 8px;
         min-width: 152px;
         margin-top: -2px;
-        .name {
-          text-align: right;
-        }
-        .handle {
-          text-align: left;
-          font-size: 80%;
-        }
+        .name, .handle { text-align: left; }
+        .handle { font-size: 80%; }
       }
-      img {
-        height: 48px;
-        width:  48px;
-      }
+      img { height: 48px; }
       .dropdown {
         .dropdown-menu {
           border: none;

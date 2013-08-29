@@ -85,10 +85,7 @@
     font-family: $font_system;
     .profile {
       width: 80%;
-      img {
-        height: 64px;
-        width: 64px;
-      }
+      img { height: 64px; }
       .name, .handle {
         position: absolute;
         left: $box_content_h_padding;
@@ -125,7 +122,6 @@
   img {
     &.avatar {
       float: right;
-      width: 128px;
       height: 128px;
     }
   }
