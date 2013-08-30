@@ -401,8 +401,8 @@ class User < ActiveRecord::Base
   
   # -- user information -----------------------------------------------
   serialize :serialized, Hash
-  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description
-  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description
+  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
+  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
   
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities

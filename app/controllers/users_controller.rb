@@ -2,7 +2,8 @@
 
 class UsersController < ApplicationController
   before_filter :set_user
-  before_filter :handle_profile_image, :only => [:update]
+  before_filter :access_allowed?,       :except => [:show]
+  before_filter :handle_profile_image,  :only   => [:update]
   
   def show
     @per_page = per_page
@@ -17,37 +18,46 @@ class UsersController < ApplicationController
   end
   
   def update
+    # TODO: refactor this, e.g. by providing actions in particular identities controllers!
+    
     case params[:section]
     when "passwd"
       identity = params["identity"] || {}
       password = params["identity"].delete("password")
+      
       unless Identity::Email.authenticate @email.email, password  
         @email.errors.add :password, I18n.t("message.password_invalid")
       else
-        @email.attributes = identity
-        @email.valid?
+        if @email.update_attributes(
+            :password               => identity[:password_new],
+            :password_confirmation  => identity[:password_new_confirmation])
+            
+          flash[:notice] = I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password))
+          redirect_to! @user
+        end
       end
       
-      if @email.errors.blank?
-        @email.save!
-        redirect_to! @user
-      end
     else
       @user.attributes = params[:user]
-      redirect_to! @user if @user.save
+      if @user.save
+        flash[:notice] = I18n.t("message.update.success", :record => @user.name)
+        redirect_to! @user
+      end
     end
 
+    @partials = EDIT_PARTIALS
     render :action => "edit"
   end
   
   def destroy
-    user = params["user"] || {}
-    if user["delete_me"].to_i == 0
+    params[:user] ||= {}
+
+    if params[:user][:delete_me].to_i.zero?
       @user.errors.add :delete_me, I18n.t("message.check_delete_me")
-      render! :action => :show
+      redirect_to! @user
     end
     
-    # TODO: evaluate the :description field; e.g. send email to admin
+    @user.update_attribute(:delete_reason, params[:user][:delete_reason])
     @user.soft_delete!
     signout
     redirect_to root_path
@@ -56,13 +66,10 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    @user = if params[:id]
-      User.find(params[:id], :readonly => (@action == "show"))
-    else
-      current_user
-    end
-    
-    # TODO: check if this really needed anymore!
+    @user = if params[:id] then User.find(params[:id], :readonly => %w(show edit).include?(@action))
+            else current_user
+            end
+
     if @user and @user == current_user
       @user.extend DummyParameters
       @email = @user.identity(:email)
@@ -70,6 +77,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def access_allowed?
+    return if @user == current_user
+    
+    flash[:error] = I18n.t("message.access.not_allowed")
+    redirect_to root_path
+  end
+  
   #
   # removes user's provile image if not given in params hash
   def handle_profile_image

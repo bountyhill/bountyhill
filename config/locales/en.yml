@@ -11,6 +11,8 @@ en:
       success:        "%{record} was successfully submitted."
     update:
       success:        "%{record} was successfully updated."
+    access:
+      not_allowed:    You are not allowed to do this!
     check_delete_me:  Please confirm the deletion of your account.
     password_invalid: The pasword entered is not valid.
   notice:

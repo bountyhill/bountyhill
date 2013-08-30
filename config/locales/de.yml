@@ -11,6 +11,8 @@ de:
       success:        "%{record} wurde erfolgreich abgegeben."
     update:
       success:        "%{record} wurde erfolgreich aktualisiert."
+    access:
+      not_allowed:    Du bist nicht berechtigt dies zu tun!
     check_delete_me:  Bitte bestätige das Löschen Deines Accounts.
     password_invalid: Das eingegeben Passwort ist nicht gültig.
   notice:
