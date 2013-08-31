@@ -103,8 +103,6 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   def test_new
-    @controller.expects(:pre_process_twitter_signin).once
-    
     post :new, :provider => 'twitter'
     assert_response :redirect
     assert_redirected_to "/auth/twitter"
@@ -121,8 +119,12 @@ class SessionsControllerTest < ActionController::TestCase
     # succeeds
     OmniAuth.config.add_mock(:twitter, {:provider => 'twitter'})
     @request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
-    Identity::Twitter.expects(:find_or_create).once.returns(Factory(:twitter_identity, :identifier => '12345'))
-    @controller.expects(:post_process_twitter_signin).once
+
+    identity_twitter = Factory(:twitter_identity, :identifier => '12345')
+    Identity::Twitter.expects(:find_or_create).once.returns(identity_twitter)
+    identity_twitter.expects(:follow).once.returns(true)
+    identity_twitter.expects(:direct_message).with(I18n.t("notice.tweet.thanks_for_following")).once
+    @request.session[:follow_bountyhermes] = true
     
     post :create
     assert_response :redirect

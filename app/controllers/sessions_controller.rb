@@ -141,7 +141,7 @@ class SessionsController < ApplicationController
   end
 
 
-private
+protected
 
   def set_partials
     @partials = case params[:req]
@@ -160,7 +160,8 @@ private
   
   def post_process_twitter_signin
     # handle the data provided by the user before twitter oauth signin
-    if (twitter_identity.follow = session.delete(:follow_bountyhermes))
+    if session.delete(:follow_bountyhermes)
+      @identity.follow
       @identity.direct_message I18n.t("notice.tweet.thanks_for_following")
     end
   end
