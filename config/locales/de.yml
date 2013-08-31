@@ -15,6 +15,10 @@ de:
       not_allowed:    Du bist nicht berechtigt dies zu tun!
     check_delete_me:  Bitte bestätige das Löschen Deines Accounts.
     password_invalid: Das eingegeben Passwort ist nicht gültig.
+    action:
+      invalid:        Die von Dir angefragte Aktion kann nicht ausgeführt werden.
+    method:
+      invalid:        Die von Dir angefragte Aktion kann mit dieser Anfrage nicht ausgeführt werden.
   notice:
     tweet:
       thanks_for_following: "Vielen Dank, dass Du @bountyhermes folgst. Wir halten Dich auf dem Laufenden..."

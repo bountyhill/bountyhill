@@ -2,6 +2,8 @@
 
 class DeferredActionsController < ApplicationController
   attr_reader :action
+
+  before_filter :verify_method
   
   # Execute a deferred action. An URL should look like this:
   #    /act?thisismysecret
@@ -15,7 +17,7 @@ class DeferredActionsController < ApplicationController
     @action = DeferredAction.find_by_secret(secret)
 
     unless action && action.performable?
-      flash[:error] = I18n.t "deferred_actions.invalid"
+      flash[:error] = I18n.t("message.action.invalid")
       redirect_to root_path
       return
     end
@@ -30,28 +32,14 @@ class DeferredActionsController < ApplicationController
     redirect_to root_path unless performed?
   end
 
-  
-  before_filter :verify_method
-
-  def verify_method
-    expected_method = case action_name
-    when "show" then "GET"
-    else             "POST"
-    end
-
-    return if expected_method == request.method
-    
-    flash[:error] = "Don't know how to handle this request. Should be a #{expected_method}"
-    redirect_to request.env["HTTP_REFERER"]
-  end
-  
-  # Send an email address confirmation email.
   #
+  # Send an email address confirmation email.
+  # TODO: why here? should be moved to identities/email_controller
   def confirm
     Deferred.mail UserMailer.confirm_email(current_user)
     flash[:success] = I18n.t("sessions.email.confirmation.sent")
     
-    redirect_to request.env["HTTP_REFERER"]
+    redirect_to request.env["HTTP_REFERER"] || root_path
   end
 
   protected
@@ -74,7 +62,20 @@ class DeferredActionsController < ApplicationController
   
   private
   
-  # If the flash is not set (neither flash[:success] nor flash[:error], and
+  #
+  # TODO: could this not be generalized in application controller?
+  def verify_method
+    expected_method = case action_name
+      when "show" then "GET"
+      else             "POST"
+      end
+
+    return if expected_method == request.method
+    
+    flash[:error] = I18n.t("message.method.invalid")
+    redirect_to request.env["HTTP_REFERER"] || root_path
+  end
+  
   # a translation for "actions.<name>" exists, then we set
   # a success message.
   def show_success_message

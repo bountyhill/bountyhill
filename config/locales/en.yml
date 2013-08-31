@@ -15,6 +15,10 @@ en:
       not_allowed:    You are not allowed to do this!
     check_delete_me:  Please confirm the deletion of your account.
     password_invalid: The pasword entered is not valid.
+    action:
+      invalid:        The action you requested cannot be performed.
+    method:
+      invalid:        The action you requested cannot be performed will this request.
   notice:
     tweet:
       thanks_for_following: "Thank you for following @bountyhermes. We will keep you informed..."
