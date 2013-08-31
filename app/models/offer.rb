@@ -66,7 +66,7 @@ class Offer < ActiveRecord::Base
   
   # -- Initial setup -------------------------------------------------------
   
-  def initialize(attributes={})
+  def initialize(attributes={}, options={})
     super
     return unless quest
     

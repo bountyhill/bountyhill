@@ -58,4 +58,10 @@ FactoryGirl.define do
     association :object, :factory => :quest
     association :user, :factory => :user
   end
+  
+  factory :share do |share|
+    message    "share's message"
+    association :quest, :factory => :quest
+    association :owner, :factory => :user
+  end
 end

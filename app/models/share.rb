@@ -34,18 +34,19 @@ class Share < ActiveRecord::Base
   #
   # All identities that allow a owner to share a quest
   # by sending tweets, posting on timeline, etc.
-  IDENTITIES = [:twitter, :facebook]
+  IDENTITIES = %w(twitter facebook)
 
   #
   # detect user's identities that allow sharing
-  def initialize(attributes={})
+  def initialize(attributes={}, options={})
     # initializing from the share form
     return super if attributes.delete(:title)
 
     # initializing for the shares form
     super
+    
     Share::IDENTITIES.each do |identity|
-      identities[identity] = owner.identity?(identity)
+      identities[identity] ||= owner.identity?(identity.to_sym)
     end
   end
   

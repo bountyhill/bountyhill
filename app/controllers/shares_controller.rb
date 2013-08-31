@@ -3,12 +3,12 @@
 # The SharesController is used to share a quest via selected social networks, 
 # e.g. twitter, facebook or ...
 class SharesController < ApplicationController
-  before_filter :quest, :only => [:new]
-  layout false, :only => [:new]
+  layout false, :only => [:new, :create]
   
   #
   # Show the form to share a quest
   def new
+    @quest = Quest.find(params[:quest_id])
     @share = Share.new(:quest => @quest, :owner => current_user)
     render :layout => "dialog"
   end
@@ -16,25 +16,31 @@ class SharesController < ApplicationController
   #
   # Create a share object
   def create
+    @quest = Quest.find(params[:share][:quest_id])
     @share = Share.new(params[:share].merge(:owner => current_user))
     
     # if we have a valid share object, we redirect to
     # the show action to trigger the actual sharing
     if @share.save
-      redirect_to share_path(@share)
+      redirect_to! share_path(@share)
     end
+    render :template => "shares/new", :layout => "dialog"
   end
   
   #
   # Post the quest in social networks
+  # TODO: this should rather be an update action, but
+  # keep in mind that request_identity! redirects to it after
+  # user's identity was provided!
   def show
     @share = Share.find(params[:id])
     @quest = Quest.find(@share.quest_id, :readonly => false)
     
     # Share quest with identities user did choose
-    @share.identities.each do |identity, shared_at|
-      next if shared_at.kind_of?(Time)
-      
+    @share.identities.each do |identity, post|
+      next if post.kind_of?(Time) # quest was already posted with this identity
+      next unless post            # quest is not to be posted with this identity
+
       # request identity user wants to share with
       request_identity! identity.to_sym, :on_cancel => @share.quest
       @share.post(identity.to_sym)
@@ -43,7 +49,7 @@ class SharesController < ApplicationController
     # 
     # if the quest is alreday active we are done if not,
     # we have to start the quest
-    message = if @quest.active? then
+    message = if @quest.active?
         I18n.t("quest.action.shared", :quest => @quest.title)
       else
         @quest.start!
@@ -52,11 +58,4 @@ class SharesController < ApplicationController
     redirect_to! quest_path(@quest), :success => message
   end
 
-
-private
-  
-  def quest
-    @quest ||= Quest.find(params[:quest_id])
-  end
-    
 end
