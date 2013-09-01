@@ -98,7 +98,7 @@ module Deferred
     }
 
     client = Twitter::Client.new(oauth)
-    r = client.send *args
+    client.send(*args)
     W "OK twitter", *args
   end
 

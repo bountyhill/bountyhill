@@ -70,8 +70,8 @@ class Identity::Twitter < Identity
       :oauth_secret     => oauth_secret
     }
 
-    oauth[:consumer_secret] ||= User.admin.identity(:twitter).consumer_secret
-    oauth[:consumer_key]    ||= User.admin.identity(:twitter).consumer_key
+    oauth[:consumer_secret] ||= Bountybase.config.twitter_app["consumer_secret"]
+    oauth[:consumer_key]    ||= Bountybase.config.twitter_app["consumer_key"]
     
     oauth
   end
