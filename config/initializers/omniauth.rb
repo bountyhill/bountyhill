@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 OmniAuth.config.logger      = Rails.logger
-OmniAuth.config.on_failure  = SessionsController.action(:facebook)
+OmniAuth.config.on_failure  = SessionsController.action(:failure)
 OmniAuth.config.test_mode   = Rails.env.test?
 
 # OmniAuthMiddleware: handles facebook authentication
