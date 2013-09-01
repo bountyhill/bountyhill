@@ -69,7 +69,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
     assert_equal "Hans Wurst", @user.name
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:notice]
+    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
   end
   
   def test_update_fails
@@ -91,7 +91,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to user_path(@user)
     assert_equal "barfoo", assigns(:email).password
-    assert_equal I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password)), flash[:notice]
+    assert_equal I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password)), flash[:success]
   end
   
   def test_update_password_fails

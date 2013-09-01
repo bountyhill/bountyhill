@@ -32,7 +32,7 @@ class UsersController < ApplicationController
             :password               => identity[:password_new],
             :password_confirmation  => identity[:password_new_confirmation])
             
-          flash[:notice] = I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password))
+          flash[:success] = I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password))
           redirect_to! @user
         end
       end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     else
       @user.attributes = params[:user]
       if @user.save
-        flash[:notice] = I18n.t("message.update.success", :record => @user.name)
+        flash[:success] = I18n.t("message.update.success", :record => @user.name)
         redirect_to! @user
       end
     end
