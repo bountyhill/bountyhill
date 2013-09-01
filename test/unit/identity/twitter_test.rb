@@ -74,10 +74,10 @@ class Identity::TwitterTest < ActiveSupport::TestCase
     twitter = Identity::Twitter.new(:credentials => { :secret => "foo", :token => "bar" })
     
     oauth_hash = {
-      :consumer_secret  => admin.identity(:twitter).consumer_secret,
-      :consumer_key     => admin.identity(:twitter).consumer_key,
-      :oauth_token      => "bar",
-      :oauth_secret     => "foo"
+      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"],
+      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
+      :oauth_token        => "bar",
+      :oauth_token_secret => "foo"
     }
 
     assert_equal oauth_hash, twitter.send(:oauth_hash)

@@ -64,10 +64,10 @@ class Identity::Twitter < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     oauth = {
-      :consumer_secret  => consumer_secret,
-      :consumer_key     => consumer_key,
-      :oauth_token      => oauth_token,
-      :oauth_secret     => oauth_secret
+      :consumer_secret    => consumer_secret,
+      :consumer_key       => consumer_key,
+      :oauth_token        => oauth_token,
+      :oauth_token_secret => oauth_secret
     }
 
     oauth[:consumer_secret] ||= Bountybase.config.twitter_app["consumer_secret"]
