@@ -71,7 +71,7 @@ module Identity::Provider
         # 
       
         # if an identity of the same provider exists, but belongs to a different user, we "merge" these users.
-        # TODO: we have to move all objects belonging to the user to the new user as well
+        # TODO: we have to move all objects belonging to the user to the new user as well and soft_delete the old one afterwards
         if current_identity && user && current_identity.user != user
           current_identity.user = user
           current_identity.save!
