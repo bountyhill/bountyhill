@@ -20,11 +20,7 @@ module Deferred
     @in_background = old
   end
   
-  self.in_background = true
-  
-  if Rails.env.test?
-    self.in_background = false
-  end
+  self.in_background = !Rails.env.test?
   
   def self.method_missing(sym, *args) #:nodoc:
     super unless instance_methods.include?(sym)
@@ -66,8 +62,7 @@ module Deferred
   # -- run a facebook request ------------------------------------------
   
   def facebook(*args)
-    W "TRY facebook", *args
-    return if Rails.env.development?
+    W "TRY facebook", *args                      unless Rails.env.test?
 
     oauth = args.extract_options!
     expect! oauth => {
@@ -76,8 +71,8 @@ module Deferred
     }
     
     client = Koala::Facebook::API.new(oauth[:oauth_token])
-    client.put_connections(*args)
-    W "OK facebook", *args
+    client.put_connections(*args)                 unless Rails.env.development?
+    W "OK facebook", *args                        unless Rails.env.test?
   end
 
   # -- run a twitter request ------------------------------------------
@@ -85,11 +80,9 @@ module Deferred
   # does a Twitter API call. The parameters include a oauth options
   # hash with all required oauth entries.
   def twitter(*args)
-    W "TRY twitter", *args
-    return if Rails.env.development?
-    
+    W "TRY twitter", *args                        unless Rails.env.test?
+
     oauth = args.extract_options!
-    
     expect! oauth => {
       :oauth_token        => String,
       :oauth_token_secret => String,
@@ -98,16 +91,15 @@ module Deferred
     }
 
     client = Twitter::Client.new(oauth)
-    client.send(*args)
-    W "OK twitter", *args
+    client.send(*args)                            unless Rails.env.development?
+    W "OK twitter", *args                         unless Rails.env.test?
   end
 
   # -- deliver an email -----------------------------------------------
   
   def mail(email)
-    return email.deliver unless Rails.env.development?
-    
-    W "TRY email to #{email.to}", email.subject
-    W email.to_s
+    W "TRY email to #{email.to}", email.subject   unless Rails.env.test?
+    email.deliver                                 unless Rails.env.development?
+    W "OK email"                                  unless Rails.env.test?
   end
 end
