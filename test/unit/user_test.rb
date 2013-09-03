@@ -124,5 +124,69 @@ class UserTest < ActiveSupport::TestCase
       assert false
     end
   end
+
+  def test_transfer!
+    pend("TODO: test_transfer!") do
+      assert false
+    end
+  end
+  
+  def test_soft_delete!
+    pend("TODO: test_soft_delete!") do
+      assert false
+    end
+  end
+
+  def test_inspect
+    user = User.new
+    user.expects(:id).returns(123)
+    assert_equal "#<User id: #{123} []>", user.inspect
+  end
+
+  def test_inspect_with_identity_twitter
+    user = User.new
+    user.expects(:id).returns(123)
+    twitter = Identity::Twitter.new
+    twitter.expects(:handle).returns("foo_bar")
+    user.identities = [twitter]
+    assert_equal "#<User id: #{123} [t:foo_bar]>", user.inspect
+  end
+  
+  def test_inspect_with_identity_facebook
+    user = User.new
+    user.expects(:id).returns(123)
+    facebook = Identity::Facebook.new
+    facebook.expects(:nickname).returns("Foo Bar")
+    user.identities = [facebook]
+    assert_equal "#<User id: #{123} [f:Foo Bar]>", user.inspect
+  end
+  
+  def test_inspect_with_identity_email
+    user = User.new
+    user.expects(:id).returns(123)
+    email = Identity::Email.new
+    email.expects(:confirmed?).returns(false)
+    email.expects(:email).returns("foo@bar.com")
+    user.identities = [email]
+    assert_equal "#<User id: #{123} [@:foo@bar.com (-)]>", user.inspect
+  end
+  
+  def test_inspect_with_identity_confirmed
+    user = User.new
+    user.expects(:id).returns(123)
+    email = Identity::Email.new
+    email.expects(:confirmed?).returns(true)
+    email.expects(:email).returns("foo@bar.com")
+    user.identities = [email]
+    assert_equal "#<User id: #{123} [@:foo@bar.com (✓)]>", user.inspect
+  end
+  
+  def test_inspect_with_identity_deleted
+    user = User.new
+    user.expects(:id).returns(123)
+    deleted = Identity::Deleted.new
+    user.identities = [deleted]
+    assert_equal "#<User id: #{123} [---deleted---]>", user.inspect
+  end
   
 end

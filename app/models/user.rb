@@ -127,14 +127,15 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [ :email, :twitter, :facebook, :confirmed, :any ]
+    expect! mode => [:any, :email, :confirmed, :twitter, :facebook, :deleted]
     
     case mode
-    when :email     then identities.detect { |i| i.is_a?(Identity::Email) }
-    when :twitter   then identities.detect { |i| i.is_a?(Identity::Twitter) }
-    when :facebook  then identities.detect { |i| i.is_a?(Identity::Facebook) }
-    when :confirmed then identities.detect { |i| i.is_a?(Identity::Email) && i.confirmed? }
-    else            identities.first
+    when :email     then identities.detect { |i|  i.is_a?(Identity::Email) }
+    when :confirmed then identities.detect { |i|  i.is_a?(Identity::Email) && i.confirmed? }
+    when :twitter   then identities.detect { |i|  i.is_a?(Identity::Twitter) }
+    when :facebook  then identities.detect { |i|  i.is_a?(Identity::Facebook) }
+    when :deleted   then identities.detect { |i|  i.is_a?(Identity::Deleted) }
+    else                 identities.detect { |i| !i.is_a?(Identity::Deleted) }
     end
   end
 
@@ -328,13 +329,6 @@ class User < ActiveRecord::Base
     self == User.draft
   end
 
-  # -- offers ---------------------------------------------------------
-  
-  # returns true if the user has any current offers
-  def current_offers?
-    quests.active.first || offers.first
-  end
-
   # -- special System users -------------------------------------------
 
   # sign over ownerships.
@@ -382,18 +376,22 @@ class User < ActiveRecord::Base
   def inspect
     parts = []
 
-    if identity = self.identity(:twitter)
-      parts << "t:#{identity.handle}"
+    if twitter = identity(:twitter)
+      parts << "t:#{twitter.handle}"
     end
 
-    if identity = self.identity(:facebook)
-      parts << "f:#{identity.nickname}"
+    if facebook = identity(:facebook)
+      parts << "f:#{facebook.nickname}"
     end
 
-    if identity = self.identity(:confirmed)
-      parts << "@:#{identity.email} (✓)"
-    elsif identity = self.identity(:email)
-      parts << identity.email
+    if confirmed = identity(:confirmed)
+      parts << "@:#{confirmed.email} (✓)"
+    elsif email = self.identity(:email)
+      parts << "@:#{email.email} (-)"
+    end
+    
+    if deleted = identity(:deleted)
+      parts << "---deleted---"
     end
     
     "#<User id: #{id} [#{parts.join(", ")}]>"
