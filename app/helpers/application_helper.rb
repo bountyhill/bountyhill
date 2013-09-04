@@ -259,14 +259,14 @@ __END__
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
       days = (value.to_date - Date.today).to_i
       span = if value > Time.now
-        self.span t('restriction.expires_on', :count => days), :class => "temporality"
+        self.span I18n.t('restriction.expires_on', :count => days), :class => "temporality"
       else
-        self.span t('restriction.expired_on', :count => -days), :class => "temporality"
+        self.span I18n.t('restriction.expired_on', :count => -days), :class => "temporality"
       end
     when :created_at
       icon = image_tag '/images/icon/calendar.png', :class => 'temporality'
       days = (value.to_date - Date.today).to_i
-      span = self.span t('restriction.created_on', :count => -days), :class => "temporality"
+      span = self.span I18n.t('restriction.created_on', :count => -days), :class => "temporality"
     when :compliance
       icon = image_tag '/images/icon/location.png', :class => 'compliance'
       span = self.span I18n.t("restriction.compliance", :compliance => value), :class => "compliance"

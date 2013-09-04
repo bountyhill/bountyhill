@@ -208,12 +208,12 @@ end
 __END__
   def share_button(quest)
     return unless quest.active?
-    header_button(:twitter, share_path(quest), :title => t("quest.actions.tweet.title"))
+    header_button(:twitter, share_path(quest), :title => I18n.t("quest.actions.tweet.title"))
   end
 
   def offer_button(quest)
     return unless !personal_page? && quest.active?
-    header_button(:rect, new_offer_path(:quest_id => quest), :title => t("quest.actions.offer.title"))
+    header_button(:rect, new_offer_path(:quest_id => quest), :title => I18n.t("quest.actions.offer.title"))
   end
 
   def stop_quest_button(quest)
@@ -224,7 +224,7 @@ __END__
 
   def start_quest_button(quest)
     return unless personal_page? && !quest.active?
-    header_button(:start, run_path(quest), :title => t("quest.actions.start.title"),  :rel => "nofollow")
+    header_button(:start, run_path(quest), :title => I18n.t("quest.actions.start.title"),  :rel => "nofollow")
   end
   
   def render_bounty_badge(object)

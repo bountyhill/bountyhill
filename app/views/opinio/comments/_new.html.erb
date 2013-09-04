@@ -8,11 +8,11 @@
 
       <div class="buttons">
         <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-link btn-cancel" %>
-        <%= f.submit t('button.post'), :class => "btn btn-link" %>
+        <%= f.submit I18n.t('button.post'), :class => "btn btn-link" %>
       </div>
     <% end %>
   <% else %>
-    <p><%= t('comment.messages.must_be_logged_in_to_comment') %></p>
+    <p><%= I18n.t('comment.messages.must_be_logged_in_to_comment') %></p>
   <% end %>
 </div>
 

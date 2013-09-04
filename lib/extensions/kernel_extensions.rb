@@ -18,23 +18,5 @@ class Hash
       hash
     end
   end
-
-  def without_nil_values
-    inject({}) do |hash, (k,v)|
-      hash[k] = v unless v.nil?
-      hash
-    end
-  end
 end
 
-class String
-  def t(*args)
-    I18n.t(self, *args)
-  end
-end
-
-class Symbol
-  def t(*args)
-    I18n.t(self, *args)
-  end
-end
