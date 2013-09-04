@@ -62,6 +62,9 @@ FactoryGirl.define do
   factory :share do |share|
     message    "share's message"
     association :quest, :factory => :quest
-    association :owner, :factory => :user
+
+    after(:build) do |share, evaluator| 
+      share.owner = share.quest.owner
+    end
   end
 end

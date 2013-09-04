@@ -26,11 +26,6 @@ class Share < ActiveRecord::Base
   
   validate :validate_identities
   
-  def validate_identities
-    return if identities.keys.any?
-    self.errors.add :base, I18n.t("share.errors.identities")
-  end
-  
   #
   # All identities that allow a owner to share a quest
   # by sending tweets, posting on timeline, etc.
@@ -46,7 +41,7 @@ class Share < ActiveRecord::Base
     super
     
     Share::IDENTITIES.each do |identity|
-      identities[identity] ||= owner.identity?(identity.to_sym)
+      identities[identity] ||= owner && owner.identity?(identity.to_sym)
     end
   end
   
@@ -65,6 +60,14 @@ class Share < ActiveRecord::Base
     
     identities[identity] = Time.now
     save!
+  end
+
+private 
+
+  def validate_identities
+    return if identities.keys.any?{ |identity| Share::IDENTITIES.include?(identity) }
+    
+    self.errors.add :base, I18n.t("share.errors.identities")
   end
   
 end
