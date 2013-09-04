@@ -82,25 +82,6 @@ class User < ActiveRecord::Base
   # The user (monetary) account
   has_one :account, :foreign_key => "owner_id", :dependent => :destroy
   
-  # -- Finding --------------------------------------------------------
-  
-  def self.by_handle(handle)
-    expect! handle => String
-    
-    identity = case handle
-    when /^.+@(.*)/ then  Identity::Email.find_by_email(handle)
-    when /^@(.*)/   then  Identity::Twitter.find_by_identifier($1)
-    else                  Identity::Twitter.find_by_identifier(handle)
-    end
-
-    identity.user if identity
-  end
-
-  def self.by_handle!(handle)
-    by_handle(handle) ||
-      raise(ActiveRecord::RecordNotFound, "Couldn't find User with handle: #{handle.inspect}") 
-  end
-  
   # -- Identities -----------------------------------------------------
 
   # returns a user's identity in a specific mode, which is needed to
