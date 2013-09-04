@@ -46,18 +46,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
-  # Delete a user's last identity deletes the user, too.
-  def test_deleting_last_identity_deletes_user
-    user = User.find create_user.id
-    
-    identity = user.identities.first
-    identity.destroy
-    
-    assert_raise(ActiveRecord::RecordNotFound) {  
-      user.reload
-    }
-  end
-  
   # Can create a user and reads its identity
   def test_create_user_with_random_id
     SecureRandom.stubs(:random_number).returns(1234567)
@@ -107,9 +95,20 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_name
-    pend "TODO: add tests for name fallbacks!" do
-      assert false
-    end
+    # user has first_name and/or last_name set
+    user = Factory(:user, :first_name => "Foo", :last_name => "Bar")
+    assert_equal "Foo Bar", user.name
+    
+    # user has not first_name and/or last_name set, but email identity with name
+    user.update_attributes(:first_name => nil, :last_name => nil)
+    user.identity(:email).update_attributes(:name => "Bar Foo")
+    assert_equal "Bar Foo", user.name
+
+    # user has not first_name and/or last_name set and no email identity with name
+    user.identity(:email).update_attributes(:name => nil)
+    user.identities << Identity::Twitter.new(:identifier => "834u5429p8u498u40i6")
+    user.identity(:twitter).stubs(:name).returns("Far Boo")
+    assert_equal "Far Boo", user.name
   end
   
   def test_avatar
@@ -124,17 +123,56 @@ class UserTest < ActiveSupport::TestCase
       assert false
     end
   end
+  
+  def test_confirm_email!
+    user = Factory(:user)
+    assert user.identity(:email)
+    assert !user.identity(:confirmed)
+    
+    user.confirm_email!
+    
+    assert user.identity(:email)
+    assert user.identity(:confirmed)
+  end
+  
+  def test_confirmed_email
+    user = Factory(:user)
+    user.confirm_email!
+
+    assert_equal user.identity(:confirmed).email, user.confirmed_email
+  end
 
   def test_transfer!
-    pend("TODO: test_transfer!") do
-      assert false
+    owner     = Factory(:user)
+    quest     = Factory(:quest, :owner => owner)
+    new_owner = ActiveRecord.current_user
+    
+    assert_equal owner, quest.reload.owner
+    assert quest.owner != new_owner
+    quest.owner.stubs(:draft?).returns(true)
+
+    assert_no_difference("User.count") do
+      User.transfer! quest => new_owner
     end
+    
+    assert_equal new_owner, quest.reload.owner
   end
   
   def test_soft_delete!
-    pend("TODO: test_soft_delete!") do
-      assert false
+    user = User.new
+    user.identities << (Identity::Twitter.new   :identifier => "23485z948u4294564366")
+    user.identities << (Identity::Facebook.new  :identifier => "392459ht2hg24p97gh49")
+    user.identities << (Identity::Email.new     :email => "foo@bar.com", :password => "foobar", :password_confirmation => "foobar")
+    user.save!
+
+    assert_no_difference("User.count") do
+      assert_difference("Identity.count", -2) do
+        user.soft_delete!
+      end
     end
+    assert(identity = user.reload.identities.first)
+    assert identity.kind_of?(Identity::Deleted)
+    assert_equal "foo@bar.com", identity[:email]
   end
 
   def test_inspect

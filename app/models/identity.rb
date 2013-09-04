@@ -26,7 +26,7 @@ class Identity < ActiveRecord::Base
   after_create :create_user_if_missing
   after_create :reward_user
   
-  after_destroy :delete_user_if_deleted_last_identity
+  after_destroy :soft_delete_user
 
   serialize :serialized, Hash
 
@@ -41,13 +41,13 @@ class Identity < ActiveRecord::Base
     false
   end
   
-  private
+  protected
   
-  def delete_user_if_deleted_last_identity
+  def soft_delete_user
     return unless user
-
-    return if user.identities.any? { |identity| identity.id != self.id }
-    user.destroy
+    return if user.identities.any? { |identity| (identity.id != self.id) }
+    
+    user.soft_delete!
   end
 
   def create_user_if_missing

@@ -167,15 +167,12 @@ class QuestsControllerTest < ActionController::TestCase
   
   def test_create_as_draft_user
     logout
-
-    pend "TODO: enable user 'draft' in test mode as well!" do
-      assert_difference "Quest.count", +1 do
-        post :create, :quest => valid_quest_params
-      end
-      assert_response :redirect
-      assert_redirected_to quest_path(assigns(:quest), :preview => true)
-      assert_equal User.draft, assigns(:quest).owner
+    assert_difference "Quest.count", +1 do
+      post :create, :quest => valid_quest_params
     end
+    assert_response :redirect
+    assert_redirected_to quest_path(assigns(:quest), :preview => true)
+    assert_equal User.draft, assigns(:quest).owner
   end
   
   def test_update

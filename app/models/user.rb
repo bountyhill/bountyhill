@@ -432,14 +432,9 @@ class User < ActiveRecord::Base
   end
 
   # -- deletion -------------------------------------------------------
-
+  #
   # we dont let a user delete her account; instead we "hide" it. This
-  # way we can still access her quests, offers, and bounties. 
-  #
-  # To "delete" a user you call
-  #
-  # user.soft_delete!
-
+  # way we can still access her quests, offers, and bounties.
   def soft_delete!
     User.transaction do
       # set its deleted_at timestamp
@@ -447,22 +442,22 @@ class User < ActiveRecord::Base
       save!
       
       # set the visibility of all offers and quests to deleted
-      Quest.update_all({ :visibility => "deleted" }, :id => quests)
+      Quest.update_all({ :visibility => "deleted" }, :owner_id => self)
+      # TODO: Offer.update_all({ :visibility => "deleted" }, :owner_id => self)
 
-      # remove its twitter acount to "release" the twitter handle
-      if twitter = identity(:twitter)
-        twitter.destroy
+      # remove users social identities 
+      [:twitter, :facebook].each do |identity_name|
+        if (_identity = identity(identity_name))
+          _identity.destroy
+        end
       end
-
-      # remove its facebook acount  to "release" the facebook auth token
-      if twitter = identity(:facebook)
-        twitter.destroy
-      end
-
+      
       # adjust the email identity so, that the email address is kept for 
       # future references and that the user might re-signup with same email
       # again.
-      Identity.update_all({:type => "Identity::Deleted"}, :id => identity(:email))
+      if (email = identity(:email))
+        Identity.update_all({:type => "Identity::Deleted"}, :id => email)
+      end
     end
   end
   

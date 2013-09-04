@@ -39,4 +39,16 @@ class IdentityTest < ActiveSupport::TestCase
     end
   end
 
+  # Delete a user's last identity soft deletes the user
+  def test_soft_delete_user
+    identity = Factory(:identity)
+    identity.user.expects(:soft_delete!).once
+    
+    assert_difference("Identity.count", -1) do
+      assert_no_difference("User.count") do
+        identity.destroy
+      end
+    end
+  end
+
 end
