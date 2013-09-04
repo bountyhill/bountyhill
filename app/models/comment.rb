@@ -8,6 +8,9 @@ class Comment < ActiveRecord::Base
   end
 
   after_create :reward_commentor
+
+  validates :commentable, :presence => true
+  validates :owner,       :presence => true
   
   def reward_commentor
     owner.reward_for(self.commentable, :comment)

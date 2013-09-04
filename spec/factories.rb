@@ -49,7 +49,9 @@ FactoryGirl.define do
   factory :comment do
     body        "comment text"
     association :commentable, :factory => :quest
-    association :owner, :factory => :user
+    after(:build) do |comment, evaluator| 
+      comment.owner = comment.commentable.owner
+    end
   end
   
   factory :activity do
