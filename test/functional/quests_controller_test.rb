@@ -96,8 +96,11 @@ class QuestsControllerTest < ActionController::TestCase
     assert_raises ActiveRecord::RecordNotFound do
       get :show, :id => @quest.id
     end
+
+    as(@quest.owner) do
+      @quest.start!
+    end
     
-    @quest.start!
     get :show, :id => @quest.id
     assert_response :success
     assert_template :show

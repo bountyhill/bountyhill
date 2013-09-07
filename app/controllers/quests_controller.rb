@@ -60,7 +60,7 @@ class QuestsController < ApplicationController
     # remove location if it's not given or not valid
     @quest.location = nil unless @quest.restrict_location?
     
-    # Start the quest after saving.
+    # Show start quest form after successful saving.
     if @quest.save
       redirect_to! quest_path(@quest, :preview => true), :notice => I18n.t("message.create.success", :record => Quest.model_name.human)
     end
