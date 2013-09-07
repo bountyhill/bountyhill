@@ -4,7 +4,7 @@ class Activity < ActiveRecord::Base
   include ActiveRecord::RandomID
   
   belongs_to :user
-  belongs_to :object, :polymorphic => true
+  belongs_to :entity, :polymorphic => true
   
   GRADING = {
     :quest => {
@@ -40,15 +40,15 @@ class Activity < ActiveRecord::Base
       end.uniq
   end
   
-  validates :user, :object, :presence => true
+  validates :user, :entity, :presence => true
   validates :action, :presence => true, :inclusion => Activity.actions
   validates :points, :presence => true, :numericality => true
   
-  def self.log(user, action, object)
-    klass = object.class.name.underscore
+  def self.log(user, action, entity)
+    klass = entity.class.name.underscore
     
     unless Activity::GRADING[klass].present?
-      raise ArgumentError, "Cannot handle object class: #{klass}! Allowed are only: #{Activity::GRADING.keys.to_sentence}."
+      raise ArgumentError, "Cannot handle entity class: #{klass}! Allowed are only: #{Activity::GRADING.keys.to_sentence}."
     end
     
     unless (points = Activity::GRADING[klass][action])
@@ -57,7 +57,7 @@ class Activity < ActiveRecord::Base
     
     activity = user.activities.create!(
       :action => action.to_s,
-      :object => object,
+      :entity => entity,
       :points => points)
     
     Bountybase.reward user

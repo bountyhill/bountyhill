@@ -65,8 +65,8 @@ CREATE TABLE activities (
     id integer NOT NULL,
     user_id integer NOT NULL,
     action character varying(255) NOT NULL,
-    object_id integer NOT NULL,
-    object_type character varying(255) NOT NULL,
+    entity_id integer NOT NULL,
+    entity_type character varying(255) NOT NULL,
     points integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -849,6 +849,8 @@ INSERT INTO schema_migrations (version) VALUES ('33');
 INSERT INTO schema_migrations (version) VALUES ('34');
 
 INSERT INTO schema_migrations (version) VALUES ('35');
+
+INSERT INTO schema_migrations (version) VALUES ('36');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

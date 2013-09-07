@@ -2,12 +2,12 @@
 
 module ActivityAssertions
   
-  def assert_activity_logged(action=:create, object=nil, &block)
-    if object
-      user =   object.owner if object.respond_to?(:owner)
-      user ||= object.user  if object.respond_to?(:user)
+  def assert_activity_logged(action=:create, entity=nil, &block)
+    if entity
+      user =   entity.owner if entity.respond_to?(:owner)
+      user ||= entity.user  if entity.respond_to?(:user)
 
-      Activity.expects(:log).with(user, action, object)
+      Activity.expects(:log).with(user, action, entity)
     else
       Activity.expects(:log)
     end
