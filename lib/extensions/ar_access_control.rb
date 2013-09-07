@@ -149,7 +149,7 @@ module ActiveRecord::AccessControl
     #
     # Write access is denied if the current_user is not logged in.
     def writable?(user = ActiveRecord::AccessControl.current_user)
-      if owner.draft?
+      if owner == User.draft
         true
       elsif user.blank?
         false
