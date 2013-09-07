@@ -38,12 +38,6 @@ class Offer < ActiveRecord::Base
 
   # -- scopes and filters ---------------------------------------------
   
-  # relevant offers for a user: own or received
-  scope :relevant_for,  lambda { |user|
-    joins(:quest).
-    where("quests.owner_id=? OR offers.owner_id=?", user, user) 
-  }
-  
   scope :with_state, lambda { |state|
     expect! state => STATES
     where("offers.state = ?", state)
