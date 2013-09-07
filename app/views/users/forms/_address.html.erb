@@ -8,7 +8,8 @@
   <p><%= I18n.t("user.form.address.legend")%></p>
     <%= form.error_messages %>
     
-    <%= hidden_field_tag :partial, :address %>
+    <%= hidden_field_tag :section, :address %>
+    
     <%= form.control_group :address1 %>
     <%= form.control_group :address2 %>
     <%= form.control_group :city %>

@@ -8,7 +8,8 @@
   <p><%= I18n.t("user.form.profile.legend")%></p>
     <%= form.error_messages %>
     
-    <%= hidden_field_tag :partial, :profile %>
+    <%= hidden_field_tag :section, :profile %>
+    
     <%= form.control_group :first_name %>
     <%= form.control_group :last_name %>
     <%= form.control_group :description, :text_area, :rows => 3 %>

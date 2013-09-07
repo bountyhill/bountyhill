@@ -2,8 +2,8 @@
 
 class UsersController < ApplicationController
   before_filter :set_user
-  before_filter :access_allowed?,       :except => [:show]
-  before_filter :handle_profile_image,  :only   => [:update]
+  before_filter :access_allowed?,   :except => [:show]
+  before_filter :remove_user_image, :only   => [:update]
   
   def show
     @per_page = per_page
@@ -85,10 +85,11 @@ class UsersController < ApplicationController
   end
   
   #
-  # removes user's provile image if not given in params hash
-  def handle_profile_image
-    return unless params[:user]
-    params[:user][:images] = nil unless params[:user].key?(:images)
+  # removes user's image if not given in user's params hash
+  def remove_user_image
+    return unless params[:section] == "profile"
+    
+    params[:user][:images] = [] unless params[:user] && params[:user].key?(:images)
   end
   
   module DummyParameters

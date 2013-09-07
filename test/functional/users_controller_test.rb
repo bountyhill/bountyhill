@@ -63,8 +63,8 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   def test_update
-    # update user data
-    put :update, :id => @user.id, :user => { :first_name => "Hans", :last_name => "Wurst" }
+    # update user's profile
+    put :update, :id => @user.id, :section => :profile, :user => { :first_name => "Hans", :last_name => "Wurst" }
     assert_response :redirect
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
@@ -80,6 +80,45 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal @user, assigns(:user)
     assert assigns(:partials)
     assert_template :edit
+  end
+
+  def test_update_image
+    image_url = "https://www.filepicker.io/api/file/ESqPbxGnQ6uqjVOuqt3S"
+    
+    # set image
+    put :update, :id => @user.id, :section => :profile, :user => { :images => [image_url] }
+    assert_response :redirect
+    assert_redirected_to user_path(@user)
+    assert_equal @user.reload, assigns(:user)
+    assert_equal image_url, @user.image
+    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    
+    # leave image untouched
+    put :update, :id => @user.id, :section => :address, :user => { }
+    assert_response :redirect
+    assert_redirected_to user_path(@user)
+    assert_equal @user.reload, assigns(:user)
+    assert_equal image_url, @user.image
+    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    
+    # delete image
+    put :update, :id => @user.id, :section => :profile, :user => {}
+    assert_response :redirect
+    assert_redirected_to user_path(@user)
+    assert_equal @user.reload, assigns(:user)
+    assert_equal nil, @user.image
+    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+  end
+  
+  def test_update_address
+    put :update, :id => @user.id, :section => :address, :user => { :address1 => "Foo", :address2 => "Bar", :city => "FooBar" }
+    assert_response :redirect
+    assert_redirected_to user_path(@user)
+    assert_equal @user.reload, assigns(:user)
+    assert_equal "Foo", @user.address1
+    assert_equal "Bar", @user.address2
+    assert_equal "FooBar", @user.city
+    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
   end
 
   def test_update_password
