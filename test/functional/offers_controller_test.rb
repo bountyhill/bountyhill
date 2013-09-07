@@ -23,13 +23,20 @@ class OffersControllerTest < ActionController::TestCase
   
   # no offers are displayed if no owner id is given
   def test_index
-    # offerer sees no offers
+    # offerer did not receive any offers
     get :index
     assert_response :success
     assert_template :index
     assert_equal [], assigns(:offers)
     
-    # other user sees no offer
+    # searcher did receive one offer
+    login @searcher
+    get :index
+    assert_response :success
+    assert_template :index
+    assert_equal [@offer], assigns(:offers)
+    
+    # other user did not receive any offers
     login @other
     get :index
     assert_response :success
