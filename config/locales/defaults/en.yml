@@ -1,0 +1,5 @@
+en:
+  errors: &errors
+    messages:
+      greater_than_or_equal_to: "has to be greater than or equal to %{count}"
+      permission_denied: required permission is not present
