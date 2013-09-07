@@ -57,6 +57,14 @@ class OffersControllerTest < ActionController::TestCase
   # all offers of particular quest
   def test_index_with_given_quest
     login @quest.owner
+    # no offer with status != 'new'
+    get :index, :quest_id => @quest.id
+    assert_response :success
+    assert_template :index
+    assert_equal [], assigns(:offers)
+
+    # one active offer
+    @offer.update_attribute(:state, 'active')
     get :index, :quest_id => @quest.id
     assert_response :success
     assert_template :index
@@ -99,19 +107,25 @@ class OffersControllerTest < ActionController::TestCase
     assert_equal @offer, assigns(:offer)
     assert assigns(:offer).viewed_at.nil?
 
-    # show to quest owner
+    # test show to other
+    login @other
+    assert_raises ActiveRecord::RecordNotFound do
+      get :show, :id => @offer.id
+    end
+
+    # quest's owner does not see prepared (=new) offer
     login @quest.owner
+    assert_raises ActiveRecord::RecordNotFound do
+      get :show, :id => @offer.id
+    end
+    
+    # quest's owner does see active offer
+    @offer.update_attribute(:state, 'active')
     get :show, :id => @offer.id
     assert_response :success
     assert_template :show
     assert_equal @offer, assigns(:offer)
     assert assigns(:offer).viewed_at.present?
-    
-    # test_show_to_other
-    login @other
-    assert_raises ActiveRecord::RecordNotFound do
-      get :show, :id => @offer.id
-    end
   end
   
   def test_new
