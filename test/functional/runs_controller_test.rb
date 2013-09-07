@@ -10,8 +10,7 @@ class RunsControllerTest < ActionController::TestCase
     @response   = ActionController::TestResponse.new
     super
     
-    @owner = Factory(:user)
-    @owner.identities << Factory(:twitter_identity)
+    @owner = Factory(:twitter_identity).user
     @quest = Factory(:quest, :owner => @owner, :bounty => Money.new(12000, "EUR"))
 
     login @owner
@@ -29,16 +28,15 @@ class RunsControllerTest < ActionController::TestCase
   end
   
   def test_show_draft
-pend "TODO: enable user 'draft' in test mode as well!" do
     logout
-    @draft = Factory(:quest, :owner => User.draft, :bounty => Money.new(12000, "EUR"))
-    
-      assert_no_difference "Quest.count" do
-      get :show, :id => @draft.id
+    draft = Factory(:quest, :owner => User.draft)
+pend("Why does user draft not exist in DB anymore?") do
+    assert_no_difference "Quest.count" do
+      get :show, :id => draft.id
     end
     assert_response :redirect
     assert_redirected_to signin_path(:req => :any)
-    assert_equal @draft, assigns(:quest)
+    assert_equal draft, assigns(:quest)
 end
   end
   
