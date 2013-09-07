@@ -31,7 +31,6 @@ module ActiveRecord::AccessControl
     expect! mode => [nil, :none, :owner, :visibility]
 
     setup_access_control
-
     self.read_access = resolve_access_proc(mode, &block)
   end
   
@@ -53,11 +52,15 @@ module ActiveRecord::AccessControl
   #   write_access_control do
   #   end
   def write_access_control(mode = nil, &block)
+    expect! mode => [nil, :none, :owner]
+    
     setup_access_control
     self.write_access = resolve_access_proc(mode, &block)
   end
 
   def resolve_access_proc(mode, &block) #:nodoc:
+    expect! mode => [nil, :none, :owner, :visibility]
+    
     case mode
     when nil 
       block
@@ -146,17 +149,17 @@ module ActiveRecord::AccessControl
     #
     # Write access is denied if the current_user is not logged in.
     def writable?(user = ActiveRecord::AccessControl.current_user)
-      if owner == User.draft
+      if owner.draft?
         true
-      elsif !user
+      elsif user.blank?
         false
       elsif user.admin?
         true
-      elsif user == owner
+      elsif user.owns?(self)
         true
-      elsif (write_access = self.write_access).nil?
+      elsif (_write_access = self.write_access).blank?
         true
-      elsif scope = write_access.call(user)
+      elsif (scope = _write_access.call(user))
         scope.where(:id => self.id).count == 1
       else
         false
