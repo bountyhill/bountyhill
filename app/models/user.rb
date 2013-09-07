@@ -268,42 +268,41 @@ class User < ActiveRecord::Base
     TWITTER_HANDLES = {
       "admin"   => Bountybase.config.twitter_app,
       "hermes"  => Bountybase.config.twitter_notifications,
-
-      # TODO: Currently the draft user is linked to the @bountyhermes
-      # twitter account. While this works, it would probably be better
-      # to not use a Twitter identity for that user, as this user should
-      # never act on twitter at all.
-      "draft"   => Bountybase.config.twitter_notifications
+    }
+    EMAIL_HANDLES = {
+      "draft" => Bountybase.config.email_draft
     }
     
     def find_or_create_system_user(key)
-      expect! key => TWITTER_HANDLES.keys
+      expect! key => (TWITTER_HANDLES.keys + EMAIL_HANDLES.keys)
 
-      config      = TWITTER_HANDLES[key]
-      identifier  = config["user"]
-      identity = Identity::Twitter.find_by_identifier(identifier) || 
-        Identity::Twitter.create!(:name => key, :identifier => identifier, :info => { :nickname => :identifier })
-
-      # Update attributes in the database to synchronize configuration
-      # with database information. As this is done only once per
-      # session, the runtime overhead is negligiable.
-      identity.update_attributes!({
-        :consumer_key     => config["consumer_key"],
-        :consumer_secret  => config["consumer_secret"],
-        :credentials      => { 
-          :token  => config["oauth_token"],
-          :secret => config["oauth_secret"]
-        }
-      })
-
+      identity = 
+        if (config = TWITTER_HANDLES[key])
+          Identity::Twitter.find_by_identifier(config["identifier"]) || Identity::Twitter.create!(
+              :name             => key,
+              :identifier       => config["identifier"],
+              :consumer_key     => config["consumer_key"],
+              :consumer_secret  => config["consumer_secret"],
+              :info             => { :nickname => config["user"] },
+              :credentials      => { :token  => config["oauth_token"], :secret => config["oauth_secret"] })
+        elsif (config = EMAIL_HANDLES[key])
+          Identity::Email.find_by_email(config["email"]) || Identity::Email.create!(
+            :name                   => key,
+            :email                  => config["email"],
+            :password               => config["password"],
+            :password_confirmation  => config["password_confirmation"])
+        else
+          raise ArgumentError, "Cannot find or create system user: #{key}!"
+        end
+      
+      # return user
       identity.user
     end
   end
   extend SystemUsers
   
   def admin?
-    self == User.admin ||
-    Bountybase.config.admins.include?(identifier)
+    (self == User.admin) || Bountybase.config.admins.include?(identifier)
   end
 
   def draft?
