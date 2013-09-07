@@ -51,7 +51,7 @@ module BoxHelper
     end
   end
 
-  def filter_box(type, atribute, filters, options={})
+  def filter_box(type, attribute, filters, options={})
     expect! type    => [:quest, :offer]
     expect! filters => Array
     
@@ -65,8 +65,8 @@ module BoxHelper
           css_class =  "btn btn-link btn-small"
           css_class += " active" if f.active?(options[:active]) || filters.size == 1
           
-          name = (I18n.t(f.name, :scope => "#{type}.#{atribute}") + span(f.count, :class => 'count')).html_safe
-          li link_to(name, f.url, :class => css_class)
+          name = span(I18n.t(f.name, :scope => "#{type}.#{attribute}"), :class => 'filtername') + span(f.count, :class => 'filtercount')
+          li link_to(name.html_safe, f.url, :class => css_class)
         end.join.html_safe
       end
     end
