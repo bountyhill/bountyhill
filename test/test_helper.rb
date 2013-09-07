@@ -91,6 +91,10 @@ class ActiveSupport::TestCase
   def setup
     ActiveRecord.current_user = admin
     User.stubs(:admin).returns(admin)
+    
+    # do not send anything to social networks in tests
+    Koala::Facebook::API.any_instance.stubs(:put_connections)
+    Twitter::Client.any_instance.stubs(:update)
   end
 
   def teardown
