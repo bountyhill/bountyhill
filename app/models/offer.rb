@@ -213,6 +213,15 @@ class Offer < ActiveRecord::Base
     Bountyhill::Application.url_for "/offers/#{self.id}"
   end
 
+  #
+  # set viewed_at at first time view of non-owner
+  def viewed!(user = ActiveRecord::AccessControl.current_user)
+    return if viewed_at.present? || user.owns?(self)
+    ActiveRecord::AccessControl.as(owner) do
+      update_attribute(:viewed_at, Time.now)
+    end
+  end
+
   # -- states and state manipulations --------------------------------------------------
   
   def new?

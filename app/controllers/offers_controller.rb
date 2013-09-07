@@ -36,11 +36,7 @@ class OffersController < ApplicationController
   # GET /offers/1
   def show
     @offer = Offer.find(params[:id])
-
-    # set viewed_at at first time view of non-owner
-    unless @offer.viewed_at.present? || current_user.owns?(@offer)
-      @offer.update_attribute(:viewed_at, Time.now)
-    end
+    @offer.viewed!
     
     render :action => "preview" if params[:preview]
   end

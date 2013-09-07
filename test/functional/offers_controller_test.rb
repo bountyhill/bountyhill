@@ -12,26 +12,29 @@ class OffersControllerTest < ActionController::TestCase
 
     # init common test objects
     @offerer  = Factory(:user)
-    @quest    = Factory(:quest, :owner => admin, :bounty => Money.new(12000, "EUR")).start!
+    @searcher = Factory(:twitter_identity).user
+    @other    = Factory(:facebook_identity).user
+
+    @quest    = Factory(:quest, :owner => @searcher, :bounty => Money.new(12000, "EUR")).start!
     @offer    = Factory(:offer, :quest => @quest, :owner => @offerer)
     
     login @offerer
   end
   
-  # all offers visible by current user
+  # no offers are displayed if no owner id is given
   def test_index
-    # common user sees no offers
+    # offerer sees no offers
     get :index
     assert_response :success
     assert_template :index
     assert_equal [], assigns(:offers)
     
-    # admin user sees all offers
-    login admin
+    # other user sees no offer
+    login @other
     get :index
     assert_response :success
     assert_template :index
-    assert_equal [@offer], assigns(:offers)
+    assert_equal [], assigns(:offers)
   end
 
   # all offers of particular quest
@@ -86,6 +89,12 @@ class OffersControllerTest < ActionController::TestCase
     assert_template :show
     assert_equal @offer, assigns(:offer)
     assert assigns(:offer).viewed_at.present?
+    
+    # test_show_to_other
+    login @other
+    assert_raises ActiveRecord::RecordNotFound do
+      get :show, :id => @offer.id
+    end
   end
   
   def test_new
