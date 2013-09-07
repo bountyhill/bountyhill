@@ -60,7 +60,9 @@
       bottom: 8px;
       .btn { font-size: 12px; }
     }
-    &:hover {
+  }
+  &:hover {
+    .message-stats {
       .btn-group  { display: block; }
     }
   }
