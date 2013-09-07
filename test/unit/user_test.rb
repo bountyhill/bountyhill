@@ -12,13 +12,18 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_fixtures
-    assert_equal 1, User.count
-    assert_equal 1, Identity.count
+    assert_equal 2, User.count
+    assert_equal 2, Identity.count
     assert_equal 1, Identity::Twitter.count
+    assert_equal 1, Identity::Email.count
     
-    user = Identity::Twitter.find_by_identifier("radiospiel").user
+    admin_user = Identity::Twitter.find_by_identifier("radiospiel").user
+    assert(admin_user.admin?)
+    assert_equal User.admin, admin_user
     
-    assert(user.admin?)
+    draft_user = Identity::Email.find_by_email("draft@bountyhill.com").user
+    assert(draft_user.draft?)
+    assert_equal User.draft, draft_user
   end
   
   # There are no users without an identity

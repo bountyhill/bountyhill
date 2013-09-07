@@ -1,2 +1,4 @@
 admin:
   remember_token: admin_remember_token
+draft:
+  remember_token: draft_remember_token

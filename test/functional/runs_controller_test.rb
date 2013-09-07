@@ -30,14 +30,14 @@ class RunsControllerTest < ActionController::TestCase
   def test_show_draft
     logout
     draft = Factory(:quest, :owner => User.draft)
-pend("Why does user draft not exist in DB anymore?") do
+#pend("Why does user draft not exist in DB anymore?") do
     assert_no_difference "Quest.count" do
       get :show, :id => draft.id
     end
     assert_response :redirect
     assert_redirected_to signin_path(:req => :any)
     assert_equal draft, assigns(:quest)
-end
+#end
   end
   
   def test_cancel

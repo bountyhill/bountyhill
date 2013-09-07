@@ -2,3 +2,8 @@ admin:
   type: Identity::Twitter
   identifier: radiospiel
   user: admin
+
+draft:
+  type: Identity::Email
+  email: draft@bountyhill.com
+  user: draft
