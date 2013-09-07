@@ -28,7 +28,7 @@ class OffersController < ApplicationController
     scope = scope.with_state(params[:state]) if params[:state]
 
     @offers = scope.paginate(
-      :page     => params[:page],
+      :page     => params[:page] ||= 1,
       :per_page => per_page,
       :order    => order)
   end

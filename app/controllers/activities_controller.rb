@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   
   def index
     @activities = @user.activities.paginate(
-      :page     => params[:page],
+      :page     => params[:page] ||= 1,
       :per_page => per_page,
       :order    => "created_at DESC",
       :include  => :user)

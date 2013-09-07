@@ -23,7 +23,7 @@ class QuestsController < ApplicationController
     
     # fetch quests
     @quests = scope.paginate(
-      :page       => params[:page],
+      :page       => params[:page] ||= 1,
       :per_page   => per_page,
       :order      => "quests.created_at desc",
       :include    => [{ :owner => :identities }, :location])

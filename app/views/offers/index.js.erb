@@ -1,6 +1,6 @@
 <% if @offers.total_pages > @offers.current_page -%>
 $('ul.offers').append('<%= escape_javascript(render(partial: 'list')) %>');
-$('a.endless_scroll_hook').attr('href', '<%= offers_path(params.merge(:page => (params[:page].to_i || 1)+1)) %>').show();
+$('a.endless_scroll_hook').attr('href', '<%= offers_path(params.merge(:page => (params[:page].to_i + 1))) %>').show();
 <% else -%>
 $('a.endless_scroll_hook').hide();
 <% end -%>

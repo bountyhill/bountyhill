@@ -17,7 +17,7 @@ module UsersHelper
     expect! user => User
 
     @activities = user.activities.paginate(
-      :page     => options[:page],
+      :page     => options[:page] ||= 1,
       :per_page => options[:per_page],
       :order    => "created_at DESC",
       :include  => :user)
