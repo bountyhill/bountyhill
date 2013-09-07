@@ -2,9 +2,10 @@ FactoryGirl.factories.clear
 
 FactoryGirl.define do
   factory :identity, :class => "Identity::Email" do
-    name     "Foo Bar"
-    email    "foo.bar@example.com"
-    password "foobar"
+    name                  "esnail"
+    email                 "esnail@example.com"
+    password              "foobar"
+    password_confirmation "foobar"
 
     after(:build) do |identity, evaluator| 
       identity.user = User.create! { |user| user.identities << identity }
@@ -12,16 +13,18 @@ FactoryGirl.define do
   end
 
   factory :twitter_identity, :class => "Identity::Twitter" do
-    identifier "twatter"
-
+    identifier  "twatter"
+    name        "twatter"
+    
     after(:build) do |identity, evaluator| 
       identity.user = User.create! { |user| user.identities << identity }
     end
   end
 
   factory :facebook_identity, :class => "Identity::Facebook" do
-    identifier "inyourfacebook"
-
+    identifier  "inyourfacebook"
+    name        "inyourfacebook"
+    
     after(:build) do |identity, evaluator| 
       identity.user = User.create! { |user| user.identities << identity }
     end
