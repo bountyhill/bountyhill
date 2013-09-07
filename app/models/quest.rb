@@ -27,11 +27,14 @@ class Quest < ActiveRecord::Base
   
   # Quests are visible by the owner and when set to visibility public and
   # quests should be visible to offerer as well
-  
+  #
+  # Note: mind to add 'readonly(false)' to ensure fetched objects are not readonly
+  #       see http://stackoverflow.com/questions/5004459/rails-3-scoped-finds-giving-activerecordreadonlyrecord
+  #
   access_control do |user|
     if user
       joins("LEFT JOIN offers ON offers.quest_id=quests.id").
-      where("quests.visibility=? OR offers.owner_id=? OR quests.owner_id=?", "public", user.id, user.id)
+      where("quests.visibility=? OR offers.owner_id=? OR quests.owner_id=?", "public", user.id, user.id).readonly(false)
     else
       where("quests.visibility=?", "public")
     end

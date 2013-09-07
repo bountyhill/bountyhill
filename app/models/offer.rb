@@ -26,11 +26,14 @@ class Offer < ActiveRecord::Base
   # -- Access control -------------------------------------------------
   # Offers are visible to both its owner and to the quest owner, but 
   # they can be written by its owner only.
-
+  #
+  # Note: mind to add 'readonly(false)' to ensure fetched objects are not readonly
+  #       see http://stackoverflow.com/questions/5004459/rails-3-scoped-finds-giving-activerecordreadonlyrecord
+  #
   access_control do |user|
     if user
       joins(:quest).
-      where("offers.owner_id=? OR quests.owner_id=?", user.id, user.id)
+      where("offers.owner_id=? OR quests.owner_id=?", user.id, user.id).readonly(false)
     end
   end
 
