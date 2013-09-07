@@ -56,6 +56,7 @@ en:
     change:   Change
     accept:   Accept
     reject:   Reject
+    confirm:  Confirm
   filter:
     filter_by: "for %{filter}"
     location:
@@ -152,6 +153,10 @@ en:
       title:    Sign up
       legend:   By signing up with your email and password you may start quests and post offers.
       legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+  identity/confirm:
+    form:
+      title:    Confirm email
+      legend:   You have to confirm your email address first.
   comment:
     messages:
       must_be_logged_in_to_comment: You have to be logged in to post a comment.

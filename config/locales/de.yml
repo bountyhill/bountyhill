@@ -56,6 +56,7 @@ de:
     change:   Ändern
     accept:   Annehmen
     reject:   Ablehnen
+    confirm:  Bestätigen
   filter:
     filter_by: "nach %{filter}"
     location:
@@ -152,6 +153,10 @@ de:
       title:    Registrieren
       legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse registrierst."
       legend2:  Abonniere bitte unseren Newsletter damit wir Dich über neue Funktionen von bountyhill informieren können.
+  identity/confirm:
+    form:
+      title:    Email bestätigen
+      legend:   Du musst die von Dir angegebene Emailadresse zuerst bestätigen.
   comment:
     messages:
       must_be_logged_in_to_comment: "Du musst Dich Anmelden, um einen Kommentar abzugeben."
