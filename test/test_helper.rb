@@ -97,12 +97,8 @@ class ActiveSupport::TestCase
     ActiveRecord.current_user = nil
   end
   
-  def login(user=nil)
-    # reset the current user
-    @controller.instance_variable_set(:@current_user, nil)
-    return unless user
-    
-    # set given user as current user
+  def login(user)
+    # set given user as current user in controller
     @controller.instance_variable_set(:@current_user, user)
   end
 
