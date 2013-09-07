@@ -133,16 +133,23 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_avatar
-    email = "foo.bar@example.com"
-    user  = User.new
+    image_url = "http://www.example.com"
+    
+    # user has image set
+    user = Factory(:user, :image => image_url)
+    assert_equal image_url, user.avatar
+    
+    # user requests avatar with width/height
+    width   = 1
+    height  = 2
+    assert_equal "#{image_url}/convert?w=#{width}&h=#{height}&fit=max", user.avatar(:width => width, :height => height)
+    
+    # user requests avatar from gravatar
+    user.image = nil
+    email = "foo@bar.com"
     user.stubs(:email).returns(email)
-    
-    Gravatar.expects(:url).with(email, {})
-    user.avatar
-    
-    pend "TODO: add more tests for avatar fallbacks!" do
-      assert false
-    end
+    Gravatar.expects(:url).with(email, :width => width, :height => height)
+    user.avatar(:width => width, :height => height)
   end
   
   def test_confirm_email!
