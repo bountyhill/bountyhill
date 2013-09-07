@@ -25,12 +25,12 @@ class DeferredTest < ActiveSupport::TestCase
     end
 
     # known method
-    Deferred.twitter "foo", "bar"
+    Deferred.twitter :update, "foo bar", twitter_oauth_hash
     
     # known method in background
     Deferred.expects(:queue).with(:twitter).returns([])
     Deferred.in_background(true) do
-      Deferred.twitter "foo", "bar"
+      Deferred.twitter :update, "foo bar", twitter_oauth_hash
     end
   end
   
@@ -59,12 +59,7 @@ class DeferredTest < ActiveSupport::TestCase
   def test_twitter
     Twitter::Client.any_instance.expects(:update).with("foo bar")
 
-    Deferred.instance.twitter(:update, "foo bar", {
-      :oauth_token        => Bountybase.config.twitter_app["oauth_token"],
-      :oauth_token_secret => Bountybase.config.twitter_app["oauth_secret"],
-      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
-      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"]
-    })
+    Deferred.instance.twitter(:update, "foo bar", twitter_oauth_hash)
   end
   
   def test_mail
@@ -73,4 +68,14 @@ class DeferredTest < ActiveSupport::TestCase
 
     Deferred.instance.mail(email)
   end
+  
+private
+ def twitter_oauth_hash
+   {
+     :oauth_token        => Bountybase.config.twitter_app["oauth_token"],
+     :oauth_token_secret => Bountybase.config.twitter_app["oauth_secret"],
+     :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
+     :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"]
+   }
+ end
 end

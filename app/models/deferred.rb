@@ -49,7 +49,7 @@ module Deferred
     
     GirlFriday::WorkQueue.new(name, :size => 1) do |args|
       begin
-        W "Deferred.#{name}"
+        W "Deferred.#{name}" unless Rails.env.test?
         Thread.send :sleep, 0.2
         instance.send name, *args
       rescue StandardError
