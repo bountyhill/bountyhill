@@ -29,19 +29,29 @@ class OffersControllerTest < ActionController::TestCase
     assert_template :index
     assert_equal [], assigns(:offers)
     
-    # searcher did receive one offer
-    login @searcher
-    get :index
-    assert_response :success
-    assert_template :index
-    assert_equal [@offer], assigns(:offers)
-    
     # other user did not receive any offers
     login @other
     get :index
     assert_response :success
     assert_template :index
     assert_equal [], assigns(:offers)
+    
+    # searcher did receive offer, but it's just prepared (new)
+    assert @offer.new?
+    login @searcher
+    get :index
+    assert_response :success
+    assert_template :index
+    assert_equal [], assigns(:offers)
+
+    # searcher did receive offer and it's not new
+    @offer.update_attribute(:state, 'active')
+    assert !@offer.new?
+    login @searcher
+    get :index
+    assert_response :success
+    assert_template :index
+    assert_equal [@offer], assigns(:offers)
   end
 
   # all offers of particular quest

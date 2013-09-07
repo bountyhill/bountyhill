@@ -33,7 +33,7 @@ class Offer < ActiveRecord::Base
   access_control do |user|
     if user
       joins(:quest).
-      where("offers.owner_id=? OR quests.owner_id=?", user.id, user.id).readonly(false)
+      where("offers.owner_id=? OR (quests.owner_id=? AND offers.state != 'new')", user.id, user.id).readonly(false)
     end
   end
 

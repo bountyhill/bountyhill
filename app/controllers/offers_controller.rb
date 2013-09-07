@@ -19,7 +19,7 @@ class OffersController < ApplicationController
     end
     
     conditions = if params[:owner_id] then { :owner_id => @owner.id }
-                 else                      { :quest_id => @owner.quest_ids }
+                 else                      { :quest_id => @owner.quest_ids, :state => Offer::STATES-['new'] }
                  end
     scope = scope.where(conditions)
     
