@@ -1,5 +1,2 @@
-<h3 class="description">
-  <%= user.description %>
-</h3>
-
-<%= partial("contact", :user => user) if @current_user == user %>
+<%= partial("contact", :user => user)     if @current_user == user %>
+<%= partial("description", :user => user) if user.description.present? %>

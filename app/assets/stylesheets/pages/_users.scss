@@ -52,12 +52,16 @@
     }
     .content {
       min-height: 56px;
-      .contact-section {
+      .contact-section, .description-section {
         background-color: $user_box_title_color;
         color: $text;
         margin: 30px -16px -16px -16px;
         padding: 16px ;
         font-weight: bold;
+      }
+      :first-child { margin-top: 0; }
+      .description-section { font-size: 120%; }
+      .contact-section {
         .info-icon {
           float: right;
           a { color: $user_box_content_color }
