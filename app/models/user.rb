@@ -398,6 +398,8 @@ class User < ActiveRecord::Base
 
   serialized_attr :image
   attr_accessible :image, :images
+  
+  validates_format_of :image, :with => URI.regexp(['http', 'https']), :allow_nil => true
 
   # even though we support a single image attribute, we still use 
   # pluralized attributes to access it, because some parts of the 
@@ -408,7 +410,7 @@ class User < ActiveRecord::Base
   end
 
   def images=(images=[])
-    self.image = images.present? && images.flatten.first
+    self.image = images.present? ? images.flatten.first : nil
   end
 
   # -- deletion -------------------------------------------------------

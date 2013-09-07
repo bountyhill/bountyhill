@@ -51,6 +51,22 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_image
+    user = Factory(:user)
+    assert user.image.nil?
+    assert user.valid?
+    
+    user.image = "foo bar"
+    assert !user.valid?
+    assert user.errors[:image]
+
+    user.image = "http://www.sample.com"
+    assert user.valid?
+
+    user.image = "https://www.sample.com"
+    assert user.valid?
+  end
+  
   # Can create a user and reads its identity
   def test_create_user_with_random_id
     SecureRandom.stubs(:random_number).returns(1234567)
