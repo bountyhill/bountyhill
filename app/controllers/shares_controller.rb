@@ -34,7 +34,7 @@ class SharesController < ApplicationController
   # user's identity was provided!
   def show
     @share = Share.find(params[:id])
-    @quest = Quest.find(@share.quest_id, :readonly => false)
+    @quest = Quest.find(@share.quest_id)
     
     # Share quest with identities user did choose
     @share.identities.each do |identity, post|

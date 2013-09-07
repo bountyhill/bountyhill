@@ -72,7 +72,7 @@ class OffersController < ApplicationController
 
   # PUT /offers/1
   def update
-    @offer = Offer.find(params[:id], :readonly => false)
+    @offer = Offer.find(params[:id])
     if @offer.update_attributes(params[:offer])
       redirect_to offer_path(@offer), :notice => I18n.t("message.update.success", :record => Offer.model_name.human)
     else
@@ -82,14 +82,14 @@ class OffersController < ApplicationController
 
   # DELETE /offers/1
   def destroy
-    @offer = Offer.find(params[:id], :readonly => false)
+    @offer = Offer.find(params[:id])
     @offer.destroy
 
     redirect_to offers_url(:owner => current_user)
   end
   
   def activate
-    @offer = Offer.find(params[:id], :readonly => request.get?)
+    @offer = Offer.find(params[:id])
 
     unless request.get?
       @offer.activate!
@@ -99,7 +99,7 @@ class OffersController < ApplicationController
   
   # Withdraw the offer
   def withdraw
-    @offer = Offer.find(params[:id], :readonly => request.get?)
+    @offer = Offer.find(params[:id])
 
     unless request.get?
       @offer.withdraw!
@@ -109,7 +109,7 @@ class OffersController < ApplicationController
 
   # Accept the offer
   def accept
-    @offer = Offer.find(params[:id], :readonly => request.get?)
+    @offer = Offer.find(params[:id])
 
     unless request.get?
       @offer.accept!
@@ -119,7 +119,7 @@ class OffersController < ApplicationController
 
   # Reject the offer
   def reject
-    @offer = Offer.find(params[:id], :readonly => request.get?)
+    @offer = Offer.find(params[:id])
 
     unless request.get?
       @offer.reject!

@@ -70,7 +70,7 @@ class QuestsController < ApplicationController
   
   # PUT /quests/1
   def update
-    @quest = Quest.find(params[:id], :readonly => false)
+    @quest = Quest.find(params[:id])
     @quest.attributes = params[:quest]
     
     # remove location if user wants to
@@ -88,7 +88,7 @@ class QuestsController < ApplicationController
 
   # DELETE /quests/1
   def destroy
-    @quest = Quest.find(params[:id], :readonly => false)
+    @quest = Quest.find(params[:id])
     @quest.destroy
 
     redirect_to quests_url
@@ -96,7 +96,7 @@ class QuestsController < ApplicationController
   
 private
   def set_owner
-    @owner = User.find(params[:owner_id], :readonly => true) if params[:owner_id]
+    @owner = User.find(params[:owner_id]) if params[:owner_id]
   end
 
 end
