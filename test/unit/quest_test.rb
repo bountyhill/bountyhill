@@ -36,7 +36,31 @@ class QuestTest < ActiveSupport::TestCase
     
     assert_activity_logged(:create,   quest)  { quest.save! }
     assert_activity_logged(:start,    quest)  { quest.start! }
-    assert_activity_logged(:stop,     quest)  { quest.cancel! }
+    assert_activity_logged(:stop,     quest)  { quest.stop! }
     assert_activity_logged(:comment,  quest)  { Factory(:comment, :commentable => quest, :owner => quest.owner) }
   end
+  
+  def test_live_cycle
+    quest = Factory(:quest, :owner => admin)
+
+    # test start!
+    quest.start!
+    assert quest.started?
+    assert quest.active?
+    assert !quest.expired?
+
+    # test run out
+    quest.update_attribute(:expires_at, Time.new-1.day)
+    assert quest.started?
+    assert !quest.active?
+    assert quest.expired?
+    quest.update_attribute(:expires_at, Time.new+1.day)
+    
+    # test stop!
+    quest.stop!
+    assert quest.started?
+    assert !quest.active?
+    assert quest.expired?
+  end
+    
 end

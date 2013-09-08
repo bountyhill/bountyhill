@@ -247,15 +247,11 @@ class Quest < ActiveRecord::Base
   # -- Quest status ---------------------------------------------------
   
   def active?
-    started? and !expired?
+    started? && !expired?
   end
   
   def expired?
     expires_at && expires_at < Time.now
-  end
-
-  def started?
-    started_at.present?
   end
   
   def started?
@@ -263,7 +259,7 @@ class Quest < ActiveRecord::Base
   end
   
   def start!
-    return if started?
+    return if active?
 
     duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
     if duration_in_days > 0
@@ -285,7 +281,9 @@ class Quest < ActiveRecord::Base
     self
   end
 
-  def cancel!(attributes = {})
+  def stop!(attributes = {})
+    return if !active?
+    
     self.attributes = attributes
     self.visibility = nil
     self.expires_at = Time.now

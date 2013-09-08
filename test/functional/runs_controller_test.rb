@@ -50,8 +50,8 @@ class RunsControllerTest < ActionController::TestCase
   end
   
   def test_destroy
-    # TODO: @quest.expects(:cancel!).with({ 'foo' => 'bar' })
-    Quest.any_instance.expects(:cancel!).with({ 'foo' => 'bar' })
+    # TODO: @quest.expects(:stop!).with({ 'foo' => 'bar' })
+    Quest.any_instance.expects(:stop!).with({ 'foo' => 'bar' })
     
     assert_no_difference "Quest.count" do
       post :destroy, :id => @quest.id, :quest => { 'foo' => 'bar' }
@@ -59,7 +59,7 @@ class RunsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to quest_path(@quest)
     assert_equal @quest, assigns(:quest)
-    assert_equal I18n.t("quest.action.cancelled", :quest => @quest.title), flash[:success]
+    assert_equal I18n.t("quest.action.stopped", :quest => @quest.title), flash[:success]
   end
 
 end
