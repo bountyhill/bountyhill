@@ -149,14 +149,6 @@ module QuestsHelper
       statistic_entries.map{ |entry| li(entry) }.join.html_safe
     end
   end
-
-  def quest_bounty_height(quest, options={})
-    value = options[:value] ||= quest.bounty_height.to_s
-    
-    div :class => "progress" do
-      div value, :class => "bar", :style => "width: #{quest.bounty_height}%;"
-    end
-  end
   
   def quest_statistic_boxes(quest)
     [

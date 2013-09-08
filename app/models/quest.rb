@@ -114,11 +114,7 @@ class Quest < ActiveRecord::Base
 #      :select => "quests.id",
 #      :joins => "LEFT OUTER JOIN `locations` ON `locations`.`stationary_id` = `quests`.`id` AND `locations`.`stationary_type` = 'Quest'"))
   }
-  
-  def category_t
-    I18n.t(category, :scope => "quest.categories")
-  end
-  
+
   # -- Validations ----------------------------------------------------
 
   validates :category,    :presence => true, :inclusion => CATEGORIES
@@ -234,14 +230,6 @@ class Quest < ActiveRecord::Base
     def for_user(user)
       all(:conditions => ["offers.owner_id = ? OR offers.state != ?", user, 'new'])
     end
-  end
-  
-  # Answer the quest. This method is built so that the attributes
-  # can be filled in from a HTML form without much hassle.
-  def offer!(offer)
-    return :offer_has_already_ended if expired?
-    
-    offer.calculate_compliance
   end
   
   # -- Quest status ---------------------------------------------------
@@ -365,19 +353,6 @@ class Quest < ActiveRecord::Base
   
   def restrict_location?
     restrict_location.present?
-  end
-  
-  def bounty_height
-    return 0 unless self.active?
-    return 5 if bounty_in_cents.zero?
-    
-    case (bounty_in_cents/100).to_s.size
-    when 1 then 15
-    when 2 then 30
-    when 3 then 60
-    when 4 then 90
-    else        100
-    end
   end
   
 end
