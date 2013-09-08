@@ -61,11 +61,11 @@ module OffersHelper
     statistic_entries =  []
     
     statistic_entries << case offer.state
-      when 'active'     then awesome_icon(:bar_chart) + I18n.t("offer.compliance", :precentage => offer.compliance)
-      when 'new'        then awesome_icon(:file_alt)  + I18n.t("offer.states.new")
-      when 'withdrawn'  then awesome_icon(:hand_down) + I18n.t("offer.states.withdrawn")
-      when 'accepted'   then awesome_icon(:smile)     + I18n.t("offer.states.accepted")
-      when 'rejected'   then awesome_icon(:frown)     + I18n.t("offer.states.rejected")
+      when 'active'     then awesome_icon(:bar_chart)         + I18n.t("offer.compliance", :precentage => offer.compliance)
+      when 'new'        then awesome_icon(:file_alt)          + I18n.t("offer.states.new")
+      when 'withdrawn'  then awesome_icon(:circle_arrow_left) + I18n.t("offer.states.withdrawn")
+      when 'accepted'   then awesome_icon(:thumbs_up)         + I18n.t("offer.states.accepted")
+      when 'rejected'   then awesome_icon(:thumbs_down)       + I18n.t("offer.states.rejected")
       else raise "Unknown offer state: #{offer.state}"
       end
     statistic_entries << awesome_icon(:picture)   + I18n.t("offer.list.images", :count => offer.images.size)   if offer.images.present?
