@@ -3,7 +3,15 @@
     <p><%= I18n.t("offer.withdraw.legend") %></p>
     <%= form.error_messages %>
     
-      placeholder: TODO
+    <%= form.control_group :withdrawal, :radio_button, :hint => false do
+      Offer::WITHDRAWALS.map do |value|
+          label :class => "radio" do
+            form.radio_button(:withdrawal, value, :checked => ((@offer.withdrawal || Offer::WITHDRAWALS.first) == value)) +
+            I18n.t("offer.form.field_hint.withdrawal.#{value}")
+          end
+        end.join.html_safe
+    end %>
+    <%= form.control_group :withdrawal_reason, :text_area, :rows => 3, :hint => false %>
     
   <% end %>
   

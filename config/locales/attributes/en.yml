@@ -52,12 +52,16 @@ en:
         password:                   Password
         delete_me:                  Delete my account
       offer:
-        title:        Subject
-        description:  Description
-        compliance:   Compliance
-        images:       Images
-        fulfillment:  Fulfillment
-        comment:      Remark
+        title:              Subject
+        description:        Description
+        compliance:         Compliance
+        images:             Images
+        fulfillment:        Fulfillment
+        comment:            Remark
+        rejection:          Reason
+        rejection_reason:   Explanation
+        withdrawal:         Reason
+        withdrawal_reason:  Explanation
       quest:
         bounty:               Bounty
         title:                Subject

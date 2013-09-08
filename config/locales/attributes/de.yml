@@ -52,12 +52,16 @@ de:
         password_new_confirmation:  Bestätigung
         delete_me:                  Account Löschen
       offer:
-        title:        Betreff
-        description:  Beschreibung
-        compliance:   Erfüllungsgrad
-        images:       Bilder
-        fulfillment:  Übereinstimmung
-        comment:      Anmerkung
+        title:              Betreff
+        description:        Beschreibung
+        compliance:         Erfüllungsgrad
+        images:             Bilder
+        fulfillment:        Übereinstimmung
+        comment:            Anmerkung
+        rejection:          Beweggrund
+        rejection_reason:   Erklärung
+        withdrawal:         Beweggrund
+        withdrawal_reason:  Erklärung
       quest:
         bounty:               Belohnung
         title:                Betreff

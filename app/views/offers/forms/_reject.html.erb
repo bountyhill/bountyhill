@@ -3,7 +3,15 @@
     <p><%= I18n.t("offer.reject.legend") %></p>
     <%= form.error_messages %>
     
-      placeholder: TODO
+    <%= form.control_group :rejection, :radio_button, :hint => false do
+      Offer::REJECTIONS.map do |value|
+          label :class => "radio" do
+            form.radio_button(:rejection, value, :checked => ((@offer.rejection || Offer::REJECTIONS.first) == value)) +
+            I18n.t("offer.form.field_hint.rejection.#{value}")
+          end
+        end.join.html_safe
+    end %>
+    <%= form.control_group :rejection_reason, :text_area, :rows => 3, :hint => false %>
     
   <% end %>
   

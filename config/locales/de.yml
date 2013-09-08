@@ -257,7 +257,7 @@ de:
       legend: "Schau Dir Dein Angebot vor der Abgabe noch einmal an. Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
     accept: 
       title:  Angebot annehmen
-      legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot annehmen möchtest."
+      legend: "Schau Dir das Angebot vor der Annahme noch einmal an. Nach Deiner Annahme wird der Anbieter darüber informiert, dass sein Angebot auf Deine Suchanfrage akzeptiert wurde."
     reject: 
       title:  Angebot ablehnen
       legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot ablehnen möchtest."
@@ -307,6 +307,13 @@ de:
         description:  "Hier kannst Du Dein Angebot detailiert beschreiben."
         images:       Bilder hinzufügen
         comment:      "Falls Du eine Anmerkung zu diesem Kriterium hast, gebe diese bitte hier ein."
+        rejection:
+          offer_missmatch:  "Das Angebot passt nicht zu meiner Anfrage."
+          quest_invalid:    "Meine Suche ist nicht mehr gültig."
+          other_reason:     "Aus einem anderen Grund."
+        withdrawal:
+          offer_invalid:  "Mein Angebot ist nicht mehr gültig."
+          other_reason:   "Aus einem anderen Grund."
       create:
         title:  Angebot abgeben
         legend: "Beschreibe bitte detailiert was Du dem Suchenden anbieten möchtest. Du kannst Deiner Beschreibung gern Fotos hinzufügen."

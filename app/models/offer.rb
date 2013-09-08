@@ -75,6 +75,23 @@ class Offer < ActiveRecord::Base
     end
   end
     
+  # -- WITHDRAWALS ---------------------------------------------------
+
+  # reason for withdrawle
+  WITHDRAWALS = %w(offer_invalid other_reason)
+
+  serialized_attr :withdrawal, :withdrawal_reason
+  attr_accessible :withdrawal, :withdrawal_reason
+  
+  # -- REJECTIONS ---------------------------------------------------
+
+  # reason for rejection
+  REJECTIONS = %w(offer_missmatch quest_invalid other_reason)
+
+  serialized_attr :rejection, :rejection_reason
+  attr_accessible :rejection, :rejection_reason
+  
+  
   # -- Criteria -------------------------------------------------------
   
   NUMBER_OF_CRITERIA = Quest::NUMBER_OF_CRITERIA
