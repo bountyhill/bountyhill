@@ -183,6 +183,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(assigns(:offer), :preview => true)
     assert !assigns(:offer).new_record?
+    assert_equal I18n.t("message.create.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_update
@@ -197,6 +198,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer.reload, assigns(:offer)
+    assert_equal I18n.t("message.update.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_destroy
@@ -205,6 +207,7 @@ class OffersControllerTest < ActionController::TestCase
     end
     assert_response :redirect
     assert_redirected_to offers_url(:owner => @offerer)
+    assert_equal I18n.t("message.destroy.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_activate
@@ -220,6 +223,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
+    assert_equal I18n.t("offer.action.activate", :offer => @offer.title), flash[:success]
   end
   
   def test_withdraw
@@ -233,8 +237,9 @@ class OffersControllerTest < ActionController::TestCase
     Offer.any_instance.expects(:withdraw!).once   # TODO: @offer.expects(:withdraw!).once
     post :withdraw, :id => @offer.id
     assert_response :redirect
-    assert_redirected_to quest_path(@offer.quest)
+    assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
+    assert_equal I18n.t("offer.action.withdraw", :offer => @offer.title), flash[:success]
   end
   
   def test_accept
@@ -248,8 +253,9 @@ class OffersControllerTest < ActionController::TestCase
     Offer.any_instance.expects(:accept!).once   # TODO: @offer.expects(:accept!).once
     post :accept, :id => @offer.id
     assert_response :redirect
-    assert_redirected_to quest_path(@offer.quest)
+    assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
+    assert_equal I18n.t("offer.action.accept", :offer => @offer.title), flash[:success]
   end
   
   def test_reject
@@ -263,8 +269,9 @@ class OffersControllerTest < ActionController::TestCase
     Offer.any_instance.expects(:reject!).once   # TODO: @offer.expects(:reject!).once
     post :reject, :id => @offer.id
     assert_response :redirect
-    assert_redirected_to quest_path(@offer.quest)
+    assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
+    assert_equal I18n.t("offer.action.reject", :offer => @offer.title), flash[:success]
   end
   
 end

@@ -11,6 +11,8 @@ en:
       success:        "%{record} was successfully submitted."
     update:
       success:        "%{record} was successfully updated."
+    destroy:
+      success:        "%{record} was successfully deleted."
     access:
       not_allowed:    You are not allowed to do this!
     check_delete_me:  Please confirm the deletion of your account.
@@ -280,6 +282,11 @@ en:
       withdrawn:  Withdrawn
       accepted:   Accepted
       rejected:   Rejected
+    action:
+      activate: "Your offer '%{offer}' was successfully submitted."
+      withdraw: "Your offer '%{offer}' was successfully withdrawn."
+      accept:   "You accepted the offer '%{offer}' successfully."
+      reject:   "You rejected the offer '%{offer}' successfully."
     statistic:
       compliance: "compliance reached"
       comments:   "comments posted"

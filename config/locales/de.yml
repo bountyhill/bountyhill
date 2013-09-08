@@ -11,6 +11,8 @@ de:
       success:        "%{record} wurde erfolgreich abgegeben."
     update:
       success:        "%{record} wurde erfolgreich aktualisiert."
+    destroy:
+      success:        "%{record} wurde erfolgreich gelöscht."
     access:
       not_allowed:    Du bist nicht berechtigt dies zu tun!
     check_delete_me:  Bitte bestätige das Löschen Deines Accounts.
@@ -280,6 +282,11 @@ de:
       withdrawn:  Zurückgezogen
       accepted:   Angenommen
       rejected:   Abgelehnt
+    action:
+      activate: "Dein Angebot '%{offer}' wurde erfolgreich abgegeben."
+      withdraw: "Dein Angebot '%{offer}' wurde erfolgreich zurückgezogen."
+      accept:   "Du hast das Angebot '%{offer}' erfolgreich akzeptiert."
+      reject:   "Du hast das Angebot '%{offer}' erfolgreich abgelehnt."
     statistic:
       compliance: "Erfüllungsgrad erreicht"
       comments:   "mal kommentiert"

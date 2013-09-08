@@ -64,7 +64,8 @@ class OffersController < ApplicationController
 
     # Activate the offer after saving.
     if @offer.save
-      redirect_to! offer_path(@offer, :preview => true), :notice => I18n.t("message.create.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("message.create.success", :record => Offer.model_name.human)
+      redirect_to! offer_path(@offer, :preview => true)
     end
     
     render :action => "new"
@@ -74,7 +75,8 @@ class OffersController < ApplicationController
   def update
     @offer = Offer.find(params[:id])
     if @offer.update_attributes(params[:offer])
-      redirect_to offer_path(@offer), :notice => I18n.t("message.update.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("message.update.success", :record => Offer.model_name.human)
+      redirect_to offer_path(@offer)
     else
       render :action => "new"
     end
@@ -84,16 +86,18 @@ class OffersController < ApplicationController
   def destroy
     @offer = Offer.find(params[:id])
     @offer.destroy
-
+    flash[:success] = I18n.t("message.destroy.success", :record => Offer.model_name.human)
     redirect_to offers_url(:owner => current_user)
   end
   
+  # Submit he offer
   def activate
     @offer = Offer.find(params[:id])
 
     unless request.get?
       @offer.activate!
-      redirect_to @offer, :notice => I18n.t("message.offer.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("offer.action.activate", :offer => @offer.title)
+      redirect_to! @offer
     end
   end
   
@@ -103,7 +107,8 @@ class OffersController < ApplicationController
 
     unless request.get?
       @offer.withdraw!
-      redirect_to @offer.quest
+      flash[:success] = I18n.t("offer.action.withdraw", :offer => @offer.title)
+      redirect_to! @offer
     end
   end
 
@@ -113,7 +118,8 @@ class OffersController < ApplicationController
 
     unless request.get?
       @offer.accept!
-      redirect_to @offer.quest
+      flash[:success] = I18n.t("offer.action.accept", :offer => @offer.title)
+      redirect_to! @offer
     end
   end
 
@@ -123,7 +129,8 @@ class OffersController < ApplicationController
 
     unless request.get?
       @offer.reject!
-      redirect_to @offer.quest
+      flash[:success] = I18n.t("offer.action.reject", :offer => @offer.title)
+      redirect_to! @offer
     end
   end
   
