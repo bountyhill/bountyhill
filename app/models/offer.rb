@@ -252,33 +252,41 @@ class Offer < ActiveRecord::Base
 
   def activate!
     raise RuntimeError, "Offer: #{self.inspect} is alredy active" unless new?
+
     update_attributes! "state" => "active"
-    
     owner.reward_for(self, :activate)
     self
   end
 
   def withdraw!
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
+
     update_attributes! "state" => "withdrawn"
-    
     owner.reward_for(self, :withdraw)
     self
   end
   
   def accept!
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
-    update_attributes! "state" => "accepted"
+    raise RuntimeError, "User: #{ActiveRecord::AccessControl.current_user.inspect} has to own quest: #{quest.inspect} to accept this offer: #{self.inspect}!" unless ActiveRecord::AccessControl.current_user.owns?(quest)
+    
+    ActiveRecord::AccessControl.as(owner) do
+      update_attributes! "state" => "accepted"
+    end
 
-    owner.reward_for(self, :accept)
+    quest.owner.reward_for(self, :accept)
     self
   end
   
   def reject!
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
-    update_attributes! "state" => "rejected"
+    raise RuntimeError, "User: #{ActiveRecord::AccessControl.current_user.inspect} has to own quest: #{quest.inspect} to reject this offer: #{self.inspect}!" unless ActiveRecord::AccessControl.current_user.owns?(quest)
     
-    owner.reward_for(self, :reject)
+    ActiveRecord::AccessControl.as(owner) do
+      update_attributes! "state" => "rejected"
+    end
+    
+    quest.owner.reward_for(self, :reject)
     self
   end
   

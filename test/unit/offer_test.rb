@@ -4,7 +4,12 @@ require_relative "../test_helper.rb"
 
 class OfferTest < ActiveSupport::TestCase
   def quest
-    @quest ||= Factory(:quest)
+    unless @quest
+      @quest = Factory(:quest)
+      @quest.owner = Factory(:twitter_identity).user
+    end
+    
+    @quest
   end
   
   def test_validation_fails_when_quest_is_not_yet_started
@@ -40,12 +45,6 @@ class OfferTest < ActiveSupport::TestCase
 
     quest.stubs(:active?).returns(true)
     assert_activity_logged(:create,   offer)  { offer.save! }
-    assert_activity_logged(:activate, offer)  { offer.activate! }
-    assert_activity_logged(:withdraw, offer)  { offer.withdraw! }
-    
-    offer.stubs(:active?).returns(true)
-    assert_activity_logged(:accept,   offer)  { offer.accept! }
-    assert_activity_logged(:reject,   offer)  { offer.reject! }
     assert_activity_logged(:comment,  offer)  { Factory(:comment, :commentable => offer, :owner => offer.owner) }
   end
   
@@ -105,32 +104,48 @@ class OfferTest < ActiveSupport::TestCase
   def test_accept!
     offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
     
-    # offer other then active cannot be accepted
-    offer.expects(:active?).returns(false)
+    # offer cannot be accepted by any other user then quest's owner
+    offer.expects(:active?).returns(true)
     assert_raises RuntimeError do
       offer.accept!
     end
-    
-    # active offer can be accepted
-    offer.expects(:active?).returns(true)
-    offer.owner.expects(:reward_for).with(offer, :accept)
-    offer.accept!
-    assert_equal "accepted", offer.state
+
+    as(offer.quest.owner) do
+      # offer other then active cannot be accepted
+      offer.expects(:active?).returns(false)
+      assert_raises RuntimeError do
+        offer.accept!
+      end
+      
+      # active offer can be accepted
+      offer.expects(:active?).returns(true)
+      offer.quest.owner.expects(:reward_for).with(offer, :accept)
+      offer.accept!
+      assert_equal "accepted", offer.state
+    end
   end
   
   def test_reject!
     offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
     
-    # offer other then active cannot be rejected
-    offer.expects(:active?).returns(false)
+    # offer cannot be rejected by any other user then quest's owner
+    offer.expects(:active?).returns(true)
     assert_raises RuntimeError do
       offer.reject!
     end
     
-    # active offer can be accepted
-    offer.expects(:active?).returns(true)
-    offer.owner.expects(:reward_for).with(offer, :reject)
-    offer.reject!
-    assert_equal "rejected", offer.state
+    as(offer.quest.owner) do
+      # offer other then active cannot be rejected
+      offer.expects(:active?).returns(false)
+      assert_raises RuntimeError do
+        offer.reject!
+      end
+    
+      # active offer can be accepted
+      offer.expects(:active?).returns(true)
+      offer.quest.owner.expects(:reward_for).with(offer, :reject)
+      offer.reject!
+      assert_equal "rejected", offer.state
+    end
   end
 end
