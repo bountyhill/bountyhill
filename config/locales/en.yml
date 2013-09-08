@@ -71,10 +71,10 @@ en:
   nav:
     start_quest:  Start a quest
     quests:       See all quests
-    my_quests:    My Quests
-    my_offers:    My Offers
+    my_quests:    My quests
+    my_offers:    My offers
     received_offers: Received offers
-    my_profile:   My Profile
+    my_profile:   My profile
     signin:       Sign in/up
     signout:      Sign out
     about:        About
