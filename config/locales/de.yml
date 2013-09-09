@@ -204,8 +204,11 @@ de:
         title:  Email ändern
         legend: Gebe Deine neue Email-Adresse ein und bestätige die Änderung mit Deinem Passwort.
       twitter:
-        title:  Twitter Account wechseln
+        title:  Twitter
         legend: "Wenn Du Deinen Twitter Account wechselst, musst Du Dich erneut über Twitter bei bountyhill anmelden."
+      facebook:
+        title:  Facebook
+        legend: "Wenn Du Deinen Facebook Account wechselst, musst Du Dich erneut über Twitter bei bountyhill anmelden."
       delete:
         title:  Zugang Löschen
         legend: "Wir bedauern es sehr, dass Du uns verlässt. Bitte lasse uns wissen, warum Du Deinen bountyhill Zugang löschen möchtest."

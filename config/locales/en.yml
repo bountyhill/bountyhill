@@ -204,8 +204,11 @@ en:
         title:  Change email
         legend: Please enter your new email address and confirm the change by providing your current password.
       twitter:
-        title:  Change Twitter account
+        title:  Twitter
         legend: If you change your twitter account you will have to signin again via Twitter on bountyhill.
+      facebook:
+        title:  Facebook
+        legend: If you change your facebook account you will have to signin again via Facebook on bountyhill.
       delete:
         title:  Delete Account
         legend: We are very sorry to see you leave. Please let us know why you decided to delete your bountyhill account.

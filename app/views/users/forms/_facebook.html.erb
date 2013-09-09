@@ -1,0 +1,17 @@
+<% accordion_heading(:facebook) do %>
+  <%= I18n.t("user.form.facebook.title")%>
+  <%= awesome_icon(:facebook, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:facebook) do %>
+  <%= form_for @user, :remote => true do |form| %>
+  <p><%= I18n.t("user.form.facebook.legend")%></p>
+    <%= form.error_messages %>
+    
+    <%= hidden_field_tag :section, :facebook %>
+    
+    <p>paceholder: TODO</p>
+    
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% end %>
+<% end %>

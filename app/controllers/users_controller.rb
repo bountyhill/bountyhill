@@ -1,6 +1,8 @@
 # encoding: UTF-8
 
 class UsersController < ApplicationController
+  EDIT_PARTIALS = %w(profile address password email twitter facebook delete)
+
   before_filter :set_user
   before_filter :access_allowed?,   :except => [:show]
   before_filter :remove_user_image, :only   => [:update]
@@ -8,8 +10,7 @@ class UsersController < ApplicationController
   def show
     @per_page = per_page
   end
-  
-  EDIT_PARTIALS = %w(profile address password email twitter delete)
+
   def edit
     @partials = EDIT_PARTIALS.select{ |partial| params[partial] }
     @partials = EDIT_PARTIALS if @partials.blank?
