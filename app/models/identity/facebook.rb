@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 class Identity::Facebook < Identity
+  include Identity::PolymorphicRouting
   include Identity::Provider
   
   with_metrics! "accounts.facebook"

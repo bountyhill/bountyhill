@@ -1,11 +1,8 @@
 # encoding: UTF-8
 
 class Identity::Email < Identity
-  # Fix Rails' polymorphic routes
-  def self.model_name #:nodoc:
-    Identity.model_name
-  end
-
+  include Identity::PolymorphicRouting
+  
   with_metrics! "accounts.email"
   after_create :send_confirmation_email
    

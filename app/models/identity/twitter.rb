@@ -3,6 +3,7 @@
 require "twitter"
 
 class Identity::Twitter < Identity
+  include Identity::PolymorphicRouting
   include Identity::Provider
   
   with_metrics! "accounts.twitter"

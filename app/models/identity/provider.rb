@@ -21,11 +21,6 @@ module Identity::Provider
   module ClassMethods
     def self.extended(base)
       base.class_eval do
-        # Fix Rails' polymorphic routes
-        def self.model_name #:nodoc:
-          Identity.model_name
-        end
-                
         serialized_attr :info, :credentials, :extra
         attr_accessible :info, :credentials, :extra, :identifier, :name, :email
         

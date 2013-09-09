@@ -3,9 +3,6 @@
 require_relative "../../test_helper.rb"
 
 class Identity::FacebookTest < ActiveSupport::TestCase
-  def test_model_name
-    assert_equal Identity::Facebook.model_name, Identity.model_name
-  end
   
   def test_update_status
     facebook  = Identity::Facebook.new

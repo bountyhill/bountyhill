@@ -3,10 +3,7 @@
 require_relative "../../test_helper.rb"
 
 class Identity::EmailTest < ActiveSupport::TestCase
-  def test_model_name
-    assert_equal Identity::Email.model_name, Identity.model_name
-  end
-  
+
   def test_authenticate
     email     = "foo.bar@example.com"
     password  = "foobar"

@@ -3,9 +3,6 @@
 require_relative "../../test_helper.rb"
 
 class Identity::TwitterTest < ActiveSupport::TestCase
-  def test_model_name
-    assert_equal Identity::Twitter.model_name, Identity.model_name
-  end
   
   def test_validation
     # identifier cannot be nil
