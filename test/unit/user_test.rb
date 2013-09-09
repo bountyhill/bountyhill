@@ -71,7 +71,7 @@ class UserTest < ActiveSupport::TestCase
   def test_create_user_with_random_id
     SecureRandom.stubs(:random_number).returns(1234567)
     
-    user = Factory(:identity).user
+    user = Factory(:email_identity).user
     assert_kind_of(User, user)
     assert_equal(1234567, user.id)
   end

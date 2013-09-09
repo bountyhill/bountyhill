@@ -33,7 +33,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   def test_signin_post
-    identity = Factory(:identity)
+    identity = Factory(:email_identity)
 
     # request signin
     post :signin_post, :do_signin => true, :identity => { :email => identity.email, :password => identity.password }

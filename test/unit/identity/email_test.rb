@@ -10,7 +10,7 @@ class Identity::EmailTest < ActiveSupport::TestCase
   def test_authenticate
     email     = "foo.bar@example.com"
     password  = "foobar"
-    Factory(:identity, :email => email, :password => password)
+    Factory(:email_identity, :email => email, :password => password)
     
     assert  Identity::Email.authenticate(email, password)
     assert !Identity::Email.authenticate(email, "barfoo")
@@ -25,7 +25,7 @@ class Identity::EmailTest < ActiveSupport::TestCase
   end
   
   def test_confirm!
-    identity = Factory(:identity)
+    identity = Factory(:email_identity)
     assert !identity.confirmed?
     
     identity.confirm!(false)
@@ -36,7 +36,7 @@ class Identity::EmailTest < ActiveSupport::TestCase
   end
   
   def test_send_confirmation_email
-    identity = Factory(:identity)
+    identity = Factory(:email_identity)
     
     Deferred.expects(:mail).with(true)
     UserMailer.expects(:confirm_email).with(identity.user).returns(true)

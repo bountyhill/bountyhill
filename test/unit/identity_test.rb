@@ -6,7 +6,7 @@ class IdentityTest < ActiveSupport::TestCase
 
   # Can create a user and reads its identity
   def test_builds_a_user
-    i = Factory(:identity)
+    i = Factory(:email_identity)
     
     assert_kind_of User, i.user
     assert_equal Identity.find(i.id).user, i.user
@@ -14,7 +14,7 @@ class IdentityTest < ActiveSupport::TestCase
   
   # Can create a user and reads its identity
   def test_can_save_and_load_options
-    identity = Factory(:identity)
+    identity = Factory(:email_identity)
     identity.serialized = { "a" => "b" }
     identity.save!
     
@@ -29,7 +29,7 @@ class IdentityTest < ActiveSupport::TestCase
   end
   
   def test_activity_logging
-    assert_activity_logged { Factory(:identity) }
+    assert_activity_logged { Factory(:email_identity) }
     assert_activity_logged { Factory(:twitter_identity) }
   end
   
@@ -41,7 +41,7 @@ class IdentityTest < ActiveSupport::TestCase
 
   # Delete a user's last identity soft deletes the user
   def test_soft_delete_user
-    identity = Factory(:identity)
+    identity = Factory(:email_identity)
     identity.user.expects(:soft_delete!).once
     
     assert_difference("Identity.count", -1) do

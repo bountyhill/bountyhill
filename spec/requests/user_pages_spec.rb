@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User pages" do
   describe "profile" do
-    let(:user) { Factory(:identity).user }
+    let(:user) { Factory(:email_identity).user }
     before { visit user_path(user) }
 
     describe "page" do

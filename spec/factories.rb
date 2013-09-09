@@ -1,7 +1,7 @@
 FactoryGirl.factories.clear
 
 FactoryGirl.define do
-  factory :identity, :class => "Identity::Email" do
+  factory :email_identity, :class => "Identity::Email" do
     name                  "esnail"
     email                 "esnail@example.com"
     password              "foobar"
@@ -31,7 +31,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    initialize_with { Factory(:identity).user }
+    initialize_with { Factory(:email_identity).user }
   end
 
   factory :quest do

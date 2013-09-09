@@ -25,7 +25,7 @@ describe "Authentication pages" do
     end
 
     describe "with valid information" do
-      let(:identity) do Factory(:identity) end
+      let(:identity) do Factory(:email_identity) end
       
       before do
         fill_in "Email",    with: identity.email
