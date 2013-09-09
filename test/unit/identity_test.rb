@@ -28,6 +28,18 @@ class IdentityTest < ActiveSupport::TestCase
     assert_equal({}, r.serialized)
   end
   
+  def test_symbol
+    Identity.send(:subclasses).each do |subclass|
+      identity = subclass.new
+      
+      assert_equal subclass.name.split("::").last.downcase.to_sym, identity.symbol
+    end
+    
+    assert_raises RuntimeError do
+      Identity.new.symbol
+    end
+  end
+  
   def test_activity_logging
     assert_activity_logged { Factory(:email_identity) }
     assert_activity_logged { Factory(:twitter_identity) }
