@@ -189,12 +189,12 @@ class ActionView::Helpers::FormBuilder
       content_tag :label, :class => "checkbox" do
         note(if options[:checked]
           <<-HTML
-      <input id="share_identitiy_#{identity}" name="share[identities][#{identity}]" type="checkbox" checked />
+      <input id="share_identity_#{identity}" name="share[identities][#{identity}]" type="checkbox" checked />
       #{options[:label] || I18n.t("share.form.#{identity}", :identity_required => identity_required)}
           HTML
         else
           <<-HTML
-      <input id="share_identitiy_#{identity}" name="share[identities][#{identity}]" type="checkbox" />
+      <input id="share_identity_#{identity}" name="share[identities][#{identity}]" type="checkbox" />
       #{options[:label] || I18n.t("share.form.#{identity}", :identity_required => identity_required)}
           HTML
         end )
