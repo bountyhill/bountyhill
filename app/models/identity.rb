@@ -41,16 +41,6 @@ class Identity < ActiveRecord::Base
     false
   end
   
-  def symbol
-    ident = self.class.name.split("::").last
-
-    if(ident == "Identity")
-      raise "Has to be called on subclass instances"
-    else
-      ident.downcase.to_sym
-    end
-  end
-  
   protected
   
   def soft_delete_user
