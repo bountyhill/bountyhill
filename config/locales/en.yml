@@ -3,6 +3,8 @@
 
 en:
   message:
+    confirm:
+      delete:         "Do you realy want to delete your %{record}?"
     error:            Please review your input.
     base_error:       "%{base_error}: please review your input."
     create:
@@ -130,26 +132,47 @@ en:
         reset:  We have send you an email with instructions to reset your password.
   identity/email:
     form:
-      title:  Sign in with email
-      legend: If you already have a bountyhill account please sing in with your email and password.
+      title:    Email/Password
+      password:
+        legend: Please enter your new passord and confirm the change by providing your current one.
+      email:
+        legend: Please enter your new email address and confirm the change by providing your current password.
+      signin:
+        title:  Sign in with email
+        legend: If you already have a bountyhill account please sing in with your email and password.
       field_hint:
         email:                    "Enter your email address."
-        password:                 "Enter your password."
+        password:                 "Enter your current password."
         password_confirmation:    "Confirm your password"
+        password_new:               Enter your new password.
+        password_new_confirmation:  Confirm your new password
         password_reset:           "You will receive an email to reset your password."
         forgot_password:          I did forget my password and want to reset it.
         newsletter_subscription:  I want to subscribe to bountyhill's newsletter.
+        
   identity/twitter:
     form:
-      title:    Sign in with Twitter
-      legend:   If you have a Twitter account bountyhill allows you to sign in via Twitter.
-      legend2:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
+      title:      Twitter
+      follow_hint:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
+      create:
+        legend:   "If you have a Twitter account you can add it to your bountyhill profile, e.g to allow us to post tweets on your behalf."
+      delete:
+        legend:   "You can remove your Twitter account, e.g. to add another one to your bountyhill profile."
+      signin:
+        title:    Sign in with Twitter
+        legend:   If you have a Twitter account bountyhill allows you to sign in via Twitter.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
   identity/facebook:
     form:
-      title:    Sign in with Facebook
-      legend:   If you have a Facebook account bountyhill allows you to sign in via Facebook.
+      title:      Facebook
+      create:
+        legend:   "If you have a Facebook account you can add it to your bountyhill profile, e.g to allow us to post on your wall."
+      delete:
+        legend:   "You can remove your Facebook account, e.g. to add another one to your bountyhill profile."
+      signin:
+        title:    Sign in with Facebook
+        legend:   If you have a Facebook account bountyhill allows you to sign in via Facebook.
   identity/new:
     form:
       title:    Sign up
@@ -190,27 +213,13 @@ en:
     form:
       title:  Edit Personal Data
       profile:
-        title:  Edit user profile
+        title:  Profile
         legend: Your user profile can be viewed byother bountyhill users as well.
       address:
-        title:  Edit address
+        title:  Postal address
         legend: Your address information cannot be viewed by any other bountyhill user.
-      password:
-        title:    Change password
-        legend:
-          change: Please enter your new passord and confirm the change by providing your current one.
-          reset:  You can reset your password by entering a new one.
-      email:
-        title:  Change email
-        legend: Please enter your new email address and confirm the change by providing your current password.
-      twitter:
-        title:  Twitter
-        legend: If you change your twitter account you will have to signin again via Twitter on bountyhill.
-      facebook:
-        title:  Facebook
-        legend: If you change your facebook account you will have to signin again via Facebook on bountyhill.
       delete:
-        title:  Delete Account
+        title:  Account
         legend: We are very sorry to see you leave. Please let us know why you decided to delete your bountyhill account.
       field_hint:
         first_name:                 Your first name
@@ -223,11 +232,6 @@ en:
         zipcode:                    Zipcode of your town
         country:                    Your country
         phone:                      Your phone number
-        email:                      Email
-        email_new:                  New email
-        password:                   Enter your current password.
-        password_new:               Enter your new password.
-        password_new_confirmation:  Confirm your new password
   activity:
     list:
       title:    "Recent activities"

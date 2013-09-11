@@ -46,7 +46,6 @@ en:
         phone:                      Phone
         twitter:                    Twitter
         email:                      Email
-        email_new:                  New email
         password_new:               New password
         password_new_confirmation:  Confirmation
         password:                   Password

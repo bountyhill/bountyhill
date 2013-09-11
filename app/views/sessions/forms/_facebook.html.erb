@@ -1,11 +1,11 @@
 <% accordion_heading(:facebook) do %>
-  <%= I18n.t("identity/facebook.form.title")%>
+  <%= I18n.t("identity/facebook.form.signin.title")%>
   <%= awesome_icon(:facebook_sign, :size => :large, :class => "pull-right") %>
 <% end %>
 
 <% accordion_body(:facebook) do %>
   <%= form_for Identity::Facebook.new, :url => "/auth/facebook/init" do |form| %>
-    <p><%= I18n.t("identity/facebook.form.legend") %></p>
+    <p><%= I18n.t("identity/facebook.form.signin.legend") %></p>
 
     <%= hidden_field_tag :req, params[:req] %>
     <%= form.error_messages @error if @error %>

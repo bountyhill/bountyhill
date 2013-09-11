@@ -3,6 +3,8 @@
 
 de:
   message:
+    confirm:
+      delete:         "Möchtest Du Deine(n) %{record} wirklich löschen?"
     error:            Bitte prüfe Deine Eingaben.
     base_error:       "%{base_error}: Bitte prüfe Deine Eingaben."
     create:
@@ -130,26 +132,42 @@ de:
         reset:  "Wir haben Dir eine Email zugesandt, die erläutert, wie Du Dein Passwort zurücksetzen kannst."
   identity/email:
     form:
-      title:  Anmelden via Email
-      legend: "Melde Dich mit Deiner Email-Adresse an, wenn Du bereits ein bounthill Konto besitzt."
+      title:  Email/Passwort
+      password:
+        legend: Gebe bitte Dein neues Passwort ein und bestätige die Änderung mit Deinem aktuellen Passwort.
+      email:
+        legend: Gebe Deine neue Email-Adresse ein und bestätige die Änderung mit Deinem Passwort.
+      signin:
+        title:  Anmelden via Email
+        legend: "Melde Dich mit Deiner Email-Adresse an, wenn Du bereits ein bounthill Konto besitzt."
       field_hint:
         email:                    "Gebe Deine Email Adresse ein."
         password:                 "Gebe Dein Passwort ein."
         password_confirmation:    "Bestätige Dein Passwort."
+        password_new:               Gebe Dein neues Passwort ein.
+        password_new_confirmation:  Bestätige Dein neues Passwort.
         password_reset:           "Du erhälst eine Email zum Zurücksetzen Deines Passworts."
         forgot_password:          Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:  Ich möchte den bountyhill Newsletter abonnieren.
   identity/twitter:
     form:
-      title:    Anmelden via Twitter
-      legend:   "Wenn Du einen Twitter-Account besitzt, kannst Du Dich über Twitter anmelden bei bountyhill."
-      legend2:  "Folge bitte @bountyhermes damit wir Dir aktuelle Informationen via Twitters Direktnachrichten zusenden können."
+      title:  Twitter
+      follow_hint:  "Folge bitte @bountyhermes damit wir Dir aktuelle Informationen via Twitters Direktnachrichten zusenden können."
+      create:
+        legend:   "Du kannst Deinen Twitter-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Tweets in Deinem Namen zu Posten."
+      delete:
+        legend:   "Du kannst Deinen Twitter-Account löschen, z.B. um einen anderen zu Deinem bountyhill Profil hinzuzufügen."
+      signin:
+        title:    Anmelden via Twitter
+        legend:   "Wenn Du einen Twitter-Account besitzt, kannst Du Dich über Twitter anmelden bei bountyhill."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
   identity/facebook:
     form:
-      title:    Anmelden via Facebook
-      legend:   "Wenn Du einen Facebook-Account besitzen, kannst Du Dich über Facebook bei bountyhill anmelden."
+      title:  Facebook
+      signin:
+        title:    Anmelden via Facebook
+        legend:   "Wenn Du einen Facebook-Account besitzen, kannst Du Dich über Facebook bei bountyhill anmelden."
   identity/new:
     form:
       title:    Registrieren
@@ -190,27 +208,13 @@ de:
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
-        title:  Nutzerprofil bearbeiten
+        title:  Nutzerprofil
         legend: Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
       address:
-        title:  Adressangaben bearbeiten
+        title:  Postanschrift
         legend: Deine Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
-      password:
-        title:    Passwort ändern
-        legend:
-          change: Gebe bitte Dein neues Passwort ein und bestätige die Änderung mit Deinem aktuellen Passwort.
-          reset:  "Indem Du ein neues Passwort eingibst, setzt Du Dein bisheriges Passwort zurück."
-      email:
-        title:  Email ändern
-        legend: Gebe Deine neue Email-Adresse ein und bestätige die Änderung mit Deinem Passwort.
-      twitter:
-        title:  Twitter
-        legend: "Wenn Du Deinen Twitter Account wechselst, musst Du Dich erneut über Twitter bei bountyhill anmelden."
-      facebook:
-        title:  Facebook
-        legend: "Wenn Du Deinen Facebook Account wechselst, musst Du Dich erneut über Twitter bei bountyhill anmelden."
       delete:
-        title:  Zugang Löschen
+        title:  Zugangskonto
         legend: "Wir bedauern es sehr, dass Du uns verlässt. Bitte lasse uns wissen, warum Du Deinen bountyhill Zugang löschen möchtest."
       field_hint:
         first_name:                 Dein Vorname
@@ -223,11 +227,6 @@ de:
         zipcode:                    Die Postleitzahl Deiner Stadt
         country:                    Dein Land
         phone:                      Deine Telefonnummer
-        email:                      Email
-        email_new:                  Neue Email
-        password:                   Gebe Dein aktuelles Passwort ein.
-        password_new:               Gebe Dein neues Passwort ein.
-        password_new_confirmation:  Bestätige Dein neues Passwort.
   activity:
     list:
       title:    "Letzte Aktivitäten"

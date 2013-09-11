@@ -1,12 +1,12 @@
 <% accordion_heading(:twitter) do %>
-  <%= I18n.t("identity/twitter.form.title")%>
+  <%= I18n.t("identity/twitter.form.signin.title")%>
   <%= awesome_icon(:twitter, :class => "pull-right") %>
 <% end %>
 
 <% accordion_body(:twitter) do %>
   <%= form_for Identity::Twitter.new(:follow_bountyhermes => true), :url => "/auth/twitter/init" do |form| %>
-    <p><%= I18n.t("identity/twitter.form.legend") %></p>
-    <p><%= I18n.t("identity/twitter.form.legend2") %></p>
+    <p><%= I18n.t("identity/twitter.form.signin.legend") %></p>
+    <p><%= I18n.t("identity/twitter.form.follow_hint") %></p>
 
     <%= hidden_field_tag :req, params[:req] %>
     <%= form.error_messages @error if @error %>
