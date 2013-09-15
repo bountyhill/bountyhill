@@ -8,8 +8,8 @@
 
   <%= form.control_group :bounty, :class => "input-small", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
   <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
-  <%= form.control_group :title,        :text_area, :rows => 2,  :class => "input-xxlarge" %>
-  <%= form.control_group :description,  :text_area, :rows => 12, :class => "input-xxlarge tinymce" %>
+  <%= form.control_group :title,        :text_area, :rows => 2, :class => "input-xxlarge" %>
+  <%= form.control_group :description,  :text_area, :rows => 6, :class => "input-xxlarge tinymce" %>
   
   <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
