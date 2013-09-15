@@ -66,11 +66,11 @@ module UsersHelper
       :"data-placement" => "bottom"
   end
   
-  def user_bar(user, type)
+  def user_bar(user, type, options={})
     expect! type => [:quest, :offer]
     
     avatar_size = 64
-    link_to user_path(user), :class => "user bar #{type}" do
+    link_to user_path(user), :class => "user bar #{type} #{options[:class]}" do
       div(
         [
           div(avatar(user, :size => avatar_size), :class => "image-container", :style => "width: #{avatar_size}px"),

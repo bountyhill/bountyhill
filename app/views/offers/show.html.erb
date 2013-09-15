@@ -1,12 +1,25 @@
 <div class="row-fluid">
   <div class="span1">&nbsp;</div>
   <div class="main span8">
-    <%= user_bar(@offer.owner, :offer) %>
+    <%= partial "quests/topbar", :quest => @offer.quest %>
+  </div>
+  <div class="sidebar span2">
+    <%= quest_bounty_statistic_box(@offer.quest) %>
+  </div>
+  <div class="span1">&nbsp;</div>
+</div>
+<%= spacer %>
+
+<div class="row-fluid">
+  <div class="span1">&nbsp;</div>
+  <div class="main span8">
+    <%= user_bar(@offer.owner, :offer, :class => "with-opener clearfix") %>
   </div>
   <div class="sidebar span2">&nbsp;</div>
   <div class="span1">&nbsp;</div>
 </div>
 <%= spacer %>
+
 <div class="row-fluid main">
   <div class="span1">&nbsp;</div>
   <div class="main span8">
@@ -15,8 +28,8 @@
     <%= comments_box(@offer) %>
   </div>
   <div class="sidebar span2">
-    <%= partial "quests/sidebar/box", :quest => @offer.quest %>
-    <%= spacer(:class => "small") %>
+    <%#= partial "quests/sidebar/box", :quest => @offer.quest %>
+    <%#= spacer(:class => "small") %>
     <%= offer_statistic_boxes(@offer) %>
   </div>
   <div class="span1">&nbsp;</div>

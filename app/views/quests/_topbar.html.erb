@@ -1,0 +1,23 @@
+<div class="quest topbar">
+  <div class="image-container" style="width: 64px">
+    <%= link_to user_path(quest.owner), :class => "owner" do
+      avatar quest.owner, :size => 64
+    end %>
+  </div>
+  <%= link_to quest_path(quest), :class => "bar-box" do %>
+    <div class="bar-head">
+      <div class="owner"><%= quest.owner.name %></div>
+      <div class="time">
+        <% if quest.active? %>
+          <%= I18n.t("quest.list.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at)) %>
+        <% else %>
+          <%= I18n.t("quest.list.creation", :distance_of_time => distance_of_time_in_words_to_now(quest.created_at)) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="bar-body">
+      <div class="title"><%= quest.title %></div>
+      <div class="description"><%= quest.description.html_safe %></div>
+    </div>
+  <% end %>
+</div>

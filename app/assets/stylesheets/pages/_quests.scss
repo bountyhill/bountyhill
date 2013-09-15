@@ -31,6 +31,54 @@
     }
   }
 }
+/* quest bar */
+.topbar {
+  &.quest {
+    background-color: $quests_box_content_color;
+    padding: $box_padding;
+    border-top: 8px solid $quests_box_title_color;
+    border-bottom: 8px solid $quests_box_title_color;
+    .image-container {
+      float: left;
+      img { height: $avatar_size; }
+    }
+    .bar-box {
+      display: block;
+      color: $quest_box_title_color;
+      margin-left:  $avatar_size + $box_padding;
+      .bar-head {
+        font-size: 120%;
+        font-family: $font_system;
+        .owner {
+          width: 60%;
+          margin-right: 8px;
+          display: inline;
+        }
+        .time {
+          width: 40%;
+          float: right;
+          text-align: right;
+          font-style: italic;
+          font-size: 90%;
+        }
+      }
+      .bar-body {
+        .title, .description {
+          margin: 0 0 8px 0;
+          line-height: 100%;
+        }
+        .title {
+          margin-top: 24px;
+          font-size: 160%;
+          font-weight: bold;
+        }
+        .description {
+          color: $text_inverse;
+        }
+      }
+    }
+  }
+}
 
 /* quest box in sidebar */
 .sidebar {
