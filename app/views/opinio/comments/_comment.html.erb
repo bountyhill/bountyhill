@@ -6,7 +6,9 @@
     end %>
     <div class="message-box">
       <div class="message-head clearfix">
-        <%= link_to comment.owner.name, user_path(comment.owner), :class => "owner" %>
+        <div class="owner">
+          <%= comment.owner.name %>
+        </div>
         <div class="time">
           <%= I18n.t("comment.list.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
         </div>

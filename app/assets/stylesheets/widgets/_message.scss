@@ -12,7 +12,8 @@
     img { float: left; }
   }
   .message-box {
-    height: avatar_size;
+    height: 100%;
+    display: block;
     color: $text_inverse;
     margin-left:  $avatar_size + $box_padding;
     margin-right: $message_stats_width + (2 * $message_padding);
@@ -23,6 +24,7 @@
       .owner {
         width: 60%;
         margin-right: 8px;
+        display: inline;
       }
       .time {
         float: right;

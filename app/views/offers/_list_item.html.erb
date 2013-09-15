@@ -2,17 +2,19 @@
   <%= link_to user_path(offer.owner), :class => "avatar" do
     avatar offer.owner, :size => 96
   end %>
-  <div class="message-box">
+  <%= link_to offer_path(offer), :class => "message-box" do %>
     <div class="message-head clearfix">
-      <%= link_to offer.owner.name, user_path(offer.owner), :class => "owner" %>
+      <div class="owner">
+        <%= offer.owner.name %>
+      </div>
       <div class="time">
         <%= I18n.t("offer.list.creation", :distance_of_time => distance_of_time_in_words_to_now(offer.created_at)) %>
       </div>
     </div>
     <div class="message-body">
-      <%= link_to truncate(offer.title, :length => 200), offer_path(offer), :class => "message" %>
+      <%= truncate(offer.title, :length => 200) %>
     </div>
-  </div>
+  <% end %>
   <div class="message-stats">
     <%= offer_statistic(offer) %>
     <%= offer_buttons(offer) %>
