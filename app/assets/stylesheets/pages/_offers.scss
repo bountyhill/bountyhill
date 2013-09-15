@@ -43,6 +43,7 @@
   &.offer {
     @include box_colors(offer);
     @include opener($offer_box_title_color, $open_left);
+    &.form { @include opener($offer_box_title_color, $open_center); }
 
     /* ------- step indicator colors------- */
     .header {

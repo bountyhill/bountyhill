@@ -1,7 +1,16 @@
-<div class="row-fluid main">
+<div class="row-fluid">
   <div class="span2">&nbsp;</div>
   <div class="main span8">
-    <%= form_box(@offer) %>
+    <%= partial "quests/topbar", :quest => @offer.quest %>
+  </div>
+  <div class="span2">&nbsp;</div>
+</div>
+<%= spacer %>
+
+<div class="row-fluid main">
+  <div class="span2">&nbsp;</div>
+  <div class="main span8 ">
+    <%= form_box(@offer, :class => "form with-opener") %>
   </div>
   <div class="span2">&nbsp;</div>
 </div>

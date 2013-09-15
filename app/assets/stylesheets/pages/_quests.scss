@@ -36,8 +36,8 @@
   &.quest {
     background-color: $quests_box_content_color;
     padding: $box_padding;
-    border-top: 8px solid $quests_box_title_color;
     border-bottom: 8px solid $quests_box_title_color;
+    min-height: 64px;
     .image-container {
       float: left;
       img { height: $avatar_size; }
@@ -49,6 +49,7 @@
       .bar-head {
         font-size: 120%;
         font-family: $font_system;
+        margin-bottom: 24px;
         .owner {
           width: 60%;
           margin-right: 8px;
@@ -64,11 +65,10 @@
       }
       .bar-body {
         .title, .description {
-          margin: 0 0 8px 0;
           line-height: 100%;
         }
         .title {
-          margin-top: 24px;
+          margin: 0 0 8px 0;
           font-size: 160%;
           font-weight: bold;
         }
@@ -90,7 +90,6 @@
         padding: $box_padding;
         background-color: $quests_box_content_color;
         color: $text_inverse;
-        border-top: 8px solid $quests_box_title_color;
         border-bottom: 8px solid $quests_box_title_color;
         .avatar {
           float: left;

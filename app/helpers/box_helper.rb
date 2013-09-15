@@ -95,7 +95,7 @@ module BoxHelper
       end
     end
 
-    div :class => "#{type} box row-fluid" do
+    div :class => "#{type} box row-fluid #{options[:class]}" do
       header + content
     end
   end
