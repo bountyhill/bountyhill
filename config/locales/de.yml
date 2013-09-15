@@ -25,7 +25,7 @@ de:
       invalid:      Die von Dir angefragte Aktion kann mit dieser Anfrage nicht ausgeführt werden.
   tweet:
     follow:
-      success:  "Vielen Dank, dass Du @bountyhermes folgst. Wir halten Dich auf dem Laufenden..."
+      success:  "Vielen Dank, dass Du @bountyhermes folgst. Wir halten Dich auf dem Laufenden ..."
   mail:
     subject:
       confirm_email:    "Bitte bestätigen Deine Email '%{email}'"
@@ -456,8 +456,8 @@ de:
     auth:
       success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"
       cancel:     "Bits du Dir unsicher, ob Du bereits einen Account hast? Registriere Dich einfach und erklimme bountyhill ..."
-      failure:    "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal..."
-      destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns wieder bei bountyhill!"
+      failure:    "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal ..."
+      destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns wieder bei bountyhill ..."
     email:
       confirmation:
         reminder: "Du hast dich erfolgreich bei bountyhill registriert, aber Deine Email-Adresse ist noch nicht bestätigt."
