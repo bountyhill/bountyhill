@@ -26,6 +26,7 @@
     .content { padding: $box_padding 0; }
   }
   .content {
+    min-height: 80px;
     padding: $box_content_v_padding $box_content_h_padding;
     clear: both;
     h1 {
