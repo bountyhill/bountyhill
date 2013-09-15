@@ -56,14 +56,13 @@ class IdentitiesController < ApplicationController
     
   def update 
     raise RuntimeError, "Only allowed on email identity, but was called on: #{@identity.inspect}" unless @identity.kind_of?(Identity::Email)
-    
+
     if Identity::Email.authenticate(@identity.email, @identity_params[:password])
       if @identity.update_attributes(
           :password               => @identity_params[:password_new],
           :password_confirmation  => @identity_params[:password_new_confirmation])
-
         flash[:success] = I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password))
-        redirect_to! @user
+        redirect_to! user_path(@user)
       else
         @identity.errors.add :password_new, @identity.errors.delete(:password).last
       end
@@ -74,12 +73,13 @@ class IdentitiesController < ApplicationController
   end
 
   def destroy
-    raise RuntimeError, "Identity #{params[:provider]} is the only identity of user #{@user.inspect}" if @user.identities == [@identity]
+    raise RuntimeError, "Identity #{params[:provider]} is the only identity of user #{@user.inspect}" if @identity.solitary?
+    raise RuntimeError, "Only allowed on social identities, but was called on: #{@identity.inspect}"  if @identity.kind_of?(Identity::Email)
     
     @identity.destroy
     
     flash[:success] = I18n.t("message.destroy.success", :record => "identity/#{params[:provider]}".camelize.constantize.model_name.human)
-    redirect_to! @user
+    redirect_to! user_path(@user)
   end
   
 protected
