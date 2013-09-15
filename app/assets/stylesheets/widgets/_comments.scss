@@ -1,4 +1,5 @@
 .box {
+  .content { min-height: 0; }
   &.comments { 
     /* common box colors */
     @include box_colors(comment);
