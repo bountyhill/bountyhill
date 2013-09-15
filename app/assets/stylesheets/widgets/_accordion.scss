@@ -11,6 +11,10 @@
         background-color: $password;
         &:hover { background-color: $password_highlight; };
       }
+      &.signin {
+        background-color: $signin;
+        &:hover { background-color: $signin_highlight; };
+      }
       &.email {
         background-color: $email;
         &:hover { background-color: $email_highlight; };
@@ -22,10 +26,6 @@
       &.facebook {
         background-color: $facebook;
         &:hover { background-color: $facebook_highlight; };
-      }
-      &.register {
-        background-color: $register;
-        &:hover { background-color: $register_highlight; };
       }
       &.address {
         background-color: $address;

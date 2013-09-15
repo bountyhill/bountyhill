@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
 
   serialize :badges, Array
 
+  # -- DELETION ---------------------------------------------------
+
+  # reason for withdrawle
+  DELETION = %w(bad_service bothering_users other_reason)
+
+  attr_accessor   :delete_me
+  serialized_attr :deletion, :deletion_reason
+  attr_accessible :deletion, :deletion_reason, :delete_me
+
+
   private
 
   # The create_remember_token method will be called on each save, 
@@ -424,8 +434,10 @@ class User < ActiveRecord::Base
       save!
       
       # set the visibility of all offers and quests to deleted
-      Quest.update_all({ :visibility => "deleted" }, :owner_id => self)
-      # TODO: Offer.update_all({ :visibility => "deleted" }, :owner_id => self)
+      ActiveRecord::AccessControl.as(User.admin) do
+        Quest.update_all({ :visibility => "deleted" }, :owner_id => self)
+        # TODO: Offer.update_all({ :visibility => "deleted" }, :owner_id => self)
+      end
 
       # remove users social identities 
       [:twitter, :facebook].each do |identity_name|

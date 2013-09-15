@@ -4,29 +4,30 @@
 en:
   message:
     confirm:
-      delete:         "Do you realy want to delete your %{record}?"
-    error:            Please review your input.
-    base_error:       "%{base_error}: please review your input."
+      delete:       "Do you realy want to delete your %{record}?"
+    error:          Please review your input.
+    base_error:     "%{base_error}: please review your input."
     create:
-      success:        "%{record} was successfully created."
+      success:      "%{record} was successfully created."
     offer:
-      success:        "%{record} was successfully submitted."
+      success:      "%{record} was successfully submitted."
     update:
-      success:        "%{record} was successfully updated."
+      success:      "%{record} was successfully updated."
     destroy:
-      success:        "%{record} was successfully deleted."
+      success:      "%{record} was successfully deleted."
     access:
-      not_allowed:    You are not allowed to do this!
-    check_delete_me:  Please confirm the deletion of your account.
-    password_invalid: The pasword entered is not valid.
+      not_allowed:  You are not allowed to do this!
+    password:
+      invalid:      The password entered is not valid.
     action:
-      invalid:        The action you requested cannot be performed.
+      invalid:      The action you requested cannot be performed.
     method:
-      invalid:        The action you requested cannot be performed will this request.
-  notice:
-    tweet:
-      thanks_for_following: "Thank you for following @bountyhermes. We will keep you informed..."
-    mail:
+      invalid:      The action you requested cannot be performed will this request.
+  tweet:
+    follow:
+      success:  "Thank you for following @bountyhermes. We will keep you informed..."
+  mail:
+    subject:  
       confirm_email:    "Please verify your email '%{email}'"
       reset_password:   "Reset your password"
       offer_received:   "You received an offer on your quest '%{title}'"
@@ -54,6 +55,7 @@ en:
     withdraw: Withdraw
     comment:  Comment
     delete:   Delete
+    remove:   Remove
     reply:    Reply
     post:     Post
     follow:   Follow
@@ -123,6 +125,7 @@ en:
       title: Sign in/up
       terms: "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
       error:
+        common: Please review your inputs.
         signup: Please review your inputs.
         signin: The entered email and/or password are not valid.
         reset:  The entered email is not known to us.
@@ -131,53 +134,58 @@ en:
         signin: Welcome to bountyhill!
         reset:  We have send you an email with instructions to reset your password.
   identity/email:
+    show:
+      title:  Email/Password
+      legend: "You are registered at bountyhill with the following email:"
     form:
-      title:    Email/Password
-      password:
-        legend: Please enter your new passord and confirm the change by providing your current one.
-      email:
-        legend: Please enter your new email address and confirm the change by providing your current password.
+      new:
+        title:    Sign up
+        legend:   By signing up with your email and password you may start quests and post offers.
+        legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+      edit:
+        legend: If you want to change your password please enter your new password and confirm the change by providing your current one.
       signin:
         title:  Sign in with email
         legend: If you already have a bountyhill account please sing in with your email and password.
       field_hint:
-        email:                    "Enter your email address."
-        password:                 "Enter your current password."
-        password_confirmation:    "Confirm your password"
+        email:                      Enter your email address.
+        password:                   Enter your password.
+        password_confirmation:      Confirm your password.
         password_new:               Enter your new password.
         password_new_confirmation:  Confirm your new password
-        password_reset:           "You will receive an email to reset your password."
-        forgot_password:          I did forget my password and want to reset it.
-        newsletter_subscription:  I want to subscribe to bountyhill's newsletter.
-        
+        password_reset:             You will receive an email to reset your password.
+        forgot_password:            I did forget my password and want to reset it.
+        newsletter_subscription:    I want to subscribe to bountyhill's newsletter.
   identity/twitter:
-    form:
+    show:
       title:      Twitter
+      legend: "You are registered at bountyhill with the following twitter user name:"
+    form:
       follow_hint:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
       create:
         legend:   "If you have a Twitter account you can add it to your bountyhill profile, e.g to allow us to post tweets on your behalf."
       delete:
-        legend:   "You can remove your Twitter account, e.g. to add another one to your bountyhill profile."
+        legend:   "You can remove your Twitter account from your bountyhill profile, e.g. to add and use another one."
       signin:
         title:    Sign in with Twitter
         legend:   If you have a Twitter account bountyhill allows you to sign in via Twitter.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
+        delete_me:    I do want to remove my Twitter account from my bountyhill profile.
   identity/facebook:
+    show:
+      title:  Facebook
+      legend: "You are registered at bountyhill with the following facebook user name:"
     form:
-      title:      Facebook
       create:
         legend:   "If you have a Facebook account you can add it to your bountyhill profile, e.g to allow us to post on your wall."
       delete:
-        legend:   "You can remove your Facebook account, e.g. to add another one to your bountyhill profile."
+        legend:   "You can remove your Facebook account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with Facebook
         legend:   If you have a Facebook account bountyhill allows you to sign in via Facebook.
-  identity/new:
-    form:
-      title:    Sign up
-      legend:   By signing up with your email and password you may start quests and post offers.
-      legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+      field_hint:
+        delete_me:    I do want to remove my Facebook account from my bountyhill profile.
   identity/confirm:
     form:
       title:    Confirm email
@@ -216,22 +224,27 @@ en:
         title:  Profile
         legend: Your user profile can be viewed byother bountyhill users as well.
       address:
-        title:  Postal address
+        title:  Address
         legend: Your address information cannot be viewed by any other bountyhill user.
       delete:
         title:  Account
-        legend: We are very sorry to see you leave. Please let us know why you decided to delete your bountyhill account.
+        legend: You can delete your bountyhill account at anytime. We would honestly regret to see you leave. Please let us know why in case you decided to delete your bountyhill account.
       field_hint:
-        first_name:                 Your first name
-        last_name:                  Your family name
-        description:                Describe yourself
-        images:                     Your profile picture
-        address1:                   Your street and street number
-        address2:                   Further address information
-        city:                       Your town
-        zipcode:                    Zipcode of your town
-        country:                    Your country
-        phone:                      Your phone number
+        first_name:   Your first name
+        last_name:    Your family name
+        description:  Describe yourself
+        images:       Your profile picture
+        address1:     Your street and street number
+        address2:     Further address information
+        city:         Your town
+        zipcode:      Zipcode of your town
+        country:      Your country
+        phone:        Your phone number
+        delete_me:    I do want to delete my bountyhill account.
+        deletion:
+          bad_service:      "The service of bountyhill is unsufficient."
+          bothering_users:  "Others users bother me."
+          other_reason:     "Because of another reason."
   activity:
     list:
       title:    "Recent activities"

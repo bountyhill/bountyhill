@@ -1,0 +1,31 @@
+<%= form_for identity, :url => "/signup", :remote => true do |form| %>
+<%= hidden_field_tag :req, params[:req] %>
+
+  <p><%= I18n.t("identity/email.form.new.legend") %></p>
+  <p><%= I18n.t("identity/email.form.new.legend2") %></p>
+  <%= form.error_messages @error if @error %>
+
+  <%= form.control_group :email,                  :text_field %>
+  <%= form.control_group :password,               :password_field %>
+  <%= form.control_group :password_confirmation,  :password_field %>
+
+  <div class="checkbox-group">
+    <%= form.control_group :newsletter_subscription, :check_box %>
+    <%= form.agree_to_terms(:id => "agree_to_terms_email") unless current_user %>
+  </div>
+
+  <div class="buttons">
+    <%= link_to_cancel_signin %>
+    <%= form.submit I18n.t("button.register"), :name => "signup_email", :id => "signup_email", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $("#agree_to_terms_email").change(function() {
+    if($(this).is(':checked'))
+      $("#signup_email").removeAttr("disabled");
+    else
+      $("#signup_email").attr("disabled", "disabled");
+  });
+</script>
+

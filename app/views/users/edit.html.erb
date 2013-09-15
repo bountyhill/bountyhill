@@ -1,7 +1,7 @@
 <% modal_dialog I18n.t("user.form.title") do %>
   <% modal_body do %>
     <% accordion do %>
-      <% @partials.each do |partial, index| %>
+      <% @partials.each do |partial| %>
         <% accordion_group(:id => partial) do %>
           <%= render "users/forms/#{partial}" %>
         <% end %>

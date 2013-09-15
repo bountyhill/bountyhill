@@ -28,28 +28,30 @@ de:
       location: Ort
     attributes:
       identity:
-        email:                  Email
-        password:               Passwort
-        password_confirmation:  Bestätigung
-      user:
-        name:                       Name
-        first_name:                 Vorname
-        last_name:                  Nachname
-        description:                Beschreibung
-        image:                      Bild
-        images:                     Bild
-        address1:                   Adresse
-        address2:                   Adressergänzung
-        city:                       Stadt
-        zipcode:                    Postleitzahl
-        country:                    Land
-        phone:                      Telefon
-        twitter:                    Twitter
         email:                      Email
         password:                   Passwort
+        password_confirmation:      Bestätigung
         password_new:               Neues Passwort
         password_new_confirmation:  Bestätigung
-        delete_me:                  Account Löschen
+      user:
+        name:             Name
+        first_name:       Vorname
+        last_name:        Nachname
+        description:      Beschreibung
+        image:            Bild
+        images:           Bild
+        address1:         Adresse
+        address2:         Adressergänzung
+        city:             Stadt
+        zipcode:          Postleitzahl
+        country:          Land
+        phone:            Telefon
+        email:            Email
+        twitter:          Twitter
+        facebook:         Facebook
+        delete_me:        Account Löschen
+        deletion:         Beweggrund
+        deletion_reason:  Erklärung
       offer:
         title:              Betreff
         description:        Beschreibung
@@ -88,4 +90,8 @@ de:
         stationary: Ortsbezug
         address:    Adresse
         radius:     Umkreis
+      identity/twitter:
+        handle: Benutzername
+      identity/facebook:
+        nickname: Benutzername
         

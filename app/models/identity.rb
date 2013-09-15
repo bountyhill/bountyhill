@@ -29,10 +29,15 @@ class Identity < ActiveRecord::Base
   after_destroy :soft_delete_user
 
   serialize :serialized, Hash
+  attr_accessor   :delete_me
 
-  def self.of_provider(provider)
-    expect! provider => String
-    self.send(:subclasses).detect{|subclass| subclass.name.split("::").last.underscore == provider}
+  def self.social_identities
+    self.subclasses.map{ |i| i.name.split("::").last.downcase.to_sym } - [:deleted, :email]
+  end
+
+  def self.provider(provider)
+    expect! provider => Symbol
+    self.subclasses.detect{ |i| i.name.split("::").last.downcase.to_sym == provider}
   end
 
   #
@@ -41,11 +46,14 @@ class Identity < ActiveRecord::Base
     false
   end
   
+  def solitary?
+    user.identities == [self]
+  end
+  
   protected
   
   def soft_delete_user
-    return unless user
-    return if user.identities.any? { |identity| (identity.id != self.id) }
+    return unless user && solitary?
     
     user.soft_delete!
   end

@@ -1,0 +1,18 @@
+<%= form_for(identity, :url => "identities/destroy/#{identity.id}", :method => :delete) do |form| %>
+  <p><%= I18n.t("identity/twitter.form.delete.legend") %></p>
+  <%= form.control_group :delete_me, :check_box %>
+  
+  <div class="buttons">
+    <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-cancel", :"data-dismiss" => "modal" %>
+    <%= form.submit I18n.t("button.remove"), :name => "delete_twitter", :id => "delete_twitter", :class => "btn btn-danger", :disabled => "disabled" %>
+  </div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $("#identity_twitter_delete_me").change(function() {
+    if($(this).is(':checked'))
+      $("#delete_twitter").removeAttr("disabled");
+    else
+      $("#delete_twitter").attr("disabled", "disabled");
+  });
+</script>

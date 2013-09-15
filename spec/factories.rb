@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 FactoryGirl.factories.clear
 
 FactoryGirl.define do
@@ -7,25 +9,30 @@ FactoryGirl.define do
     password              "foobar"
     password_confirmation "foobar"
 
-    after(:build) do |identity, evaluator| 
+    after(:build) do |identity, evaluator|
+      next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }
     end
   end
 
   factory :twitter_identity, :class => "Identity::Twitter" do
     identifier  "twatter"
-    name        "twatter"
     
-    after(:build) do |identity, evaluator| 
+    after(:build) do |identity, evaluator|
+      identity.info = { :nickname => "twatter" }
+      
+      next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }
     end
   end
 
   factory :facebook_identity, :class => "Identity::Facebook" do
     identifier  "inyourfacebook"
-    name        "inyourfacebook"
     
-    after(:build) do |identity, evaluator| 
+    after(:build) do |identity, evaluator|
+      identity.info = { :nickname => "inyourfacebook" }
+      
+      next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }
     end
   end

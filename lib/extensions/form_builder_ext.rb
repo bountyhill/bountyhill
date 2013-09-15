@@ -149,7 +149,7 @@ class ActionView::Helpers::FormBuilder
   end
   
   def field_hint(name, options)
-    return if options[:hint] == false
+    return "" if options[:hint] == false
     
     value = case name.to_s
       when "password" then Identity::Email::MIN_PASSWORD_LENGTH

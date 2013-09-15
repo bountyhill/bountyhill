@@ -1,17 +1,1 @@
-<% accordion_heading(:twitter) do %>
-  <%= I18n.t("user.form.twitter.title")%>
-  <%= awesome_icon(:twitter, :class => "pull-right") %>
-<% end %>
-
-<% accordion_body(:twitter) do %>
-  <%= form_for @user, :remote => true do |form| %>
-  <p><%= I18n.t("user.form.twitter.legend")%></p>
-    <%= form.error_messages %>
-    
-    <%= hidden_field_tag :section, :twitter %>
-
-    <p>paceholder: TODO</p>
-
-    <%= form.actions "#", :"data-dismiss" => "modal" %>
-  <% end %>
-<% end %>
+<%= render :partial => "identities/twitter" %>

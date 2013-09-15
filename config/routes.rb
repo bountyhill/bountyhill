@@ -27,7 +27,7 @@ Bountyhill::Application.routes.draw do
   end
   match "/q/:id"                      => "quests#show",   :via => :get
   match "/quests/category/:category"  => "quests#index",  :via => :get
-  match "/quests/:owner_id/list"         => "quests#index",  :via => :get
+  match "/quests/:owner_id/list"      => "quests#index",  :via => :get
   
   resources :shares
   
@@ -65,10 +65,12 @@ Bountyhill::Application.routes.draw do
   match "signout"         => "sessions#destroy",        :via => :delete
   match "sessions/cancel" => "sessions#cancel",         :via => :post
   
+  resources :identities
+  match "identities/failure" => "identities#failure",     :via => :post
   # omniauth
-  match 'auth/:provider/init'     => 'sessions#new'
-  match 'auth/:provider/callback' => 'sessions#create'
-  match 'auth/failure'            => 'sessions#failure'
+  match 'auth/:provider/init'     => 'identities#new'
+  match 'auth/:provider/callback' => 'identities#create'
+  match 'auth/failure'            => 'identities#failure'
 
   resources :deferred_actions, :only => [:show]
   match 'act'             => 'deferred_actions#show'

@@ -1,0 +1,13 @@
+<%= form_for(identity, :remote => true) do |form| %>
+  <%= hidden_field_tag :req, params[:req] %>
+  
+  <p><%= I18n.t("identity/email.form.edit.legend")%></p>
+  <%= form.error_messages @error if @error %>
+
+  <%= form.error_messages %>
+  <%= form.control_group :password_new,               :password_field %>
+  <%= form.control_group :password_new_confirmation,  :password_field %>
+  <%= form.control_group :password,                   :password_field %>
+
+  <%= form.actions "#", :"data-dismiss" => "modal" %>
+<% end %>

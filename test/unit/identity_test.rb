@@ -33,10 +33,22 @@ class IdentityTest < ActiveSupport::TestCase
     assert_activity_logged { Factory(:twitter_identity) }
   end
   
-  def test_of_provider
-    %w(twitter facebook).each do |provider|
-      assert_equal "Identity::#{provider.camelize}", Identity.of_provider(provider).name
+  def test_social_identities
+    assert_equal [:twitter, :facebook], Identity.social_identities
+  end
+  
+  def test_provider
+   Identity.social_identities.each do |provider|
+      assert_equal "Identity::#{provider.to_s.camelize}".constantize, Identity.provider(provider)
     end
+  end
+
+  def test_solitary?
+    identity = Factory(:email_identity)
+    assert identity.solitary?
+    
+    Factory(:twitter_identity, :user => identity.user)
+    assert !identity.reload.solitary?
   end
 
   # Delete a user's last identity soft deletes the user

@@ -1,0 +1,22 @@
+<% identity = @identity || identity?(:twitter) || Identity::Twitter.new(:follow_bountyhermes => true) %>
+
+<% accordion_heading(:twitter) do %>
+  <% if identity.new_record? %>
+    <%= I18n.t("identity/twitter.form.signin.title")%>
+  <% else %>
+    <%= I18n.t("identity/twitter.show.title")%>
+  <% end %>
+  <%= awesome_icon(:twitter, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:twitter) do %>
+  <% if identity.new_record? %>
+    <%= render :partial => "identities/twitter/forms/new", :locals => { :identity => identity } %>
+  <% else %>
+    <p><%= I18n.t("identity/twitter.show.legend")%></p>
+    <%= form_for(identity, :remote => true) do |form| %>
+      <%= form.control_group :handle, :text_field, :hint => false, :disabled => 'disabled' %>
+    <% end %>
+    <%= render :partial => "identities/twitter/forms/delete", :locals => { :identity => identity } unless identity.solitary? %>
+  <% end %>
+<% end %>

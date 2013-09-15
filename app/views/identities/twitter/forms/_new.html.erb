@@ -1,0 +1,34 @@
+<%= form_for(identity, :url => "/auth/twitter/init") do |form| %>
+  <% if current_user %>
+    <p><%= I18n.t("identity/twitter.form.create.legend") %></p>
+  <% else %>
+    <p><%= I18n.t("identity/twitter.form.signin.legend") %></p>
+  <% end %>
+  <p><%= I18n.t("identity/twitter.form.follow_hint") %></p>
+  
+  <%= hidden_field_tag :req, :twitter %>
+  <%= form.error_messages @error if @error %>
+
+  <div class="checkbox-group">
+    <%= form.control_group :follow_bountyhermes, :check_box %>
+    <%= form.agree_to_terms(:id => "agree_to_terms_twitter") unless current_user %>
+  </div>
+
+  <% if current_user %>
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% else %>
+    <div class="buttons">
+      <%= link_to_cancel_signin %>
+      <%= form.submit I18n.t("button.signin"), :name => "signin_twitter", :id => "signin_twitter", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
+    </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $("#agree_to_terms_twitter").change(function() {
+    if($(this).is(':checked'))
+      $("#signin_twitter").removeAttr("disabled");
+    else
+      $("#signin_twitter").attr("disabled", "disabled");
+  });
+</script>

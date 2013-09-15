@@ -214,6 +214,10 @@ module ApplicationHelper
     "http://twitter.com/#{account}"
   end
 
+  def identity?(*args)
+    current_user && current_user.identity(*args)
+  end
+
   # This method returns true, 
   # - if the current_user was referenced in the URL as the owner, 
   # - or if a user was referenced and it's the current user

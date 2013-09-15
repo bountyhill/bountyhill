@@ -4,7 +4,7 @@
 <% end %>
 
 <% accordion_body(:confirm) do %>
-  <% form_for @identity ||= Identity::Email.new, :url => "/confirm", :remote => true do |form| %>
+  <% form_for identity?(:email) || Identity::Email.new, :url => "/confirm", :remote => true do |form| %>
     <p><%= I18n.t("identity/confirm.form.legend")%></p>
 
     <div class="buttons">

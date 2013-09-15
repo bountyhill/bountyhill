@@ -10,8 +10,29 @@
     
     <%= hidden_field_tag :section, :delete %>
 
-    <p>paceholder: TODO</p>
-
-    <%= form.actions "#", :"data-dismiss" => "modal", :class => "btn btn-danger", :label => I18n.t("button.delete") %>
+    <%= form.control_group :deletion, :radio_button, :hint => false do
+      User::DELETION.map do |value|
+          label :class => "radio" do
+            form.radio_button(:deletion, value, :checked => ((@user.deletion || User::DELETION.first) == value)) +
+            I18n.t("user.form.field_hint.deletion.#{value}")
+          end
+        end.join.html_safe
+    end %>
+    <%= form.control_group :deletion_reason, :text_area, :rows => 3, :hint => false %>
+    <%= form.control_group :delete_me, :check_box %>
+    
+    <div class="buttons">
+      <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-cancel", :"data-dismiss" => "modal" %>
+      <%= form.submit I18n.t("button.delete"), :name => "delete_user", :id => "delete_user", :class => "btn btn-danger", :disabled => "disabled" %>
+    </div>
   <% end %>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $("#user_delete_me").change(function() {
+    if($(this).is(':checked'))
+      $("#delete_user").removeAttr("disabled");
+    else
+      $("#delete_user").attr("disabled", "disabled");
+  });
+</script>

@@ -3,6 +3,8 @@
 class Identity::Email < Identity
   include Identity::PolymorphicRouting
   
+  attr_accessor :password_new, :password_new_confirmation
+
   with_metrics! "accounts.email"
   after_create :send_confirmation_email
    
@@ -17,9 +19,8 @@ class Identity::Email < Identity
   # constant to use with email validation
   EMAIL_ADDRESS_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/i
 
-  validates :password, :length => { minimum: MIN_PASSWORD_LENGTH }, :on => :create
-  validates :email,     presence: true, format: { with: EMAIL_ADDRESS_REGEX }, 
-                                        uniqueness: { case_sensitive: false }
+  validates :password,  :length => { :minimum => MIN_PASSWORD_LENGTH }
+  validates :email,     :presence => true, :format =>  { :with => EMAIL_ADDRESS_REGEX }, :uniqueness => { :case_sensitive => false }
 
   # -- authenticate ---------------------------------------------------
   

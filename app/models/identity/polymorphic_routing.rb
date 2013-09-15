@@ -9,10 +9,10 @@ module Identity::PolymorphicRouting
     # see http://stackoverflow.com/questions/4507149/best-practices-to-handle-routes-for-sti-subclasses-in-rails
     base.model_name.class_eval do
       def route_key
-        superclass.model_name.route_key
+        "identities"
       end
       def singular_route_key
-        superclass.model_name.singular_route_key
+        "identity"
       end
     end
 
