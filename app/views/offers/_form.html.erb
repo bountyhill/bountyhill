@@ -38,8 +38,8 @@
 // recalculate compliance, whenever a compliance changed.
   jQuery("input[type=range]").change(function() {
     var form      = $(this).closest("form");
-    var mainBar   = jQuery("div.progress div.bar", form)[0];
-    var mainValue = jQuery("div.progress div.value", form)[0];
+    var mainBar   = jQuery("div.progress.main div.bar", form)[0];
+    var mainValue = jQuery("div.progress.main div.value", form)[0];
     var sliders   = jQuery("input[type=range]", form);
     var li        = $(this).closest("li");
     var slider    = jQuery("input[type=range]", li);
