@@ -30,7 +30,7 @@
 
   <p class="legend"><%= I18n.t("offer.form.create.compliance") %></p>
   <%= form.control_group(:compliance, :compliance, :class => "progress main") if @offer.criteria.present? %>
-  <%= form.actions quest_path(@offer.quest) %>
+  <%= form.actions @offer.new_record? ? quest_path(@offer.quest) : offer_path(@offer) %>
 <% end %>
 
 
