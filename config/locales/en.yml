@@ -335,8 +335,9 @@ en:
           other_reason:   "Because of another reason."
         comment:      "If you should have a remark about this criteria, please enter it here."
       create:
-        title:  Submit an Offer
-        legend: "Provide a detailed description about what you have to offer. Feel free to add any pictures to your offer."
+        title:      Submit an Offer
+        legend:     "Provide a detailed description about what you have to offer. Feel free to add any pictures to your offer."
+        compliance: "The following total degree of compliance for this offer results from your specifications above."
         hint:
           one:    "For the given criteria to be matched, please specify the compliance of your offer."
           other:  "For each of the %{count} given criteria to be matched, please specify the compliance of your offer."

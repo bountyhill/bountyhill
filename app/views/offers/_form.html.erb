@@ -2,7 +2,6 @@
   <p class="legend"><%= i18n_legend_for(@offer) %></p>
   <%= form.error_messages %>
 
-  <%= form.control_group(:compliance, :compliance, :class => "progress main") if @offer.criteria.present? %>
   <%= form.control_group :quest_id,     :hidden_field %>
   <%= form.control_group :title,        :text_area, :rows => 2, :class => "input-xxlarge" %>
   <%= form.control_group :description,  :text_area, :rows => 6, :class => "input-xxlarge tinymce" %>
@@ -29,6 +28,8 @@
     </div>
   <% end %>
 
+  <p class="legend"><%= I18n.t("offer.form.create.compliance") %></p>
+  <%= form.control_group(:compliance, :compliance, :class => "progress main") if @offer.criteria.present? %>
   <%= form.actions quest_path(@offer.quest) %>
 <% end %>
 

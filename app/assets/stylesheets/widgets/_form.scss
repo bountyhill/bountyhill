@@ -141,10 +141,10 @@ form {
             margin-left: 150px;
             input[type='range'] {
               @include appearance(none);
-              @include border-radius(10px);
               padding: 0;
-              height: 15px;
-              border: 1px solid;
+              height: 16px;
+              @include border-radius(10px);
+              /* border: 1px solid; */
             }
             .range-slider-prefix, .range-slider-postfix {
               margin-top: 6px;

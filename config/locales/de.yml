@@ -335,8 +335,9 @@ de:
           offer_invalid:  "Mein Angebot ist nicht mehr gültig."
           other_reason:   "Aus einem anderen Grund."
       create:
-        title:  Angebot abgeben
-        legend: "Beschreibe bitte detailiert was Du dem Suchenden anbieten möchtest. Du kannst Deiner Beschreibung gern Fotos hinzufügen."
+        title:      Angebot abgeben
+        legend:     "Beschreibe bitte detailiert was Du dem Suchenden anbieten möchtest. Du kannst Deiner Beschreibung gern Fotos hinzufügen."
+        compliance: "Aus den von Dir gemachten Angaben ergibt sich der folgende Erfüllungsgrad dieses Angebotes."
         hint:
           one:    "Gebe bitte für das aufgestellte Kriterium an, in wie weit Dein Angebot dieses erfüllt."
           other:  "Gebe bitte für jedes der %{count} aufgestellten Kriterien an, in wie weit Dein Angebot diese erfüllt."
