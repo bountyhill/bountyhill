@@ -175,4 +175,15 @@ class OfferTest < ActiveSupport::TestCase
       {:compliance=>10}])
     assert_equal 55, offer.send(:calculate_compliance)
   end
+  
+  def test_chain
+    offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
+    assert_equal [], offer.chain
+
+    twitter = Factory(:twitter_identity, :identifier => "some_identifier")
+    quest.expects(:chain_to).with(offer.owner).returns([twitter.identifier])
+    assert_no_difference("Identity::Twitter.count") do
+      assert_equal [twitter.user], offer.chain
+    end
+  end
 end

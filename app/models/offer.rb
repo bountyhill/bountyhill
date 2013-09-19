@@ -332,8 +332,8 @@ class Offer < ActiveRecord::Base
   # - the bountyhill admin user 
   def chain
     transaction do
-      identities = quest.chain_to(owner).map do |screen_name|
-        ::Identity::Twitter.find_or_create(screen_name)
+      identities = quest.chain_to(owner).map do |identifier|
+        ::Identity::Twitter.find_or_create(identifier)
       end
 
       identities.map(&:user) - [ quest.owner, owner, User.admin ]

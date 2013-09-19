@@ -330,7 +330,7 @@ class Quest < ActiveRecord::Base
     return [] unless twitter = user && user.identity(:twitter)
     return [] unless chain = Bountybase::Graph.chain(self.id, twitter.user_id)
   
-    chain.map(&:attributes).pluck("screen_name")
+    chain.map(&:attributes).pluck("identifier")
   end
 
   # -- Pseudo attributes ----------------------------------------------
