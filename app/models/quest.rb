@@ -164,14 +164,15 @@ class Quest < ActiveRecord::Base
   attr_accessible *criteria_titles, *criteria_descriptions
 
   private
-  
-  def set_criterium(idx, title, description = nil)
-    title_attr = Quest.criteria_titles[idx]
-    description_attr = Quest.criteria_descriptions[idx]
-    
-    self.send "#{title_attr}=", title
-    self.send "#{description_attr}=", description
-  end
+
+  # TODO: not needed?
+  # def set_criterium(idx, title, description = nil)
+  #   title_attr = Quest.criteria_titles[idx]
+  #   description_attr = Quest.criteria_descriptions[idx]
+  #   
+  #   self.send "#{title_attr}=", title
+  #   self.send "#{description_attr}=", description
+  # end
 
   def get_criterium(idx)
     title = self.send Quest.criteria_titles[idx]
