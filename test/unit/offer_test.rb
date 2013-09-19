@@ -148,4 +148,31 @@ class OfferTest < ActiveSupport::TestCase
       assert_equal "rejected", offer.state
     end
   end
+  
+  def test_calculate_compliance
+    offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
+    assert_equal 50, offer.compliance
+    
+    offer.expects(:criteria).returns([{:compliance=>0}])
+    assert_equal 0, offer.send(:calculate_compliance)
+
+    offer.expects(:criteria).returns([{:compliance=>10}])
+    assert_equal 100, offer.send(:calculate_compliance)
+
+    offer.expects(:criteria).returns([{:compliance=>0}, {:compliance=>10}])
+    assert_equal 50, offer.send(:calculate_compliance)
+
+    offer.expects(:criteria).returns([
+      {:compliance=>1},
+      {:compliance=>2},
+      {:compliance=>3},
+      {:compliance=>4},
+      {:compliance=>5},
+      {:compliance=>6},
+      {:compliance=>7},
+      {:compliance=>8},
+      {:compliance=>9},
+      {:compliance=>10}])
+    assert_equal 55, offer.send(:calculate_compliance)
+  end
 end
