@@ -3,7 +3,13 @@
 require_relative "../../test_helper.rb"
 
 class Identity::EmailTest < ActiveSupport::TestCase
-
+  def test_polymorphic_routing
+    model_name = Identity::Email.model_name
+    assert_equal "Identity::Email", model_name.to_s
+    assert_equal "identities", model_name.route_key
+    assert_equal "identity", model_name.singular_route_key
+  end
+  
   def test_authenticate
     email     = "foo.bar@example.com"
     password  = "foobar"

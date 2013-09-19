@@ -3,6 +3,12 @@
 require_relative "../../test_helper.rb"
 
 class Identity::TwitterTest < ActiveSupport::TestCase
+  def test_polymorphic_routing
+    model_name = Identity::Twitter.model_name
+    assert_equal "Identity::Twitter", model_name.to_s
+    assert_equal "identities", model_name.route_key
+    assert_equal "identity", model_name.singular_route_key
+  end
   
   def test_validation
     # identifier cannot be nil

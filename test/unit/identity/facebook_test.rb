@@ -3,6 +3,12 @@
 require_relative "../../test_helper.rb"
 
 class Identity::FacebookTest < ActiveSupport::TestCase
+  def test_polymorphic_routing
+    model_name = Identity::Facebook.model_name
+    assert_equal "Identity::Facebook", model_name.to_s
+    assert_equal "identities", model_name.route_key
+    assert_equal "identity", model_name.singular_route_key
+  end
   
   def test_update_status
     facebook  = Identity::Facebook.new
