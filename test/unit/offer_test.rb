@@ -40,6 +40,13 @@ class OfferTest < ActiveSupport::TestCase
     end
   end
   
+  def test_initialize_with_quest_criteria
+    quest.criterium_0 = "Foo Bar"
+    quest.criterium_1 = "Bar Foo"
+    offer = Offer.new(:quest => quest)
+    assert_equal ["Foo Bar", "Bar Foo"], offer.criteria.map{ |c| c[:title] }
+  end
+  
   def test_activity_logging
     offer = Offer.new(:quest => quest.start!, :title => "Test title", :description => "This is a description")
 
