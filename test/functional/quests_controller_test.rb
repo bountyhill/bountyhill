@@ -228,6 +228,15 @@ class QuestsControllerTest < ActionController::TestCase
   end
   
   
+  def test_lightbox
+    @quest.update_attributes(:images => ["http://www.example.com"])
+    
+    xhr :get, :lightbox, :id => @quest.id, :active => 1
+    assert_equal @quest.images(:width => 600), assigns(:images)
+    assert_equal 1, assigns(:active)
+    assert_template "shared/lightbox"
+  end
+  
 private
   
   def valid_quest_params
