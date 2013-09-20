@@ -157,7 +157,7 @@ en:
         password_reset:             You will receive an email to reset your password.
         forgot_password:            I did forget my password and want to reset it.
         newsletter_subscription:    I want to subscribe to bountyhill's newsletter.
-        commercial:                 I'm commercially using bountyhill on behalf of my company.
+        commercial:                 I want to commercially use bountyhill on behalf of my company.
   identity/twitter:
     show:
       title:      Twitter
@@ -174,12 +174,12 @@ en:
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
         delete_me:            I do want to remove my Twitter account from my bountyhill profile.
-        commercial:           I'm commercially using bountyhill on behalf of my company.
+        commercial:           I want to commercially use bountyhill on behalf of my company.
   identity/facebook:
     show:
       title:      Facebook
       legend:     "You are registered at bountyhill with the following facebook user name:"
-      commercial: I'm commercially using bountyhill on behalf of my company.
+      commercial: I want to commercially use bountyhill on behalf of my company.
     form:
       create:
         legend:   "If you have a Facebook account you can add it to your bountyhill profile, e.g to allow us to post on your wall."
@@ -225,8 +225,9 @@ en:
     form:
       title:  Edit Personal Data
       profile:
-        title:  Profile
-        legend: Your user profile can be viewed byother bountyhill users as well.
+        title:    Profile
+        legend:   Your user profile can be viewed by other bountyhill users as well.
+        legend2:  Do you intend to use bountyhill for commercial purpose? Please note that there are different terms for commercial users.
       address:
         title:  Address
         legend: Your address information cannot be viewed by any other bountyhill user.
@@ -245,6 +246,7 @@ en:
         zipcode:      Postal zipcode
         country:      Country and State
         phone:        Phone number(s)
+        commercial:   I want to commercially use bountyhill on behalf of my company.
         delete_me:    I do want to delete my bountyhill account.
         deletion:
           bad_service:      "The service of bountyhill is unsufficient."

@@ -5,7 +5,7 @@
 
 <% accordion_body(:profile) do %>
   <%= form_for @user, :remote => true do |form| %>
-  <p><%= I18n.t("user.form.profile.legend")%></p>
+    <p><%= I18n.t("user.form.profile.legend")%></p>
     <%= form.error_messages %>
     
     <%= hidden_field_tag :section, :profile %>
@@ -14,6 +14,9 @@
     <%= form.control_group :last_name %>
     <%= form.control_group :description, :text_area, :rows => 3 %>
     <%= form.control_group :images, :filepicker %>
+
+    <p><%= I18n.t("user.form.profile.legend2")%></p>
+    <%= form.control_group :commercial, :check_box %>
 
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% end %>

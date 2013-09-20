@@ -225,8 +225,9 @@ de:
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
-        title:  Nutzerprofil
-        legend: Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
+        title:    Nutzerprofil
+        legend:   Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
+        legend2:  "Beabsichtigst Du bountyhill für kommerzielle Zwecke zu nutzen? Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
       address:
         title:  Adresse
         legend: Deine Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
@@ -245,6 +246,7 @@ de:
         zipcode:      Postleitzahl
         country:      Land und Bundesland
         phone:        Telefonnummer(n)
+        commercial:   Ich möchte bountyhill im Namen meines Unternehmens kommerziell nutzen.
         delete_me:    Ich möchte mein bountyhill Konto löschen.
         deletion:
           bad_service:      "Der Service von bountyhill ist unzureichend."

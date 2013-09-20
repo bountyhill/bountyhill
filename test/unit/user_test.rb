@@ -52,14 +52,19 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_commercial_user
-    user = User.new
-    assert !user.commercial?
-    
     user = Factory(:email_identity).user
     assert !user.commercial?
+    assert !user.identities.any?(&:commercial?)
     
-    user.identity(:email).commercial = true
-    assert user.commercial?
+    user.commercial = true
+    assert user.reload.commercial?
+    assert user.identities.all?(&:commercial?)
+    
+    Identity.update_all({ :commercial => false }, { :id => user.identity_ids })
+    assert !user.reload.commercial?
+
+    Identity.update_all({ :commercial => true }, { :id => user.identity_ids.first })
+    assert user.reload.commercial?
   end
   
   def test_image

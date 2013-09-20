@@ -158,9 +158,16 @@ class User < ActiveRecord::Base
   # -- automatic pseudo "attributes" : these methods try to return
   # a sensible attribute value from one of the user's identities.
 
+  attr_accessible :commercial
+  
   # return wether the user is commercially using bountyhill 
-  def commercial?
-    identities.any?(&:commercial?)
+  def commercial
+    identities.any?(&:commercial)
+  end
+  alias_method :commercial?, :commercial
+
+  def commercial=(value)
+    Identity.update_all({:commercial => value}, { :id => identity_ids} )
   end
 
   # return the user's name

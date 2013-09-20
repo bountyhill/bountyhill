@@ -64,11 +64,12 @@ class UsersControllerTest < ActionController::TestCase
   
   def test_update
     # update user's profile
-    put :update, :id => @user.id, :section => :profile, :user => { :first_name => "Hans", :last_name => "Wurst" }
+    put :update, :id => @user.id, :section => :profile, :user => { :first_name => "Hans", :last_name => "Wurst", :commercial => "1" }
     assert_response :redirect
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
-    assert_equal "Hans Wurst", @user.name
+    assert_equal "Hans Wurst", assigns(:user).name
+    assert assigns(:user).commercial?
     assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
   end
   
