@@ -4,15 +4,17 @@
   <% else %>
     <p><%= I18n.t("identity/twitter.form.signin.legend") %></p>
   <% end %>
-  <p><%= I18n.t("identity/twitter.form.follow_hint") %></p>
   
   <%= hidden_field_tag :req, :twitter %>
   <%= form.error_messages @error if @error %>
 
-  <div class="checkbox-group">
-    <%= form.control_group :follow_bountyhermes, :check_box %>
-    <%= form.agree_to_terms(:id => "agree_to_terms_twitter") unless current_user %>
-  </div>
+  <%= form.control_group :commercial, :check_box %>
+
+  <p><%= I18n.t("identity/twitter.form.follow_hint") %></p>
+  <%= form.control_group :follow_bountyhermes, :check_box %>
+
+  <p><%= I18n.t("identity.form.agree_to_terms")%></p>
+  <%= form.agree_to_terms(:id => "agree_to_terms_twitter") unless current_user %>
 
   <% if current_user %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>

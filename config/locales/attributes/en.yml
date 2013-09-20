@@ -40,6 +40,7 @@ en:
         description:      Description
         image:            Image
         images:           Image
+        company:          Company
         address1:         Address
         address2:         Address supplement
         city:             City

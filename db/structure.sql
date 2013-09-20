@@ -214,7 +214,8 @@ CREATE TABLE identities (
     followed_at timestamp without time zone,
     confirmed_at timestamp without time zone,
     newsletter_subscription boolean,
-    identifier character varying(255)
+    identifier character varying(255),
+    commercial boolean
 );
 
 
@@ -851,6 +852,8 @@ INSERT INTO schema_migrations (version) VALUES ('34');
 INSERT INTO schema_migrations (version) VALUES ('35');
 
 INSERT INTO schema_migrations (version) VALUES ('36');
+
+INSERT INTO schema_migrations (version) VALUES ('37');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

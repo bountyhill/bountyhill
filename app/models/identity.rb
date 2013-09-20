@@ -30,6 +30,7 @@ class Identity < ActiveRecord::Base
 
   serialize :serialized, Hash
   attr_accessor   :delete_me
+  attr_accessible :commercial
 
   def self.social_identities
     self.subclasses.map{ |i| i.name.split("::").last.downcase.to_sym } - [:deleted, :email]

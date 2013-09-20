@@ -69,10 +69,13 @@
         .contact-info {
           clear: both;
           dt, dd { float: left; }
-          dd { font-size: 120%; }
+          dd { 
+            font-size: 120%; 
+            width: 75%;
+          }
           dt { 
             clear: both;
-            width: 60px;
+            width: 20%;
           }
         }
       }

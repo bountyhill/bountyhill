@@ -9,6 +9,8 @@ class SessionsControllerTest < ActionController::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
     super
+
+    logout
   end
   
   def test_signin_get
@@ -28,60 +30,67 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil @request.session[ApplicationController::RequiredIdentity::SESSION_KEY][:on_cancel]
   end
 
-  def test_signin_post
+  def test_signin_post_mode_signin
     identity = Factory(:email_identity)
 
-    # request signin
     post :signin_post, :do_signin => true, :identity_email => { :email => identity.email, :password => identity.password }
     assert_response :redirect
     assert_redirected_to root_path
-    assert assigns(:identity).id
+    assert !assigns(:identity).new_record?
     assert_equal :signin, assigns(:mode)
     assert_equal I18n.t("identity.form.success.signin", :name => assigns(:identity).name), flash[:success]
+  end
     
-    # request reset
+  
+  def test_signin_post_mode_reset
+    identity = Factory(:email_identity)
+
     UserMailer.expects(:reset_password).once.with(identity.user).returns("foobar")
     Deferred.expects(:mail).once.with("foobar")
     
     post :signin_post, :do_reset => true, :identity_email => { :email => identity.email }
     assert_response :redirect
     assert_redirected_to root_path
-    assert assigns(:identity).id
+    assert !assigns(:identity).new_record?
     assert_equal :reset, assigns(:mode)
     assert_equal I18n.t("identity.form.success.reset", :name => assigns(:identity).name), flash[:success]
+  end
 
-    # request signup
-    Identity::Email.expects(:create).once.returns(identity)
-    
-    post :signin_post, :do_signup => true, :identity_email => { :email => 'bar.foo@sample.com', :password => 'barfoo' }
+  def test_signin_post_mode_signup
+    assert_difference("Identity::Email.count") do
+      post :signin_post, :do_signup => true, :identity_email => { :email => 'bar.foo@sample.com', :password => 'barfoo', :commercial => 1 }
+    end
     assert_response :redirect
     assert_redirected_to root_path
-    assert assigns(:identity).id
+    assert !assigns(:identity).new_record?
+    assert assigns(:identity).email == 'bar.foo@sample.com'
+    assert assigns(:identity).commercial?
     assert_equal :signup, assigns(:mode)
     assert_equal I18n.t("identity.form.success.signup", :name => assigns(:identity).name), flash[:success]
   end
   
-  def test_signin_post_fails
-    # request signin
+  def test_signin_post_mode_signin_fails
     xhr :post, :signin_post, :do_signin => true, :identity_email => { :email => 'unknown@sample.com', :password => '' }
     assert_response :success
-    assert assigns(:identity).id.nil?
+    assert assigns(:identity).new_record?
     assert_equal :signin, assigns(:mode)
     assert_equal "sessions/forms/signin", assigns(:partial)
     assert_equal I18n.t("identity.form.error.signin"), assigns(:error)
+  end
     
-    # request reset
+  def test_signin_post_mode_reset_fails
     xhr :post, :signin_post, :do_reset => true, :identity_email => { :email => 'unknown@sample.com' }
     assert_response :success
-    assert assigns(:identity).id.nil?
+    assert assigns(:identity).new_record?
     assert_equal :reset, assigns(:mode)
     assert_equal "sessions/forms/signin", assigns(:partial)
     assert_equal I18n.t("identity.form.error.reset"), assigns(:error)
-    
-    # request signup
+  end
+
+  def test_signin_post_mode_signup_fails
     xhr :post, :signin_post, :do_signup => true, :identity_email => { :email => 'unknown@sample.com', :password => '' }
     assert_response :success
-    assert assigns(:identity).id.nil?
+    assert assigns(:identity).new_record?
     assert_equal :signup, assigns(:mode)
     assert_equal "sessions/forms/email", assigns(:partial)
     assert_equal I18n.t("identity.form.error.signup"), assigns(:error)

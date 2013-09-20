@@ -122,8 +122,9 @@ en:
   identity:
     required: "We need your %{identity} identity to continue."
     form:
-      title: Sign in/up
-      terms: "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
+      title:          Sign in/up
+      terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
+      agree_to_terms: "You have to aggree to bountyhill's terms and conditions to use our service."
       error:
         common: Please review your inputs.
         signup: Please review your inputs.
@@ -140,7 +141,7 @@ en:
     form:
       new:
         title:    Sign up
-        legend:   By signing up with your email and password you may start quests and post offers.
+        legend:   By signing up with your email and password you may start quests and post offers. Please note that there are different terms for commercial users.
         legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
       edit:
         legend: If you want to change your password please enter your new password and confirm the change by providing your current one.
@@ -156,6 +157,7 @@ en:
         password_reset:             You will receive an email to reset your password.
         forgot_password:            I did forget my password and want to reset it.
         newsletter_subscription:    I want to subscribe to bountyhill's newsletter.
+        commercial:                 I'm commercially using bountyhill on behalf of my company.
   identity/twitter:
     show:
       title:      Twitter
@@ -168,14 +170,16 @@ en:
         legend:   "You can remove your Twitter account from your bountyhill profile, e.g. to add and use another one."
       signin:
         title:    Sign in with Twitter
-        legend:   If you have a Twitter account bountyhill allows you to sign in via Twitter.
+        legend:   You can sign in to bountyhill via Twitter. Please note that there are different terms for commercial users.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
-        delete_me:    I do want to remove my Twitter account from my bountyhill profile.
+        delete_me:            I do want to remove my Twitter account from my bountyhill profile.
+        commercial:           I'm commercially using bountyhill on behalf of my company.
   identity/facebook:
     show:
-      title:  Facebook
-      legend: "You are registered at bountyhill with the following facebook user name:"
+      title:      Facebook
+      legend:     "You are registered at bountyhill with the following facebook user name:"
+      commercial: I'm commercially using bountyhill on behalf of my company.
     form:
       create:
         legend:   "If you have a Facebook account you can add it to your bountyhill profile, e.g to allow us to post on your wall."
@@ -183,7 +187,7 @@ en:
         legend:   "You can remove your Facebook account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with Facebook
-        legend:   If you have a Facebook account bountyhill allows you to sign in via Facebook.
+        legend:   You can sign in to bountyhill via Facebook. Please note that there are different terms for commercial users.
       field_hint:
         delete_me:    I do want to remove my Facebook account from my bountyhill profile.
   identity/confirm:
@@ -234,12 +238,13 @@ en:
         last_name:    Your family name
         description:  Describe yourself
         images:       Your profile picture
-        address1:     Your street and street number
+        company:      Company name
+        address1:     Street and street number
         address2:     Further address information
-        city:         Your town
-        zipcode:      Zipcode of your town
-        country:      Your country
-        phone:        Your phone number
+        city:         City or town
+        zipcode:      Postal zipcode
+        country:      Country and State
+        phone:        Phone number(s)
         delete_me:    I do want to delete my bountyhill account.
         deletion:
           bad_service:      "The service of bountyhill is unsufficient."

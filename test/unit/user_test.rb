@@ -51,6 +51,17 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  def test_commercial_user
+    user = User.new
+    assert !user.commercial?
+    
+    user = Factory(:email_identity).user
+    assert !user.commercial?
+    
+    user.identity(:email).commercial = true
+    assert user.commercial?
+  end
+  
   def test_image
     user = Factory(:user)
     assert user.image.nil?

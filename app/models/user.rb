@@ -158,6 +158,11 @@ class User < ActiveRecord::Base
   # -- automatic pseudo "attributes" : these methods try to return
   # a sensible attribute value from one of the user's identities.
 
+  # return wether the user is commercially using bountyhill 
+  def commercial?
+    identities.any?(&:commercial?)
+  end
+
   # return the user's name
   def name
     unless (name = "#{first_name} #{last_name}").blank?
@@ -389,8 +394,8 @@ class User < ActiveRecord::Base
   
   # -- user information -----------------------------------------------
   serialize :serialized, Hash
-  serialized_attr :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
-  attr_accessible :first_name, :last_name, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
+  serialized_attr :first_name, :last_name, :company, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
+  attr_accessible :first_name, :last_name, :company, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
   
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
@@ -403,7 +408,7 @@ class User < ActiveRecord::Base
   end
   
   def address
-    [:address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }.compact
+    [:company, :address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }.compact
   end
 
   serialized_attr :image

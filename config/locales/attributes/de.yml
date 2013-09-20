@@ -40,6 +40,7 @@ de:
         description:      Beschreibung
         image:            Bild
         images:           Bild
+        company:          Unternehmen
         address1:         Adresse
         address2:         Adressergänzung
         city:             Stadt
