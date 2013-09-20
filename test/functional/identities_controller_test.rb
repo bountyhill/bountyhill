@@ -18,11 +18,14 @@ class IdentitiesControllerTest < ActionController::TestCase
   # --- test Omniauth social identities actions ---------------------------------------------
 
   def test_new
-    post :new, :provider => 'twitter'
+    post :new, :provider => 'twitter', :identity_twitter => { :follow_bountyhermes => true, :commercial => true }
     assert_response :redirect
     assert_redirected_to "/auth/twitter"
+    assert @request.session[:identity_params].present?
+    assert @request.session[:identity_params][:follow_bountyhermes]
+    assert @request.session[:identity_params][:commercial]
   end
-
+  
   def test_create
     # fails since no uid is given
     @request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter]
@@ -39,11 +42,13 @@ class IdentitiesControllerTest < ActionController::TestCase
     Identity::Twitter.expects(:find_or_create).once.returns(identity_twitter)
     identity_twitter.expects(:follow).once.returns(true)
     identity_twitter.expects(:direct_message).with(I18n.t("tweet.follow.success")).once
-    @request.session[:follow_bountyhermes] = true
+    @request.session[:identity_params] = { :follow_bountyhermes => true, :commercial => true }
     
     post :create
     assert_response :redirect
     assert_redirected_to root_path
+    assert_equal identity_twitter, assigns(:identity)
+    assert assigns(:identity).commercial
     assert_equal I18n.t("sessions.auth.success"), flash[:success]
   end
 

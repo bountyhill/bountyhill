@@ -12,9 +12,11 @@ class IdentitiesController < ApplicationController
   # the new action redirects to the given authentication provider
   # to perform the oauth dance.
   def new
+    # set provider
     provider = params[:provider]
-    pre_process_method = "pre_process_#{provider}_signin"
-    self.send(pre_process_method) if self.respond_to?(pre_process_method)
+    
+    # trigger pre processing
+    pre_process_signin(provider)
     
     # The OmniAuthMiddleware intercepts "/auth/" URLs, e.g. the "/auth/facebook" 
     # URL sets up and redirects to facebook auth. When Facebook oauth
@@ -36,9 +38,8 @@ class IdentitiesController < ApplicationController
       # or might just revisit the site. In the latter case we don't produce a flash message.
       flash[:success] = I18n.t("sessions.auth.success") if Time.now - current_user.created_at < 5
       
-      # trigger post processing of actual provider
-      post_process_method = "post_process_#{provider}_signin"
-      self.send(post_process_method) if self.respond_to?(post_process_method)
+      # trigger post processing
+      post_process_signin(provider)
       
       identity_presented!
     else
@@ -98,17 +99,32 @@ protected
     end
   end
   
-  def pre_process_twitter_signin
-    # We store the form data in the session, to be handled after twitter oauth signin
-    session[:follow_bountyhermes] = @identity_params[:follow_bountyhermes]
+  def pre_process_signin(provider)
+    # store the form data in the session, to be handled after oauth signin
+    session[:identity_params] = @identity_params
+    
+    # trigger provider specific pre-processing
+    self.send("pre_process_#{provider}_signin") if self.respond_to?("pre_process_#{provider}_signin")
+  end
+  
+  def post_process_signin(provider)
+    # fetch the form data provided by the user before oauth signin
+    @identity_params = (session[:identity_params] && session.delete(:identity_params) || {}).with_indifferent_access
+    
+    return unless @identity_params[:commercial].present?
+    # set identity's commercial flag
+    @identity.update_attributes(:commercial => true)
+    
+    # trigger provider specific post-processing
+    self.send("post_process_#{provider}_signin") if self.respond_to?("post_process_#{provider}_signin")
   end
   
   def post_process_twitter_signin
-    # handle the data provided by the user before twitter oauth signin
-    if session.delete(:follow_bountyhermes)
-      @identity.follow
-      @identity.direct_message I18n.t("tweet.follow.success")
-    end
+    return unless @identity_params[:follow_bountyhermes].present?
+    
+    # handle user wants to folllow bountyhermes
+    @identity.follow
+    @identity.direct_message I18n.t("tweet.follow.success")
   end
 
 end
