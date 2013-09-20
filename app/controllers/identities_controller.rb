@@ -94,9 +94,8 @@ protected
   def set_identity_params
     @identity_params = if (identity_key = params.keys.detect{ |key| key.to_s.include?("identity_") })
       params[identity_key]
-    else
-      {}
     end
+    @identity_params ||=  {}
   end
   
   def pre_process_signin(provider)
