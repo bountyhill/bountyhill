@@ -470,7 +470,7 @@ en:
   sessions:
     auth:
       success:    "You successfully signed in. Welcome on bountyhill!"
-      cancel:     "Are you unsure if you have an account? Just register and climb up bountyhill ..."
+      cancel:     "Are you unsure if you have an account? Just register and enjoy bountyhill ..."
       failure:    "We are sorry but an error occured during your sign in. Please try again ..."
       destroy:    "You signed out successfully. See you again on bountyhill ..."
     email:

@@ -470,7 +470,7 @@ de:
   sessions:
     auth:
       success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"
-      cancel:     "Bits du Dir unsicher, ob Du bereits einen Account hast? Registriere Dich einfach und erklimme bountyhill ..."
+      cancel:     "Bist Du Dir unsicher, ob Du bereits einen Account hast? Registriere Dich einfach bei bountyhill ..."
       failure:    "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal ..."
       destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns wieder bei bountyhill ..."
     email:
