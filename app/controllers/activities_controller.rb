@@ -7,6 +7,7 @@ class ActivitiesController < ApplicationController
     @activities = @user.activities.paginate(
       :page     => params[:page] ||= 1,
       :per_page => per_page,
+      :group    => 'activities.id',
       :order    => "created_at DESC",
       :include  => :user)
   end

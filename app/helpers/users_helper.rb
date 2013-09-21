@@ -19,6 +19,7 @@ module UsersHelper
     @activities = user.activities.paginate(
       :page     => options[:page] ||= 1,
       :per_page => options[:per_page],
+      :group    => 'activities.id',
       :order    => "created_at DESC",
       :include  => :user)
 

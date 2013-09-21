@@ -30,6 +30,7 @@ class OffersController < ApplicationController
     @offers = scope.paginate(
       :page     => params[:page] ||= 1,
       :per_page => per_page,
+      :group    => 'offers.id',
       :order    => order)
   end
 
