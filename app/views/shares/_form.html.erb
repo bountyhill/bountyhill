@@ -17,6 +17,7 @@
     
     <%= form.control_group :quest_id, :hidden_field %>
     <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '&euro;') %>
+    <%= hidden_field_tag :quest_url,        quest_url(@share.quest) %>
     
     <% Share::IDENTITIES.each do |identity| %>
       <div class="checkbox-group <%= identity %>">
@@ -36,7 +37,6 @@
       <%= avatar current_user, :size => 48 %>
       <div id="tweet">
         <span class="preview"/>
-        <span><%= link_to quest_url(@share.quest), quest_url(@share.quest), :target => "_blank" %></span>
       </div>
     </div>
   <% end %>
@@ -51,7 +51,7 @@
 
 (function($) {
   
-  var node_title    = $("#share_title"),
+  var node_title  = $("#share_title"),
     node_message  = $("#share_message");
     node_tweet    = $("#tweet span.preview");
     
@@ -62,7 +62,8 @@
       message = message.substr(0, 99) + "…";
     message = message + " #bounty";
     message = message + ' ' + $("#bounty_with_unit").val();
-
+    message = message + ' ' + '<a href=\"' + $("#quest_url").val() + '\" target=\"blank\">' + $("#quest_url").val() + '</a>';
+    
     node_message.val(message);
     node_tweet.html(message);
   }
