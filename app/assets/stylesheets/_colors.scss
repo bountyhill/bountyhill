@@ -150,14 +150,17 @@ $comments_box_title_color:      $grass;
 $comments_box_content_color:    $content_color;;
 $comments_box_statistic_color:  $grass;
 $comments_box_form_background:  $grass_transparent;
+$comment_button_color:          $grass;
 
-$comment_button_color:      $grass;
+
+/* message/tweet */
+
+$message_background:  $gray;
+$message_border:      $gray_dark;
+$message_color:       $text_inverse;
 
 
-/* common */
-$message_background:      #dddddd;
-$message_border:          #cccccc;
-$progress_bar_background: #cccccc;
+/* common buttons */
 
 $cancel_button_bg_color:        #BBB;
 $cancel_button_hover_bg_color:  #AAA;

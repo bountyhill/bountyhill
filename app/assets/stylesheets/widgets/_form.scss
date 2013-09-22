@@ -70,9 +70,15 @@ form {
       @include border-radius(3px);
     }
     #tweet {
+      color: $message_color;
+      font-weight: bold;
+      line-height: 1.3;
       @include message($message_background, $message_border);
       border: 2px solid $message_border;
       @include border-radius(3px);
+      margin-left: 60px;
+      min-height: 35px;
+      padding: 4px 8px;
       &:before {
         content: "";
         display: block;
@@ -84,12 +90,7 @@ form {
         position: absolute;
         top: 15px;
       }
-      &:before {
-        left: 50px;
-      }
-      margin-left: 60px;
-      min-height: 35px;
-      padding: 5px 10px;
+      &:before { left: 50px; }
     }
   }
   .checkbox-group {
