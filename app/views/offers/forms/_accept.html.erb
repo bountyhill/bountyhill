@@ -2,6 +2,17 @@
   <% modal_body do %>
     <p><%= I18n.t("offer.accept.legend") %></p>
     <%= form.error_messages %>
+    
+    <%= form.control_group :acceptance, :radio_button, :hint => false do
+      Offer::ACCEPTANCES.map do |value|
+          label :class => "radio" do
+            form.radio_button(:acceptance, value, :checked => ((@offer.acceptance || Offer::ACCEPTANCES.first) == value)) +
+            I18n.t("offer.form.field_hint.acceptance.#{value}")
+          end
+        end.join.html_safe
+    end %>
+    <%= form.control_group :acceptance_reason, :text_area, :rows => 3, :hint => false %>
+
   <% end %>
   
   <% modal_footer do %>

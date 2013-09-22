@@ -90,6 +90,14 @@ class Offer < ActiveRecord::Base
 
   serialized_attr :rejection, :rejection_reason
   attr_accessible :rejection, :rejection_reason
+
+  # -- ACCEPTANCES ---------------------------------------------------
+
+  # reason for acceptance
+  ACCEPTANCES = %w(offer_match other_reason)
+
+  serialized_attr :acceptance, :acceptance_reason
+  attr_accessible :acceptance, :acceptance_reason
   
   
   # -- Criteria -------------------------------------------------------

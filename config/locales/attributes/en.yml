@@ -60,6 +60,8 @@ en:
         images:             Images
         fulfillment:        Fulfillment
         comment:            Remark
+        acceptance:         Reason
+        acceptance_reason:  Explanation
         rejection:          Reason
         rejection_reason:   Explanation
         withdrawal:         Reason

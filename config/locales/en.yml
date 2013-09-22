@@ -281,16 +281,16 @@ en:
         other:  "Attached images"
     activate:
       title:  Make offer
-      legend: Please review your offer carefully. The searcher will be informed about your offer right after you sumbitted it.
+      legend: Please review your offer carefully. The searcher will be informed about your offer right after you sumbit it.
     accept: 
       title:  Accept offer
-      legend: Please review the offer carefully. The offerer will be informed about your approval right after you accepted his offer.
+      legend: Please let the offerer know why you want to accept his offer. The offerer will be informed about your approval right after you accepted his offer.
     reject: 
       title:  Reject offer
-      legend: Please let the offerer know why you want to reject his offer.
+      legend: Please let the offerer know why you want to reject his offer. The offerer will be informed about your rejection right after you rejected his offer.
     withdraw: 
       title:  Withdraw offer
-      legend: Please let the searcher know why you want to withdraw your offer.
+      legend: Please let the searcher know why you want to withdraw your offer. The searcher will be informed about your withdrawal right after you withdraw your offer.
     list:
       title:
         zero:   "No offers present yet"
@@ -333,6 +333,9 @@ en:
         title:        "Enter a subject describing your offer in a few words."
         description:  "Add a detailed description for your offer."
         images:       Add images
+        acceptance:
+          offer_match:  "The offer does match my quest."
+          other_reason: "Because of another reason."
         rejection:
           offer_missmatch:  "The offer does not match my quest."
           quest_invalid:    "My quest is no longer valid."

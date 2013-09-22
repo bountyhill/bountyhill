@@ -60,6 +60,8 @@ de:
         images:             Bilder
         fulfillment:        Übereinstimmung
         comment:            Anmerkung
+        acceptance:         Beweggrund
+        acceptance_reason:  Erklärung
         rejection:          Beweggrund
         rejection_reason:   Erklärung
         withdrawal:         Beweggrund
