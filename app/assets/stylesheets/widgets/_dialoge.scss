@@ -12,12 +12,12 @@
 }
 
 .modal-header {
-  background-color: $petrol;
+  background-color: $modal_header;
   .modal-headline { color: $text; }
 }
 
-.modal-body   { background-color: $gray; }
-.modal-footer { background-color: $gray_dark; }
+.modal-body   { background-color: $modal_body; }
+.modal-footer { background-color: $modal_footer; }
 
 .quests { .modal-header { background-color: $quest_box_title_color; }}
 .offers { .modal-header { background-color: $offer_box_title_color; }}
@@ -54,7 +54,7 @@ ul.fp-slides {
         & > a.btn { 
           display:block; 
           text-decoration: none;
-          background-color: white;
+          background-color: $white;
         }
       }
       a.btn {
@@ -62,7 +62,7 @@ ul.fp-slides {
         position: absolute;
         top: 0;
         color: $text_inverse;
-        background-color: white;
+        background-color: $white;
         width: 100%;
         height: 100%;
         opacity: 0.8;
