@@ -1,3 +1,28 @@
+/* ------- modal ------- */
+.modal {
+  .modal-body {
+    max-height: 600px; /* enables large forms to fit into modal dialoge */
+  }
+}
+
+.modal, .modal-header, .modal-footer {
+  border: none;
+  @include border-radius(0);  /* remove border radius */
+  box-shadow: none;
+}
+
+.modal-header {
+  background-color: $petrol;
+  .modal-headline { color: $text; }
+}
+
+.modal-body   { background-color: $gray; }
+.modal-footer { background-color: $gray_dark; }
+
+.quests { .modal-header { background-color: $quest_box_title_color; }}
+.offers { .modal-header { background-color: $offer_box_title_color; }}
+.users  { .modal-header { background-color: $user_box_title_color; }}
+
 /* ------- filepicker ------- */
 #filepicker_dialog_container, #myModal {
   top: 7% !important;
@@ -53,7 +78,9 @@ ul.fp-slides {
 }
 
 @media (max-height: 768px) {
-  .modal-open .modal .modal-body {
-    max-height: 400px;
+  .modal {
+    .modal-body {
+      max-height: 450px;
+    }
   }
 }

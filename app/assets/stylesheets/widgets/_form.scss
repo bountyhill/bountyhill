@@ -38,15 +38,14 @@ form {
   .checkbox-group {
     &.twitter, &.facebook {
       position: relative;
-      margin: 5px 0;
-      @include border-radius(4px);
+      margin: 4px 0;
       padding: 0px 10px;
       color: $text;
       label { padding-top: 3px; }
       i {
         position: absolute;
         right: 10px;
-        bottom: 7px;
+        bottom: 6px;
       }
     }
     &.twitter  { 
@@ -103,7 +102,17 @@ form {
   }
   .buttons {
     float: right;
-    margin-bottom: 10px;
+    .btn {
+      border: none;
+      @include border-radius(0);  /* remove border radius */
+      background-image: none;
+      box-shadow: none;
+      &:hover { @include transition(none); }
+      &.btn-cancel {
+        background-color: $cancel_button_bg_color;
+        &:hover { background-color: $cancel_button_hover_bg_color };
+      }
+    }
   }
   .criteria {
     margin-left: 0;

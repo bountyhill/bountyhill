@@ -2,7 +2,7 @@
   <% modal_body do %>
     <% accordion do %>
       <% @partials.each do |partial| %>
-        <% accordion_group(:id => partial) do %>
+        <% accordion_group(partial) do %>
           <%= render "users/forms/#{partial}" %>
         <% end %>
       <% end %>

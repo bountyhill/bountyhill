@@ -147,7 +147,7 @@ module ApplicationHelper
     
     header = [
       button("&times;", :type => "button", :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => "true"),
-      h3(title, :id => "modal-headline")
+      h3(title, :id => "modal-headline", :class => "modal-headline")
     ].join.html_safe
     
     output = [

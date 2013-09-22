@@ -1,5 +1,9 @@
+.accordion { margin: 0; }
 .accordion-group {
   overflow: hidden;
+  border: none;
+  margin-bottom: 4px;
+  @include border-radius(0);  /* remove border radius */
   .accordion-heading {
     a {
       color: $text;
@@ -9,39 +13,79 @@
       };
       &.password {
         background-color: $password;
-        &:hover { background-color: $password_highlight; };
+        border: 1px solid $password;
+        &:hover { 
+          background-color: $password_highlight;
+          border: 1px solid $password_highlight;
+        };
       }
       &.signin {
         background-color: $signin;
-        &:hover { background-color: $signin_highlight; };
+        border: 1px solid $signin;
+        &:hover { 
+          background-color: $signin_highlight; 
+          border: 1px solid $signin_highlight;
+        };
       }
       &.email {
         background-color: $email;
-        &:hover { background-color: $email_highlight; };
+        border: 1px solid $email;
+        &:hover { 
+          background-color: $email_highlight; 
+          border: 1px solid $email_highlight;
+        };
       }
       &.twitter {
         background-color: $twitter;
-        &:hover { background-color: $twitter_highlight; };
+        border: 1px solid $twitter;
+        &:hover { 
+          background-color: $twitter_highlight; 
+          border: 1px solid $twitter_highlight;
+        };
       }
       &.facebook {
         background-color: $facebook;
-        &:hover { background-color: $facebook_highlight; };
+        border: 1px solid $facebook;
+        &:hover { 
+          background-color: $facebook_highlight; 
+          border: 1px solid $facebook_highlight;
+        };
       }
       &.address {
         background-color: $address;
-        &:hover { background-color: $address_highlight; };
+        border: 1px solid $address;
+        &:hover { 
+          background-color: $address_highlight; 
+          border: 1px solid $address_highlight;
+        };
       }
       &.profile {
         background-color: $profile;
-        &:hover { background-color: $profile_highlight; };
+        border: 1px solid $profile;
+        &:hover { 
+          background-color: $profile_highlight; 
+          border: 1px solid $profile_highlight;
+        };
       }
       &.delete {
         background-color: $delete;
-        &:hover { background-color: $delete_highlight; };
+        border: 1px solid $delete;
+        &:hover { 
+          background-color: $delete_highlight; 
+          border: 1px solid $delete_highlight;
+        };
       }
     }
     h4 {
       margin: 0;
+    }
+  }
+  .accordion-body {
+    border: none;
+    .accordion-inner {
+      border: 1px solid $gray_dark;
+      border-top: none;
+      .buttons { margin-bottom: 8px; }
     }
   }
 }

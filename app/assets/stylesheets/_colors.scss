@@ -30,9 +30,10 @@ $magenta:             #D12B85;
 $magenta_transparent: rgba(209, 43, 133, $opacity);
 $magenta_dark:        #BC2778;
 
-$white: white;
-$gray:  #E3E3E3;
-$black: black;
+$white:     white;
+$black:     black;
+$gray:      #E3E3E3;
+$gray_dark: #CCC;
 
 /* content */
 $content_color: $gray;
@@ -158,5 +159,5 @@ $message_background:      #dddddd;
 $message_border:          #cccccc;
 $progress_bar_background: #cccccc;
 
-$cancel_button_bg_color:        #777777;
-$cancel_button_hover_bg_color:  #666666;
+$cancel_button_bg_color:        #BBB;
+$cancel_button_hover_bg_color:  #AAA;

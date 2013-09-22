@@ -32,15 +32,10 @@
 }
 
 /* -------- modal dialoge --------- */
-.modal-open {
-  .modal {
-    border: none;               /* removes ovelapping border in modal dialoge */
-    .modal-body {
-      max-height: 500px;        /* enables large forms to fit into modal dialoge */
-    }
-    form {
-      margin: 0;                /* aligns modal dialoge's footer and body */
-    }
+.modal {
+  border: none;               /* removes ovelapping border in modal dialoge */
+  form {
+    margin: 0;                /* aligns modal dialoge's footer and body */
   }
 }
 

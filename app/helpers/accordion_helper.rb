@@ -7,8 +7,8 @@ module AccordionHelper
     block_given? ? concat(output) : output
   end
   
-  def accordion_group(options={}, &block)
-    output = div(capture(&block), { :class => "accordion-group" }.merge(options))
+  def accordion_group(part, &block)
+    output = div(capture(&block), { :class => "accordion-group", :id => part })
     block_given? ? concat(output) : output
   end
   
@@ -26,7 +26,7 @@ module AccordionHelper
 
   def accordion_body(part, options={}, &block)
     output = div(:id => "collapse-#{part}",  :class => "accordion-body collapse #{collapse(part, options)}") do
-      div(:class => "accordion-inner") do
+      div(:class => "accordion-inner clearfix") do
         capture(&block)
       end
     end
