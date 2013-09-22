@@ -53,9 +53,10 @@ module UsersHelper
   end
   
   def avatar(user, options = {})
-    expect! user => User
+    expect! user => [nil, User]
     size = options[:size] ||= 128
     
+    user ||= User.draft
     url = user.avatar(:size => size)
 
     image_tag url, 

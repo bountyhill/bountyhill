@@ -17,7 +17,7 @@ class SharesController < ApplicationController
   # Create a share object
   def create
     @quest = Quest.find(params[:share][:quest_id])
-    @share = Share.new(params[:share].merge(:owner => current_user))
+    @share = Share.new(params[:share].merge(:owner => current_user || User.draft))
     
     # if we have a valid share object, we redirect to
     # the show action to trigger the actual sharing
