@@ -24,6 +24,7 @@ class SharesController < ApplicationController
     if @share.save
       redirect_to! share_path(@share)
     end
+    render :template => "shares/new", :layout => "dialog"
   end
   
   #
