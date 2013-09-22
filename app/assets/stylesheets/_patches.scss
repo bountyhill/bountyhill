@@ -16,7 +16,7 @@
   @include border-radius(0);  /* remove border radius */
   z-index: 10;                /* display above content */
   position:fixed;
-  top:80px;
+  top: $top_navigation_height;
   width: 100%;
   .close {
     right: 32px;

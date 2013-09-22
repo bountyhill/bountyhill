@@ -3,7 +3,7 @@
   margin: 0;
   -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
   .nav {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 140%;
     font-weight: bold;
     li {
@@ -26,10 +26,10 @@
   }
   &.navbar-fixed-top {
     .navbar-inner {
-      height: 80px;
+      height: $top_navigation_height;
       .span10 { 
         position: relative; 
-        height: 80px;
+        height: $top_navigation_height;
       }
     }
   }
@@ -53,10 +53,10 @@
     .brand {
       width: 33%;
       padding: 0;
-      margin-top: 16px;
+      margin-top: 10px;
       margin-left: 0;
       text-align: left;
-      img { height: 48px; }
+      img { height: 44px; }
     }
     .container-fluid {
       margin-left:auto;
@@ -93,7 +93,7 @@
         .name, .handle { text-align: left; }
         .handle { font-size: 80%; }
       }
-      img { height: 48px; }
+      img { height: 40px; }
       .dropdown {
         .dropdown-menu {
           border: none;

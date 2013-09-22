@@ -9,12 +9,6 @@ body {
   */
 }
 
-.main-content {
-  padding-top: 32px;
-}
+.main-content { padding-top: 24px; }
 
-a {
-  &:hover {
-    text-decoration: none;
-  }
-}
+a { &:hover { text-decoration: none; }}
