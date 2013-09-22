@@ -40,10 +40,11 @@ class RunsController < ApplicationController
 
 private
   
+  # init quest either for current user or
+  # for draft user if identity was previously missing
   def quest
-    @quest ||=  if current_user then  Quest.find(params[:id])
-                else                  Quest.draft(params[:id])
-                end
+    @quest =   Quest.find_by_id(params[:id])
+    @quest ||= Quest.draft(params[:id])
   end
 
 end
