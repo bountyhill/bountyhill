@@ -157,7 +157,7 @@ de:
         password_reset:             Du erhälst eine Email zum Zurücksetzen Deines Passworts.
         forgot_password:            Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:    Ich möchte den bountyhill Newsletter abonnieren.
-        commercial:                 Ich möchte bountyhill im Namen meines Unternehmens kommerziell nutzen.
+        commercial:                 Ich möchte bountyhill im Namen meines Unternehmens nutzen.
   identity/twitter:
     show:
       title:  Twitter
@@ -174,7 +174,7 @@ de:
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
         delete_me:            Ich möchte meinen Twitter-Account von meinem bountyhill Profil entfernen.
-        commercial:           Ich möchte bountyhill im Namen meines Unternehmens kommerziell nutzen.
+        commercial:           Ich möchte bountyhill im Namen meines Unternehmens nutzen.
   identity/facebook:
     show:
       title:  Facebook
@@ -189,7 +189,7 @@ de:
         legend:   "Du kannst Dich über Facebook bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
       field_hint:
         delete_me:  Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen.
-        commercial: Ich möchte bountyhill im Namen meines Unternehmens kommerziell nutzen.
+        commercial: Ich möchte bountyhill im Namen meines Unternehmens nutzen.
   identity/confirm:
     form:
       title:    Email bestätigen
@@ -246,7 +246,7 @@ de:
         zipcode:      Postleitzahl
         country:      Land und Bundesland
         phone:        Telefonnummer(n)
-        commercial:   Ich möchte bountyhill im Namen meines Unternehmens kommerziell nutzen.
+        commercial:   Ich möchte bountyhill im Namen meines Unternehmens nutzen.
         delete_me:    Ich möchte mein bountyhill Konto löschen.
         deletion:
           bad_service:      "Der Service von bountyhill ist unzureichend."
