@@ -11,12 +11,12 @@
 
 <% accordion_body(:facebook) do %>
   <% if identity.new_record? %>
-    <%= render :partial => "identities/facebook/forms/new", :locals => { :identity => identity } %>
+    <%= render :partial => "identities/facebook/new", :locals => { :identity => identity } %>
   <% else %>
     <p><%= I18n.t("identity/facebook.show.legend")%></p>
     <%= form_for(identity, :remote => true) do |form| %>
       <%= form.control_group :nickname, :text_field, :hint => false, :disabled => 'disabled' %>
     <% end %>
-    <%= render :partial => "identities/facebook/forms/delete", :locals => { :identity => identity } unless identity.solitary? %>
+    <%= render :partial => "identities/facebook/delete", :locals => { :identity => identity } unless identity.solitary? %>
   <% end %>
 <% end %>

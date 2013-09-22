@@ -12,12 +12,12 @@
 
 <% accordion_body(:email) do %>
   <% if identity.new_record? %>
-    <%= render :partial => "identities/email/forms/new", :locals => { :identity => identity } %>
+    <%= render :partial => "identities/email/new", :locals => { :identity => identity } %>
   <% else %>
     <p><%= I18n.t("identity/email.show.legend")%></p>
     <%= form_for(identity, :remote => true) do |form| %>
       <%= form.control_group :email, :text_field, :disabled => 'disabled' %>
     <% end %>
-    <%= render :partial => "identities/email/forms/edit", :locals => { :identity => identity } %>
+    <%= render :partial => "identities/email/edit", :locals => { :identity => identity } %>
   <% end %>
 <% end %>
