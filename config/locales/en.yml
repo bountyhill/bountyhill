@@ -29,28 +29,33 @@ en:
   mail:
     confirm_email:
       subject:  "Please verify your email"
-      heading:  "Welcome on bountyhill!"
+      heading:  "Welcome on bountyhill"
       text:    
-        plain:  "Thank you for signing up. Before you can use our service, you will have to verify your email address by clicking this link:"
-        html:   "Thank you for signing up. Before you can use our service, you will have to %{link}."
-        link:   "verify your email address"
-      text2:    "We apologize for sending you an email if you did not register on bountyhill. Please ignore our email in this case."
+        plain:    "Thank you for signing up. Before you can use our service, you will have to verify your email address by clicking this link:"
+        html:     "Thank you for signing up. Before you can use our service, you will have to %{link}."
+        link:     "verify your email address"
+      apologize:  "We apologize for sending you this email if you did not register on bountyhill. Please ignore our email in this case."
     reset_password:
-      subject:  "Reset your password"
-      heading:  
+      subject:    "Reset your password"
+      heading:    "Reset your password"
+      text:
+        plain:    "Thank you for your request. You can reset your password by following this link:"
+        html:     "Thank you for your request. You can reset your password by following %{link}."
+        link:     "this link"
+      apologize:  "We apologize for sending you this email if you did not intend to reset your password on bountyhill. Please ignore our email in this case."
     offer_received:
-      subject:  "You received an offer on your quest '%{title}'"
+      subject:  "You received an offer for your quest '%{title}'"
       heading:  
     offer_withdrawn:
-      subject:  "An offer has been withdrawn '%{title}'"
+      subject:  "An offer '%{title}' has been withdrawn"
       heading:  
     offer_accepted:
-      subject:  "Your offer has been accepted '%{title}'"
-      heading:  
+      subject:  "Your offer '%{title}' has been accepted"
+      heading:  "Your offer was accepted"
     offer_declined:
-      subject:  "Your offer has been declined '%{title}'"
+      subject:  "Your offer '%{title}' has been declined"
       heading:  
-    closing: "Your bountyhill team"
+    closing:  "Your bountyhill team"
     footer:
       country:    Germany 
       reg_number: Registration number

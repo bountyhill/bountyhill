@@ -29,15 +29,20 @@ de:
   mail:
     confirm_email:
       subject:  "Bitte bestätigen Deine Email"
-      heading:  "Willkommen bei bountyhill!"
+      heading:  "Willkommen bei bountyhill"
       text:    
-        plain:  "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du Deine Emailadresse bestätigen. Bitte klicke dazu folgenden Link:"
-        html:   "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du %{link}."
-        link:   "Deine Emailadresse bestätigen"
-      text2:    "Falls Du Dich nicht bei bountyhill angemeldet hast, möchten wir uns bei Dir entschuldigen. Bitte ignoriere unsere Email in diesem Fall."
+        plain:    "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du Deine Emailadresse bestätigen. Bitte klicke dazu folgenden Link:"
+        html:     "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du %{link}."
+        link:     "Deine Emailadresse bestätigen"
+      apologize:  "Wir möchten uns dafür entschuldigen, Dir diese Email gesendet zu haben, falls Du Dich nicht bei bountyhill angemeldet haben solltest. Bitte ignoriere unsere Email in diesem Fall."
     reset_password:
-      subject:  "Du kannst Dein Passwort jetzt zurücksetzen"
-      heading:  
+      subject:    "Du kannst Dein Passwort jetzt zurücksetzen"
+      heading:    "Passwort zurücksetzen"
+      text:
+        plain:    "Vielen Dank für Deine Anfrage. Du kannst Dein Passwort unter folgendem Link zurücksetzen:"
+        html:     "Vielen Dank für Deine Anfrage. Du kannst Dein Passwort unter %{link} zurücksetzen."
+        link:     "diesem Link"
+      apologize:  "Wir möchten uns dafür entschuldigen, Dir diese Email gesendet zu haben, falls Du Dein bountyhill Passwort nicht zurücksetzen wolltest. Bitte ignoriere unsere Email in diesem Fall."
     offer_received:
       subject:  "Du hast ein Angebot auf Deine Suche '%{title}' erhalten"
       heading:  
@@ -46,7 +51,7 @@ de:
       heading:  
     offer_accepted:
       subject:  "Dein Angebot '%{title}' wurde angenommen"
-      heading:  
+      heading:  "Dein Angebot wurde angenommen"
     offer_declined:
       subject:  "Dein Angebot '%{title}' wurde abgelehnt"
       heading:  
@@ -153,7 +158,7 @@ de:
       success:
         signup: Willkommen bei bountyhill!
         signin: Willkommen bei bountyhill!
-        reset:  "Wir haben Dir eine Email zugesandt, die erläutert, wie Du Dein Passwort zurücksetzen kannst."
+        reset:  "Wir haben Dir eine Email zugesandt, mit der Du Dein Passwort zurücksetzen kannst."
   identity/email:
     show:
       title:  Email/Passwort
