@@ -34,6 +34,10 @@ de:
       offer_withdrawn:  "Ein Angebot auf Deine Suche '%{title}' wurde zurückgezogen"
       offer_accepted:   "Dein Angebot '%{title}' wurde angenommen"
       offer_declined:   "Dein Angebot '%{title}' wurde abgelehnt"
+    closing: "Dein bountyhill team"
+    footer:
+      country:    Deutschland 
+      reg_number: Registernummer
   link:
     loading: "Inhalte werden geladen ..."
   button:

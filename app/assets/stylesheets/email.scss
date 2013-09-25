@@ -1,0 +1,69 @@
+/*
+ * application.scss
+ *
+ * Important! Do *not* use Sprockets "require" syntax.
+ * Use @import to include other stylesheets and Compass mixins.
+ */
+
+// This is a unicode snowman. This should set the character encoding to utf8
+// ☃
+// see https://github.com/nex3/sass/issues/189#issuecomment-5611476
+
+// Include some nice mixins
+// @import "compass/css3";
+
+// import basics stylesheets and definitions@import "colors";
+@import "colors";
+@import "fonts";
+
+$space: 36px;
+
+body {
+  table {
+    background-color: $gray;
+  }
+  
+  td {
+    color: $text_inverse_highlight;
+    font-size: 14px;
+    font-family: $font_system;
+    &.header, &.footer { 
+      background-color: $petrol;
+      color: $text;
+    }
+    &.header { 
+      padding: ($space / 4) $space;
+      height: $space * 2;
+      font-size: 14px;
+    }
+    &.footer { 
+      padding: ($space / 2) $space;
+      font-size: 12px;
+      .company { font-size: 14px; }
+    }
+    &.content {
+      padding: $space;
+      h1, .closing {
+        margin: 0;
+        Line-height: $space;
+        color: $quests_box_title_color; 
+      }
+      h1 { 
+        margin-bottom: $space;
+        font-size: 30px;
+      }
+      .closing {
+        padding-top: $space / 2;
+        font-size: 20px; 
+      }
+      p {
+        margin: ($space / 2) 0;
+        font-weight: normal;
+      }
+      a {
+        color: $text_inverse;
+        text-decoration: none;
+      }
+    }
+  }
+}

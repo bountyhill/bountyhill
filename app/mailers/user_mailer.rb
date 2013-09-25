@@ -3,22 +3,19 @@
 class UserMailer < ActionMailer::Base
   layout "../user_mailer/layout"
   
-  default from: "info@bountyhill.com"
+  default :from => 'info@bountyhill.com'
+  default :css  => 'email' # roadie option convert styles in this css file into inline styles
 
   # This is a temporary default_url_option. It will be adjusted by
   # ApplicationController once the first request comes in.
   default_url_options[:host] = "bountyhill.local"
-  
-  def subject(text)
-    "[bountyhill] #{text}"
-  end
   
   # Confirm email address, please.
   def confirm_email(user)
     action = DeferredAction.create!(:actor => user, :action => "confirm_email")
     @url = action.url
 
-    mail(:to => user.email,
+    mail(:to => email(user),
       :subject => subject(I18n.t("mail.subject.confirm_email", :email => user.email)))
   end
   
@@ -27,7 +24,7 @@ class UserMailer < ActionMailer::Base
     action = DeferredAction.create!(:actor => user, :action => "reset_password")
     @url = action.url
 
-    mail(:to => user.email,
+    mail(:to => email(user),
       :subject => subject(I18n.t("mail.subject.reset_password", :email => user.email)))
   end
   
@@ -37,7 +34,7 @@ class UserMailer < ActionMailer::Base
   def offer_received(offer)
     @quest, @offer = offer.quest, offer
 
-    mail(:to => @quest.owner.email, :cc => @offer.owner.email,
+    mail(:to => email(@quest.owner), :cc => email(@offer.owner),
       :subject => subject(I18n.t("mail.subject.offer_received", :title => @quest.title)))
   end
   
@@ -45,7 +42,7 @@ class UserMailer < ActionMailer::Base
   def offer_accepted(offer)
     @quest, @offer = offer.quest, offer
     
-    mail(:to => @offer.owner.email, :cc => @quest.owner.email,
+    mail(:to => email(@offer.owner), :cc => email(@quest.owner),
       :subject => subject(I18n.t("mail.subject.offer_accepted", :title => @quest.title)))
   end
   
@@ -53,7 +50,7 @@ class UserMailer < ActionMailer::Base
   def offer_rejected(offer)
     @quest, @offer = offer.quest, offer
     
-    mail(:to => @offer.owner.email, 
+    mail(:to => email(@offer.owner), 
       :subject => subject(I18n.t("mail.subject.offer_rejected", :title => @quest.title)))
   end
   
@@ -61,7 +58,18 @@ class UserMailer < ActionMailer::Base
   def offer_withdrawn(offer)
     @quest, @offer = offer.quest, offer
     
-    mail(:to => @quest.owner.email,
+    mail(:to => email(@quest.owner),
       :subject => subject(I18n.t("mail.subject.offer_withdrawn", :title => @quest.title)))
   end
+  
+protected
+
+  def subject(text)
+    "[bountyhill] #{text}"
+  end
+
+  def email(user)
+    "#{user.name} <#{user.email}>"
+  end
+
 end

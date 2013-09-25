@@ -24,6 +24,7 @@ gem 'faker'
 gem 'rack-contrib'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
+gem 'roadie'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
