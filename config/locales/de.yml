@@ -27,13 +27,29 @@ de:
     follow:
       success:  "Vielen Dank, dass Du @bountyhermes folgst. Wir halten Dich auf dem Laufenden ..."
   mail:
-    subject:
-      confirm_email:    "Bitte bestätigen Deine Email '%{email}'"
-      reset_password:   "Du kannst Dein Passwort jetzt zurücksetzen"
-      offer_received:   "Du hast ein Angebot auf Deine Suche '%{title}' erhalten"
-      offer_withdrawn:  "Ein Angebot auf Deine Suche '%{title}' wurde zurückgezogen"
-      offer_accepted:   "Dein Angebot '%{title}' wurde angenommen"
-      offer_declined:   "Dein Angebot '%{title}' wurde abgelehnt"
+    confirm_email:
+      subject:  "Bitte bestätigen Deine Email"
+      heading:  "Willkommen bei bountyhill!"
+      text:    
+        plain:  "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du Deine Emailadresse bestätigen. Bitte klicke dazu folgenden Link:"
+        html:   "Vielen Dank für Deine Anmeldung. Bevor Du unseren Service nutzen kannst, musst Du %{link}."
+        link:   "Deine Emailadresse bestätigen"
+      text2:    "Falls Du Dich nicht bei bountyhill angemeldet hast, möchten wir uns bei Dir entschuldigen. Bitte ignoriere unsere Email in diesem Fall."
+    reset_password:
+      subject:  "Du kannst Dein Passwort jetzt zurücksetzen"
+      heading:  
+    offer_received:
+      subject:  "Du hast ein Angebot auf Deine Suche '%{title}' erhalten"
+      heading:  
+    offer_withdrawn:
+      subject:  "Ein Angebot auf Deine Suche '%{title}' wurde zurückgezogen"
+      heading:  
+    offer_accepted:
+      subject:  "Dein Angebot '%{title}' wurde angenommen"
+      heading:  
+    offer_declined:
+      subject:  "Dein Angebot '%{title}' wurde abgelehnt"
+      heading:  
     closing: "Dein bountyhill team"
     footer:
       country:    Deutschland 

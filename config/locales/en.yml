@@ -27,13 +27,29 @@ en:
     follow:
       success:  "Thank you for following @bountyhermes. We will keep you informed ..."
   mail:
-    subject:  
-      confirm_email:    "Please verify your email '%{email}'"
-      reset_password:   "Reset your password"
-      offer_received:   "You received an offer on your quest '%{title}'"
-      offer_withdrawn:  "An offer has been withdrawn '%{title}'"
-      offer_accepted:   "Your offer has been accepted '%{title}'"
-      offer_declined:   "Your offer has been declined '%{title}'"
+    confirm_email:
+      subject:  "Please verify your email"
+      heading:  "Welcome on bountyhill!"
+      text:    
+        plain:  "Thank you for signing up. Before you can use our service, you'll have to verify your email address by clicking this link:"
+        html:   "Thank you for signing up. Before you can use our service, you'll have to %{link}."
+        link:   "verify your email address"
+      text2:    "We apologize for sending you an email if you didn't register on bountyhill. Please ignore our email in this case."
+    reset_password:
+      subject:  "Reset your password"
+      heading:  
+    offer_received:
+      subject:  "You received an offer on your quest '%{title}'"
+      heading:  
+    offer_withdrawn:
+      subject:  "An offer has been withdrawn '%{title}'"
+      heading:  
+    offer_accepted:
+      subject:  "Your offer has been accepted '%{title}'"
+      heading:  
+    offer_declined:
+      subject:  "Your offer has been declined '%{title}'"
+      heading:  
     closing: "Your bountyhill team"
     footer:
       country:    Germany 

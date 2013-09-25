@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
     @url = action.url
 
     mail(:to => email(user),
-      :subject => subject(I18n.t("mail.subject.confirm_email", :email => user.email)))
+      :subject => subject(I18n.t("mail.confirm_email.subject")))
   end
   
   # Forgot passwor?
@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
     @url = action.url
 
     mail(:to => email(user),
-      :subject => subject(I18n.t("mail.subject.reset_password", :email => user.email)))
+      :subject => subject(I18n.t("mail.reset_password.subject", :email => user.email)))
   end
   
   # -- Offer emails ---------------------------------------------------
@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @quest, @offer = offer.quest, offer
 
     mail(:to => email(@quest.owner), :cc => email(@offer.owner),
-      :subject => subject(I18n.t("mail.subject.offer_received", :title => @quest.title)))
+      :subject => subject(I18n.t("mail.offer_received.subject", :title => @quest.title)))
   end
   
   # "[Bountyhill] Your offer has been accepted %{title}"
@@ -43,7 +43,7 @@ class UserMailer < ActionMailer::Base
     @quest, @offer = offer.quest, offer
     
     mail(:to => email(@offer.owner), :cc => email(@quest.owner),
-      :subject => subject(I18n.t("mail.subject.offer_accepted", :title => @quest.title)))
+      :subject => subject(I18n.t("mail.offer_accepted.subject", :title => @quest.title)))
   end
   
   # "[Bountyhill] Your offer has been rejected %{title}"
@@ -51,7 +51,7 @@ class UserMailer < ActionMailer::Base
     @quest, @offer = offer.quest, offer
     
     mail(:to => email(@offer.owner), 
-      :subject => subject(I18n.t("mail.subject.offer_rejected", :title => @quest.title)))
+      :subject => subject(I18n.t("mail.offer_rejected.subject", :title => @quest.title)))
   end
   
   # "[Bountyhill] An offer has been withdrawn"
@@ -59,7 +59,7 @@ class UserMailer < ActionMailer::Base
     @quest, @offer = offer.quest, offer
     
     mail(:to => email(@quest.owner),
-      :subject => subject(I18n.t("mail.subject.offer_withdrawn", :title => @quest.title)))
+      :subject => subject(I18n.t("mail.offer_withdrawn.subject", :title => @quest.title)))
   end
   
 protected
