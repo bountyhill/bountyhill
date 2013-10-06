@@ -1,5 +1,5 @@
 <%= I18n.t("mail.confirm_email.heading") %>
 
-<%= I18n.t("mail.confirm_email.text.plain") %> <%= @url %>
+<%= I18n.t("mail.confirm_email.text.plain").html_safe %> <%= @url %>
 
-<%= I18n.t("mail.confirm_email.apologize") %>
+<%= I18n.t("mail.confirm_email.apologize").html_safe %>

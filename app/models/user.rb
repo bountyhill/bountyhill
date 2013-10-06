@@ -257,6 +257,10 @@ class User < ActiveRecord::Base
     points.to_s.size
   end
   
+  def url
+    Bountyhill::Application.url_for "/users/#{self.id}"
+  end
+  
   def reward_for(object, action = :create)
     Activity.log(self, action, object)
   end

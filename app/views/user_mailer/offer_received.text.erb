@@ -1,0 +1,8 @@
+<%= I18n.t("mail.offer_received.heading") %>
+
+<%= I18n.t("mail.offer_received.intro",
+  :offerer  => "'#{@offer.owner.name}'",
+  :offer    => "'#{@offer.title}'",
+  :quest    => "'#{@quest.title}'").html_safe %> <%= I18n.t("mail.offer_received.compliance", :compliance => @offer.compliance).html_safe %>
+
+<%= I18n.t("mail.offer_received.text.plain").html_safe %> <%= url_for(@offer.url) %>

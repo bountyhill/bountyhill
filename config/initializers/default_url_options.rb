@@ -2,7 +2,7 @@
 
 class Bountyhill::Application
   @@url_options = {
-    host: "bountyhill.local",
+    host: "bountyhill.local:3000",
     protocol: "http"
   }
   

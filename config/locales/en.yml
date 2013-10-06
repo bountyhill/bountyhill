@@ -44,17 +44,29 @@ en:
         link:     "this link"
       apologize:  "We apologize for sending you this email if you did not intend to reset your password on bountyhill. Please ignore our email in this case."
     offer_received:
-      subject:  "You received an offer for your quest '%{title}'"
-      heading:  
+      subject:    "You received an offer"
+      heading:    "You received an offer"
+      intro:      "We are happy to tell you that %{offerer} has submitted the offer %{offer} for your quest %{quest}."
+      compliance: "This offer fulfills your quest with a ratio of %{compliance}%."
+      text:
+        plain:    "Please take a few minutes to review the offer. Ideally you should respond soon by either commenting, accepting or rejecting the offer:"
+        html:     "Please take a few minutes to review %{link}. Ideally you should respond soon by either commenting, accepting or rejecting the %{link}."
+        link:     "the offer"
     offer_withdrawn:
-      subject:  "An offer '%{title}' has been withdrawn"
-      heading:  
+      subject:    "An offer was withdrawn"
+      heading:    "An offer was withdrawn"
+      intro:      "We are sorry to tell you that %{offerer} has withdrawn the offer %{offer} from your quest %{quest}."
+      reason:     "The offerer provided the following reason for withdrawning his offer:"
     offer_accepted:
-      subject:  "Your offer '%{title}' has been accepted"
-      heading:  "Your offer was accepted"
-    offer_declined:
-      subject:  "Your offer '%{title}' has been declined"
-      heading:  
+      subject:    "Your offer was accepted"
+      heading:    "Your offer was accepted"
+      intro:      "We are happy to tell you that %{searcher} has accepted your offer %{offer} for his quest %{quest}."
+      reason:     "The searcher provided the following reason for accepting your offer:"
+    offer_rejected:
+      subject:    "Your offer was rejected"
+      heading:    "Your offer was rejected"
+      intro:      "We are sorry to tell you that %{searcher} has rejected your offer %{offer} for his quest %{quest}."
+      reason:     "The searcher provided the following reason for rejecting your offer:"
     closing:  "Your bountyhill team"
     footer:
       country:    Germany 

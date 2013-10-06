@@ -1,5 +1,11 @@
-<h1>An offer was withdrawn!</h1>
+<h1><%= I18n.t("mail.offer_withdrawn.heading") %></h1>
 <p>
-  We are sorry to inform you that one offer that you received on your quest
-  <%= link_to @quest.title, @quest.url %> was withdrawn.
+  <%= I18n.t("mail.offer_withdrawn.intro",
+    :offerer  => link_to(@offer.owner.name, @offer.owner.url),
+    :offer    => link_to(@offer.title, @offer.url),
+    :quest    => link_to(@quest.title, @quest.url)).html_safe %> <%= I18n.t("mail.offer_withdrawn.reason").html_safe %>
 </p>
+
+<i>
+  <%= I18n.t("offer.form.field_hint.withdrawal.#{@offer.withdrawal}") %> <%= @offer.withdrawal_reason %>
+</i>

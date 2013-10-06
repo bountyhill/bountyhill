@@ -43,7 +43,7 @@ body {
     }
     &.content {
       padding: $space;
-      h1, .closing {
+      h1, h2, .closing {
         margin: 0;
         Line-height: $space;
         color: $quests_box_title_color; 
@@ -52,11 +52,17 @@ body {
         margin-bottom: $space;
         font-size: 30px;
       }
+      h2, .closing {
+        font-size: 20px;
+      }
+      h2 {
+        margin-top: $space;
+        margin-bottom: $space / 2;
+      }
       .closing {
         padding-top: $space / 2;
-        font-size: 20px; 
       }
-      p {
+      p, i {
         margin: ($space / 2) 0;
         font-weight: normal;
       }

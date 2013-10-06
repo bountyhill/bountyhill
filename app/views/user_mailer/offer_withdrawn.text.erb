@@ -1,0 +1,8 @@
+<%= I18n.t("mail.offer_withdrawn.heading") %>
+
+<%= I18n.t("mail.offer_withdrawn.intro",
+  :offerer  => "'#{@offer.owner.name}'",
+  :offer    => "'#{@offer.title}'",
+  :quest    => "'#{@quest.title}'").html_safe %> <%= I18n.t("mail.offer_withdrawn.reason").html_safe %>
+
+<%= I18n.t("offer.form.field_hint.withdrawal.#{@offer.withdrawal}") %> <%= @offer.withdrawal_reason %>

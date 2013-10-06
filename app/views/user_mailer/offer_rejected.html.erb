@@ -1,0 +1,11 @@
+<h1><%= I18n.t("mail.offer_rejected.heading") %></h1>
+<p>
+  <%= I18n.t("mail.offer_rejected.intro",
+    :searcher => link_to(@quest.owner.name, @quest.owner.url),
+    :offer    => link_to(@offer.title, @offer.url),
+    :quest    => link_to(@quest.title, @quest.url)).html_safe %> <%= I18n.t("mail.offer_rejected.reason").html_safe %>
+</p>
+
+<i>
+  <%= I18n.t("offer.form.field_hint.rejection.#{@offer.rejection}") %> <%= @offer.rejection_reason %>
+</i>

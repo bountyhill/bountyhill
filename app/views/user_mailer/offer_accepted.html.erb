@@ -1,18 +1,11 @@
-<h1>Your offer was accepted!</h1>
+<h1><%= I18n.t("mail.offer_accepted.heading") %></h1>
 <p>
-  Congratulations! The bountyhill user '<%= @quest.owner.name %>'
-  just accepted your offer!
+  <%= I18n.t("mail.offer_accepted.intro",
+    :searcher => link_to(@quest.owner.name, @quest.owner.url),
+    :offer    => link_to(@offer.title, @offer.url),
+    :quest    => link_to(@quest.title, @quest.url)).html_safe %> <%= I18n.t("mail.offer_accepted.reason").html_safe %>
 </p>
-<p>
-  See the original quest here: <%= link_to @quest.title, @quest.url %>. 
-  Your offer can be reviewed <%= link_to "here", @offer.url %>.
-</p>
-<h2>What next?</h2>
-<p>
-  We are glad that you are able to help <%= @quest.owner.name %>. After
-  you are done you are entitled to receive parts of the bounty posted
-  with the quest. Details can be found on your profile page at bountyhill.
-</p>
-<p>
-  Note: A copy of this email will be sent to <%= @quest.owner.name %>.
-</p>
+
+<i>
+  <%= I18n.t("offer.form.field_hint.acceptance.#{@offer.acceptance}") %> <%= @offer.acceptance_reason %>
+</i>

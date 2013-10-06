@@ -9,6 +9,7 @@ class UserMailer < ActionMailer::Base
   # This is a temporary default_url_option. It will be adjusted by
   # ApplicationController once the first request comes in.
   default_url_options[:host] = "bountyhill.local"
+  default_url_options[:port] = 3000 if Rails.env.development?
   
   # Confirm email address, please.
   def confirm_email(user)
@@ -30,28 +31,12 @@ class UserMailer < ActionMailer::Base
   
   # -- Offer emails ---------------------------------------------------
   
-  # "[Bountyhill] You received an offer on your quest %{title}"
+  # "[Bountyhill] You received an offer on your quest '%{title}'"
   def offer_received(offer)
     @quest, @offer = offer.quest, offer
 
-    mail(:to => email(@quest.owner), :cc => email(@offer.owner),
-      :subject => subject(I18n.t("mail.offer_received.subject", :title => @quest.title)))
-  end
-  
-  # "[Bountyhill] Your offer has been accepted %{title}"
-  def offer_accepted(offer)
-    @quest, @offer = offer.quest, offer
-    
-    mail(:to => email(@offer.owner), :cc => email(@quest.owner),
-      :subject => subject(I18n.t("mail.offer_accepted.subject", :title => @quest.title)))
-  end
-  
-  # "[Bountyhill] Your offer has been rejected %{title}"
-  def offer_rejected(offer)
-    @quest, @offer = offer.quest, offer
-    
-    mail(:to => email(@offer.owner), 
-      :subject => subject(I18n.t("mail.offer_rejected.subject", :title => @quest.title)))
+    mail(:to => email(@quest.owner),
+      :subject => subject(I18n.t("mail.offer_received.subject")))
   end
   
   # "[Bountyhill] An offer has been withdrawn"
@@ -59,7 +44,23 @@ class UserMailer < ActionMailer::Base
     @quest, @offer = offer.quest, offer
     
     mail(:to => email(@quest.owner),
-      :subject => subject(I18n.t("mail.offer_withdrawn.subject", :title => @quest.title)))
+      :subject => subject(I18n.t("mail.offer_withdrawn.subject")))
+  end
+  
+  # "[Bountyhill] Your offer '%{title}' has been accepted"
+  def offer_accepted(offer)
+    @quest, @offer = offer.quest, offer
+    
+    mail(:to => email(@offer.owner),
+      :subject => subject(I18n.t("mail.offer_accepted.subject")))
+  end
+  
+  # "[Bountyhill] Your offer '%{title}' has been rejected"
+  def offer_rejected(offer)
+    @quest, @offer = offer.quest, offer
+    
+    mail(:to => email(@offer.owner),
+      :subject => subject(I18n.t("mail.offer_rejected.subject")))
   end
   
 protected

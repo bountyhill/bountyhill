@@ -1,0 +1,8 @@
+<%= I18n.t("mail.offer_accepted.heading") %>
+
+<%= I18n.t("mail.offer_accepted.intro",
+  :searcher => "'#{@quest.owner.name}'",
+  :offer    => "'#{@offer.title}'",
+  :quest    => "'#{@quest.title}'").html_safe %> <%= I18n.t("mail.offer_accepted.reason").html_safe %>
+
+<%= I18n.t("offer.form.field_hint.acceptance.#{@offer.acceptance}") %> <%= @offer.acceptance_reason %>

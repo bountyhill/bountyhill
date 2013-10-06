@@ -1,17 +1,11 @@
-<h1>You received an offer!</h1>
+<h1><%= I18n.t("mail.offer_received.heading") %></h1>
 <p>
-  Congratulations! The bountyhill user '<%= @offer.owner.name %>' just posted
-  an offer on your quest '<%= link_to @quest.title, @quest.url %>'! 
-</p>
-<h2>What next?</h2>
-<p>
-  Please take a few minutes to <%= link_to "review the offer", @offer.url %>.
-  Ideally you should respond soon by either accepting or declining the offer.
+  <%= I18n.t("mail.offer_received.intro",
+    :offerer  => link_to(@offer.owner.name, @offer.owner.url),
+    :offer    => link_to(@offer.title, @offer.url),
+    :quest    => link_to(@quest.title, @quest.url)).html_safe %>
+  <%= I18n.t("mail.offer_received.compliance", :compliance => @offer.compliance).html_safe %>
 </p>
 <p>
-  If you need to discuss further details please contact '<%= @offer.owner.name %>'
-  via email at <%= link_to @offer.owner.email, "mailto:#{@offer.owner.email}" %>.
-</p>
-<p>  
-  Note: A copy of this email will be sent to <%= @quest.owner.name %>.
+  <%= I18n.t("mail.offer_received.text.html", :link => link_to(I18n.t("mail.offer_received.text.link"), @offer.url)).html_safe %>
 </p>

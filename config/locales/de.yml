@@ -44,17 +44,29 @@ de:
         link:     "diesem Link"
       apologize:  "Wir möchten uns dafür entschuldigen, Dir diese Email gesendet zu haben, falls Du Dein bountyhill Passwort nicht zurücksetzen wolltest. Bitte ignoriere unsere Email in diesem Fall."
     offer_received:
-      subject:  "Du hast ein Angebot auf Deine Suche '%{title}' erhalten"
-      heading:  
+      subject:    "Du hast ein Angebot erhalten"
+      heading:    "Du hast ein Angebot erhalten"
+      intro:      "Wir freuen uns Dir mitteilen zu können, dass %{offerer} das Angebot %{offer} für Deine Suche %{quest} abgegeben hat."
+      compliance: "Dieses Angebot erfüllt Deine Suche zu %{compliance}%."
+      text:
+        plain:    "Bitte nimm Dir die Zeit, das Angebot in Ruhe zu prüfen. Idealerweise solltest Du dem Anbieter zeitnah antworten, in dem Du sein Angebot kommentierst, annimst oder ablehnst:"
+        html:     "Bitte nimm Dir die Zeit, %{link} in Ruhe anzusehen. Idealerweise solltest Du dem Anbieter zeitnah antworten, in dem Du %{link} kommentierst, annimst oder ablehnst."
+        link:     "das Angebot"
     offer_withdrawn:
-      subject:  "Ein Angebot auf Deine Suche '%{title}' wurde zurückgezogen"
-      heading:  
+      subject:    "Ein Angebot wurde zurückgezogen"
+      heading:    "Ein Angebot wurde zurückgezogen"
+      intro:      "Wir bedauern Dir mitteilen zu müssen, dass %{offerer} das Angebot %{offer} für Deine Suche %{quest} zurückgezogen hat."
+      reason:     "Der Anbieter gab folgenden Grund für den Rückzug seines Angebots an:"
     offer_accepted:
-      subject:  "Dein Angebot '%{title}' wurde angenommen"
-      heading:  "Dein Angebot wurde angenommen"
-    offer_declined:
-      subject:  "Dein Angebot '%{title}' wurde abgelehnt"
-      heading:  
+      subject:    "Dein Angebot wurde angenommen"
+      heading:    "Dein Angebot wurde angenommen"
+      intro:      "Wir freuen uns Dir mitteilen zu können, dass %{searcher} Dein Angebot %{offer} für seine Suche %{quest} akzeptiert hat."
+      reason:     "Der Suchende gab folgenden Grund für die Annahme Deines Angebots an:"
+    offer_rejected:
+      subject:    "Dein Angebot wurde abgelehnt"
+      heading:    "Dein Angebot wurde abgelehnt"
+      intro:      "Wir bedauern Dir mitteilen zu müssen, dass %{searcher} Dein Angebot %{offer} für seine Suche %{quest} abgelehnt hat."
+      reason:     "Der Suchende gab folgenden Grund für die Ablehnung Deines Angebots an:"
     closing: "Dein bountyhill team"
     footer:
       country:    Deutschland 
