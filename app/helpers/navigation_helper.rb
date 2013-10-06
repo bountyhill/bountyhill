@@ -129,7 +129,7 @@ module NavigationHelper
      :class => "avatar",
      :height => avatar_size
     ident = div :class => "user-ident" do
-      div(user.name, :class => "name")
+      div(user.name || '&nbsp;', :class => "name")
     end
     
     link_to(ident + img, "#", :class => "dropdown-toggle", :"data-toggle" => "dropdown") + 
