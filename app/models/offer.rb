@@ -284,32 +284,32 @@ class Offer < ActiveRecord::Base
     self
   end
 
-  def withdraw!
+  def withdraw!(attributes={})
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
 
-    update_attributes! "state" => "withdrawn"
+    update_attributes! attributes.slice(:withdrawal, :withdrawal_reason).merge(:state => "withdrawn")
     owner.reward_for(self, :withdraw)
     self
   end
   
-  def accept!
+  def accept!(attributes={})
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
     raise RuntimeError, "User: #{ActiveRecord::AccessControl.current_user.inspect} has to own quest: #{quest.inspect} to accept this offer: #{self.inspect}!" unless ActiveRecord::AccessControl.current_user.owns?(quest)
     
     ActiveRecord::AccessControl.as(owner) do
-      update_attributes! "state" => "accepted"
+      update_attributes! attributes.slice(:acceptance, :acceptance_reason).merge(:state => "accepted")
     end
 
     quest.owner.reward_for(self, :accept)
     self
   end
   
-  def reject!
+  def reject!(attributes={})
     raise RuntimeError, "Offer: #{self.inspect} is no longer active" unless active?
     raise RuntimeError, "User: #{ActiveRecord::AccessControl.current_user.inspect} has to own quest: #{quest.inspect} to reject this offer: #{self.inspect}!" unless ActiveRecord::AccessControl.current_user.owns?(quest)
     
     ActiveRecord::AccessControl.as(owner) do
-      update_attributes! "state" => "rejected"
+      update_attributes! attributes.slice(:rejection, :rejection_reason).merge(:state => "rejected")
     end
     
     quest.owner.reward_for(self, :reject)

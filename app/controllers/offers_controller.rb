@@ -4,6 +4,7 @@ class OffersController < ApplicationController
   include ApplicationController::ImageInteractions
   include Filter::Builder
 
+  before_filter :init_offer, :except => [:index, :new, :create]
   before_filter :set_owner
 
   layout false, :only => [:activate, :accept, :reject, :withdraw]
@@ -36,7 +37,6 @@ class OffersController < ApplicationController
 
   # GET /offers/1
   def show
-    @offer = Offer.find(params[:id])
     @offer.viewed!
     
     render :action => "preview" if params[:preview]
@@ -55,7 +55,6 @@ class OffersController < ApplicationController
 
   # GET /offers/1/edit
   def edit
-    @offer = Offer.find(params[:id])
     render :action => "new"
   end
 
@@ -74,7 +73,6 @@ class OffersController < ApplicationController
 
   # PUT /offers/1
   def update
-    @offer = Offer.find(params[:id])
     if @offer.update_attributes(params[:offer])
       flash[:success] = I18n.t("message.update.success", :record => Offer.model_name.human)
       redirect_to offer_path(@offer)
@@ -85,7 +83,6 @@ class OffersController < ApplicationController
 
   # DELETE /offers/1
   def destroy
-    @offer = Offer.find(params[:id])
     @offer.destroy
     flash[:success] = I18n.t("message.destroy.success", :record => Offer.model_name.human)
     redirect_to offers_url(:owner => current_user)
@@ -93,8 +90,6 @@ class OffersController < ApplicationController
   
   # Submit he offer
   def activate
-    @offer = Offer.find(params[:id])
-
     unless request.get?
       @offer.activate!
       flash[:success] = I18n.t("offer.action.activate", :offer => @offer.title)
@@ -104,10 +99,8 @@ class OffersController < ApplicationController
   
   # Withdraw the offer
   def withdraw
-    @offer = Offer.find(params[:id])
-
     unless request.get?
-      @offer.withdraw!
+      @offer.withdraw!(params[:offer])
       flash[:success] = I18n.t("offer.action.withdraw", :offer => @offer.title)
       redirect_to! @offer
     end
@@ -115,10 +108,8 @@ class OffersController < ApplicationController
 
   # Accept the offer
   def accept
-    @offer = Offer.find(params[:id])
-
     unless request.get?
-      @offer.accept!
+      @offer.accept!(params[:offer])
       flash[:success] = I18n.t("offer.action.accept", :offer => @offer.title)
       redirect_to! @offer
     end
@@ -126,16 +117,18 @@ class OffersController < ApplicationController
 
   # Reject the offer
   def reject
-    @offer = Offer.find(params[:id])
-
     unless request.get?
-      @offer.reject!
+      @offer.reject!(params[:offer])
       flash[:success] = I18n.t("offer.action.reject", :offer => @offer.title)
       redirect_to! @offer
     end
   end
   
 private
+  def init_offer
+    @offer = Offer.find(params[:id])
+  end
+
   def set_owner
     @owner = if params[:owner_id]
       User.find(params[:owner_id])

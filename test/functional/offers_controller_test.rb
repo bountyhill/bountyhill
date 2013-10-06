@@ -234,8 +234,8 @@ class OffersControllerTest < ActionController::TestCase
     assert_equal @offer, assigns(:offer)
 
     # post withdrawel
-    Offer.any_instance.expects(:withdraw!).once   # TODO: @offer.expects(:withdraw!).once
-    post :withdraw, :id => @offer.id
+    Offer.any_instance.expects(:withdraw!).once.with('withdrawal' => 'other_reason')   # TODO: @offer.expects(:withdraw!).once
+    post :withdraw, :id => @offer.id, :offer => { :withdrawal => 'other_reason' }
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
@@ -250,8 +250,8 @@ class OffersControllerTest < ActionController::TestCase
     assert_equal @offer, assigns(:offer)
 
     # post acception
-    Offer.any_instance.expects(:accept!).once   # TODO: @offer.expects(:accept!).once
-    post :accept, :id => @offer.id
+    Offer.any_instance.expects(:accept!).once.with('acceptance' => 'other_reason')   # TODO: @offer.expects(:accept!).once
+    post :accept, :id => @offer.id, :offer => { :acceptance => 'other_reason' }
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)
@@ -266,8 +266,8 @@ class OffersControllerTest < ActionController::TestCase
     assert_equal @offer, assigns(:offer)
 
     # post rejection
-    Offer.any_instance.expects(:reject!).once   # TODO: @offer.expects(:reject!).once
-    post :reject, :id => @offer.id
+    Offer.any_instance.expects(:reject!).once.with('rejection' => 'other_reason')   # TODO: @offer.expects(:reject!).once
+    post :reject, :id => @offer.id, :offer => { :rejection => 'other_reason' }
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer, assigns(:offer)

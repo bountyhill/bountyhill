@@ -104,8 +104,10 @@ class OfferTest < ActiveSupport::TestCase
     # active offer can be withdrawn
     offer.expects(:active?).returns(true)
     offer.owner.expects(:reward_for).with(offer, :withdraw)
-    offer.withdraw!
+    offer.withdraw!(:withdrawal => "other_reason", :withdrawal_reason => "Foo Bar")
     assert_equal "withdrawn", offer.state
+    assert_equal "other_reason", offer.withdrawal
+    assert_equal "Foo Bar", offer.withdrawal_reason
   end
   
   def test_accept!
@@ -127,8 +129,10 @@ class OfferTest < ActiveSupport::TestCase
       # active offer can be accepted
       offer.expects(:active?).returns(true)
       offer.quest.owner.expects(:reward_for).with(offer, :accept)
-      offer.accept!
+      offer.accept!(:acceptance => "other_reason", :acceptance_reason => "Foo Bar")
       assert_equal "accepted", offer.state
+      assert_equal "other_reason", offer.acceptance
+      assert_equal "Foo Bar", offer.acceptance_reason
     end
   end
   
@@ -151,8 +155,10 @@ class OfferTest < ActiveSupport::TestCase
       # active offer can be accepted
       offer.expects(:active?).returns(true)
       offer.quest.owner.expects(:reward_for).with(offer, :reject)
-      offer.reject!
+      offer.reject!(:rejection => "other_reason", :rejection_reason => "Foo Bar")
       assert_equal "rejected", offer.state
+      assert_equal "other_reason", offer.rejection
+      assert_equal "Foo Bar", offer.rejection_reason
     end
   end
   
