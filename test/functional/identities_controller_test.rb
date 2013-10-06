@@ -72,15 +72,13 @@ class IdentitiesControllerTest < ActionController::TestCase
   def test_update_email
     assert_not_equal "barfoo", @user.identity(:email).password
 
-    xhr :put, :update, :id => @identity.id, :identity_email => {
+    put :update, :id => @identity.id, :identity_email => {
       :password_new => "barfoo",
       :password_new_confirmation  => "barfoo",
       :password => @identity.password
     }
-pend "TODO: should be redirected to user - WTF!" do
     assert_response :redirect
     assert_redirected_to user_path(@user)
-end
     assert assigns(:identity).valid?
     assert_equal "barfoo", assigns(:identity).password
     assert_equal I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password)), flash[:success]
