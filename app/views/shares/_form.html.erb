@@ -17,7 +17,7 @@
     
     <%= form.control_group :quest_id, :hidden_field %>
     <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '&euro;') %>
-    <%= hidden_field_tag :quest_url,        quest_url(@share.quest) %>
+    <%= hidden_field_tag :quest_url,        @share.quest.url %>
     
     <% Share::IDENTITIES.each do |identity| %>
       <div class="checkbox-group <%= identity %>">
@@ -57,12 +57,14 @@
     
   function update_message() {
     // Build a message to write into the form
-    var message = jQuery.escapeHTML(node_title.val());
-    if(message.length > 99)
-      message = message.substr(0, 99) + "…";
-    message = message + " #bounty";
-    message = message + ' ' + $("#bounty_with_unit").val();
-    message = message + ' ' + '<a href=\"' + $("#quest_url").val() + '\" target=\"blank\">' + $("#quest_url").val() + '</a>';
+    var message     = jQuery.escapeHTML(node_title.val());
+    var bounty      = ' #bounty ' + $("#bounty_with_unit").val();
+    var quest_url   = ' <a href=\"' + $("#quest_url").val() + '\" target=\"blank\">' + $("#quest_url").val() + '</a>';
+    var max_lenght  = 140 - quest_url.length - bounty.length - 3;
+    if(message.length > max_lenght)
+      message = message.substr(0, max_lenght) + "…";
+    message = message + bounty;
+    message = message + quest_url;
     
     node_message.val(message);
     node_tweet.html(message);

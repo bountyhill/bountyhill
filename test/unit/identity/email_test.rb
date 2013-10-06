@@ -38,6 +38,12 @@ class Identity::EmailTest < ActiveSupport::TestCase
     assert identity.confirmed?
   end
   
+  def test_create_email_identity_sends_confirmation_email
+    email = Identity::Email.new(:email => "foo.bar@example.com", :password => "foobar", :password_confirmation => "foobar")
+    email.expects(:send_confirmation_email)
+    email.save!
+  end
+  
   def test_send_confirmation_email
     identity = Factory(:email_identity)
     

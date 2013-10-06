@@ -46,10 +46,11 @@ class SharesControllerTest < ActionController::TestCase
 
   def test_create_fails
     assert_no_difference "Share.count" do
-      post :create, :share => { :quest_id => @quest.id }
+      xhr :post, :create, :share => { :quest_id => @quest.id }
     end
     assert_response :success
-    assert_template :new, :layout => 'dialog'
+    assert_template :create
+    assert_equal 'text/javascript', @response.content_type
     assert_equal @quest, assigns(:share).quest
     assert_equal @owner, assigns(:share).owner
   end

@@ -168,8 +168,8 @@ de:
         signin: Die angegebene Email-Adresse und/oder das angegebene Passwort sind nicht gültig.
         reset:  Die angegebene Email-Adresse ist uns nicht bekannt.
       success:
-        signup: Willkommen bei bountyhill!
-        signin: Willkommen bei bountyhill!
+        signup: "Willkommen bei bountyhill! Wir haben Dir eine Email zum Bestätigen Deiner Email-Adresse zugesandt."
+        signin: "Willkommen bei bountyhill!"
         reset:  "Wir haben Dir eine Email zugesandt, mit der Du Dein Passwort zurücksetzen kannst."
   identity/email:
     show:

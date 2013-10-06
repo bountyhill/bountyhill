@@ -168,9 +168,9 @@ en:
         signin: The entered email and/or password are not valid.
         reset:  The entered email is not known to us.
       success:
-        signup: Welcome to bountyhill!
+        signup: Welcome to bountyhill! We have send you an email to confirm your email address.
         signin: Welcome to bountyhill!
-        reset:  We have send you an email with instructions to reset your password.
+        reset:  We have send you an email to reset your password.
   identity/email:
     show:
       title:  Email/Password

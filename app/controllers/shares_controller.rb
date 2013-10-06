@@ -24,8 +24,11 @@ class SharesController < ApplicationController
     if @share.save
       redirect_to! share_path(@share)
     end
-  
-    render(:template => "shares/new", :layout => "dialog") unless request.xhr?
+    
+    respond_to do |format|
+      format.js   { render :content_type => 'text/javascript' }
+      format.html { render :template => 'shares/new', :layout => 'dialog' }
+    end
   end
   
   #

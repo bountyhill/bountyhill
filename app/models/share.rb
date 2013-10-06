@@ -22,7 +22,7 @@ class Share < ActiveRecord::Base
   validates :quest,       :presence => true
   validates :owner,       :presence => true
   validates :identities,  :presence => true
-  validates :message,     :presence => true, :length => { :maximum => 110 }
+  validates :message,     :presence => true, :length => { :maximum => 140 }
   
   validate :validate_identities
   
