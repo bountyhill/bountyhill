@@ -9,7 +9,8 @@ class SharesController < ApplicationController
   # Show the form to share a quest
   def new
     @quest = Quest.find(params[:quest_id])
-    @share = Share.new(:quest => @quest, :owner => current_user)
+    @share = Share.new(:title => @quest.title, :quest => @quest, :owner => current_user)
+    @share.init_identities
     render :layout => "dialog"
   end
   

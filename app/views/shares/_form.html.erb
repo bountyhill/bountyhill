@@ -59,8 +59,8 @@
     // Build a message to write into the form
     var message     = jQuery.escapeHTML(node_title.val());
     var bounty      = ' #bounty ' + $("#bounty_with_unit").val();
-    var quest_url   = ' <a href=\"' + $("#quest_url").val() + '\" target=\"blank\">' + $("#quest_url").val() + '</a>';
-    var max_lenght  = 140 - quest_url.length - bounty.length - 3;
+    var quest_url   = ' ' + $("#quest_url").val();
+    var max_lenght  = 140 - bounty.length - quest_url.length - 1;
     if(message.length > max_lenght)
       message = message.substr(0, max_lenght) + "…";
     message = message + bounty;

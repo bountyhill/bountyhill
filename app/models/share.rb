@@ -5,7 +5,7 @@ class Share < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
 
   extend Forwardable
-  delegate [:title, :url, :bounty] => :quest
+  delegate [:url, :bounty] => :quest
   
   #
   # holds the identities the owner wants to share with
@@ -17,7 +17,8 @@ class Share < ActiveRecord::Base
   # to share with (as keys) and the time the system did actually performed the sharing (as values)
   serialize :identities, Hash
   
-  attr_accessible :quest, :quest_id, :owner, :owner_id, :identities, :message
+  attr_accessor :title
+  attr_accessible :quest, :quest_id, :owner, :owner_id, :identities, :message, :title
   
   validates :quest,       :presence => true
   validates :owner,       :presence => true
@@ -33,13 +34,7 @@ class Share < ActiveRecord::Base
 
   #
   # detect user's identities that allow sharing
-  def initialize(attributes={}, options={})
-    # initializing from the share form
-    return super if attributes.delete(:title)
-
-    # initializing for the shares form
-    super
-    
+  def init_identities
     Share::IDENTITIES.each do |identity|
       identities[identity] ||= owner && owner.identity?(identity.to_sym)
     end
@@ -53,9 +48,9 @@ class Share < ActiveRecord::Base
     expect! identity => [Symbol]
     
     msg = message.gsub(/(^\s+)|(\s+$)/, "").gsub(/\s\s+/, " ")
-    msg = title if msg.blank?
+    msg = quest.title if msg.blank?
     
-    owner.identity(identity).update_status "#{msg} #{url}"
+    owner.identity(identity).update_status(msg)
     owner.reward_for(self.quest, :share)
     
     identities[identity] = Time.now
