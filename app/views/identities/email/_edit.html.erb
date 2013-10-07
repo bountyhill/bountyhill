@@ -5,9 +5,9 @@
   <%= form.error_messages @error if @error %>
 
   <%= form.error_messages %>
+  <%= form.control_group :password,                   :password_field %>
   <%= form.control_group :password_new,               :password_field %>
   <%= form.control_group :password_new_confirmation,  :password_field %>
-  <%= form.control_group :password,                   :password_field %>
 
   <%= form.actions "#", :"data-dismiss" => "modal" %>
 <% end %>
