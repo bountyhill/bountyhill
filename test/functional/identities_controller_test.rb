@@ -92,6 +92,7 @@ class IdentitiesControllerTest < ActionController::TestCase
     assert_equal @identity, assigns(:identity)
     assert assigns(:identity).errors[:password]
     assert_equal "identities/email" , assigns(:partial)
+    assert_equal "text/javascript", @response.content_type
 
     # password_new and password_new_confirmation are unequal
     xhr :put, :update, :id => @identity.id, :identity_email => {
@@ -104,6 +105,7 @@ class IdentitiesControllerTest < ActionController::TestCase
     assert_equal @identity, assigns(:identity)
     assert assigns(:identity).errors[:password]
     assert_equal "identities/email" , assigns(:partial)
+    assert_equal "text/javascript", @response.content_type
   end
 
   def test_destroy

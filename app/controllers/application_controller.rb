@@ -149,4 +149,19 @@ class ApplicationController < ActionController::Base
     
     flash.now[:warn] = render_to_string(:partial => "shared/confirmation_reminder").html_safe
   end
+
+  
+  # 
+  # this is needed since Rails does not provide the proper content type
+  # in the response even if the template rendered is an js.erb file
+  # TODO: find a better solution ensuring js-content type is set correctly!
+
+  after_filter :set_js_content_type
+
+  def set_js_content_type
+    content_types = request.headers["HTTP_ACCEPT"] || ''
+    if /text\/javascript/.match(content_types)
+      response.content_type = "text/javascript"
+    end
+  end 
 end

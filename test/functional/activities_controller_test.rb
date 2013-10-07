@@ -22,12 +22,14 @@ class ActivitiesControllerTest < ActionController::TestCase
     xhr :get, :index
     assert_response :success
     assert_template "index"
+    assert_equal "text/javascript", @response.content_type
     assert_equal @user.activities.reverse, assigns(:activities)
     
     # for fiven user
     xhr :get, :index, :id => @admin.id
     assert_response :success
     assert_template "index"
+    assert_equal "text/javascript", @response.content_type
     assert_equal @admin.activities.reverse, assigns(:activities)
   end
 end

@@ -19,10 +19,18 @@ class QuestsControllerTest < ActionController::TestCase
   
   # all quests visible by current user
   def test_index
+    # xhr request
+    xhr :get, :index
+    assert_response :success
+    assert_template :index
+    assert_equal 'text/javascript', @response.content_type
+    assert_equal [], assigns(:quests)
+
     # current user sees only active quests
     get :index
     assert_response :success
     assert_template :index
+    assert_equal 'text/html', @response.content_type
     assert_equal [], assigns(:quests)
 
     @quest.start!
@@ -227,7 +235,6 @@ class QuestsControllerTest < ActionController::TestCase
     assert_redirected_to quests_url
   end
   
-  
   def test_lightbox
     @quest.update_attributes(:images => ["http://www.example.com"])
     
@@ -235,6 +242,7 @@ class QuestsControllerTest < ActionController::TestCase
     assert_equal @quest.images(:width => 600), assigns(:images)
     assert_equal 1, assigns(:active)
     assert_template "shared/lightbox"
+    assert_equal "text/javascript", @response.content_type
   end
   
 private

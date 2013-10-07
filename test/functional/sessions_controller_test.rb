@@ -75,6 +75,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert assigns(:identity).new_record?
     assert_equal :signin, assigns(:mode)
     assert_equal "sessions/forms/signin", assigns(:partial)
+    assert_equal "text/javascript", @response.content_type
     assert_equal I18n.t("identity.form.error.signin"), assigns(:error)
   end
     
@@ -84,6 +85,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert assigns(:identity).new_record?
     assert_equal :reset, assigns(:mode)
     assert_equal "sessions/forms/signin", assigns(:partial)
+    assert_equal "text/javascript", @response.content_type
     assert_equal I18n.t("identity.form.error.reset"), assigns(:error)
   end
 
@@ -93,6 +95,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert assigns(:identity).new_record?
     assert_equal :signup, assigns(:mode)
     assert_equal "sessions/forms/email", assigns(:partial)
+    assert_equal "text/javascript", @response.content_type
     assert_equal I18n.t("identity.form.error.signup"), assigns(:error)
   end
   
