@@ -11,6 +11,9 @@ class UserMailer < ActionMailer::Base
   default_url_options[:host] = "bountyhill.local"
   default_url_options[:port] = 3000 if Rails.env.development?
   
+  
+  # -- Account emails --------------------------------------------------
+  
   # Confirm email address, please.
   def confirm_email(user)
     action = DeferredAction.create!(:actor => user, :action => "confirm_email")
@@ -20,7 +23,7 @@ class UserMailer < ActionMailer::Base
       :subject => subject(I18n.t("mail.confirm_email.subject")))
   end
   
-  # Forgot passwor?
+  # Forgot password?
   def reset_password(user)
     action = DeferredAction.create!(:actor => user, :action => "reset_password")
     @url = action.url
@@ -28,10 +31,26 @@ class UserMailer < ActionMailer::Base
     mail(:to => email(user),
       :subject => subject(I18n.t("mail.reset_password.subject", :email => user.email)))
   end
+
+
+  # -- Comment emails -------------------------------------------------
+  
+  # "[Bountyhill] Your offer/quest has been commented
+  def commentable_commented(comment)
+    @comment      = comment
+    @commentator  = comment.owner
+    @commentable  = comment.commentable_type.downcase
+    @title        = comment.commentable.title
+
+    mail(:to => email(@comment.commentable.owner),
+      :subject => subject(I18n.t("mail.commentable_commented.subject",
+        :commentable => I18n.t("mail.commentable_commented.commentable.#{@commentable}"))))
+  end
+  
   
   # -- Offer emails ---------------------------------------------------
   
-  # "[Bountyhill] You received an offer on your quest '%{title}'"
+  # "[Bountyhill] You received an offer
   def offer_received(offer)
     @quest, @offer = offer.quest, offer
 
@@ -47,7 +66,7 @@ class UserMailer < ActionMailer::Base
       :subject => subject(I18n.t("mail.offer_withdrawn.subject")))
   end
   
-  # "[Bountyhill] Your offer '%{title}' has been accepted"
+  # "[Bountyhill] Your offer has been accepted"
   def offer_accepted(offer)
     @quest, @offer = offer.quest, offer
     
@@ -55,7 +74,7 @@ class UserMailer < ActionMailer::Base
       :subject => subject(I18n.t("mail.offer_accepted.subject")))
   end
   
-  # "[Bountyhill] Your offer '%{title}' has been rejected"
+  # "[Bountyhill] Your offer has been rejected"
   def offer_rejected(offer)
     @quest, @offer = offer.quest, offer
     

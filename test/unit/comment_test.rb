@@ -9,6 +9,19 @@ class ShareTest < ActiveSupport::TestCase
       Factory(:comment)
     end
   end
+
+  def test_send_comment_mail
+    commentable = Factory(:quest)
+    commentator = Factory(:user)
+    
+    # owner of quest recieves email if other user comments
+    Deferred.expects(:mail).once
+    create_comment(:commentable => commentable, :owner => commentator, :body => "Foo Bar")
+    
+    # owner of quest recieves no email if he comments himself
+    Deferred.expects(:mail).never
+    create_comment(:commentable => commentable, :owner => commentable.owner, :body => "Foo Bar")
+  end
   
   def test_reward_commentor
     commentable = Factory(:quest)
@@ -33,4 +46,13 @@ class ShareTest < ActiveSupport::TestCase
     assert comment.writable?(comment.commentable.owner)
   end
   
+private 
+  def create_comment(attributes={})
+    commentable = attributes.delete(:commentable)
+    owner       = attributes.delete(:owner)
+    comment = Comment.new(attributes)
+    comment.commentable = commentable
+    comment.owner       = owner
+    comment.save!
+  end
 end

@@ -43,6 +43,24 @@ en:
         html:     "Thank you for your request. You can reset your password by following %{link}."
         link:     "this link"
       apologize:  "We apologize for sending you this email if you did not intend to reset your password on bountyhill. Please ignore our email in this case."
+    commentable_commented:
+      subject:    "%{commentable} has been commented"
+      heading:    "%{commentable} has been commented"
+      commentable:
+        offer:    "Your offer"
+        quest:    "Your quest"
+      intro:
+        plain:    "We would like to inform you that %{commentator} has just commented %{commentable} %{link} as follows:"
+        html:     "We would like to inform you that %{commentator} has just commented %{commentable} %{link} as follows:"
+        commentable:
+          offer:  "your offer"
+          quest:  "your quest"
+      text:
+        plain:    "You can view all comments on the detail page of %{commentable}:"
+        html:     "You can view all comments on the detail page of %{commentable}."
+        commentable:
+          offer:  "your offer"
+          quest:  "your quest"
     offer_received:
       subject:    "You received an offer"
       heading:    "You received an offer"
@@ -53,18 +71,18 @@ en:
         html:     "Please take a few minutes to review %{link}. Ideally you should respond soon by either commenting, accepting or rejecting the %{link}."
         link:     "the offer"
     offer_withdrawn:
-      subject:    "An offer was withdrawn"
-      heading:    "An offer was withdrawn"
+      subject:    "An offer has been withdrawn"
+      heading:    "An offer has been withdrawn"
       intro:      "We are sorry to tell you that %{offerer} has withdrawn the offer %{offer} from your quest %{quest}."
       reason:     "The offerer provided the following reason for withdrawning his offer:"
     offer_accepted:
-      subject:    "Your offer was accepted"
-      heading:    "Your offer was accepted"
+      subject:    "Your offer has been accepted"
+      heading:    "Your offer has been accepted"
       intro:      "We are happy to tell you that %{searcher} has accepted your offer %{offer} for his quest %{quest}."
       reason:     "The searcher provided the following reason for accepting your offer:"
     offer_rejected:
-      subject:    "Your offer was rejected"
-      heading:    "Your offer was rejected"
+      subject:    "Your offer has been rejected"
+      heading:    "Your offer has been rejected"
       intro:      "We are sorry to tell you that %{searcher} has rejected your offer %{offer} for his quest %{quest}."
       reason:     "The searcher provided the following reason for rejecting your offer:"
     closing:  "Your bountyhill team"

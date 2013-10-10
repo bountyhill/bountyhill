@@ -3,6 +3,8 @@
 class Comment < ActiveRecord::Base
   opinio
 
+  after_create :send_comment_mail
+
   def self.default_per_page
     10
   end
@@ -22,4 +24,15 @@ class Comment < ActiveRecord::Base
 
     user.admin? or (owner == user) or (user.owns?(commentable))
   end
+  
+private
+
+  def send_comment_mail
+    # do not inform user about it's own comment
+    return if commentable.owner == self.owner
+    
+    mail = UserMailer.commentable_commented(self)
+    Deferred.mail(mail)
+  end
+
 end

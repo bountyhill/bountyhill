@@ -1,0 +1,13 @@
+<h1><%= I18n.t("mail.commentable_commented.heading", :commentable => I18n.t("mail.commentable_commented.commentable.#{@commentable}")) %></h1>
+<p>
+  <%= I18n.t("mail.commentable_commented.intro.html",
+    :commentator  => link_to(@commentator.name, @commentator.url),
+    :commentable  => I18n.t("mail.commentable_commented.intro.commentable.#{@commentable}"),
+    :link         => link_to(@comment.commentable.title, @comment.commentable.url)).html_safe %>
+</p>
+<i>
+  <%= @comment.body %>
+</i>
+<p>
+  <%= I18n.t("mail.commentable_commented.text.html", :commentable => link_to(I18n.t("mail.commentable_commented.text.commentable.#{@commentable}"), @comment.commentable.url)).html_safe %>
+</p>

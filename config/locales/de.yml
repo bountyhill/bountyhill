@@ -43,6 +43,24 @@ de:
         html:     "Vielen Dank für Deine Anfrage. Du kannst Dein Passwort unter %{link} zurücksetzen."
         link:     "diesem Link"
       apologize:  "Wir möchten uns dafür entschuldigen, Dir diese Email gesendet zu haben, falls Du Dein bountyhill Passwort nicht zurücksetzen wolltest. Bitte ignoriere unsere Email in diesem Fall."
+    commentable_commented:
+      subject:    "%{commentable} wurde kommentiert"
+      heading:    "%{commentable} wurde kommentiert"
+      commentable:
+        offer:    "Dein Angebot"
+        quest:    "Deine Suchanfrage"
+      intro:
+        plain:    "Wir möchten Dir mitteilen, dass %{commentator} folgenden Kommentar zu %{commentable} %{link} abgegeben hat:"
+        html:     "Wir möchten Dir mitteilen, dass %{commentator} folgenden Kommentar zu %{commentable} %{link} abgegeben hat:"
+        commentable:
+          offer:  "Deinem Angebot"
+          quest:  "Deiner Suchanfrage"
+      text:
+        plain:    "Du kannst alle Kommentare auf der Detailseite %{commentable} einsehen:"
+        html:     "Du kannst alle Kommentare auf der Detailseite %{commentable} einsehen."
+        commentable:
+          offer:  "Deines Angebots"
+          quest:  "Deiner Suchanfrage"
     offer_received:
       subject:    "Du hast ein Angebot erhalten"
       heading:    "Du hast ein Angebot erhalten"
