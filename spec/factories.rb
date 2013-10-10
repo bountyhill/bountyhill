@@ -72,11 +72,12 @@ FactoryGirl.define do
   end
   
   factory :share do |share|
-    message    "share's message"
+    message     "share's message"
     association :quest, :factory => :quest
 
-    after(:build) do |share, evaluator| 
-      share.owner = share.quest.owner
+    after(:build) do |share, evaluator|
+      share.owner       = share.quest.owner
+      share.identities  = { "twitter" => true }
     end
   end
 end
