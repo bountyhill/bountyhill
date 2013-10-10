@@ -454,8 +454,8 @@ de:
     statistic:
       bounty:     "Belohnung ausgesetzt"
       offers:
-        one:      "Angebot angelegt"
-        other:    "Angebote angelegt"
+        one:      "Angebot abgegeben"
+        other:    "Angebote abgegeben"
       comments:   "mal kommentiert"
       forwards:   "mal weitergeleitet"
       expiration:

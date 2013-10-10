@@ -50,8 +50,8 @@ en:
         offer:    "Your offer"
         quest:    "Your quest"
       intro:
-        plain:    "We would like to inform you that %{commentator} has just commented %{commentable} %{link} as follows:"
-        html:     "We would like to inform you that %{commentator} has just commented %{commentable} %{link} as follows:"
+        plain:    "We would like to inform you that %{commentator} has just posted this comment on %{commentable} %{link}:"
+        html:     "We would like to inform you that %{commentator} has just posted this comment on %{commentable} %{link}:"
         commentable:
           offer:  "your offer"
           quest:  "your quest"
@@ -454,8 +454,8 @@ en:
     statistic:
       bounty:     "bounty promised"
       offers:
-        one:      "offer created"
-        other:    "offers created"
+        one:      "offer submitted"
+        other:    "offers submitted"
       comments:   "comments posted"
       forwards:   "forwards done"
       expiration:
