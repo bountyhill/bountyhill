@@ -67,10 +67,10 @@ Bountyhill::Application.routes.draw do
   
   resources :identities do 
     member do
-      get   "delete"
-      get   "init"
-      post  "success"
-      post  "failure"
+      get "delete"
+      get "init"
+      get "failure"
+      post "success"
     end
   end
   # match "identities/failure" => "identities#failure", :via => :post
