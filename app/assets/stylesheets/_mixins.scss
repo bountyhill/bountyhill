@@ -100,13 +100,29 @@
       h1, h2 { color: $user_box_title_color; }
     }
   }
-  @else if  $box_type == static { 
-    background-color: $static_box_color;
-    .header { background-color: $static_box_title_color;}
+  @else if  $box_type == email { 
+    background-color: $email_box_color;
+    .header { background-color: $email_box_title_color; }
+  }
+  @else if  $box_type == address { 
+    background-color: $address_box_color;
+    .header { background-color: $address_box_title_color; }
+  }
+  @else if  $box_type == twitter { 
+    background-color: $twitter_box_color;
+    .header { background-color: $twitter_box_title_color; }
+  }
+  @else if  $box_type == facebook { 
+    background-color: $facebook_box_color;
+    .header { background-color: $facebook_box_title_color; }
   }
   @else if  $box_type == activities { 
     background-color: $activities_box_color;
     .header { background-color: $activities_box_title_color; }
+  }
+  @else if  $box_type == static { 
+    background-color: $static_box_color;
+    .header { background-color: $static_box_title_color;}
   }
   @else if  $box_type == quest-filter { 
     background-color: $quests_box_title_color;

@@ -4,13 +4,17 @@ module UsersHelper
   def profile_box(user)
     expect! user => User
     
-    if @current_user == user
-      title = I18n.t("user.box.title")
-    else
-      title = user.name
-      title += " #{span(user.twitter_handle, :class => 'handle')}" if user.twitter_handle
-    end
-    box(:user, user, :title => title || I18n.t("user.box.profile.title"))
+    title = user.name
+    title ||= if current_user == user then  I18n.t("user.box.title")
+            else                            I18n.t("user.box.profile.title")
+            end
+    box(:user, user, :title => title)
+  end
+  
+  def identity_box(user, identity_type)
+    return unless current_user == user
+
+    box(identity_type, user.identity(identity_type), :title => I18n.t("user.box.#{identity_type}.title"))
   end
   
   def activities_box(user, options={})
@@ -50,6 +54,57 @@ module UsersHelper
 
     awesome_button(:twitter, url_for_follow_twitter_account(:account => user.twitter_handle),
       :html => { :target => :blank, :rel => "nofollow" }) { I18n.t("button.follow") }
+  end
+  
+  def email_buttons(identity)
+    button_group [
+      identity_button(identity, :email)
+    ]
+  end
+  
+  def twitter_buttons(identity)
+    button_group [
+      identity_button(identity, :twitter)
+    ]
+  end
+  
+  def facebook_buttons(identity)
+    button_group [
+      identity_button(identity, :facebook)
+    ]
+  end
+
+  def address_buttons(identity)
+    button_group [
+      identity_button(identity, :address), #, :delete => false),
+      edit_address_button(identity)
+    ]
+  end
+
+  def edit_address_button(identity)
+    return unless personal_page?
+    return unless identity
+
+    modal_awesome_button(:pencil, edit_identity_path(identity)) { I18n.t("button.edit") }
+  end
+  
+  def identity_button(identity, type, options={})
+    expect! identity => [nil, Identity]
+    expect! type     => Symbol
+    
+    icon = case type
+      when :address     then :home
+      when :email       then :envelope_alt
+      when :facebook    then :facebook_sign
+      when :twitter     then :twitter
+      else raise "Cannot provide icon for: #{identity.inspect}!"
+      end
+
+    if identity.nil?
+      modal_awesome_button(icon, new_identity_path(:provider => type))  { I18n.t("button.provide") } if (options[:new] != false)
+    else
+      modal_awesome_button(:ban_circle, delete_identity_path(identity)) { I18n.t("button.remove") } if (options[:delete] != false) && !identity.solitary?
+    end
   end
   
   def avatar(user, options = {})
@@ -131,24 +186,34 @@ module UsersHelper
       I18n.t("user.statistic.forwards", :count => user.forwards.size),
       awesome_icon(:retweet, :size => :large), :css_class => "user"
   end
-  
-  CONTACT_INFO_FIELDS = %w(name email phone twitter facebook)
-  def user_contact_info(user)
-    dl do
-      CONTACT_INFO_FIELDS.map do |attribute|
-        next unless (contact_info = user.send(attribute)).present?
-        dt(User.human_attribute_name(attribute)) +
-        dd(contact_info)
-      end.compact.join.html_safe
-    end
+
+  def identity_icon(identity, options={})
+    icon = case identity
+      when :commercial  then :group
+      when :private     then :user
+      when :address     then :home
+      when :email       then :envelope_alt
+      when :facebook    then :facebook_sign
+      when :twitter     then :twitter
+      else raise "Cannot provide icon for: #{identity.inspect}!"
+      end
+    div(:class => :"identity-icon") do
+      link_to(awesome_icon(icon, :size => :large), "#",
+        :id               => "identity-icon-#{identity}",
+        :"data-toggle"    => "tooltip",
+        :"data-placement" => "top",
+        :title            => options[:title] || I18n.t("user.box.#{identity}.icon"))
+    end + javascript_tag("$('#identity-icon-#{identity}').tooltip();")
   end
 
-  def user_address_info(user)
-    return unless (address_info = user.address).present?
-    dl do
-      dt(User.human_attribute_name(:address1)) +
-      dd(address_info.join("<br>").html_safe)
-    end
+  def privacy_icon(identity)
+    div(:class => :"privacy-icon") do
+      link_to(awesome_icon(:eye_close, :size => :large), "#",
+        :id               => "privacy-icon-#{identity}",
+        :"data-toggle"    => "tooltip",
+        :"data-placement" => "top",
+        :title            => I18n.t("icon.privacy"))
+    end + javascript_tag("$('#privacy-icon-#{identity}').tooltip();")
   end
   
 end

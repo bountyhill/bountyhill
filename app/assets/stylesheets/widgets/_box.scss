@@ -3,12 +3,20 @@
   &.quest,    &.quests  { @include button(16px, $quest_button_color); }
   &.offer,    &.offers  { @include button(16px, $offer_button_color); }
   &.user,     &.users   { @include button(16px, $user_button_color); }
+  &.email               { @include button(16px, $email_button_color); }
+  &.address             { @include button(16px, $address_button_color); }
+  &.twitter             { @include button(16px, $twitter_button_color); }
+  &.facebook            { @include button(16px, $facebook_button_color); }
   &.comments            { @include button(16px, $comment_button_color); }
  
   /* bottom border */
-  &.quest { @include box_border($quest_box_title_color); }
-  &.offer { @include box_border($offer_box_title_color); }
-  &.user  { @include box_border($user_box_title_color); }
+  &.quest     { @include box_border($quest_box_title_color); }
+  &.offer     { @include box_border($offer_box_title_color); }
+  &.user      { @include box_border($user_box_title_color); }
+  &.email     { @include box_border($email_box_title_color); }
+  &.address   { @include box_border($address_box_title_color); }
+  &.twitter   { @include box_border($twitter_box_title_color); }
+  &.facebook  { @include box_border($facebook_box_title_color); }
 
   /* ------- header ------- */
   .header {

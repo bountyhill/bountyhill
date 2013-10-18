@@ -111,14 +111,12 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
   end
   
-  def test_update_address
-    put :update, :id => @user.id, :section => :address, :user => { :address1 => "Foo", :address2 => "Bar", :city => "FooBar" }
+  def test_update_description
+    put :update, :id => @user.id, :section => :address, :user => { :description => "Foo Bar" }
     assert_response :redirect
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
-    assert_equal "Foo", @user.address1
-    assert_equal "Bar", @user.address2
-    assert_equal "FooBar", @user.city
+    assert_equal "Foo Bar", @user.description
     assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
   end
 
@@ -126,11 +124,11 @@ class UsersControllerTest < ActionController::TestCase
     User.any_instance.expects(:soft_delete!).once # TODO: @user.expects(:soft_delete!).once
     
     assert_no_difference "User.count" do
-      delete :destroy, :id => @user.id, :user => { :delete_reason => "Foo Bar" }
+      delete :destroy, :id => @user.id, :user => { :deletion_reason => "Foo Bar" }
       assert_response :redirect
       assert_redirected_to root_path
       assert_equal @user.reload, assigns(:user)
-      assert_equal "Foo Bar", @user.delete_reason
+      assert_equal "Foo Bar", @user.deletion_reason
       assert_equal false, @controller.instance_variable_get(:@current_user)
     end
   end

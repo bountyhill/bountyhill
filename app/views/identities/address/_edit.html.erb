@@ -1,0 +1,8 @@
+<%= form_for identity, :remote => true do |form| %>
+  <p><%= I18n.t("identity/address.form.edit.legend")%></p>
+  <%= form.error_messages %>
+
+  <%= partial("identities/address/form", :form => form) %>
+
+  <%= form.actions "#", :"data-dismiss" => "modal" %>
+<% end %>

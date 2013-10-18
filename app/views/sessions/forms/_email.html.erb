@@ -1,1 +1,8 @@
-<%= render :partial => "identities/email" %>
+<% accordion_heading(:email) do %>
+  <%= I18n.t("identity/email.form.new.title")%>
+  <%= awesome_icon(:user, :size => :large, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:email) do %>
+  <%= partial("identities/email/new", :identity => @identity || Identity::Email.new(:newsletter_subscription => true)) %>
+<% end %>

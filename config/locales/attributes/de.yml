@@ -17,14 +17,13 @@ de:
         one:    Identitität
         other:  Identititäten
       identity/email:
-        one:    Email Identitität
-        other:  Email Identititäten
-      identity/twitter:
-        one:    Twitter Identitität
-        other:  Twitter Identititäten
-      identity/facebook:
-        one:    Facebook Identitität
-        other:  Facebook Identititäten
+        one:    Email
+        other:  Emails
+      identity/address:
+        one:    Anschrift
+        other:  Anschriften
+      identity/twitter:   Twitter
+      identity/facebook:  Facebook
       location: Ort
     attributes:
       identity:
@@ -40,14 +39,8 @@ de:
         description:      Beschreibung
         image:            Bild
         images:           Bild
-        company:          Unternehmen
-        address1:         Adresse
-        address2:         Adressergänzung
-        city:             Stadt
-        zipcode:          Postleitzahl
-        country:          Land
-        phone:            Telefon
         email:            Email
+        address:          Adresse
         twitter:          Twitter
         facebook:         Facebook
         delete_me:        Account Löschen
@@ -93,6 +86,14 @@ de:
         stationary: Ortsbezug
         address:    Adresse
         radius:     Umkreis
+      identity/address:
+        company:  Unternehmen
+        address1: Adresse
+        address2: Adressergänzung
+        city:     Stadt
+        zipcode:  Postleitzahl
+        country:  Land
+        phone:    Telefon
       identity/twitter:
         handle: Benutzername
       identity/facebook:

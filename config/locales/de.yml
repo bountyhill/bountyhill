@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  icon:
+    privacy:  "Diese Information kann von anderen Nutzer nicht eingesehen werden."
   message:
     confirm:
       delete:       "Möchtest Du Deine(n) %{record} wirklich löschen?"
@@ -15,6 +17,12 @@ de:
       success:      "%{record} wurde erfolgreich aktualisiert."
     destroy:
       success:      "%{record} wurde erfolgreich gelöscht."
+    add:
+      success:      "%{record} wurde erfolgreich hinzugefügt."
+      error:        "%{record} konnte nicht hinzugefügt werden."
+    remove:
+      success:      "%{record} wurde erfolgreich entfernt."
+      error:        "%{record} konnte nicht entfernt werden."
     access:
       not_allowed:  Du bist nicht berechtigt dies zu tun!
     password:
@@ -110,6 +118,7 @@ de:
     withdraw: Zurückziehen
     comment:  Kommentieren
     delete:   Löschen
+    provide:  Hinzugefügen
     remove:   Entfernen
     reply:    Antworten
     post:     Absenden
@@ -199,12 +208,16 @@ de:
         legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse registrierst. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
         legend2:  Abonniere bitte unseren Newsletter damit wir Dich über neue Funktionen von bountyhill informieren können.
       edit:
+        title:  Passwort ändern
         legend: "Wenn Du Dein Passwort ändern möchtest, gebe bitte Dein neues Passwort ein und bestätige die Änderung mit Deinem aktuellen Passwort."
+      delete:
+        title:  Email-Adresse löschen
+        legend: "Du kannst Deine Email-Adresse vollständig löschen. Bitte beachte, dass Du nach dem Löschen Deiner Email-Adresse dich nicht mehr bei bounthill mit Deiner Email einloggen kannst."
       signin:
         title:  Anmelden via Email
         legend: "Melde Dich mit Deiner Email-Adresse an, wenn Du bereits ein bounthill Konto besitzt."
       field_hint:
-        email:                      Gebe Deine Email Adresse ein.
+        email:                      Gebe Deine Email-Adresse ein.
         password:                   Gebe Dein Passwort ein.
         password_confirmation:      Bestätige Dein Passwort.
         password_new:               Gebe Dein neues Passwort ein.
@@ -213,38 +226,63 @@ de:
         forgot_password:            Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:    Ich möchte den bountyhill Newsletter abonnieren.
         commercial:                 Ich möchte bountyhill im Namen meines Unternehmens nutzen.
+        delete_me:                  Ich möchte meine Email-Adresse von meinem bountyhill Profil entfernen.
+  identity/address:
+    form:
+      new:
+        title:  Anschrift hinzufügen
+        legend: "Bitte gebe Deine Anschrift an, damit wir Dich auf postalischem Wege kontaktieren können. Die Angabe des Unternehmens ist für kommerzielle Nutzer verbindlich."
+      edit:
+        title:  Anschrift bearbeiten
+        legend: "Du kannst Deine Adressangaben aktualisieren indem Du die Informationen in der unteren Form aktualisierst."
+      delete:
+        title:  Anschrift löschen
+        legend: "Du kannst Deine Anschrift vollständig löschen. Bitte beachte, dass wir Deine Anschrift später verlangen können, wenn Du ein kommerzieller Nutzer bist."
+      field_hint:
+        company:    Name des Unternehmens
+        address1:   Strasse und Hausnummer
+        address2:   Weitere Adressinformationen
+        city:       Stadt oder Ort
+        zipcode:    Postleitzahl
+        country:    Land und Bundesland
+        phone:      Telefonnummer(n)
+        delete_me:  Ich möchte meine Anschrift von meinem bountyhill Profil entfernen.
   identity/twitter:
     show:
       title:  Twitter
       legend: "Du bist unter folgendem Twitter-Benutzernamen bei bountyhill registriert:"
     form:
       follow_hint:  "Folge bitte @bountyhermes damit wir Dir aktuelle Informationen via Twitters Direktnachrichten zusenden können."
-      create:
+      new:
+        title:    Twitter Account hinzufügen
         legend:   "Du kannst Deinen Twitter-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Tweets in Deinem Namen zu Posten."
       delete:
+        title:    Twitter Account entfernen
         legend:   "Du kannst Deinen Twitter-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Twitter
         legend:   "Du kannst Dich über Twitter bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
-        delete_me:            Ich möchte meinen Twitter-Account von meinem bountyhill Profil entfernen.
-        commercial:           Ich möchte bountyhill im Namen meines Unternehmens nutzen.
+        commercial:           "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:            "Ich möchte meinen Twitter-Account von meinem bountyhill Profil entfernen."
   identity/facebook:
     show:
       title:  Facebook
       legend: "Du bist unter folgendem Facebook-Benutzernamen bei bountyhill registriert:"
     form:
-      create:
+      new:
+        title:    Facebook Account hinzufügen
         legend:   "Du kannst Deinen Facebook-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben an Deine Wall zu Posten."
       delete:
+        title:    Facebook Account entfernen
         legend:   "Du kannst Deinen Facebook-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Facebook
         legend:   "Du kannst Dich über Facebook bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
       field_hint:
-        delete_me:  Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen.
-        commercial: Ich möchte bountyhill im Namen meines Unternehmens nutzen.
+        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:  "Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
       title:    Email bestätigen
@@ -273,19 +311,35 @@ de:
         one:    "Anfrage geteilt"
         other:  "Anfragen geteilt"
     box:
-      title:      "Dein Profil"
-      info_icon:  "Diese Angaben können von anderen Nutzer nicht eingesehen werden."
+      title:    "Dein Profil"
       profile:
-        title: Nutzerprofil
+        title:  "Nutzerprofil"
+        text:   "Wir konnten keine Beschreibung von Dir in Deinen Social-Media Profilen finden. Wenn Du möchtest kannst Du eine Beschreibung von Dir auf bountyhill eingeben, damit andere Nutzer etwas von Dir erfahren."
+        icon:
+          commercial: "Du bist als kommerzieller Nutzer bei bountyhill registriert und handelst im Namen Deines Unternehmens."
+          private:    "Du bist als privater Nutzer bei bountyhill registriert."
+      address:
+        title:  "Anschrift"
+        text:   "Du hast Deine Postanschrift noch nicht angegben. Wir benötigen diese, z.B. wenn kommerzielle Nutzer Suchanfragen stellen und/oder Angebote abgeben möchten."
+        icon:   "Die von Dir angegebene Postanschrift."
+      email:
+        title:  "Email"
+        text:   "Du hast Deine Emailadresse noch nicht angegeben. Wir benötigen diese, z.B. wenn Angebote auf Suchanfragen anderer Nutzer abgeben möchtest."
+        icon:   "Die von Dir angegebene Emailadresse."
+      facebook:
+        title:  "Facebook"
+        text:   "Du hast uns noch keinen Zugang zu Deinem Facebook-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deine Timeline posten."
+        icon:   "Dein Facebook-Nickname."
+      twitter:
+        title:  "Twitter"
+        text:   "Du hast uns noch keinen Zugang zu Deinem Twitter-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen Twittern."
+        icon:   "Dein Twitter-Handle."
     form:
       title:  Persönliche Daten Bearbeiten
       profile:
         title:    Nutzerprofil
         legend:   Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
         legend2:  "Beabsichtigst Du bountyhill für kommerzielle Zwecke zu nutzen? Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
-      address:
-        title:  Adresse
-        legend: Deine Adressinformationen können nicht von anderen Nutzern auf bountyhill eingesehen werden.
       delete:
         title:  Zugangskonto
         legend: "Du kannst Dein bountyhill Zugangskonto jederzeit löschen. Wir würden es jedoch sehr bedauern, wenn Du uns verlässt. Falls Du Dein Konto dennoch löschen möchtest, lasse uns bitte den Grund dafür wissen."
@@ -294,13 +348,6 @@ de:
         last_name:    Dein Nachname
         description:  Beschreibe Deine Person
         images:       Dein Profilbild
-        company:      Name des Unternehmens
-        address1:     Strasse und Hausnummer
-        address2:     Weitere Adressinformationen
-        city:         Stadt oder Ort
-        zipcode:      Postleitzahl
-        country:      Land und Bundesland
-        phone:        Telefonnummer(n)
         commercial:   Ich möchte bountyhill im Namen meines Unternehmens nutzen.
         delete_me:    Ich möchte mein bountyhill Konto löschen.
         deletion:

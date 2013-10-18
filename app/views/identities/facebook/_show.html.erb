@@ -1,0 +1,9 @@
+<% if (facebook_nickname = facebook && facebook.nickname).present? %>
+  <div class="content-box">
+    <%= identity_icon(:facebook) %>
+    <%= privacy_icon(:facebook) %>
+    <%= facebook_nickname %>
+  </div>
+<% else %>
+ <%= I18n.t("user.box.facebook.text") %>
+<% end %>

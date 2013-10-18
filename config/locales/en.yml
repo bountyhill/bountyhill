@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  icon:
+    privacy:  "This information cannot be seen by other users."
   message:
     confirm:
       delete:       "Do you realy want to delete your %{record}?"
@@ -15,6 +17,12 @@ en:
       success:      "%{record} was successfully updated."
     destroy:
       success:      "%{record} was successfully deleted."
+    add:
+      success:      "%{record} was successfully added."
+      error:        "%{record} could not be added."
+    remove:
+      error:        "%{record} could not be added."
+      success:      "%{record} could not be removed."
     access:
       not_allowed:  You are not allowed to do this!
     password:
@@ -110,6 +118,7 @@ en:
     withdraw: Withdraw
     comment:  Comment
     delete:   Delete
+    provide:  Provide
     remove:   Remove
     reply:    Reply
     post:     Post
@@ -199,7 +208,11 @@ en:
         legend:   By signing up with your email and password you may start quests and post offers. Please note that there are different terms for commercial users.
         legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
       edit:
+        title:  Change Password
         legend: If you want to change your password please enter your new password and confirm the change by providing your current one.
+      delete:
+        title:  Remove Email
+        legend: "You can remove your email address completely. Pls. note that if you do so you will be no longer able to sign in with your email."
       signin:
         title:  Sign in with email
         legend: If you already have a bountyhill account please sing in with your email and password.
@@ -213,38 +226,63 @@ en:
         forgot_password:            I did forget my password and want to reset it.
         newsletter_subscription:    I want to subscribe to bountyhill's newsletter.
         commercial:                 I want to use bountyhill on behalf of my company.
+        delete_me:                  I do want to remove my email from my bountyhill profile.
+  identity/address:
+    form:
+      new:
+        title:  Add Address
+        legend: "Please add your address data to allow us contacting you via snail mail. Providing the name of your company is required if you are a commercial user."
+      edit:
+        title:  Edit Address
+        legend: "You can update your address data by correcting the information displayed in the form."
+      delete:
+        title:  Remove Address
+        legend: "You can remove your address completely. Pls. note that if you are a commercial user we will require an address from you later on."
+      field_hint:
+        address1:   Street and street number
+        address2:   Further address information
+        city:       City or town
+        zipcode:    Postal zipcode
+        country:    Country and State
+        phone:      Phone number(s)
+        delete_me:  I do want to remove my address from my bountyhill profile.
   identity/twitter:
     show:
-      title:      Twitter
+      title:  Twitter
       legend: "You are registered at bountyhill with the following twitter user name:"
     form:
       follow_hint:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
-      create:
+      new:
+        title:    Add Twitter account
         legend:   "If you have a Twitter account you can add it to your bountyhill profile, e.g to allow us to post tweets on your behalf."
       delete:
+        title:    Remove Twitter account
         legend:   "You can remove your Twitter account from your bountyhill profile, e.g. to add and use another one."
       signin:
         title:    Sign in with Twitter
         legend:   You can sign in to bountyhill via Twitter. Please note that there are different terms for commercial users.
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
-        delete_me:            I do want to remove my Twitter account from my bountyhill profile.
         commercial:           I want to use bountyhill on behalf of my company.
+        delete_me:            I do want to remove my Twitter account from my bountyhill profile.
   identity/facebook:
     show:
       title:      Facebook
       legend:     "You are registered at bountyhill with the following facebook user name:"
       commercial: I want to use bountyhill on behalf of my company.
     form:
-      create:
+      new:
+        title:    Add Facebook account
         legend:   "If you have a Facebook account you can add it to your bountyhill profile, e.g to allow us to post on your wall."
       delete:
+        title:    Remove Facebook account
         legend:   "You can remove your Facebook account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with Facebook
         legend:   You can sign in to bountyhill via Facebook. Please note that there are different terms for commercial users.
       field_hint:
-        delete_me:    I do want to remove my Facebook account from my bountyhill profile.
+        commercial: I want to use bountyhill on behalf of my company.
+        delete_me:  I do want to remove my Facebook account from my bountyhill profile.
   identity/confirm:
     form:
       title:    Confirm email
@@ -273,19 +311,35 @@ en:
         one:    "Request shared"
         other:  "Requests shared"
     box:
-      title:      "Your profile"
-      info_icon:  "This information cannot be seen by other users."
+      title:    "Your profile"
       profile:
-        title: User profile
+        title:  "User profile"
+        text:   "We could not find a description of you in any of your social media profiles. If you like, you can add a description on bountyhill to let other users know something about you."
+        icon:
+          commercial: "You are registered on bountyhill as a commercial user acting on behalf of your company."
+          private:    "You are registered on bountyhill as a private user."
+      address:
+        title:  "Postal address"
+        text:   "You did not provide your postal address data so far. We do require this data e.g. for commercial users starting quests and/or submitting offers."
+        icon:   "The postal address you did provide."
+      email:
+        title:  "Email"
+        text:   "You did not provide your email address so far. We do require your email e.g. if you intend to submit offers for other user's quests."
+        icon:   "Your email address."
+      facebook:
+        title:  "Facebook"
+        text:   "You did not provide access to your facebook account so far. We do require your access to your facebook account e.g. if you want us to post quests you did select on your timeline."
+        icon:   "Your facebook nickname."
+      twitter:
+        title:  "Twitter"
+        text:   "You did not provide access to your twitter account so far. We do require your access to your twitter account e.g. if you want us to twitter quests you did select."
+        icon:   "Your twitter handle."
     form:
       title:  Edit Personal Data
       profile:
         title:    Profile
         legend:   Your user profile can be viewed by other bountyhill users as well.
         legend2:  Do you intend to use bountyhill for commercial purpose? Please note that there are different terms for commercial users.
-      address:
-        title:  Address
-        legend: Your address information cannot be viewed by any other bountyhill user.
       delete:
         title:  Account
         legend: You can delete your bountyhill account at anytime. We would honestly regret to see you leave. Please let us know why in case you decided to delete your bountyhill account.
@@ -295,12 +349,6 @@ en:
         description:  Describe yourself
         images:       Your profile picture
         company:      Company name
-        address1:     Street and street number
-        address2:     Further address information
-        city:         City or town
-        zipcode:      Postal zipcode
-        country:      Country and State
-        phone:        Phone number(s)
         commercial:   I want to use bountyhill on behalf of my company.
         delete_me:    I do want to delete my bountyhill account.
         deletion:

@@ -17,14 +17,13 @@ en:
         one:    Identity
         other:  Identities
       identity/email:
-        one:    Email identity
-        others: Email identities
-      identity/twitter:
-        one:    Twitter identity
-        other:  Twitter identities
-      identity/facebook:
-        one:    Facebook identity
-        other:  Facebook identities
+        one:    Email
+        others: Emails
+      identity/address:
+        one:    Address
+        others: Addresses
+      identity/twitter:  Twitter
+      identity/facebook: Facebook
       location: location
     attributes:
       identity:
@@ -40,14 +39,8 @@ en:
         description:      Description
         image:            Image
         images:           Image
-        company:          Company
-        address1:         Address
-        address2:         Address supplement
-        city:             City
-        zipcode:          Zip code
-        country:          Country
-        phone:            Phone
         email:            Email
+        address:          Address
         twitter:          Twitter
         facebook:         Facebook
         delete_me:        Delete my account
@@ -93,6 +86,14 @@ en:
         stationary: Dependency
         address:    address
         radius:     radius
+      identity/address: 
+        company:  Company
+        address1: Address
+        address2: Address supplement
+        city:     City
+        zipcode:  Zip code
+        country:  Country
+        phone:    Phone
       identity/twitter:
         handle: User name
       identity/facebook:

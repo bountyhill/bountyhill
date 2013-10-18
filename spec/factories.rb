@@ -36,6 +36,18 @@ FactoryGirl.define do
       identity.user = User.create! { |user| user.identities << identity }
     end
   end
+  
+  factory :address_identity, :class => "Identity::Address" do
+    address1  "street"
+    city      "city"
+    zipcode   "zipcode"
+    country   "country"
+
+    after(:build) do |identity, evaluator|
+      next if identity.user.present?
+      identity.user = User.create! { |user| user.identities << identity }
+    end
+  end
 
   factory :user do
     initialize_with { Factory(:email_identity).user }

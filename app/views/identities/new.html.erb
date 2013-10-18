@@ -1,0 +1,5 @@
+<% modal_dialog I18n.t("identity/#{@provider}.form.new.title"), :html => { :class => @provider } do %>
+  <% modal_body :html => { :id => @provider } do %>
+    <%= partial("identities/#{@provider}/new", :identity => @identity) %>
+  <% end %>
+<% end %>

@@ -16,6 +16,7 @@
 # - Identity::Twitter
 # - Identity::Facebook
 # - Identity::Email
+# - Identity::Address
 # - Identity::Deleted
 #
 class Identity < ActiveRecord::Base
@@ -32,13 +33,19 @@ class Identity < ActiveRecord::Base
   attr_accessor   :delete_me
   attr_accessible :commercial
 
-  def self.social_identities
-    self.subclasses.map{ |i| i.name.split("::").last.downcase.to_sym } - [:deleted, :email]
+  #
+  # returns the identities covered by OmniAuth
+  def self.oauth_identities
+    self.subclasses.map{ |i| i.name.split("::").last.downcase.to_sym } - [:deleted, :email, :address]
   end
 
   def self.provider(provider)
     expect! provider => Symbol
     self.subclasses.detect{ |i| i.name.split("::").last.downcase.to_sym == provider}
+  end
+
+  def provider
+    self.class.name.split("::").last.downcase.to_sym
   end
 
   #

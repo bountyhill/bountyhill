@@ -1,0 +1,9 @@
+<% if (email_address = email && email.email).present? %>
+  <div class="content-box">
+    <%= identity_icon(:email) %>
+    <%= privacy_icon(:email) %>
+    <%= email_address %>
+  </div>
+<% else %>
+ <%= I18n.t("user.box.email.text") %>
+<% end %>

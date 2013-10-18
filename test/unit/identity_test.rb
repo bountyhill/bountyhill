@@ -33,13 +33,13 @@ class IdentityTest < ActiveSupport::TestCase
     assert_activity_logged { Factory(:twitter_identity) }
   end
   
-  def test_social_identities
-    assert_equal [:twitter, :facebook], Identity.social_identities
+  def test_oauth_identities
+    assert_equal [:twitter, :facebook], Identity.oauth_identities
   end
   
   def test_provider
-   Identity.social_identities.each do |provider|
-      assert_equal "Identity::#{provider.to_s.camelize}".constantize, Identity.provider(provider)
+   Identity.oauth_identities.each do |identity|
+      assert_equal "Identity::#{identity.to_s.camelize}".constantize, Identity.provider(identity)
     end
   end
 

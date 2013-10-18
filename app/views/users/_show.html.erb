@@ -1,2 +1,10 @@
-<%= partial("contact", :user => user)     if @current_user == user %>
-<%= partial("description", :user => user) if user.description.present? %>
+<% if user.description.present? %>
+  <div class="content-box">
+    <%= if user.commercial? then  identity_icon(:commercial, :title => I18n.t("user.box.profile.icon.commercial"))
+        else                      identity_icon(:private,    :title => I18n.t("user.box.profile.icon.private"))
+        end %>
+    <%= user.description %>
+  </div>
+<% else %>
+  <%= I18n.t("user.box.profile.text") %>
+<% end %>

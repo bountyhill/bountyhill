@@ -144,6 +144,7 @@ module ApplicationHelper
   
   def modal_dialog(title, options={}, &block)
     expect! title => String
+    html = options[:html] ||= {}
     
     header = [
       button("&times;", :type => "button", :class => "close", :"data-dismiss" => "modal", :"aria-hidden" => "true"),
@@ -151,7 +152,7 @@ module ApplicationHelper
     ].join.html_safe
     
     output = [
-      div(header,           :class  => "modal-header"),
+      div(header,           :class  => "modal-header #{html[:class]}"),
       div(capture(&block),  :id     => "modal-content")
     ].join.html_safe
     
@@ -159,8 +160,10 @@ module ApplicationHelper
   end
   
   def modal_body(options={}, &block)
-    output = div(capture(&block), :class => "modal-body")
-
+    html = options[:html] ||= {}
+    html_options = html.merge(:class => "modal-body")
+    
+    output = div(capture(&block), html_options)
     block_given? ? concat(output) : output
   end
   

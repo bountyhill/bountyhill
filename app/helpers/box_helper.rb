@@ -3,8 +3,8 @@
 module BoxHelper
 
   def box(type, object, options={})
-    expect! type    => [:quest, :offer, :user]
-    expect! object  => [Quest, Offer, User]
+    expect! type    => [:quest, :offer, :user, :email, :address, :twitter, :facebook]
+    expect! object  => [nil, Quest, Offer, User, Identity]
     
     preview = options[:preview]
     header = div :class => "header" do
@@ -13,9 +13,16 @@ module BoxHelper
         div(preview ? step_indicator_for(object) : send("#{type}_buttons", object), :class => "pull-right")
       ].compact.join.html_safe
     end
-    
+
+    partial_path = case type
+      when :email     then "identities/email/show"
+      when :address   then "identities/address/show"
+      when :twitter   then "identities/twitter/show"
+      when :facebook  then "identities/facebook/show"
+      else "#{type.to_s.pluralize}/show"
+      end
     content = div :class => "content" do
-      partial "#{type.to_s.pluralize}/show", type => object, :preview => preview
+      partial partial_path, type => object, :preview => preview
     end
     
     div :class => "#{type} box row-fluid #{options[:class]}" do

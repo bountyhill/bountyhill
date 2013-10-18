@@ -8,6 +8,27 @@
   </div>
   <div class="span1">&nbsp;</div>
 </div>
+
+<% if current_user == @user %>
+  <%= spacer %>
+  <div class="row-fluid">
+    <div class="span1">&nbsp;</div>
+    <div class="main span8">
+      <%= identity_box  @user, :address %>
+      <%= spacer %>
+      <%= identity_box  @user, :email %>
+      <%= spacer %>
+      <%= identity_box  @user, :twitter %>
+      <%= spacer %>
+      <%= identity_box  @user, :facebook %>
+    </div>
+    <div class="sidebar span2">
+      <%= user_statistic_boxes(@user) %>
+    </div>
+    <div class="span1">&nbsp;</div>
+  </div>
+<% end %>
+
 <%= spacer %>
 <div class="row-fluid">
   <div class="span1">&nbsp;</div>
@@ -15,7 +36,7 @@
     <%= activities_box(@user, :per_page => @per_page) %>
   </div>
   <div class="sidebar span2">
-    <%= user_statistic_boxes(@user) %>
+    <%= user_statistic_boxes(@user) unless current_user == @user %>
   </div>
   <div class="span1">&nbsp;</div>
 </div>

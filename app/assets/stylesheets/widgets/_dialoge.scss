@@ -21,7 +21,15 @@
 
 .quests { .modal-header { background-color: $quest_box_title_color; }}
 .offers { .modal-header { background-color: $offer_box_title_color; }}
-.users  { .modal-header { background-color: $user_box_title_color; }}
+.users  { 
+  .modal-header { 
+    background-color: $user_box_title_color;
+    &.address   { background-color: $address_box_title_color; }
+    &.email     { background-color: $email_box_title_color; }
+    &.twitter   { background-color: $twitter_box_title_color; }
+    &.facebook  { background-color: $facebook_box_title_color; }
+  }
+}
 
 /* ------- filepicker ------- */
 #filepicker_dialog_container, #myModal {

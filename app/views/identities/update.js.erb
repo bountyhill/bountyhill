@@ -1,1 +1,1 @@
-$("#<%= File.basename(@partial) %>").html("<%= escape_javascript(partial @partial) %>");
+$("#<%= @provider %>").html("<%= escape_javascript(partial "identities/#{@provider}/edit", :identity => @identity) %>");

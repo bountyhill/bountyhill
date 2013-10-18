@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class UsersController < ApplicationController
-  FORM_PARTIALS = %w(profile address email twitter facebook delete) unless const_defined?("FORM_PARTIALS")
+  FORM_PARTIALS = %w(profile password delete) unless const_defined?("FORM_PARTIALS")
 
   before_filter :set_user
   before_filter :access_allowed?,   :except => [:show]
@@ -23,7 +23,6 @@ class UsersController < ApplicationController
       redirect_to! @user
     end
 
-    set_partials
     render :action => "edit"
   end
   

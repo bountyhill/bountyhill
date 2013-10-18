@@ -1,0 +1,28 @@
+<% modal_dialog I18n.t("identity/#{@provider}.form.delete.title"), :html => { :class => @provider } do %>
+  <% modal_body :html => { :id => @provider } do %>
+  
+    <%= form_for(@identity, :url => identity_url(@identity), :method => :delete) do |form| %>
+      <p><%= I18n.t("identity/#{@provider}.form.delete.legend") %></p>
+      <%= form.control_group :delete_me, :check_box %>
+
+      <div class="buttons">
+        <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-cancel", :"data-dismiss" => "modal" %>
+        <%= form.submit I18n.t("button.remove"),
+          :name => "delete_#{@provider}",
+          :id => "delete_#{@provider}",
+          :class => "btn btn-danger",
+          :disabled => "disabled" %>
+      </div>
+    <% end %>
+
+    <script type="text/javascript" charset="utf-8">
+      $("#identity_<%= @provider %>_delete_me").change(function() {
+        if($(this).is(':checked'))
+          $("#delete_<%= @provider %>").removeAttr("disabled");
+        else
+          $("#delete_<%= @provider %>").attr("disabled", "disabled");
+      });
+    </script>
+    
+  <% end %>
+<% end %>

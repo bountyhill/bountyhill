@@ -1,24 +1,28 @@
 <%= form_for(identity, :url => "/auth/facebook/init") do |form| %>
   <% if current_user %>
-    <p><%= I18n.t("identity/facebook.form.create.legend") %></p>
+    <p><%= I18n.t("identity/facebook.form.new.legend") %></p>
   <% else %>
     <p><%= I18n.t("identity/facebook.form.signin.legend") %></p>
   <% end %>
 
-  <%= hidden_field_tag :req, params[:req] %>
   <%= form.error_messages @error if @error %>
+  <%#= hidden_field_tag :req, :facebook %>
+
+  <%= form.control_group :commercial, :check_box %>
 
   <% if current_user %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
-    <%= form.control_group :commercial, :check_box %>
-    
     <p><%= I18n.t("identity.form.agree_to_terms")%></p>
     <%= form.agree_to_terms(:id => "agree_to_terms_facebook") unless current_user%>
 
     <div class="buttons">
       <%= link_to_cancel_signin %>
-      <%= form.submit I18n.t("button.signin"), :name => "signin_facebook", :id => "signin_facebook", :class => "btn btn-primary btn-inverse", :disabled => "disabled" %>
+      <%= form.submit I18n.t("button.signin"),
+        :name => "signin_facebook",
+        :id => "signin_facebook",
+        :class => "btn btn-primary btn-inverse" %>
+        <!-- , :disabled => "disabled" %> -->
     </div>
   <% end %>
 <% end %>

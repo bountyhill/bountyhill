@@ -30,6 +30,9 @@ class Activity < ActiveRecord::Base
     },
     :"identity/email" => {
       :create => 2
+    },
+    :"identity/address" => {
+      :create => 2
     }
   }.with_indifferent_access
 

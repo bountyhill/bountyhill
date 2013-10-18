@@ -65,11 +65,20 @@ Bountyhill::Application.routes.draw do
   match "signout"         => "sessions#destroy",        :via => :delete
   match "sessions/cancel" => "sessions#cancel",         :via => :post
   
-  resources :identities
-  match "identities/failure" => "identities#failure",     :via => :post
+  resources :identities do 
+    member do
+      get   "delete"
+      get   "init"
+      post  "success"
+      post  "failure"
+    end
+  end
+  # match "identities/failure" => "identities#failure", :via => :post
+  # match "identities/delete"  => "identities#delete",  :via => :get
+
   # omniauth
-  match 'auth/:provider/init'     => 'identities#new'
-  match 'auth/:provider/callback' => 'identities#create'
+  match 'auth/:provider/init'     => 'identities#init'
+  match 'auth/:provider/callback' => 'identities#success'
   match 'auth/failure'            => 'identities#failure'
 
   resources :deferred_actions, :only => [:show]

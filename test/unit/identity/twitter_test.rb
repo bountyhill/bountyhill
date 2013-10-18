@@ -14,7 +14,7 @@ class Identity::TwitterTest < ActiveSupport::TestCase
     # identifier cannot be nil
     assert_invalid Identity::Twitter.new, :identifier
     
-    # identifier mustbe uniw
+    # identifier must be uniq
     assert_valid   Identity::Twitter.create!(:identifier => "test")
     assert_invalid Identity::Twitter.new(:identifier => "test"), :identifier
     assert_invalid Identity::Twitter.new(:identifier => "TeST"), :identifier

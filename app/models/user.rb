@@ -4,6 +4,7 @@ require_dependency "identity"
 require_dependency "identity/twitter"
 require_dependency "identity/facebook"
 require_dependency "identity/email"
+require_dependency "identity/address"
 
 # The User model.
 #
@@ -118,11 +119,12 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [:any, :email, :confirmed, :twitter, :facebook, :deleted]
+    expect! mode => [:any, :email, :confirmed, :address, :twitter, :facebook, :deleted]
     
     case mode
     when :email     then identities.detect { |i|  i.is_a?(Identity::Email) }
     when :confirmed then identities.detect { |i|  i.is_a?(Identity::Email) && i.confirmed? }
+    when :address   then identities.detect { |i|  i.is_a?(Identity::Address) }
     when :twitter   then identities.detect { |i|  i.is_a?(Identity::Twitter) }
     when :facebook  then identities.detect { |i|  i.is_a?(Identity::Facebook) }
     when :deleted   then identities.detect { |i|  i.is_a?(Identity::Deleted) }
@@ -405,8 +407,8 @@ class User < ActiveRecord::Base
   
   # -- user information -----------------------------------------------
   serialize :serialized, Hash
-  serialized_attr :first_name, :last_name, :company, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
-  attr_accessible :first_name, :last_name, :company, :address1, :address2, :city, :zipcode, :country, :phone, :description, :delete_reason
+  serialized_attr :first_name, :last_name, :description, :phone
+  attr_accessible :first_name, :last_name, :description, :phone
   
   # user could have provided his profile description excplicitly
   # or we try to take one from his identities
@@ -416,10 +418,6 @@ class User < ActiveRecord::Base
     if (identity = self.identities.detect{ |identity| identity.respond_to?(:description) && identity.description.present? })
       identity.description
     end
-  end
-  
-  def address
-    [:company, :address1, :address2, :city, :zipcode, :country].map{ |col| self.send(col) }.compact
   end
 
   serialized_attr :image

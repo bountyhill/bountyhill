@@ -1,9 +1,51 @@
+.box {
+  &.user        { @include box_colors(user);        .content { div { background-color: $user_box_title_color; }}}
+  &.email       { @include box_colors(email);       .content { div { background-color: $email_box_title_color; }}}
+  &.address     { @include box_colors(address);     .content { div { background-color: $address_box_title_color; }}}
+  &.twitter     { @include box_colors(twitter);     .content { div { background-color: $twitter_box_title_color; }}}
+  &.facebook    { @include box_colors(facebook);    .content { div { background-color: $facebook_box_title_color; }}}
+  &.user, &.email, &.address, &.twitter, &.facebook {
+    .content { 
+      min-height: 52px;
+      .content-box {
+        margin: 0 -16px -16px -16px;
+        padding: 16px ;
+        color: $text;
+        text-align: center;
+        font-weight: bold;
+        font-size: 120%;
+        .identity-icon { float: left; }
+        .privacy-icon  { float: right; }
+        .identity-icon, .privacy-icon {
+          a { color: $text }
+        }
+/*
+        dl { 
+          clear: both;
+          width: 90%;
+          margin: 0;
+        }
+        dt, dd { float: left; }
+        dd {
+          font-size: 120%; 
+          width: 75%;
+        }
+        dt { 
+          display: none;
+          clear: both;
+          width: 20%;
+        }
+*/
+      }
+    }
+  }
+}
 .activities {
   &.box {
     @include box_colors(activities);
     
     /* opener triangle */
-    @include opener($activities_box_title_color, $open_center);
+    /* @include opener($activities_box_title_color, $open_center); */
 
     ul.activities {
       li.activity {
@@ -42,46 +84,6 @@
   }
 }
 .user {
-  &.box {
-    @include box_colors(user);
-    .header {
-      .handle {
-        font-size: 18px;
-        font-weight: normal;
-      }
-    }
-    .content {
-      min-height: 56px;
-      .contact-section, .description-section {
-        background-color: $user_box_title_color;
-        color: $text;
-        margin: 30px -16px -16px -16px;
-        padding: 16px ;
-        font-weight: bold;
-      }
-      :first-child { margin-top: 0; }
-      .description-section { font-size: 120%; }
-      .contact-section {
-        .info-icon {
-          float: right;
-          a { color: $user_box_content_color }
-        }
-        .contact-info {
-          clear: both;
-          dt, dd { float: left; }
-          dd { 
-            font-size: 120%; 
-            width: 75%;
-          }
-          dt { 
-            clear: both;
-            width: 20%;
-          }
-        }
-      }
-    }
-  }
-  
   &.bar {
     &.quest { background-color: $quest_box_title_color; }
     &.offer { 
