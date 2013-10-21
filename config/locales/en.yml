@@ -481,6 +481,13 @@ en:
       started:  "Your quest '%{quest}' was successfully started."
       stopped:  "Your quest '%{quest}' was successfully canceled."
       shared:   "Your quest '%{quest}' was successfully shared."
+    info:
+      offers:   
+        one:    "%{count} offer has been submitted for this quest."
+        other:  "%{count} offers have been submitted for this quest."
+      comments: 
+        one:    "%{count} comment was posted to this quest."
+        other:  "%{count} comments were posted to this quest."
     box:
       title:    "%{amount} bounty"
       location: "Location restriction: %{location}"

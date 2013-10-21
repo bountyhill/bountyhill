@@ -27,7 +27,7 @@ class QuestsController < ApplicationController
       :per_page   => per_page,
       :group      => 'quests.id',
       :order      => "quests.created_at desc",
-      :include    => [{ :owner => :identities }, :location])
+      :include    => [{ :owner => :identities }, :location, :comments, :offers])
   end
 
   # GET /quests/1

@@ -153,19 +153,21 @@ $facebook_button_color:     $facebook;
 /* activities */
 
 $activities_box_color:            $transparent;
-$activities_box_title_color:      $orange;
-$activities_box_content_color:    $content_color;;
-$activities_box_statistic_color:  $orange;
+$activities_box_title_color:      $grass;
+$activities_box_content_color:    $content_color;
+$activities_box_statistic_color:  $grass;
 
 
 /* comments */
 
 $comments_box_color:            $transparent;
-$comments_box_title_color:      $grass;
+$comments_box_title_color:      $orange;
 $comments_box_content_color:    $content_color;;
-$comments_box_statistic_color:  $grass;
-$comments_box_form_background:  $grass_transparent;
-$comment_button_color:          $grass;
+$comments_box_statistic_color:  $orange;
+$comments_box_form_background:  $orange_transparent;
+
+$comment_button_color:          $orange;
+$comment_active_button_color:   $orange_dark;
 
 
 /* modal dialoges */

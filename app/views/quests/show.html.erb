@@ -11,11 +11,13 @@
   <div class="span1">&nbsp;</div>
   <div class="main span8">
     <%= quest_box(@quest, :class => "with-opener") %>
-    <%= spacer %>
     <% if @quest.offers.for_user(current_user).any? %>
-      <%= offers_box(@quest, :class => "with-opener") %>
+      <a id ='offers'></a>
       <%= spacer %>
+      <%= offers_box(@quest, :class => "with-opener") %>
     <% end %>
+    <a id ='comments'></a>
+    <%= spacer %>
     <%= comments_box(@quest) %>
   </div>
   <div class="sidebar span2">

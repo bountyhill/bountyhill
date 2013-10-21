@@ -480,6 +480,13 @@ de:
       started:  "Deine Suchanfrage '%{quest}' wurde erfolgreich gestartet."
       stopped:  "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
       shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
+    info:
+      offers:   
+        one:    "%{count} Angebot wurden auf diese Suchanfrage abgeben."
+        other:  "%{count} Angebote wurden auf diese Suchanfrage abgeben."
+      comments: 
+        one:    "%{count} Kommentar wurden zu dieser Suchanfrage gepostet."
+        other:  "%{count} Kommentare wurden zu dieser Suchanfrage gepostet."
     box:
       title:    "%{amount} Belohnung"
       location: "Ortsbeschränkung: %{location}"
