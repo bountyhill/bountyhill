@@ -37,9 +37,7 @@ module Identity::Provider
       expect! attrs_hash  => Hash
 
       attrs_hash = attrs_hash.with_indifferent_access
-      unless Rails.env.test?
-        W "Oauth Attributes Hash", attrs_hash
-      end
+      W("Oauth Attributes Hash", attrs_hash) unless Rails.env.test?
       
       provider = self.name.split("::").last.underscore
       if (expected = attrs_hash[:provider]).present? && expected.to_s != provider

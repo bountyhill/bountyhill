@@ -111,7 +111,7 @@ class SessionsControllerTest < ActionController::TestCase
     post :cancel
     assert_response :redirect
     assert_redirected_to root_path
-    assert_equal I18n.t("sessions.auth.cancel"), flash[:notice]
+    assert_equal I18n.t("sessions.auth.cancel"), flash[:warn]
   end
 
   def test_set_partials
@@ -121,11 +121,12 @@ class SessionsControllerTest < ActionController::TestCase
       "twitter"   => { "twitter"    => %w(twitter) },
       "facebook"  => { "facebook"   => %w(facebook) },
       "email"     => { "email"      => %w(signin email) },
+      "address"   => { "address"    => %w(address) },
       "foobar"    => { nil          => %w(signin twitter facebook email) }
     }
     signins.each do |test, request|
       if request.keys.first == "confirmed"
-        if test == "confirm" then  @controller.stubs(:identity?).once.with(:email).returns(true)
+        if test == "confirm" then @controller.stubs(:identity?).once.with(:email).returns(true)
         else                      @controller.stubs(:identity?).once.with(:email).returns(false)
         end
       end

@@ -16,13 +16,15 @@
   
   <% submit_button_options = { :name => "signup_email", :id => "signup_email", :class => "btn btn-primary btn-inverse" } %>
   
-  <% if current_user %>
+  <% if current_user && !identity_requested?(:email) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
 
   <% else %>
-    <p><%= I18n.t("identity.form.agree_to_terms")%></p>
-    <%= form.agree_to_terms(:id => "agree_to_terms_email") %>
-    <%# submit_button_options[:disabled] = 'disabled' %>
+    <% unless current_user %>
+      <p><%= I18n.t("identity.form.agree_to_terms")%></p>
+      <%= form.agree_to_terms(:id => "agree_to_terms_email") %>
+      <% submit_button_options[:disabled] = 'disabled' %>
+    <% end %>
 
     <div class="buttons">
       <%= link_to_cancel_signin %>

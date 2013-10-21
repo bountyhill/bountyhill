@@ -10,19 +10,21 @@
 
   <%= form.control_group :commercial, :check_box %>
 
-  <% if current_user %>
+  <% if current_user && !identity_requested?(:facebook) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
-    <p><%= I18n.t("identity.form.agree_to_terms")%></p>
-    <%= form.agree_to_terms(:id => "agree_to_terms_facebook") unless current_user%>
-
+    <% unless current_user %>
+      <p><%= I18n.t("identity.form.agree_to_terms")%></p>
+      <%= form.agree_to_terms(:id => "agree_to_terms_facebook") %>
+    <% end %>
+    
     <div class="buttons">
       <%= link_to_cancel_signin %>
       <%= form.submit I18n.t("button.signin"),
         :name => "signin_facebook",
         :id => "signin_facebook",
-        :class => "btn btn-primary btn-inverse" %>
-        <!-- , :disabled => "disabled" %> -->
+        :class => "btn btn-primary btn-inverse",
+        :disabled => "disabled" %>
     </div>
   <% end %>
 <% end %>

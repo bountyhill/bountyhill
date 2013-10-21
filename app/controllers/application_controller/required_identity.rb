@@ -22,7 +22,7 @@ module ApplicationController::RequiredIdentity
   #  - request_identity! mode
   #
   # The +mode+ parameter is one of the supported authentication modi
-  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:facebook</tt>, <tt>:any</tt>)
+  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:facebook</tt>, <tt>:login</tt>, <tt>:any</tt>)
   # and defaults to :any.
   #
   # - <tt>:on_cancel</tt> URL to redirect to when user cancels authentication.
@@ -52,13 +52,15 @@ module ApplicationController::RequiredIdentity
   #     share.post(:twitter)
   #   end
   
+  REQUESTBALE_IDENTITIES = [ :confirmed, :email, :twitter, :facebook, :address, :login, :any ]
+  
   def request_identity!(*args)
     options = args.extract_options!
     kind = args.first || options[:kind] || :any
 
     expect! request.method => "GET"
     expect! args.length => [0, 1]
-    expect! kind => [ :confirmed, :email, :twitter, :facebook, :any ]
+    expect! kind => REQUESTBALE_IDENTITIES
     expect! options => {
       :on_success  => [ nil, ActiveRecord::Base, String ],
       :on_cancel   => [ nil, ActiveRecord::Base, String ],
@@ -81,7 +83,7 @@ module ApplicationController::RequiredIdentity
 
     # -- fetch notice text --------------------------------------------
     notice = options.delete(:notice)
-    notice ||= I18n.t("identity.required", :identity => kind)
+    notice ||= I18n.t("identity.required.#{kind}")
 
     # -- prepare payload ----------------------------------------------
     
@@ -125,7 +127,7 @@ module ApplicationController::RequiredIdentity
     
     # validate identity payload, just to be sure.
     return unless payload.is_a?(Hash)
-    return unless payload[:kind].in?([:confirmed, :email, :twitter, :facebook, :any])
+    return unless payload[:kind].in?(REQUESTBALE_IDENTITIES)
     
     payload
   end
@@ -144,6 +146,14 @@ module ApplicationController::RequiredIdentity
     else
       session.delete SESSION_KEY
     end
+  end
+  
+  #
+  # checks if the given identity was requested lately
+  def identity_requested?(kind)
+    expect! kind => REQUESTBALE_IDENTITIES
+    
+    (payload = H.payload(session)) && payload[:kind] == kind
   end
   
   # -- identity provisioning result: identity_presented! and identity_cancelled!

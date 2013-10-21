@@ -101,6 +101,7 @@ en:
     loading: "Loading content ..."
   button:
     new:      New
+    add:      Add
     save:     Save
     update:   Update
     show:     Show
@@ -184,7 +185,14 @@ en:
       privacy:  Privacy Policy
       terms:    Terms of Use
   identity:
-    required: "We need your %{identity} identity to continue."
+    required: 
+      any:        "We need any contact data of you to continue."
+      online:     "You need to login to continue."
+      email:      "We need your email to continue."
+      confirmed:  "You need to confirm your email to continue."
+      address:    "We need your postal address to continue."
+      twitter:    "We need access to your twitter account to continue."
+      facebook:   "We need access to your facebook account to continue."
     form:
       title:          Sign in/up
       terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
@@ -238,6 +246,9 @@ en:
       delete:
         title:  Remove Address
         legend: "You can remove your address completely. Pls. note that if you are a commercial user we will require an address from you later on."
+      signin:
+        title:    Provide your address
+        legend:   You have to provide your postal address to proceed.
       field_hint:
         address1:   Street and street number
         address2:   Further address information
@@ -577,6 +588,7 @@ en:
     auth:
       success:    "You successfully signed in. Welcome on bountyhill!"
       cancel:     "Are you unsure if you have an account? Just register and enjoy bountyhill ..."
+      skip:       "You will have to provide the required information to continue!"
       failure:    "We are sorry but an error occured during your sign in. Please try again ..."
       destroy:    "You signed out successfully. See you again on bountyhill ..."
     email:

@@ -28,7 +28,7 @@ module ApplicationController::Sessions
   end
 
   def identity?(*args)
-    current_user && current_user.identity(*args)
+    current_user && current_user.reload.identity(*args)
   end
 
   # returns the current_user. When called in a request for the first 

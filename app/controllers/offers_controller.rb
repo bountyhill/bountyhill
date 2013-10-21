@@ -44,9 +44,12 @@ class OffersController < ApplicationController
 
   # GET /offers/new
   def new
-    request_identity! :confirmed 
     @offer = Offer.new(:quest_id => params[:quest_id])
     
+    # require user's identities to be present
+    request_identity! :confirmed, :on_cancel => @offer.quest
+    request_identity! :address,   :on_cancel => @offer.quest if current_user.commercial?
+
     # fill in location, if the server provides one.
     if location = request.location
       @offer.location = location.name

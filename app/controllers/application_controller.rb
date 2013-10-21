@@ -52,6 +52,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :mobile?
 
+
+  # -- Detect if a identity was requested -----------------------------------------
+  #
+  # see ApplicationController::RequiredIdentity#identity_requested?(kind) for implementation
+  helper_method :identity_requested?
+
   # -- Reload code in /lib on each request ----------------------------
   #
   # This was the default behaviour in Rails 2; Rails 3 only reloads

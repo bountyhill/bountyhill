@@ -16,6 +16,29 @@ class RunsControllerTest < ActionController::TestCase
     login @owner
   end
 
+  def test_show_requires_identity_login
+    User.any_instance.expects(:identities).at_least(Identity.oauth_identities.size).returns([])
+
+    assert_no_difference "Quest.count" do
+      get :show, :id => @quest.id
+    end
+    
+    assert_response :redirect
+    assert_redirected_to signin_path(:req => :login)
+    assert_equal @quest, assigns(:quest)
+  end
+  
+  def test_show_requires_identity_address_for_commercial_users
+    User.any_instance.expects(:commercial?).returns(true)
+
+    assert_no_difference "Quest.count" do
+      get :show, :id => @quest.id
+    end
+    assert_response :redirect
+    assert_redirected_to signin_path(:req => :address)
+    assert_equal @quest, assigns(:quest)
+  end
+
   def test_show
     User.expects(:transfer!).once
     assert_no_difference "Quest.count" do
@@ -30,14 +53,12 @@ class RunsControllerTest < ActionController::TestCase
   def test_show_draft
     logout
     draft = Factory(:quest, :owner => User.draft)
-#pend("Why does user draft not exist in DB anymore?") do
     assert_no_difference "Quest.count" do
       get :show, :id => draft.id
     end
     assert_response :redirect
-    assert_redirected_to signin_path(:req => :any)
+    assert_redirected_to signin_path(:req => :login)
     assert_equal draft, assigns(:quest)
-#end
   end
   
   def test_cancel

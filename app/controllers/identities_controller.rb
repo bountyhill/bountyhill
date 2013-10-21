@@ -14,7 +14,15 @@ class IdentitiesController < ApplicationController
   def create
     @identity = Identity.provider(@provider).new(@identity_params)
     @identity.user = current_user
-    redirect_to!(user_path(@identity.user)) if @identity.save
+
+    return unless @identity.save
+
+    # if the identity was requested to perform another action
+    # we have to call identity_presented! to trigger it's on susscess callback 
+    return identity_presented! if identity_requested?(@provider)
+    
+    flash[:success] = I18n.t("message.add.success", :record => @identity.class.model_name.human)
+    redirect_to!(user_path(@identity.user))
   end
 
   def edit

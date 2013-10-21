@@ -43,9 +43,7 @@ module Deferred
   end
   
   def self.create_queue(name)
-    unless instance_methods.include?(name)
-      raise ArgumentError, "Invalid Deferred action #{name.inspect}" 
-    end
+    raise(ArgumentError, "Invalid Deferred action #{name.inspect}") unless instance_methods.include?(name)
     
     GirlFriday::WorkQueue.new(name, :size => 1) do |args|
       begin

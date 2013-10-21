@@ -107,6 +107,10 @@
           &:after, &:before {
             display:none;
           }
+          .divider {
+            background-color: $navigation_background;
+            border-color: $petrol;
+          }
         }
         li {
           a {

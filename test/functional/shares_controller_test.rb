@@ -58,7 +58,7 @@ class SharesControllerTest < ActionController::TestCase
   #
   # user has identity for requested network (quest already started)
   def test_show
-    @owner.identities << Factory(:twitter_identity)
+    Factory(:twitter_identity, :user => @owner)
     # TODO: @quest.expects(:active?).once.returns(true)
     Quest.any_instance.expects(:active?).once.returns(true)
     # TODO: @share.expects(:post).with(:twitter).once
@@ -76,7 +76,7 @@ class SharesControllerTest < ActionController::TestCase
   #
   # user has identity for requested network (quest not started yet)
   def test_show_starts_quest
-    @owner.identities << Factory(:twitter_identity)
+    Factory(:twitter_identity, :user => @owner)
     # TODO: @quest.expects(:active?).once.returns(false)
     Quest.any_instance.expects(:active?).once.returns(false)
     # TODO @quest.expects(:start!).once

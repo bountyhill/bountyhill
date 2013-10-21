@@ -92,4 +92,12 @@ FactoryGirl.define do
       share.identities  = { "twitter" => true }
     end
   end
+  
+  factory :location do |location|
+    address   "Berlin, Germany"
+    latitude  52.519171
+    longitude 13.4060912
+    
+    association :stationary, :factory => :quest
+  end
 end

@@ -119,7 +119,7 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [:any, :email, :confirmed, :address, :twitter, :facebook, :deleted]
+    expect! mode => [:any, :login, :email, :confirmed, :address, :twitter, :facebook, :deleted]
     
     case mode
     when :email     then identities.detect { |i|  i.is_a?(Identity::Email) }
@@ -128,7 +128,11 @@ class User < ActiveRecord::Base
     when :twitter   then identities.detect { |i|  i.is_a?(Identity::Twitter) }
     when :facebook  then identities.detect { |i|  i.is_a?(Identity::Facebook) }
     when :deleted   then identities.detect { |i|  i.is_a?(Identity::Deleted) }
-    else                 identities.detect { |i| !i.is_a?(Identity::Deleted) }
+    when :any       then identities.detect { |i| !i.is_a?(Identity::Deleted) }
+    when :login     then identities.detect { |i|  (i.is_a?(Identity::Email) && i.confirmed?) ||
+                                                  i.is_a?(Identity::Twitter) ||
+                                                  i.is_a?(Identity::Facebook) }
+    else raise "Cannot handle identity #{mode}!"
     end
   end
 
@@ -178,13 +182,15 @@ class User < ActiveRecord::Base
       return name
     end
     
-    if (email = find_identity(:email))
+    if (email = identity(:email))
       return email.name unless email.name.blank?
     end
     
     if (identity = identities.detect { |identity| identity.identity_provider? && !identity.name.blank? })
-      identity.name
+      return identity.name
     end
+    
+    "Anonymus"
   end
 
   # return the user's email
@@ -454,7 +460,7 @@ class User < ActiveRecord::Base
       end
 
       # remove users social identities 
-      [:twitter, :facebook].each do |identity_name|
+      Identity.oauth_identities.each do |identity_name|
         if (_identity = identity(identity_name))
           _identity.destroy
         end

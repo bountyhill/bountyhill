@@ -101,6 +101,7 @@ de:
     loading: "Inhalte werden geladen ..."
   button:
     new:      Neu
+    add:      Hinzugefügen
     save:     Speichern
     update:   Aktualisieren
     show:     Anzeigen
@@ -184,7 +185,14 @@ de:
       privacy:  Datenschutz
       terms:    Allgemeine Geschäftsbedingungen
   identity:
-    required: "Wir benötigen Deine %{identity} Identität um fortfahren zu können."
+    required: 
+      any:        "Damit Du fortfahren kannst, müssen wir vorerst wissen, wie wir Dich kontaktieren können."
+      online:     "Du musst dich anmelden, um fortfahren zu können."
+      email:      "Um fortfahren zu können, benötigen wir Deine Email-Adresse."
+      confirmed:  "Um fortfahren zu können, musst Du Deine Email-Adresse zunächst bestätigen."
+      address:    "Um fortfahren zu können, benötigen wir Deine Anschrift."
+      twitter:    "Um fortfahren zu können, benötigen wir Zugang zu Deinem Twitter Account."
+      facebook:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem Facebook Account."
     form:
       title:          Anmelden/Registrieren
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
@@ -238,6 +246,9 @@ de:
       delete:
         title:  Anschrift löschen
         legend: "Du kannst Deine Anschrift vollständig löschen. Bitte beachte, dass wir Deine Anschrift später verlangen können, wenn Du ein kommerzieller Nutzer bist."
+      signin:
+        title:    Gebe Deine Anschrift an
+        legend:   "Damit Du die gewünschte Aktion ausführen kannst, benötigen wir Deine Anschrift von Dir."
       field_hint:
         company:    Name des Unternehmens
         address1:   Strasse und Hausnummer
@@ -576,6 +587,7 @@ de:
     auth:
       success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"
       cancel:     "Bist Du Dir unsicher, ob Du bereits einen Account hast? Registriere Dich einfach bei bountyhill ..."
+      skip:       "Ohne die Angabe der geforderten Information kann die gewünschte Aktion nicht ausgeführt werden!"
       failure:    "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal ..."
       destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns wieder bei bountyhill ..."
     email:

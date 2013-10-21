@@ -76,7 +76,9 @@ class SessionsController < ApplicationController
   end
   
   def cancel
-    flash[:notice] = I18n.t("sessions.auth.cancel")
+    flash[:warn] =  if current_user then  I18n.t("sessions.auth.skip")
+                    else                  I18n.t("sessions.auth.cancel")
+                    end
     identity_cancelled!
   end
   
@@ -91,6 +93,7 @@ protected
   def set_partials
     @partials = case params[:req]
       when "confirmed"  then identity?(:email) ? %w(confirm) : %w(signin email)
+      when "address"    then %w(address)
       when "twitter"    then %w(twitter)
       when "facebook"   then %w(facebook)
       when "email"      then %w(signin email)

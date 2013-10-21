@@ -38,7 +38,7 @@ class Location < ActiveRecord::Base
   end
 
   def unlimited?
-    self.radius == 'unlimited'
+    self.class.unlimited?(self.radius)
   end
   
   def self.unlimited?(radius)

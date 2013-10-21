@@ -202,10 +202,11 @@ class ActionView::Helpers::FormBuilder
   end
   
   def agree_to_terms(options={})
-    options[:id] ||= "agree_to_terms"
+    options[:id]      ||= "agree_to_terms"
+    options[:checked] ||= false
     content_tag :label, :class => "checkbox" do
       note <<-HTML
-  <input id="#{options[:id]}" type="checkbox" checked="checked"/>
+  <input id="#{options[:id]}" type="checkbox" #{options[:checked] ? 'checked' : ''}/>
   #{I18n.t "identity.form.terms"}
       HTML
     end

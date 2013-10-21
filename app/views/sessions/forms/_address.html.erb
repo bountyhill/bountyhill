@@ -1,0 +1,8 @@
+<% accordion_heading(:address) do %>
+  <%= I18n.t("identity/address.form.signin.title")%>
+  <%= awesome_icon(:home, :size => :large, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:address) do %>
+  <%= partial("identities/address/new", :identity => Identity::Address.new) %>
+<% end %>
