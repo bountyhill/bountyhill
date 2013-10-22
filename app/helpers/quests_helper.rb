@@ -153,24 +153,21 @@ module QuestsHelper
   def quest_responses(quest)
     responses = []
     comments  = quest.comments.size
-    offers    = quest.offers.size
+    offers    = quest.offers.for_user(current_user).size
     
-    responses << (link_to(div(comments, :class => 'comments'), quest_path(quest, :anchor => 'comments'),
-            :id               => "comments-#{quest.id}",
-            :title            => I18n.t("quest.info.comments", :count => comments),
-            :"data-toggle"    => "tooltip",
-            :"data-placement" => "left") + javascript_tag("$('#comments-#{quest.id}').tooltip();")) unless comments.zero?
-            
-    responses << (link_to(div(offers, :class => 'offers'), quest_path(quest, :anchor => 'offers'),
-            :id               => "offers-#{quest.id}",
-            :title            => I18n.t("quest.info.offers", :count => offers),
-            :"data-toggle"    => "tooltip",
-            :"data-placement" => "left") + javascript_tag("$('#offers-#{quest.id}').tooltip();")) unless offers.zero?
-      
+    responses << circle_link_to(comments, quest_path(quest, :anchor => 'comments'),
+      :class  => 'comments',
+      :id     => "comments-#{dom_id(quest)}",
+      :title  => I18n.t("quest.info.comments", :count => comments)) unless comments.zero?
+
+    responses << circle_link_to(offers, quest_path(quest, :anchor => 'offers'),
+      :class  => 'offers',
+      :id     => "offers-#{dom_id(quest)}",
+      :title  => I18n.t("quest.info.offers", :count => offers)) unless offers.zero?
+    
     div :class => 'responses' do
       responses.map{ |response| response }.join.html_safe
     end unless responses.blank?
-    
   end
   
   def quest_statistic_boxes(quest)

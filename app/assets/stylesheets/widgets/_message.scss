@@ -50,21 +50,20 @@
     font-weight: bold;
     .responses {
       position: absolute;
-      right: $message_padding - 8px;
+      right: 0px;
       top: $message_padding - 4px;
       padding: 1px;
       a { 
         color: $text; 
         div {
           display: inline-block;
-          float: left;
           @include border-radius(50%);
           text-align: center;
           line-height: 25px;
           width: 25px;
           height: 25px;
           background-color: #ccc;
-          margin-right: 4px;
+          margin-right: 8px;
           &.comments { background-color: $comment_button_color; }
           &.offers   { background-color: $offer_button_color; }
           &:hover {

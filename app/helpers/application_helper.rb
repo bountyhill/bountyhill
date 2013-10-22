@@ -208,6 +208,19 @@ module ApplicationHelper
     div "", :class => "spacer #{options[:class]}", :style => options[:style]
   end
   
+  def circle_link_to(label, url, options={})
+    options[:class]     ||= 'circle'
+    options[:id]        ||= "circle-#{label}-#{rand(100)}"
+    options[:title]     ||= '&nbsp;'
+    options[:placement] ||= 'left'
+    
+    link_to(div(label, :class => options[:class]), url,
+            :id               => options[:id],
+            :title            => options[:title],
+            :"data-toggle"    => "tooltip",
+            :"data-placement" => options[:placement]) + javascript_tag("$('##{options[:id]}').tooltip();")
+  end
+  
   def url_for_follow_twitter_account(options = {})
     expect! options => { :account => [String, nil] }
 

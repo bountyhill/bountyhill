@@ -385,6 +385,10 @@ en:
       withdraw: "%{item} withdrawn"
   offer:
     compliance: "%{precentage}% compliant"
+    info:
+      comments:
+        one:    "%{count} comment was posted to this offer."
+        other:  "%{count} comments were posted to this offer."
     box:
       title:    "%{precentage}% compliance"
       criteria: 
@@ -482,10 +486,10 @@ en:
       stopped:  "Your quest '%{quest}' was successfully canceled."
       shared:   "Your quest '%{quest}' was successfully shared."
     info:
-      offers:   
+      offers:
         one:    "%{count} offer has been submitted for this quest."
         other:  "%{count} offers have been submitted for this quest."
-      comments: 
+      comments:
         one:    "%{count} comment was posted to this quest."
         other:  "%{count} comments were posted to this quest."
     box:

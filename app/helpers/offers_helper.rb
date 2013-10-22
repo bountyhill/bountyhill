@@ -83,6 +83,20 @@ module OffersHelper
     end
   end
   
+  def offer_responses(offer)
+    responses = []
+    comments  = offer.comments.size
+    
+    responses << circle_link_to(comments, offer_path(offer, :anchor => 'comments'),
+      :class  => 'comments',
+      :id     => "comments-#{dom_id(offer)}",
+      :title  => I18n.t("offer.info.comments", :count => comments)) unless comments.zero?
+    
+    div :class => 'responses' do
+      responses.map{ |response| response }.join.html_safe
+    end unless responses.blank?
+  end
+  
   def offer_compliance(offer, options={})
     value = options[:value] || offer.compliance.to_s
     css   = options[:class] || "progress"

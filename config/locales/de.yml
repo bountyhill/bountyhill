@@ -384,6 +384,10 @@ de:
       withdraw: "%{item} zurückgezogen"
   offer:
     compliance: "%{precentage}% erfüllt"
+    info:
+      comments:
+        one:    "%{count} Kommentar wurden zu diesem Angebot gepostet."
+        other:  "%{count} Kommentare wurden zu diesem Angebot gepostet."
     box:
       title:    "%{precentage}% Erfüllungsgrad"
       criteria:
@@ -481,10 +485,10 @@ de:
       stopped:  "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
       shared:   "Deine Suchanfrage '%{quest}' wurde erfolgreich geteilt."
     info:
-      offers:   
+      offers:
         one:    "%{count} Angebot wurden auf diese Suchanfrage abgeben."
         other:  "%{count} Angebote wurden auf diese Suchanfrage abgeben."
-      comments: 
+      comments:
         one:    "%{count} Kommentar wurden zu dieser Suchanfrage gepostet."
         other:  "%{count} Kommentare wurden zu dieser Suchanfrage gepostet."
     box:
