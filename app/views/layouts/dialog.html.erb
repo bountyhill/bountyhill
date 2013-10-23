@@ -6,7 +6,7 @@
     locals = { 
       :content        => "", #render(:template => "home/index"),
       :modal_content  => yield,
-      :extra_script   => "$('#myModal').modal('show');"
+      :extra_script   => "$('#myModal').modal('show'); $('.selectpicker').selectpicker();"
     }
 
     render :template => 'layouts/application', :locals => locals

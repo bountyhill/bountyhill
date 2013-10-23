@@ -138,6 +138,7 @@ class ActionView::Helpers::FormBuilder
     else
       case field_type.to_sym
       when :select
+        options[:class] += " selectpicker"
         self.send field_type, name, options.delete(:select_options), {}, options
       when :check_box
         self.send field_type, name, options

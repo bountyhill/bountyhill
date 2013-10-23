@@ -10,14 +10,15 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery.js
-//= require jquery-ui.js
-//= require jquery_ujs.js
-//= require bootstrap.js
-//= require filepicker.js
+//= require jquery
+//= require jquery-ui
+//= require jquery_ujs
+//= require bootstrap
+//= require filepicker
 //= require tinymce
-//= require jquery.inview.js
-//= require bootstrap-lightbox.js
+//= require jquery.inview
+//= require bootstrap-lightbox
+//= require bootstrap-select
 //= require html5slider
 
 // dummy console, just in case
