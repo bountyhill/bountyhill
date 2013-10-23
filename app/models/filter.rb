@@ -40,7 +40,7 @@ module Filter
       # filters.unshift filter_item(attribute, "all", filters.sum(&:count))
 
       # add 'all' filter unless there is nothing to filter
-      unless filters.size == 1
+      unless filters.size.zero?
         filter_for_all = filter_item(attribute, "all", filters.sum(&:count))
         filters.unshift(filter_for_all)
       end

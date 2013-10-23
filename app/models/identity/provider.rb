@@ -22,7 +22,7 @@ module Identity::Provider
     def self.extended(base)
       base.class_eval do
         serialized_attr :info, :credentials, :extra
-        attr_accessible :info, :credentials, :extra, :identifier, :name, :email
+        attr_accessible :info, :credentials, :extra, :identifier, :name, :email, :location
         
         # validates user's provider's identifier
         validates :identifier, :presence => true, :format => { :with => /^[^@]/ }, :uniqueness => { :case_sensitive => false }

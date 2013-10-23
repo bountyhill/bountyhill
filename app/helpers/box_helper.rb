@@ -35,13 +35,13 @@ module BoxHelper
     expect! models  => ActiveRecord::Relation
     expect! options => Hash
     
-    title_text =  I18n.t("#{type.to_s.singularize}.list.title", :count => models.total_entries)
-    title_text += " " + I18n.t("filter.filter_by", :filter => options[:filter]) if options[:filter]
+    title   =  I18n.t("#{type.to_s.singularize}.list.title", :count => models.total_entries)
+    title   += " " + I18n.t("filter.filter_by", :filter => options[:filter]) if options[:filter]
     
     header = div :class => "header" do
       [
-        div(title_text, :class => "pull-left"),
-        div(send("#{type}_list_box_buttons"), :class => "pull-right")
+        div(title,            :class => "pull-left"),
+        div(options[:header], :class => "pull-right")
       ].compact.join.html_safe
     end
     

@@ -130,9 +130,6 @@ de:
     confirm:  Bestätigen
   filter:
     filter_by: "nach %{filter}"
-    location:
-      title:  Standort
-      legend: "Wähle einen Radius um Deinen Standort."
     categories:
       title:  Kategorien
     states:
@@ -502,9 +499,10 @@ de:
         other:  "Hinzugefügte Bilder"
     list:
       title:
-        zero:   "Suchen"
+        zero:   "Keine Suchen verhanden"
         one:    "1 Suche"
         other:  "%{count} Suchen"
+      location: "Gebe eine Ortsbeschränkung an."
       bounty:   "%{amount} Belohnung"
       offers:
         zero:   " "

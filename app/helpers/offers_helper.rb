@@ -16,10 +16,6 @@ module OffersHelper
     list_box(:offers, offers)
   end
   
-  def offers_list_box_buttons
-    # TODO
-  end
-
   def offer_buttons(offer)
     button_group [
       make_offer_button(offer),

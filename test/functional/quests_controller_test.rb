@@ -48,21 +48,34 @@ class QuestsControllerTest < ActionController::TestCase
     assert_equal [@quest], assigns(:quests)
   end
   
-  def test_index_with_given_location
-    @quest.create_location(:address => "Berlin, Germany")
-    @request.stubs(:location).returns(OpenStruct.new(:name => "Potsdam, Germany"))
-    
-    # radius is too short
-    get :index, :owner_id => @searcher.id, :radius => 10
-    assert_response :success
-    assert_template :index
-    assert_equal [], assigns(:quests)
-    
-    # radius just fits
-    get :index, :owner_id => @searcher.id, :radius => 50
+  def test_index_with_location
+    @request.stubs(:location).returns(OpenStruct.new(:name => "Berlin, Germany"))
+
+    # location is initialized correctly
+    get :index, :owner_id => @searcher.id
     assert_response :success
     assert_template :index
     assert_equal [@quest], assigns(:quests)
+    assert_equal "Berlin, Germany", assigns(:location).address
+    assert_equal "unlimited", assigns(:location).radius
+
+    @quest.create_location(:address => "Berlin, Germany")
+
+    # radius is too short
+    get :index, :owner_id => @searcher.id, :location => { :address => "Potsdam, Germany", :radius => 10 }
+    assert_response :success
+    assert_template :index
+    assert_equal [], assigns(:quests)
+    assert_equal "Potsdam, Germany", assigns(:location).address
+    assert_equal "10", assigns(:location).radius
+    
+    # radius just fits
+    get :index, :owner_id => @searcher.id, :location => { :address => "Potsdam, Germany", :radius => 50 }
+    assert_response :success
+    assert_template :index
+    assert_equal [@quest], assigns(:quests)
+    assert_equal "Potsdam, Germany", assigns(:location).address
+    assert_equal "50", assigns(:location).radius
   end
   
   def test_index_with_given_category

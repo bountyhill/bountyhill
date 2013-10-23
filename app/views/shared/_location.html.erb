@@ -1,0 +1,26 @@
+<%= form_for location, :url => url, :method => 'get' do |form| %>
+
+  <% params.slice(*params_for(:quests)).each do |param, value| %>
+    <%= hidden_field_tag param, value %>
+  <% end %>
+  
+  <%= form.control_group :address, :text_field, :label => false, :placeholder => I18n.t("quest.list.location"), :type => "search", :id => 'location_search' %>
+  <%= form.control_group :radius,  :select, :select_options => location_radius_select_options(location.radius), :label => false, :class => "input-medium" %>
+<% end %>
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $("select#location_radius").change(function() {
+    $("#new_location").submit();
+  });
+  
+  $('input#location_search').keydown(function(event){
+    if(event.keyCode == 13)
+      $("#new_location").submit();
+  });
+
+  // Address Autocomplete
+  var input = document.getElementById('location_search');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+</script>

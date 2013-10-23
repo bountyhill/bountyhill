@@ -49,7 +49,7 @@ class Identity < ActiveRecord::Base
   end
 
   #
-  # this implies that the identity does not responds to the methods 'avatar' and 'name'
+  # this implies that the identity does not responds to the methods 'avatar', 'location' and 'name'
   def identity_provider?
     false
   end

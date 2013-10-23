@@ -192,6 +192,13 @@ class User < ActiveRecord::Base
     
     "Anonymus"
   end
+  
+  # return the user's location
+  def location
+    if (identity = identities.detect { |identity| identity.identity_provider? && !identity.location.blank? })
+      return identity.location
+    end
+  end
 
   # return the user's email
   def email

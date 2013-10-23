@@ -30,10 +30,6 @@ module UsersHelper
     list_box(:activities, @activities, :title => I18n.t("user.box.activities.title"), :class => "with-opener")
   end
 
-  def activities_list_box_buttons
-    # nothing to do here
-  end
-
   def user_buttons(user)
     expect! user => User
     

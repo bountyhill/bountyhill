@@ -27,6 +27,14 @@
     font-family: $font_system;
     font-size: 200%;
     line-height: inherit;
+    form {
+       margin: -3px 0 0 0;
+      .control-group { 
+        display: inline-block; 
+        margin-bottom: 0;
+        .controls { margin: 0; }
+      }
+    }
   }
   
   /* ------- content ------- */

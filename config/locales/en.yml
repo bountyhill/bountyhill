@@ -130,9 +130,6 @@ en:
     confirm:  Confirm
   filter:
     filter_by: "for %{filter}"
-    location:
-      title:  Surroundings
-      legend: Choose a radius around your location.
     categories:
       title:  Categories
     states:
@@ -503,9 +500,10 @@ en:
         other:  "Attached images"
     list:
       title:
-        zero:   "Quests"
+        zero:   "No Quests present"
         one:    "1 quest"
         other:  "%{count} quests"
+      location: Enter a location to reduce results.
       bounty:   "%{amount} bounty"
       offers:
         zero:   " "

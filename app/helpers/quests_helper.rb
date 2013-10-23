@@ -14,17 +14,10 @@ module QuestsHelper
     expect! quests.first  => [Quest, nil]
     expect! options       => Hash
     
-    if options[:filter]
-       options.merge!({ :filter => I18n.t("quest.categories.#{options[:filter]}") })
-    end
+    options[:header] = partial("shared/location", :url => quests_path, :location => options[:location])
+    options[:filter] = I18n.t("quest.categories.#{options[:filter]}") if options[:filter]
     
     list_box(:quests, quests, options)
-  end
-  
-  def quests_list_box_buttons
-    button_group [
-      new_quest_button
-    ]
   end
   
   def new_quest_button
@@ -41,46 +34,16 @@ module QuestsHelper
     expect! radius => (Location::RADIUS.dup << nil)
     radius ||= 'unlimited'
     
-    url_params  = params.slice(*params_for(:quests))
-    selected    = quests_path(url_params.merge(:radius => radius))
-    
     options_for_select(
       Location::RADIUS.inject([]) do |options, r|
-        url = quests_path(url_params.merge(:radius => r))
-        options <<  if Location.unlimited?(r) then  [I18n.t('unlimited', :scope => "location.radius"),               url]
-                    else                            [I18n.t('limited',   :scope => "location.radius", :radius => r), url]
+        options <<  if Location.unlimited?(r) then  [I18n.t('unlimited', :scope => "location.radius"),               r]
+                    else                            [I18n.t('limited',   :scope => "location.radius", :radius => r), r]
                     end
-      end, selected)
+      end, radius)
   end
   
   def quests_category_filters(filters=[])
     filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
-  end
-  
-  def quests_location_filter(location, radius)
-    expect! location => OpenStruct
-    
-    title = div :class => "header" do
-      div(I18n.t("filter.location.title"), :class => "pull-left")
-    end
-    
-    js = javascript_tag <<-JS
-      $("#radius").change(function() { window.location = $(this).val(); });
-    JS
-    
-    content = div :class => "content" do
-      [
-        # p(I18n.t("filter.location.legend")),
-        p(location.name, :class => "location"),
-        select_tag("radius", location_radius_select_options(radius), :class => "input-medium"),
-        js
-      ].join.html_safe
-    end
-    
-    div :class => "quest filter box row-fluid" do
-      title + content
-    end
-    
   end
   
   def quest_buttons(quest)

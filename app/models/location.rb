@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
   attr_accessor :location
   attr_accessible :stationary, :stationary_id, :address, :radius, :location, :latitude, :longitude
 
-  RADIUS = %w(1 2 5 10 25 50 100 250 500 1000 unlimited)
+  RADIUS = %w(unlimited 1 5 10 50 100 500 1000)
   
   validates_associated :stationary
   validates :address,   :presence => true
