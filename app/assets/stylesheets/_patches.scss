@@ -63,3 +63,7 @@
 table.mceLayout {
   background-color: white;                   /* hides space between text area and status bar */
 }
+
+.caret {
+  border-top: 4px solid $text;
+}

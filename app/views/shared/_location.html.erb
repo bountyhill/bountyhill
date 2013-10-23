@@ -5,7 +5,7 @@
   <% end %>
   
   <%= form.control_group :address, :text_field, :label => false, :placeholder => I18n.t("quest.list.location"), :type => "search", :id => 'location_search' %>
-  <%= form.control_group :radius,  :select, :select_options => location_radius_select_options(location.radius), :label => false, :class => "input-medium" %>
+  <%= form.control_group :radius,  :select, :select_options => location_radius_select_options(location.radius), :label => false %>
 <% end %>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>

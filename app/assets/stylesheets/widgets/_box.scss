@@ -32,7 +32,30 @@
       .control-group { 
         display: inline-block; 
         margin-bottom: 0;
-        .controls { margin: 0; }
+        .controls { 
+          margin: 0; 
+          input[type="search"] {
+            @include border-radius(0);  /* remove border radius */
+            background-color: $content_color;
+          }
+        }
+        .btn-group {
+          outline: none;
+          width: 128px;
+          &:hover {
+            .dropdown-menu { display: block; }
+          }
+          .dropdown-menu {
+            @include border-radius(0);  /* remove border radius */
+            margin: 0;
+            li > a {
+              &:hover { 
+                background-image: none;
+                background-color: $petrol; 
+              }
+            }
+          }
+        }
       }
     }
   }
