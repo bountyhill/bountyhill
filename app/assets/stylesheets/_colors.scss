@@ -57,7 +57,7 @@ $quests_box_color:            $transparent;
 $quests_box_title_color:      $petrol;
 $quests_box_content_color:    $content_color;
 $quests_box_statistic_color:  $white;
-$quests_box_offers_bg_color:  $green_transparent;
+$quests_box_offers_bg_color:  $orange_transparent;
 
 $quest_box_color:           $content_color;
 $quest_box_title_color:     $petrol;
@@ -78,26 +78,26 @@ $quest_step_bg_color:     $petrol_dark;
 /* offers */
 
 $offers_box_color:            $transparent;
-$offers_box_title_color:      $green;
+$offers_box_title_color:      $orange;
 $offers_box_content_color:    $content_color;
-$offers_box_statistic_color:  $green;
+$offers_box_statistic_color:  $orange;
 
 $offer_box_color:           $content_color;
-$offer_box_title_color:     $green;
+$offer_box_title_color:     $orange;
 $offer_box_content_color:   $white;
-$offer_box_statistic_color: $green;
+$offer_box_statistic_color: $orange;
 
 $offer_button_color:        $offers_box_title_color;
-$offer_active_button_color: $green_dark;
+$offer_active_button_color: $orange_dark;
 
 $offer_comliance_color: $offers_box_title_color;
 
 $offer_image_border:            $offer_box_color;
 $offer_image_border_highlight:  $offers_box_title_color;
 
-$offer_step_color:        $green;
+$offer_step_color:        $orange;
 $offer_step_active_color: $text;
-$offer_step_bg_color:     $green_dark;
+$offer_step_bg_color:     $orange_dark;
 
 
 /* user */
@@ -161,13 +161,13 @@ $activities_box_statistic_color:  $grass;
 /* comments */
 
 $comments_box_color:            $transparent;
-$comments_box_title_color:      $orange;
+$comments_box_title_color:      $green;
 $comments_box_content_color:    $content_color;;
-$comments_box_statistic_color:  $orange;
-$comments_box_form_background:  $orange_transparent;
+$comments_box_statistic_color:  $green;
+$comments_box_form_background:  $green_transparent;
 
-$comment_button_color:          $orange;
-$comment_active_button_color:   $orange_dark;
+$comment_button_color:          $green;
+$comment_active_button_color:   $green_dark;
 
 
 /* modal dialoges */
