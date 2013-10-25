@@ -22,9 +22,9 @@
     <% Share::IDENTITIES.each do |identity| %>
       <div class="checkbox-group <%= identity %>">
         <%= form.share_with identity,
-          :checked            => @share.identities[identity],
-          :identity_required  => current_user.nil? || current_user.identity(identity.to_sym).nil? %>
-        <%= awesome_icon("#{identity}_sign", :size => :large) %>
+          :checked  => @share.identities[identity],
+          :required => current_user.nil? || current_user.identity(identity.to_sym).nil? %>
+        <%= awesome_icon(icon_for(identity), :size => :large) %>
       </div>
     <% end %>
     

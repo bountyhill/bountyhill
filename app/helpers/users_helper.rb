@@ -70,6 +70,12 @@ module UsersHelper
     ]
   end
 
+  def google_buttons(identity)
+    button_group [
+      identity_button(identity, :google)
+    ]
+  end
+
   def address_buttons(identity)
     button_group [
       identity_button(identity, :address), #, :delete => false),
@@ -88,16 +94,8 @@ module UsersHelper
     expect! identity => [nil, Identity]
     expect! type     => Symbol
     
-    icon = case type
-      when :address     then :home
-      when :email       then :envelope_alt
-      when :facebook    then :facebook_sign
-      when :twitter     then :twitter
-      else raise "Cannot provide icon for: #{identity.inspect}!"
-      end
-
     if identity.nil?
-      modal_awesome_button(icon, new_identity_path(:provider => type))  { I18n.t("button.provide") } if (options[:new] != false)
+      modal_awesome_button(icon_for(type), new_identity_path(:provider => type))  { I18n.t("button.provide") } if (options[:new] != false)
     else
       modal_awesome_button(:ban_circle, delete_identity_path(identity)) { I18n.t("button.remove") } if (options[:delete] != false) && !identity.solitary?
     end
@@ -184,17 +182,8 @@ module UsersHelper
   end
 
   def identity_icon(identity, options={})
-    icon = case identity
-      when :commercial  then :group
-      when :private     then :user
-      when :address     then :home
-      when :email       then :envelope_alt
-      when :facebook    then :facebook_sign
-      when :twitter     then :twitter
-      else raise "Cannot provide icon for: #{identity.inspect}!"
-      end
     div(:class => :"identity-icon") do
-      link_to(awesome_icon(icon, :size => :large), "#",
+      link_to(awesome_icon(icon_for(identity), :size => :large), "#",
         :id               => "identity-icon-#{identity}",
         :"data-toggle"    => "tooltip",
         :"data-placement" => "top",

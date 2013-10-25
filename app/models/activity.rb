@@ -28,6 +28,9 @@ class Activity < ActiveRecord::Base
     :"identity/facebook" => {
       :create => 1
     },
+    :"identity/google" => {
+      :create => 1
+    },
     :"identity/email" => {
       :create => 2
     },

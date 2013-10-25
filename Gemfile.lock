@@ -194,6 +194,9 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-google-oauth2 (0.2.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -382,6 +385,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   omniauth-facebook
+  omniauth-google-oauth2
   omniauth-twitter
   opinio
   psych

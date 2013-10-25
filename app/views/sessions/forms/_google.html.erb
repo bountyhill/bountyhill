@@ -1,0 +1,8 @@
+<% accordion_heading(:google) do %>
+  <%= I18n.t("identity/google.form.signin.title")%>
+  <%= awesome_icon(icon_for(:google), :size => :large, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:google) do %>
+  <%= partial("identities/google/new", :identity => Identity::Google.new) %>
+<% end %>

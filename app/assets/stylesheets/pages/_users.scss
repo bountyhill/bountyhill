@@ -1,10 +1,11 @@
 .box {
-  &.user        { @include box_colors(user);        .content { div { background-color: $user_box_title_color; }}}
-  &.email       { @include box_colors(email);       .content { div { background-color: $email_box_title_color; }}}
-  &.address     { @include box_colors(address);     .content { div { background-color: $address_box_title_color; }}}
-  &.twitter     { @include box_colors(twitter);     .content { div { background-color: $twitter_box_title_color; }}}
-  &.facebook    { @include box_colors(facebook);    .content { div { background-color: $facebook_box_title_color; }}}
-  &.user, &.email, &.address, &.twitter, &.facebook {
+  &.user      { @include box_colors(user);      .content { div { background-color: $user_box_title_color; }}}
+  &.email     { @include box_colors(email);     .content { div { background-color: $email_box_title_color; }}}
+  &.address   { @include box_colors(address);   .content { div { background-color: $address_box_title_color; }}}
+  &.twitter   { @include box_colors(twitter);   .content { div { background-color: $twitter_box_title_color; }}}
+  &.facebook	{ @include box_colors(facebook);	.content { div { background-color: $facebook_box_title_color; }}}
+  &.google    { @include box_colors(google);    .content { div { background-color: $google_box_title_color; }}}
+  &.user, &.email, &.address, &.twitter, &.facebook, &.google {
     .content { 
       min-height: 52px;
       .content-box {

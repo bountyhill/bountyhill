@@ -185,18 +185,18 @@ class ActionView::Helpers::FormBuilder
   end
   
   def share_with(identity, options={})
-      identity_required = options[:identity_required] ? "(#{I18n.t('share.form.identity_required')})" : ''
+      required = options[:required] ? "(#{I18n.t('share.form.required')})" : ''
       
       content_tag :label, :class => "checkbox" do
         note(if options[:checked]
           <<-HTML
       <input id="share_identity_#{identity}" name="share[identities][#{identity}]" type="checkbox" checked />
-      #{options[:label] || I18n.t("share.form.#{identity}", :identity_required => identity_required)}
+      #{options[:label] || I18n.t("share.form.#{identity}", :required => required)}
           HTML
         else
           <<-HTML
       <input id="share_identity_#{identity}" name="share[identities][#{identity}]" type="checkbox" />
-      #{options[:label] || I18n.t("share.form.#{identity}", :identity_required => identity_required)}
+      #{options[:label] || I18n.t("share.form.#{identity}", :required => required)}
           HTML
         end )
       end

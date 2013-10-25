@@ -36,7 +36,7 @@ class DeferredTest < ActiveSupport::TestCase
   
   def test_instance
     assert((instance = Deferred.instance).kind_of?(Object))
-    %w(mail twitter facebook).each do |method|
+    %w(mail twitter facebook google).each do |method|
       assert instance.respond_to?(method)
     end
   end
@@ -51,6 +51,15 @@ class DeferredTest < ActiveSupport::TestCase
     Koala::Facebook::API.any_instance.expects(:put_connections).with("foo", "bar")
 
     Deferred.instance.facebook("foo", "bar", {
+      :oauth_token      => "foo bar",
+      :oauth_expires_at => Time.now,
+    })
+  end
+
+  def test_google
+    # TODO: leverage google clint API here...
+    
+    Deferred.instance.google("foobar", {
       :oauth_token      => "foo bar",
       :oauth_expires_at => Time.now,
     })

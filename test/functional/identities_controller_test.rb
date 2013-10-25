@@ -18,7 +18,7 @@ class IdentitiesControllerTest < ActionController::TestCase
   # --- test restful identities actions ---------------------------------------------
   
   def test_new
-    %w(email address twitter facebook).each do |provider|
+    %w(email address twitter facebook google).each do |provider|
       get :new, :provider => provider
       assert_response :success
       assert_template 'new'
@@ -55,11 +55,12 @@ class IdentitiesControllerTest < ActionController::TestCase
   end
   
   def test_edit
-    @address_identity   = Factory(:address_identity, :user => @user)
-    @twitter_identity   = Factory(:twitter_identity, :user => @user)
+    @address_identity   = Factory(:address_identity,  :user => @user)
+    @twitter_identity   = Factory(:twitter_identity,  :user => @user)
     @facebook_identity  = Factory(:facebook_identity, :user => @user)
+    @google_identity    = Factory(:google_identity,   :user => @user)
     
-    [@email_identity, @address_identity, @twitter_identity, @facebook_identity].each do |identity|
+    [@email_identity, @address_identity, @twitter_identity, @facebook_identity, @google_identity].each do |identity|
       get :edit, :id => identity.id
       assert_response :success
       assert_template 'edit'
@@ -88,11 +89,12 @@ class IdentitiesControllerTest < ActionController::TestCase
   end
   
   def test_delete
-    @address_identity   = Factory(:address_identity, :user => @user)
-    @twitter_identity   = Factory(:twitter_identity, :user => @user)
+    @address_identity   = Factory(:address_identity,  :user => @user)
+    @twitter_identity   = Factory(:twitter_identity,  :user => @user)
     @facebook_identity  = Factory(:facebook_identity, :user => @user)
+    @google_identity    = Factory(:google_identity,   :user => @user)
     
-    [@email_identity, @address_identity, @twitter_identity, @facebook_identity].each do |identity|
+    [@email_identity, @address_identity, @twitter_identity, @facebook_identity, @google_identity].each do |identity|
       get :delete, :id => identity.id
       assert_response :success
       assert_template 'delete'
@@ -101,11 +103,12 @@ class IdentitiesControllerTest < ActionController::TestCase
   end
 
   def test_destroy
-    @address_identity   = Factory(:address_identity, :user => @user)
-    @twitter_identity   = Factory(:twitter_identity, :user => @user)
+    @address_identity   = Factory(:address_identity,  :user => @user)
+    @twitter_identity   = Factory(:twitter_identity,  :user => @user)
     @facebook_identity  = Factory(:facebook_identity, :user => @user)
+    @google_identity    = Factory(:google_identity,   :user => @user)
 
-    [@address_identity, @twitter_identity, @facebook_identity].each do |identity|
+    [@address_identity, @twitter_identity, @facebook_identity, @google_identity].each do |identity|
       assert_difference("#{identity.class.name}.count", -1) do
         delete :destroy, :id => identity.id
         assert_response :redirect

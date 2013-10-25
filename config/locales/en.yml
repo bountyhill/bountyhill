@@ -190,6 +190,7 @@ en:
       address:    "We need your postal address to continue."
       twitter:    "We need access to your twitter account to continue."
       facebook:   "We need access to your facebook account to continue."
+      google:     "We need access to your google account to continue."
     form:
       title:          Sign in/up
       terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
@@ -277,7 +278,6 @@ en:
     show:
       title:      Facebook
       legend:     "You are registered at bountyhill with the following facebook user name:"
-      commercial: I want to use bountyhill on behalf of my company.
     form:
       new:
         title:    Add Facebook account
@@ -291,6 +291,23 @@ en:
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my Facebook account from my bountyhill profile.
+  identity/google:
+    show:
+      title:      Google
+      legend:     "You are registered at bountyhill with the following google user name:"
+    form:
+      new:
+        title:    Add Google account
+        legend:   "If you have a Google account you can add it to your bountyhill profile, e.g to allow us to post streams."
+      delete:
+        title:    Remove Google account
+        legend:   "You can remove your Google account from your bountyhill profile, e.g. to add add use another one."
+      signin:
+        title:    Sign in with Google
+        legend:   You can sign in to bountyhill via Google. Please note that there are different terms for commercial users.
+      field_hint:
+        commercial: I want to use bountyhill on behalf of my company.
+        delete_me:  I do want to remove my Google account from my bountyhill profile.
   identity/confirm:
     form:
       title:    Confirm email
@@ -338,6 +355,10 @@ en:
         title:  "Facebook"
         text:   "You did not provide access to your facebook account so far. We do require your access to your facebook account e.g. if you want us to post quests you did select on your timeline."
         icon:   "Your facebook nickname."
+      google:
+        title:  "Google"
+        text:   "You did not provide access to your google account so far. We do require your access to your google account e.g. if you want us to post quests you did select in your streams."
+        icon:   "Your google user name."
       twitter:
         title:  "Twitter"
         text:   "You did not provide access to your twitter account so far. We do require your access to your twitter account e.g. if you want us to twitter quests you did select."
@@ -588,11 +609,12 @@ en:
     errors:
       identities: "No network was chosen"
     form:
-      title:  Share this quest
-      legend: "Please choose the social networks you want to share this quest with your friends and followers."
-      twitter:  "Twitter %{identity_required}"
-      facebook: "Facebook %{identity_required}"
-      identity_required:  "signed required"
+      title:    "Share this quest"
+      legend:   "Please choose the social networks you want to share this quest with your friends and followers."
+      twitter:  "Twitter %{required}"
+      facebook: "Facebook %{required}"
+      google:   "Google %{required}"
+      required: "sign-in required"
   sessions:
     auth:
       success:    "You successfully signed in. Welcome on bountyhill!"

@@ -120,9 +120,10 @@ class SessionsControllerTest < ActionController::TestCase
       "email"     => { "confirmed"  => %w(signin email) },
       "twitter"   => { "twitter"    => %w(twitter) },
       "facebook"  => { "facebook"   => %w(facebook) },
+      "google"    => { "google"     => %w(google) },
       "email"     => { "email"      => %w(signin email) },
       "address"   => { "address"    => %w(address) },
-      "foobar"    => { nil          => %w(signin twitter facebook email) }
+      "foobar"    => { nil          => %w(signin twitter facebook google email) }
     }
     signins.each do |test, request|
       if request.keys.first == "confirmed"

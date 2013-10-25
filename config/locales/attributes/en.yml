@@ -22,8 +22,9 @@ en:
       identity/address:
         one:    Address
         others: Addresses
-      identity/twitter:  Twitter
-      identity/facebook: Facebook
+      identity/twitter:   Twitter
+      identity/facebook:  Facebook
+      identity/google:    Google
       location: location
     attributes:
       identity:
@@ -43,6 +44,7 @@ en:
         address:          Address
         twitter:          Twitter
         facebook:         Facebook
+        google:           Google
         delete_me:        Delete my account
         deletion:         Reason
         deletion_reason:  Explanation
@@ -98,4 +100,6 @@ en:
         handle: User name
       identity/facebook:
         nickname: User name
+      identity/google:
+        name: User name
         

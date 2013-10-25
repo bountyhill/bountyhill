@@ -1,0 +1,9 @@
+<% if (google_name = google && google.name).present? %>
+  <div class="content-box">
+    <%= identity_icon(:google) %>
+    <%= privacy_icon(:google) %>
+    <%= google_name %>
+  </div>
+<% else %>
+ <%= I18n.t("user.box.google.text") %>
+<% end %>

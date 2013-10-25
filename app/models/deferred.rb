@@ -73,6 +73,22 @@ module Deferred
     W "OK facebook", *args                        unless Rails.env.test?
   end
 
+  # -- run a google+ request ------------------------------------------
+  
+  def google(*args)
+    W "TRY google+", *args                      unless Rails.env.test?
+
+    oauth = args.extract_options!
+    expect! oauth => {
+      :oauth_token      => String,
+      :oauth_expires_at => Time,
+    }
+
+    # TODO: leverage google+ client here....
+    
+    W "OK google+", *args                        unless Rails.env.test?
+  end
+
   # -- run a twitter request ------------------------------------------
   
   # does a Twitter API call. The parameters include a oauth options

@@ -51,6 +51,14 @@
           border: 1px solid $facebook_highlight;
         };
       }
+      &.google {
+        background-color: $google;
+        border: 1px solid $google;
+        &:hover { 
+          background-color: $google_highlight; 
+          border: 1px solid $google_highlight;
+        };
+      }
       &.address {
         background-color: $address;
         border: 1px solid $address;

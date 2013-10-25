@@ -190,6 +190,7 @@ de:
       address:    "Um fortfahren zu können, benötigen wir Deine Anschrift."
       twitter:    "Um fortfahren zu können, benötigen wir Zugang zu Deinem Twitter Account."
       facebook:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem Facebook Account."
+      google:     "Um fortfahren zu können, benötigen wir Zugang zu Deinem Google Account."
     form:
       title:          Anmelden/Registrieren
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
@@ -291,6 +292,23 @@ de:
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen."
+  identity/google:
+    show:
+      title:  Google
+      legend: "Du bist unter folgendem Google-Benutzernamen bei bountyhill registriert:"
+    form:
+      new:
+        title:    Google Account hinzufügen
+        legend:   "Du kannst Deinen Google-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Streams zu Posten."
+      delete:
+        title:    Google Account entfernen
+        legend:   "Du kannst Deinen Google-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
+      signin:
+        title:    Anmelden via Google
+        legend:   "Du kannst Dich über Google bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+      field_hint:
+        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:  "Ich möchte meinen Google-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
       title:    Email bestätigen
@@ -338,6 +356,10 @@ de:
         title:  "Facebook"
         text:   "Du hast uns noch keinen Zugang zu Deinem Facebook-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deine Timeline posten."
         icon:   "Dein Facebook-Nickname."
+      google:
+        title:  "Google"
+        text:   "Du hast uns noch keinen Zugang zu Deinem Google-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deinen Stream posten."
+        icon:   "Dein Google-Nutzername."
       twitter:
         title:  "Twitter"
         text:   "Du hast uns noch keinen Zugang zu Deinem Twitter-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen Twittern."
@@ -587,11 +609,12 @@ de:
     errors:
       identities: "Es wurde kein Netzwerk ausgewählt"
     form:
-      title:  Suchanfrage teilen
-      legend: "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
-      twitter:  "Twitter %{identity_required}"
-      facebook: "Facebook %{identity_required}"
-      identity_required: "erfordert Anmeldung"
+      title:    "Suchanfrage teilen"
+      legend:   "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
+      twitter:  "Twitter %{required}"
+      facebook: "Facebook %{required}"
+      google: 	"Google %{required}"
+      required: "erfordert Anmeldung"
   sessions:
     auth:
       success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"

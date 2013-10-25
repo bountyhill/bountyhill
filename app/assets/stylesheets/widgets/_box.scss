@@ -7,6 +7,7 @@
   &.address             { @include button(16px, $address_button_color); }
   &.twitter             { @include button(16px, $twitter_button_color); }
   &.facebook            { @include button(16px, $facebook_button_color); }
+  &.google              { @include button(16px, $google_button_color); }
   &.comments            { @include button(16px, $comment_button_color); }
  
   /* bottom border */
@@ -17,6 +18,7 @@
   &.address   { @include box_border($address_box_title_color); }
   &.twitter   { @include box_border($twitter_box_title_color); }
   &.facebook  { @include box_border($facebook_box_title_color); }
+  &.google    { @include box_border($google_box_title_color); }
 
   /* ------- header ------- */
   .header {
@@ -47,6 +49,7 @@
           }
           .dropdown-menu {
             @include border-radius(0);  /* remove border radius */
+						background-color: $content_color;
             margin: 0;
             li > a {
               &:hover { 

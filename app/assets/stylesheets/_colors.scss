@@ -114,6 +114,8 @@ $twitter:             #00ACED;
 $twitter_highlight:   #21C2FF;
 $facebook:            #3B5998;
 $facebook_highlight:  #4C70BA;
+$google:							#D34836;
+$google_highlight:		#F56A58;
 $profile:             #4C9E46;
 $profile_highlight:   #51AA4B;
 $password:            $magenta_dark;
@@ -149,6 +151,10 @@ $twitter_button_color:      $twitter;
 $facebook_box_color:        $content_color;
 $facebook_box_title_color:  $facebook;
 $facebook_button_color:     $facebook;
+
+$google_box_color:        $content_color;
+$google_box_title_color:  $google;
+$google_button_color:     $google;
 
 /* activities */
 

@@ -242,6 +242,15 @@ class UserTest < ActiveSupport::TestCase
     user.identities = [facebook]
     assert_equal "#<User id: #{123} [f:Foo Bar]>", user.inspect
   end
+
+  def test_inspect_with_identity_google
+    user = User.new
+    user.expects(:id).returns(123)
+    google = Identity::Google.new
+    google.expects(:name).returns("Foo Bar")
+    user.identities = [google]
+    assert_equal "#<User id: #{123} [g:Foo Bar]>", user.inspect
+  end
   
   def test_inspect_with_identity_email
     user = User.new

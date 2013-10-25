@@ -22,7 +22,7 @@ module ApplicationController::RequiredIdentity
   #  - request_identity! mode
   #
   # The +mode+ parameter is one of the supported authentication modi
-  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:facebook</tt>, <tt>:login</tt>, <tt>:any</tt>)
+  # (e.g. <tt>:confirmed</tt>, <tt>:email</tt>, <tt>:twitter</tt>, <tt>:facebook</tt>, <tt>:google</tt>, <tt>:login</tt>, <tt>:any</tt>)
   # and defaults to :any.
   #
   # - <tt>:on_cancel</tt> URL to redirect to when user cancels authentication.
@@ -52,7 +52,7 @@ module ApplicationController::RequiredIdentity
   #     share.post(:twitter)
   #   end
   
-  REQUESTBALE_IDENTITIES = [ :confirmed, :email, :twitter, :facebook, :address, :login, :any ]
+  REQUESTBALE_IDENTITIES = [ :confirmed, :email, :twitter, :facebook, :google, :address, :login, :any ]
   
   def request_identity!(*args)
     options = args.extract_options!

@@ -116,6 +116,10 @@
     background-color: $facebook_box_color;
     .header { background-color: $facebook_box_title_color; }
   }
+  @else if  $box_type == google { 
+    background-color: $google_box_color;
+    .header { background-color: $google_box_title_color; }
+  }
   @else if  $box_type == activities { 
     background-color: $activities_box_color;
     .header { background-color: $activities_box_title_color; }
