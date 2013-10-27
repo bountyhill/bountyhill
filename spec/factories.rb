@@ -19,7 +19,7 @@ FactoryGirl.define do
     identifier  "twatter"
     
     after(:build) do |identity, evaluator|
-      identity.info = { :nickname => "twatter" }
+      identity.info ||= { :nickname => "twatter" }
       
       next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }
@@ -30,7 +30,7 @@ FactoryGirl.define do
     identifier  "inyourfacebook"
     
     after(:build) do |identity, evaluator|
-      identity.info = { :nickname => "inyourfacebook" }
+      identity.info ||= { :nickname => "inyourfacebook" }
       
       next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }
@@ -41,7 +41,7 @@ FactoryGirl.define do
     identifier  "froogle"
     
     after(:build) do |identity, evaluator|
-      identity.info = { :name => "Foo Bar" }
+      identity.info ||= { :name => "Foo Bar" }
       
       next if identity.user.present?
       identity.user = User.create! { |user| user.identities << identity }

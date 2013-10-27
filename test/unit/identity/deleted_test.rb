@@ -9,10 +9,4 @@ class Identity::DeletedTest < ActiveSupport::TestCase
     assert_equal "identities", model_name.route_key
     assert_equal "identity", model_name.singular_route_key
   end
-  
-  def test_identity_provider?
-    deleted = Identity::Deleted.new
-    assert_false deleted.identity_provider?
-  end
-  
 end

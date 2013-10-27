@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     return if image.present?
     
     # try to fetch avatar from identity providers
-    image = if (identity = identities.detect{ |identity| identity.identity_provider? && !identity.avatar.blank? })
+    image = if (identity = identities.detect{ |identity| identity.respond_to?(:avatar) && !identity.avatar.blank? })
         identity.avatar
       end
   end
@@ -188,7 +188,7 @@ class User < ActiveRecord::Base
       return email.name unless email.name.blank?
     end
     
-    if (identity = identities.detect { |identity| identity.identity_provider? && !identity.name.blank? })
+    if (identity = identities.detect { |identity| identity.respond_to?(:name) && !identity.name.blank? })
       return identity.name
     end
     
@@ -197,15 +197,16 @@ class User < ActiveRecord::Base
   
   # return the user's location
   def location
-    if (identity = identities.detect { |identity| identity.identity_provider? && !identity.location.blank? })
+    if (identity = identities.detect { |identity| identity.respond_to?(:location) && !identity.location.blank? })
       return identity.location
     end
   end
 
-  # return the user's email
+  # return the user's email and consider email identity to do so first
   def email
-    return unless identity = self.identity(:email)
-    identity.email
+    if (identity = ([self.identity(:email)] + identities).compact.detect { |identity| identity.respond_to?(:email) && !identity.email.blank? })
+      identity.email
+    end
   end
 
   # returns the email if it is confirmed

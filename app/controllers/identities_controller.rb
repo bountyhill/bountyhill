@@ -13,8 +13,8 @@ class IdentitiesController < ApplicationController
   
   def create
     @identity = Identity.provider(@provider).new(@identity_params)
-    @identity.user = current_user
-
+    @identity.user = current_user || Identity.find_user(@identity_params)
+    
     return unless @identity.save
 
     # if the identity was requested to perform another action

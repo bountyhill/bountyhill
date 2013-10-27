@@ -28,19 +28,40 @@ class IdentitiesControllerTest < ActionController::TestCase
   end
 
   def test_create
-    assert_difference "Identity::Address.count" do
-      post :create, :identity_address => { 
-        :commercial => true,
-        :company => "bountyhill UG (haftungsbeschränkt) & Co. KG",
-        :address1 => "Berliner Straße 12",
-        :city => "Berlin",
-        :zipcode => '13187',
-        :country => "Germany",
-        :phone => '491636867766' }
+    assert_no_difference "User.count" do
+      assert_difference "Identity::Address.count" do
+        post :create, :identity_address => { 
+          :commercial => true,
+          :company => "bountyhill UG (haftungsbeschränkt) & Co. KG",
+          :address1 => "Berliner Straße 12",
+          :city => "Berlin",
+          :zipcode => '13187',
+          :country => "Germany",
+          :phone => '491636867766' }
+      end
     end
     assert_response :redirect
     assert_redirected_to user_path(@email_identity.user)
     assert assigns(:identity).kind_of?(Identity::Address)
+    assert assigns(:identity).commercial
+  end
+  
+  def test_create_with_email_already_present_on_other_identity
+    logout
+    identity_facebook  = Factory(:facebook_identity, :info => { :nickname => "inyourfacebook", :email => "foo@bar.com" })
+    
+    assert_no_difference "User.count" do
+      assert_difference "Identity::Email.count" do
+        post :create, :identity_email => { 
+          :email => identity_facebook.email,
+          :password => "foobar",
+          :password_confirmation => "foobar",
+          :commercial => true }
+      end
+    end
+    assert_response :redirect
+    assert_redirected_to user_path(identity_facebook.user)
+    assert assigns(:identity).kind_of?(Identity::Email)
     assert assigns(:identity).commercial
   end
 

@@ -52,11 +52,4 @@ class Identity::EmailTest < ActiveSupport::TestCase
     
     identity.send(:send_confirmation_email)
   end
-  
-  def test_identity_provider?
-    email = Identity::Email.new
-    assert_false email.identity_provider?
-  end
-  
-  
 end

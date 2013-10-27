@@ -26,6 +26,8 @@ module Identity::Provider
         
         # validates user's provider's identifier
         validates :identifier, :presence => true, :format => { :with => /^[^@]/ }, :uniqueness => { :case_sensitive => false }
+        
+        before_create :save_email
       end
     end
     
@@ -45,8 +47,8 @@ module Identity::Provider
       end
       
       transaction do
-        user_identity     = user.identity(provider.to_sym) if user
-        current_identity  = self.where(:identifier => identifier).first
+        user_identity       = user.identity(provider.to_sym) if user
+        identified_identity = self.where(:identifier => identifier).first
 
         # What happens if a user signs in via a provider, when he is already 
         # logged in as a user, and the provider's identifier exists already in 
@@ -58,27 +60,33 @@ module Identity::Provider
         # - user logs in via its provider's identifier
         # - user logs out
         # - now user registered via "user@email.com" email
-        # - user starts or shares a quest. The application asks the user
-        # to add a provider login.
+        # - user starts or shares a quest. The application asks the user to add a provider login.
         # - user enters his provider's identifier.
         # 
       
         # if an identity of the same provider exists, but belongs to a different user, we "merge" these users.
         # TODO: we have to move all objects belonging to the user to the new user as well and soft_delete the old one afterwards
-        if current_identity && user && current_identity.user != user
-          current_identity.user = user
-          current_identity.save!
+        if identified_identity && user && identified_identity.user != user
+          identified_identity.user = user
+          identified_identity.save!
         end
       
-        identity = current_identity || user_identity || self.new
+        # init identity either from identity with the same identifier or
+        # with the identity of the given user or
+        # with a new instance of the actual identity class
+        identity = identified_identity || user_identity || self.new
         
-        identity.user       ||= user
+        # init or update identity attributes
         identity.identifier   = identifier
         identity.credentials  = attrs_hash["credentials"] || {}
         identity.info         = attrs_hash["info"]        || {}
         identity.extra        = attrs_hash["extra"]       || {}
         
-        # TODO: changes in serialized attributes are not detected by identity.changed?
+        # set user of identity if none is present already (if an identity for the given identifier was found)
+        # to either a user with an identity with the same email or the given user (current_user)
+        identity.user ||=  (identified_identity && identified_identity.user) || Identity.find_user(identity.info) || user
+        
+        # Note: changes in serialized attributes are not detected by identity.changed?
         identity.save! #if identity.changed?
         identity
       end
@@ -109,12 +117,12 @@ module Identity::Provider
     
       image || options[:default]
     end
-  
-    #
-    # this implies that the model at least responds to methods 'avatar' and 'name'
-    def identity_provider?
-      true
-    end
     
+    private 
+    
+    # set email attribute from info hash
+      def save_email
+        self.email = email
+      end
   end
 end

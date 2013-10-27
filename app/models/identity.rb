@@ -41,17 +41,20 @@ class Identity < ActiveRecord::Base
 
   def self.provider(provider)
     expect! provider => Symbol
+    
     self.subclasses.detect{ |i| i.name.split("::").last.downcase.to_sym == provider}
+  end
+  
+  def self.find_user(attributes={})
+    expect! attributes => Hash
+    
+    if (email = attributes[:email]) && (identity = where(:email => email).first) 
+      identity.user
+    end
   end
 
   def provider
     self.class.name.split("::").last.downcase.to_sym
-  end
-
-  #
-  # this implies that the identity does not responds to the methods 'avatar', 'location' and 'name'
-  def identity_provider?
-    false
   end
   
   def solitary?
