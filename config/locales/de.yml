@@ -299,7 +299,7 @@ de:
     form:
       new:
         title:    Google Account hinzufügen
-        legend:   "Du kannst Deinen Google-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Streams zu Posten."
+        legend:   "Du kannst Deinen Google-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben in Deinen Stream zu Posten."
       delete:
         title:    Google Account entfernen
         legend:   "Du kannst Deinen Google-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."

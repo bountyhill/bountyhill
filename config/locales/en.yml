@@ -298,7 +298,7 @@ en:
     form:
       new:
         title:    Add Google account
-        legend:   "If you have a Google account you can add it to your bountyhill profile, e.g to allow us to post streams."
+        legend:   "If you have a Google account you can add it to your bountyhill profile, e.g to allow us to post in your stream."
       delete:
         title:    Remove Google account
         legend:   "You can remove your Google account from your bountyhill profile, e.g. to add add use another one."
@@ -357,7 +357,7 @@ en:
         icon:   "Your facebook nickname."
       google:
         title:  "Google"
-        text:   "You did not provide access to your google account so far. We do require your access to your google account e.g. if you want us to post quests you did select in your streams."
+        text:   "You did not provide access to your google account so far. We do require your access to your google account e.g. if you want us to post quests you did select in your stream."
         icon:   "Your google user name."
       twitter:
         title:  "Twitter"
