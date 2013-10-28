@@ -191,6 +191,7 @@ de:
       twitter:    "Um fortfahren zu können, benötigen wir Zugang zu Deinem Twitter Account."
       facebook:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem Facebook Account."
       google:     "Um fortfahren zu können, benötigen wir Zugang zu Deinem Google Account."
+      linkedin:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem LinkedIn Account."
     form:
       title:          Anmelden/Registrieren
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
@@ -309,6 +310,23 @@ de:
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen Google-Account von meinem bountyhill Profil entfernen."
+  identity/linkedin:
+    show:
+      title:  LinkedIn
+      legend: "Du bist unter folgendem LinkedIn-Benutzernamen bei bountyhill registriert:"
+    form:
+      new:
+        title:    LinkedIn Account hinzufügen
+        legend:   "Du kannst Deinen LinkedIn-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Messages zu senden."
+      delete:
+        title:    LinkedIn Account entfernen
+        legend:   "Du kannst Deinen LinkedIn-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
+      signin:
+        title:    Anmelden via LinkedIn
+        legend:   "Du kannst Dich über LinkedIn bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+      field_hint:
+        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:  "Ich möchte meinen LinkedIn-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
       title:    Email bestätigen
@@ -360,6 +378,10 @@ de:
         title:  "Google"
         text:   "Du hast uns noch keinen Zugang zu Deinem Google-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deinen Stream posten."
         icon:   "Dein Google-Nutzername."
+      linkedin:
+        title:  "LinkedIn"
+        text:   "Du hast uns noch keinen Zugang zu Deinem LinkedIn-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen als Messages posten."
+        icon:   "Dein LinkedIn-Nutzername."
       twitter:
         title:  "Twitter"
         text:   "Du hast uns noch keinen Zugang zu Deinem Twitter-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen Twittern."
@@ -614,6 +636,7 @@ de:
       twitter:  "Twitter %{required}"
       facebook: "Facebook %{required}"
       google: 	"Google %{required}"
+      linkedin: "LinkedIn %{required}"
       required: "erfordert Anmeldung"
   sessions:
     auth:

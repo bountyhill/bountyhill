@@ -53,27 +53,23 @@ module UsersHelper
   end
   
   def email_buttons(identity)
-    button_group [
-      identity_button(identity, :email)
-    ]
+    button_group [identity_button(identity, :email)]
   end
   
   def twitter_buttons(identity)
-    button_group [
-      identity_button(identity, :twitter)
-    ]
+    button_group [identity_button(identity, :twitter)]
   end
   
   def facebook_buttons(identity)
-    button_group [
-      identity_button(identity, :facebook)
-    ]
+    button_group [identity_button(identity, :facebook)]
   end
 
   def google_buttons(identity)
-    button_group [
-      identity_button(identity, :google)
-    ]
+    button_group [identity_button(identity, :google)]
+  end
+
+  def linkedin_buttons(identity)
+    button_group [identity_button(identity, :linkedin)]
   end
 
   def address_buttons(identity)

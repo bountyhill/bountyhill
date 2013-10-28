@@ -8,6 +8,8 @@ feature "Identities", :js => true, :driver => :rack_test do
     page.should have_selector('h4', :text => I18n.t("identity/email.form.signin.title"))
     page.should have_selector('h4', :text => I18n.t("identity/twitter.form.title"))
     page.should have_selector('h4', :text => I18n.t("identity/facebook.form.title"))
+    page.should have_selector('h4', :text => I18n.t("identity/google.form.title"))
+    page.should have_selector('h4', :text => I18n.t("identity/linkedin.form.title"))
     page.should have_selector('h4', :text => I18n.t("identity/email.form.new.title"))
   end
   

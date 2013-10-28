@@ -31,6 +31,9 @@ class Activity < ActiveRecord::Base
     :"identity/google" => {
       :create => 1
     },
+    :"identity/linkedin" => {
+      :create => 1
+    },
     :"identity/email" => {
       :create => 2
     },

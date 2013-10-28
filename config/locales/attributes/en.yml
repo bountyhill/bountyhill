@@ -25,10 +25,12 @@ en:
       identity/twitter:   Twitter
       identity/facebook:  Facebook
       identity/google:    Google
+      identity/linkedin:  LinkedIn
       location: location
     attributes:
       identity:
         email:                      Email
+        name:                       User name
         password:                   Password
         password_confirmation:      Confirmation
         password_new:               New Password
@@ -45,6 +47,7 @@ en:
         twitter:          Twitter
         facebook:         Facebook
         google:           Google
+        linkedin:         LinkedIn
         delete_me:        Delete my account
         deletion:         Reason
         deletion_reason:  Explanation
@@ -96,10 +99,3 @@ en:
         zipcode:  Zip code
         country:  Country
         phone:    Phone
-      identity/twitter:
-        handle: User name
-      identity/facebook:
-        nickname: User name
-      identity/google:
-        name: User name
-        

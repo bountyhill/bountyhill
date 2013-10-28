@@ -5,7 +5,8 @@
   &.twitter   { @include box_colors(twitter);   .content { div { background-color: $twitter_box_title_color; }}}
   &.facebook	{ @include box_colors(facebook);	.content { div { background-color: $facebook_box_title_color; }}}
   &.google    { @include box_colors(google);    .content { div { background-color: $google_box_title_color; }}}
-  &.user, &.email, &.address, &.twitter, &.facebook, &.google {
+  &.linkedin  { @include box_colors(linkedin);  .content { div { background-color: $linkedin_box_title_color; }}}
+  &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin {
     .content { 
       min-height: 52px;
       .content-box {

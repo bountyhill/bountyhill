@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
   # - "twitter": show twitter signin form.
   # - "facebook": show facebook signin form.
   # - "google": show google signin form.
+  # - "linkedin": show linkedin signin form.
   # - "confirmed": show email signin form, when not logged in; show email
   #   signup form, when logged in, but no email identity is present.
   #   show "confirmed" when email identity is present but not confirmed.
@@ -98,8 +99,9 @@ protected
       when "twitter"    then %w(twitter)
       when "facebook"   then %w(facebook)
       when "google"     then %w(google)
+      when "linkedin"   then %w(linkedin)
       when "email"      then %w(signin email)
-      else              %w(signin twitter facebook google email)
+      else              %w(signin twitter facebook google linkedin email)
       end
   end
 

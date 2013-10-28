@@ -110,12 +110,15 @@ $user_box_statistic_color:  $petrol;
 $user_button_color:         $user_box_title_color;
 $user_active_button_color:  $petrol_dark;
 
+/* see: http://designpieces.com/2012/12/social-media-colours-hex-and-rgb/ */
 $twitter:             #00ACED;
 $twitter_highlight:   #21C2FF;
 $facebook:            #3B5998;
 $facebook_highlight:  #4C70BA;
-$google:							#D34836;
-$google_highlight:		#F56A58;
+$google:              #DD4B39;
+$google_highlight:    #FF6D5B;
+$linkedin:            #007BB6;
+$linkedin_highlight:  #229DD8;
 $profile:             #4C9E46;
 $profile_highlight:   #51AA4B;
 $password:            $magenta_dark;
@@ -152,9 +155,13 @@ $facebook_box_color:        $content_color;
 $facebook_box_title_color:  $facebook;
 $facebook_button_color:     $facebook;
 
-$google_box_color:        $content_color;
-$google_box_title_color:  $google;
-$google_button_color:     $google;
+$google_box_color:          $content_color;
+$google_box_title_color:    $google;
+$google_button_color:       $google;
+
+$linkedin_box_color:        $content_color;
+$linkedin_box_title_color:  $linkedin;
+$linkedin_button_color:     $linkedin;
 
 /* activities */
 

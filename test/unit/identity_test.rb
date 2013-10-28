@@ -34,7 +34,7 @@ class IdentityTest < ActiveSupport::TestCase
   end
   
   def test_oauth_identities
-    assert_equal [:twitter, :facebook, :google], Identity.oauth_identities
+    assert_equal [:twitter, :facebook, :google, :linkedin], Identity.oauth_identities
   end
   
   def test_provider

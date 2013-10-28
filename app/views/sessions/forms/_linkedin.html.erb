@@ -1,0 +1,8 @@
+<% accordion_heading(:linkedin) do %>
+  <%= I18n.t("identity/linkedin.form.signin.title")%>
+  <%= awesome_icon(icon_for(:linkedin), :size => :large, :class => "pull-right") %>
+<% end %>
+
+<% accordion_body(:linkedin) do %>
+  <%= partial("identities/linkedin/new", :identity => Identity::Linkedin.new) %>
+<% end %>

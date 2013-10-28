@@ -89,6 +89,22 @@ module Deferred
     W "OK google+", *args                        unless Rails.env.test?
   end
 
+  # -- run a linkedin request ------------------------------------------
+  
+  def linkedin(*args)
+    W "TRY linkedin", *args                      unless Rails.env.test?
+
+    oauth = args.extract_options!
+    expect! oauth => {
+      :oauth_token      => String,
+      :oauth_expires_at => Time,
+    }
+
+    # TODO: leverage linkedin client here....
+    
+    W "OK linkedin", *args                        unless Rails.env.test?
+  end
+
   # -- run a twitter request ------------------------------------------
   
   # does a Twitter API call. The parameters include a oauth options

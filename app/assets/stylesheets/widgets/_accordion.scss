@@ -59,6 +59,14 @@
           border: 1px solid $google_highlight;
         };
       }
+      &.linkedin {
+        background-color: $linkedin;
+        border: 1px solid $linkedin;
+        &:hover { 
+          background-color: $linkedin_highlight; 
+          border: 1px solid $linkedin_highlight;
+        };
+      }
       &.address {
         background-color: $address;
         border: 1px solid $address;

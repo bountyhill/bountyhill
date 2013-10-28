@@ -4,6 +4,7 @@ require_dependency "identity"
 require_dependency "identity/twitter"
 require_dependency "identity/facebook"
 require_dependency "identity/google"
+require_dependency "identity/linkedin"
 require_dependency "identity/email"
 require_dependency "identity/address"
 
@@ -120,7 +121,7 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [:any, :login, :email, :confirmed, :address, :twitter, :facebook, :google, :deleted]
+    expect! mode => [:any, :login, :email, :confirmed, :address, :twitter, :facebook, :google, :linkedin, :deleted]
     
     case mode
     when :email     then identities.detect { |i|  i.is_a?(Identity::Email) }
@@ -129,6 +130,7 @@ class User < ActiveRecord::Base
     when :twitter   then identities.detect { |i|  i.is_a?(Identity::Twitter) }
     when :facebook  then identities.detect { |i|  i.is_a?(Identity::Facebook) }
     when :google    then identities.detect { |i|  i.is_a?(Identity::Google) }
+    when :linkedin  then identities.detect { |i|  i.is_a?(Identity::Linkedin) }
     when :deleted   then identities.detect { |i|  i.is_a?(Identity::Deleted) }
     when :any       then identities.detect { |i| !i.is_a?(Identity::Deleted) }
     when :login     then identities.detect { |i|  (i.is_a?(Identity::Email) && i.confirmed?) ||
@@ -410,6 +412,10 @@ class User < ActiveRecord::Base
 
     if google = identity(:google)
       parts << "g:#{google.name}"
+    end
+
+    if linkedin = identity(:linkedin)
+      parts << "l:#{linkedin.name}"
     end
 
     if confirmed = identity(:confirmed)

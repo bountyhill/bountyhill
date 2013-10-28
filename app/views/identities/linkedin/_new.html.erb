@@ -1,0 +1,39 @@
+<%= form_for(identity, :url => "/auth/linkedin/init") do |form| %>
+  <% if current_user %>
+    <p><%= I18n.t("identity/linkedin.form.new.legend") %></p>
+  <% else %>
+    <p><%= I18n.t("identity/linkedin.form.signin.legend") %></p>
+  <% end %>
+
+  <%= form.error_messages @error if @error %>
+  <%#= hidden_field_tag :req, :linkedin %>
+
+  <%= form.control_group :commercial, :check_box %>
+
+  <% if current_user && !identity_requested?(:linkedin) %>
+    <%= form.actions "#", :"data-dismiss" => "modal" %>
+  <% else %>
+    <% unless current_user %>
+      <p><%= I18n.t("identity.form.agree_to_terms")%></p>
+      <%= form.agree_to_terms(:id => "agree_to_terms_linkedin") %>
+    <% end %>
+    
+    <div class="buttons">
+      <%= link_to_cancel_signin %>
+      <%= form.submit I18n.t("button.signin"),
+        :name => "signin_linkedin",
+        :id => "signin_linkedin",
+        :class => "btn btn-primary btn-inverse",
+        :disabled => "disabled" %>
+    </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $("#agree_to_terms_linkedin").change(function() {
+    if($(this).is(':checked'))
+      $("#signin_linkedin").removeAttr("disabled");
+    else
+      $("#signin_linkedin").attr("disabled", "disabled");
+  });
+</script>
