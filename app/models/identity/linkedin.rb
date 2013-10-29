@@ -1,19 +1,17 @@
 # encoding: UTF-8
 
+require 'linkedin'
+
 class Identity::Linkedin < Identity
   include Identity::PolymorphicRouting
   include Identity::Provider
   
   with_metrics! "accounts.linkedin"
-  
-  # -- Linkedin actions ------------------------------------------------
-  
+
   #
   # post a status
   def update_status(msg)
-    # TODO: leverage linkedin clint API here...
-    post "TODO", :message => msg
-    
+    post :add_share, :comment => msg
   end
 
   private
@@ -24,8 +22,10 @@ class Identity::Linkedin < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     {
-      :oauth_token      => oauth_token,
-      :oauth_expires_at => Time.at(oauth_expires_at),
+      :consumer_key       => consumer_key     || Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => consumer_secret  || Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => oauth_token,
+      :oauth_token_secret => oauth_secret
     }
   end
 

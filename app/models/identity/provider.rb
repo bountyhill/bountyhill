@@ -21,8 +21,13 @@ module Identity::Provider
   module ClassMethods
     def self.extended(base)
       base.class_eval do
+        # information returned by oauth
         serialized_attr :info, :credentials, :extra
         attr_accessible :info, :credentials, :extra, :identifier, :name, :email, :location
+        
+        # consumer tokens for admin and hermes user.
+        serialized_attr :consumer_key, :consumer_secret
+        attr_accessible :consumer_key, :consumer_secret
         
         # validates user's provider's identifier
         validates :identifier, :presence => true, :format => { :with => /^[^@]/ }, :uniqueness => { :case_sensitive => false }

@@ -13,7 +13,7 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
   def test_update_status
     linkedin  = Identity::Linkedin.new
     message   = "Hey hey hello Mary Lou"
-    linkedin.expects(:post).with("TODO", :message => message).once
+    linkedin.expects(:post).with(:add_share, :comment => message).once
     
     linkedin.update_status(message)
   end
@@ -21,8 +21,10 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
   def test_oauth_hash
     linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :expires_at => 123456789 })
     oauth_hash  = {
-      :oauth_token      => "foo",
-      :oauth_expires_at => Time.at(123456789),
+      :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => "foo",
+      :oauth_token_secret => nil
     }
 
     assert_equal oauth_hash, linkedin.send(:oauth_hash)

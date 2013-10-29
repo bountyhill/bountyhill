@@ -8,10 +8,6 @@ class Identity::Twitter < Identity
   
   with_metrics! "accounts.twitter"
   
-  # Twitter consumer tokens for admin and hermes user.
-  serialized_attr :consumer_key, :consumer_secret
-  attr_accessible :consumer_key, :consumer_secret
-  
   attr_accessible :followed_at
 
   # -- Pseudo attributes ----------------------------------------------
@@ -64,17 +60,12 @@ class Identity::Twitter < Identity
   # need it in an extra object, because it will be passed into background
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
-    oauth = {
-      :consumer_secret    => consumer_secret,
-      :consumer_key       => consumer_key,
+    {
+      :consumer_key       => consumer_key     || Bountybase.config.twitter_app["consumer_key"],
+      :consumer_secret    => consumer_secret  || Bountybase.config.twitter_app["consumer_secret"],
       :oauth_token        => oauth_token,
       :oauth_token_secret => oauth_secret
     }
-
-    oauth[:consumer_secret] ||= Bountybase.config.twitter_app["consumer_secret"]
-    oauth[:consumer_key]    ||= Bountybase.config.twitter_app["consumer_key"]
-    
-    oauth
   end
   
   def post(*args)

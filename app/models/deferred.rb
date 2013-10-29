@@ -96,11 +96,15 @@ module Deferred
 
     oauth = args.extract_options!
     expect! oauth => {
-      :oauth_token      => String,
-      :oauth_expires_at => Time,
+      :oauth_token        => String,
+      :oauth_token_secret => String,
+      :consumer_key       => String,
+      :consumer_secret    => String
     }
 
-    # TODO: leverage linkedin client here....
+    client = LinkedIn::Client.new(oauth[:consumer_key], oauth[:consumer_secret])
+    client.authorize_from_access(oauth[:oauth_token], oauth[:oauth_token_secret])    
+    client.send(*args)                            unless Rails.env.development?
     
     W "OK linkedin", *args                        unless Rails.env.test?
   end

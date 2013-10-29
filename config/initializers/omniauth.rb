@@ -21,6 +21,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   
   provider :linked_in, Bountybase.config.linkedin_app["consumer_key"], Bountybase.config.linkedin_app["consumer_secret"], {
     :name   => 'linkedin',
-    :scope  => 'r_basicprofile r_emailaddress w_messages' }
+    :scope  => 'r_basicprofile r_emailaddress rw_nus' }
 
 end
