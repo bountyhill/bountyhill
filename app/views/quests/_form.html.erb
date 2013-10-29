@@ -25,7 +25,7 @@
   <%= form.control_group :duration_in_days, :radio_button, :hint => false do
       Quest::DURATIONS_IN_DAYS.map do |value|
         label :class => "radio inline" do
-          form.radio_button(:duration_in_days, value, :checked => ((@quest.duration_in_days || 7) == value)) +
+          form.radio_button(:duration_in_days, value, :checked => ((@quest.duration_in_days || Quest::DEFAULT_DURATION_IN_DAYS).to_i == value)) +
           I18n.t('quest.form.field_hint.duration', :count => value)
         end
       end.join.html_safe

@@ -52,7 +52,11 @@ class QuestsController < ApplicationController
 
   def edit
     @quest = Quest.find(params[:id])
-    @quest.build_location unless @quest.location.present?
+
+    # init location
+    if @quest.location.present? then  @quest.restrict_location = true
+    else                              @quest.build_location(:location => request.location)
+    end
     
     render :action => "new"
   end
