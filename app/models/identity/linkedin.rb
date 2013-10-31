@@ -10,8 +10,19 @@ class Identity::Linkedin < Identity
 
   #
   # post a status
-  def update_status(msg)
-    post :add_share, :comment => msg
+  def update_status(message, object=nil)
+    expect! message => String
+    expect! object => [nil, Quest]
+    
+    details = { :comment => message, :visibility => { :code => 'anyone' }}
+    details[:content] = {
+      :title                => object.title,
+      :description          => sanitizer.sanitize(object.description, :tags=>[]),
+      :submitted_url        => object.url,
+      :submitted_image_url  => object.images(:width => 180, :height => 110).first
+    } if object
+    
+    post :add_share, details
   end
 
   private

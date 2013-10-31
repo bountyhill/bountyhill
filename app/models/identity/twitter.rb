@@ -42,8 +42,13 @@ class Identity::Twitter < Identity
 
   #
   # retweet a status
-  def update_status(msg)
-    post :update, msg
+  def update_status(message, object=nil)
+    expect! message => String
+    expect! object => [nil, Quest]
+    
+    message += " #{object.url}" if object
+    
+    post :update, message
   end
   
   #

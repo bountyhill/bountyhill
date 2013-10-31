@@ -10,8 +10,21 @@ class Identity::Facebook < Identity
   
   #
   # post a status
-  def update_status(msg)
-    post "me", "feed", :message => msg
+  def update_status(message, object=nil)
+    expect! message => String
+    expect! object => [nil, Quest]
+    
+    details = { :message => message, :privacy => { 'value' => 'EVERYONE' }}
+    details.merge!({
+      :link         => (Rails.env.production? ? object.url : 'http://bountyhill.com'),
+      :name         => object.title,
+      :description  => sanitizer.sanitize(object.description, :tags=>[]),
+      :picture      => object.images.first,
+    }) if object
+    
+    # Side note: put_wall_post posts to user/feeds, which doesn’t include a Share button. 
+    # To get one when posting a link, you can use put_connections(user, “links”, details).
+    post "me", "links", details
   end
 
   private

@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'html/sanitizer'
+
 module Identity::Provider
   # can be used by identity models that are handled by omniauth
   # e.g.
@@ -35,7 +37,12 @@ module Identity::Provider
         before_create :save_email
       end
     end
-    
+
+    # provide own HTML sanitizer
+    def sanitizer
+      @@sanitizer ||= HTML::FullSanitizer.new
+    end
+        
     # return the identity according to the auth-attributes received from provider
     # or create a new identity object of the actual identifiy class
     def find_or_create(identifier, user = nil, attrs_hash = {})
@@ -121,6 +128,10 @@ module Identity::Provider
       }
     
       image || options[:default]
+    end
+    
+    def sanitizer
+      self.class.sanitizer
     end
     
     private 

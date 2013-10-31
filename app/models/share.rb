@@ -23,7 +23,7 @@ class Share < ActiveRecord::Base
   validates :quest,       :presence => true
   validates :owner,       :presence => true
   validates :identities,  :presence => true
-  validates :message,     :presence => true, :length => { :maximum => 140 }
+  validates :message,     :presence => true, :length => { :maximum => 120 }
   
   validate :validate_identities
   
@@ -50,8 +50,8 @@ class Share < ActiveRecord::Base
     msg = message.gsub(/(^\s+)|(\s+$)/, "").gsub(/\s\s+/, " ")
     msg = quest.title if msg.blank?
     
-    owner.identity(identity).update_status(msg)
-    owner.reward_for(self.quest, :share)
+    owner.identity(identity).update_status(msg, quest)
+    owner.reward_for(quest, :share)
     
     identities[identity] = Time.now
     save!

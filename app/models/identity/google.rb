@@ -10,9 +10,12 @@ class Identity::Google < Identity
   
   #
   # post a status
-  def update_status(msg)
+  def update_status(message, object=nil)
+    expect! message => String
+    expect! object => [nil, Quest]
+    
     # TODO: leverage google clint API here...
-    post "TODO", :message => msg
+    post "TODO", :message => message
     
   end
 
