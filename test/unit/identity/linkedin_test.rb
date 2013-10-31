@@ -12,10 +12,18 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
   
   def test_update_status
     linkedin  = Identity::Linkedin.new
+    quest     = Factory(:quest)
     message   = "Hey hey hello Mary Lou"
-    linkedin.expects(:post).with(:add_share, :comment => message).once
     
-    linkedin.update_status(message)
+    linkedin.expects(:post).with(:add_share, 
+      :comment    => message,
+      :visibility => {:code => 'anyone'},
+      :content    => {
+        :title                => quest.title,
+        :description          => quest.description,
+        :submitted_url        => quest.url,
+        :submitted_image_url  => quest.images.first}).once
+    linkedin.update_status(message, quest)
   end
   
   def test_oauth_hash

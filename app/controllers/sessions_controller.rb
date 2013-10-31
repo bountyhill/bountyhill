@@ -101,7 +101,7 @@ protected
       when "google"     then %w(google)
       when "linkedin"   then %w(linkedin)
       when "email"      then %w(signin email)
-      else              %w(signin twitter facebook google linkedin email)
+      else              %w(signin twitter facebook linkedin google email)
       end
   end
 

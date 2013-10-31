@@ -37,7 +37,7 @@ class ShareTest < ActiveSupport::TestCase
     owner   = share.owner
     twitter = Factory(:twitter_identity, :user => owner)
     # TODO: twitter.expects(:update_status).with("#{share.message}")
-    Identity::Twitter.any_instance.expects(:update_status).with("#{share.message}")
+    Identity::Twitter.any_instance.expects(:update_status).with("#{share.message}", share.quest)
     owner.expects(:reward_for).with(share.quest, :share).once
     
     share.post(:twitter)

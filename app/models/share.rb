@@ -30,7 +30,7 @@ class Share < ActiveRecord::Base
   #
   # All identities that allow a owner to share a quest
   # by sending tweets, posting on timeline, etc.
-  IDENTITIES = %w(twitter facebook google linkedin)
+  IDENTITIES = %w(twitter facebook linkedin) # google)
 
   #
   # detect user's identities that allow sharing

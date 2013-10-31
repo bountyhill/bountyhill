@@ -36,7 +36,7 @@ class DeferredTest < ActiveSupport::TestCase
   
   def test_instance
     assert((instance = Deferred.instance).kind_of?(Object))
-    %w(mail twitter facebook google linkedin).each do |method|
+    %w(mail twitter facebook linkedin google).each do |method|
       assert instance.respond_to?(method)
     end
   end
