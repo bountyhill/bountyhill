@@ -33,10 +33,10 @@ class Identity::Linkedin < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     {
-      :consumer_key       => consumer_key     || Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret    => consumer_secret  || Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token        => oauth_token,
-      :oauth_token_secret => oauth_secret
+      :consumer_key     => consumer_key     || Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret  => consumer_secret  || Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token      => oauth_token,
+      :oauth_secret     => oauth_secret
     }
   end
 

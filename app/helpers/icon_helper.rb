@@ -12,6 +12,7 @@ module IconHelper
       when :twitter     then :twitter
       when :google      then :google_plus_sign
       when :linkedin    then :linkedin_sign
+      when :xing        then :xing_sign
       else raise "Cannot provide icon for: #{identifier.inspect}!"
     end
   end

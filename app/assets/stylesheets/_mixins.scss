@@ -124,6 +124,10 @@
     background-color: $linkedin_box_color;
     .header { background-color: $linkedin_box_title_color; }
   }
+  @else if  $box_type == xing { 
+    background-color: $xing_box_color;
+    .header { background-color: $xing_box_title_color; }
+  }
   @else if  $box_type == activities { 
     background-color: $activities_box_color;
     .header { background-color: $activities_box_title_color; }

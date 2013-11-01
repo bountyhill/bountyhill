@@ -260,6 +260,15 @@ class UserTest < ActiveSupport::TestCase
     user.identities = [linkedin]
     assert_equal "#<User id: #{123} [l:Foo Bar]>", user.inspect
   end
+
+  def test_inspect_with_identity_xing
+    user = User.new
+    user.expects(:id).returns(123)
+    xing = Identity::Xing.new
+    xing.expects(:name).returns("Foo Bar")
+    user.identities = [xing]
+    assert_equal "#<User id: #{123} [x:Foo Bar]>", user.inspect
+  end
   
   def test_inspect_with_identity_email
     user = User.new

@@ -80,8 +80,10 @@ module Deferred
 
     oauth = args.extract_options!
     expect! oauth => {
-      :oauth_token      => String,
-      :oauth_expires_at => Time,
+      :oauth_token        => String,
+      :oauth_token_secret => String,
+      :consumer_key       => String,
+      :consumer_secret    => String
     }
 
     # TODO: leverage google+ client here....
@@ -107,6 +109,28 @@ module Deferred
     client.send(*args)                            unless Rails.env.development?
     
     W "OK linkedin", *args                        unless Rails.env.test?
+  end
+
+  # -- run a xing request ------------------------------------------
+  
+  def xing(*args)
+    W "TRY xing", *args                           unless Rails.env.test?
+
+    oauth = args.extract_options!
+    expect! oauth => {
+      :oauth_token        => String,
+      :oauth_token_secret => String,
+      :consumer_key       => String,
+      :consumer_secret    => String
+    }
+
+    # TODO: leverage xing client here....
+
+    # client = Xing::Client.new(:consumer_key => oauth[:consumer_key], :consumer_secret => oauth[:consumer_secret])
+    # client.authorize_from_access(oauth[:oauth_token], oauth[:oauth_token_secret])    
+    # client.send(*args)                            unless Rails.env.development?
+    
+    W "OK xing", *args                            unless Rails.env.test?
   end
 
   # -- run a twitter request ------------------------------------------

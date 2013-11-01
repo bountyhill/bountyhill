@@ -3,7 +3,7 @@
 module BoxHelper
 
   def box(type, object, options={})
-    expect! type    => [:quest, :offer, :user, :email, :address, :twitter, :facebook, :google, :linkedin]
+    expect! type    => [:quest, :offer, :user, :email, :address, :twitter, :facebook, :google, :linkedin, :xing]
     expect! object  => [nil, Quest, Offer, User, Identity]
     
     preview = options[:preview]
@@ -21,6 +21,7 @@ module BoxHelper
       when :facebook  then "identities/facebook/show"
       when :google    then "identities/google/show"
       when :linkedin  then "identities/linkedin/show"
+      when :xing      then "identities/xing/show"
       else "#{type.to_s.pluralize}/show"
       end
     content = div :class => "content" do

@@ -27,12 +27,12 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
   end
   
   def test_oauth_hash
-    linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :expires_at => 123456789 })
+    linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :secret => "bar" })
     oauth_hash  = {
       :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
       :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
       :oauth_token        => "foo",
-      :oauth_token_secret => nil
+      :oauth_secret       => "bar"
     }
 
     assert_equal oauth_hash, linkedin.send(:oauth_hash)

@@ -25,18 +25,18 @@ class DeferredTest < ActiveSupport::TestCase
     end
 
     # known method
-    Deferred.twitter :update, "foo bar", twitter_oauth_hash
+    Deferred.twitter :update, "foo bar", oauth_hash
     
     # known method in background
     Deferred.expects(:queue).with(:twitter).returns([])
     Deferred.in_background(true) do
-      Deferred.twitter :update, "foo bar", twitter_oauth_hash
+      Deferred.twitter :update, "foo bar", oauth_hash
     end
   end
   
   def test_instance
     assert((instance = Deferred.instance).kind_of?(Object))
-    %w(mail twitter facebook linkedin google).each do |method|
+    %w(mail twitter facebook google linkedin xing).each do |method|
       assert instance.respond_to?(method)
     end
   end
@@ -57,27 +57,27 @@ class DeferredTest < ActiveSupport::TestCase
   end
 
   def test_google
-    # TODO: leverage google clint API here...
+    # TODO: leverage google client API here...
     
-    Deferred.instance.google("foobar", {
-      :oauth_token      => "foo bar",
-      :oauth_expires_at => Time.now,
-    })
+    Deferred.instance.google("foobar", oauth_hash)
   end
 
   def test_linkedin
-    # TODO: leverage google clint API here...
+    LinkedIn::Client.any_instance.expects(:add_share).with("foo", "bar")
+  
+    Deferred.instance.linkedin(:add_share, "foo", "bar", oauth_hash)
+  end
+
+  def test_xing
+    # TODO: leverage xing client API here...
     
-    Deferred.instance.google("foobar", {
-      :oauth_token      => "foo bar",
-      :oauth_expires_at => Time.now,
-    })
+    Deferred.instance.xing(:create_status_message, "foobar", oauth_hash)
   end
   
   def test_twitter
     Twitter::Client.any_instance.expects(:update).with("foo bar")
 
-    Deferred.instance.twitter(:update, "foo bar", twitter_oauth_hash)
+    Deferred.instance.twitter(:update, "foo bar", oauth_hash)
   end
   
   def test_mail
@@ -88,12 +88,12 @@ class DeferredTest < ActiveSupport::TestCase
   end
   
 private
- def twitter_oauth_hash
+ def oauth_hash
    {
-     :oauth_token        => Bountybase.config.twitter_app["oauth_token"],
-     :oauth_token_secret => Bountybase.config.twitter_app["oauth_secret"],
-     :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
-     :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"]
+     :oauth_token        => "oauth_token",
+     :oauth_token_secret => "oauth_secret",
+     :consumer_key       => "consumer_key",
+     :consumer_secret    => "consumer_secret"
    }
  end
 end

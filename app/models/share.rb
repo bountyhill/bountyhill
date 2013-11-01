@@ -30,8 +30,10 @@ class Share < ActiveRecord::Base
   #
   # All identities that allow a owner to share a quest
   # by sending tweets, posting on timeline, etc.
-  IDENTITIES = %w(twitter facebook linkedin) # google)
-
+# TODO: enable sharing with all social identities...
+#  IDENTITIES = %w(twitter facebook google linkedin xing)
+  IDENTITIES = %w(twitter facebook linkedin)
+  
   #
   # detect user's identities that allow sharing
   def init_identities

@@ -67,6 +67,14 @@
           border: 1px solid $linkedin_highlight;
         };
       }
+      &.xing {
+        background-color: $xing;
+        border: 1px solid $xing;
+        &:hover { 
+          background-color: $xing_highlight; 
+          border: 1px solid $xing_highlight;
+        };
+      }
       &.address {
         background-color: $address;
         border: 1px solid $address;

@@ -192,6 +192,7 @@ de:
       facebook:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem Facebook Account."
       google:     "Um fortfahren zu können, benötigen wir Zugang zu Deinem Google Account."
       linkedin:   "Um fortfahren zu können, benötigen wir Zugang zu Deinem LinkedIn Account."
+      xing:       "Um fortfahren zu können, benötigen wir Zugang zu Deinem Xing Account."
     form:
       title:          Anmelden/Registrieren
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
@@ -327,6 +328,23 @@ de:
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen LinkedIn-Account von meinem bountyhill Profil entfernen."
+  identity/xing:
+    show:
+      title:  Xing
+      legend: "Du bist unter folgendem Xing-Benutzernamen bei bountyhill registriert:"
+    form:
+      new:
+        title:    Xing Account hinzufügen
+        legend:   "Du kannst Deinen Xing-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Status Updates zu posten."
+      delete:
+        title:    Xing Account entfernen
+        legend:   "Du kannst Deinen LinkedIn-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
+      signin:
+        title:    Anmelden via Xing
+        legend:   "Du kannst Dich über Xing bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+      field_hint:
+        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:  "Ich möchte meinen Xing-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
       title:    Email bestätigen
@@ -382,6 +400,10 @@ de:
         title:  "LinkedIn"
         text:   "Du hast uns noch keinen Zugang zu Deinem LinkedIn-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen als Messages posten."
         icon:   "Dein LinkedIn-Nutzername."
+      xing:
+        title:  "Xing"
+        text:   "Du hast uns noch keinen Zugang zu Deinem Xing-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen als Status Updates posten."
+        icon:   "Dein Xing-Nutzername."
       twitter:
         title:  "Twitter"
         text:   "Du hast uns noch keinen Zugang zu Deinem Twitter-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen Twittern."
@@ -637,6 +659,7 @@ de:
       facebook: "Facebook %{required}"
       google: 	"Google %{required}"
       linkedin: "LinkedIn %{required}"
+      xing:     "Xing %{required}"
       required: "erfordert Anmeldung"
   sessions:
     auth:

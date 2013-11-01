@@ -192,6 +192,7 @@ en:
       facebook:   "We need access to your Facebook account to continue."
       google:     "We need access to your Google account to continue."
       linkedin:   "We need access to your LinkedIn account to continue."
+      xing:       "We need access to your Xing account to continue."
     form:
       title:          Sign in/up
       terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
@@ -326,6 +327,23 @@ en:
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my LinkedIn account from my bountyhill profile.
+  identity/xing:
+    show:
+      title:      Xing
+      legend:     "You are registered at bountyhill with the following Xing user name:"
+    form:
+      new:
+        title:    Add Xing account
+        legend:   "If you have a Xing account you can add it to your bountyhill profile, e.g to allow us to post status updates."
+      delete:
+        title:    Remove Xing account
+        legend:   "You can remove your Xing account from your bountyhill profile, e.g. to add add use another one."
+      signin:
+        title:    Sign in with Xing
+        legend:   You can sign in to bountyhill via Xing. Please note that there are different terms for commercial users.
+      field_hint:
+        commercial: I want to use bountyhill on behalf of my company.
+        delete_me:  I do want to remove my Xing account from my bountyhill profile.
   identity/confirm:
     form:
       title:    Confirm email
@@ -381,6 +399,10 @@ en:
         title:  "LinkedIn"
         text:   "You did not provide access to your LinkedIn account so far. We do require your access to your LinkedIn account e.g. if you want us to post quests you did select as messages."
         icon:   "Your LinkedIn user name."
+      xing:
+        title:  "Xing"
+        text:   "You did not provide access to your Xing account so far. We do require your access to your Xing account e.g. if you want us to post quests you did select as status updates."
+        icon:   "Your Xing user name."
       twitter:
         title:  "Twitter"
         text:   "You did not provide access to your Tswitter account so far. We do require your access to your Twitter account e.g. if you want us to tweet quests you did select."
@@ -636,7 +658,8 @@ en:
       twitter:  "Twitter %{required}"
       facebook: "Facebook %{required}"
       google:   "Google %{required}"
-      linkedin:   "LinkedIn %{required}"
+      linkedin: "LinkedIn %{required}"
+      xing:     "Xing %{required}"
       required: "sign-in required"
   sessions:
     auth:

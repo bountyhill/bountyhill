@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 # The SharesController is used to share a quest via selected social networks, 
-# e.g. twitter, facebook, google, linkedin or ...
+# e.g. twitter, facebook, google, linkedin or xing
 class SharesController < ApplicationController
   layout false, :only => [:new, :create]
   

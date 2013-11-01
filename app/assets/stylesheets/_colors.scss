@@ -110,7 +110,9 @@ $user_box_statistic_color:  $petrol;
 $user_button_color:         $user_box_title_color;
 $user_active_button_color:  $petrol_dark;
 
+/* see: http://encycolorpedia.com/ */
 /* see: http://designpieces.com/2012/12/social-media-colours-hex-and-rgb/ */
+
 $twitter:             #00ACED;
 $twitter_highlight:   #21C2FF;
 $facebook:            #3B5998;
@@ -119,6 +121,8 @@ $google:              #DD4B39;
 $google_highlight:    #FF6D5B;
 $linkedin:            #007BB6;
 $linkedin_highlight:  #229DD8;
+$xing:                #126567;
+$xing_highlight:      #348789;
 $profile:             #4C9E46;
 $profile_highlight:   #51AA4B;
 $password:            $magenta_dark;
@@ -162,6 +166,10 @@ $google_button_color:       $google;
 $linkedin_box_color:        $content_color;
 $linkedin_box_title_color:  $linkedin;
 $linkedin_button_color:     $linkedin;
+
+$xing_box_color:            $content_color;
+$xing_box_title_color:      $xing;
+$xing_button_color:         $xing;
 
 /* activities */
 

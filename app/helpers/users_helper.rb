@@ -52,26 +52,18 @@ module UsersHelper
       :html => { :target => :blank, :rel => "nofollow" }) { I18n.t("button.follow") }
   end
   
-  def email_buttons(identity)
-    button_group [identity_button(identity, :email)]
+  # def email_buttons(identity)
+  # def twitter_buttons(identity)
+  # def facebook_buttons(identity)
+  # def google_buttons(identity)
+  # def linkedin_buttons(identity)
+  # def xing_buttons(identity)
+  [:email, :twitter, :facebook, :google, :linkedin, :xing].each do |i|
+    define_method("#{i}_buttons") do |identity|
+      button_group [identity_button(identity, i)]
+    end
   end
   
-  def twitter_buttons(identity)
-    button_group [identity_button(identity, :twitter)]
-  end
-  
-  def facebook_buttons(identity)
-    button_group [identity_button(identity, :facebook)]
-  end
-
-  def google_buttons(identity)
-    button_group [identity_button(identity, :google)]
-  end
-
-  def linkedin_buttons(identity)
-    button_group [identity_button(identity, :linkedin)]
-  end
-
   def address_buttons(identity)
     button_group [
       identity_button(identity, :address), #, :delete => false),
@@ -197,13 +189,4 @@ module UsersHelper
     end + javascript_tag("$('#privacy-icon-#{identity}').tooltip();")
   end
   
-end
-__END__
-
-  def link_to_twitter(user, options = {})
-    if twitter_handle = user.twitter_handle
-      link_to twitter_handle, "https://twitter.com/#{twitter_handle[1..-1]}", options
-    end
-  end
-
 end

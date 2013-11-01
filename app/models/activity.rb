@@ -34,6 +34,9 @@ class Activity < ActiveRecord::Base
     :"identity/linkedin" => {
       :create => 1
     },
+    :"identity/xing" => {
+      :create => 1
+    },
     :"identity/email" => {
       :create => 2
     },

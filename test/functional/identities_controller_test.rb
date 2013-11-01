@@ -18,7 +18,7 @@ class IdentitiesControllerTest < ActionController::TestCase
   # --- test restful identities actions ---------------------------------------------
   
   def test_new
-    %w(email address twitter facebook linkedin google).each do |provider|
+    %w(email address twitter facebook google linkedin xing).each do |provider|
       get :new, :provider => provider
       assert_response :success
       assert_template 'new'

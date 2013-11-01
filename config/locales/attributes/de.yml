@@ -26,6 +26,7 @@ de:
       identity/facebook:  Facebook
       identity/google:    Google
       identity/linkedin:  LinkedIn
+      identity/xing:      Xing
       location: Ort
     attributes:
       identity:
@@ -48,6 +49,7 @@ de:
         facebook:         Facebook
         google:           Google
         linkedin:         LinkedIn
+        xing:             Xing
         delete_me:        Account Löschen
         deletion:         Beweggrund
         deletion_reason:  Erklärung

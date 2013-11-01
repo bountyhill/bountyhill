@@ -212,6 +212,9 @@ GEM
     omniauth-twitter (1.0.0)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
+    omniauth-xing (0.1.4)
+      multi_json
+      omniauth-oauth (~> 1.0.0)
     opinio (0.6)
       jquery-rails
       kaminari
@@ -395,6 +398,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-linkedin
   omniauth-twitter
+  omniauth-xing
   opinio
   psych
   rack-contrib

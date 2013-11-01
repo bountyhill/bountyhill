@@ -58,6 +58,17 @@ FactoryGirl.define do
       identity.user = User.create! { |user| user.identities << identity }
     end
   end
+
+  factory :xing_identity, :class => "Identity::Xing" do
+    identifier  "openbc"
+    
+    after(:build) do |identity, evaluator|
+      identity.info ||= { :name => "Foo Bar" }
+      
+      next if identity.user.present?
+      identity.user = User.create! { |user| user.identities << identity }
+    end
+  end
   
   factory :address_identity, :class => "Identity::Address" do
     address1  "street"

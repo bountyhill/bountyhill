@@ -36,7 +36,7 @@ form {
     }
   }
   .checkbox-group {
-    &.twitter, &.facebook, &.google, &.linkedin {
+    &.twitter, &.facebook, &.google, &.linkedin, &.xing {
       position: relative;
       margin: 4px 0;
       padding: 0px 10px;
@@ -63,6 +63,10 @@ form {
     &.linkedin { 
       background-color: $linkedin; 
       &:hover {background-color: $linkedin_highlight; }
+    }
+    &.xing { 
+      background-color: $xing; 
+      &:hover {background-color: $xing_highlight; }
     }
   }
   .tweet-message {

@@ -5,6 +5,7 @@ require_dependency "identity/twitter"
 require_dependency "identity/facebook"
 require_dependency "identity/google"
 require_dependency "identity/linkedin"
+require_dependency "identity/xing"
 require_dependency "identity/email"
 require_dependency "identity/address"
 
@@ -51,9 +52,9 @@ class User < ActiveRecord::Base
     return if image.present?
     
     # try to fetch avatar from identity providers
-    image = if (identity = identities.detect{ |identity| identity.respond_to?(:avatar) && !identity.avatar.blank? })
-        identity.avatar
-      end
+    if (identity = identities.detect{ |i| i.respond_to?(:avatar) && !i.avatar.blank? })
+      identity.avatar
+    end
   end
   
   public
@@ -121,22 +122,18 @@ class User < ActiveRecord::Base
   private
   
   def find_identity(mode)
-    expect! mode => [:any, :login, :email, :confirmed, :address, :twitter, :facebook, :google, :linkedin, :deleted]
+    expect! mode => [:any, :login, :email, :confirmed, :address, :twitter, :facebook, :google, :linkedin, :xing, :deleted]
     
     case mode
-    when :email     then identities.detect { |i|  i.is_a?(Identity::Email) }
     when :confirmed then identities.detect { |i|  i.is_a?(Identity::Email) && i.confirmed? }
-    when :address   then identities.detect { |i|  i.is_a?(Identity::Address) }
-    when :twitter   then identities.detect { |i|  i.is_a?(Identity::Twitter) }
-    when :facebook  then identities.detect { |i|  i.is_a?(Identity::Facebook) }
-    when :google    then identities.detect { |i|  i.is_a?(Identity::Google) }
-    when :linkedin  then identities.detect { |i|  i.is_a?(Identity::Linkedin) }
-    when :deleted   then identities.detect { |i|  i.is_a?(Identity::Deleted) }
     when :any       then identities.detect { |i| !i.is_a?(Identity::Deleted) }
-    when :login     then identities.detect { |i|  (i.is_a?(Identity::Email) && i.confirmed?) ||
-                                                  i.is_a?(Identity::Twitter) ||
-                                                  i.is_a?(Identity::Facebook) }
-    else raise "Cannot handle identity #{mode}!"
+    when :login     then identities.detect { |i| (i.is_a?(Identity::Email) && i.confirmed?) ||
+                                                  i.is_a?(Identity::Twitter)  ||
+                                                  i.is_a?(Identity::Facebook) || 
+                                                  i.is_a?(Identity::Google)   || 
+                                                  i.is_a?(Identity::Linkedin) || 
+                                                  i.is_a?(Identity::Xing) }
+    else identities.detect { |i| i.is_a?("Identity::#{mode.to_s.camelize}".constantize) }
     end
   end
 
@@ -190,7 +187,7 @@ class User < ActiveRecord::Base
       return email.name unless email.name.blank?
     end
     
-    if (identity = identities.detect { |identity| identity.respond_to?(:name) && !identity.name.blank? })
+    if (identity = identities.detect { |i| i.respond_to?(:name) && !i.name.blank? })
       return identity.name
     end
     
@@ -199,14 +196,14 @@ class User < ActiveRecord::Base
   
   # return the user's location
   def location
-    if (identity = identities.detect { |identity| identity.respond_to?(:location) && !identity.location.blank? })
+    if (identity = identities.detect { |i| i.respond_to?(:location) && !i.location.blank? })
       return identity.location
     end
   end
 
   # return the user's email and consider email identity to do so first
   def email
-    if (identity = ([self.identity(:email)] + identities).compact.detect { |identity| identity.respond_to?(:email) && !identity.email.blank? })
+    if (identity = ([self.identity(:email)] + identities).compact.detect { |i| i.respond_to?(:email) && !i.email.blank? })
       identity.email
     end
   end
@@ -410,13 +407,17 @@ class User < ActiveRecord::Base
       parts << "l:#{linkedin.name}"
     end
 
+    if xing = identity(:xing)
+      parts << "x:#{xing.name}"
+    end
+    
     if confirmed = identity(:confirmed)
       parts << "@:#{confirmed.email} (✓)"
     elsif email = self.identity(:email)
       parts << "@:#{email.email} (-)"
     end
     
-    if deleted = identity(:deleted)
+    if identity(:deleted)
       parts << "---deleted---"
     end
     
@@ -433,7 +434,7 @@ class User < ActiveRecord::Base
   def description
     return self.serialized[:description] unless self.serialized[:description].blank?
     
-    if (identity = self.identities.detect{ |identity| identity.respond_to?(:description) && identity.description.present? })
+    if (identity = self.identities.detect{ |i| i.respond_to?(:description) && i.description.present? })
       identity.description
     end
   end

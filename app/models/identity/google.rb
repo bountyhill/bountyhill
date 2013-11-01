@@ -27,8 +27,8 @@ class Identity::Google < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     {
-      :oauth_token      => oauth_token,
-      :oauth_expires_at => Time.at(oauth_expires_at),
+      :oauth_token  => oauth_token,
+      :oauth_secret => oauth_secret,
     }
   end
 

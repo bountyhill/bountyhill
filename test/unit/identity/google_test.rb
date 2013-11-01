@@ -19,10 +19,10 @@ class Identity::GoogleTest < ActiveSupport::TestCase
   end
   
   def test_oauth_hash
-    google = Identity::Google.new(:credentials => { :token => "foo", :expires_at => 123456789 })
+    google = Identity::Google.new(:credentials => { :token => "foo", :secret => "bar" })
     oauth_hash = {
       :oauth_token      => "foo",
-      :oauth_expires_at => Time.at(123456789),
+      :oauth_secret     => "bar",
     }
 
     assert_equal oauth_hash, google.send(:oauth_hash)
