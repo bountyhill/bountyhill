@@ -20,7 +20,12 @@
         .identity-icon { float: left; }
         .privacy-icon  { float: right; }
         .identity-icon, .privacy-icon {
+          font-size: 120%;
           a { color: $text }
+          i { 
+            font-size: 120%; 
+            &.fa-envelope, &.fa-eye, &.fa-eye-slash { font-size: 100%; }
+          }
         }
 /*
         dl { 

@@ -6,9 +6,7 @@ module NavigationHelper
     # some navigation items takes precendence over others when determining
     # the active navigation item. For example, "/quests?owner_id=123" is
     # *my_quests* and not *quests*.
-    @static_active_navigation_item ||= begin
-      user_id = current_user.id if current_user
-      
+    @static_active_navigation_item ||= begin      
       if request.path =~ /^\/profile/
         :profile
       elsif controller_name == "offers" && personal_page?
@@ -42,25 +40,25 @@ module NavigationHelper
 
     case nav_item
     when :start_quest
-      link_to awesome_icon(:edit) + span(I18n.t("nav.start_quest")), new_quest_path
+      link_to awesome_icon(icon_for('navigation.start_quest')) + span(I18n.t("nav.start_quest")), new_quest_path
     when :quests
-      link_to awesome_icon(:list) + span(I18n.t("nav.quests")), quests_path
+      link_to awesome_icon(icon_for('navigation.quests')) + span(I18n.t("nav.quests")), quests_path
     when :my_quests
-      link_to awesome_icon(:list) + I18n.t("nav.my_quests"), :controller => :quests, :owner_id => current_user
+      link_to awesome_icon(icon_for('navigation.my_quests')) + I18n.t("nav.my_quests"), :controller => :quests, :owner_id => current_user
     when :my_offers
-      link_to awesome_icon(:indent_left) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
+      link_to awesome_icon(icon_for('navigation.my_offers')) + I18n.t("nav.my_offers"), :controller => :offers, :owner_id => current_user
     when :received_offers
-      link_to awesome_icon(:indent_right) + I18n.t("nav.received_offers"), offers_path
+      link_to awesome_icon(icon_for('navigation.received_offers')) + I18n.t("nav.received_offers"), offers_path
     when :profile
-      link_to awesome_icon(:user) + I18n.t("nav.my_profile"), "/profile"
+      link_to awesome_icon(icon_for('navigation.my_profile')) + I18n.t("nav.my_profile"), "/profile"
     when :signout
-      link_to awesome_icon(:signout) +  span(I18n.t("nav.signout")), signout_path, :method => :delete
+      link_to awesome_icon(icon_for('navigation.signout')) +  span(I18n.t("nav.signout")), signout_path, :method => :delete
     when :divider
       ""
     when :copyright
       link_to "<strong>&copy; bountyhill, #{Time.now.year}</strong>".html_safe, root_path
     when :signin
-      modal_link_to awesome_icon(:signin) + span(I18n.t("nav.signin")), signin_path
+      modal_link_to awesome_icon(icon_for('navigation.signin')) + span(I18n.t("nav.signin")), signin_path
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     else
@@ -83,8 +81,7 @@ module NavigationHelper
     end
   end
   
-  def render_navigation_items(position)
-    show_active_links = position == :header_center
+  def render_navigation_items(position = :header_center)
     css = ""
     css += " nav-main"    if position == :header_center
     css += " pull-right"  if position =~ /right/

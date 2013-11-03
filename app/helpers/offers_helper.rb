@@ -30,49 +30,49 @@ module OffersHelper
     return unless current_user
     return unless offer.new? && current_user.owns?(offer)
     
-    modal_awesome_button(:ok_circle, activate_offer_path(offer), options) { I18n.t("button.offer") }
+    modal_awesome_button(icon_for('interaction.offer'), activate_offer_path(offer), options) { I18n.t("button.offer") }
   end
   
   def edit_offer_button(offer)
     return unless current_user
     return unless offer.new? && current_user.owns?(offer)
 
-    awesome_button(:edit, edit_offer_path(offer)) { I18n.t("button.edit") }
+    awesome_button(icon_for('interaction.edit'), edit_offer_path(offer)) { I18n.t("button.edit") }
   end
 
   def accept_offer_button(offer)
     return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
 
-    modal_awesome_button(:ok_circle, accept_offer_path(offer)) { I18n.t("button.accept") }
+    modal_awesome_button(icon_for('interaction.accept'), accept_offer_path(offer)) { I18n.t("button.accept") }
   end
 
   def reject_offer_button(offer)
     return unless current_user
     return unless offer.active? && !current_user.owns?(offer)
 
-    modal_awesome_button(:remove_sign, reject_offer_path(offer)) { I18n.t("button.reject") }
+    modal_awesome_button(icon_for('interaction.reject'), reject_offer_path(offer)) { I18n.t("button.reject") }
   end
   
   def withdraw_offer_button(offer)
     return unless current_user
     return unless offer.active? && current_user.owns?(offer)
 
-    modal_awesome_button(:remove_sign, withdraw_offer_path(offer)) { I18n.t("button.withdraw") }
+    modal_awesome_button(icon_for('interaction.withdraw'), withdraw_offer_path(offer)) { I18n.t("button.withdraw") }
   end
     
   def offer_statistic(offer)
     statistic_entries =  []
     
     statistic_entries << case offer.state
-      when 'active'     then awesome_icon(:bar_chart)         + I18n.t("offer.compliance", :precentage => offer.compliance)
-      when 'new'        then awesome_icon(:file_alt)          + I18n.t("offer.states.new")
-      when 'withdrawn'  then awesome_icon(:circle_arrow_left) + I18n.t("offer.states.withdrawn")
-      when 'accepted'   then awesome_icon(:thumbs_up)         + I18n.t("offer.states.accepted")
-      when 'rejected'   then awesome_icon(:thumbs_down)       + I18n.t("offer.states.rejected")
+      when 'active'     then awesome_icon(icon_for('status.active'))    + I18n.t("offer.compliance", :precentage => offer.compliance)
+      when 'new'        then awesome_icon(icon_for('status.new'))       + I18n.t("offer.states.new")
+      when 'withdrawn'  then awesome_icon(icon_for('status.withdrawn')) + I18n.t("offer.states.withdrawn")
+      when 'accepted'   then awesome_icon(icon_for('status.accepted'))  + I18n.t("offer.states.accepted")
+      when 'rejected'   then awesome_icon(icon_for('status.rejected'))  + I18n.t("offer.states.rejected")
       else raise "Unknown offer state: #{offer.state}"
       end
-    statistic_entries << awesome_icon(:picture)   + I18n.t("offer.list.images", :count => offer.images.size)   if offer.images.present?
+    statistic_entries << awesome_icon(icon_for('other.picture')) + I18n.t("offer.list.images", :count => offer.images.size)   if offer.images.present?
     
     ul :class => "stats-list" do
       statistic_entries.map{ |entry| li(entry) }.join.html_safe
@@ -151,7 +151,7 @@ module OffersHelper
   def offer_compliance_statistic_box(offer)
     statistic_box "#{offer.compliance}%",
       I18n.t("offer.statistic.compliance"),
-      awesome_icon(:bar_chart, :size => :large), :css_class => "offer"
+      awesome_icon(icon_for('status.compliance')), :css_class => "offer"
   end
   
   def offer_viewed_statistic_box(offer)
@@ -160,7 +160,7 @@ module OffersHelper
     days = distance_of_time_in_days_to_now(offer.viewed_at)
     statistic_box((days.zero? ? "#" : days),
       I18n.t("offer.statistic.viewed", :count => days),
-      awesome_icon(:eye_open, :size => :large), :css_class => "offer"
+      awesome_icon(icon_for('status.viewed')), :css_class => "offer"
     )
   end
   
@@ -170,14 +170,14 @@ module OffersHelper
     days = distance_of_time_in_days_to_now(offer.created_at)
     statistic_box((days.zero? ? "#" : days),
       I18n.t("offer.statistic.created", :count => days),
-      awesome_icon(:time, :size => :large), :css_class => "offer"
+      awesome_icon(icon_for('status.created')), :css_class => "offer"
     )
   end
   
   def offer_comments_statistic_box(offer)
     statistic_box offer.comments.count,
       I18n.t("offer.statistic.comments"),
-      awesome_icon(:comment, :size => :large), :css_class => "offer"
+      awesome_icon(icon_for('status.comments')), :css_class => "offer"
   end
   
 end

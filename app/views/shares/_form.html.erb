@@ -23,7 +23,7 @@
         <%= form.share_with identity,
           :checked  => @share.identities[identity],
           :required => current_user.nil? || current_user.identity(identity.to_sym).nil? %>
-        <%= awesome_icon(icon_for(identity), :size => :large) %>
+        <%= awesome_icon(icon_for("identity.#{identity}")) %>
       </div>
     <% end %>
     

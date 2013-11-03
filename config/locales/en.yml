@@ -414,7 +414,7 @@ en:
         legend:   Your user profile can be viewed by other bountyhill users as well.
         legend2:  Do you intend to use bountyhill for commercial purpose? Please note that there are different terms for commercial users.
       delete:
-        title:  Account
+        title:  Delete account
         legend: You can delete your bountyhill account at anytime. We would honestly regret to see you leave. Please let us know why in case you decided to delete your bountyhill account.
       field_hint:
         first_name:   Your first name

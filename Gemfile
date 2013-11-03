@@ -37,7 +37,7 @@ group :assets do
   gem 'compass-rails'
   gem 'compass-colors'
   gem 'compass_twitter_bootstrap'
-  gem 'font-awesome-sass-rails'
+  gem 'font-awesome-rails'
   gem 'sassy-buttons'
 end
 

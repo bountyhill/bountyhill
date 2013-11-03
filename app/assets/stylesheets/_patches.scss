@@ -40,12 +40,16 @@
 }
 
 /* -------- icon ---------- */
-.btn [class^="icon-"], .btn [class*=" icon-"],
-.nav li [class^="icon-"], .nav li [class*=" icon-"],
-.stats-list li [class^="icon-"], .stats-list li [class*=" icon-"]{
+.btn [class^="fa-"], .btn [class*=" fa-"],
+.nav li [class^="fa-"], .nav li [class*=" fa-"],
+.stats-list li [class^="fa-"], .stats-list li [class*=" fa-"]{
   text-align: left;                           /* usually awsome font icons are centered - align them left to leave some spaceto following text */
   width: 1.5em;
 }
+.btn [class^="fa-"], .btn [class*=" fa-"]{
+  width: 1.2em;
+}
+
 
 /* -------- button ---------- */
 .btn {

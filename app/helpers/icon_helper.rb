@@ -1,20 +1,82 @@
 module IconHelper
   
-  def icon_for(identifier)
-    expect! identifier => [String, Symbol]
-    
-    case identifier.to_sym
-      when :commercial  then :group
-      when :private     then :user
-      when :address     then :home
-      when :email       then :envelope_alt
-      when :facebook    then :facebook_sign
-      when :twitter     then :twitter
-      when :google      then :google_plus_sign
-      when :linkedin    then :linkedin_sign
-      when :xing        then :xing_sign
-      else raise "Cannot provide icon for: #{identifier.inspect}!"
+  # definition of each and every icon
+  # made accessible by icon_for(scope)
+  ICONS = {
+    :navigation => {
+      :start_quest      => :edit,
+      :quests           => :list,
+      :my_quests        => :list,
+      :my_offers        => :indent,
+      :received_offers  => :outdent,
+      :my_profile       => :user,
+      :signout          => :sign_out,
+      :signin           => :sign_in
+    },
+    :identity => {
+      :commercial => :group,
+      :private    => :user,
+      :confirm    => :check,
+      :signup     => :user,
+      :delete     => :ban,
+      :password   => :lock,
+      :address    => :home,
+      :email      => :envelope,
+      :facebook   => :facebook_square,
+      :twitter    => :twitter_square,
+      :google     => :google_plus_square,
+      :linkedin   => :linkedin_square,
+      :xing       => :xing_square
+    },
+    :interaction => {
+      :new      => :edit,
+      :edit     => :pencil,
+      :delete   => :trash_o,
+      :start    => :gear,
+      :stop     => :exclamation_circle,
+      :offer    => :share,
+      :accept   => :check_square,
+      :reject   => :minus_square,
+      :withdraw => :undo,
+      :share    => :retweet,
+      :reply    => :reply,
+      :comment  => :comment,
+      :follow   => :twitter
+    },
+    :status => {
+      :new        => :file_text,
+      :created    => :clock_o,
+      :active     => :bar_chart_o,
+      :withdrawn  => :caret_square_o_down,
+      :accepted   => :check_square,
+      :rejected   => :minus_square,
+      :expired    => :clock_o,
+      :viewed     => :eye,
+      :compliance => :bar_chart_o,
+      :quests     => :list,
+      :offers     => :share,
+      :comments   => :comment,
+      :forwards   => :retweet
+    },
+    :other => {
+      :bounty         => :money,
+      :location       => :globe,
+      :picture        => :picture_o,
+      :load_indicator => :refresh
+    }   
+  }
+  
+  def icon_for(scope)
+    expect! scope => [String]
+
+    icon = ICONS
+    scope.split(".").each do |key|
+      icon = icon[key.to_sym]
+      raise "No icon defined for scope: '#{scope}'" unless icon.present?
     end
+
+    return icon if icon.kind_of?(Symbol)
+    raise "Scope is too short: '#{scope}'" 
   end
 
   def awesome_icon(name, *args, &block)
@@ -37,8 +99,8 @@ protected
     name = name.to_s.dasherize
     name.gsub!(/^icon-/, '')
 
-    clazz = "icon-#{name}"
-    clazz << " icon-#{size}" if size.to_s == 'large'
+    clazz = "fa fa-#{name}"
+    clazz << " fa-#{size}" if size
     clazz << " " << options.delete(:class) if options[:class]
 
     options.merge!(:class => clazz)

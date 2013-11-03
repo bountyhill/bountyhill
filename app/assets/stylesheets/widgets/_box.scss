@@ -144,7 +144,10 @@
     .container {
       width: 100%;
       border-bottom: $box_border_bottom;
-      i { float: right; }
+      i { 
+        font-size: 140%;
+        float: right;
+      }
       .count {
         font-size: $statistic_number_font_size;
         line-height: $statistic_number_line_height;

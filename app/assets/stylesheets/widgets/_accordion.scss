@@ -5,6 +5,10 @@
   margin-bottom: 4px;
   @include border-radius(0);  /* remove border radius */
   .accordion-heading {
+    i { 
+      font-size: 120%; 
+      &.fa-envelope { font-size: 100%; }
+    }
     a {
       color: $text;
       &:hover {

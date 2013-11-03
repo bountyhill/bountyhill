@@ -21,7 +21,7 @@ module QuestsHelper
   end
   
   def new_quest_button
-    awesome_button(:edit, new_quest_path) { I18n.t("nav.start_quest") }
+    awesome_button(icon_for('interaction.new'), new_quest_path) { I18n.t("nav.start_quest") }
   end
 
   def categories_select_options
@@ -59,14 +59,14 @@ module QuestsHelper
   def share_quest_button(quest)
     return unless quest.active?
 
-    modal_awesome_button(:retweet, new_share_path(:quest_id => quest)) { I18n.t("button.share") }
+    modal_awesome_button(icon_for('interaction.share'), new_share_path(:quest_id => quest)) { I18n.t("button.share") }
   end
 
   def new_offer_button(quest)
     return unless quest.active?
     return if current_user && current_user.owns?(quest)
 
-    awesome_button(:share, new_offer_path(:quest_id => quest)) { I18n.t("button.offer") }
+    awesome_button(icon_for('interaction.offer'), new_offer_path(:quest_id => quest)) { I18n.t("button.offer") }
   end
 
   def start_quest_button(quest, options={})
@@ -78,34 +78,34 @@ module QuestsHelper
     else                  return unless User.draft.owns?(quest)
     end
     
-    modal_awesome_button(:ok_circle, run_path(quest), options) { I18n.t("button.start") }
+    modal_awesome_button(icon_for('interaction.start'), run_path(quest), options) { I18n.t("button.start") }
   end
 
   def stop_quest_button(quest)
     return unless current_user
     return unless quest.active? && current_user.owns?(quest)
 
-    modal_awesome_button(:remove_sign, url_for(:controller => :runs, :action => :cancel, :id => quest)) { I18n.t("button.stop") }
+    modal_awesome_button(icon_for('interaction.stop'), url_for(:controller => :runs, :action => :cancel, :id => quest)) { I18n.t("button.stop") }
   end
   
   def edit_quest_button(quest)
     return unless current_user
     return unless !quest.active? && current_user.owns?(quest)
 
-    awesome_button(:edit, edit_quest_path(quest)) { I18n.t("button.edit") }
+    awesome_button(icon_for('interaction.edit'), edit_quest_path(quest)) { I18n.t("button.edit") }
   end
 
   def quest_statistic(quest)
     statistic_entries = []
 
     statistic_entries << 
-      if    quest.active?   then awesome_icon(:money)       + I18n.t('quest.list.bounty', :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')).html_safe
-      elsif quest.expired?  then awesome_icon(:time)        + I18n.t('quest.status.expired')
-      elsif !quest.started? then awesome_icon(:minus_sign)  + I18n.t('quest.status.not_started')
+      if    quest.active?   then awesome_icon(icon_for('other.bounty'))   + I18n.t('quest.list.bounty', :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;')).html_safe
+      elsif quest.expired?  then awesome_icon(icon_for('status.expired')) + I18n.t('quest.status.expired')
+      elsif !quest.started? then awesome_icon(icon_for('status.new'))    + I18n.t('quest.status.not_started')
       end
 
-    statistic_entries << awesome_icon(:globe)   + quest.location.address                                    if quest.location.present?
-    statistic_entries << awesome_icon(:picture) + I18n.t('quest.list.images', :count => quest.images.size)  if quest.images.present?
+    statistic_entries << awesome_icon(icon_for('other.location'))  + quest.location.address                                    if quest.location.present?
+    statistic_entries << awesome_icon(icon_for('other.picture'))   + I18n.t('quest.list.images', :count => quest.images.size)  if quest.images.present?
     statistic_entries.flatten
 
     ul :class => "stats-list" do
@@ -149,25 +149,25 @@ module QuestsHelper
                         end
     statistic_box days,
       I18n.t(translation, :count => days),
-      awesome_icon(:time, :size => :large), :css_class => "quest"
+      awesome_icon(icon_for('status.created')), :css_class => "quest"
   end
   
   def quest_bounty_statistic_box(quest)
     statistic_box number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'),
       I18n.t("quest.statistic.bounty"),
-      awesome_icon(:money, :size => :large), :css_class => "quest"
+      awesome_icon(icon_for('other.bounty')), :css_class => "quest"
   end
   
   def quest_offers_statistic_box(quest)
     statistic_box quest.offers.count,
       I18n.t("quest.statistic.offers", :count => quest.offers.count),
-      awesome_icon(:share, :size => :large), :css_class => "quest"
+      awesome_icon(icon_for('status.offers')), :css_class => "quest"
   end
 
   def quest_comments_statistic_box(quest)
     statistic_box quest.comments.count,
       I18n.t("quest.statistic.comments"),
-      awesome_icon(:comment, :size => :large), :css_class => "quest"
+      awesome_icon(icon_for('status.comments')), :css_class => "quest"
   end
   
   def quest_forwards_statistic_box(quest)
@@ -175,62 +175,7 @@ module QuestsHelper
     
     statistic_box quest.forwards.size,
       I18n.t("quest.statistic.forwards"),
-      awesome_icon(:retweet, :size => :large), :css_class => "quest"
+      awesome_icon(icon_for('status.forwards')), :css_class => "quest"
   end
   
-end
-
-__END__
-  def share_button(quest)
-    return unless quest.active?
-    header_button(:twitter, share_path(quest), :title => I18n.t("quest.actions.tweet.title"))
-  end
-
-  def offer_button(quest)
-    return unless !personal_page? && quest.active?
-    header_button(:rect, new_offer_path(:quest_id => quest), :title => I18n.t("quest.actions.offer.title"))
-  end
-
-  def stop_quest_button(quest)
-    return unless personal_page? && quest.active?
-
-    header_button(:stop, url_for(:controller => :runs, :action => :cancel, :id => quest))
-  end
-
-  def start_quest_button(quest)
-    return unless personal_page? && !quest.active?
-    header_button(:start, run_path(quest), :title => I18n.t("quest.actions.start.title"),  :rel => "nofollow")
-  end
-  
-  def render_bounty_badge(object)
-    expect! object => [Quest, Offer]
-    
-    div object.bounty.to_s(:cents => false), :class => "bounty_badge #{bounty_class(object)}"
-  end
-  
-  def bounty_class(object)
-    expect! object => [Quest, Offer]
-    
-    amount = object.bounty.to_f
-    return if amount <= 0
-    
-    if    amount < 100  then  "small"
-    elsif amount < 1000 then  "medium"
-    else                      "large"
-    end
-  end
-  
-  def quests_subtitle(count)
-    scope = if personal_page? then "own"
-            else params[:filter] || "all"
-            end
-    I18n.t "quests.filter.#{scope}.sub", :count => count
-  end
-  
-  def render_sticker_note(options={})
-    li :class => options[:html_class] do
-      p("#{strong(options[:count])} #{options[:title]}") +
-      small(options[:subtitle])
-    end    
-  end
 end
