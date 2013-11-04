@@ -1,0 +1,8 @@
+*.gem
+.idea
+.bundle
+Gemfile.lock
+*~
+pkg/*
+tmp/
+.ruby-version

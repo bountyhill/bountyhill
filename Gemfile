@@ -14,7 +14,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-xing'
 gem 'koala'
 gem 'linkedin'
-# gem xing
+gem 'xing', :path => 'vendor/xing'
 gem 'opinio'
 gem 'tinymce-rails'
 gem 'will_paginate', '~> 3.0.0'

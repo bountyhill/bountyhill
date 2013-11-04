@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-# require 'xing'
+require 'xing'
 
 class Identity::Xing < Identity
   include Identity::PolymorphicRouting

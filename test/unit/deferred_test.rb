@@ -69,7 +69,7 @@ class DeferredTest < ActiveSupport::TestCase
   end
 
   def test_xing
-    # TODO: leverage xing client API here...
+    Xing::Client.any_instance.expects(:create_status_message).with("foobar")
     
     Deferred.instance.xing(:create_status_message, "foobar", oauth_hash)
   end

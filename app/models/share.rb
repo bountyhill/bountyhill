@@ -32,7 +32,7 @@ class Share < ActiveRecord::Base
   # by sending tweets, posting on timeline, etc.
 # TODO: enable sharing with all social identities...
 #  IDENTITIES = %w(twitter facebook google linkedin xing)
-  IDENTITIES = %w(twitter facebook linkedin)
+  IDENTITIES = %w(twitter facebook linkedin xing)
   
   #
   # detect user's identities that allow sharing
