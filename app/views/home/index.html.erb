@@ -6,8 +6,8 @@
     <div class="explanation">
       <% (1..5).each do |index| %>
         <div class="item item<%= index %>">
-          <div class="headline"><%= I18n.t("home.explanation.headline#{index}") %></div>
-          <div class="text"><%= I18n.t("home.explanation.text#{index}") %></div>
+          <div class="headline"><%= I18n.t("home.explanation.headline#{index}").html_safe %></div>
+          <div class="text"><%= I18n.t("home.explanation.text#{index}").html_safe %></div>
           <%= image_tag asset_path("home/key_0#{index}.png") %>
         </div>
       <% end %>
