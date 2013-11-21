@@ -1,5 +1,16 @@
 .box {
   &.static {
     @include box_colors(static);
+    
+    dl {
+      dt { float: left; }
+      dd { font-weight: bold; }
+      &.contact { dt { width:  80px; }}
+      &.court   { dt { width: 140px; }}
+      &.vat     { dt { margin-right: 20px; }
+        margin-bottom: 0;
+        margin-after: 0;
+      }
+    }
   }
 }
