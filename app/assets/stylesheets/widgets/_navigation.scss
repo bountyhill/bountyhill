@@ -36,7 +36,21 @@
   &.navbar-fixed-bottom {
     .navbar-inner {
       height: 32px;
-      .nav { margin-top: 0; }
+      .nav {margin-top: 0; }
+      .copyright {
+        ul.nav {
+          li { 
+            a { 
+              padding: 10px 5px;
+              [class^="fa-"], & [class*=" fa-"] { 
+                text-align: center; 
+                font-size: 110%;
+              }
+            }
+          }
+          li:last-child { a { padding: 10px 15px 10px ;} }
+        }
+      }
     }
     .btn-navbar {
       float: left;

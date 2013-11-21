@@ -11,7 +11,12 @@ module IconHelper
       :received_offers  => :outdent,
       :my_profile       => :user,
       :signout          => :sign_out,
-      :signin           => :sign_in
+      :signin           => :sign_in,
+      :twitter          => :twitter_square,
+      :facebook         => :facebook_square,
+      :google           => :google_plus_square,
+      :linkedin         => :linkedin_square,
+      :xing             => :xing_square
     },
     :identity => {
       :commercial => :group,

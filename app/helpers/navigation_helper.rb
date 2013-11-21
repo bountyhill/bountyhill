@@ -53,14 +53,24 @@ module NavigationHelper
       link_to awesome_icon(icon_for('navigation.my_profile')) + I18n.t("nav.my_profile"), "/profile"
     when :signout
       link_to awesome_icon(icon_for('navigation.signout')) +  span(I18n.t("nav.signout")), signout_path, :method => :delete
-    when :divider
-      ""
     when :copyright
       link_to "<strong>&copy; bountyhill, #{Time.now.year}</strong>".html_safe, root_path
     when :signin
       modal_link_to awesome_icon(icon_for('navigation.signin')) + span(I18n.t("nav.signin")), signin_path
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
+    when :twitter
+      link_to awesome_icon(icon_for('navigation.twitter')), Bountybase.config.twitter_app["url"], :target => :blank
+    when :facebook
+      link_to awesome_icon(icon_for('navigation.facebook')), Bountybase.config.facebook_app["url"], :target => :blank
+    when :google
+      link_to awesome_icon(icon_for('navigation.google')), Bountybase.config.google_app["url"], :target => :blank
+    when :linkedin
+      link_to awesome_icon(icon_for('navigation.linkedin')), Bountybase.config.linkedin_app["url"], :target => :blank
+    when :xing
+      link_to awesome_icon(icon_for('navigation.xing')), Bountybase.config.xing_app["url"], :target => :blank
+    when :divider
+      ""
     else
       link_to I18n.t("nav.#{nav_item}"), send("#{nav_item}_path")
     end
@@ -75,7 +85,7 @@ module NavigationHelper
     when :header_center
       [ :start_quest, :quests ]
     when :footer_right
-      (admin? ? ADMIN_NAVIGATION.keys : []) + [ :copyright ]
+      (admin? ? ADMIN_NAVIGATION.keys : [:twitter, :facebook, :google, :linkedin, :xing]) + [ :copyright ]
     when :footer_left
       [ :about, :contact, :imprint, :terms, :privacy ]
     end
