@@ -2,6 +2,11 @@
   &.static {
     @include box_colors(static);
     
+    a {
+      color: $text_inverse;
+      &:hover, &:visited { color: $text_inverse_highlight; };
+    }
+    
     dl {
       dt { float: left; }
       dd { font-weight: bold; }
@@ -11,6 +16,10 @@
         margin-bottom: 0;
         margin-after: 0;
       }
+    }
+    
+    iframe {
+      &.map { border: $gray_dark 1px solid; }
     }
   }
 }

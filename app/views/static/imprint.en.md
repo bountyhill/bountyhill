@@ -16,7 +16,7 @@ represented by the managing director Torsten Graf-Oettel
   <dt>Telephon:</dt>
   <dd><a href="callto:+493034727543">+49 30 34727543</a></dd>
   <dt>Telefax:</dt>
-  <dd>+49 30 490048809</dd>
+  <dd><a href="callto:+493034727543">+49 30 490048809</a></dd>
 </dl>
 
 ##Register of commerce
