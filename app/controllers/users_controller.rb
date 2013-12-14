@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @user.update_attributes(params[:user])
     @user.soft_delete!
     signout
+    flash[:success] = I18n.t("message.destroy.success", :record => @user.name)
     redirect_to root_path
   end
   

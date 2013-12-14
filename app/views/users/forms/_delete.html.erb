@@ -4,7 +4,7 @@
 <% end %>
 
 <% accordion_body(:delete) do %>
-  <%= form_for @user, :remote => true do |form| %>
+  <%= form_for @user, :remote => true, :method => :delete do |form| %>
   <p><%= I18n.t("user.form.delete.legend")%></p>
     <%= form.error_messages %>
     
