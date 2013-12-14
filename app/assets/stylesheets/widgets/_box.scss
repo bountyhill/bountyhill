@@ -77,12 +77,22 @@
     clear: both;
     h1 {
       margin: 0 0 8px 0;
-      font-size: 200%;
+      font-size: 180%;
       line-height: 100%;
     }
     h2 {
       margin: $section_bottom_margin 0 $section_top_margin 0;
+      font-size: 140%;
+      line-height: 100%;
+    }
+    h3 {
+      margin: $section_bottom_margin/2 0 $section_top_margin/2 0;
       font-size: 120%;
+      line-height: 100%;
+    }
+    h4 {
+      margin: 0;
+      font-size: 100%;
       line-height: 100%;
     }
     .description, .criteria-section, .image-section {

@@ -179,8 +179,8 @@ de:
       about:    Über bountyhill
       contact:  Kontakt
       imprint:  Impressum
-      privacy:  Datenschutz
-      terms:    Allgemeine Geschäftsbedingungen
+      privacy:  Datenschutzerklärung
+      terms:    AGBs
   identity:
     required: 
       any:        "Damit Du fortfahren kannst, müssen wir vorerst wissen, wie wir Dich kontaktieren können."
