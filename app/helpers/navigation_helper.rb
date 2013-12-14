@@ -60,15 +60,20 @@ module NavigationHelper
     when *ADMIN_NAVIGATION.keys
       link_to I18n.t("nav.#{nav_item}"), ADMIN_NAVIGATION[nav_item], :target => "_blank"
     when :twitter
-      link_to awesome_icon(icon_for('navigation.twitter')), Bountybase.config.twitter_app["url"], :target => :blank
+      link_to(awesome_icon(icon_for('navigation.twitter')), 
+        Bountybase.config.twitter_app["page_url"], :target => :blank)   unless Bountybase.config.twitter_app["page_url"].blank?
     when :facebook
-      link_to awesome_icon(icon_for('navigation.facebook')), Bountybase.config.facebook_app["url"], :target => :blank
+      link_to(awesome_icon(icon_for('navigation.facebook')),
+        Bountybase.config.facebook_app["page_url"], :target => :blank)  unless Bountybase.config.facebook_app["page_url"].blank?
     when :google
-      link_to awesome_icon(icon_for('navigation.google')), Bountybase.config.google_app["url"], :target => :blank
+      link_to(awesome_icon(icon_for('navigation.google')),
+        Bountybase.config.google_app["page_url"], :target => :blank)    unless Bountybase.config.google_app["page_url"].blank?
     when :linkedin
-      link_to awesome_icon(icon_for('navigation.linkedin')), Bountybase.config.linkedin_app["url"], :target => :blank
+      link_to(awesome_icon(icon_for('navigation.linkedin')),
+        Bountybase.config.linkedin_app["page_url"], :target => :blank)  unless Bountybase.config.linkedin_app["page_url"].blank?
     when :xing
-      link_to awesome_icon(icon_for('navigation.xing')), Bountybase.config.xing_app["url"], :target => :blank
+      link_to(awesome_icon(icon_for('navigation.xing')),
+        Bountybase.config.xing_app["page_url"], :target => :blank)      unless Bountybase.config.xing_app["page_url"].blank?
     when :divider
       ""
     else
