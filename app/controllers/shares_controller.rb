@@ -36,7 +36,10 @@ class SharesController < ApplicationController
     @share = Share.find(params[:id])
     @quest = Quest.find(@share.quest_id)
     
-    # Share quest with identities user did choose
+    # share quest within all bountyhill social networks
+    @share.post_all
+    
+    # share quest with user identities he did choose to post in
     @share.identities.each do |identity, post|
       next if post.kind_of?(Time) # quest was already posted with this identity
       next unless post            # quest is not to be posted with this identity

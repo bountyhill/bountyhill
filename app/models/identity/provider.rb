@@ -42,6 +42,11 @@ module Identity::Provider
     def sanitizer
       @@sanitizer ||= HTML::FullSanitizer.new
     end
+    
+    # return application's oauth hash
+    def oauth_hash
+      raise "This method has to be provided by the social identity provider class!"
+    end
         
     # return the identity according to the auth-attributes received from provider
     # or create a new identity object of the actual identifiy class
@@ -137,8 +142,18 @@ module Identity::Provider
     private 
     
     # set email attribute from info hash
-      def save_email
-        self.email = email
-      end
+    def save_email
+      self.email = email
+    end
+    
+    # return user's oauth hash
+    def oauth_hash
+      raise "This method has to be provided by the social identity provider instance!"
+    end
+
+    # sets up a message hash or string for a post in a social media network
+    def message
+      raise "This method has to be provided by the social identity provider instance!"
+    end
   end
 end

@@ -10,32 +10,50 @@ class Identity::XingTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
-  def test_update_status
-    xing  = Identity::Xing.new
-    quest     = Factory(:quest)
-    message   = "Hey hey hello Mary Lou"
+  def test_post
+    xing    = Identity::Xing.new(:credentials => { :token => "foo", :secret => "bar" })
+    message = "Hey hey hello Mary Lou"
+    Identity::Xing.stubs(:message).returns(message)
     
-    Deferred.expects(:xing).with(:create_status_message, "#{message} #{quest.url}", xing.send(:oauth_hash)).once
-    xing.update_status(message, quest)
+    # test post for user
+    Deferred.expects(:xing).with(:create_status_message, message, xing.send(:oauth_hash)).once
+    xing.post(message)
+    
+    # test post for application
+    Deferred.expects(:xing).with(:create_status_message, message, Identity::Xing.send(:oauth_hash)).once
+    Identity::Xing.post(message)
   end
+
+  def test_message
+    text  = "Hey hey hello Mary Lou"
+    
+    # w/o object
+    assert_equal text, Identity::Xing.message(text)
+    
+    # /w object
+    quest = Factory(:quest)
+    assert_equal "#{text} #{quest.url}", Identity::Xing.message(text, quest)
+  end  
   
   def test_oauth_hash
-    xing    = Identity::Xing.new(:credentials => { :token => "foo", :secret => "bar" })
-    oauth_hash  = {
+    xing = Identity::Xing.new(:credentials => { :token => "foo", :secret => "bar" })
+
+    # test user's oauth hash
+    oauth_hash = {
       :consumer_key       => Bountybase.config.xing_app["consumer_key"],
       :consumer_secret    => Bountybase.config.xing_app["consumer_secret"],
       :oauth_token        => "foo",
       :oauth_token_secret => "bar"
     }
-
     assert_equal oauth_hash, xing.send(:oauth_hash)
-  end
-  
-  def test_post
-    xing = Identity::Xing.new
-    message = "Hey hey hello Mary Lou"
-    Deferred.expects(:xing).with(:create_status_message, message, xing.send(:oauth_hash))
-
-    xing.send(:post, :create_status_message, message)
+    
+    # test app's oauth hash
+    oauth_hash = {
+      :consumer_key       => Bountybase.config.xing_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.xing_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.xing_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.xing_app["oauth_secret"]
+    }
+    assert_equal oauth_hash, Identity::Xing.send(:oauth_hash)
   end
 end

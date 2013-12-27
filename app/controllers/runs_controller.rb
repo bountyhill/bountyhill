@@ -23,7 +23,7 @@ class RunsController < ApplicationController
     # in the target controller/action
     # redirect_to new_share_path(:quest_id => @quest)
     
-    @share = Share.new(:title => @quest.title, :quest => @quest, :owner => current_user)
+    @share = Share.new(:title => @quest.title, :quest => @quest, :owner => current_user, :application => true)
     @share.init_identities
 
     render :template => "shares/new", :layout => "dialog"

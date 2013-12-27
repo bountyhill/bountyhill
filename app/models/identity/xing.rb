@@ -9,17 +9,31 @@ class Identity::Xing < Identity
   with_metrics! "accounts.xing"
 
   #
-  # post a status
-  def update_status(message, object=nil)
-    expect! message => String
-    expect! object => [nil, Quest]
+  # post a message on user's xing page
+  def post(text, options={})
+    expect! text => String
+    expect! options => { :object => [nil, Quest] }
     
-    message += " #{object.url}" if object
+    Deferred.xing(:create_status_message, self.class.message(text, options[:object]), oauth_hash)
+  end
+  
+  
+  #
+  # post a message on bountyhills's xing page
+  def self.post(text, options={})
+    expect! text => String
+    expect! options => { :object => [nil, Quest] }
     
-    Deferred.xing :create_status_message, message, oauth_hash
+    Deferred.xing(:create_status_message, message(text, options[:object]), oauth_hash)
   end
 
   private
+  
+  #
+  # sets up a message text for a xing post
+  def self.message(text, object=nil)
+    object.present? ? "#{text} #{object.url}" : text
+  end
   
   # Returns the xing auth as a Hash. While one might be tempted to
   # just use the Identity::Facebook object to pass this around, we'll
@@ -34,8 +48,13 @@ class Identity::Xing < Identity
     }
   end
 
-  def post(*args)
-    Deferred.xing *args, oauth_hash
+  # Returns the applications's xing auth as a Hash.
+  def self.oauth_hash
+    {
+      :consumer_key       => Bountybase.config.xing_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.xing_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.xing_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.xing_app["oauth_secret"]
+    }
   end
-
 end

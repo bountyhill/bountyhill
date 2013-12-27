@@ -653,14 +653,15 @@ en:
     errors:
       identities: "No network was chosen"
     form:
-      title:    "Share this quest"
-      legend:   "Please choose the social networks you want to share this quest with your friends and followers."
-      twitter:  "Twitter %{required}"
-      facebook: "Facebook %{required}"
-      google:   "Google %{required}"
-      linkedin: "LinkedIn %{required}"
-      xing:     "Xing %{required}"
-      required: "sign-in required"
+      title:        "Share this quest"
+      legend:       "Please choose the social networks you want to share this quest with your friends and followers."
+      application:  "In addition we will share this quest in all social networks bountyhill is active in."
+      twitter:      "Twitter %{required}"
+      facebook:     "Facebook %{required}"
+      google:       "Google %{required}"
+      linkedin:     "LinkedIn %{required}"
+      xing:         "Xing %{required}"
+      required:     "sign-in required"
   sessions:
     auth:
       success:    "You successfully signed in. Welcome on bountyhill!"

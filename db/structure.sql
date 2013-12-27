@@ -408,7 +408,9 @@ CREATE TABLE shares (
     message character varying(255),
     identities text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    application boolean,
+    shared_at timestamp without time zone
 );
 
 
@@ -856,6 +858,8 @@ INSERT INTO schema_migrations (version) VALUES ('36');
 INSERT INTO schema_migrations (version) VALUES ('37');
 
 INSERT INTO schema_migrations (version) VALUES ('38');
+
+INSERT INTO schema_migrations (version) VALUES ('39');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
 

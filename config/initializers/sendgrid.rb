@@ -9,8 +9,8 @@ if Rails.env.development?
   
   ActionMailer::Base.smtp_settings = settings.merge(
     :address    => "smtp.googlemail.com",
-    :user_name  => "foobar@bountyhill.com",
-    :password   => "password",
+    :user_name  => "admin@bountyhill.com",
+    :password   => "sweet1972",
     :domain     => "bountyhill.com")
 
   # sent emails to internal users only!

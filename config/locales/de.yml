@@ -653,14 +653,15 @@ de:
     errors:
       identities: "Es wurde kein Netzwerk ausgewählt"
     form:
-      title:    "Suchanfrage teilen"
-      legend:   "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
-      twitter:  "Twitter %{required}"
-      facebook: "Facebook %{required}"
-      google: 	"Google %{required}"
-      linkedin: "LinkedIn %{required}"
-      xing:     "Xing %{required}"
-      required: "erfordert Anmeldung"
+      title:        "Suchanfrage teilen"
+      legend:       "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
+      application:  "Zusätzlich verbreiten wir Deine Suchanfrage in allen sozialen Netzwerken, in denen bountyhill aktiv ist."
+      twitter:      "Twitter %{required}"
+      facebook:     "Facebook %{required}"
+      google:       "Google %{required}"
+      linkedin:     "LinkedIn %{required}"
+      xing:         "Xing %{required}"
+      required:     "erfordert Anmeldung"
   sessions:
     auth:
       success:    "Du hast Dich erfolgreich angemeldet. Willkommen bei bountyhill!"

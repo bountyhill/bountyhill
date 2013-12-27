@@ -10,40 +10,64 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
-  def test_update_status
-    linkedin  = Identity::Linkedin.new
-    quest     = Factory(:quest)
-    message   = "Hey hey hello Mary Lou"
+  def test_post
+    linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :secret => "bar" })
+    message = "Hey hey hello Mary Lou"
+    Identity::Linkedin.stubs(:message).returns(message)
     
-    linkedin.expects(:post).with(:add_share, 
-      :comment    => message,
+    # test post for user
+    Deferred.expects(:linkedin).with(:add_share, message, linkedin.send(:oauth_hash)).once
+    linkedin.post(message)
+    
+    # test post for application
+    Deferred.expects(:linkedin).with(:add_share, message, Identity::Linkedin.send(:oauth_hash)).once
+    Identity::Linkedin.post(message)
+  end
+
+  def test_message
+    text      = "Hey hey hello Mary Lou"
+    message   = {
+      :comment    => text,
+      :visibility => {:code => 'anyone'}
+    }
+    
+    # w/o object
+    assert_equal message, Identity::Linkedin.message(text)
+    
+    # /w object
+    quest = Factory(:quest)
+    message = {
+      :comment    => text,
       :visibility => {:code => 'anyone'},
       :content    => {
         :title                => quest.title,
         :description          => quest.description,
         :submitted_url        => quest.url,
-        :submitted_image_url  => quest.images.first}).once
-    linkedin.update_status(message, quest)
-  end
+        :submitted_image_url  => quest.images.first
+      }
+    }
+    assert_equal message, Identity::Linkedin.message(text, quest)
+  end  
   
   def test_oauth_hash
-    linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :secret => "bar" })
-    oauth_hash  = {
-      :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token        => "foo",
-      :oauth_secret       => "bar"
+    linkedin = Identity::Linkedin.new(:credentials => { :token => "foo", :secret => "bar" })
+
+    # test user's oauth hash
+    oauth_hash = {
+      :consumer_key     => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret  => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token      => "foo",
+      :oauth_secret     => "bar"
     }
-
     assert_equal oauth_hash, linkedin.send(:oauth_hash)
+    
+    # test app's oauth hash
+    oauth_hash = {
+      :consumer_key     => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret  => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token      => Bountybase.config.linkedin_app["oauth_token"],
+      :oauth_secret     => Bountybase.config.linkedin_app["oauth_secret"]
+    }
+    assert_equal oauth_hash, Identity::Linkedin.send(:oauth_hash)
   end
-  
-  def test_post
-    linkedin  = Identity::Linkedin.new(:credentials => { :token => "foo", :expires_at => 123456789 })
-    message   = "Hey hey hello Mary Lou"
-    Deferred.expects(:linkedin).with("me", "feed", { :message => message }, linkedin.send(:oauth_hash))
-
-    linkedin.send(:post, "me", "feed", :message => message)
-  end
-  
 end

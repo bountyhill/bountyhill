@@ -48,7 +48,7 @@ class Identity::TwitterTest < ActiveSupport::TestCase
   def test_follow!
     twitter   = Identity::Twitter.create!(:identifier => "test")
     followee  = Bountybase.config.twitter_notifications["user"]
-    twitter.expects(:post).with(:follow, followee).once
+    Deferred.expects(:twitter).with(:follow, followee, twitter.send(:oauth_hash)).once
     
     assert_nil twitter.followed_at
     twitter.follow!
@@ -56,41 +56,59 @@ class Identity::TwitterTest < ActiveSupport::TestCase
     assert_not_nil twitter.followed_at
   end
   
-  def test_update_status
-    twitter = Identity::Twitter.new
-    message = "Hey hey hello Mary Lou"
-    twitter.expects(:post).with(:update, message).once
-    
-    twitter.update_status(message)
-  end
-  
   def test_direct_message
     twitter = Identity::Twitter.new(:info => { :nickname => "foo_bar" })
     message = "Hey hey hello Mary Lou"
     hermes  = User.hermes.identity(:twitter)
-    hermes.expects(:post).with(:direct_message_create, twitter.handle, message)
+    Deferred.expects(:twitter).with(:direct_message_create, twitter.handle, message, hermes.send(:oauth_hash))
     
     twitter.direct_message(message)
   end
   
-  def test_oauth_hash
-    twitter = Identity::Twitter.new(:credentials => { :secret => "foo", :token => "bar" })
+  def test_post
+    twitter = Identity::Twitter.new(:credentials => { :token => "foo", :secret => "bar" })
+    message = "Hey hey hello Mary Lou"
+    twitter.stubs(:message).returns(message)
     
-    oauth_hash = {
-      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"],
-      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
-      :oauth_token        => "bar",
-      :oauth_token_secret => "foo"
-    }
-
-    assert_equal oauth_hash, twitter.send(:oauth_hash)
+    # test post for user
+    Deferred.expects(:twitter).with(:update, message, twitter.send(:oauth_hash)).once
+    twitter.post(message)
+    
+    # test post for application
+    Deferred.expects(:twitter).with(:update, message, Identity::Twitter.send(:oauth_hash)).once
+    Identity::Twitter.post(message)
   end
   
-  def test_post
-    twitter = Identity::Twitter.new
-    message = "Hey hey hello Mary Lou"
-    Deferred.expects(:twitter).with(:update, message, twitter.send(:oauth_hash))
+  def test_message
+    text  = "Hey hey hello Mary Lou"
+    
+    # w/o object
+    assert_equal text, Identity::Twitter.message(text)
+    
+    # /w object
+    quest = Factory(:quest)
+    assert_equal "#{text} #{quest.url}", Identity::Twitter.message(text, quest)
+  end  
+  
+  def test_oauth_hash
+    twitter = Identity::Twitter.new(:credentials => { :token => "foo", :secret => "bar" })
 
-    twitter.send(:post, :update, message)
+    # test user's oauth hash
+    oauth_hash = {
+      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"],
+      :oauth_token        => "foo",
+      :oauth_token_secret => "bar"
+    }
+    assert_equal oauth_hash, twitter.send(:oauth_hash)
+    
+    # test app's oauth hash
+    oauth_hash = {
+      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.twitter_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.twitter_app["oauth_secret"]
+    }
+    assert_equal oauth_hash, Identity::Twitter.send(:oauth_hash)
   end
 end

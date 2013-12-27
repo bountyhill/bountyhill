@@ -35,31 +35,45 @@ class Identity::Twitter < Identity
     followee = Bountybase.config.twitter_notifications["user"]
     expect! followee => /^[^@]/
   
-    post :follow, followee
+    Deferred.twitter(:follow, followee, oauth_hash)
     update_attributes :followed_at => Time.now
     true
   end
 
   #
-  # retweet a status
-  def update_status(message, object=nil)
-    expect! message => String
-    expect! object => [nil, Quest]
+  # post a tweet in user's twitter feed
+  def post(text, options={})
+    expect! text => String
+    expect! options => { :object => [nil, Quest] }
     
-    message += " #{object.url}" if object
-    
-    post :update, message
+    Deferred.twitter(:update, self.class.message(text, options[:object]), oauth_hash)
   end
   
   #
-  # Send a direct message *to this user*. Note that 
+  # post a tweet in bountyhill's twitter feed
+  def self.post(text, options={})
+    expect! text => String
+    expect! options => { :object => [nil, Quest] }
+    
+    Deferred.twitter(:update, message(text, options[:object]), oauth_hash)
+  end
+  
+  #
+  # Send a direct message *to this user*.
   def direct_message(msg)
     hermes = User.hermes.identity(:twitter)
-    hermes.send :post, :direct_message_create, handle, msg
+    Deferred.twitter(:direct_message_create, handle, msg, hermes.send(:oauth_hash))
   end
   
   private
   
+  #
+  # sets up a message text for a tweet
+  def self.message(text, object=nil)
+    object.present? ? "#{text} #{object.url}" : text
+  end
+  
+  #
   # Returns the twitter auth as a Hash. While one might be tempted to 
   # just use the Identity::Twitter object to pass this around, we'll
   # need it in an extra object, because it will be passed into background
@@ -73,7 +87,14 @@ class Identity::Twitter < Identity
     }
   end
   
-  def post(*args)
-    Deferred.twitter *args, oauth_hash
+  #
+  # Returns the applications's twitter auth as a Hash.
+  def self.oauth_hash
+    {
+      :consumer_key       => Bountybase.config.twitter_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.twitter_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.twitter_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.twitter_app["oauth_secret"]
+    }
   end
 end

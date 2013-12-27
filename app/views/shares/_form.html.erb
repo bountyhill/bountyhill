@@ -13,9 +13,15 @@
     <% else %>
       <p><%= I18n.t("quest.form.start.legend") %></p>
     <% end %>
+    
+    <% if @share.application? %>
+      <p><%= I18n.t("share.form.application") %></p>
+    <% end %>
+    
     <%= form.error_messages %>
     
-    <%= form.control_group :quest_id, :hidden_field %>
+    <%= form.control_group :quest_id,     :hidden_field %>
+    <%= form.control_group :application,  :hidden_field %>
     <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '&euro;') %>
     
     <% Share::IDENTITIES.each do |identity| %>
