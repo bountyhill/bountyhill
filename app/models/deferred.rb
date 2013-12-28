@@ -58,14 +58,19 @@ module Deferred
   end
 
   # -- run a facebook request ------------------------------------------
-  
+
+  # facebook is accessed via Koala's Facebook API
+  # see: https://github.com/arsduo/koala/wiki
+  #
+  # pls. note that we initialize Koala's Facebook API either with a user token
+  # or with a page token - see: https://github.com/arsduo/koala/wiki/Acting-as-a-Page
   def facebook(*args)
     W "TRY facebook", *args                      unless Rails.env.test?
 
     oauth = args.extract_options!
     expect! oauth => {
       :oauth_token      => String,
-      :oauth_expires_at => Time,
+      :oauth_expires_at => [Time, nil],
     }
     
     client = Koala::Facebook::API.new(oauth[:oauth_token])

@@ -16,7 +16,8 @@ class Identity::Facebook < Identity
     
     # Side note: put_wall_post posts to user/feeds, which doesn’t include a Share button. 
     # To get one when posting a link, you can use put_connections(user, “links”, details).
-    Deferred.facebook("me", "links", self.class.message(text, options[:object]), oauth_hash)
+    connection  = options[:object].present? ? "links" : "feed"
+    Deferred.facebook("me", connection, self.class.message(text, options[:object]), oauth_hash)
   end
   
   # post a message on bountyhill's facebook wall
@@ -24,9 +25,9 @@ class Identity::Facebook < Identity
     expect! text => String
     expect! options => { :object => [nil, Quest] }
 
-    # Side note: put_wall_post posts to user/feeds, which doesn’t include a Share button. 
-    # To get one when posting a link, you can use put_connections(user, “links”, details).
-    Deferred.facebook("me", "links", message(text, options[:object]), oauth_hash)
+    # post as page, requires publish_stream permission
+    connection = options[:object].present? ? "links" : "feed"
+    Deferred.facebook(Bountybase.config.facebook_app["page_id"], connection, message(text, options[:object]), oauth_hash)
   end
 
   private
@@ -35,6 +36,10 @@ class Identity::Facebook < Identity
   # sets up a message hash for a facebook post
   # this message contains the message, a privacy level and if an object is given
   # a name, description, url and an image of that object
+  # 
+  # PLs. note that when posting to bountyhill's facebookpage we have to 
+  # act as a page, using the page token to initialize Koala's Facebook API
+  # see https://github.com/arsduo/koala/wiki/Acting-as-a-Page
   def self.message(text, object=nil)
     msg = { :message => text, :privacy => { 'value' => 'EVERYONE' }}
     
@@ -64,7 +69,7 @@ class Identity::Facebook < Identity
   # Returns the applications's facebook auth as a Hash.
   def self.oauth_hash
     {
-      :oauth_token      => Bountybase.config.facebook_app["oauth_token"],
+      :oauth_token      => Bountybase.config.facebook_app["page_token"],
       :oauth_expires_at => nil
     }
   end

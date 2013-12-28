@@ -12,16 +12,26 @@ class Identity::FacebookTest < ActiveSupport::TestCase
   
   def test_post
     facebook  = Identity::Facebook.new(:credentials => { :token => "foo", :expires_at => 123456789 })
+    quest     = Factory(:quest)
     text      = "Hey hey hello Mary Lou"
-    message   = Identity::Facebook.message(text)
+    msg1      = Identity::Facebook.message(text)
+    msg2      = Identity::Facebook.message(text, quest)
     
-    # test post for user
-    Deferred.expects(:facebook).with("me", "links", message, facebook.send(:oauth_hash)).once
+    # test post for user without object
+    Deferred.expects(:facebook).with("me", "feed", msg1, facebook.send(:oauth_hash)).once
     facebook.post(text)
+
+    # test post for user with object
+    Deferred.expects(:facebook).with("me", "links", msg2, facebook.send(:oauth_hash)).once
+    facebook.post(text, :object => quest)
     
-    # test post for application
-    Deferred.expects(:facebook).with("me", "links", message, Identity::Facebook.send(:oauth_hash)).once
+    # test post for application without object
+    Deferred.expects(:facebook).with(Bountybase.config.facebook_app["page_id"], "feed", msg1, Identity::Facebook.send(:oauth_hash)).once
     Identity::Facebook.post(text)
+
+    # test post for application with object
+    Deferred.expects(:facebook).with(Bountybase.config.facebook_app["page_id"], "links", msg2, Identity::Facebook.send(:oauth_hash)).once
+    Identity::Facebook.post(text, :object => quest)
   end
   
   def test_message
@@ -60,7 +70,7 @@ class Identity::FacebookTest < ActiveSupport::TestCase
 
     # test app's oauth hash
     oauth_hash = {
-      :oauth_token      => Bountybase.config.facebook_app["oauth_token"],
+      :oauth_token      => Bountybase.config.facebook_app["page_token"],
       :oauth_expires_at => nil,
     }
     assert_equal oauth_hash, Identity::Facebook.send(:oauth_hash)
