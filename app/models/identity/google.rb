@@ -10,6 +10,8 @@ class Identity::Google < Identity
   
   #
   # post a message in user's google+ stream
+  # is curently not supported by google 
+  # the only alterantive is to write app activities - see https://developers.google.com/+/web/app-activities/
   def post(text, options={})
     expect! text => String
     expect! options => { :object => [nil, Quest] }
@@ -20,6 +22,8 @@ class Identity::Google < Identity
 
   #
   # post a message in bountyhill's google+ stream
+  # to get access to google's page API we have to apply for a
+  # partnership - see: https://developers.google.com/+/api/pages-signup
   def self.post(text, options={})
     expect! text => String
     expect! options => { :object => [nil, Quest] }
