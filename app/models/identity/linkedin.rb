@@ -18,20 +18,21 @@ class Identity::Linkedin < Identity
   end
   
   #
-  # post a message on bountyhills's linked page
+  # post a message on bountyhills's linkedin page, which is refered as
+  # 'Creating Company Shares' - see: http://developer.linkedin.com/creating-company-shares
   def self.post(text, options={})
     expect! text => String
     expect! options => { :object => [nil, Quest] }
 
-    Deferred.linkedin(:add_share, message(text, options[:object]), oauth_hash)
+    Deferred.linkedin(:add_company_share, Bountybase.config.linkedin_app["page_id"], message(text, options[:object]), oauth_hash)
   end
 
   private
   
   #
   # sets up a message hash for a linkedin post
-  # this message contains the message text, a :visibility level and if an object is given
-  # a content hahs with title, description, url and an image of that object
+  # this hash contains the message text, a :visibility level and if an object is given
+  # a content hash with title, description, url and an image of that object
   def self.message(text, object=nil)
     details = { :comment => text, :visibility => { :code => 'anyone' }}
     
@@ -51,20 +52,20 @@ class Identity::Linkedin < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     {
-      :consumer_key     => consumer_key     || Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret  => consumer_secret  || Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token      => oauth_token,
-      :oauth_secret     => oauth_secret
+      :consumer_key       => consumer_key     || Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => consumer_secret  || Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => oauth_token,
+      :oauth_token_secret => oauth_secret
     }
   end
 
   # Returns the applications's linkedin auth as a Hash.
   def self.oauth_hash
     {
-      :consumer_key     => Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret  => Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token      => Bountybase.config.linkedin_app["oauth_token"],
-      :oauth_secret     => Bountybase.config.linkedin_app["oauth_secret"]
+      :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.linkedin_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.linkedin_app["oauth_secret"]
     }
   end
 end

@@ -20,7 +20,7 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
     linkedin.post(message)
     
     # test post for application
-    Deferred.expects(:linkedin).with(:add_share, message, Identity::Linkedin.send(:oauth_hash)).once
+    Deferred.expects(:linkedin).with(:add_company_share, Bountybase.config.linkedin_app["page_id"], message, Identity::Linkedin.send(:oauth_hash)).once
     Identity::Linkedin.post(message)
   end
 
@@ -54,19 +54,19 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
 
     # test user's oauth hash
     oauth_hash = {
-      :consumer_key     => Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret  => Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token      => "foo",
-      :oauth_secret     => "bar"
+      :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => "foo",
+      :oauth_token_secret => "bar"
     }
     assert_equal oauth_hash, linkedin.send(:oauth_hash)
     
     # test app's oauth hash
     oauth_hash = {
-      :consumer_key     => Bountybase.config.linkedin_app["consumer_key"],
-      :consumer_secret  => Bountybase.config.linkedin_app["consumer_secret"],
-      :oauth_token      => Bountybase.config.linkedin_app["oauth_token"],
-      :oauth_secret     => Bountybase.config.linkedin_app["oauth_secret"]
+      :consumer_key       => Bountybase.config.linkedin_app["consumer_key"],
+      :consumer_secret    => Bountybase.config.linkedin_app["consumer_secret"],
+      :oauth_token        => Bountybase.config.linkedin_app["oauth_token"],
+      :oauth_token_secret => Bountybase.config.linkedin_app["oauth_secret"]
     }
     assert_equal oauth_hash, Identity::Linkedin.send(:oauth_hash)
   end

@@ -122,12 +122,18 @@ module Deferred
     W "TRY xing", *args                           unless Rails.env.test?
 
     oauth = args.extract_options!
+    expect! oauth => {
+      :oauth_token        => String,
+      :oauth_token_secret => String,
+      :consumer_key       => String,
+      :consumer_secret    => String
+    }
 
     client = Xing::Client.new(
-      :consumer_key       => oauth[:consumer_key],
-      :consumer_secret    => oauth[:consumer_secret],
       :oauth_token        => oauth[:oauth_token],
-      :oauth_token_secret => oauth[:oauth_token_secret]
+      :oauth_token_secret => oauth[:oauth_token_secret],
+      :consumer_key       => oauth[:consumer_key],
+      :consumer_secret    => oauth[:consumer_secret]
     )
     client.send(*args)                            unless Rails.env.development?
     
