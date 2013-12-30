@@ -20,11 +20,16 @@ class Identity::Xing < Identity
   
   #
   # post a message on bountyhills's xing page
+  # TODO: currently the Xing API does not provide any interaction on company pages
+  # nevertheless there is an announcement to provide 'Company Profiles' in the API
+  # see: https://dev.xing.com/overview in the 'Next to come' section
   def self.post(text, options={})
-    expect! text => String
-    expect! options => { :object => [nil, Quest] }
+    return
     
-    Deferred.xing(:create_status_message, message(text, options[:object]), oauth_hash)
+    # expect! text => String
+    # expect! options => { :object => [nil, Quest] }
+    # 
+    # Deferred.xing(:create_status_message, message(text, options[:object]), oauth_hash)
   end
 
   private
