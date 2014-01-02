@@ -61,7 +61,7 @@ class Identity::Facebook < Identity
   def oauth_hash
     {
       :oauth_token      => oauth_token,
-      :oauth_expires_at => Time.at(oauth_expires_at)
+      :oauth_expires_at => oauth_expires_at
     }
   end
   

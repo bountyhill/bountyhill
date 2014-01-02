@@ -1,5 +1,5 @@
-<h1><%= quest.title %></h1>
-<div class="description"><%= quest.description.html_safe %></div>
+<h1 itemprop="name"><%= quest.title %></h1>
+<div itemprop="description" class="description"><%= quest.description.html_safe %></div>
 
 <% if quest.criteria.present? %>
   <h2><%= I18n.t("quest.box.criteria", :count => quest.criteria.count) %></h2>
@@ -8,6 +8,7 @@
 
 <% if quest.images.present? %>
   <h2><%= I18n.t("quest.box.images", :count => quest.images.count) %></h2>
+  <img itemprop="image" style="display:none" src="<%= quest.images.first %>"/>
   <%= partial "shared/images", :container => quest %>
 <% end %>
 

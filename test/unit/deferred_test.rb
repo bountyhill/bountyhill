@@ -52,14 +52,19 @@ class DeferredTest < ActiveSupport::TestCase
 
     Deferred.instance.facebook("foo", "bar", {
       :oauth_token      => "foo bar",
-      :oauth_expires_at => Time.now,
+      :oauth_expires_at => 123456789
     })
   end
 
   def test_google
-    # TODO: leverage google client API here...
+    Google::APIClient.any_instance.expects(:execute).with("foobar")
     
-    Deferred.instance.google("foobar", oauth_hash)
+    Deferred.instance.google("foobar", {
+      :consumer_key         => "consumer_key",
+      :consumer_secret      => "consumer_secret",
+      :oauth_refresh_token  => "foo bar",
+      :oauth_expires_at     => 123456789
+    })
   end
 
   def test_linkedin

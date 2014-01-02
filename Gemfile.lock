@@ -47,6 +47,10 @@ GEM
     addressable (2.3.2)
     archive-tar-minitar (0.5.2)
     arel (3.0.2)
+    autoparse (0.3.3)
+      addressable (>= 2.3.1)
+      extlib (>= 0.9.15)
+      multi_json (>= 1.0.0)
     awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
     bountydeps (2012.11.1913)
@@ -106,6 +110,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     expectation (0.1.1)
+    extlib (0.9.16)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.1.0)
@@ -127,6 +132,16 @@ GEM
     girl_friday (0.11.1)
       connection_pool (~> 0.9.0)
       rubinius-actor
+    google-api-client (0.6.4)
+      addressable (>= 2.3.2)
+      autoparse (>= 0.3.3)
+      extlib (>= 0.9.15)
+      faraday (~> 0.8.4)
+      jwt (>= 0.1.5)
+      launchy (>= 2.1.1)
+      multi_json (>= 1.0.0)
+      signet (~> 0.4.5)
+      uuidtools (>= 2.1.0)
     hashie (1.2.0)
     heroku (3.0.1)
       heroku-api (~> 0.3.7)
@@ -211,7 +226,7 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-google-oauth2 (0.2.1)
+    omniauth-google-oauth2 (0.2.2)
       omniauth (~> 1.0)
       omniauth-oauth2
     omniauth-linkedin (0.1.0)
@@ -329,6 +344,11 @@ GEM
       faraday (>= 0.7.6)
       hashie (>= 1.1.0)
       uuidtools
+    signet (0.4.5)
+      addressable (>= 2.2.3)
+      faraday (~> 0.8.1)
+      jwt (>= 0.1.5)
+      multi_json (>= 1.0.0)
     simple_cache_rs (0.11.0)
       expectation
       redis
@@ -397,6 +417,7 @@ DEPENDENCIES
   font-awesome-rails
   geocoder
   geoip
+  google-api-client
   jquery-rails
   kibo (~> 0.4)
   koala
@@ -408,7 +429,7 @@ DEPENDENCIES
   newrelic_rpm
   nokogiri
   omniauth-facebook
-  omniauth-google-oauth2
+  omniauth-google-oauth2 (~> 0.2.2)
   omniauth-linkedin
   omniauth-twitter
   omniauth-xing

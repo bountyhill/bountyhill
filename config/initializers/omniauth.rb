@@ -14,10 +14,15 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, Bountybase.config.facebook_app["consumer_key"], Bountybase.config.facebook_app["consumer_secret"], {
     :scope  => 'email, publish_stream' }
     
+  # for configuration options see: https://github.com/zquestz/omniauth-google-oauth2
+  # does not provide the necessary access rights to insert moments via google+ API although 
+  # claimed here to be working: https://github.com/zquestz/omniauth-google-oauth2/issues/67
   provider :google_oauth2, Bountybase.config.google_app["consumer_key"], Bountybase.config.google_app["consumer_secret"], {
-    :name   => 'google',
-    :scope  => 'userinfo.email, userinfo.profile, plus.stream.write',
-    :prompt => "select_account" }
+    :name                     => 'google',
+    :scope                    => 'userinfo.email, userinfo.profile, plus.login', #plus.me
+    :request_visible_actions  => Bountybase.config.google_app["activity"],
+    :access_type              => 'offline'
+   }
   
   provider :linked_in, Bountybase.config.linkedin_app["consumer_key"], Bountybase.config.linkedin_app["consumer_secret"], {
     :name   => 'linkedin',

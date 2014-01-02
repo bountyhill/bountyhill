@@ -70,7 +70,7 @@ module Deferred
     oauth = args.extract_options!
     expect! oauth => {
       :oauth_token      => String,
-      :oauth_expires_at => [Time, nil],
+      :oauth_expires_at => [Integer, nil],
     }
     
     client = Koala::Facebook::API.new(oauth[:oauth_token])
@@ -81,19 +81,33 @@ module Deferred
   # -- run a google+ request ------------------------------------------
   
   def google(*args)
-    W "TRY google+", *args                      unless Rails.env.test?
+    W "TRY google+", *args  unless Rails.env.test?
 
     oauth = args.extract_options!
     expect! oauth => {
-      :oauth_token        => String,
-      :oauth_token_secret => String,
-      :consumer_key       => String,
-      :consumer_secret    => String
+      :consumer_key         => String,
+      :consumer_secret      => String,
+      :oauth_refresh_token  => String,
+      :oauth_expires_at     => [Integer, nil],
     }
-
-    # TODO: leverage google+ client here....
     
-    W "OK google+", *args                        unless Rails.env.test?
+    # init Ruby Google API Client - see: https://github.com/google/google-api-ruby-client
+    client = Google::APIClient.new(
+      :application_name    => Bountybase.config.google_app["name"],
+      :application_version => "1.0"
+    )
+
+    # basic client authorization init
+    client.authorization.client_id      = oauth[:consumer_key]
+    client.authorization.client_secret  = oauth[:consumer_secret]
+    client.authorization.refresh_token  = oauth[:oauth_refresh_token]
+    client.authorization.grant_type     = 'refresh_token'
+
+    # exchange access token with refresh token since it might be expired
+    client.authorization.fetch_access_token! unless Rails.env.test?
+
+    client.execute(*args)   unless Rails.env.development?
+    W "OK google+", *args   unless Rails.env.test?
   end
 
   # -- run a linkedin request ------------------------------------------

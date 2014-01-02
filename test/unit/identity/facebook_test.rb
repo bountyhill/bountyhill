@@ -64,7 +64,7 @@ class Identity::FacebookTest < ActiveSupport::TestCase
     # test user's oauth hash
     oauth_hash = {
       :oauth_token      => "foo",
-      :oauth_expires_at => Time.at(123456789),
+      :oauth_expires_at => 123456789,
     }
     assert_equal oauth_hash, facebook.send(:oauth_hash)
 

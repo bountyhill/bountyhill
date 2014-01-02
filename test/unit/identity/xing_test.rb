@@ -20,7 +20,7 @@ class Identity::XingTest < ActiveSupport::TestCase
     xing.post(message)
     
     # test post for application
-    Deferred.expects(:xing).with(:create_status_message, message, Identity::Xing.send(:oauth_hash)).once
+    Deferred.expects(:xing).never
     Identity::Xing.post(message)
   end
 

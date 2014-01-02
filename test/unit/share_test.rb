@@ -45,11 +45,11 @@ class ShareTest < ActiveSupport::TestCase
   end
   
   def test_post_all
-    share     = Factory(:share, :application => true)
-    owner     = share.owner
+    share = Factory(:share, :application => true)
+    owner = share.owner
     
-    %w(twitter facebook linkedin xing).each do |identity|
-      Factory("#{identity}_identity".to_sym,  :user => owner)
+    Share::IDENTITIES.each do |identity|
+      Factory("#{identity}_identity".to_sym, :user => owner)
       "Identity::#{identity.camelize}".constantize.expects(:post).with("#{share.message}", :object => share.quest)
     end
     

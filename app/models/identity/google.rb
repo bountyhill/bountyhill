@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'google/api_client'
+
 class Identity::Google < Identity
   include Identity::PolymorphicRouting
   include Identity::Provider
@@ -11,13 +13,17 @@ class Identity::Google < Identity
   #
   # post a message in user's google+ stream
   # is curently not supported by google 
-  # the only alterantive is to write app activities - see https://developers.google.com/+/web/app-activities/
+  # the only alterantive is to record a moment for the user - see: https://developers.google.com/+/api/latest/moments/insert
+  # PLs. note that there are problems getting the correct access token for insterting moments via the google_oauth2 provider
   def post(text, options={})
     expect! text => String
     expect! options => { :object => [nil, Quest] }
     
-    # TODO: leverage google clint API here...
-    Deferred.google("TODO", self.class.message(text, options[:object]), oauth_hash)
+    Deferred.google({
+      :api_method   => self.class.plus.moments.insert,
+      :body_object  => self.class.message(text, options[:object]),
+      :parameters   => { :collection => 'vault', :userId => 'me' }
+    }, oauth_hash)
   end
 
   #
@@ -29,23 +35,44 @@ class Identity::Google < Identity
     expect! options => { :object => [nil, Quest] }
     
     # TODO: leverage google clint API here...
-    Deferred.google("TODO", message(text, options[:object]), oauth_hash)
+    #Deferred.google(message(text, options[:object]), oauth_hash)
+    return
   end
 
   private
   
+  def self.plus
+    @@plus ||= ::Google::APIClient.new(
+      :application_name => Bountybase.config.google_app["name"],
+      :application_version => "1.0").discovered_api('plus')
+  end
+  
   #
   # sets up a message hash for a google+ post
+  # see: https://developers.google.com/+/api/latest/moments#resource
   def self.message(text, object=nil)
-    # TODO: leverage google clint API here...
-    msg = { :message => text }
+    rand_id = Time.now.to_i.to_s
+    msg     = {
+      :kind   => "plus#moment",
+      :type   => Bountybase.config.google_app["activity"],
+      :debug  => Rails.env.development?,
+      :target => {
+        :kind       => "plus#itemScope",
+        :id         => rand_id,
+        :name       => text
+      }
+    }
     
-    msg.merge!({
-      :link         => (Rails.env.production? ? object.url : 'http://bountyhill.com'),
-      :name         => object.title,
-      :description  => sanitizer.sanitize(object.description, :tags=>[]),
-      :picture      => object.images.first,
-    }) if object
+    # add object's description
+    msg[:target].merge!({:description => sanitizer.sanitize(object.description, :tags=>[]) }) if object
+    
+    # add object's main image
+    msg[:target].merge!({ :image => object.images.first.to_s }) if object && object.images.first
+    
+    # there is only an either or approach for creating an activity possible - either provide an url 
+    # with (microdata-enriched) of the target page or provide descriptive elements - see:
+    # http://gusclass.com/blog/2013/05/16/passive-sharing-writing-app-activities-without-target-urls/
+    msg[:target] = { :url => object.url } if object && Rails.env.production?
     
     msg
   end
@@ -57,10 +84,10 @@ class Identity::Google < Identity
   # and should not be bound to any ActiveRecord-related objects.
   def oauth_hash
     {
-      :consumer_key     => consumer_key     || Bountybase.config.google_app["consumer_key"],
-      :consumer_secret  => consumer_secret  || Bountybase.config.google_app["consumer_secret"],
-      :oauth_token      => oauth_token,
-      :oauth_secret     => oauth_secret,
+      :consumer_key         => consumer_key     || Bountybase.config.google_app["consumer_key"],
+      :consumer_secret      => consumer_secret  || Bountybase.config.google_app["consumer_secret"],
+      :oauth_refresh_token  => oauth_refresh_token,
+      :oauth_expires_at     => oauth_expires_at
     }
   end
   
@@ -68,10 +95,10 @@ class Identity::Google < Identity
   # Returns the applications's google auth as a Hash.
   def self.oauth_hash
     {
-      :consumer_key     => Bountybase.config.google_app["consumer_key"],
-      :consumer_secret  => Bountybase.config.google_app["consumer_secret"],
-      :oauth_token      => Bountybase.config.google_app["oauth_token"],
-      :oauth_secret     => Bountybase.config.google_app["oauth_secret"]
+      :consumer_key         => Bountybase.config.google_app["consumer_key"],
+      :consumer_secret      => Bountybase.config.google_app["consumer_secret"],
+      :oauth_refresh_token  => Bountybase.config.google_app["oauth_refresh_token"],
+      :oauth_expires_at     => nil
     }
   end
 end

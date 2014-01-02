@@ -31,7 +31,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,600|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
   
 </head>
-<body class="<%= controller.controller_name %>">
+<body itemscope itemtype="http://schema.org/Thing" class="<%= controller.controller_name %>">
   <!-- modal placeholders -->
   <%= div (modal_content ||= "").html_safe,     :id => "myModal",     :class => "modal hide fade",    :role => "dialog", :"aria-hidden" => true %>
   <%= div (lightbox_content ||= "").html_safe,  :id => "myLightbox",  :class => "lightbox hide fade", :role => "dialog", :"aria-hidden" => true, :tabindex => "-1" %>
