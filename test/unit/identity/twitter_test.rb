@@ -30,6 +30,17 @@ class Identity::TwitterTest < ActiveSupport::TestCase
     assert_equal "bar", twitter.oauth_token
   end
   
+  def test_api_accessible
+    twitter = Identity::Twitter.new(:credentials => {})
+    assert_false twitter.api_accessible?
+    
+    twitter.credentials[:token] = "foo"
+    assert_false twitter.api_accessible?
+
+    twitter.credentials[:secret] = "bar"
+    assert twitter.api_accessible?
+  end
+  
   def test_handle
     twitter = Identity::Twitter.new(:info => { :nickname => "foo_bar" })
     assert_equal "foo_bar", twitter.handle

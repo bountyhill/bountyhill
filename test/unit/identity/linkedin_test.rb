@@ -10,6 +10,40 @@ class Identity::LinkedinTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
+  def test_set_expiration
+    linkedin = Factory(:linkedin_identity)
+    assert_nil linkedin.oauth_expires
+    assert_nil linkedin.oauth_expires_at
+    
+    linkedin = Factory(:linkedin_identity, :extra => { "access_token" => nil })
+    assert_nil linkedin.oauth_expires
+    assert_nil linkedin.oauth_expires_at
+    
+    linkedin = Factory(:linkedin_identity, :extra => { "access_token" => OpenStruct.new(:params => { "oauth_expires_in" => 12345}) })
+    assert linkedin.oauth_expires
+    assert (Time.now.to_i + 12345) >= linkedin.oauth_expires_at
+  end
+  
+  def test_api_accessible
+    linkedin = Identity::Linkedin.new(:credentials => { :expires => false })
+    assert_false linkedin.api_accessible?
+    
+    linkedin.credentials[:token] = "foo"
+    assert_false linkedin.api_accessible?
+    
+    linkedin.credentials[:secret] = "bar"
+    assert linkedin.api_accessible?
+    
+    linkedin.credentials[:expires] = true
+    assert_false linkedin.api_accessible?
+    
+    linkedin.credentials[:expires_at] = (Time.now+1.hour).to_i
+    assert_false linkedin.api_accessible?
+    
+    linkedin.credentials[:expires_at] = (Time.now+1.hour+1.minute).to_i
+    assert linkedin.api_accessible?
+  end
+  
   def test_post
     linkedin    = Identity::Linkedin.new(:credentials => { :token => "foo", :secret => "bar" })
     message = "Hey hey hello Mary Lou"

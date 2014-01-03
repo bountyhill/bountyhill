@@ -20,6 +20,13 @@ class Identity::Twitter < Identity
   end
   alias_method :screen_name, :handle
 
+  #
+  # consider Twitter API as accessible as long as an oauth token and an oauth secret
+  # is present since these tokens are needed to access the API and do never expire
+  def api_accessible?
+    oauth_token.present? && oauth_secret.present?
+  end
+
   # -- Twitter actions ------------------------------------------------
 
   # This method makes the user follow @bountyhermes. If the user followed

@@ -6,6 +6,13 @@ class Identity::Facebook < Identity
   
   with_metrics! "accounts.facebook"
   
+  #
+  # consider Facebook API as accessible as long as an oauth token is given and
+  # it is not expiring at all or not within within the next hour
+  def api_accessible?
+    oauth_token.present? && (!oauth_expires || (Time.now+1.hour).to_i < oauth_expires_at.to_i)
+  end
+
   # -- Facebook actions ------------------------------------------------
   
   #

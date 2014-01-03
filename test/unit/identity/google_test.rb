@@ -10,12 +10,20 @@ class Identity::GoogleTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
+  def test_api_accessible
+    google = Identity::Google.new(:credentials => {})
+    assert_false google.api_accessible?
+    
+    google.credentials[:refresh_token] = "foo"
+    assert google.api_accessible?
+  end
+  
   def test_post
     google  = Identity::Google.new(:credentials => { :token => "foo", :expires_at => 123456789 })
     text    = "Hey hey hello Mary Lou"
     message = {
       :kind   => "plus#moment",
-      :type   => "http://schemas.google.com/AddActivity",      
+      :type   => "http://schemas.google.com/AddActivity",
       :debug  => false,
       :target => {
         :kind => "plus#itemScope",

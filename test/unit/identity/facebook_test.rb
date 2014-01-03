@@ -10,6 +10,23 @@ class Identity::FacebookTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
+  def test_api_accessible
+    facebook = Identity::Facebook.new(:credentials => { :expires => false })
+    assert_false facebook.api_accessible?
+    
+    facebook.credentials[:token] = "foo"
+    assert facebook.api_accessible?
+    
+    facebook.credentials[:expires] = true
+    assert_false facebook.api_accessible?
+    
+    facebook.credentials[:expires_at] = (Time.now+1.hour).to_i
+    assert_false facebook.api_accessible?
+    
+    facebook.credentials[:expires_at] = (Time.now+1.hour+1.minute).to_i
+    assert facebook.api_accessible?
+  end
+  
   def test_post
     facebook  = Identity::Facebook.new(:credentials => { :token => "foo", :expires_at => 123456789 })
     quest     = Factory(:quest)

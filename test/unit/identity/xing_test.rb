@@ -10,6 +10,17 @@ class Identity::XingTest < ActiveSupport::TestCase
     assert_equal "identity", model_name.singular_route_key
   end
   
+  def test_api_accessible
+    xing = Identity::Xing.new(:credentials => {})
+    assert_false xing.api_accessible?
+    
+    xing.credentials[:token] = "foo"
+    assert_false xing.api_accessible?
+
+    xing.credentials[:secret] = "bar"
+    assert xing.api_accessible?
+  end
+  
   def test_post
     xing    = Identity::Xing.new(:credentials => { :token => "foo", :secret => "bar" })
     message = "Hey hey hello Mary Lou"

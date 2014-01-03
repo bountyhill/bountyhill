@@ -15,8 +15,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :twitter_identity, :class => "Identity::Twitter" do
-    identifier  "twatter"
+  factory :twitter_identity, :class => "Identity::Twitter" do |ti|
+    ti.sequence(:identifier) { |i| "twatter_#{i}"}
     
     after(:build) do |identity, evaluator|
       identity.info ||= { :nickname => "twatter" }
@@ -26,8 +26,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :facebook_identity, :class => "Identity::Facebook" do
-    identifier  "inyourfacebook"
+  factory :facebook_identity, :class => "Identity::Facebook" do |fi|
+    fi.sequence(:identifier) { |i| "inyourfacebook_#{i}"}
     
     after(:build) do |identity, evaluator|
       identity.info ||= { :nickname => "inyourfacebook" }
@@ -37,8 +37,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :google_identity, :class => "Identity::Google" do
-    identifier  "froogle"
+  factory :google_identity, :class => "Identity::Google" do |gi|
+    gi.sequence(:identifier) { |i| "froogle_#{i}"}
     
     after(:build) do |identity, evaluator|
       identity.info ||= { :name => "Foo Bar" }
@@ -48,8 +48,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :linkedin_identity, :class => "Identity::Linkedin" do
-    identifier  "klinkedin"
+  factory :linkedin_identity, :class => "Identity::Linkedin" do |li|
+    li.sequence(:identifier) { |i| "klinkedin_#{i}"}
     
     after(:build) do |identity, evaluator|
       identity.info ||= { :name => "Foo Bar" }
@@ -59,8 +59,8 @@ FactoryGirl.define do
     end
   end
 
-  factory :xing_identity, :class => "Identity::Xing" do
-    identifier  "openbc"
+  factory :xing_identity, :class => "Identity::Xing" do |xing_identity|
+    xing_identity.sequence(:identifier) { |i| "openbc_#{i}"}
     
     after(:build) do |identity, evaluator|
       identity.info ||= { :name => "Foo Bar" }
@@ -116,7 +116,7 @@ FactoryGirl.define do
     association :user, :factory => :user
   end
   
-  factory :share do |share|
+  factory :share do
     message     "share's message"
     association :quest, :factory => :quest
 
@@ -126,7 +126,7 @@ FactoryGirl.define do
     end
   end
   
-  factory :location do |location|
+  factory :location do
     address   "Berlin, Germany"
     latitude  52.519171
     longitude 13.4060912

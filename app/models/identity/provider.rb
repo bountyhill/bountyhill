@@ -139,6 +139,13 @@ module Identity::Provider
       self.class.sanitizer
     end
     
+    #
+    # determins wheter the given credentials are still valid to
+    # access the API of the given provider
+    def api_accessible?
+      raise "This method has to be provided by the social identity provider instance!"
+    end
+    
     private 
     
     # set email attribute from info hash

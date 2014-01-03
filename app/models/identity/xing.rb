@@ -9,6 +9,15 @@ class Identity::Xing < Identity
   with_metrics! "accounts.xing"
 
   #
+  # consider Xing API as accessible as long as an oauth token and an oauth secret
+  # is present since these tokens are needed to access the API and do never expire
+  def api_accessible?
+    oauth_token.present? && oauth_secret.present?
+  end
+
+  # -- Xing actions ------------------------------------------------
+
+  #
   # post a message on user's xing page
   def post(text, options={})
     expect! text => String

@@ -10,10 +10,10 @@ class SharesControllerTest < ActionController::TestCase
     @response   = ActionController::TestResponse.new
     super
     
-    @owner = Factory(:user)
-    @quest = Factory(:quest, :owner => @owner, :bounty => Money.new(12000, "EUR"))
-    # TODO: @share = Factory(:share, :quest => @quest, :owner => @owner, :identities => { 'twitter' => true })
-    @share = Share.create(:message => "message", :quest => @quest, :owner => @owner, :identities => { 'twitter' => true })
+    @owner    = Factory(:user)
+    @twitter  = Factory(:twitter_identity, :user => @owner, :credentials => { :token => "foo", :secret => "bar" })
+    @quest    = Factory(:quest, :owner => @owner, :bounty => Money.new(12000, "EUR"))
+    @share    = Factory(:share, :message => "message", :quest => @quest, :owner => @owner)
     
     login @owner
   end
@@ -26,7 +26,8 @@ class SharesControllerTest < ActionController::TestCase
     assert_template :new, :layout => 'dialog'
     assert_equal @quest, assigns(:share).quest
     assert_equal @owner, assigns(:share).owner
-    assert !assigns(:share).identities.values.all?
+    assert_equal ['twitter'], assigns(:share).identities.keys
+    assert assigns(:share).identities['twitter']
   end
   
   def test_create
@@ -58,7 +59,6 @@ class SharesControllerTest < ActionController::TestCase
   #
   # user has identity for requested network (quest already started)
   def test_show
-    Factory(:twitter_identity, :user => @owner)
     # TODO: @quest.expects(:active?).once.returns(true)
     Quest.any_instance.expects(:active?).once.returns(true)
     # TODO: @share.expects(:post).with(:twitter).once
@@ -76,7 +76,6 @@ class SharesControllerTest < ActionController::TestCase
   #
   # user has identity for requested network (quest not started yet)
   def test_show_starts_quest
-    Factory(:twitter_identity, :user => @owner)
     # TODO: @quest.expects(:active?).once.returns(false)
     Quest.any_instance.expects(:active?).once.returns(false)
     # TODO @quest.expects(:start!).once
@@ -96,11 +95,13 @@ class SharesControllerTest < ActionController::TestCase
   #
   # requested network requires user's identity to be provided
   def test_show_requires_identity
+    @share.update_attributes(:identities => { 'facebook' => true })
+    
     assert_no_difference "Share.count" do
       get :show, :id => @share.id
     end
     assert_response :redirect
-    assert_redirected_to signin_path(:req => 'twitter')
+    assert_redirected_to signin_path(:req => 'facebook')
     assert_equal @share, assigns(:share)
     assert_equal @quest, assigns(:quest)
   end 

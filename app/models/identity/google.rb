@@ -8,6 +8,13 @@ class Identity::Google < Identity
   
   with_metrics! "accounts.google"
   
+  #
+  # consider Google API as accessible as long as an refresh token is present since
+  # this token is used to get a new and valid token before each an every API call of the user
+  def api_accessible?
+    oauth_refresh_token.present?
+  end
+
   # -- Google actions ------------------------------------------------
   
   #

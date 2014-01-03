@@ -35,8 +35,10 @@ class Share < ActiveRecord::Base
   #
   # detect user's identities that allow sharing
   def init_identities
-    Share::IDENTITIES.each do |identity|
-      identities[identity] ||= owner && owner.identity?(identity.to_sym)
+    Share::IDENTITIES.each do |i|
+      next unless owner
+      next unless (identity = owner.identity(i.to_sym)).present?
+      identities[i] ||= identity.api_accessible?
     end
   end
   

@@ -6,7 +6,18 @@ class Identity::Linkedin < Identity
   include Identity::PolymorphicRouting
   include Identity::Provider
   
+  before_create :set_expiration
+
   with_metrics! "accounts.linkedin"
+
+  #
+  # consider Linkedin API as accessible as long as oauth token and oauth secret are given
+  # and the token is not expiring within within the next hour
+  def api_accessible?
+    oauth_token.present? && oauth_secret.present? && (!oauth_expires || (Time.now+1.hour).to_i < oauth_expires_at.to_i)
+  end
+
+  # -- Linkedin actions ------------------------------------------------
 
   #
   # post a message on user's linkedin page
@@ -67,5 +78,16 @@ class Identity::Linkedin < Identity
       :oauth_token        => Bountybase.config.linkedin_app["oauth_token"],
       :oauth_token_secret => Bountybase.config.linkedin_app["oauth_secret"]
     }
+  end
+  
+  def set_expiration
+    return if extra.nil?
+    if (expires_in = extra["access_token"] &&
+        extra["access_token"].respond_to?(:params) &&
+        extra["access_token"].params["oauth_expires_in"])
+      self.credentials ||= {}
+      self.credentials["expires"]    = true
+      self.credentials["expires_at"] = Time.now.to_i + expires_in
+    end
   end
 end
