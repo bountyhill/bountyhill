@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.linkedin.com/v1/people-search?first-name=Giliardi&last-name=Pires
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Li-Format:
+      - json
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="mpibxdpwbwry", oauth_nonce="eq8g0jFLe2FsDxO255PW6UqoZ8lwJAqiIJCm3qEKF8",
+        oauth_signature="D1xMNnx7aOxDotnPt1mtEdbJPlU%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1365631656", oauth_token="d9f69cd6-f3f3-4c26-9f2c-12cd8e228089",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - ! '*'
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Apache-Coyote/1.1
+      X-Li-Format:
+      - json
+      X-Li-Request-Id:
+      - CH30LTU9DW
+      Date:
+      - Wed, 10 Apr 2013 22:07:36 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: ! "{\n  \"numResults\": 0,\n  \"people\": {\"_total\": 0}\n}"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jun 2013 03:42:37 GMT
+- request:
+    method: get
+    uri: https://api.linkedin.com/v1/people-search?first-name=Charles&last-name=Garcia
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Li-Format:
+      - json
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="mpibxdpwbwry", oauth_nonce="lTIll68hM4A1tc0I56h92w5znsrjFfJ4nDvKpSqDfg",
+        oauth_signature="AhGLaPTVAJvv8pncUjz2j8C6%2B%2FA%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1365632102", oauth_token="d9f69cd6-f3f3-4c26-9f2c-12cd8e228089",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - ! '*'
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Apache-Coyote/1.1
+      X-Li-Request-Id:
+      - 6AXWFPE8I6
+      X-Li-Format:
+      - json
+      Date:
+      - Wed, 10 Apr 2013 22:15:03 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: ! "{\n  \"numResults\": 308,\n  \"people\": {\n    \"_count\": 10,\n
+        \   \"_start\": 0,\n    \"_total\": 110,\n    \"values\": [\n      {\n        \"firstName\":
+        \"Charles\",\n        \"id\": \"2zk34r8TvA\",\n        \"lastName\": \"Garcia,
+        CFA\"\n      },\n      {\n        \"firstName\": \"Charles R.\",\n        \"id\":
+        \"NjwO1vU6P6\",\n        \"lastName\": \"Garcia Jr.\"\n      },\n      {\n
+        \       \"firstName\": \"Charles\",\n        \"id\": \"j8ZczJo44W\",\n        \"lastName\":
+        \"Garcia-Tobin\"\n      },\n      {\n        \"firstName\": \"Charles\",\n
+        \       \"id\": \"jYfrk5GM29\",\n        \"lastName\": \"Garcia\"\n      },\n
+        \     {\n        \"firstName\": \"Charles\",\n        \"id\": \"C-2ASm3SQ1\",\n
+        \       \"lastName\": \"Garcia\"\n      },\n      {\n        \"firstName\":
+        \"Charles\",\n        \"id\": \"LG__MFCUTJ\",\n        \"lastName\": \"Garcia\"\n
+        \     },\n      {\n        \"firstName\": \"Charles\",\n        \"id\": \"wjopxKqYYM\",\n
+        \       \"lastName\": \"Garcia\"\n      },\n      {\n        \"firstName\":
+        \"Charles\",\n        \"id\": \"AtFQt5Lf1V\",\n        \"lastName\": \"Garcia\"\n
+        \     },\n      {\n        \"firstName\": \"Charles\",\n        \"id\": \"MUXIZwfehE\",\n
+        \       \"lastName\": \"Garcia\"\n      },\n      {\n        \"firstName\":
+        \"Charles\",\n        \"id\": \"koTmAyWE8J\",\n        \"lastName\": \"Schwalbe
+        Garcia-Lago\"\n      }\n    ]\n  }\n}"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jun 2013 03:42:37 GMT
+recorded_with: VCR 2.5.0

@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.linkedin.com/v1/people-search?company-name=linkedin
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="mpibxdpwbwry", oauth_nonce="TkuTVt34MgzfuheowxiWtlQzdNdJBfGwh8uNqwcDrS4",
+        oauth_signature="TQsnrPLgwq6hrw4G9VaPwJIKW8o%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1365631657", oauth_token="d9f69cd6-f3f3-4c26-9f2c-12cd8e228089",
+        oauth_version="1.0"
+      X-Li-Format:
+      - json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Li-Request-Id:
+      - 0UF1FY9HHN
+      Vary:
+      - ! '*'
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Apache-Coyote/1.1
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 10 Apr 2013 22:07:36 GMT
+      X-Li-Format:
+      - json
+    body:
+      encoding: UTF-8
+      string: ! "{\n  \"numResults\": 0,\n  \"people\": {\"_total\": 0}\n}"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jun 2013 03:42:37 GMT
+- request:
+    method: get
+    uri: https://api.linkedin.com/v1/people-search?company-name=IBM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="mpibxdpwbwry", oauth_nonce="dixy4z5VMylJTypqa3abkuEnVrjFtb5V5hd9DpMKB0",
+        oauth_signature="OOD9beldHTV5d9a6fVpPUqOB%2BPs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1365631799", oauth_token="d9f69cd6-f3f3-4c26-9f2c-12cd8e228089",
+        oauth_version="1.0"
+      X-Li-Format:
+      - json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Li-Request-Id:
+      - L00YMW359U
+      Vary:
+      - ! '*'
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - Apache-Coyote/1.1
+      Date:
+      - Wed, 10 Apr 2013 22:09:58 GMT
+      X-Li-Format:
+      - json
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: ! "{\n  \"numResults\": 6,\n  \"people\": {\n    \"_total\": 6,\n    \"values\":
+        [\n      {\n        \"firstName\": \"Ryan\",\n        \"id\": \"KHkgwBMaa-\",\n
+        \       \"lastName\": \"Sue\"\n      },\n      {\n        \"firstName\": \"Ben\",\n
+        \       \"id\": \"lljISRB-WQ\",\n        \"lastName\": \"Mejia\"\n      },\n
+        \     {\n        \"firstName\": \"James\",\n        \"id\": \"zLwxyfa2cv\",\n
+        \       \"lastName\": \"Stevenson\"\n      },\n      {\n        \"firstName\":
+        \"Charles\",\n        \"id\": \"r5Kzi9Um-e\",\n        \"lastName\": \"Kafoglis\"\n
+        \     },\n      {\n        \"firstName\": \"Sauraj\",\n        \"id\": \"RLJu6NhdI2\",\n
+        \       \"lastName\": \"Goswami\"\n      },\n      {\n        \"firstName\":
+        \"Jonathan\",\n        \"id\": \"NgAxaSCyZ3\",\n        \"lastName\": \"Hedstrom\"\n
+        \     }\n    ]\n  }\n}"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jun 2013 03:42:37 GMT
+recorded_with: VCR 2.5.0

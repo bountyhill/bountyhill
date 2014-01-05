@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.linkedin.com/v1/people-search?count=5&keywords=github&start=5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Li-Format:
+      - json
+      Authorization:
+      - OAuth oauth_consumer_key="mpibxdpwbwry", oauth_nonce="PfrLyLbcfxXAJshwSsQ4YDPBk1OncuNV0RjgB4fbVEs",
+        oauth_signature="16fUd%2BHUkWJULyxMCEbISV0Ltks%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1365631656", oauth_token="d9f69cd6-f3f3-4c26-9f2c-12cd8e228089",
+        oauth_version="1.0"
+      User-Agent:
+      - OAuth gem v0.4.7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Li-Request-Id:
+      - JI3L4KN8K1
+      X-Li-Format:
+      - json
+      Date:
+      - Wed, 10 Apr 2013 22:07:36 GMT
+      Vary:
+      - ! '*'
+      Server:
+      - Apache-Coyote/1.1
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ! "{\n  \"numResults\": 6,\n  \"people\": {\n    \"_count\": 1,\n    \"_start\":
+        5,\n    \"_total\": 6,\n    \"values\": [{\n      \"firstName\": \"Satish\",\n
+        \     \"id\": \"V1FPuGot-I\",\n      \"lastName\": \"Talim\"\n    }]\n  }\n}"
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jun 2013 03:42:37 GMT
+recorded_with: VCR 2.5.0
