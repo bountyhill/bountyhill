@@ -1,0 +1,15 @@
+<h1><%= I18n.t("mail.contact_owner.heading") %></h1>
+<p>
+  <%= I18n.t("mail.contact_owner.intro.html",
+    :sender    => link_to(@sender.name, @sender.url),
+    :referable => I18n.t("mail.contact_owner.referable.#{@reference.class.name.underscore}"),
+    :reference => link_to(@reference.title, @reference.url)).html_safe %>
+</p>
+<i>
+  <%= @message %>
+</i>
+<p>
+  <%= I18n.t("mail.contact_owner.text.html",
+    :sender => link_to(@sender.name, @sender.url),
+    :link   => mail_to("#{@sender.name} <#{@sender.email}>", I18n.t("mail.contact_owner.text.link"))).html_safe %>
+</p>

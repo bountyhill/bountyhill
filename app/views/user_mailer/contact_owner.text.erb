@@ -1,0 +1,12 @@
+<%= I18n.t("mail.contact_owner.heading") %>
+
+<%= I18n.t("mail.contact_owner.intro.plain", 
+  :sender     => @sender.name,
+  :referable  => I18n.t("mail.contact_owner.referable.#{@reference.class.name.underscore}"),
+  :reference  => @reference.title).html_safe %>
+
+<%= @message %>
+
+<%= I18n.t("mail.contact_owner.text.plain", :sender => @sender.name).html_safe %>
+
+<%= mail_to(@sender.email) %>

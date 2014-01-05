@@ -127,10 +127,16 @@ FactoryGirl.define do
   end
   
   factory :location do
-    address   "Berlin, Germany"
-    latitude  52.519171
-    longitude 13.4060912
-    
+    address     "Berlin, Germany"
+    latitude    52.519171
+    longitude   13.4060912
     association :stationary, :factory => :quest
+  end
+
+  factory :message do
+    subject     "message's subject"
+    body        "message's body"
+    association :reference, :factory => :quest
+    association :sender,    :factory => :user
   end
 end

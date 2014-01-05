@@ -1,0 +1,18 @@
+<%= form_for(@message, :remote => true) do |form| %>
+  <% modal_body do %>
+    <p><%= I18n.t("message.form.legend") %></p>
+    <p><%= I18n.t("message.form.legend2", :owner => @message.reference.owner.name) %></p>
+    
+    <%= form.error_messages %>
+    
+    <%= form.control_group :reference_id,   :hidden_field %>
+    <%= form.control_group :reference_type, :hidden_field %>
+    
+    <%= form.control_group :subject,  :text_field %>
+    <%= form.control_group :body,     :text_area,  :rows => 8 %>
+  <% end %>
+
+  <% modal_footer do
+    form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.send"), :class => "btn btn-primary btn-inverse"
+  end %>
+<% end %>

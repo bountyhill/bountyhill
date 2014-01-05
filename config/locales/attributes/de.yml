@@ -28,6 +28,7 @@ de:
       identity/linkedin:  LinkedIn
       identity/xing:      Xing
       location: Ort
+      message: Nachricht
     attributes:
       identity:
         email:                      Email
@@ -101,3 +102,7 @@ de:
         zipcode:  Postleitzahl
         country:  Land
         phone:    Telefon
+      message:
+        subject:  Betreff
+        body:     Nachricht
+        quest_id: Suche

@@ -46,7 +46,8 @@ module IconHelper
       :share    => :retweet,
       :reply    => :reply,
       :comment  => :comment,
-      :follow   => :twitter
+      :follow   => :twitter,
+      :send     => :envelope
     },
     :status => {
       :new        => :file_text,

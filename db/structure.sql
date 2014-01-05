@@ -309,6 +309,42 @@ ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 
 
 --
+-- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE messages (
+    id integer NOT NULL,
+    sender_id integer NOT NULL,
+    receiver_id integer NOT NULL,
+    reference_id integer NOT NULL,
+    reference_type character varying(255) NOT NULL,
+    subject character varying(255) NOT NULL,
+    body text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
 -- Name: offers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -538,6 +574,13 @@ ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY offers ALTER COLUMN id SET DEFAULT nextval('offers_id_seq'::regclass);
 
 
@@ -627,6 +670,14 @@ ALTER TABLE ONLY locations
 
 
 --
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: offers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -705,6 +756,20 @@ CREATE UNIQUE INDEX index_identities_on_user_id_and_id_and_type ON identities US
 --
 
 CREATE INDEX index_liabilities_on_account_id ON liabilities USING btree (account_id);
+
+
+--
+-- Name: index_messages_on_reference_id_and_reference_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_reference_id_and_reference_type ON messages USING btree (reference_id, reference_type);
+
+
+--
+-- Name: index_messages_on_sender_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_sender_id ON messages USING btree (sender_id);
 
 
 --
@@ -862,6 +927,8 @@ INSERT INTO schema_migrations (version) VALUES ('38');
 INSERT INTO schema_migrations (version) VALUES ('39');
 
 INSERT INTO schema_migrations (version) VALUES ('4');
+
+INSERT INTO schema_migrations (version) VALUES ('40');
 
 INSERT INTO schema_migrations (version) VALUES ('5');
 

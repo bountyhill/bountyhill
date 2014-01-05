@@ -21,8 +21,10 @@ en:
       success:      "%{record} was successfully added."
       error:        "%{record} could not be added."
     remove:
-      error:        "%{record} could not be added."
       success:      "%{record} could not be removed."
+      error:        "%{record} could not be added."
+    send:
+      success:      "Your message '%{record}' was successfully sent."
     access:
       not_allowed:  You are not allowed to do this!
     password:
@@ -69,6 +71,18 @@ en:
         commentable:
           offer:  "your offer"
           quest:  "your quest"
+    contact_owner:
+      heading:    "You received a contact inquiry"
+      intro:
+        plain:    "We would like to inform you that %{sender} has just send a contact inquiry regarding %{referable} %{reference} with the following message to you:"
+        html:     "We would like to inform you that %{sender} has just send a contact inquiry regarding %{referable} %{reference} with the following message to you:"
+      referable:
+        offer:    "your offer"
+        quest:    "your quest"
+      text:
+        plain:    "If you want to get in touch with with %{sender} you can reply to the request here:"
+        html:     "If you want to get in touch with with %{sender} please %{link} to the request."
+        link:     "reply"
     offer_received:
       subject:    "You received an offer"
       heading:    "You received an offer"
@@ -128,6 +142,8 @@ en:
     accept:   Accept
     reject:   Reject
     confirm:  Confirm
+    contact:  Contact
+    send:     Send
   filter:
     filter_by: "for %{filter}"
     categories:
@@ -675,3 +691,12 @@ en:
         resend:    Resend confirmation email
         sent:      You should receive a confirmation email shortly.
       confirmed: "Thank you for confirming your email address."
+  message:
+    error: Please review your input.
+    form:
+      title:    "Send contact request"
+      legend:   "Please enter a message which is to be sent as a contact inquiry."
+      legend2:  "Along with your message we will provide %{owner} with your name and email address."
+      field_hint:
+        subject:  The subject of your contact request
+        body:     "Please enter your contact request message here."

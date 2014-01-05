@@ -40,4 +40,17 @@ module ButtonHelper
     end
   end
 
+  def contact_owner_button(object)
+    expect! object => [Quest, Offer]
+    
+    return unless object.active?
+    return unless current_user
+    return if current_user.owns?(object)
+    
+    modal_awesome_button(icon_for('interaction.send'), url_for(
+      :controller => :messages,
+      :action     => :new,
+      :message    => { :reference_id => object.id, :reference_type => object.class.name })) { I18n.t("button.contact") }
+  end
+
 end

@@ -48,6 +48,7 @@ module QuestsHelper
   
   def quest_buttons(quest)
     button_group [
+      contact_owner_button(quest),
       share_quest_button(quest),
       new_offer_button(quest),
       stop_quest_button(quest),

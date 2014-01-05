@@ -27,7 +27,8 @@ en:
       identity/google:    Google
       identity/linkedin:  LinkedIn
       identity/xing:      Xing
-      location: location
+      location: Location
+      message: Message
     attributes:
       identity:
         email:                      Email
@@ -101,3 +102,7 @@ en:
         zipcode:  Zip code
         country:  Country
         phone:    Phone
+      message:
+        subject:  Subject
+        body:     Message
+        quest_id: Quest

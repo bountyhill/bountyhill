@@ -83,6 +83,16 @@ class UserMailer < ActionMailer::Base
       :subject => subject(I18n.t("mail.offer_rejected.subject")))
   end
   
+  # -- Contact owner ---------------------------------------------------
+  
+  def contact_owner(message)
+    @sender     = message.sender
+    @reference  = message.reference
+    @message    = message.body
+    
+    mail(:from => email(@sender), :to => email(message.receiver), :subject => message.subject)
+  end
+  
 protected
 
   def subject(text)

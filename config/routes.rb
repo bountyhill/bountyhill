@@ -57,6 +57,8 @@ Bountyhill::Application.routes.draw do
 
   resources :activities
   
+  resources :messages
+  
   resources :sessions
   # manual routes for signup, signin, signout
   match "signin"          => "sessions#signin_get",     :via => :get

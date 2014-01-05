@@ -23,6 +23,8 @@ de:
     remove:
       success:      "%{record} wurde erfolgreich entfernt."
       error:        "%{record} konnte nicht entfernt werden."
+    send:
+      success:      "Deine Nachricht '%{record}' wurde erfolgreich versendet."
     access:
       not_allowed:  Du bist nicht berechtigt dies zu tun!
     password:
@@ -69,6 +71,18 @@ de:
         commentable:
           offer:  "Deines Angebots"
           quest:  "Deiner Suchanfrage"
+    contact_owner:
+      heading:    "Du hast eine Kontaktanfrage erhalten"
+      intro:
+        plain:    "Wir möchten Dich darüber informieren, dass %{sender} soeben eine Kontaktanfrage in Bezug auf %{referable} %{reference} mit der folgenden Nachricht an Dich gesendet hat:"
+        html:     "Wir möchten Dich darüber informieren, dass %{sender} soeben eine Kontaktanfrage in Bezug auf %{referable} %{reference} mit der folgenden Nachricht an Dich gesendet hat:"
+      referable:
+        offer:    "Dein Angebot"
+        quest:    "Deine Suchanfrage"
+      text:
+        plain:    "Wenn Du mit %{sender} in Kontakt treten möchtest, kannst Du die Anfrage hier beantworten:"
+        html:     "Wenn Du mit %{sender} in Kontakt treten möchtest, %{link} bitte die Anfrage."
+        link:     "beantworte"
     offer_received:
       subject:    "Du hast ein Angebot erhalten"
       heading:    "Du hast ein Angebot erhalten"
@@ -128,6 +142,8 @@ de:
     accept:   Annehmen
     reject:   Ablehnen
     confirm:  Bestätigen
+    contact:  Kontaktieren
+    send:     Abschicken
   filter:
     filter_by: "nach %{filter}"
     categories:
@@ -198,8 +214,8 @@ de:
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
       agree_to_terms: "Du musst den Allgemeinen Geschäftsbedingungen von bountyhill zustimmen, um unseren Service nutzen zu können."
       error:
-        common: Bitte prüfe Deine Eingaben.
-        signup: Bitte prüfe Deine Eingaben.
+        common: Bitte überprüfe Deine Eingaben.
+        signup: Bitte überprüfe Deine Eingaben.
         signin: Die angegebene Email-Adresse und/oder das angegebene Passwort sind nicht gültig.
         reset:  Die angegebene Email-Adresse ist uns nicht bekannt.
       success:
@@ -675,3 +691,12 @@ de:
         resend:    Bestätigungsemail erneut senden
         sent:      Du erhälst in Kürze eine Bestätigungsemail von uns.
       confirmed: "Vielen Dank für die Bestätigung Deiner Email-Adresse."
+  message:
+    error: Bitte überprüfe Deine Eingaben.
+    form:
+      title:    "Kontaktanfrage senden"
+      legend:   "Bitte gebe Deine Nachricht ein, die als Kontaktanfrage versendet werden soll."
+      legend2:  "Zusammen mit Deiner Nachricht werden wir %{owner} Deinen Namen und Deine Emailadresse zukommen lassen."
+      field_hint:
+        subject:  "Der Betreff Deiner Kontaktanfrage"
+        body:     "Gebe hier eine Nachricht für Deine Kontaktanfrage ein."

@@ -18,6 +18,7 @@ module OffersHelper
   
   def offer_buttons(offer)
     button_group [
+      contact_owner_button(offer),
       make_offer_button(offer),
       edit_offer_button(offer),
       accept_offer_button(offer),
