@@ -27,7 +27,6 @@ module ButtonHelper
 
     size = (options[:size] ||= :normal)
     html = (options.delete(:html) || {})
-    text = options.delete(:text)
     
     button = options.delete(:button) || "btn btn-link"
     button << " btn-#{size}" if size
