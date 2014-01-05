@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def update
     @user.attributes = params[:user]
     if @user.save
-      flash[:success] = I18n.t("message.update.success", :record => @user.name)
+      flash[:success] = I18n.t("notice.update.success", :record => @user.name)
       redirect_to! @user
     end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user.update_attributes(params[:user])
     @user.soft_delete!
     signout
-    flash[:success] = I18n.t("message.destroy.success", :record => @user.name)
+    flash[:success] = I18n.t("notice.destroy.success", :record => @user.name)
     redirect_to root_path
   end
   
@@ -45,7 +45,7 @@ private
   def access_allowed?
     return if @user == current_user
     
-    flash[:error] = I18n.t("message.access.not_allowed")
+    flash[:error] = I18n.t("notice.access.not_allowed")
     redirect_to root_path
   end
   

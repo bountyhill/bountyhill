@@ -58,7 +58,7 @@ class UsersControllerTest < ActionController::TestCase
       assert_response :redirect
       assert_redirected_to root_path
       assert_equal @admin, assigns(:user)
-      assert_equal I18n.t("message.access.not_allowed"), flash[:error]
+      assert_equal I18n.t("notice.access.not_allowed"), flash[:error]
     end
   end
   
@@ -70,7 +70,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal @user.reload, assigns(:user)
     assert_equal "Hans Wurst", assigns(:user).name
     assert assigns(:user).commercial?
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => @user.name), flash[:success]
   end
   
   def test_update_fails
@@ -92,7 +92,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
     assert_equal image_url, @user.image
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => @user.name), flash[:success]
     
     # leave image untouched
     put :update, :id => @user.id, :section => :address, :user => { }
@@ -100,7 +100,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
     assert_equal image_url, @user.image
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => @user.name), flash[:success]
     
     # delete image
     put :update, :id => @user.id, :section => :profile, :user => {}
@@ -108,7 +108,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
     assert_equal nil, @user.image
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => @user.name), flash[:success]
   end
   
   def test_update_description
@@ -117,7 +117,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert_equal @user.reload, assigns(:user)
     assert_equal "Foo Bar", @user.description
-    assert_equal I18n.t("message.update.success", :record => @user.name), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => @user.name), flash[:success]
   end
 
   def test_destroy

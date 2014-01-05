@@ -203,7 +203,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(assigns(:offer), :preview => true)
     assert !assigns(:offer).new_record?
-    assert_equal I18n.t("message.create.success", :record => Offer.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.create.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_update
@@ -218,7 +218,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(@offer)
     assert_equal @offer.reload, assigns(:offer)
-    assert_equal I18n.t("message.update.success", :record => Offer.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_destroy
@@ -227,7 +227,7 @@ class OffersControllerTest < ActionController::TestCase
     end
     assert_response :redirect
     assert_redirected_to offers_url(:owner => @offerer)
-    assert_equal I18n.t("message.destroy.success", :record => Offer.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.destroy.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_activate

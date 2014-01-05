@@ -67,7 +67,7 @@ class OffersController < ApplicationController
 
     # Activate the offer after saving.
     if @offer.save
-      flash[:success] = I18n.t("message.create.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("notice.create.success", :record => Offer.model_name.human)
       redirect_to! offer_path(@offer, :preview => true)
     end
     
@@ -77,7 +77,7 @@ class OffersController < ApplicationController
   # PUT /offers/1
   def update
     if @offer.update_attributes(params[:offer])
-      flash[:success] = I18n.t("message.update.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("notice.update.success", :record => Offer.model_name.human)
       redirect_to offer_path(@offer)
     else
       render :action => "new"
@@ -87,7 +87,7 @@ class OffersController < ApplicationController
   # DELETE /offers/1
   def destroy
     @offer.destroy
-    flash[:success] = I18n.t("message.destroy.success", :record => Offer.model_name.human)
+    flash[:success] = I18n.t("notice.destroy.success", :record => Offer.model_name.human)
     redirect_to offers_url(:owner => current_user)
   end
   

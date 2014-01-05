@@ -21,7 +21,7 @@ class IdentitiesController < ApplicationController
     # we have to call identity_presented! to trigger it's on susscess callback 
     return identity_presented! if identity_requested?(@provider)
     
-    flash[:success] = I18n.t("message.add.success", :record => @identity.class.model_name.human)
+    flash[:success] = I18n.t("notice.add.success", :record => @identity.class.model_name.human)
     redirect_to!(user_path(@identity.user))
   end
 
@@ -36,7 +36,7 @@ class IdentitiesController < ApplicationController
 
     @identity.attributes = @identity_params
     if @identity.save
-      flash[:success] = I18n.t("message.update.success", :record => @identity.class.model_name.human)
+      flash[:success] = I18n.t("notice.update.success", :record => @identity.class.model_name.human)
       redirect_to! @user
     end
   end
@@ -49,7 +49,7 @@ class IdentitiesController < ApplicationController
     raise RuntimeError, "Identity #{@provider} is the only identity of user #{@user.inspect}"  if @identity.solitary?
     @identity.destroy
     
-    flash[:success] = I18n.t("message.remove.success", :record => "identity/#{@provider}".camelize.constantize.model_name.human)
+    flash[:success] = I18n.t("notice.remove.success", :record => "identity/#{@provider}".camelize.constantize.model_name.human)
     redirect_to! user_path(@user)
   end
   
@@ -77,7 +77,7 @@ class IdentitiesController < ApplicationController
 
       # At this point an existing user might have signed in for the first time,
       # or might just revisit the site. In the latter case we don't produce a flash message.
-      flash[:success] = if current_user then  I18n.t("message.add.success", :record => Identity.provider(@provider).new.class.model_name.human)
+      flash[:success] = if current_user then  I18n.t("notice.add.success", :record => Identity.provider(@provider).new.class.model_name.human)
                         else                  I18n.t("sessions.auth.success")
                         end
       
@@ -87,7 +87,7 @@ class IdentitiesController < ApplicationController
       
       identity_presented!
     else
-      flash[:error] = if current_user then  I18n.t("message.add.error", :record => Identity.provider(@provider).new.class.model_name.human)
+      flash[:error] = if current_user then  I18n.t("notice.add.error", :record => Identity.provider(@provider).new.class.model_name.human)
                       else                  I18n.t("sessions.auth.failure")
                       end
       identity_cancelled!
@@ -168,13 +168,13 @@ protected
       if @identity.update_attributes(
           :password               => @identity_params[:password_new],
           :password_confirmation  => @identity_params[:password_new_confirmation])
-        flash[:success] = I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password))
+        flash[:success] = I18n.t("notice.update.success", :record => Identity::Email.human_attribute_name(:password))
         redirect_to! user_path(@user)
       else
         @identity.errors.add :password_new, @identity.errors.delete(:password).last
       end
     else
-      @identity.errors.add :password, I18n.t("message.password.invalid")
+      @identity.errors.add :password, I18n.t("notice.password.invalid")
     end
   end
 end

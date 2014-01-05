@@ -187,7 +187,7 @@ class QuestsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to quest_path(assigns(:quest), :preview => true)
     assert_equal "Berlin, Germany", assigns(:quest).location.address
-    assert_equal I18n.t("message.create.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.create.success", :record => Quest.model_name.human), flash[:success]
   end
   
   def test_create_as_draft_user
@@ -198,7 +198,7 @@ class QuestsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to quest_path(assigns(:quest), :preview => true)
     assert_equal User.draft, assigns(:quest).owner
-    assert_equal I18n.t("message.create.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.create.success", :record => Quest.model_name.human), flash[:success]
   end
   
   def test_update
@@ -214,7 +214,7 @@ class QuestsControllerTest < ActionController::TestCase
     assert_redirected_to quest_path(@quest)
     assert_equal @quest.reload, assigns(:quest)
     assert_equal "bar foo", assigns(:quest).title
-    assert_equal I18n.t("message.update.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Quest.model_name.human), flash[:success]
   end
   
   def test_update_location
@@ -223,21 +223,21 @@ class QuestsControllerTest < ActionController::TestCase
     assert_redirected_to quest_path(@quest)
     assert_equal @quest.reload, assigns(:quest)
     assert_equal "Berlin, Germany", assigns(:quest).location.address
-    assert_equal I18n.t("message.update.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Quest.model_name.human), flash[:success]
 
     put :update, :id => @quest.id, :quest => { :restrict_location => true, :location_attributes => { :address => "Potsdam, Germany" }}
     assert_response :redirect
     assert_redirected_to quest_path(@quest)
     assert_equal @quest.reload, assigns(:quest)
     assert_equal "Potsdam, Germany", assigns(:quest).location.address
-    assert_equal I18n.t("message.update.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Quest.model_name.human), flash[:success]
 
     put :update, :id => @quest.id, :quest => { :restrict_location => "" }
     assert_response :redirect
     assert_redirected_to quest_path(@quest)
     assert_equal @quest.reload, assigns(:quest)
     assert @quest.location.nil?
-    assert_equal I18n.t("message.update.success", :record => Quest.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Quest.model_name.human), flash[:success]
   end
 
   def test_destroy

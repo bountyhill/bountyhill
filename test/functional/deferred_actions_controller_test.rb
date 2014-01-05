@@ -23,7 +23,7 @@ class DeferredActionsControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to root_path
     assert_equal action, assigns(:action)
-    assert_equal I18n.t("message.action.invalid"), flash[:error]
+    assert_equal I18n.t("notice.action.invalid"), flash[:error]
   end
   
   def test_confirm
@@ -60,7 +60,7 @@ class DeferredActionsControllerTest < ActionController::TestCase
         self.send(method, action)
         assert_response :redirect
         assert_redirected_to root_path
-        assert_equal I18n.t("message.method.invalid"), flash[:error]
+        assert_equal I18n.t("notice.method.invalid"), flash[:error]
       end
     end
   end

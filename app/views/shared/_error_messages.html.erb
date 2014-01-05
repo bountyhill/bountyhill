@@ -1,8 +1,8 @@
 <% if (object && object.errors.any?)
   error_message = if (base_errors = object.errors[:base]).present?
-    I18n.t("message.base_error", :base_error => base_errors.join(", "))
+    I18n.t("notice.base_error", :base_error => base_errors.join(", "))
   else
-    I18n.t("message.error")
+    I18n.t("notice.error")
   end
 end %>
 

@@ -222,7 +222,7 @@ class IdentitiesControllerTest < ActionController::TestCase
     assert_redirected_to user_path(@user)
     assert assigns(:identity).valid?
     assert_equal "barfoo", assigns(:identity).password
-    assert_equal I18n.t("message.update.success", :record => Identity::Email.human_attribute_name(:password)), flash[:success]
+    assert_equal I18n.t("notice.update.success", :record => Identity::Email.human_attribute_name(:password)), flash[:success]
   end
 
   def test_update_email_fails

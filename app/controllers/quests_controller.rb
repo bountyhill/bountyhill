@@ -71,7 +71,7 @@ class QuestsController < ApplicationController
     
     # Show start quest form after successful saving.
     if @quest.save
-      flash[:success] = I18n.t("message.create.success", :record => Quest.model_name.human)
+      flash[:success] = I18n.t("notice.create.success", :record => Quest.model_name.human)
       redirect_to! quest_path(@quest, :preview => true)
     end
 
@@ -90,7 +90,7 @@ class QuestsController < ApplicationController
     
     if @quest.valid?
       @quest.save!
-      flash[:success] = I18n.t("message.update.success", :record => Quest.model_name.human)
+      flash[:success] = I18n.t("notice.update.success", :record => Quest.model_name.human)
       redirect_to! quest_path(@quest)
     end
 

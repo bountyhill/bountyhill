@@ -4,11 +4,11 @@
 de:
   icon:
     privacy:  "Diese Information kann von anderen Nutzer nicht eingesehen werden."
-  message:
+  notice:
     confirm:
       delete:       "Möchtest Du Deine(n) %{record} wirklich löschen?"
-    error:          Bitte prüfe Deine Eingaben.
-    base_error:     "%{base_error}: Bitte prüfe Deine Eingaben."
+    error:          Bitte überprüfe Deine Eingaben.
+    base_error:     "%{base_error}: Bitte überprüfe Deine Eingaben."
     create:
       success:      "%{record} wurde erfolgreich angelegt."
     offer:

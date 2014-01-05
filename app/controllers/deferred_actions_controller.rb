@@ -17,7 +17,7 @@ class DeferredActionsController < ApplicationController
     @action = DeferredAction.find_by_secret(secret)
 
     unless action && action.performable?
-      flash[:error] = I18n.t("message.action.invalid")
+      flash[:error] = I18n.t("notice.action.invalid")
       redirect_to root_path
       return
     end
@@ -72,7 +72,7 @@ class DeferredActionsController < ApplicationController
 
     return if expected_method == request.method
     
-    flash[:error] = I18n.t("message.method.invalid")
+    flash[:error] = I18n.t("notice.method.invalid")
     redirect_to request.env["HTTP_REFERER"] || root_path
   end
   

@@ -4,7 +4,7 @@
 en:
   icon:
     privacy:  "This information cannot be seen by other users."
-  message:
+  notice:
     confirm:
       delete:       "Do you realy want to delete your %{record}?"
     error:          Please review your input.
