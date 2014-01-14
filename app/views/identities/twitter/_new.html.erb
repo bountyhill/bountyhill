@@ -9,9 +9,13 @@
   <%#= hidden_field_tag :req, :twitter %>
 
   <%= form.control_group :commercial, :check_box %>
+  <p><%#= I18n.t("identity/twitter.form.follow_hint") %></p>
+  <%#= form.control_group :follow_bountyhermes, :check_box %>
 
-  <p><%= I18n.t("identity/twitter.form.follow_hint") %></p>
-  <%= form.control_group :follow_bountyhermes, :check_box %>
+  <% unless current_user || email_given? %>
+    <p><%= I18n.t("identity/twitter.form.email_hint") %></p>
+    <%= form.control_group :email, :text_field %>
+  <% end %>
 
   <% if current_user && !identity_requested?(:twitter) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>

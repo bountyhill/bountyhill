@@ -156,11 +156,16 @@ protected
   end
   
   def post_process_twitter_signin
-    return unless @identity_params[:follow_bountyhermes].present?
+    # handle user provides email adress
+    if @identity_params[:email].present? && @identity.email != @identity_params[:email]
+      @identity.update_attributes(:email => @identity_params[:email])
+    end
     
     # handle user wants to folllow bountyhermes
-    @identity.follow
-    @identity.direct_message I18n.t("tweet.follow.success")
+    if @identity_params[:follow_bountyhermes].present?
+      @identity.follow
+      @identity.direct_message I18n.t("tweet.follow.success")
+    end
   end
   
   def update_email
