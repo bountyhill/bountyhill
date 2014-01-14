@@ -212,6 +212,7 @@ de:
     form:
       title:          Anmelden/Registrieren
       terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
+      commercial:     "Gebe bitte an, ob Du bountyhill geschäftlich nutzen möchstest. Für kommerzielle Nutzer gelten erweiterte Nutzungsbedingungen."
       agree_to_terms: "Du musst den Allgemeinen Geschäftsbedingungen von bountyhill zustimmen, um unseren Service nutzen zu können."
       error:
         common: Bitte überprüfe Deine Eingaben.
@@ -229,7 +230,7 @@ de:
     form:
       new: 
         title:    Registrieren
-        legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse registrierst. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse bei bountyhill registrierst."
         legend2:  Abonniere bitte unseren Newsletter damit wir Dich über neue Funktionen von bountyhill informieren können.
       edit:
         title:  Passwort ändern
@@ -280,6 +281,7 @@ de:
       legend: "Du bist unter folgendem Twitter-Benutzernamen bei bountyhill registriert:"
     form:
       follow_hint:  "Folge bitte @bountyhermes damit wir Dir aktuelle Informationen via Twitters Direktnachrichten zusenden können."
+      email_hint:   "Gebe Deine Emailadresse an, damit wir Dir Benachrichtigungen zusenden können."
       new:
         title:    Twitter Account hinzufügen
         legend:   "Du kannst Deinen Twitter-Account zu Deinem bountyhill Profil hinzufügen, z.B. um uns zu erlauben Tweets in Deinem Namen zu Posten."
@@ -288,9 +290,10 @@ de:
         legend:   "Du kannst Deinen Twitter-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Twitter
-        legend:   "Du kannst Dich über Twitter bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Dich mit Deinem Twitter Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Twitter weitergeleitet."
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
+        email:                "Gebe Deine Email-Adresse ein."
         commercial:           "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:            "Ich möchte meinen Twitter-Account von meinem bountyhill Profil entfernen."
   identity/facebook:
@@ -306,7 +309,7 @@ de:
         legend:   "Du kannst Deinen Facebook-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Facebook
-        legend:   "Du kannst Dich über Facebook bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Dich mit Deinem Facebook Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Facebook weitergeleitet."
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen."
@@ -323,7 +326,7 @@ de:
         legend:   "Du kannst Deinen Google-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Google
-        legend:   "Du kannst Dich über Google bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Dich mit Deinem Google Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Google weitergeleitet."
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen Google-Account von meinem bountyhill Profil entfernen."
@@ -340,7 +343,7 @@ de:
         legend:   "Du kannst Deinen LinkedIn-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via LinkedIn
-        legend:   "Du kannst Dich über LinkedIn bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Dich mit Deinem LinkedIn Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von LinkedIn weitergeleitet."
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen LinkedIn-Account von meinem bountyhill Profil entfernen."
@@ -357,7 +360,7 @@ de:
         legend:   "Du kannst Deinen LinkedIn-Account von Deinem bountyhill Profil entfernen, z.B. um einen anderen hinzuzufügen und zu nutzen."
       signin:
         title:    Anmelden via Xing
-        legend:   "Du kannst Dich über Xing bei bountyhill anmelden. Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend:   "Du kannst Dich mit Deinem Xing Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Xing weitergeleitet."
       field_hint:
         commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:  "Ich möchte meinen Xing-Account von meinem bountyhill Profil entfernen."

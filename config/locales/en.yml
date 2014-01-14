@@ -211,6 +211,7 @@ en:
       xing:       "We need access to your Xing account to continue."
     form:
       title:          Sign in/up
+      commercial:     Please declare if you intend to use bountyhill commercially. For commercial users extended terms of use are valid.
       terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
       agree_to_terms: "You have to aggree to bountyhill's terms and conditions to use our service."
       error:
@@ -229,7 +230,7 @@ en:
     form:
       new:
         title:    Sign up
-        legend:   By signing up with your email and password you may start quests and post offers. Please note that there are different terms for commercial users.
+        legend:   By signing up with your email and password you may start quests and post offers on bountyhill.
         legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
       edit:
         title:  Change Password
@@ -279,6 +280,7 @@ en:
       legend: "You are registered at bountyhill with the following Twitter user name:"
     form:
       follow_hint:  Please follow @bountyhermes to receive updates via Twitter's direct messages.
+      email_hint:   Please provide your email address to receive notifications from bountyhill.
       new:
         title:    Add Twitter account
         legend:   "If you have a Twitter account you can add it to your bountyhill profile, e.g to allow us to post tweets on your behalf."
@@ -287,9 +289,10 @@ en:
         legend:   "You can remove your Twitter account from your bountyhill profile, e.g. to add and use another one."
       signin:
         title:    Sign in with Twitter
-        legend:   You can sign in to bountyhill via Twitter. Please note that there are different terms for commercial users.
+        legend:   "You can sign in to bountyhill with your Twitter account. Therefor you will be redirected to Twitter's signin page."
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
+        email:                Enter your email address.
         commercial:           I want to use bountyhill on behalf of my company.
         delete_me:            I do want to remove my Twitter account from my bountyhill profile.
   identity/facebook:
@@ -304,8 +307,8 @@ en:
         title:    Remove Facebook account
         legend:   "You can remove your Facebook account from your bountyhill profile, e.g. to add add use another one."
       signin:
-        title:    Sign in with Facebook
-        legend:   You can sign in to bountyhill via Facebook. Please note that there are different terms for commercial users.
+        title:      Sign in with Facebook
+        legend:     "You can sign in to bountyhill with your Facebook account. Therefor you will be redirected to Facebook's signin page."
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my Facebook account from my bountyhill profile.
@@ -322,7 +325,7 @@ en:
         legend:   "You can remove your Google account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with Google
-        legend:   You can sign in to bountyhill via Google. Please note that there are different terms for commercial users.
+        legend:   "You can sign in to bountyhill with your Google account. Therefor you will be redirected to Google's signin page."
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my Google account from my bountyhill profile.
@@ -339,7 +342,7 @@ en:
         legend:   "You can remove your LinkedIn account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with LinkedIn
-        legend:   You can sign in to bountyhill via LinkedIn. Please note that there are different terms for commercial users.
+        legend:   "You can sign in to bountyhill with your LinkedIn account. Therefor you will be redirected to LinkedIn's signin page."
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my LinkedIn account from my bountyhill profile.
@@ -356,7 +359,7 @@ en:
         legend:   "You can remove your Xing account from your bountyhill profile, e.g. to add add use another one."
       signin:
         title:    Sign in with Xing
-        legend:   You can sign in to bountyhill via Xing. Please note that there are different terms for commercial users.
+        legend:   "You can sign in to bountyhill with your Xing account. Therefor you will be redirected to Xing's signin page."
       field_hint:
         commercial: I want to use bountyhill on behalf of my company.
         delete_me:  I do want to remove my Xing account from my bountyhill profile.

@@ -8,12 +8,15 @@
   <%= form.error_messages @error if @error %>
   <%#= hidden_field_tag :req, :xing %>
 
-  <%= form.control_group :commercial, :check_box %>
+  <% unless current_user || returning_user? %>
+    <p><%= I18n.t("identity.form.commercial") %></p>
+    <%= form.control_group :commercial, :check_box %>
+  <% end %>
 
   <% if current_user && !identity_requested?(:xing) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
-    <% unless current_user %>
+    <% unless current_user || returning_user? %>
       <p><%= I18n.t("identity.form.agree_to_terms")%></p>
       <%= form.agree_to_terms(:id => "agree_to_terms_xing") %>
     <% end %>
@@ -23,17 +26,9 @@
       <%= form.submit I18n.t("button.signin"),
         :name => "signin_xing",
         :id => "signin_xing",
-        :class => "btn btn-primary btn-inverse",
-        :disabled => "disabled" %>
+        :class => "btn btn-primary btn-inverse" %>
     </div>
+    
+    <%= signin_button_toggle_javascript(:xing) %>
   <% end %>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-  $("#agree_to_terms_xing").change(function() {
-    if($(this).is(':checked'))
-      $("#signin_xing").removeAttr("disabled");
-    else
-      $("#signin_xing").attr("disabled", "disabled");
-  });
-</script>

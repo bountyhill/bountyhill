@@ -1,10 +1,12 @@
 <%= form_for identity, :url => (current_user ? nil : "/signup"), :remote => true do |form| %>
-  <%#= hidden_field_tag :req, :email %>
-  
   <p><%= I18n.t("identity/email.form.new.legend") %></p>
-  <%= form.control_group :commercial, :check_box %>
-
   <%= form.error_messages @error if @error %>
+
+  <% unless current_user || returning_user? %>
+    <p><%= I18n.t("identity.form.commercial") %></p>
+    <%= form.control_group :commercial, :check_box %>
+  <% end %>
+
   <%= form.control_group :email,                  :text_field %>
   <%= form.control_group :password,               :password_field %>
   <%= form.control_group :password_confirmation,  :password_field %>

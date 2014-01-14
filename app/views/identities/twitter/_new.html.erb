@@ -8,7 +8,11 @@
   <%= form.error_messages @error if @error %>
   <%#= hidden_field_tag :req, :twitter %>
 
-  <%= form.control_group :commercial, :check_box %>
+  <% unless current_user || returning_user? %>
+    <p><%= I18n.t("identity.form.commercial") %></p>
+    <%= form.control_group :commercial, :check_box %>
+  <% end %>
+
   <p><%#= I18n.t("identity/twitter.form.follow_hint") %></p>
   <%#= form.control_group :follow_bountyhermes, :check_box %>
 
@@ -20,7 +24,7 @@
   <% if current_user && !identity_requested?(:twitter) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
-    <% unless current_user %>
+    <% unless current_user || returning_user? %>
       <p><%= I18n.t("identity.form.agree_to_terms")%></p>
       <%= form.agree_to_terms(:id => "agree_to_terms_twitter") %>
     <% end %>
@@ -30,17 +34,9 @@
       <%= form.submit I18n.t("button.signin"),
         :name => "signin_twitter",
         :id => "signin_twitter",
-        :class => "btn btn-primary btn-inverse",
-        :disabled => "disabled" %>
+        :class => "btn btn-primary btn-inverse" %>
     </div>
+    
+    <%= signin_button_toggle_javascript(:twitter) %>
   <% end %>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-  $("#agree_to_terms_twitter").change(function() {
-    if($(this).is(':checked'))
-      $("#signin_twitter").removeAttr("disabled");
-    else
-      $("#signin_twitter").attr("disabled", "disabled");
-  });
-</script>
