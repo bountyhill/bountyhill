@@ -114,6 +114,8 @@ module Identity::Provider
   
     Identity::Provider::INFO_ATTRIBUTES.each do |info_attribute|
       define_method(info_attribute) do
+        return self[info_attribute] if self.respond_to?(info_attribute) && self[info_attribute].present?
+        
         hash = (info || {}).with_indifferent_access
         hash[info_attribute]
       end

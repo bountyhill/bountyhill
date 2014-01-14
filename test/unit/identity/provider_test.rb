@@ -64,6 +64,11 @@ class Identity::ProviderTest < ActiveSupport::TestCase
       assert_equal info, t.send(info)
     end
   end
+
+  def test_info_attribute_does_not_overide_real_attribute
+    t = Identity::Twitter.new(:email => "foo@bar.com", :info => { :email => "email" })
+    assert_equal "foo@bar.com", t.email
+  end
   
   def test_credential_attributes
     t = Identity::Twitter.new(:identifier => "foobar", :credentials => {
