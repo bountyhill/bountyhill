@@ -1,24 +1,38 @@
 # encoding: UTF-8
 
 require_dependency "identity/twitter"
+require_dependency "identity/facebook"
+require_dependency "identity/google"
+require_dependency "identity/linkedin"
+require_dependency "identity/xing"
 
 module ApplicationController::Sessions
   def self.included(klass)
-    klass.helper_method :current_user, :admin?
+    klass.helper_method :current_user, :admin?, :returning_user?, :email_given?
   end
 
   def signin(user)
     expect! user => User
 
-    session.update :remember_token => user.remember_token, :admin => user.admin?
+    session.update(
+      :remember_token => user.remember_token,
+      :singin_at      => Time.now,
+      :admin          => user.admin?,
+      :email          => user.email
+    )
     @current_user = user
   end
   
   def signout
-    @current_user = false
+    if @current_user.deleted?
+      session.delete(:singin_at)
+      session.delete(:email)
+    end
     
     session.delete(:remember_token)
     session.delete(:admin)
+
+    @current_user = false
 
     ApplicationController::RequiredIdentity.set_payload session, nil
   end
@@ -26,7 +40,15 @@ module ApplicationController::Sessions
   def admin?
     current_user && current_user.admin?
   end
-
+  
+  def returning_user?
+    session[:singin_at].present?
+  end
+  
+  def email_given?
+    session[:email].present?
+  end
+  
   def identity?(*args)
     current_user && current_user.reload.identity(*args)
   end

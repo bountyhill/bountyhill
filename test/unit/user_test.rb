@@ -298,4 +298,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "#<User id: #{123} [---deleted---]>", user.inspect
   end
   
+  def test_deleted?
+    user = User.new
+    assert_false user.deleted?
+    
+    user.deleted_at = Time.now
+    assert user.deleted?
+  end
 end

@@ -488,4 +488,8 @@ class User < ActiveRecord::Base
     end
   end
   
+  def deleted?
+    deleted_at?
+  end
+  
 end
