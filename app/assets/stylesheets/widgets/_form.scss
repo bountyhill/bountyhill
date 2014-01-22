@@ -24,6 +24,9 @@ form {
         }
       }
     }
+    &.error {
+      .checkbox { box-shadow: none; }
+    }
   }
   .location {
     label {
