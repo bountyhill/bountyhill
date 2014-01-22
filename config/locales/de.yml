@@ -211,9 +211,9 @@ de:
       xing:       "Um fortfahren zu können, benötigen wir Zugang zu Deinem Xing Account."
     form:
       title:          Anmelden/Registrieren
-      terms:          "Ich stimme den <a href='/terms' target='_blank'>bountyhill AGBs</a> zu."
       commercial:     "Gebe bitte an, ob Du bountyhill geschäftlich nutzen möchstest. Für kommerzielle Nutzer gelten erweiterte Nutzungsbedingungen."
-      agree_to_terms: "Du musst den Allgemeinen Geschäftsbedingungen von bountyhill zustimmen, um unseren Service nutzen zu können."
+      agree_to_terms: "Du musst unseren %{link} zustimmen, um unseren Service zu nutzen."
+      terms_link:     Allgemeinen Geschäftsbedingungen
       error:
         common: Bitte überprüfe Deine Eingaben.
         signup: Bitte überprüfe Deine Eingaben.
@@ -250,6 +250,7 @@ de:
         password_reset:             Du erhälst eine Email zum Zurücksetzen Deines Passworts.
         forgot_password:            Ich habe mein Passwort vergessen und möchte es zurücksetzen.
         newsletter_subscription:    Ich möchte den bountyhill Newsletter abonnieren.
+        accept_terms:               "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
         commercial:                 Ich möchte bountyhill im Namen meines Unternehmens nutzen.
         delete_me:                  Ich möchte meine Email-Adresse von meinem bountyhill Profil entfernen.
   identity/address:
@@ -294,6 +295,7 @@ de:
       field_hint:
         follow_bountyhermes:  "Ich möchte <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a> folgen."
         email:                "Gebe Deine Email-Adresse ein."
+        accept_terms:         "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
         commercial:           "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
         delete_me:            "Ich möchte meinen Twitter-Account von meinem bountyhill Profil entfernen."
   identity/facebook:
@@ -311,8 +313,9 @@ de:
         title:    Anmelden via Facebook
         legend:   "Du kannst Dich mit Deinem Facebook Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Facebook weitergeleitet."
       field_hint:
-        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
-        delete_me:  "Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen."
+        accept_terms: "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
+        commercial:   "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:    "Ich möchte meinen Facebook-Account von meinem bountyhill Profil entfernen."
   identity/google:
     show:
       title:  Google
@@ -328,8 +331,9 @@ de:
         title:    Anmelden via Google
         legend:   "Du kannst Dich mit Deinem Google Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Google weitergeleitet."
       field_hint:
-        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
-        delete_me:  "Ich möchte meinen Google-Account von meinem bountyhill Profil entfernen."
+        accept_terms: "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
+        commercial:   "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:    "Ich möchte meinen Google-Account von meinem bountyhill Profil entfernen."
   identity/linkedin:
     show:
       title:  LinkedIn
@@ -345,8 +349,9 @@ de:
         title:    Anmelden via LinkedIn
         legend:   "Du kannst Dich mit Deinem LinkedIn Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von LinkedIn weitergeleitet."
       field_hint:
-        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
-        delete_me:  "Ich möchte meinen LinkedIn-Account von meinem bountyhill Profil entfernen."
+        accept_terms: "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
+        commercial:   "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:    "Ich möchte meinen LinkedIn-Account von meinem bountyhill Profil entfernen."
   identity/xing:
     show:
       title:  Xing
@@ -362,8 +367,9 @@ de:
         title:    Anmelden via Xing
         legend:   "Du kannst Dich mit Deinem Xing Account bei bountyhill anmelden. Dazu wirst Du auf die Anmeldeseite von Xing weitergeleitet."
       field_hint:
-        commercial: "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
-        delete_me:  "Ich möchte meinen Xing-Account von meinem bountyhill Profil entfernen."
+        accept_terms: "Ich stimme den Allgemeinen Geschäftsbedingungen zu."
+        commercial:   "Ich möchte bountyhill im Namen meines Unternehmens nutzen."
+        delete_me:    "Ich möchte meinen Xing-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
       title:    Email bestätigen

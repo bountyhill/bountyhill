@@ -72,6 +72,25 @@ class Identity::Twitter < Identity
     Deferred.twitter(:direct_message_create, handle, msg, hermes.send(:oauth_hash))
   end
   
+  # 
+  # checks if a valid email address was given
+  def processable?
+    return true if self.user && !self.user.new_record?
+    
+    # clean errors on email
+    self.errors.delete(:email)
+    
+    # check if email is given and if so if email is valid
+    if self.email
+      self.errors.add(:email, :invalid) unless self.email =~ Identity::Email::EMAIL_ADDRESS_REGEX
+    else
+      self.errors.add(:email, :blank)
+    end
+    
+    super
+  end
+  
+  
   private
   
   #

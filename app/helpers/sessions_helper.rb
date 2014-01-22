@@ -7,23 +7,8 @@ module SessionsHelper
     link_to I18n.t("button.cancel"), "/sessions/cancel", :class => "btn btn-cancel", :method => :post
   end
   
-  def signin_button_toggle_javascript(identity)
-    expect! identity => Symbol
-
-    js = javascript_tag <<-JS
-      if ($("#agree_to_terms_#{identity}")[0]){
-        $("#signin_#{identity}").attr("disabled", "disabled");
-        
-        $("#agree_to_terms_#{identity}").change(function() {
-          if($(this).is(':checked'))
-            $("#signin_#{identity}").removeAttr("disabled");
-          else
-            $("#signin_#{identity}").attr("disabled", "disabled");
-        });
-      }
-    JS
-    
-    js.html_safe
+  def terms_of_use_legend
+    I18n.t("identity.form.agree_to_terms", :link => link_to(I18n.t('identity.form.terms_link'), '/terms', :target => '_blank')).html_safe
   end
   
 end

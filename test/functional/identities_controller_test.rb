@@ -164,12 +164,30 @@ class IdentitiesControllerTest < ActionController::TestCase
   def test_init
     logout
     
-    post :init, :provider => 'twitter', :identity_twitter => { :follow_bountyhermes => true, :commercial => true }
+    post :init, :provider => 'twitter', :identity_twitter => { :follow_bountyhermes => true, :commercial => true, :email => "foo@bar.com", :accept_terms => 1 }
     assert_response :redirect
     assert_redirected_to "/auth/twitter"
+    assert assigns(:identity)
     assert @request.session[:identity_params].present?
-    assert @request.session[:identity_params][:follow_bountyhermes]
     assert @request.session[:identity_params][:commercial]
+    assert_equal "foo@bar.com", @request.session[:identity_params][:email]
+    assert @request.session[:identity_params][:follow_bountyhermes]
+  end
+  
+  def test_init_fails
+    logout
+    
+    # no email given
+    xhr :post, :init, :provider => 'twitter', :identity_twitter => { :accept_terms => 1 }
+    assert_response :success
+    assert_template 'init'
+    assert assigns(:identity)
+    
+    # terms not accepted
+    xhr :post, :init, :provider => 'twitter', :identity_twitter => { :email => "foo@bar.com" }
+    assert_response :success
+    assert_template 'init'
+    assert assigns(:identity)
   end
   
   def test_success_fails
@@ -263,7 +281,7 @@ class IdentitiesControllerTest < ActionController::TestCase
   def setup_successful_twitter_authentification(identity_params = {})
     logout
 
-    OmniAuth.config.add_mock(:twitter, {:provider => 'twitter'})
+    OmniAuth.config.add_mock(:twitter, { :provider => 'twitter' })
     
     @request.env["omniauth.auth"]       = OmniAuth.config.mock_auth[:twitter]
     @request.session[:identity_params]  = identity_params

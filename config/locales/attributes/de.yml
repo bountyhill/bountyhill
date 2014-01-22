@@ -37,6 +37,7 @@ de:
         password_confirmation:      Bestätigung
         password_new:               Neues Passwort
         password_new_confirmation:  Bestätigung
+        accept_terms:               AGB
       user:
         name:             Name
         first_name:       Vorname

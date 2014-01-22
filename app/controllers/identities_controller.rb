@@ -65,8 +65,14 @@ class IdentitiesController < ApplicationController
     # The OmniAuthMiddleware intercepts "/auth/" URLs, e.g. the "/auth/facebook" 
     # URL sets up and redirects to facebook auth. When Facebook oauth
     # returns to OmniAuthMiddleware, which then redirects to the "create" action.
-    pre_process_signin # trigger pre processing
-    redirect_to "/auth/#{@provider}"
+    
+    @identity = Identity.provider(@provider).new(@identity_params)
+    @identity.user = current_user
+    
+    if @identity.processable?
+      pre_process_signin # trigger pre processing
+      redirect_to "/auth/#{@provider}"
+    end
   end
   
   #

@@ -211,9 +211,9 @@ en:
       xing:       "We need access to your Xing account to continue."
     form:
       title:          Sign in/up
-      commercial:     Please declare if you intend to use bountyhill commercially. For commercial users extended terms of use are valid.
-      terms:          "I agree to the <a href='/terms' target='_blank'>terms and conditions.</a>"
-      agree_to_terms: "You have to aggree to bountyhill's terms and conditions to use our service."
+      commercial:     Please declare if you intend to use bountyhill commercially. For commercial users extended terms and conditions are valid.
+      agree_to_terms: "To use our service you have to aggree to our %{link}."
+      terms_link:     Terms and Conditions
       error:
         common: Please review your inputs.
         signup: Please review your inputs.
@@ -250,6 +250,7 @@ en:
         password_reset:             You will receive an email to reset your password.
         forgot_password:            I did forget my password and want to reset it.
         newsletter_subscription:    I want to subscribe to bountyhill's newsletter.
+        accept_terms:               "I agree to the Terms and Conditions of bountyhill.   "
         commercial:                 I want to use bountyhill on behalf of my company.
         delete_me:                  I do want to remove my email from my bountyhill profile.
   identity/address:
@@ -293,6 +294,7 @@ en:
       field_hint:
         follow_bountyhermes:  I want to follow <a href='https://twitter.com/bountyhermes' target='_blank'>@bountyhermes</a>.
         email:                Enter your email address.
+        accept_terms:         "I agree to the Terms and Conditions of bountyhill.   "
         commercial:           I want to use bountyhill on behalf of my company.
         delete_me:            I do want to remove my Twitter account from my bountyhill profile.
   identity/facebook:
@@ -310,8 +312,9 @@ en:
         title:      Sign in with Facebook
         legend:     "You can sign in to bountyhill with your Facebook account. Therefor you will be redirected to Facebook's signin page."
       field_hint:
-        commercial: I want to use bountyhill on behalf of my company.
-        delete_me:  I do want to remove my Facebook account from my bountyhill profile.
+        accept_terms: "I agree to the Terms and Conditions of bountyhill.   "
+        commercial:   I want to use bountyhill on behalf of my company.
+        delete_me:    I do want to remove my Facebook account from my bountyhill profile.
   identity/google:
     show:
       title:      Google
@@ -327,8 +330,9 @@ en:
         title:    Sign in with Google
         legend:   "You can sign in to bountyhill with your Google account. Therefor you will be redirected to Google's signin page."
       field_hint:
-        commercial: I want to use bountyhill on behalf of my company.
-        delete_me:  I do want to remove my Google account from my bountyhill profile.
+        accept_terms: "I agree to the Terms and Conditions of bountyhill.   "
+        commercial:   I want to use bountyhill on behalf of my company.
+        delete_me:    I do want to remove my Google account from my bountyhill profile.
   identity/linkedin:
     show:
       title:      LinkedIn
@@ -344,8 +348,9 @@ en:
         title:    Sign in with LinkedIn
         legend:   "You can sign in to bountyhill with your LinkedIn account. Therefor you will be redirected to LinkedIn's signin page."
       field_hint:
-        commercial: I want to use bountyhill on behalf of my company.
-        delete_me:  I do want to remove my LinkedIn account from my bountyhill profile.
+        accept_terms: "I agree to the Terms and Conditions of bountyhill.   "
+        commercial:   I want to use bountyhill on behalf of my company.
+        delete_me:    I do want to remove my LinkedIn account from my bountyhill profile.
   identity/xing:
     show:
       title:      Xing
@@ -361,8 +366,9 @@ en:
         title:    Sign in with Xing
         legend:   "You can sign in to bountyhill with your Xing account. Therefor you will be redirected to Xing's signin page."
       field_hint:
-        commercial: I want to use bountyhill on behalf of my company.
-        delete_me:  I do want to remove my Xing account from my bountyhill profile.
+        accept_terms: "I agree to the Terms and Conditions of bountyhill.   "
+        commercial:   I want to use bountyhill on behalf of my company.
+        delete_me:    I do want to remove my Xing account from my bountyhill profile.
   identity/confirm:
     form:
       title:    Confirm email

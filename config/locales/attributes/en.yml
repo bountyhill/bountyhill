@@ -37,6 +37,7 @@ en:
         password_confirmation:      Confirmation
         password_new:               New Password
         password_new_confirmation:  Confirmation
+        accept_terms:               'T&Cs'
       user:
         name:             Name
         first_name:       First name

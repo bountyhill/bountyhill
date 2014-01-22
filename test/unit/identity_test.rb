@@ -63,4 +63,15 @@ class IdentityTest < ActiveSupport::TestCase
     end
   end
 
+  def test_processable?
+    identity = Factory(:email_identity)
+    assert identity.processable?
+    
+    identity.user = nil
+    assert !identity.processable?
+    
+    identity.accept_terms = "1"
+    assert identity.processable?
+  end
+
 end

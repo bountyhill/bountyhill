@@ -122,4 +122,18 @@ class Identity::TwitterTest < ActiveSupport::TestCase
     }
     assert_equal oauth_hash, Identity::Twitter.send(:oauth_hash)
   end
+  
+  def test_processable?
+    identity = Factory(:twitter_identity)
+    assert identity.processable?
+    
+    identity.user = nil
+    assert !identity.processable?
+    
+    identity.accept_terms = "1"
+    assert !identity.processable?
+
+    identity.email = "foo@bar.com"
+    assert identity.processable?
+  end
 end

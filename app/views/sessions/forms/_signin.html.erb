@@ -4,7 +4,7 @@
 <% end %>
 
 <% accordion_body(:signin) do %>
-  <%= form_for (@identity || Identity::Email.new), :url => "/signin", :remote => true do |form| %>
+  <%= form_for (@identity || Identity::Email.new), :url => "/signin", :remote => true, :html => { :id => 'new_signin' } do |form| %>
     <p><%= I18n.t("identity/email.form.signin.legend")%></p>
     <%= form.error_messages @error if @error %>
     <%#= hidden_field_tag :req, params[:req] %>

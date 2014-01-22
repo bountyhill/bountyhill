@@ -1,4 +1,4 @@
-<%= form_for(identity, :url => "/auth/xing/init") do |form| %>
+<%= form_for(identity, :url => "/auth/xing/init", :remote => true) do |form| %>
   <% if current_user %>
     <p><%= I18n.t("identity/xing.form.new.legend") %></p>
   <% else %>
@@ -17,18 +17,13 @@
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
     <% unless current_user || returning_user? %>
-      <p><%= I18n.t("identity.form.agree_to_terms")%></p>
-      <%= form.agree_to_terms(:id => "agree_to_terms_xing") %>
+      <p><%= terms_of_use_legend %></p>
+      <%= form.control_group :accept_terms, :check_box %>
     <% end %>
     
     <div class="buttons">
       <%= link_to_cancel_signin %>
-      <%= form.submit I18n.t("button.signin"),
-        :name => "signin_xing",
-        :id => "signin_xing",
-        :class => "btn btn-primary btn-inverse" %>
+      <%= form.submit I18n.t("button.signin"), :class => "btn btn-primary btn-inverse" %>
     </div>
-    
-    <%= signin_button_toggle_javascript(:xing) %>
   <% end %>
 <% end %>

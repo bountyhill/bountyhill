@@ -30,9 +30,9 @@ class Identity < ActiveRecord::Base
   after_destroy :soft_delete_user
 
   serialize :serialized, Hash
-  attr_accessor   :delete_me
-  attr_accessible :commercial
-
+  attr_accessor   :delete_me, :accept_terms
+  attr_accessible :commercial, :accept_terms
+  
   #
   # returns the identities covered by OmniAuth
   def self.oauth_identities
@@ -59,6 +59,21 @@ class Identity < ActiveRecord::Base
   
   def solitary?
     user.identities == [self]
+  end
+  
+  # 
+  # checks if the identity is ready to be further processed
+  # e.g. all preconditions are fullfilled to start the oauth dance
+  def processable?
+    return true if self.user && !self.user.new_record?
+
+    # clean error on accept_terms
+    self.errors.delete(:accept_terms)
+    
+    # check if terms of use have been accepted
+    self.errors.add(:accept_terms, :accepted) if self.accept_terms.to_i.zero?
+    
+    self.errors.blank?
   end
   
   protected

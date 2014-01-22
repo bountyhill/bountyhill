@@ -1,0 +1,1 @@
+$("#<%= @provider %><%= ' .accordion-inner' unless current_user %>").html("<%= escape_javascript(partial("identities/#{@provider}/new", :identity => @identity)) %>");
