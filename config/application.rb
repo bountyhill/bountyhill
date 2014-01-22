@@ -23,6 +23,9 @@ module Bountyhill
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # Restrict I18n's available locales to aviod translation mismatch
+    config.i18n.available_locales = [:de, :en]
+    
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
     # the I18n.default_locale when a translation can not be found)
     config.i18n.fallbacks = [:en]
