@@ -36,14 +36,14 @@ jQuery.escapeHTML = function(str) {
 $(document).ready(function() {
 
   // enable endless scrolling
-  // see ???
+  // see http://blog.migrantstudios.com/2012/07/11/building-an-infinite-scroll-component-with-rails-and-jquery/
   $('.endless_scroll_hook').bind('inview', function(e,visible) {
     if(visible) {
       $.getScript($(this).attr("href"));
     }
   });
   
-  // To use Ajax Content in Twitter Bootstrap Modal
+  // use Ajax Content in Twitter Bootstrap Modal
   // see http://blog.assimov.net/blog/2012/03/09/ajax-content-in-twitter-bootstrap-modal/
   $("a[data-toggle=modal]").click(function (e) {
    lv_target = $(this).attr('data-target');
