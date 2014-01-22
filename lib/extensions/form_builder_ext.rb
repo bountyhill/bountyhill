@@ -75,15 +75,7 @@ class ActionView::Helpers::FormBuilder
         "#{render_control_group_controls( field_type, name, options, &block)}\n"
       end
 
-    case field_type
-    when :check_box
-      content_tag :label, :class => "checkbox" do
-        ctrl_grp
-      end
-    else
-      ctrl_grp
-    end
-    
+    ctrl_grp
   end
 
   def render_control_group_label(field_type, name, options)
@@ -98,9 +90,9 @@ class ActionView::Helpers::FormBuilder
     message   = render_control_group_message(field_type, name, options)
     controls  = case field_type.to_sym
       when :check_box
-        content_tag :label do
-          render_control_group_input(field_type, name, options, &block) +
-          (options.delete(:label) || field_hint(name, options)).html_safe
+        content_tag :label, :class => "checkbox" do
+          (options.delete(:label) || field_hint(name, options)).html_safe +
+          render_control_group_input(field_type, name, options, &block)
         end
       else
         render_control_group_input(field_type, name, options, &block)
@@ -202,17 +194,6 @@ class ActionView::Helpers::FormBuilder
       end
   end
   
-  def agree_to_terms(options={})
-    options[:id]      ||= "agree_to_terms"
-    options[:checked] ||= false
-    content_tag :label, :class => "checkbox" do
-      note <<-HTML
-  <input id="#{options[:id]}" type="checkbox" #{options[:checked] ? 'checked' : ''}/>
-  #{I18n.t "identity.form.terms"}
-      HTML
-    end
-  end
-
   def forgot_password
     content_tag :label, :class => "checkbox" do
       note <<-HTML
