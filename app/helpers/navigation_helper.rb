@@ -90,7 +90,7 @@ module NavigationHelper
     when :header_center
       [ :start_quest, :quests ]
     when :footer_right
-      (admin? ? ADMIN_NAVIGATION.keys : [:twitter, :facebook, :google, :linkedin, :xing]) + [ :copyright ]
+      [:twitter, :facebook, :google, :linkedin, :xing] + [ :copyright ]
     when :footer_left
       [ :about, :contact, :imprint, :terms, :privacy ]
     end

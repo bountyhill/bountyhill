@@ -11,18 +11,6 @@
   }
 }
  
-.alert.flash {
-  text-align: center;         /* centers flash message text */
-  @include border-radius(0);  /* remove border radius */
-  z-index: 10;                /* display above content */
-  position:fixed;
-  top: $top_navigation_height;
-  width: 100%;
-  .close {
-    right: 32px;
-  }
-}
-
 .row-fluid {
   clear: both;               /* reset all floatings within next row */
 }

@@ -151,8 +151,8 @@ en:
     states:
       title:  States
   nav:
-    start_quest:  Start a quest
-    quests:       See all quests
+    start_quest:  Start quest
+    quests:       List quests
     my_quests:    My quests
     my_offers:    My offers
     received_offers: Received offers

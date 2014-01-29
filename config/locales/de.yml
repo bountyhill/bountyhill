@@ -151,8 +151,8 @@ de:
     states:
       title:  Status
   nav:
-    start_quest:  Neue Suche starten
-    quests:       Alle Suchen anzeigen
+    start_quest:  Suche starten
+    quests:       Suchen anzeigen
     my_quests:    Meine Suchen
     my_offers:    Meine Angebote
     received_offers: Erhaltene Angebote
