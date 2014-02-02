@@ -1,6 +1,8 @@
 body {
   background: $petrol image-url("background/BG_8.jpg") no-repeat center center fixed;
   @include background-size(cover);
+  padding: $body_top_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+  
   /*
   &.offers { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
   &.users  { background: $petrol image-url("background/BG_6.jpg") no-repeat center center fixed; }
@@ -9,6 +11,30 @@ body {
   */
 }
 
-.main-content { padding-top: 24px; }
+.main-content {
+  padding: 24px $page_padding 0 $page_padding;
+}
+
+.sidebar { min-width: 200px; }
+.spacer  { min-height: $box_spacing; }
+
+.two-columns {
+  width: 48%;
+  &.left  { float: left; }
+  &.right { float: right; }
+}
 
 a { &:hover { text-decoration: none; }}
+
+
+@media only screen and (max-width:979px) {
+  body { 
+    padding: $body_top_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body { 
+    padding: $body_top_min_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+  }
+}
