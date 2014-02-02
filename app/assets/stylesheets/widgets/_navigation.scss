@@ -1,6 +1,5 @@
 /* ------- common ------- */
 .navbar {
-  position: fixed;
   margin: 0;
   -webkit-transform: translateZ(0); /* prevent flickering in Safari when performing transformations */
 }
@@ -224,6 +223,13 @@
         span { display: none; }
       }
     }
+  }
+}
+
+@media only screen and (max-width:979px) {
+  .navbar {
+    &.navbar-fixed-top    { position: fixed; }
+    &.navbar-fixed-bottom { position: fixed; }
   }
 }
 
