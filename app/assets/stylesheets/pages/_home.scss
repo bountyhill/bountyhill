@@ -1,23 +1,35 @@
+/* ------- common ------- */
 .home {
   .claim, .instructions, .explanation {
     font-family: $font_system;
     color: $text;
     text-align: center;
   }
+  .claim, .instructions {
+    max-width: 1024px - (64px * 2);
+  }
+  .claim, .explanation {
+    margin: 0 auto 48px auto;
+  }
+}
+
+/* ------- claim ------- */
+.home {
   .claim {
     background-color: $petrol_transparent;
-    margin: 0 auto 96px auto;
     font-size: 500%;
     line-height: 100%;
     padding: 16px;
-    width: 1024px - (64px * 2) - (8px * 2);
   }
+}
+
+/* ------- instructions ------- */
+.home {
   .instructions {
-    margin: 96px auto 0 auto;
-    width: 1024px;
+    margin: 0 auto 0 auto;
     .item {
       position: relative;
-      margin: 0 auto 36px auto;
+      margin-bottom: 36px;
       height: 48px;
       &.item1 { .headline { background-color: $red; } }
       &.item2 { .headline { background-color: $orange; } }
@@ -26,20 +38,18 @@
         position: absolute;
       }
       .headline {
-        z-index: 10;
+        z-index: 1;
         width: 96px;
         padding: 8px;
-        left: (96px / 2);
         top: 8px;
         font-size: 180%;
         line-height: 120%;
       }
       .text {
         background-color: $petrol_transparent;
-        width: 768px - 16px;
         height: 48px;
-        padding: 8px 32px 8px 128px;
-        left: (96px / 2) + 8px;
+        padding: 8px 5% 8px 20%;
+        width: 75%;
         top: 0px;
         text-align: left;
         font-size: 140%;
@@ -49,10 +59,16 @@
       }
     }
   }
+}
+
+
+/* ------- explanation ------- */
+.home {
   .explanation {
+    max-width: 1024px;
     .item {
       position: relative;
-      width: 1024px;
+      max-width: 1024px;
       margin: 0 auto;
       .headline, .text {
         position: absolute;
@@ -63,30 +79,234 @@
         font-size: 300%;
       }
       .text {
-        bottom: 0px;
+        bottom: 30px;
         font-size: 180%;
-        width: 768px;
+        max-width: 800px;
       }
       &.item1 {
-        .headline { left: 31%;  bottom: 100px; }
-        .text     { left:  8%;  bottom:  30px }
+        .headline { left: 31%; }
+        .text     { left:  8%; }
       }
       &.item2 {
-        .headline { left: 35%;  bottom: 100px; }
-        .text     { left: 26%;  bottom:  30px; }
+        .headline { left: 35%; }
+        .text     { left: 26%; }
       }
       &.item3 {
-        .headline { left: 33%;  bottom: 100px; }
-        .text     { left:  8%;  bottom:  30px; }
+        .headline { left: 33%; }
+        .text     { left:  8%; }
       }
       &.item4 {
-        .headline { left: 33%;  bottom: 100px; }
-        .text     { left: 22%;  bottom:  30px; }
+        .headline { left: 33%; }
+        .text     { left: 22%; }
       }
       &.item5 {
-        .headline { left: 33%;  bottom: 100px; }
-        .text     { left:  8%;  bottom:  30px; }
+        .headline { left: 33%; }
+        .text     { left:  8%; }
       }
     }
+  }
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 90px;
+          font-size: 280%; 
+        }
+        .text {
+          bottom: 26px;
+          font-size: 160%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:979px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 80px;
+          font-size: 250%; 
+        }
+        .text {
+          bottom: 23px;
+          font-size: 140%;
+          max-width: 700px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 70px;
+          font-size: 220%; 
+        }
+        .text { 
+          bottom: 20px;
+          font-size: 120%; 
+          max-width: 600px;
+        }
+      }
+    }
+    .instructions {
+      .item {
+        .text { font-size: 120%; } 
+       }
+    }
+    .claim { font-size: 400%; }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 65px;
+          font-size: 200%;
+        }
+        .text { 
+          bottom: 18px;
+          font-size: 120%;
+          max-width: 550px;
+        }
+      }
+    }
+    .instructions {
+      .item {
+        .text { font-size: 115%; } 
+       }
+    }
+    .claim { font-size: 360%; }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 50px;
+          font-size: 180%;
+        }
+        .text {
+          bottom: 14px;
+          font-size: 100%;
+          max-width: 500px;
+        }
+      }
+    }
+    .instructions {
+      .item {
+        .text { 
+          padding: 8px 3% 8px 22%;
+          font-size: 110%; 
+        } 
+      }
+    }
+    .claim { font-size: 300%; }
+  }
+}
+
+
+@media only screen and (max-width: 598px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { bottom: 45px; }
+        .text     { bottom: 10px; }
+        &.item2, &.item4 {
+          .headline { left: 30%; }
+          .text     { left: 18%; }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 40px;
+          font-size: 130%;
+        }
+        .text {
+          bottom: 5px;
+          font-size: 90%;
+        }
+        &.item2, &.item4 {
+          .text  { left: 10%; }
+        }
+      }
+    }
+    .instructions {
+      .item {
+        .headline { width: 70px; }
+        .text     { font-size: 100% ;}
+      }
+    }
+    .claim { font-size: 240%; }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .home {
+    .explanation {
+      margin: 0 auto 36px auto;
+      .item {
+        .headline { 
+          bottom: 25px;
+          font-size: 100%;
+        }
+        .text {
+          bottom: 0px;
+          font-size: 70%;
+        }
+        &.item1 {
+          .text { left: 4%; }
+        }
+        &.item2 {
+          .text { left: -2%; }
+        }
+        &.item3 {
+          .text { left: 0%; }
+        }
+        &.item4 {
+          .text { left: -2%; }
+        }
+        &.item5 {
+          .text { left: 0%; }
+        }
+      }
+    }
+    .instructions {
+      .item {
+        margin-bottom: 24px;
+        height: 48px;
+        .headline { 
+          width: 40px; 
+          padding: 8px 4px;
+          top: 12px;
+          font-size: 100%;
+        }
+        .text { 
+          padding: 12px 5% 0px 20%;
+          font-size: 66%;
+        }
+      }
+    }
+    .claim { font-size: 150%; }
   }
 }
