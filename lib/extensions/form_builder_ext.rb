@@ -3,8 +3,6 @@
 # -- extend FormBuilder with a control_group method which renders
 #    a default control group for Twitter Bootstrap forms. 
 
-ActionView::Helpers::FormBuilder
-
 class ActionView::Helpers::FormBuilder
   extend Forwardable
   delegate [:link_to, :image_for, :javascript_tag] => :@template
@@ -91,8 +89,8 @@ class ActionView::Helpers::FormBuilder
     controls  = case field_type.to_sym
       when :check_box
         content_tag :label, :class => "checkbox" do
-          (options.delete(:label) || field_hint(name, options)).html_safe +
-          render_control_group_input(field_type, name, options, &block)
+          render_control_group_input(field_type, name, options, &block) + 
+          (options.delete(:label) || field_hint(name, options)).html_safe
         end
       else
         render_control_group_input(field_type, name, options, &block)
@@ -117,11 +115,9 @@ class ActionView::Helpers::FormBuilder
   end
   
   def control_group_class(field_type, name)
-    if object.error_message_for(name)
-      "control-group error"
-    else
-      "control-group #{field_type.to_s.dasherize}"
-    end
+    html_class = "control-group #{field_type.to_s.dasherize}"
+    html_class += " error" if object.error_message_for(name)
+    html_class
   end
 
   def render_control_group_input(field_type, name, options, &block)

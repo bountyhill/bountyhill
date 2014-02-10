@@ -14,10 +14,18 @@
 .modal-header {
   background-color: $modal_header;
   .modal-headline { color: $text; }
+  h3 { font-size: 160%; }
+  padding: 1% 5%;
 }
 
-.modal-body   { background-color: $modal_body; }
-.modal-footer { background-color: $modal_footer; }
+.modal-body {
+  background-color: $modal_body;
+  padding: 5%;
+}
+
+.modal-footer { 
+  background-color: $modal_footer; 
+}
 
 .quests { .modal-header { background-color: $quest_box_title_color; }}
 .offers { .modal-header { background-color: $offer_box_title_color; }}
@@ -88,10 +96,56 @@ ul.fp-slides {
   }
 }
 
-@media (max-height: 768px) {
+@media only screen and (max-width: 600px) {
   .modal {
-    .modal-body {
-      max-height: 450px;
+    .modal-header {
+      padding: 1% 3%;
+      h3 { font-size: 120%; }
     }
+    .modal-body {
+      padding: 3%;
+      p {
+        font-size: 85%;
+        line-height: 120%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .modal {
+    .modal-header {
+      h3 { font-size: 100%; }
+    }
+  }
+}
+
+@media only screen and (max-height: 768px) {
+  .modal {
+    .modal-body { max-height: 600px; }
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .modal {
+    .modal-body { max-height: 420px; }
+  }
+}
+
+@media only screen and (max-height: 568px) {
+  .modal {
+    .modal-body { max-height: 425px; }
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  .modal {
+    .modal-body { max-height: 365px; }
+  }
+}
+
+@media only screen and (max-height: 320px) {
+  .modal {
+    .modal-body { max-height: 200px; }
   }
 }

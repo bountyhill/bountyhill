@@ -1,11 +1,20 @@
 /* ------- form ------- */
 form {
+  .alert {
+    font-size: 100%;
+    padding: 1% 2%;
+  }
   p.legend {
     font-weight: bold;
     margin-bottom: 16px;
   }
   .control-group {
+    label, input, button, select, textarea {
+      font-size: 100%;
+      line-height: 120%;
+    }
     label {
+      &.checkbox { margin-bottom: 0; }
       font-weight: bold;
       &.radio {
         font-weight: normal;
@@ -25,6 +34,11 @@ form {
       }
     }
     &.error {
+      .help-inline, .help-block {
+        font-size: 100%;
+        line-height: 120%;
+        padding: 5px 0 0 5px;
+      }
       .checkbox { box-shadow: none; }
     }
   }
@@ -120,6 +134,8 @@ form {
   .buttons {
     float: right;
     .btn {
+      font-size: 100%;
+      line-height: 120%;
       border: none;
       @include border-radius(0);  /* remove border radius */
       background-image: none;
@@ -229,3 +245,43 @@ form {
   }
 }
 
+
+@media only screen and (max-width: 600px) {
+  form {
+    &.form-horizontal {
+      .control-group { margin-bottom: 8px; }
+    }
+    .control-group {
+      label, input, button, select, textarea { font-size: 85%; }
+    }
+    .buttons {
+      .btn {  font-size: 85%; }
+    }
+    .alert {
+      font-size: 85%;
+      margin-bottom: 8px;
+    }
+    .control-group {
+      &.error {
+        .help-inline, .help-block {
+          font-size: 85%;
+          padding: 2px 0 0 2px
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  form {
+    &.form-horizontal {
+      .control-group { 
+        &.text-field, &.text-area, &.password-field {
+          .control-label {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
