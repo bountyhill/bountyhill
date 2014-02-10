@@ -2,7 +2,7 @@
   <p><%= I18n.t("identity/email.form.new.legend") %></p>
   <%= form.error_messages @error if @error %>
 
-  <% unless current_user || returning_user? %>
+  <% unless current_user || signin_identity.present? %>
     <p><%= I18n.t("identity.form.commercial") %></p>
     <%= form.control_group :commercial, :check_box %>
   <% end %>

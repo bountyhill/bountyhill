@@ -230,8 +230,8 @@ en:
     form:
       new:
         title:    Sign up
-        legend:   By signing up with your email and password you may start quests and post offers on bountyhill.
-        legend2:  Please subscribe to our newsletter so we can inform you via email about bountyhill's features.
+        legend:   You can sign up with your email and a password of your choice.
+        legend2:  Please subscribe to our newsletter so we can inform you about everything new about bountyhill.
       edit:
         title:  Change Password
         legend: If you want to change your password please enter your new password and confirm the change by providing your current one.

@@ -8,27 +8,26 @@ require_dependency "identity/xing"
 
 module ApplicationController::Sessions
   def self.included(klass)
-    klass.helper_method :current_user, :admin?, :returning_user?, :email_given?
+    klass.helper_method :current_user, :admin?, :signin_identity
   end
 
-  def signin(user)
-    expect! user => User
-
+  def signin(user, identity=nil)
+    identity ||= user.identities.last
+    
+    expect! user      => User
+    expect! identity  => Identity
+    
     session.update(
       :remember_token => user.remember_token,
-      :singin_at      => Time.now,
+      :signedin_with  => identity.provider,
       :admin          => user.admin?,
-      :email          => user.email
     )
     @current_user = user
   end
   
   def signout
-    if @current_user.deleted?
-      session.delete(:singin_at)
-      session.delete(:email)
-    end
-    
+    session.delete(:signedin_with) if @current_user.deleted?
+
     session.delete(:remember_token)
     session.delete(:admin)
 
@@ -40,13 +39,9 @@ module ApplicationController::Sessions
   def admin?
     current_user && current_user.admin?
   end
-  
-  def returning_user?
-    session[:singin_at].present?
-  end
-  
-  def email_given?
-    session[:email].present?
+    
+  def signin_identity
+    session[:signedin_with]
   end
   
   def identity?(*args)

@@ -3,8 +3,9 @@
 class SessionsController < ApplicationController
   
   skip_before_filter  :show_confirmation_reminder
-  before_filter       :set_partials,          :only => [:signin_get]
-  before_filter       :set_identity_params,   :only => [:signin_post]
+  before_filter       :set_partials,        :only => [:signin_get]
+  before_filter       :set_partial,         :only => [:signin_get]
+  before_filter       :set_identity_params, :only => [:signin_post]
   
   #
   # This action renders signin forms. 
@@ -53,14 +54,14 @@ class SessionsController < ApplicationController
       when :reset   then Identity::Email.where("lower(email)=?", email.downcase).first
       end || Identity::Email.new(@identity_params)
       
-    if @identity.id
+    if @identity.processable?
       # Success! Set flash, and go somewhere...
       
       flash[:success] = I18n.t("identity.form.success.#{@mode}", :name => @identity.name)
       
       case @mode
       when :signup, :signin
-        signin @identity.user
+        signin(@identity.user, @identity)
         identity_presented!
       when :reset
         Deferred.mail UserMailer.reset_password(@identity.user)
@@ -94,7 +95,7 @@ class SessionsController < ApplicationController
 protected
 
   def set_partials
-    @partials = case params[:req]
+    @partials = case params[:req].to_s
       when "confirmed"  then identity?(:email) ? %w(confirm) : %w(signin email)
       when "address"    then %w(address)
       when "twitter"    then %w(twitter)
@@ -103,7 +104,19 @@ protected
       when "linkedin"   then %w(linkedin)
       when "xing"       then %w(xing)
       when "email"      then %w(signin email)
-      else              %w(signin twitter facebook google linkedin xing email)
+      else              %w(email signin twitter facebook google linkedin xing)
+      end
+  end
+  
+  def set_partial
+    @partial = case signin_identity.to_s
+      when "email"    then  "sessions/forms/signin"
+      when "twitter"  then  "sessions/forms/twitter"
+      when "facebook" then  "sessions/forms/facebook"
+      when "google"   then  "sessions/forms/google"
+      when "linkedin" then  "sessions/forms/linkedin"
+      when "xing"     then  "sessions/forms/xing"
+      else                  "sessions/forms/email"
       end
   end
 

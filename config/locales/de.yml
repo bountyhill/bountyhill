@@ -230,8 +230,8 @@ de:
     form:
       new: 
         title:    Registrieren
-        legend:   "Du kannst Suchen starten und Angebote abgeben, wenn Du Dich mit Deiner Email-Adresse bei bountyhill registrierst."
-        legend2:  Abonniere bitte unseren Newsletter damit wir Dich über neue Funktionen von bountyhill informieren können.
+        legend:   "Du kannst Dich mit Deiner Email-Adresse und einem Passwort Deiner Wahl registrierst."
+        legend2:  Abonniere bitte unseren Newsletter damit wir Dich über alles Neue rund um bountyhill informieren können.
       edit:
         title:  Passwort ändern
         legend: "Wenn Du Dein Passwort ändern möchtest, gebe bitte Dein neues Passwort ein und bestätige die Änderung mit Deinem aktuellen Passwort."

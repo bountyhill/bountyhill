@@ -125,7 +125,7 @@ class SessionsControllerTest < ActionController::TestCase
       "xing"      => { "xing"       => %w(xing) },
       "email"     => { "email"      => %w(signin email) },
       "address"   => { "address"    => %w(address) },
-      "foobar"    => { nil          => %w(signin twitter facebook google linkedin xing email) }
+      "foobar"    => { nil          => %w(email signin twitter facebook google linkedin xing) }
     }
     signins.each do |test, request|
       if request.keys.first == "confirmed"
@@ -139,6 +139,25 @@ class SessionsControllerTest < ActionController::TestCase
       
       assert assigns(:partials)
       assert_equal request.values.first, assigns(:partials)
+    end
+  end
+  
+  def test_set_partial
+    partials = {
+      "email"     => "sessions/forms/signin",
+      "twitter"   => "sessions/forms/twitter",
+      "facebook"  => "sessions/forms/facebook",
+      "google"    => "sessions/forms/google",
+      "linkedin"  => "sessions/forms/linkedin",
+      "xing"      => "sessions/forms/xing",
+      "foobar"    => "sessions/forms/email"
+    }
+    partials.each do |identity, partial|
+      @controller.stubs(:signin_identity).once.returns(identity)
+      @controller.send(:set_partial)
+      
+      assert assigns(:partial)
+      assert_equal partial, assigns(:partial)
     end
   end
   

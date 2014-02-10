@@ -8,7 +8,7 @@
   <%= form.error_messages @error if @error %>
   <%#= hidden_field_tag :req, :xing %>
 
-  <% unless current_user || returning_user? %>
+  <% unless current_user || signin_identity.present? %>
     <p><%= I18n.t("identity.form.commercial") %></p>
     <%= form.control_group :commercial, :check_box %>
   <% end %>
@@ -16,7 +16,7 @@
   <% if current_user && !identity_requested?(:xing) %>
     <%= form.actions "#", :"data-dismiss" => "modal" %>
   <% else %>
-    <% unless current_user || returning_user? %>
+    <% unless current_user || signin_identity.present? %>
       <p><%= terms_of_use_legend %></p>
       <%= form.control_group :accept_terms, :check_box %>
     <% end %>

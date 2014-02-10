@@ -88,7 +88,7 @@ class IdentitiesController < ApplicationController
                         end
       
       @identity = Identity.provider(@provider).find_or_create(uid, current_user, request.env["omniauth.auth"])
-      signin(User.find(@identity.user.id))
+      signin(User.find(@identity.user.id), @identity)
       post_process_signin # trigger post processing
       
       identity_presented!
