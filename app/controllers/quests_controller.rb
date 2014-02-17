@@ -15,7 +15,8 @@ class QuestsController < ApplicationController
     
     # init location
     @location = if params[:location] then Location.new(params[:location])
-                else                      Location.new(:radius => 'unlimited', :address => (request.location && request.location.name) || current_user.location)
+                elsif request        then Location.new(:radius => 'unlimited', :address => request.location && request.location.name)
+                else                      Location.new(:radius => 'unlimited', :address => current_user.location)
                 end
 
     # set additional location scope
