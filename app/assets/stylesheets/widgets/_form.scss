@@ -322,6 +322,7 @@ form {
       .control-group { 
         margin-bottom: 8px;
         label, input, button, select, textarea, .range-slider-prefix, .range-slider-postfix  { font-size: 85%; }
+        .input-append, .input-prepend { font-size: 13px; } /* needed since bootstrap's input-append sets font-size to 0 */
         .btn-group, .controls {
           /* NOTE: font-size has to be defined in px here... */
           .btn { 
