@@ -11,8 +11,8 @@ class Quest < ActiveRecord::Base
   # If no duration is set when starting a quest this is the duration
   # to use instead.
   
-  DURATIONS_IN_DAYS         = [ 1, 3, 7, 14, 21, 28 ]
-  DEFAULT_DURATION_IN_DAYS  = 14
+  DURATIONS_IN_DAYS         = [ 0, 28, 14, 7 ]
+  DEFAULT_DURATION_IN_DAYS  = 0
   
   # -- Access control -------------------------------------------------
 
@@ -251,13 +251,11 @@ class Quest < ActiveRecord::Base
     return if active?
 
     duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
-    if duration_in_days > 0
-      expires_at = (Date.today + duration_in_days + 1).to_time - 1
-    end
+    duration_in_days = 100000 if duration_in_days.zero?
 
     self.visibility = "public"
     self.started_at = Time.now
-    self.expires_at = expires_at
+    self.expires_at = (Date.today + duration_in_days + 1).to_time - 1
 
     # clear out cancellation reasons from potential previous cancellation
     self.cancellation = nil

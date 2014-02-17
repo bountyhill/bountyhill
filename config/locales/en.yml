@@ -652,6 +652,7 @@ en:
           other_success:      "My quest succeeded outside of bountyhill."
           no_longer_needed:   "I don't need this quest any more."
         duration:
+          zero:   unlimited
           one:    "one day"
           other:  "%{count} days"
       create: 

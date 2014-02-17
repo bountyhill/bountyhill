@@ -652,6 +652,7 @@ de:
           other_success:      "Meine Suche hatte ausserhalb von Bountyhill Erfolg."
           no_longer_needed:   "Ich benötige diese Suche nicht mehr."
         duration:
+          zero:   unbegrenzt
           one:    "1 Tag"
           other:  "%{count} Tage"
       create:
