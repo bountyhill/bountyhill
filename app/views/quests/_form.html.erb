@@ -8,13 +8,13 @@
 
   <%= form.control_group :bounty, :class => "input-small", :unit => "&euro;", :value => bounty, :autocomplete => "off" %>
   <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
-  <%= form.control_group :title,        :text_area, :rows => 2, :class => "input-xxlarge" %>
-  <%= form.control_group :description,  :text_area, :rows => 6, :class => "input-xxlarge tinymce" %>
+  <%= form.control_group :title,        :text_area, :rows => 2 %>
+  <%= form.control_group :description,  :text_area, :rows => 6, :class => "tinymce" %>
   
   <div class="criteria">
     <% Quest.criteria_titles.each_with_index do |name, idx| %>
       <div class="criterium-group">
-        <%= form.control_group name, :text_area, :rows => 2, :hint => I18n.t("quest.form.field_hint.criteria"), :class => "input-xxlarge" %>
+        <%= form.control_group name, :text_area, :rows => 2, :hint => I18n.t("quest.form.field_hint.criteria") %>
         <%#= form.control_group Quest.criteria_descriptions[idx], :text_area, :rows => 3, :hint => I18n.t("quest.form.field_hint.criteria_description") %>
       </div>
     <% end %>
@@ -24,7 +24,7 @@
   
   <%= form.control_group :duration_in_days, :radio_button, :hint => false do
       Quest::DURATIONS_IN_DAYS.map do |value|
-        label :class => "radio inline" do
+        label :class => "radio" do
           form.radio_button(:duration_in_days, value, :checked => ((@quest.duration_in_days || Quest::DEFAULT_DURATION_IN_DAYS).to_i == value)) +
           I18n.t('quest.form.field_hint.duration', :count => value)
         end

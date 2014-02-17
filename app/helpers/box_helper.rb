@@ -105,7 +105,7 @@ module BoxHelper
       end
     end
 
-    div :class => "#{type} box row-fluid #{options[:class]}" do
+    div :class => "#{type} form box #{options[:class]}" do
       header + content
     end
   end

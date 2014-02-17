@@ -48,20 +48,6 @@
         .btn-group {
           outline: none;
           width: 128px;
-          &:hover {
-            .dropdown-menu { display: block; }
-          }
-          .dropdown-menu {
-            @include border-radius(0);  /* remove border radius */
-						background-color: $content_color;
-            margin: 0;
-            li > a {
-              &:hover { 
-                background-image: none;
-                background-color: $petrol; 
-              }
-            }
-          }
         }
       }
     }
@@ -73,7 +59,7 @@
   }
   .content {
     min-height: 80px;
-    padding: $box_content_v_padding $box_content_h_padding;
+    padding: $box_padding $box_padding 48px $box_padding;
     clear: both;
     h1 {
       margin: 0 0 8px 0;
@@ -111,7 +97,7 @@
     .criteria-section {
       .criteria {
         list-style: none;
-        margin: 0;
+        margin: 0 0 16px 0;
         li {
           min-height: 44px;
           margin: 0 0 16px 0;
@@ -122,7 +108,6 @@
             padding: 8px;
             width: 20px;
             height: 20px;
-            margin-left: -44px;
             color: $text;
             font-family: $font_system;
             font-size: 140%;
@@ -164,27 +149,4 @@
       }
     }
   }
-  
-  /* ------- forms ------- */
-  form {
-    .control-label { width: 130px; }
-    .controls { margin-left: 150px; }
-    .buttons { margin: 32px 0; }
-    .buttons, .controls { 
-      .btn {
-        background-image: none;
-        padding: 4px 8px;
-        &:hover { 
-          background-position: 0 -30px;
-          @include transition(none);
-        }
-        &.btn-cancel {
-          background-color: $cancel_button_bg_color;
-          &:hover { background-color: $cancel_button_hover_bg_color };
-        }
-      }
-    }
-    a { color: $text_inverse; }
-  }
-  
 }

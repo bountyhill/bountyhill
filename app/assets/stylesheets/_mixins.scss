@@ -21,12 +21,13 @@
 
 @mixin opener($color, $position) {
   &.with-opener {
+    position: relative;
     &:before {
       content: "";
       border: ($box_spacing * 2) solid $color;
       border-width: 0 $box_spacing $box_spacing $box_spacing;
       border-color: $color transparent $color transparent;
-      position: relative;
+      position: absolute;
       left: $position;                /* should be 50% whne centered */
       top: -($box_spacing);           /* height of spacer */
       margin-left: -($box_spacing);   /* ensure opener is centric */
@@ -53,15 +54,17 @@
 }
 
 @mixin box_border($border_bottom_color) {
-  border-bottom: $box_border_bottom;
-  border-color: $border_bottom_color;
+  .content {
+    border-bottom: $box_border_bottom;
+    border-color: $border_bottom_color;
+  }
 }
 
 @mixin box_colors($box_type) {
   @if       $box_type == quest { 
-    background-color: $quest_box_color;
     .header  { background-color: $quest_box_title_color; }
     .content {
+      background-color: $quest_box_color;
       h1, h2 { color: $quest_box_title_color; }
       .criteria-section { .criteria { li { .index { background-color: $quest_box_title_color; }}}}
       form {
@@ -74,9 +77,9 @@
     .header { background-color: $quests_box_title_color; }
   }
   @else if  $box_type == offer { 
-    background-color: $offer_box_color;
     .header { background-color: $offer_box_title_color; }
     .content {
+      background-color: $offer_box_color;
       h1, h2 { color: $offer_box_title_color; }
       .criteria-section { .criteria { li { 
         .index { background-color: $quest_box_title_color; }
@@ -86,17 +89,17 @@
     }
   }
   @else if  $box_type == offers { 
-    background-color: $offers_box_color;
-    .header { background-color: $offers_box_title_color; }
+    .header   { background-color: $offers_box_title_color; }
+    .content  { background-color: $offers_box_color; }
   }
   @else if  $box_type == comment { 
-    background-color: $comments_box_color;
-    .header { background-color: $comments_box_title_color; }
+    .header   { background-color: $comments_box_title_color; }
+    .content  { background-color: $comments_box_color; }
   }
   @else if  $box_type == user { 
-    background-color: $user_box_color;
     .header { background-color: $user_box_title_color; }
     .content {
+      background-color: $user_box_color;
       h1, h2 { color: $user_box_title_color; }
     }
   }

@@ -39,10 +39,10 @@ class ActionView::Helpers::FormBuilder
   end
 
   DEFAULT_INPUT_FIELD_OPTIONS = {
-    :text_field     => { :class => "input-xlarge" },
-    :password_field => { :class => "input-xlarge" },
-    :text_area      => { :class => "input-xlarge" },
-    :select         => { :class => "input-xlarge" },
+    # :text_field     => { :class => "input-xlarge" },
+    # :password_field => { :class => "input-xlarge" },
+    # :text_area      => { :class => "input-xlarge" },
+    # :select         => { :class => "input-xlarge" },
     :range_slider   => { :class => "input-small" }
   }
   
@@ -126,6 +126,7 @@ class ActionView::Helpers::FormBuilder
     else
       case field_type.to_sym
       when :select
+        options[:class] ||= ""
         options[:class] += " selectpicker"
         self.send field_type, name, options.delete(:select_options), {}, options
       when :check_box

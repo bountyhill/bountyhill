@@ -1,3 +1,55 @@
+/* ------- box form ------- */
+
+.box {
+  &.form {
+    padding: 0 15%;
+  }
+  form {
+    .control-label { 
+      width: 25%; 
+      overflow: hidden;
+    }
+    .controls { margin-left: 28%; }
+    .buttons, .controls { 
+      .btn-group {
+        &:hover {
+          .dropdown-menu { display: block; }
+        }
+        .btn {
+          &.dropdown-toggle {
+            box-shadow: none;
+            height: 30px;
+          }
+        }
+        .dropdown-menu {
+          @include border-radius(0);  /* remove border radius */
+          background-color: $content_color;
+          margin: 0;
+          li > a {
+            &:hover { 
+              background-image: none;
+              background-color: $petrol; 
+            }
+          }
+        }
+      }
+      .btn {
+        background-image: none;
+        padding: 4px 8px;
+        &:hover { 
+          background-position: 0 -30px;
+          @include transition(none);
+        }
+        &.btn-cancel {
+          background-color: $cancel_button_bg_color;
+          &:hover { background-color: $cancel_button_hover_bg_color };
+        }
+      }
+    }
+    a { color: $text_inverse; }
+  }
+}
+
 /* ------- form ------- */
 form {
   .alert {
@@ -9,29 +61,16 @@ form {
     margin-bottom: 16px;
   }
   .control-group {
-    label, input, button, select, textarea {
-      font-size: 100%;
-      line-height: 120%;
+    textarea, input[type="text"], input[type="password"], input[type="search"], .progress.main {
+      width: 97%;
     }
     label {
-      &.checkbox { margin-bottom: 0; }
       font-weight: bold;
-      &.radio {
-        font-weight: normal;
-        &.inline {
-          width: 3.8em;
-        }
-      }
+      &.checkbox { margin-bottom: 0; }
+      &.radio    { font-weight: normal; }
     }
     .input-append {
       .add-on { color: $text_inverse; }
-    }
-    .controls {
-      .progress {
-        &.main {
-          width: 524px;
-        }
-      }
     }
     &.error {
       .help-inline, .help-block {
@@ -44,11 +83,11 @@ form {
   }
   .location {
     label {
-      &.checkbox { margin-left: 150px; }
+      &.checkbox { margin-left: 20%; }
     }
     #googlemap {
-      margin-left: 152px;
-      width: 540px;
+      margin: 0 2% 16px 20%;
+      width: auto;
       height: 300px;
     }
   }
@@ -166,21 +205,16 @@ form {
         margin: auto .5em auto .5em;
       }
 */
-      margin-bottom: 18px;
-      .criteria { 
+      margin-bottom: 16px;
+      .title { 
         color: $quests_box_title_color;
         font-weight: bold; 
-      }
-      .fullfilment {
-        width: 692px;
+        margin: 0 0 16px 44px;
       }
       .control-group {
-        margin: 8px 0;
         &.range-slider {
-          float:left;
+          width: 100%;
           .controls {
-            width: 250px;
-            margin-left: 150px;
             input[type='range'] {
               @include appearance(none);
               padding: 0;
@@ -189,7 +223,7 @@ form {
               /* border: 1px solid; */
             }
             .range-slider-prefix, .range-slider-postfix {
-              margin-top: 6px;
+              padding-top: 5px;
               display: inline-block;
               text-align: center;
             }
@@ -245,27 +279,95 @@ form {
   }
 }
 
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 800px) {
+  .box {
+    &.form { padding: 0 5%; }
+  }
+}
 
 @media only screen and (max-width: 600px) {
+  .box {
+    &.form  { padding: 0 3%; }
+    .header { font-size: 140% }
+    .content {
+      .criteria-section {
+        .criteria {
+          li {
+            .title { 
+              font-size: 85%;
+              margin: 0 0 8px 30px;
+            }
+            .index {
+              padding: 4px;
+              width: 16px;
+              height: 16px;
+              font-size: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mceContentBody {
+    p { 
+      margin: 0 0 5px;
+      line-height: 1.2em;
+      font-size: 85%; 
+    }
+  }
   form {
     &.form-horizontal {
-      .control-group { margin-bottom: 8px; }
+      .control-group { 
+        margin-bottom: 8px;
+        label, input, button, select, textarea, .range-slider-prefix, .range-slider-postfix  { font-size: 85%; }
+        .btn-group, .controls {
+          /* NOTE: font-size has to be defined in px here... */
+          .btn { 
+            line-height: 24px;
+            font-size: 14px; 
+          }
+          .dropdown-menu  { font-size: 12px; }
+        }
+        &.error {
+          .help-inline, .help-block {
+            font-size: 85%;
+            padding: 2px 0 0 2px
+          }
+        }
+      }
+      .buttons {
+        .btn {  font-size: 14px; }
+      }
     }
-    .control-group {
-      label, input, button, select, textarea { font-size: 85%; }
-    }
-    .buttons {
-      .btn {  font-size: 85%; }
+    .legend { 
+      font-size: 85%;
+      line-height: 120%;
     }
     .alert {
       font-size: 85%;
       margin-bottom: 8px;
     }
-    .control-group {
-      &.error {
-        .help-inline, .help-block {
-          font-size: 85%;
-          padding: 2px 0 0 2px
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .box {
+    .header { 
+      height: 16px;
+      font-size: 100%;
+      .step-indicator {
+        li {
+          font-size: 90%;
+          line-height: 36px;
+          margin-right: 3px;
+          &::before {
+            line-height: 20px;
+            width: 20px;
+            height: 20px;
+            margin: 0 0.15em;
+          }
         }
       }
     }
@@ -273,12 +375,32 @@ form {
 }
 
 @media only screen and (max-width: 480px) {
-  form {
-    &.form-horizontal {
-      .control-group { 
-        &.text-field, &.text-area, &.password-field {
-          .control-label {
-            display: none;
+  .box {
+    &.form { 
+      padding: 0 1%; 
+      form {
+        .control-label { width: 100%; }
+        .controls { margin-left: 0; }
+        .location {
+          #googlemap { 
+            margin-left: 0;
+            margin-right: 0;
+          }
+          label {
+            &.checkbox { margin-left: 0; }
+          }
+        }
+      }
+    }
+  }
+  .modal-body{
+    form {
+      &.form-horizontal {
+        .control-group { 
+          &.text-field, &.text-area, &.password-field {
+            .control-label {
+              display: none;
+            }
           }
         }
       }
