@@ -36,8 +36,10 @@
 
   <%= render_flash %>
 
-  <div class="main-content container-fluid">
-    <%= defined?(content) ? content.html_safe : yield %>
+  <div class="main-content">
+    <div class="container-fluid">
+      <%= defined?(content) ? content.html_safe : yield %>
+    </div>
   </div>
 
   <%= render 'layouts/footer' %>

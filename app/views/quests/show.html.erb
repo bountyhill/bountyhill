@@ -1,15 +1,12 @@
 <div class="row-fluid">
-  <div class="span1">&nbsp;</div>
-  <div class="main span8">
+  <div class="main span9">
     <%= user_bar(@quest.owner, :quest) %>
   </div>
-  <div class="sidebar span2">&nbsp;</div>
-  <div class="span1">&nbsp;</div>
+  <div class="sidebar span3">&nbsp;</div>
 </div>
 <%= spacer %>
 <div class="row-fluid main">
-  <div class="span1">&nbsp;</div>
-  <div class="main span8">
+  <div class="main span9">
     <%= quest_box(@quest, :class => "with-opener") %>
     <% if @quest.offers.for_user(current_user).any? %>
       <a id ='offers'></a>
@@ -20,8 +17,7 @@
     <%= spacer %>
     <%= comments_box(@quest) %>
   </div>
-  <div class="sidebar span2">
+  <div class="sidebar span3">
     <%= quest_statistic_boxes(@quest) %>
   </div>
-  <div class="span1">&nbsp;</div>
 </div>

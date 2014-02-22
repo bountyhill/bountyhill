@@ -97,9 +97,6 @@
     &.offer { 
       background-color: $offer_box_title_color; 
       @include opener($offer_box_title_color, $open_center);
-      &.with-opener {
-        &:before { top: -40px; }
-      }
     }
     display: block;
     padding: $box_padding;

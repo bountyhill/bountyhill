@@ -1,10 +1,8 @@
-<div class="row-fluid main">
-  <div class="span1">&nbsp;</div>
-  <div class="sidebar span2">
+<div class="row-fluid">
+  <div class="sidebar span3">
     <%= quests_category_filters(@filters) %>
   </div>
-  <div class="main span8">
+  <div class="main span9">
     <%= quests_list_box(@quests, :location => @location, :filter => params[:category] ) %>
   </div>
-  <div class="span1">&nbsp;</div>
 </div>
