@@ -38,14 +38,6 @@ class ActionView::Helpers::FormBuilder
     content_tag :div, *args, &block
   end
 
-  DEFAULT_INPUT_FIELD_OPTIONS = {
-    # :text_field     => { :class => "input-xlarge" },
-    # :password_field => { :class => "input-xlarge" },
-    # :text_area      => { :class => "input-xlarge" },
-    # :select         => { :class => "input-xlarge" },
-    :range_slider   => { :class => "input-small" }
-  }
-  
   # Creating a control_group.
   def control_group(*args, &block)
     input_field_options = args.extract_options!
@@ -56,10 +48,6 @@ class ActionView::Helpers::FormBuilder
     raise ArgumentError, "Invalid field_type #{field_type.inspect}"               unless respond_to?(field_type)
     raise ArgumentError, "Invalid attribute #{object.class.name}##{name.inspect}" unless object.respond_to?(name)
     
-    if default_input_field_options = DEFAULT_INPUT_FIELD_OPTIONS[field_type]
-      input_field_options = default_input_field_options.merge(input_field_options)
-    end
-
     if field_type == :hidden_field
       hidden_field name, input_field_options
     else
