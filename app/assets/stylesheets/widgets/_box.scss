@@ -39,7 +39,7 @@
   
   /* ------- content ------- */
   &.list {
-    .content { padding: 0; }
+    .content { padding: $box_padding 0 0 0; }
   }
   .content {
     min-height: 80px;
@@ -142,7 +142,7 @@
 
 @media only screen and (max-width: 600px) {
   .box {
-    .header { font-size: 140% }
+    .header { font-size: 20px }
   }
 }
 
@@ -151,9 +151,13 @@
     .header { 
       height: 16px;
       padding: 8px 16px;
+      font-size: 16px;
     }
   }
 }
 
 @media only screen and (max-width: 480px) {
+  .box {
+    .header { font-size: 14px }
+  }
 }

@@ -17,15 +17,16 @@
     }
     
     /* ------- kategory/status filter ------- */  
-    ul {
-      list-style: none;
-      margin: 0;
-      width: 100%;
-      li {
-        margin-bottom: 8px;
-        .filtername  { float: left; }
-        .filtercount { float: right; }
-        &:last-child { margin-bottom: 16px; }
+    &.category, &.states {
+      ul {
+        margin: 0;
+        width: 100%;
+        li {
+          margin-bottom: 8px;
+          .filtername  { float: left; }
+          .filtercount { float: right; }
+          &:last-child { margin-bottom: 16px; }
+        }
       }
     }
     
