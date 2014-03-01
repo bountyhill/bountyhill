@@ -2,7 +2,6 @@
 $page_padding: 3%;
 $page_min_padding: 1%;
 $body_top_margin: 96px;
-$body_top_min_margin: 48px;
 
 /* navigation */
 $top_navigation_height: 64px;
@@ -12,8 +11,8 @@ $top_navigation_min_height: 40px;
 /* box */
 $box_padding:           16px;
 $box_section_padding:   24px;
-$box_border_size:       8px;
-$box_border_bottom:     $box_border_size solid $white;
+$box_border:            8px;
+$box_border_bottom:     $box_border solid $white;
 $box_spacing:           24px; /* vertical space between boxes */
 $box_header_height:     56px - (2*$box_padding);
 
@@ -30,5 +29,5 @@ $open_left:   $box_padding + ($avatar_size / 2);
 $message_height:      104px;
 $message_width:       4 * $message_height;
 $message_padding:     $box_padding;
-$message_border_size: $box_border_size;
+$message_border_size: $box_border;
 $message_stats_width: 2.5 * $message_height;

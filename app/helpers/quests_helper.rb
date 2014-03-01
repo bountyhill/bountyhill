@@ -14,7 +14,6 @@ module QuestsHelper
     expect! quests.first  => [Quest, nil]
     expect! options       => Hash
     
-    options[:header] = partial("shared/location", :url => quests_path, :location => options[:location])
     options[:filter] = I18n.t("quest.categories.#{options[:filter]}") if options[:filter]
     
     list_box(:quests, quests, options)
@@ -42,8 +41,24 @@ module QuestsHelper
       end, radius)
   end
   
+  def quests_location_filter(location)
+    expect! location => [Location, nil]
+    
+    header = div :class => "header" do
+      div(I18n.t("filter.location.title"), :class => "pull-left")
+    end
+
+    content = div :class => "content" do
+      partial("shared/location", :url => quests_path, :location => location)
+    end
+    
+    div :class => "quest location filter box row-fluid" do
+      header + content
+    end
+  end
+  
   def quests_category_filters(filters=[])
-    filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category])
+    filter_box(:quest, :categories, filters, :title => I18n.t("filter.categories.title"), :active => params[:category], :class => "category")
   end
   
   def quest_buttons(quest)

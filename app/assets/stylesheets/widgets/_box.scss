@@ -33,29 +33,13 @@
     font-family: $font_system;
     font-size: 200%;
     line-height: inherit;
-    form {
-       margin: -3px 0 0 0;
-      .control-group { 
-        display: inline-block; 
-        margin-bottom: 0;
-        .controls { 
-          margin: 0; 
-          input[type="search"] {
-            @include border-radius(0);  /* remove border radius */
-            background-color: $content_color;
-          }
-        }
-        .btn-group {
-          outline: none;
-          width: 128px;
-        }
-      }
-    }
+    .title { float: left; }
+    .interactions { float: right; }
   }
   
   /* ------- content ------- */
   &.list {
-    .content { padding: $box_padding 0; }
+    .content { padding: 0; }
   }
   .content {
     min-height: 80px;
@@ -149,4 +133,27 @@
       }
     }
   }
+}
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    .header { font-size: 140% }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .box {
+    .header { 
+      height: 16px;
+      padding: 8px 16px;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
 }

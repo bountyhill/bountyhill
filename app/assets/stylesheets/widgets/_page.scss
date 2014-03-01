@@ -15,6 +15,10 @@ body {
   padding: 24px $page_padding 0 $page_padding;
 }
 
+.row-fluid [class*="span"] {
+  min-height: 0;
+}
+
 .spacer  { min-height: $box_spacing; }
 
 .two-columns {
@@ -25,6 +29,7 @@ body {
 
 a { &:hover { text-decoration: none; }}
 
+/* ------- screen resolution adjustments ------- */
 
 @media only screen and (max-width:979px) {
   body { 
@@ -32,8 +37,22 @@ a { &:hover { text-decoration: none; }}
   }
 }
 
+@media only screen and (max-width: 800px) {
+}
+
 @media only screen and (max-width: 600px) {
   body { 
-    padding: $body_top_min_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+    padding: $body_top_margin/2 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
+  .spacer  { min-height: $box_spacing/2; }
+}
+
+@media only screen and (max-width: 568px) {
+  body { 
+    padding: $body_top_margin/4 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+  }
+  .spacer  { min-height: $box_spacing/4; }
+}
+
+@media only screen and (max-width: 480px) {
 }

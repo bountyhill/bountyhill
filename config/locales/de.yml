@@ -146,8 +146,10 @@ de:
     send:     Abschicken
   filter:
     filter_by: "nach %{filter}"
+    location:
+      title:  Standort
     categories:
-      title:  Kategorien
+      title:  Kategorie
     states:
       title:  Status
   nav:
@@ -670,7 +672,7 @@ de:
   location:
     radius:
       unlimited: unbegrenzt
-      limited:  "%{radius} km"
+      limited:  "%{radius} km Umkreis"
     form:
       field_hint:
         address: "Gebe den Ort an, auf den sich Deiner Suche beschränken soll."

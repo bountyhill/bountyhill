@@ -43,8 +43,8 @@ module BoxHelper
     
     header = div :class => "header" do
       [
-        div(title,            :class => "pull-left"),
-        div(options[:header], :class => "pull-right")
+        div(title,            :class => "title"),
+        div(options[:header], :class => "interactions")
       ].compact.join.html_safe
     end
     
@@ -81,7 +81,7 @@ module BoxHelper
       end
     end
     
-    div :class => "#{type} filter box row-fluid" do
+    div :class => "#{type} #{options[:class]} filter box row-fluid" do
       header + content
     end
   end

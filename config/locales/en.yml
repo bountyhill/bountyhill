@@ -146,8 +146,10 @@ en:
     send:     Send
   filter:
     filter_by: "for %{filter}"
+    location:
+      title:  Location
     categories:
-      title:  Categories
+      title:  Category
     states:
       title:  States
   nav:
@@ -670,7 +672,7 @@ en:
   location:
     radius:
       unlimited: unlimited
-      limited:  "%{radius} km"
+      limited:  "%{radius} km radius"
     form:
       field_hint:
         address: "Enter the location you want to restrict this quest to."

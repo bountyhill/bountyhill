@@ -137,7 +137,7 @@ module OffersHelper
   end
   
   def offers_state_filters(filters=[])
-    filter_box(:offer, :states, filters, :title => I18n.t("filter.states.title"), :active => params[:state])
+    filter_box(:offer, :states, filters, :title => I18n.t("filter.states.title"), :active => params[:state], :class => "states")
   end
 
   def offer_statistic_boxes(offer)

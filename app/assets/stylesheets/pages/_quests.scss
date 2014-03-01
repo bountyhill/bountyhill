@@ -82,6 +82,11 @@
 
 /* quest box in sidebar */
 .sidebar {
+  .box {
+    .content {
+      padding-bottom: 0px;
+    }
+  } 
   .quest {
     &.side {
       &.box {
