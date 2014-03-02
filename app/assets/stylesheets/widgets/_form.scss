@@ -53,7 +53,7 @@
 /* ------- form ------- */
 form {
   .alert {
-    font-size: 100%;
+    font-size: $large;
     padding: 1% 2%;
   }
   p.legend {
@@ -75,7 +75,7 @@ form {
     }
     &.error {
       .help-inline, .help-block {
-        font-size: 100%;
+        font-size: $large;
         line-height: 120%;
         padding: 5px 0 0 5px;
       }
@@ -100,7 +100,7 @@ form {
       color: $text;
       label { padding-top: 3px; }
       i {
-        font-size: 120%;
+        font-size: $large;
         position: absolute;
         right: 10px;
         bottom: 6px;
@@ -174,7 +174,7 @@ form {
   .buttons {
     float: right;
     .btn {
-      font-size: 100%;
+      font-size: $large;
       line-height: 120%;
       border: none;
       @include border-radius(0);  /* remove border radius */
@@ -201,7 +201,7 @@ form {
         text-align: center;
         color: $text;
         font-family: $font_system;
-        font-size: 140%;
+        font-size: $x_large;
         font-weight: bold;
         margin: auto .5em auto .5em;
       }
@@ -303,7 +303,7 @@ form {
               padding: 4px;
               width: 16px;
               height: 16px;
-              font-size: 100%;
+              font-size: $large;
             }
           }
         }

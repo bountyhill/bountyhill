@@ -14,7 +14,7 @@
 .modal-header {
   background-color: $modal_header;
   .modal-headline { color: $text; }
-  h3 { font-size: 160%; }
+  h3 { font-size: $xx_large }
   padding: 1% 5%;
 }
 
@@ -100,7 +100,7 @@ ul.fp-slides {
   .modal {
     .modal-header {
       padding: 1% 3%;
-      h3 { font-size: 120%; }
+      h3 { font-size: $large; }
     }
     .modal-body {
       padding: 3%;
@@ -115,7 +115,7 @@ ul.fp-slides {
 @media only screen and (max-width: 320px) {
   .modal {
     .modal-header {
-      h3 { font-size: 100%; }
+      h3 { font-size: $large; }
     }
   }
 }

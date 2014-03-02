@@ -1,6 +1,4 @@
-/* statistics */
-$statistic_number_font_size:    36px;
-$statistic_number_line_height:  36px;
+/* font families */
 
 $font_system: 'Open Sans Condensed', arial, sans-serif;
 $font_user:   'Open Sans', arial, sans-serif;
@@ -9,3 +7,23 @@ body {
   font-family: $font_user;
   .btn, .nav { font-family: $font_system; }
 }
+
+/* font sizes */
+$hero:        72px;
+$xxxxx_large: 48px;
+$xxxx_large:  36px;
+$xxx_large:   28px;
+$xx_large:    24px;
+$x_large:     20px;
+$large:       18px;
+$normal:      16px;
+$small:       14px;
+$x_small:     12px;
+$xx_small:    11px;
+$xxx_small:   10px;
+$xxxx_small:  9px;
+$xxxxx_small: 8px;
+
+/* statistics */
+$statistic_number_font_size:    $xxx_large;
+$statistic_number_line_height:  $xxx_large;

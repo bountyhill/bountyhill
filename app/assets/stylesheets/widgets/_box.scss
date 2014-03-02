@@ -47,22 +47,22 @@
     clear: both;
     h1 {
       margin: 0 0 8px 0;
-      font-size: 180%;
+      font-size: $xx_large;
       line-height: 100%;
     }
     h2 {
       margin: $section_bottom_margin 0 $section_top_margin 0;
-      font-size: 140%;
+      font-size: $x_large;
       line-height: 100%;
     }
     h3 {
       margin: $section_bottom_margin/2 0 $section_top_margin/2 0;
-      font-size: 120%;
+      font-size: $large;
       line-height: 100%;
     }
     h4 {
       margin: 0;
-      font-size: 100%;
+      font-size: $large;
       line-height: 100%;
     }
     .description, .criteria-section, .image-section {
@@ -94,7 +94,7 @@
             height: 20px;
             color: $text;
             font-family: $font_system;
-            font-size: 140%;
+            font-size: $x_large;
             text-align: center;
           }
         }
@@ -124,7 +124,7 @@
       width: 100%;
       border-bottom: $box_border_bottom;
       i { 
-        font-size: 140%;
+        font-size: $x_large;
         float: right;
       }
       .count {

@@ -17,7 +17,7 @@
 .home {
   .claim {
     background-color: $petrol_transparent;
-    font-size: 500%;
+    font-size: $hero;
     line-height: 100%;
     padding: 16px;
   }
@@ -42,8 +42,8 @@
         width: 96px;
         padding: 8px;
         top: 8px;
-        font-size: 180%;
-        line-height: 120%;
+        font-size: $xx_large;
+        line-height: 140%;
       }
       .text {
         background-color: $petrol_transparent;
@@ -52,7 +52,7 @@
         width: 75%;
         top: 0px;
         text-align: left;
-        font-size: 140%;
+        font-size: $x_large;
         line-height: 120%;
         .left { text-align: left; }
         .right { text-align: right; }
@@ -76,11 +76,11 @@
       }
       .headline {
         bottom: 100px;
-        font-size: 300%;
+        font-size: $xxxx_large;
       }
       .text {
         bottom: 30px;
-        font-size: 180%;
+        font-size: $xx_large;
         max-width: 800px;
       }
       &.item1 {
@@ -107,19 +107,14 @@
   }
 }
 
+/* ------- screen resolution adjustments ------- */
 
 @media only screen and (max-width: 1024px) {
   .home {
     .explanation {
       .item {
-        .headline { 
-          bottom: 90px;
-          font-size: 280%; 
-        }
-        .text {
-          bottom: 26px;
-          font-size: 160%;
-        }
+        .headline { bottom: 90px; }
+        .text     { bottom: 26px; }
       }
     }
   }
@@ -131,12 +126,12 @@
       .item {
         .headline { 
           bottom: 80px;
-          font-size: 250%; 
+          font-size: $xxx_large; ;
         }
         .text {
           bottom: 23px;
-          font-size: 140%;
           max-width: 700px;
+          font-size: $large;
         }
       }
     }
@@ -149,21 +144,26 @@
       .item {
         .headline { 
           bottom: 70px;
-          font-size: 220%; 
+          font-size: $xxx_large;
         }
         .text { 
           bottom: 20px;
-          font-size: 120%; 
+          font-size: $large;
           max-width: 600px;
         }
       }
     }
     .instructions {
       .item {
-        .text { font-size: 120%; } 
+        .headline { 
+          font-size: $x_large;
+          line-height: $xx_large;
+          top: 12px;
+        }
+        .text { font-size: $normal; } 
        }
     }
-    .claim { font-size: 400%; }
+    .claim { font-size: $xxxx_large; }
   }
 }
 
@@ -173,21 +173,21 @@
       .item {
         .headline { 
           bottom: 65px;
-          font-size: 200%;
+          font-size: $xxx_large;
         }
         .text { 
           bottom: 18px;
-          font-size: 120%;
+          font-size: $large;
           max-width: 550px;
         }
       }
     }
     .instructions {
       .item {
-        .text { font-size: 115%; } 
+        .text { font-size: $x_large; } 
        }
     }
-    .claim { font-size: 360%; }
+    .claim { font-size: $xxxx_large; }
   }
 }
 
@@ -197,29 +197,35 @@
       .item {
         .headline { 
           bottom: 50px;
-          font-size: 180%;
+          font-size: $xx_large;
         }
         .text {
           bottom: 14px;
-          font-size: 100%;
+          font-size: $small;
           max-width: 500px;
         }
       }
     }
     .instructions {
       .item {
+        .headline { 
+          width: 70px; 
+          font-size: $normal;
+          line-height: $x_large;
+          top: 14px;
+        }
         .text { 
           padding: 8px 3% 8px 22%;
-          font-size: 110%; 
+          font-size: $small;
         } 
       }
     }
-    .claim { font-size: 300%; }
+    .claim { font-size: $xxx_large; }
   }
 }
 
 
-@media only screen and (max-width: 598px) {
+@media only screen and (max-width: 568px) {
   .home {
     .explanation {
       .item {
@@ -240,11 +246,11 @@
       .item {
         .headline { 
           bottom: 40px;
-          font-size: 130%;
+          font-size: $x_large;
         }
         .text {
           bottom: 5px;
-          font-size: 90%;
+          font-size: $x_small;
         }
         &.item2, &.item4 {
           .text  { left: 10%; }
@@ -253,11 +259,14 @@
     }
     .instructions {
       .item {
-        .headline { width: 70px; }
-        .text     { font-size: 100% ;}
+        .headline { 
+          line-height: $xx_large;
+          top: 12px;
+        }
+        .text { font-size: $x_small; }
       }
     }
-    .claim { font-size: 240%; }
+    .claim { font-size: $xxx_large; }
   }
 }
 
@@ -268,11 +277,11 @@
       .item {
         .headline { 
           bottom: 25px;
-          font-size: 100%;
+          font-size: $small;
         }
         .text {
           bottom: 0px;
-          font-size: 70%;
+          font-size: $xxx_small;
         }
         &.item1 {
           .text { left: 4%; }
@@ -298,15 +307,15 @@
         .headline { 
           width: 40px; 
           padding: 8px 4px;
-          top: 12px;
-          font-size: 100%;
+          font-size: $small;
+          line-height: $x_large;
         }
         .text { 
           padding: 12px 5% 0px 20%;
-          font-size: 66%;
+          font-size: $xxxx_small;
         }
       }
     }
-    .claim { font-size: 150%; }
+    .claim { font-size: $x_large; }
   }
 }

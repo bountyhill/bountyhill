@@ -16,15 +16,15 @@
         color: $text;
         text-align: center;
         font-weight: bold;
-        font-size: 120%;
+        font-size: $large;
         .identity-icon { float: left; }
         .privacy-icon  { float: right; }
         .identity-icon, .privacy-icon {
-          font-size: 120%;
+          font-size: $large;
           a { color: $text }
           i { 
-            font-size: 120%; 
-            &.fa-envelope, &.fa-eye, &.fa-eye-slash { font-size: 100%; }
+            font-size: $large; 
+            &.fa-envelope, &.fa-eye, &.fa-eye-slash { font-size: $large; }
           }
         }
 /*
@@ -35,7 +35,7 @@
         }
         dt, dd { float: left; }
         dd {
-          font-size: 120%; 
+          font-size: $large; 
           width: 75%;
         }
         dt { 
@@ -112,11 +112,11 @@
       }
       .name   {
         top : $box_padding;
-        font-size: 180%;
+        font-size: $xx_large
       }
       .handle { 
         top : 44px;
-        font-size: 120%;
+        font-size: $large;
       }
     }
     .rating {

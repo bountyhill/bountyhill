@@ -23,7 +23,7 @@
         float: right;
         font-family: $font_system;
         color: $text;
-        font-size: 140%;
+        font-size: $x_large;
         text-align: right;
         &:after { content: "%" };
       }

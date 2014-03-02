@@ -47,7 +47,7 @@
       color: $quest_box_title_color;
       margin-left:  $avatar_size + $box_padding;
       .bar-head {
-        font-size: 120%;
+        font-size: $large;
         font-family: $font_system;
         margin-bottom: 24px;
         .owner {
@@ -69,7 +69,7 @@
         }
         .title {
           margin: 0 0 8px 0;
-          font-size: 160%;
+          font-size: $xx_large;
           font-weight: bold;
         }
         .description {
@@ -112,7 +112,7 @@
         .time {
           text-align: right;
           font-style: italic;
-          font-size: 90%;
+          font-size: $small;
         }
         .title {
           display: block;
