@@ -3,51 +3,44 @@
 .comments { @include message($comments_box_content_color, $comments_box_title_color); }
 
 .message-container {
-  padding: $box_padding;
-  position: relative;
   height: $message_height;
   border-bottom: $message_border_size solid $transparent;
-  .avatar {
-    height: $avatar_size;
-    img { float: left; }
+
+  .message-box, .message-stats {
+    height: 100%;
+    padding: $message_padding;
   }
   .message-box {
-    height: 100%;
     display: block;
-    margin-left:  $avatar_size + $box_padding;
-    margin-right: $message_stats_width + (2 * $message_padding);
-    .message-head, .message-body { min-width: $message_width; }
+    overflow: hidden;
+    padding-right: 0;
+    .avatar-container {
+      .avatar { max-height: $avatar_size; }
+    }
     .message-head {
       font-family: $font_system;
-      height: $message_padding + 8px;
-      .owner {
-        width: 60%;
-        margin-right: 8px;
-        display: inline;
-      }
+      margin-bottom: 8px;
+      .owner {}
       .time {
         float: right;
-        width: 40%;
         text-align: right;
         font-style: italic;
-        font-size: 90%;
       }
     }
-    .message-body {
-      font-weight: bold;
-      color: $text_inverse;
-    }
+    .message-body { }
   }
+
   .message-stats {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: $message_stats_width;
-    height: $message_height - (2 * $message_padding);
-    padding: $message_padding;
-    overflow: hidden;
-    color: $text;
-    font-weight: bold;
+    position: relative;
+    font-family: $font_system;
+    .stats-list { margin: 0; }
+    .btn-group {
+      position: absolute;
+      display: none;
+      right: 8px;
+      bottom: 0;
+      .btn { font-size: 12px; }
+    }
     .responses {
       position: absolute;
       right: 0px;
@@ -73,18 +66,96 @@
         }
       }
     }
-    .stats-list { margin: 0; }
-    .btn-group {
-      display: none;
-      position: absolute;
-      right: 8px;
-      bottom: 8px;
-      .btn { font-size: 12px; }
-    }
   }
   &:hover {
     .message-stats {
       .btn-group  { display: block; }
+    }
+  }
+}
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 979px) {
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 600px) {
+  .message-container {
+    height: auto;
+    .message-box {
+      height: $message_height;
+      .avatar-container {
+        width: 15%;
+        float: left;
+      }
+      .text-container {
+        width: 80%;
+        float: left;
+        .message-head {
+          padding-right: $message_padding;
+          margin-bottom: 4px;
+          .time, .owner {
+            width: 50%;
+          }
+          .owner { float: left; }
+        }
+      }
+    }
+    .message-stats {
+      padding-bottom: 28px;
+      .stats-list { min-height: 32px; }
+      .btn-group  { 
+        display: block;
+        position: relative;
+        float: right;
+        right: 0px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+}
+
+@media only screen and (max-width: 480px) {
+  .message-container {
+    .message-box {
+      .avatar-container {
+        margin-right: 3%;
+      }
+      .text-container {
+        width: 77%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .message-container {
+    font-size: $x_small;
+    .message-box, .message-stats {
+      padding: $message_padding/2;
+    }
+    .message-box {
+      height: auto;
+      min-height: 32px;
+      .text-container {
+        .message-head { margin-bottom: 0px; }
+      }
+    }
+    .message-stats {
+      padding-bottom: 28px;
+      .stats-list { min-height: 32px; }
+      .responses  { top: 5px; }
     }
   }
 }

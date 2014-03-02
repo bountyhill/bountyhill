@@ -253,7 +253,7 @@ form {
     display: block;
     float: left;
     line-height: 40px;
-    font-size: 13px;
+    font-size: $x_small;
     font-weight: bold;
     color: gray;
     margin-right: 10px;
@@ -282,10 +282,19 @@ form {
 
 /* ------- screen resolution adjustments ------- */
 
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 979px) {
+}
+
 @media only screen and (max-width: 800px) {
   .box {
     &.form { padding: 0 10%; }
   }
+}
+
+@media only screen and (max-width: 768px) {
 }
 
 @media only screen and (max-width: 600px) {
@@ -296,7 +305,7 @@ form {
         .criteria {
           li {
             .title { 
-              font-size: 85%;
+              font-size: $x_small;
               margin: 0 0 8px 30px;
             }
             .index {
@@ -314,26 +323,26 @@ form {
     p { 
       margin: 0 0 5px;
       line-height: 1.2em;
-      font-size: 85%; 
+      font-size: $x_small; 
     }
   }
   form {
     &.form-horizontal {
       .control-group { 
         margin-bottom: 8px;
-        label, input, button, select, textarea, .range-slider-prefix, .range-slider-postfix  { font-size: 85%; }
-        .input-append, .input-prepend { font-size: 13px; } /* needed since bootstrap's input-append sets font-size to 0 */
+        label, input, button, select, textarea, .range-slider-prefix, .range-slider-postfix, .dropdown-menu.inner { font-size: $x_small; }
+        .input-append, .input-prepend { font-size: $x_small; } /* needed since bootstrap's input-append sets font-size to 0 */
         .btn-group, .controls {
-          /* NOTE: font-size has to be defined in px here... */
           .btn { 
             line-height: 24px;
-            font-size: 14px; 
+            font-size: $small;
+            &.dropdown-toggle { font-size: $x_small; }
           }
           .dropdown-menu  { font-size: 12px; }
         }
         &.error {
           .help-inline, .help-block {
-            font-size: 85%;
+            font-size: $x_small;
             padding: 2px 0 0 2px
           }
         }
@@ -343,11 +352,11 @@ form {
       }
     }
     .legend { 
-      font-size: 85%;
+      font-size: $x_small;
       line-height: 120%;
     }
     .alert {
-      font-size: 85%;
+      font-size: $x_small;
       margin-bottom: 8px;
     }
   }
@@ -408,4 +417,7 @@ form {
       }
     }
   }
+}
+
+@media only screen and (max-width: 320px) {
 }

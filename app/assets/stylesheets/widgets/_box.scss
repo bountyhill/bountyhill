@@ -137,7 +137,16 @@
 
 /* ------- screen resolution adjustments ------- */
 
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 979px) {
+}
+
 @media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
 }
 
 @media only screen and (max-width: 600px) {
@@ -160,4 +169,7 @@
   .box {
     .header { font-size: 14px }
   }
+}
+
+@media only screen and (max-width: 320px) {
 }

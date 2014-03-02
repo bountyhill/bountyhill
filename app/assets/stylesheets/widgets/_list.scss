@@ -16,6 +16,7 @@ ul.list {
     position: relative;
   }
   & > li { 
+    margin-bottom: 16px;
     min-height: $message_height + ($message_padding / 2); 
     &:last-child { min-height: 0; }
   }

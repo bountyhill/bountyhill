@@ -46,8 +46,10 @@
         color: $border_color;
         a { color: $border_color; }
       }
+      .message-body { color: $text_inverse; }
     }
     .message-stats {
+      color: $text;
       background-color: $border_color;
     }
   }

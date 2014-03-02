@@ -31,6 +31,9 @@ a { &:hover { text-decoration: none; }}
 
 /* ------- screen resolution adjustments ------- */
 
+@media only screen and (max-width: 1024px) {
+}
+
 @media only screen and (max-width:979px) {
   body { 
     padding: $body_top_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
@@ -38,6 +41,9 @@ a { &:hover { text-decoration: none; }}
 }
 
 @media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
 }
 
 @media only screen and (max-width: 600px) {
@@ -56,3 +62,7 @@ a { &:hover { text-decoration: none; }}
 
 @media only screen and (max-width: 480px) {
 }
+
+@media only screen and (max-width: 320px) {
+}
+
