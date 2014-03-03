@@ -605,8 +605,9 @@ de:
         zero:   " "
         one:    "%{count} Weiterleitung"
         other:  "%{count} Weiterleitungen"
-      creation:   "%{distance_of_time} her"
-      expiration: "noch %{distance_of_time}"
+      creation:       "%{distance_of_time} her"
+      expiration:     "noch %{distance_of_time}"
+      no_expiration:  "läuft nicht ab"
       images:
         zero:   " "
         one:    "%{count} Bild"

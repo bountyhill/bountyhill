@@ -10,11 +10,7 @@
             <%= quest.owner.name %>
           </div>
           <div class="time span6">
-            <% if quest.active? %>
-              <%= I18n.t("quest.list.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at)) %>
-            <% else %>
-              <%= I18n.t("quest.list.creation", :distance_of_time => distance_of_time_in_words_to_now(quest.created_at)) %>
-            <% end %>
+            <%= quest_duration(quest) %>
           </div>
         </div>
         <div class="message-body">

@@ -13,6 +13,7 @@ class Quest < ActiveRecord::Base
   
   DURATIONS_IN_DAYS         = [ 0, 28, 14, 7 ]
   DEFAULT_DURATION_IN_DAYS  = 0
+  ENDLESS_DURATION_DAY      = 100000
   
   # -- Access control -------------------------------------------------
 
@@ -251,7 +252,7 @@ class Quest < ActiveRecord::Base
     return if active?
 
     duration_in_days = (self.duration_in_days || DEFAULT_DURATION_IN_DAYS).to_i
-    duration_in_days = 100000 if duration_in_days.zero?
+    duration_in_days = ENDLESS_DURATION_DAY if duration_in_days.zero?
 
     self.visibility = "public"
     self.started_at = Time.now

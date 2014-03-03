@@ -605,8 +605,9 @@ en:
         zero:   " "
         one:    "%{count} forward"
         other:  "%{count} forwards"
-      creation:   "%{distance_of_time} ago"
-      expiration: "%{distance_of_time} left"
+      creation:       "%{distance_of_time} ago"
+      expiration:     "%{distance_of_time} left"
+      no_expiration:  "does not expire"
       images:
         zero:   " "
         one:    "%{count} image"

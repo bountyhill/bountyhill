@@ -194,4 +194,18 @@ module QuestsHelper
       awesome_icon(icon_for('status.forwards')), :css_class => "quest"
   end
   
+  def quest_duration(quest)
+    expect! quest => Quest
+    if quest.active?
+      if quest.expires_at > (Date.today + Quest::DURATIONS_IN_DAYS.max + 1).to_time - 1
+        I18n.t("quest.list.no_expiration")
+      else
+        I18n.t("quest.list.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at))
+      end
+    else
+      I18n.t("quest.list.creation", :distance_of_time => distance_of_time_in_words_to_now(quest.created_at))
+    end
+    
+  end
+  
 end
