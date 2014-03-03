@@ -620,6 +620,7 @@ de:
       comments:   "mal kommentiert"
       forwards:   "mal weitergeleitet"
       expiration:
+        zero:     "läuft nicht ab"
         one:      "Tag noch aktiv"
         other:    "Tage noch aktiv"
       creation:

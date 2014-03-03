@@ -244,6 +244,10 @@ class Quest < ActiveRecord::Base
     expires_at && expires_at < Time.now
   end
   
+  def expires?
+    expires_at && expires_at <= (Date.today + DURATIONS_IN_DAYS.max + 1).to_time - 1
+  end
+  
   def started?
     started_at.present?
   end
@@ -354,5 +358,4 @@ class Quest < ActiveRecord::Base
   def restrict_location?
     restrict_location.present?
   end
-  
 end

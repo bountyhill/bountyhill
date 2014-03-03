@@ -160,10 +160,16 @@ module QuestsHelper
   end
 
   def quest_days_statistic_box(quest)
-    days, translation = if quest.active? then [distance_of_time_in_days_to_now(quest.expires_at), "quest.statistic.expiration"]
-                        else                  [distance_of_time_in_days_to_now(quest.created_at), "quest.statistic.creation"]
-                        end
-    statistic_box days,
+    days, translation = if quest.active?
+        if quest.expires? 
+          [distance_of_time_in_days_to_now(quest.expires_at), "quest.statistic.expiration"]
+        else
+          [0, "quest.statistic.expiration"]
+        end
+      else
+        [distance_of_time_in_days_to_now(quest.created_at), "quest.statistic.creation"]
+      end
+    statistic_box days.zero? ? '∞' : days,
       I18n.t(translation, :count => days),
       awesome_icon(icon_for('status.created')), :css_class => "quest"
   end
@@ -197,10 +203,10 @@ module QuestsHelper
   def quest_duration(quest)
     expect! quest => Quest
     if quest.active?
-      if quest.expires_at > (Date.today + Quest::DURATIONS_IN_DAYS.max + 1).to_time - 1
-        I18n.t("quest.list.no_expiration")
-      else
+      if quest.expires?
         I18n.t("quest.list.expiration", :distance_of_time => distance_of_time_in_words_to_now(quest.expires_at))
+      else
+        I18n.t("quest.list.no_expiration")
       end
     else
       I18n.t("quest.list.creation", :distance_of_time => distance_of_time_in_words_to_now(quest.created_at))

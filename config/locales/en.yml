@@ -620,6 +620,7 @@ en:
       comments:   "comments posted"
       forwards:   "forwards done"
       expiration:
+        zero:     "does not expire"
         one:      "day left"
         other:    "days left"
       creation:
