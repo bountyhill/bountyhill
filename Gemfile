@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'thin'
-gem 'rails', '~> 3.2.12'
+gem 'rails', '~> 3.2'
 gem 'psych'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
@@ -54,7 +55,6 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'spork-testunit'
   gem 'awesome_print'
-  gem 'kibo', '~> 0.4', :require => false
   
   # gem 'sql-logging'
 end
