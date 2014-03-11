@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
+gem 'bundler'
 gem 'thin'
 gem 'rails', '~> 3.2'
 gem 'psych'
@@ -51,7 +52,7 @@ group :development, :test do
   gem 'test-unit', :require => "test/unit"
   gem 'mocha'
   gem 'factory_girl_rails'
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'simplecov', :require => false
   gem 'spork-testunit'
   gem 'awesome_print'
