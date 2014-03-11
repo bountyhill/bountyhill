@@ -50,14 +50,16 @@ a { &:hover { text-decoration: none; }}
   body { 
     padding: $body_top_margin/2 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
-  .spacer  { min-height: $box_spacing/2; }
+  .sidebar {
+    &.empty { display: none;}
+  }
 }
 
 @media only screen and (max-width: 568px) {
   body { 
     padding: $body_top_margin/4 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
-  .spacer  { min-height: $box_spacing/4; }
+  .spacer  { min-height: $box_spacing/2; }
 }
 
 @media only screen and (max-width: 480px) {
