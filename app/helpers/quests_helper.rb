@@ -5,7 +5,7 @@ module QuestsHelper
   def quest_box(quest, options={})
     expect! quest => Quest
     
-    title = I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'))
+    title = I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '€'))
     box(:quest, quest, { :title => title }.merge(options))
   end
 
@@ -115,7 +115,7 @@ module QuestsHelper
     statistic_entries = []
 
     statistic_entries << 
-      if    quest.active?   then awesome_icon(icon_for('other.bounty'))   + number_to_currency(quest.bounty, :precision => 0, :unit => ' &euro;').html_safe
+      if    quest.active?   then awesome_icon(icon_for('other.bounty'))   + number_to_currency(quest.bounty, :precision => 0, :unit => '€').html_safe
       elsif quest.expired?  then awesome_icon(icon_for('status.expired')) + I18n.t('quest.status.expired')
       elsif !quest.started? then awesome_icon(icon_for('status.new'))     + I18n.t('quest.status.not_started')
       end
@@ -175,7 +175,7 @@ module QuestsHelper
   end
   
   def quest_bounty_statistic_box(quest)
-    statistic_box number_to_currency(quest.bounty, :precision => 0, :unit => '&euro;'),
+    statistic_box number_to_currency(quest.bounty, :precision => 0, :unit => '€'),
       I18n.t("quest.statistic.bounty"),
       awesome_icon(icon_for('other.bounty')), :css_class => "quest"
   end

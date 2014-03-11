@@ -22,7 +22,7 @@
     
     <%= form.control_group :quest_id,     :hidden_field %>
     <%= form.control_group :application,  :hidden_field %>
-    <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '&euro;') %>
+    <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '€') %>
     
     <% Share::IDENTITIES.each do |identity| %>
       <div class="checkbox-group <%= identity %>">
