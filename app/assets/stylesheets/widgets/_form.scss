@@ -61,9 +61,12 @@ form {
     margin-bottom: 16px;
   }
   .control-group {
-    textarea, input[type="text"], input[type="password"], input[type="search"], .progress.main {
+    textarea, .progress.main,
+    input[type="text"], input[type="password"], input[type="search"], input[type="email"], input[type="url"], input[type="number"] {
       width: 95%;
       padding: inherit 2%;
+      border-radius: 0;
+      -webkit-appearance: none;
     }
     label {
       font-weight: bold;

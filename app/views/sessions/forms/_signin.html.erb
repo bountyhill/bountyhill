@@ -9,7 +9,7 @@
     <%= form.error_messages @error if @error %>
     <%#= hidden_field_tag :req, params[:req] %>
 
-    <%= form.control_group :email,    :text_field %>
+    <%= form.control_group :email,    :text_field, :type => :email %>
     <%= form.control_group :password, :password_field %>
     <%= form.forgot_password %>
 

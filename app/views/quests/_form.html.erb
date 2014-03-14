@@ -6,7 +6,7 @@
   <p class="legend"><%= i18n_legend_for(@quest, :count => Quest::NUMBER_OF_CRITERIA) %></p>
   <%= form.error_messages %>
 
-  <%= form.control_group :bounty, :class => "input-small", :unit => "€", :value => bounty, :autocomplete => "off" %>
+  <%= form.control_group :bounty, :text_field, :type => :number, :class => "input-small", :unit => "€", :value => bounty, :autocomplete => "off" %>
   <%= form.control_group :category,     :select,    :select_options => categories_select_options %>
   <%= form.control_group :title,        :text_area, :rows => 2 %>
   <%= form.control_group :description,  :text_area, :rows => 6, :class => "tinymce" %>

@@ -18,7 +18,7 @@
 
   <% unless current_user || signin_identity.present? %>
     <p><%= I18n.t("identity/twitter.form.email_hint") %></p>
-    <%= form.control_group :email, :text_field %>
+    <%= form.control_group :email, :text_field, :type => :email %>
   <% end %>
 
   <% if current_user && !identity_requested?(:twitter) %>
