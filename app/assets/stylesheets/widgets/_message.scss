@@ -27,7 +27,10 @@
         font-style: italic;
       }
     }
-    .message-body { }
+    .message-body {
+      font-size: $small;
+      line-height: $large;
+    }
   }
 
   .message-stats {
@@ -92,7 +95,6 @@
   .message-container {
     height: auto;
     .message-box {
-      height: $message_height;
       .avatar-container {
         width: 15%;
         float: left;
@@ -119,11 +121,22 @@
         float: right;
         right: 0px;
       }
+      .responses  { right: 8px; }
     }
   }
 }
 
 @media only screen and (max-width: 568px) {
+  .message-container {
+    font-size: $small;
+    .message-box, .message-stats { 
+      padding: $message_padding/2;
+    }
+    .message-stats {
+      padding-bottom: 28px;
+      .responses  { top: 8px; }
+    }
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -142,20 +155,14 @@
 @media only screen and (max-width: 320px) {
   .message-container {
     font-size: $x_small;
-    .message-box, .message-stats {
-      padding: $message_padding/2;
-    }
     .message-box {
-      height: auto;
-      min-height: 32px;
       .text-container {
         .message-head { margin-bottom: 0px; }
+        .message-body { 
+          font-size: $x_small;
+          line-height: $small;
+        }
       }
-    }
-    .message-stats {
-      padding-bottom: 28px;
-      .stats-list { min-height: 32px; }
-      .responses  { top: 5px; }
     }
   }
 }
