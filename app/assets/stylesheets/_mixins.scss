@@ -28,10 +28,20 @@
       border-width: 0 $box_spacing $box_spacing $box_spacing;
       border-color: $color transparent $color transparent;
       position: absolute;
-      left: $position;                /* should be 50% whne centered */
+      left: $position;                /* should be 50% when centered */
       top: -($box_spacing);           /* height of spacer */
       margin-left: -($box_spacing);   /* ensure opener is centric */
       margin-bottom: -($box_spacing); /* don't push box' title down */
+    }
+  }
+  
+  @media only screen and (max-width: 568px) {
+    &.with-opener {
+      &:before {
+        border-width: 0 $box_spacing/2 $box_spacing/2 $box_spacing/2;
+        top: -($box_spacing/2);             /* height of spacer */
+        margin-left: -($box_spacing)*1.25;  /* ensure opener is centric */
+      }
     }
   }
 }

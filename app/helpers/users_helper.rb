@@ -112,7 +112,7 @@ module UsersHelper
     link_to user_path(user), :class => "user bar #{type} #{options[:class]}" do
       div(
         [
-          div(avatar(user, :size => avatar_size), :class => "image-container", :style => "width: #{avatar_size}px"),
+          div(avatar(user, :size => avatar_size), :class => "image-container"),
           div(user.name, :class => "name"),
           div(user.twitter_handle, :class => "handle")
         ].join.html_safe, :class => "profile") + 

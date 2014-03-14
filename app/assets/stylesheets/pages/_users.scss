@@ -27,23 +27,6 @@
             &.fa-envelope, &.fa-eye, &.fa-eye-slash { font-size: $large; }
           }
         }
-/*
-        dl { 
-          clear: both;
-          width: 90%;
-          margin: 0;
-        }
-        dt, dd { float: left; }
-        dd {
-          font-size: $large; 
-          width: 75%;
-        }
-        dt { 
-          display: none;
-          clear: both;
-          width: 20%;
-        }
-*/
       }
     }
   }
@@ -98,41 +81,51 @@
       background-color: $offer_box_title_color; 
       @include opener($offer_box_title_color, $open_center);
     }
+    position: relative;
     display: block;
     padding: $box_padding;
-    position: relative;
     color: white;
     font-family: $font_system;
     .profile {
-      width: 80%;
-      img { height: 64px; }
+      width: 75%;
+      .image-container {
+        width: $avatar_size;
+        img { height: 64px; }
+      }
       .name, .handle {
         position: absolute;
-        left: 96px;
+        left: $avatar_size + $box_padding*2;
       }
-      .name   {
-        top : $box_padding;
-        font-size: $xx_large
+      .name {
+        font-size: $xx_large;
+        top: $box_padding;
       }
-      .handle { 
-        top : 44px;
-        font-size: $large;
+      .handle {
+        top : $box_padding*3;
+        font-size: $x_large;
       }
     }
     .rating {
-      width: 20%;
       position: absolute;
       right: $box_padding;
       top: $box_padding;
       border-bottom: $box_border_bottom;
       ul.stars {
-        margin: 0 -4px 0 0;
         list-style: none;
-        li { float: right; }
+        margin: 0;
+        font-size: $normal;
+        li { 
+          float: right;
+          line-height: $x_large;
+        }
       }
       .points {
-        font-size: $statistic_number_font_size;
-        line-height: $statistic_number_line_height;
+        font-size: $xxx_large;
+        line-height: $xxx_large;
+      }
+      .text { 
+        font-size: $small;
+        line-height: $xxx_large;
       }
     }
   }
@@ -143,6 +136,81 @@
     &.avatar {
       float: right;
       width: 50%;
+    }
+  }
+}
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width:979px) {
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+@media only screen and (max-width: 568px) {
+  .user {
+    &.bar { 
+      padding: $box_padding/2;
+      font-size: $small;
+      .profile {
+        .image-container {
+          width: $avatar_size/1.5;
+          img { height: $avatar_size/1.5; }
+        }
+        .name, .handle {
+          left: $avatar_size/1.5 + $box_padding;
+        }
+        .name   {
+          top : $box_padding/2;
+          font-size: $normal
+        }
+        .handle { 
+          top : $box_padding*1.5;
+          font-size: $x_small;
+        }
+      }
+      .rating {
+        top : $box_padding/2;
+        right: $box_padding/2;
+        border-bottom-width: $box_border/2;
+        ul.stars { 
+          font-size: $x_small;
+          li { line-height: $small; }
+        }
+        .points {
+          font-size: $x_large;
+          line-height: $x_large;
+        }
+        .text { 
+          font-size: $x_small;
+          line-height: $large;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 320px) {
+  .user {
+    &.bar { 
+      .rating {
+        ul.stars  { font-size: $xxx_small; }
+        .points   { font-size: $large; }
+        .text     { font-size: $xxxx_small; }
+      }
     }
   }
 }

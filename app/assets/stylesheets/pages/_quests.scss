@@ -40,6 +40,7 @@
     min-height: 64px;
     .image-container {
       float: left;
+      width: $avatar_size;
       img { height: $avatar_size; }
     }
     .bar-box {
