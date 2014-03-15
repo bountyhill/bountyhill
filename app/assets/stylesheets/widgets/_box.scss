@@ -147,13 +147,8 @@
 }
 
 @media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
   .box {
     .header { 
-      height: 18px;
-      font-size: $x_large;
       .btn-group {
         .btn { 
           font-size: $small;
@@ -164,11 +159,16 @@
   }
 }
 
+@media only screen and (max-width: 600px) {
+}
+
 @media only screen and (max-width: 568px) {
   .box {
     .header, .content { padding: $box_padding/2; }
     .header { 
+      height: 20px;
       font-size: $normal;
+      line-height: $x_large;
       .btn-group {
         .btn { 
           font-size: $x_small;
@@ -182,8 +182,6 @@
 @media only screen and (max-width: 480px) {
   .box {
     .header { 
-      height: 16px;
-      font-size: $small;
       .btn-group {
         .btn { font-size: $xx_small; }
       }
@@ -192,4 +190,16 @@
 }
 
 @media only screen and (max-width: 320px) {
+  .box {
+    &.with-opener {
+      &.quest, &.offer {
+        .header { 
+          height: 42px;
+          .pull-left {
+            line-height: $xx_large;
+          }
+        }
+      }
+    }
+  }
 }
