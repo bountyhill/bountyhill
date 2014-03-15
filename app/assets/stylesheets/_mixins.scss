@@ -39,8 +39,8 @@
     &.with-opener {
       &:before {
         border-width: 0 $box_spacing/2 $box_spacing/2 $box_spacing/2;
-        top: -($box_spacing/2);             /* height of spacer */
-        margin-left: -($box_spacing)*1.25;  /* ensure opener is centric */
+        top: -($box_spacing/2);         /* height of spacer */
+        margin-left: -($box_spacing/2); /* ensure opener is centric */
       }
     }
   }
