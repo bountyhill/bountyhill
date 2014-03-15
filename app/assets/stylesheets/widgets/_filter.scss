@@ -70,10 +70,26 @@
 
 @media only screen and (max-width: 600px) {
   .sidebar {
-    .category, .states {
-      &.filter {
+    .filter {
+      .content { min-height: 38px; }
+      &.category, &.states {
         &.box  { 
           display: none;
+        }
+      }
+      &.location {
+        .control-group {
+          &.text-field {
+            float: left;
+            width: 50%;
+          }
+          &.select {
+            float: right;
+            width: 45%;
+            .bootstrap-select.btn-group {
+               .dropdown-menu { width: 100%; }
+            }
+          }
         }
       }
     }
@@ -81,6 +97,11 @@
 }
 
 @media only screen and (max-width: 568px) {
+  .sidebar {
+    .filter {
+      .content { min-height: 32px; }
+    }
+  }
 }
 
 @media only screen and (max-width: 480px) {
