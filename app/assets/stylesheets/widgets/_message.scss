@@ -42,7 +42,7 @@
       display: none;
       right: 8px;
       bottom: 0;
-      .btn { font-size: 12px; }
+      .btn { font-size: $x_small; }
     }
     .responses {
       position: absolute;
@@ -155,6 +155,7 @@
 @media only screen and (max-width: 320px) {
   .message-container {
     font-size: $x_small;
+    border-bottom: $message_border_size/2 solid $transparent;
     .message-box {
       .text-container {
         .message-head { margin-bottom: 0px; }
@@ -162,6 +163,11 @@
           font-size: $x_small;
           line-height: $small;
         }
+      }
+    }
+    .message-stats {
+      .btn-group {
+        .btn { font-size: $xxx_small; }
       }
     }
   }
