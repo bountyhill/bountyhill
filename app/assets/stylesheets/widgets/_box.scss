@@ -29,19 +29,13 @@
     color: $text;
     margin: 0;
     padding: $box_padding;
-    height: 20px;
+    height: 24px;
     font-family: $font_system;
     font-size: $xx_large;
     line-height: inherit;
     .title { float: left; }
     .interactions { float: right; }
     .time  { display: none; }
-  }
-  &.quest, &.offer {
-    .header { 
-      height: 24px;
-      font-size: $xxx_large;
-    }
   }
   
   /* ------- content ------- */
@@ -52,25 +46,22 @@
     min-height: 80px;
     padding: $box_padding;
     clear: both;
+    h1, h2, h3, h4 { line-height: 100%; }
     h1 {
-      margin: 0 0 8px 0;
+      margin: 0 0 $section_top_margin 0;
       font-size: $xx_large;
-      line-height: 100%;
     }
     h2 {
       margin: $section_bottom_margin 0 $section_top_margin 0;
       font-size: $x_large;
-      line-height: 100%;
     }
     h3 {
       margin: $section_bottom_margin/2 0 $section_top_margin/2 0;
       font-size: $large;
-      line-height: 100%;
     }
     h4 {
       margin: 0;
       font-size: $normal;
-      line-height: 100%;
     }
     .description, .criteria-section, .image-section {
       margin: $section_top_margin 0 0 0;
@@ -195,8 +186,8 @@
     &.quest, &.offer {
       .header { height: 48px; }
     }
-    &.list, &.filter {
-      .header { height: 20px; }
+    &.form, &.filter {
+      .header { height: 24px; }
     }
   }
 }

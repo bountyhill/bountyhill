@@ -371,16 +371,15 @@ form {
   }
 }
 
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 600px) {
   .box {
     &.form {
       .header { 
         padding-bottom: 10px;
         .step-indicator {
           li {
-            font-size: 90%;
+            font-size: $small;
             line-height: 36px;
-            margin-right: 3px;
             &::before {
               line-height: 20px;
               width: 20px;
@@ -388,6 +387,18 @@ form {
               margin: 0 0.15em;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .box {
+    &.form {
+      .header { 
+        .step-indicator { 
+          li { font-size: $x_small; }
         }
       }
     }
@@ -429,4 +440,16 @@ form {
 }
 
 @media only screen and (max-width: 320px) {
+  .box {
+    &.form {
+      .header { 
+        .step-indicator {
+          li { 
+            margin-right: 3px;
+            font-size: $xx_small;
+          }
+        }
+      }
+    }
+  }
 }
