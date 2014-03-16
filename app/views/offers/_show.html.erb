@@ -7,10 +7,8 @@
 <% end %>
 
 <% if offer.images.present? %>
-  <div class="image-section">
-    <h2><%= I18n.t("offer.box.images", :count => offer.images.count) %></h2>
-    <%= partial "shared/images", :container => offer %>
-  </div>
+  <h2><%= I18n.t("offer.box.images", :count => offer.images.count) %></h2>
+  <%= partial "shared/images", :container => offer %>
 <% end %>
 
 <% if preview %>
