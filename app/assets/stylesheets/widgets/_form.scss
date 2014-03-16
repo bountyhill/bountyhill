@@ -3,6 +3,11 @@
 .box {
   &.form {
     padding: 0 20%;
+    .content {
+      .form {
+        margin-bottom: 36px;
+      }
+    }
   }
   form {
     .control-label { 
