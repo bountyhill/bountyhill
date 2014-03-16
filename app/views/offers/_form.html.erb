@@ -46,16 +46,20 @@
     var bar       = jQuery("div.progress div.bar", li)[0];
     var value     = jQuery("div.progress div.value", li)[0];
     var sum       = 0;
-
-    sliders.each(function() { sum += parseInt($(this).val()); });
-    var compliance_sum = Math.round(sliders.length > 0 ? (sum * 100) / (10 * sliders.length) : 50);
     
+    sliders.each(function() { sum += parseInt($(this).val()); });
+    
+    // adjust main progress bar
+    var compliance_sum = Math.round(sliders.length > 0 ? (sum * 100) / (10 * sliders.length) : 50);
     mainValue.innerHTML = compliance_sum;
     mainBar.setAttribute('style', 'width:' + compliance_sum + '%');
     
+/*
+    // adjust single progress bar
     var compliance = (10 * parseInt($(this).val()));
     value.innerHTML = compliance;
     bar.setAttribute('style', 'width:' + compliance + '%');
+*/
   });
 </script>
 
