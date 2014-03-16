@@ -29,9 +29,9 @@
     color: $text;
     margin: 0;
     padding: $box_padding;
-    height: $box_header_height;
+    height: 20px;
     font-family: $font_system;
-    font-size: 200%;
+    font-size: $xx_large;
     line-height: inherit;
     .title { float: left; }
     .interactions { float: right; }
@@ -166,11 +166,9 @@
 
 @media only screen and (max-width: 600px) {
   .box {
-    &.statistic {
-      display: none;
-    }
+    &.statistic { display: none; }
     .header {
-      height: 48px;
+      height: 20px;
       position: relative;
       .title { width: 70%; }
       .time  {
@@ -188,14 +186,20 @@
         .btn { font-size: $x_small; }
       }
     }
+    &.quest, &.offer {
+      .header { height: 48px; }
+    }
+    &.list, &.filter {
+      .header { height: 20px; }
+    }
   }
 }
 
 @media only screen and (max-width: 568px) {
   .box {
     .header, .content { padding: $box_padding/2; }
-    .header { 
-      font-size: $x_large;
+    .header {
+      font-size: $large;
       .time  { font-size: $xx_small; }
       .interactions {
         right: $box_padding/2;

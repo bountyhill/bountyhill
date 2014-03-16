@@ -1,6 +1,10 @@
 .box {
   &.filter {
     margin-bottom: $box-padding;
+    .content { 
+      padding: $box-padding;
+      min-height: 24px;
+    }
     &.quest {
       @include box_colors(quest-filter);
       @include active_button(16px, $quest_button_color, $quest_active_button_color);
@@ -71,7 +75,6 @@
 @media only screen and (max-width: 600px) {
   .sidebar {
     .filter {
-      .content { min-height: 38px; }
       &.category, &.states {
         &.box  { 
           display: none;
@@ -97,9 +100,9 @@
 }
 
 @media only screen and (max-width: 568px) {
-  .sidebar {
-    .filter {
-      .content { min-height: 32px; }
+  .box {
+    &.filter {
+      .content { padding: $box-padding/2; }
     }
   }
 }
