@@ -698,7 +698,7 @@ de:
       cancel:     "Bist Du Dir unsicher, ob Du bereits einen Account hast? Registriere Dich einfach bei bountyhill ..."
       skip:       "Ohne die Angabe der geforderten Information kann die gewünschte Aktion nicht ausgeführt werden!"
       failure:    "Es tut uns leid, aber während Deiner Anmeldung ist ein Fehler aufgetreten. Bitte versuche es noch einmal ..."
-      destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns wieder bei bountyhill ..."
+      destroy:    "Du hast Dich erfolgreich abgemeldet. Wir sehen uns bei bountyhill ..."
     email:
       confirmation:
         reminder: "Du hast dich erfolgreich bei bountyhill registriert, aber Deine Email-Adresse ist noch nicht bestätigt."
