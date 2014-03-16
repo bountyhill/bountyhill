@@ -6,7 +6,7 @@ module QuestsHelper
     expect! quest => Quest
     
     title = I18n.t("quest.box.title", :amount => number_to_currency(quest.bounty, :precision => 0, :unit => '€'))
-    box(:quest, quest, { :title => title }.merge(options))
+    box(:quest, quest, { :title => title, :time => quest_duration(quest) }.merge(options))
   end
 
   def quests_list_box(quests, options={})

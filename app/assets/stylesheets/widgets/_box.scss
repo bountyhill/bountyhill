@@ -35,6 +35,7 @@
     line-height: inherit;
     .title { float: left; }
     .interactions { float: right; }
+    .time  { display: none; }
   }
   
   /* ------- content ------- */
@@ -131,6 +132,10 @@
         font-size: $xxx_large;
         line-height: $xxx_large;;
       }
+      .text {
+        font-size: $small;
+        line-height: $xxx_large;
+      }
     }
   }
 }
@@ -160,46 +165,49 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .box {
+    &.statistic {
+      display: none;
+    }
+    .header {
+      height: 48px;
+      position: relative;
+      .title { width: 70%; }
+      .time  {
+        width: 30%;
+        display: block;
+        font-size: $small;
+        font-style: italic;
+        float: right;
+        text-align: right;
+      }
+      .interactions {
+        position: absolute;
+        right: $box_padding;
+        bottom: $box_padding/2;
+        .btn { font-size: $x_small; }
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 568px) {
   .box {
     .header, .content { padding: $box_padding/2; }
     .header { 
-      height: 20px;
-      font-size: $normal;
-      line-height: $x_large;
-      .btn-group {
-        .btn { 
-          font-size: $x_small;
-          padding: 0 1em;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .box {
-    .header { 
-      .btn-group {
+      font-size: $x_large;
+      .time  { font-size: $xx_small; }
+      .interactions {
+        right: $box_padding/2;
+        bottom: $box_padding/4;
         .btn { font-size: $xx_small; }
       }
     }
   }
 }
 
+@media only screen and (max-width: 480px) {
+}
+
 @media only screen and (max-width: 320px) {
-  .box {
-    &.with-opener {
-      &.quest, &.offer {
-        .header { 
-          height: 42px;
-          .pull-left {
-            line-height: $xx_large;
-          }
-        }
-      }
-    }
-  }
 }

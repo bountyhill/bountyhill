@@ -9,8 +9,9 @@ module BoxHelper
     preview = options[:preview]
     header = div :class => "header" do
       [
-        div(options[:title], :class => "pull-left"),
-        div(preview ? step_indicator_for(object) : send("#{type}_buttons", object), :class => "pull-right")
+        div(options[:title], :class => "title"),
+        (options[:time] ? div(options[:time],  :class => "time") : nil),
+        div(preview ? step_indicator_for(object) : send("#{type}_buttons", object), :class => "interactions")
       ].compact.join.html_safe
     end
 
