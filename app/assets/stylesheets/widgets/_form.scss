@@ -223,6 +223,7 @@ form {
               @include appearance(none);
               padding: 0;
               height: 16px;
+              width: 50%;
               @include border-radius(10px);
               /* border: 1px solid; */
             }
