@@ -39,8 +39,8 @@ module CommentsHelper
     expect! commentable => [Quest, Offer]
     div :class => "header" do
       [
-        div(I18n.t("comment.list.title", :count => commentable.comments.count), :class => "pull-left"),
-        div((comments_list_box_buttons), :class => "pull-right")
+        div(I18n.t("comment.list.title", :count => commentable.comments.count), :class => "title"),
+        div((comments_list_box_buttons), :class => "interactions")
       ].compact.join.html_safe
     end
   end

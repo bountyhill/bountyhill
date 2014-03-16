@@ -112,8 +112,8 @@ module OffersHelper
     offers = offerable.offers.for_user(current_user)
     header = div :class => "header" do
       [
-        div(I18n.t("offer.list.title", :count => offers.count), :class => "pull-left"),
-        div(:class => "pull-right") do
+        div(I18n.t("offer.list.title", :count => offers.count), :class => "title"),
+        div(:class => "interactions") do
           button_group [
             new_offer_button(offerable)
           ]
