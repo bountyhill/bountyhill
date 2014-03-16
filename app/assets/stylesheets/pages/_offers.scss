@@ -1,35 +1,4 @@
 .box {
-
-  /* ------- compliance bar colors ------- */
-  &.offers, &.offer {
-    .progress {
-      background-image: none;
-      box-shadow: none;
-      @include border-radius(0);
-      padding: 8px;
-      background-color: $offer_comliance_color;
-      margin: 0 0 8px 0;
-      .bar-container { 
-        width: 75%;
-        .bar { 
-          background-image: none;
-          background-color: $white;
-          height: 8px;
-          margin: 6px 0;
-        }
-      }
-      .value {
-        width: 25%;
-        float: right;
-        font-family: $font_system;
-        color: $text;
-        font-size: $x_large;
-        text-align: right;
-        &:after { content: "%" };
-      }
-    }
-  }
-  
   /* ------- offers/list ------- */
   &.offers {
     @include box_colors(offers);

@@ -1,0 +1,121 @@
+.criteria {
+  list-style: none;
+  margin: 0;
+  li {
+    margin: 0 0 8px 0;
+    line-height: 18px;
+    /* TODO: style criteria bullet points here...
+          &:before {
+            content: counter(item);
+            counter-increment: item;
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: $offers_box_title_color;
+            text-align: center;
+            color: $text;
+            font-family: $font_system;
+            font-size: $x_large;
+            font-weight: bold;
+            margin: auto .5em auto .5em;
+          }
+    */
+    .index {
+      float: left;
+      text-align: center;
+      font-family: $font_system;
+      color: $text;
+      padding: 8px;
+      width: 16px;
+      height: 16px;
+      font-size: $x_large;
+      line-height: 16px;
+    }
+    .title {
+      margin: 0 0 20px 40px;
+      font-size: $normal;
+      line-height: $x_large;
+    }
+  }
+}
+
+.progress {
+  margin: 0 0 8px 0;
+  padding: 8px;
+  background-image: none;
+  box-shadow: none;
+  @include border-radius(0);
+  background-color: $offer_comliance_color;
+  .bar-container { 
+    width: 85%;
+    .bar { 
+      background-image: none;
+      background-color: $white;
+      height: 8px;
+      margin: 6px 0;
+    }
+  }
+  .value {
+    width: 15%;
+    float: right;
+    font-family: $font_system;
+    color: $text;
+    font-size: $x_large;
+    text-align: right;
+    &:after { content: "%" };
+  }
+}
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 979px) {
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+@media only screen and (max-width: 568px) {
+  .criteria {
+    li {
+      margin: 0 0 4px 0;
+      line-height: 14px;
+      .title {
+        font-size: $x_small;
+        line-height: $normal;
+        margin: 0 0 8px 24px;
+      }
+      .index {
+        padding: 4px;
+        width: 12px;
+        height: 12px;
+        font-size: $small;
+        line-height: 12px;
+      }
+    }
+  }
+
+  .progress {
+    padding: 2px 8px;
+    margin: 0 0 4px 0;
+    height: 16px;
+    .bar-container {
+      .bar { height: 4px; }
+    }
+    .value { font-size: $x_small }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 320px) {
+}

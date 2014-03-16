@@ -195,60 +195,25 @@ form {
       }
     }
   }
-  .criteria {
-    margin-left: 0;
-    & > li {
-/* TODO: style criteria bullet points here...
-      &:before {
-        content: counter(item);
-        counter-increment: item;
+  .range-slider {
+    width: 100%;
+    .controls {
+      input[type='range'] {
+        @include appearance(none);
+        padding: 0;
+        height: 16px;
+        width: 50%;
+        @include border-radius(10px);
+        /* border: 1px solid; */
+      }
+      .range-slider-prefix, .range-slider-postfix {
+        padding-top: 5px;
         display: inline-block;
-        width: 36px;
-        height: 36px;
-        background-color: $offers_box_title_color;
         text-align: center;
-        color: $text;
-        font-family: $font_system;
-        font-size: $x_large;
-        font-weight: bold;
-        margin: auto .5em auto .5em;
-      }
-*/
-      margin-bottom: 16px;
-      .title { 
-        color: $quests_box_title_color;
-        font-weight: bold; 
-        margin: 0 0 8px 44px;
-      }
-      .control-group {
-        &.range-slider {
-          width: 100%;
-          .controls {
-            input[type='range'] {
-              @include appearance(none);
-              padding: 0;
-              height: 16px;
-              width: 50%;
-              @include border-radius(10px);
-              /* border: 1px solid; */
-            }
-            .range-slider-prefix, .range-slider-postfix {
-              padding-top: 5px;
-              display: inline-block;
-              text-align: center;
-            }
-          }
-          .range-slider-prefix  { padding-right: 10px; }
-          .range-slider-postfix { padding-left: 10px; }
-        }
-        &.compliance {
-          .progress {
-            float: right;
-            width: 250px;
-          }
-        }
       }
     }
+    .range-slider-prefix  { padding-right: 10px; }
+    .range-slider-postfix { padding-left: 10px; }
   }
 }
 
@@ -357,7 +322,7 @@ form {
   .box {
     &.form {
       .header { 
-        padding-bottom: 10px;
+        padding-bottom: 4px;
         .step-indicator {
           li {
             font-size: $small;

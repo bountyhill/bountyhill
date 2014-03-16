@@ -45,6 +45,7 @@
   .content {
     min-height: 80px;
     padding: $box_padding;
+    padding-bottom: $box_padding*2;
     clear: both;
     h1, h2, h3, h4  { line-height: 100%; }
     h2, h3, h4      { font-family: $font_system; }
@@ -83,32 +84,6 @@
     .button-section {
       float: right;
       margin: ($section_top_margin*2) 0 $section_bottom_margin 0;
-    }
-    .criteria-section {
-      .criteria {
-        list-style: none;
-        margin: 0;
-        li {
-          margin: 0 0 8px 0;
-          line-height: 18px;
-          .title {
-            margin: 0 0 8px 40px;
-            font-size: $normal;
-            line-height: $large;
-          }
-          .index {
-            float: left;
-            text-align: center;
-            font-family: $font_system;
-            color: $text;
-            padding: 8px;
-            width: 16px;
-            height: 16px;
-            font-size: $x_large;
-            line-height: 16px;
-          }
-        }
-      }
     }
   }
   
@@ -201,27 +176,6 @@
     &.form, &.filter {
       .header { height: 24px; }
     }
-    .content {
-      .criteria-section {
-        .criteria {
-          li {
-            margin: 0 0 4px 0;
-            .title {
-              font-size: $x_small;
-              line-height: $small;
-              margin: 0 0 8px 24px;
-            }
-            .index {
-              padding: 4px;
-              width: 12px;
-              height: 12px;
-              font-size: $small;
-              line-height: 12px;
-            }
-          }
-        }
-      }
-    }
   }
 }
 
@@ -232,8 +186,8 @@
       font-size: $large;
       .time  { font-size: $xx_small; }
       .interactions {
-        right: $box_padding/2;
-        bottom: $box_padding/4;
+        right: 8px;
+        bottom: 6px;
         .btn { font-size: $xx_small; }
       }
     }

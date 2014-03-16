@@ -94,8 +94,7 @@
       background-color: $offer_box_color;
       h2 { color: $offer_box_title_color; }
       .criteria-section { .criteria { li { 
-        .index { background-color: $quest_box_title_color; }
-        // .title { color: $quest_box_title_color; }
+        .index { background-color: $offer_box_title_color; }
       }}}
       form { p.legend { color: $offer_box_title_color; }}
     }
