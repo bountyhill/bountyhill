@@ -35,9 +35,6 @@ a { &:hover { text-decoration: none; }}
 }
 
 @media only screen and (max-width:979px) {
-  body { 
-    padding: $body_top_margin 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
-  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -48,7 +45,7 @@ a { &:hover { text-decoration: none; }}
 
 @media only screen and (max-width: 600px) {
   body { 
-    padding: $body_top_margin/2 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+    padding: 46px 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
   .sidebar {
     &.empty { display: none;}
@@ -57,7 +54,7 @@ a { &:hover { text-decoration: none; }}
 
 @media only screen and (max-width: 568px) {
   body { 
-    padding: $body_top_margin/4 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
+    padding: 46px 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
   .spacer  { min-height: $box_spacing/2; }
 }
