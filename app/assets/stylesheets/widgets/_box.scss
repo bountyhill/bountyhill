@@ -37,6 +37,12 @@
     .interactions { float: right; }
     .time  { display: none; }
   }
+  &.quest, &.offer {
+    .header { 
+      height: 24px;
+      font-size: $xxx_large;
+    }
+  }
   
   /* ------- content ------- */
   &.list {
