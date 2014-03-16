@@ -309,24 +309,6 @@ form {
 @media only screen and (max-width: 600px) {
   .box {
     &.form  { padding: 0 5%; }
-    .content {
-      .criteria-section {
-        .criteria {
-          li {
-            .title { 
-              font-size: $x_small;
-              margin: 0 0 8px 30px;
-            }
-            .index {
-              padding: 4px;
-              width: 16px;
-              height: 16px;
-              font-size: $large;
-            }
-          }
-        }
-      }
-    }
   }
   .mceContentBody {
     p { 

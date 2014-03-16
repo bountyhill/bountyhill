@@ -46,9 +46,10 @@
     min-height: 80px;
     padding: $box_padding;
     clear: both;
-    h1, h2, h3, h4 { line-height: 100%; }
+    h1, h2, h3, h4  { line-height: 100%; }
+    h2, h3, h4      { font-family: $font_system; }
     h1 {
-      margin: 0 0 $section_top_margin 0;
+      margin: $section_top_margin 0;
       font-size: $xx_large;
     }
     h2 {
@@ -66,8 +67,15 @@
     .description, .criteria-section, .image-section {
       margin: $section_top_margin 0 0 0;
     }
+    .description {
+      p { margin: 0; }
+    }
     .image-section {
-      margin-bottom: $section_bottom_margin - 20px; /* image list elements come with margin-bottom: 20px already */
+      li { 
+        width: 22.9%;
+        float: left;
+        margin-bottom: 8px;
+      }
     }
     #map { 
       margin: 16px 0 0 0; 
@@ -79,21 +87,25 @@
     .criteria-section {
       .criteria {
         list-style: none;
-        margin: 0 0 16px 0;
+        margin: 0;
         li {
-          min-height: 44px;
-          margin: 0 0 16px 0;
+          margin: 0 0 8px 0;
           line-height: 18px;
-          p.criteria-title { font-weight: bold; }
+          .title {
+            margin: 0 0 8px 40px;
+            font-size: $normal;
+            line-height: $large;
+          }
           .index {
             float: left;
-            padding: 8px;
-            width: 20px;
-            height: 20px;
-            color: $text;
-            font-family: $font_system;
-            font-size: $x_large;
             text-align: center;
+            font-family: $font_system;
+            color: $text;
+            padding: 8px;
+            width: 16px;
+            height: 16px;
+            font-size: $x_large;
+            line-height: 16px;
           }
         }
       }
@@ -189,6 +201,27 @@
     &.form, &.filter {
       .header { height: 24px; }
     }
+    .content {
+      .criteria-section {
+        .criteria {
+          li {
+            margin: 0 0 4px 0;
+            .title {
+              font-size: $x_small;
+              line-height: $small;
+              margin: 0 0 8px 24px;
+            }
+            .index {
+              padding: 4px;
+              width: 12px;
+              height: 12px;
+              font-size: $small;
+              line-height: 12px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -202,6 +235,23 @@
         right: $box_padding/2;
         bottom: $box_padding/4;
         .btn { font-size: $xx_small; }
+      }
+    }
+    .content {
+      h1 {
+        margin: $section_top_margin/2 0;
+        font-size: $normal;
+      }
+      h2 {
+        margin: $section_bottom_margin/2 0 $section_top_margin/2 0;
+        font-size: $small;
+      }
+      h3 {
+        margin: $section_bottom_margin/4 0 $section_top_margin/4 0;
+        font-size: $x_small;
+      }
+      h4 {
+        font-size: $xx_small;
       }
     }
   }

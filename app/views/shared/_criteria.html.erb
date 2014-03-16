@@ -3,19 +3,13 @@
     <% container.criteria.each_with_index do |criterium, index| %>
       <li class="clearfix">
         <div class="index"><%= index + 1 %></div>
-        <div class="two-columns left">
-          <p class="criteria-title">
-            <%= criterium[:title] %>
-          </p>
-        </div>
-        <div class="two-columns right">
-          <% if complience %>
-            <div class="complience">
-              <%= offer_compliance(container, :value => (criterium[:compliance].to_i * 10))%>
-              <%= criterium[:comment] %>
-            </div>
-          <% end %>
-        </div>
+        <div class="title"><%= criterium[:title] %></div>
+        <% if complience %>
+          <div class="complience">
+            <%= offer_compliance(container, :value => (criterium[:compliance].to_i * 10))%>
+            <%= criterium[:comment] %>
+          </div>
+        <% end %>
       </li>
     <% end %>
   </ul>

@@ -54,6 +54,8 @@ a { &:hover { text-decoration: none; }}
 
 @media only screen and (max-width: 568px) {
   body { 
+    font-size: $x_small;
+    line-height: 16px;
     padding: 46px 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
   .spacer  { min-height: $box_spacing/2; }

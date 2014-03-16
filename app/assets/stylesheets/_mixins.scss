@@ -77,7 +77,7 @@
     .header  { background-color: $quest_box_title_color; }
     .content {
       background-color: $quest_box_color;
-      h1, h2 { color: $quest_box_title_color; }
+      h2 { color: $quest_box_title_color; }
       .criteria-section { .criteria { li { .index { background-color: $quest_box_title_color; }}}}
       form {
         p.legend { color: $quest_box_title_color;}
@@ -92,10 +92,10 @@
     .header { background-color: $offer_box_title_color; }
     .content {
       background-color: $offer_box_color;
-      h1, h2 { color: $offer_box_title_color; }
+      h2 { color: $offer_box_title_color; }
       .criteria-section { .criteria { li { 
         .index { background-color: $quest_box_title_color; }
-        .criteria-title { color: $quest_box_title_color; }
+        // .title { color: $quest_box_title_color; }
       }}}
       form { p.legend { color: $offer_box_title_color; }}
     }
