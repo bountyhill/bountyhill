@@ -136,18 +136,28 @@
       padding-bottom: 28px;
       .responses  { top: 8px; }
     }
+    .message-box {
+      .text-container {
+        .message-head { margin-bottom: 4px; }
+        .message-body {
+          font-size: $x_small;
+          line-height: $small;
+        }
+      }
+    }
+    .message-stats {
+      .btn-group {
+        .btn { font-size: $x_small; }
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 480px) {
   .message-container {
     .message-box {
-      .avatar-container {
-        margin-right: 3%;
-      }
-      .text-container {
-        width: 77%;
-      }
+      .avatar-container { margin-right: 3%; }
+      .text-container   { width: 77%; }
     }
   }
 }
@@ -159,15 +169,11 @@
     .message-box {
       .text-container {
         .message-head { margin-bottom: 0px; }
-        .message-body { 
-          font-size: $x_small;
-          line-height: $small;
-        }
       }
     }
     .message-stats {
       .btn-group {
-        .btn { font-size: $xxx_small; }
+        .btn { font-size: $xx_small; }
       }
     }
   }
