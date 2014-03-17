@@ -200,13 +200,16 @@ form {
     .controls {
       input[type='range'] {
         @include appearance(none);
+        outline: none;
         padding: 0;
         height: 16px;
         width: 50%;
         @include border-radius(10px);
-        /* border: 1px solid; */
+        // border: 1px solid $offers_box_title_color;
+        background-color: #D1A212;
       }
       .range-slider-prefix, .range-slider-postfix {
+        color: $offers_box_title_color;
         padding-top: 5px;
         display: inline-block;
         text-align: center;
@@ -321,6 +324,7 @@ form {
 @media only screen and (max-width: 600px) {
   .box {
     &.form {
+      p.legend { margin-bottom: 8px; }
       .header { 
         padding-bottom: 4px;
         .step-indicator {
