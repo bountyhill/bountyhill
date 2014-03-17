@@ -14,10 +14,11 @@
     center: new google.maps.LatLng(lat, lng),
     zoom: defaultZoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: false,
+    scrollwheel: true,
+    zoomControl: true,
+    scaleControl: true,
     panControl: false,
-    zoomControl: false,
-    scaleControl: false
+    streetViewControl: false
   };
   var map = new google.maps.Map(document.getElementById('map'),mapOptions);
 

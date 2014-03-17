@@ -17,8 +17,11 @@
     center: new google.maps.LatLng(mylat, mylng),
     zoom: defaultZoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: false,
-    scaleControl: false
+    scrollwheel: true,
+    zoomControl: true,
+    scaleControl: true,
+    panControl: false,
+    streetViewControl: false
   };
   var map = new google.maps.Map(document.getElementById('googlemap'), mapOptions);
   
