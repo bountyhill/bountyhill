@@ -29,13 +29,14 @@
       width: 16px;
       height: 16px;
       font-size: $x_large;
-      line-height: 16px;
+      line-height: $normal;
     }
     .title {
       margin: 0 0 20px 40px;
       font-size: $normal;
       line-height: $x_large;
     }
+    .complience { margin-bottom: 16px; }
   }
 }
 
@@ -100,6 +101,7 @@
         font-size: $small;
         line-height: 12px;
       }
+      .complience { margin-bottom: 8px; }
     }
   }
 
