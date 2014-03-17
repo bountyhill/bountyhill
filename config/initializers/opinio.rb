@@ -25,6 +25,6 @@ Opinio.setup do |config|
 
   # Wether or not the default opinio controller should set the flash
   # when creating/removing comments
-  config.set_flash = true
+  config.set_flash = false
 
 end

@@ -49,7 +49,10 @@ module CommentsHelper
     expect! commentable => [Quest, Offer]
     
     content = div :class => "content" do
-      comments_for commentable
+      [
+        render_comments_form(commentable),  # renders new comment for partial
+        render_comments(commentable)        # renders comments list partial
+      ].compact.join.html_safe
     end
 
     div :class => "comments box row-fluid with-opener" do

@@ -4,8 +4,9 @@
       <%= hidden_field_tag :commentable_id, commentable.id %>
       <%= hidden_field_tag :commentable_type, commentable.class.base_class.name.to_s %>
       
-      <%= f.text_area :body, :rows => 5 %>
-
+      <div class="control-group">
+        <%= f.text_area :body, :rows => 5 %>
+      </div>
       <div class="buttons">
         <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-link btn-cancel" %>
         <%= f.submit I18n.t('button.post'), :class => "btn btn-link" %>

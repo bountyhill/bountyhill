@@ -1,4 +1,3 @@
-$('#no_comments').hide();
 <% if @comment.valid? %>
   <% if @reply %>
     if($('#comment_<%= @comment.commentable_id %> ul').length == 0)

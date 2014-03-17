@@ -1,29 +1,27 @@
 <% reply = defined?(reply) ? reply : false %>
-<li class="comment" id="comment_<%= comment.id %>">
-  <div class="message-container span12">
-    <%= link_to user_path(comment.owner), :class => "avatar" do
-      avatar comment.owner, :size => 96
-    end %>
-    <div class="message-box">
-      <div class="message-head clearfix">
-        <div class="owner">
-          <%= comment.owner.name %>
-        </div>
-        <div class="time">
-          <%= I18n.t("comment.list.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
-        </div>
+<li class="comment message-container row-fluid" id="comment_<%= comment.id %>">
+  <div class="message-box span12">
+    <div class="message row-fluid">
+      <div class="avatar-container span2">
+        <%= avatar comment.owner, :size => 96 %>
+        
       </div>
-      <div class="message-body">
-        <%= comment.body %>
+      <div class="text-container span10">
+        <div class="message-head row-fluid">
+          <div class="owner span6">
+            <%= comment.owner.name %>
+          </div>
+          <div class="time span6">
+            <%= I18n.t("comment.list.creation", :distance_of_time => distance_of_time_in_words_to_now(comment.created_at)) %>
+          </div>
+        </div>
+        <div class="message-body">
+          <%= comment.body %>
+        </div>
       </div>
     </div>
-    <!-- <div class="message-stats"> -->
-      <%#= comment_buttons(comment, :reply => reply) %>
-    <!-- </div> -->
   </div>
-  <% if Opinio.accept_replies && !reply %>
-    <ul id="comment_<%= comment.id %>_replies" class="replies">
-      <%= render :partial => "opinio/comments/comment", :collection => comment.comments, :locals => {:reply => true} %>
-    </ul>
-  <% end %>
+  <!-- <div class="message-stats span4"> -->
+    <%#= comment_buttons(comment, :reply => reply) %>
+  <!-- </div> -->
 </li>
