@@ -36,7 +36,7 @@
   &.quest {
     background-color: $quests_box_content_color;
     padding: $box_padding;
-    border-bottom: 8px solid $quests_box_title_color;
+    border-bottom: $box_border solid $quests_box_title_color;
     min-height: 64px;
     .image-container {
       float: left;
@@ -45,15 +45,15 @@
     }
     .bar-box {
       display: block;
-      color: $quest_box_title_color;
       margin-left:  $avatar_size + $box_padding;
       .bar-head {
-        font-size: $large;
+        font-size: $normal;
+        line-height: $normal;
         font-family: $font_system;
-        margin-bottom: 24px;
+        margin-bottom: 8px;
         .owner {
-          width: 60%;
-          margin-right: 8px;
+          width: 58%;
+          margin-right: 2%;
           display: inline;
         }
         .time {
@@ -61,21 +61,12 @@
           float: right;
           text-align: right;
           font-style: italic;
-          font-size: 90%;
         }
       }
       .bar-body {
-        .title, .description {
-          line-height: 100%;
-        }
-        .title {
-          margin: 0 0 8px 0;
-          font-size: $xx_large;
-          font-weight: bold;
-        }
-        .description {
-          color: $text_inverse;
-        }
+        color: $text_inverse;
+        font-size: $normal;
+        font-weight: bold;
       }
     }
   }
@@ -143,6 +134,25 @@
     &.box {
       &.with-opener {
         &:before { margin-left: -30px; }
+      }
+    }
+  }
+  .topbar {
+    &.quest {
+      padding: $box_padding/2;
+      min-height: 42px;
+      .image-container {
+        width: $avatar_size/1.5;
+        img { height: $avatar_size/1.5; }
+      }
+      .bar-box {
+        margin-left:  $avatar_size/1.5 + $box_padding/2;
+        .bar-head {
+          font-size: $x_small;
+          line-height: $x_small;
+          margin-bottom: 4px;
+        }
+        .bar-body { font-size: $x_small; }
       }
     }
   }
