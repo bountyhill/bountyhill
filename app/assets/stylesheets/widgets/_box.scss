@@ -80,7 +80,9 @@
       }
     }
     #map { 
-      margin: 16px 0 0 0; 
+      width: 100%;
+      height: 360px;
+      margin: 16px 0 0 0;
     }
     .button-section {
       float: right;
@@ -208,6 +210,9 @@
       }
       h4 {
         font-size: $xx_small;
+      }
+      #map { 
+        height: 240px;
       }
     }
   }
