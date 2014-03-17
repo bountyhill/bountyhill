@@ -67,8 +67,8 @@ module QuestsHelper
       share_quest_button(quest),
       new_offer_button(quest),
       stop_quest_button(quest),
-      start_quest_button(quest),
-      edit_quest_button(quest)
+      edit_quest_button(quest),
+      start_quest_button(quest)
     ]
   end
   

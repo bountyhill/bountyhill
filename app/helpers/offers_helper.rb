@@ -19,8 +19,8 @@ module OffersHelper
   def offer_buttons(offer)
     button_group [
       contact_owner_button(offer),
-      make_offer_button(offer),
       edit_offer_button(offer),
+      make_offer_button(offer),
       accept_offer_button(offer),
       reject_offer_button(offer),
       withdraw_offer_button(offer)
@@ -43,14 +43,14 @@ module OffersHelper
 
   def accept_offer_button(offer)
     return unless current_user
-    return unless offer.active? && !current_user.owns?(offer)
+    return unless offer.active? && current_user.owns?(offer.quest)
 
     modal_awesome_button(icon_for('interaction.accept'), accept_offer_path(offer)) { I18n.t("button.accept") }
   end
 
   def reject_offer_button(offer)
     return unless current_user
-    return unless offer.active? && !current_user.owns?(offer)
+    return unless offer.active? && current_user.owns?(offer.quest)
 
     modal_awesome_button(icon_for('interaction.reject'), reject_offer_path(offer)) { I18n.t("button.reject") }
   end

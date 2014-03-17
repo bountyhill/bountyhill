@@ -46,6 +46,7 @@ module ButtonHelper
     return unless object.active?
     return unless current_user
     return if current_user.owns?(object)
+    return if object.respond_to?(:quest) && !current_user.owns?(object.quest)
     
     modal_awesome_button(icon_for('interaction.send'), url_for(
       :controller => :messages,
