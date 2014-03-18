@@ -276,13 +276,42 @@ form {
 
 @media only screen and (max-width: 600px) {
   .box {
-    &.form  { padding: 0 5%; }
+    &.form  { 
+      padding: 0 5%;
+      .header { 
+        .step-indicator {
+          li {
+            font-size: $small;
+            line-height: 36px;
+            &::before {
+              line-height: 20px;
+              width: 20px;
+              height: 20px;
+              margin: 0 0.15em;
+            }
+          }
+        }
+      }
+    }
   }
   .mceContentBody {
     p { 
       margin: 0 0 5px;
       line-height: 1.2em;
-      font-size: $x_small; 
+      font-size: $x_small;
+    }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .box {
+    &.form {
+      .header { 
+        padding-bottom: 4px;
+        .step-indicator { 
+          li { font-size: $x_small; }
+        }
+      }
     }
   }
   form {
@@ -312,46 +341,11 @@ form {
     }
     .legend { 
       font-size: $x_small;
-      line-height: 120%;
+      margin-bottom: 8px;
     }
     .alert {
       font-size: $x_small;
       margin-bottom: 8px;
-    }
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .box {
-    &.form {
-      p.legend { margin-bottom: 8px; }
-      .header { 
-        padding-bottom: 4px;
-        .step-indicator {
-          li {
-            font-size: $small;
-            line-height: 36px;
-            &::before {
-              line-height: 20px;
-              width: 20px;
-              height: 20px;
-              margin: 0 0.15em;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  .box {
-    &.form {
-      .header { 
-        .step-indicator { 
-          li { font-size: $x_small; }
-        }
-      }
     }
   }
 }
