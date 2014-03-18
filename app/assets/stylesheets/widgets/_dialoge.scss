@@ -24,7 +24,8 @@
 }
 
 .modal-footer { 
-  background-color: $modal_footer; 
+  background-color: $modal_footer;
+  padding: $box_padding
 }
 
 .quests { .modal-header { background-color: $quest_box_title_color; }}
@@ -87,6 +88,7 @@
 @media only screen and (max-height: 568px) {
   .modal {
     .modal-body { max-height: 425px; }
+    .modal-footer { padding: $box_padding/2 }
   }
 }
 
