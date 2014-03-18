@@ -4,12 +4,16 @@
   border: none;
   margin-bottom: 4px;
   @include border-radius(0);  /* remove border radius */
-  .accordion-heading .accordion-toggle  { padding: 1% 2%; }
-  .accordion-body .accordion-inner      { padding: 2%; }
+  .accordion-heading .accordion-toggle  { padding: $box_padding/2 $box_padding; }
+  .accordion-body .accordion-inner      { padding: $box_padding; }
   .accordion-heading {
     i { 
-      font-size: $large; 
-      &.fa-envelope { font-size: $large; }
+      font-size: $large;
+      line-height: $xx_large;
+      &.fa-envelope {
+        font-size: $normal;
+        line-height: $x_large;
+      }
     }
     a {
       color: $text;
@@ -107,7 +111,7 @@
       }
     }
     h4 {
-      font-size: $large;
+      font-size: $normal;
       margin: 0;
     }
   }
@@ -121,19 +125,43 @@
   }
 }
 
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 979px) {
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
 
 @media only screen and (max-width: 600px) {
+}
+
+@media only screen and (max-width: 568px) {
   .accordion-group {
+    .accordion-heading .accordion-toggle  { padding: $box_padding/8 $box_padding/2; }
+    .accordion-body .accordion-inner      { padding: $box_padding/2; }
     .accordion-heading {
-      h4 { font-size: $large; }
+      i { 
+        font-size: $normal;
+        line-height: $x_large;
+        &.fa-envelope { 
+          font-size: $small;
+          line-height: $large;
+        }
+      }
+      h4 { font-size: $x_small; }
     }
   }
 }
 
+@media only screen and (max-width: 480px) {
+}
+
 @media only screen and (max-width: 320px) {
-  .accordion-group {
-    .accordion-heading {
-      h4 { font-size: 90%; }
-    }
-  }
 }

@@ -15,17 +15,16 @@
   background-color: $modal_header;
   .modal-headline { color: $text; }
   h3 { font-size: $xx_large }
-  padding: 1% 5%;
+  padding: $box_padding/2 $box_padding;
 }
 
 .modal-body {
   background-color: $modal_body;
-  padding: 5%;
+  padding: $box_padding;
 }
 
-.modal-footer { 
+.modal-footer {
   background-color: $modal_footer;
-  padding: $box_padding
 }
 
 .quests { .modal-header { background-color: $quest_box_title_color; }}
@@ -47,31 +46,24 @@
   top: 7% !important;
 }
 
-}
 
-@media only screen and (max-width: 600px) {
+/* ------- screen resolution adjustments for screen width! ------- */
+
+@media only screen and (max-width: 568px) {
   .modal {
-    .modal-header {
-      padding: 1% 3%;
-      h3 { font-size: $large; }
+    .modal-header{
+      padding: $box_padding/8 $box_padding/2;
+      h3 { font-size: $normal; }
     }
     .modal-body {
-      padding: 3%;
-      p {
-        font-size: 85%;
-        line-height: 120%;
-      }
+      padding: $box_padding/2;
+      p { font-size: $x_small; }
     }
+    .modal-footer { padding: ($box_padding/2)+1 $box_padding/2 $box_padding/2 $box_padding/2}
   }
 }
 
-@media only screen and (max-width: 320px) {
-  .modal {
-    .modal-header {
-      h3 { font-size: $large; }
-    }
-  }
-}
+/* ------- screen resolution adjustments for screen height! ------- */
 
 @media only screen and (max-height: 768px) {
   .modal {
@@ -87,8 +79,7 @@
 
 @media only screen and (max-height: 568px) {
   .modal {
-    .modal-body { max-height: 425px; }
-    .modal-footer { padding: $box_padding/2 }
+    .modal-body { max-height: 400px; }
   }
 }
 
@@ -100,6 +91,6 @@
 
 @media only screen and (max-height: 320px) {
   .modal {
-    .modal-body { max-height: 200px; }
+    .modal-body { max-height: 220px; }
   }
 }
