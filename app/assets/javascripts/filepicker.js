@@ -27,7 +27,7 @@ jQuery(document).on("change", "input[type=filepicker]", function(event) {
     var url = this.url;
     var slide_url = url + "/convert?w=" + width + "&h=" + height + "&fit=max";
   
-    var slide = $('<li><input type="hidden"></input><div class="image-container"><img src=""></img></div><a href="#" class="btn fp-delete"><i class="icon-trash icon-large""></i></a></div></li>');
+    var slide = $('<li><input type="hidden"></input><div class="image-container"><img src=""></img></div><a href="#" class="btn fp-delete"><i class="fa-trash-o fa-large""></i></a></div></li>');
     slide.find("input").attr("name", self.data("fp-name")).val(url);
     slide.find("img").attr("src", slide_url).attr("width", width).attr("height", height);
 //    slide.find("span").text(this.filename);
