@@ -42,12 +42,16 @@
   }
 }
 
-#myModal, #filepicker_dialog_container {
-  top: 7% !important;
-}
+#myModal { top: $top_navigation_height; }
+
+#filepicker_dialog_container { top: 7% !important; }
 
 
 /* ------- screen resolution adjustments for screen width! ------- */
+
+@media only screen and (max-width: 600px) {
+  #myModal { top: $top_navigation_min_height; }
+}
 
 @media only screen and (max-width: 568px) {
   .modal {
@@ -85,12 +89,12 @@
 
 @media only screen and (max-height: 480px) {
   .modal {
-    .modal-body { max-height: 365px; }
+    .modal-body { max-height: 320px; }
   }
 }
 
 @media only screen and (max-height: 320px) {
   .modal {
-    .modal-body { max-height: 220px; }
+    .modal-body { max-height: 180px; }
   }
 }
