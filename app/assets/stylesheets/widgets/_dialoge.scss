@@ -54,6 +54,7 @@
 }
 
 @media only screen and (max-width: 568px) {
+  #myModal { top: $page_padding; }
   .modal {
     .modal-header{
       padding: $box_padding/8 $box_padding/2;
@@ -69,9 +70,15 @@
 
 /* ------- screen resolution adjustments for screen height! ------- */
 
+@media only screen and (max-height: 800px) {
+  .modal {
+    .modal-body { max-height: 640px; }
+  }
+}
+
 @media only screen and (max-height: 768px) {
   .modal {
-    .modal-body { max-height: 600px; }
+    .modal-body { max-height: 580px; }
   }
 }
 
@@ -83,7 +90,7 @@
 
 @media only screen and (max-height: 568px) {
   .modal {
-    .modal-body { max-height: 400px; }
+    .modal-body { max-height: 460px; }
   }
 }
 
@@ -95,6 +102,6 @@
 
 @media only screen and (max-height: 320px) {
   .modal {
-    .modal-body { max-height: 180px; }
+    .modal-body { max-height: 220px; }
   }
 }
