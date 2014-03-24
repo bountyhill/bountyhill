@@ -109,7 +109,7 @@ protected
   end
   
   def set_partial
-    @partial = case signin_identity.to_s
+    @partial = case (signin_identity && signin_identity.provider.to_s)
       when "email"    then  "sessions/forms/signin"
       when "twitter"  then  "sessions/forms/twitter"
       when "facebook" then  "sessions/forms/facebook"

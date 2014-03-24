@@ -19,7 +19,7 @@ module ApplicationController::Sessions
     
     session.update(
       :remember_token => user.remember_token,
-      :signedin_with  => identity.provider,
+      :signedin_with  => "#{identity.provider}##{identity.id}",
       :admin          => user.admin?,
     )
     @current_user = user
@@ -41,7 +41,12 @@ module ApplicationController::Sessions
   end
     
   def signin_identity
-    session[:signedin_with]
+    @signin_identity ||= begin
+      if session[:signedin_with].present?
+        provider, id = session[:signedin_with].split('#')
+        "Identity::#{provider.camelize}".constantize.find(id)
+      end
+    end
   end
   
   def identity?(*args)

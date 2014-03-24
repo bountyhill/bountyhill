@@ -67,7 +67,7 @@ class IdentitiesController < ApplicationController
     # returns to OmniAuthMiddleware, which then redirects to the "create" action.
     
     @identity = Identity.provider(@provider).new(@identity_params)
-    @identity.user = current_user
+    @identity.user = current_user || (signin_identity && signin_identity.user)
     
     if @identity.processable?
       pre_process_signin # trigger pre processing
@@ -87,7 +87,7 @@ class IdentitiesController < ApplicationController
                         else                  I18n.t("sessions.auth.success")
                         end
       
-      @identity = Identity.provider(@provider).find_or_create(uid, current_user, request.env["omniauth.auth"])
+      @identity = Identity.provider(@provider).find_or_create(uid, current_user || (signin_identity && signin_identity.user), request.env["omniauth.auth"])
       signin(User.find(@identity.user.id), @identity)
       post_process_signin # trigger post processing
       

@@ -144,16 +144,15 @@ class SessionsControllerTest < ActionController::TestCase
   
   def test_set_partial
     partials = {
-      "email"     => "sessions/forms/signin",
-      "twitter"   => "sessions/forms/twitter",
-      "facebook"  => "sessions/forms/facebook",
-      "google"    => "sessions/forms/google",
-      "linkedin"  => "sessions/forms/linkedin",
-      "xing"      => "sessions/forms/xing",
-      "foobar"    => "sessions/forms/email"
-    }
-    partials.each do |identity, partial|
-      @controller.stubs(:signin_identity).once.returns(identity)
+      Factory(:email_identity)    => "sessions/forms/signin",
+      Factory(:twitter_identity)  => "sessions/forms/twitter",
+      Factory(:facebook_identity) => "sessions/forms/facebook",
+      Factory(:google_identity)   => "sessions/forms/google",
+      Factory(:linkedin_identity) => "sessions/forms/linkedin",
+      Factory(:xing_identity)     => "sessions/forms/xing",
+      nil                         => "sessions/forms/email"
+    }.each do |identity, partial|
+      @controller.stubs(:signin_identity).returns(identity)
       @controller.send(:set_partial)
       
       assert assigns(:partial)
