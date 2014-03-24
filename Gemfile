@@ -50,8 +50,9 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'test-unit', :require => "test/unit"
-  gem 'mocha'
+  gem "mocha", '~> 0.13.0', :require => false
   gem 'factory_girl_rails'
+  gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'simplecov', :require => false
   gem 'spork-testunit'
