@@ -293,13 +293,6 @@ form {
       }
     }
   }
-  .mceContentBody {
-    p { 
-      margin: 0 0 5px;
-      line-height: 1.2em;
-      font-size: $x_small;
-    }
-  }
 }
 
 @media only screen and (max-width: 568px) {
@@ -345,6 +338,13 @@ form {
     .alert {
       font-size: $x_small;
       margin-bottom: 8px;
+    }
+  }
+  .mceContentBody {
+    p { 
+      margin: 0 0 5px;
+      line-height: 1.2em;
+      font-size: $x_small;
     }
   }
 }
