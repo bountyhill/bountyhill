@@ -117,8 +117,7 @@ module UsersHelper
       div(
         [
           div(avatar(user, :size => avatar_size), :class => "image-container"),
-          div(user.name, :class => "name"),
-          div(user.twitter_handle, :class => "handle")
+          div(user.name, :class => "name")
         ].join.html_safe, :class => "profile") + 
         user_points(user)
     end

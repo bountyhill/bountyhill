@@ -25,7 +25,7 @@
       <%= identity_box  @user, :xing %>
     <% end %>
     <%= spacer %>
-    <%= activities_box(@user, :per_page => @per_page) %>
+    <%= activities_box(@user, :per_page => @per_page, :class => "with-opener") %>
   </div>
   <div class="sidebar span3">
     <%= user_statistic_boxes(@user) %>

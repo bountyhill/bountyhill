@@ -52,49 +52,7 @@
     }
   }
 }
-.activities {
-  &.box {
-    @include box_colors(activities);
-    
-    /* opener triangle */
-    /* @include opener($activities_box_title_color, $open_center); */
 
-    ul.activities {
-      li.activity {
-        margin-bottom: 32px;
-        min-height: 32px;
-        ul {
-          float: right;
-          padding: 0 10px;
-          background-color: $activities_box_content_color;
-          width: 80%;
-          margin: 0;
-          li {
-            float: left;
-            line-height: 6ex;
-            min-height: 6ex;
-            margin-right: 5px;
-            &.time   { float: right; margin-right: 0;}
-            &.action { 
-              margin-right: 10px; 
-              font-weight: bold;
-            }
-          }
-        }
-        .points { 
-          color: $text;
-          float: left;
-          background-color: $activities_box_statistic_color;
-          width: 15%;
-          line-height: 6ex;
-          min-height: 6ex;
-          text-align: center;
-          font-weight: bold;
-        }
-      }
-    }
-  }
-}
 .user {
   &.bar {
     &.quest { background-color: $quest_box_title_color; }

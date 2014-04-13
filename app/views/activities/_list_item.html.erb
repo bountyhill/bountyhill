@@ -1,16 +1,13 @@
-<div class="points">
-  <%= I18n.t("activity.list.points", :count => activity.points) %>
+<div class='row-fluid'>
+  <div class='points span2'>
+    <%= I18n.t("activity.list.points", :count => activity.points) %>
+  </div>
+  <div class='action span8'>
+    <%= I18n.t("activity.action.#{activity.action}",
+      :title  => content_tag(:span, activity.entity.respond_to?(:title) ? "'#{activity.entity.title}'" : '', :class => 'title'),
+      :item   => I18n.t("activerecord.models.#{activity.entity_type.underscore}", :count => 1)).html_safe %>
+  </div>
+  <div class='time span2'>
+    <%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>
+  </div>
 </div>
-<ul>
-  <li class='action'>
-    <%= I18n.t("activity.action.#{activity.action}", :item => I18n.t("activerecord.models.#{activity.entity_type.underscore}", :count => 1)) %>
-  </li>
-  <% if activity.entity.respond_to?(:title) %>
-  <li class='entity'>
-    "<%= truncate(activity.entity.title, :length => 50) %>"
-  </li>
-  <% end %>
-  <li class='time'>
-    ... <%= I18n.t("activity.list.creation", :distance_of_time => distance_of_time_in_words_to_now(activity.created_at)) %>
-  </li>
-</ul>

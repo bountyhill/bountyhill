@@ -1,0 +1,102 @@
+.box {
+  &.activities {
+    @include box_colors(activities);
+    @include opener($activities_box_title_color, $open_center);
+    ul.activities {
+      li.activity {
+        background-color: $activities_box_content_color;
+        margin-bottom: $box-padding;
+        padding: $box-padding;
+        color: $activities_box_statistic_color;
+        min-height: $xxxx_large;
+        font-family: $font-system;
+        .points {
+          background-color: $activities_box_statistic_color;
+          text-align: center;
+          color: $text;
+          font-size: $large;
+          line-height: $xxxx_large;
+        }
+        .action {
+          color: $text_inverse;
+          text-align: left;
+          font-size: $normal;
+          line-height: $large;
+          .title {
+            font-family: $font-user;
+            font-size: $small;
+          }
+        }
+        .time {
+          text-align: right;
+          font-size: $x_small;
+          line-height: $x_small;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width:979px) {
+}
+
+@media only screen and (max-width: 800px) {
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    &.activities {
+      ul.activities {
+        li.activity {
+          .action {
+            padding: $box-padding/2 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .box {
+    &.activities {
+      ul.activities {
+        li.activity {
+          margin-bottom: $box-padding/2;
+          padding: $box-padding/2;
+          min-height: $x_large;
+          .points {
+            font-size: $small;
+            line-height: $x_large;
+          }
+          .action {
+            font-size: $x_small;
+            line-height: $small;
+            .title {
+              font-size: $xx_small;
+            }
+          }
+          .time {
+            font-size: $xxx_small;
+            line-height: $xxx_small;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}
+
+@media only screen and (max-width: 320px) {
+}
