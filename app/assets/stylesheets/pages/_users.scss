@@ -1,15 +1,12 @@
 .box {
-  &.user      { @include box_colors(user);      .content { div { background-color: $user_box_title_color; }}}
-  &.email     { @include box_colors(email);     .content { div { background-color: $email_box_title_color; }}}
-  &.address   { @include box_colors(address);   .content { div { background-color: $address_box_title_color; }}}
-  &.twitter   { @include box_colors(twitter);   .content { div { background-color: $twitter_box_title_color; }}}
-  &.facebook	{ @include box_colors(facebook);	.content { div { background-color: $facebook_box_title_color; }}}
-  &.google    { @include box_colors(google);    .content { div { background-color: $google_box_title_color; }}}
-  &.linkedin  { @include box_colors(linkedin);  .content { div { background-color: $linkedin_box_title_color; }}}
-  &.xing      { @include box_colors(xing);      .content { div { background-color: $xing_box_title_color; }}}
-  &.user {
-    @include opener($user_box_title_color, $open_left);
-  }
+  &.user      { @include box_colors(user);      @include opener($user_box_title_color, $open_left);       .content { div { background-color: $user_box_title_color; }}}
+  &.email     { @include box_colors(email);     @include opener($email_box_title_color, $open_center);    .content { div { background-color: $email_box_title_color; }}}
+  &.address   { @include box_colors(address);   @include opener($address_box_title_color, $open_center);  .content { div { background-color: $address_box_title_color; }}}
+  &.twitter   { @include box_colors(twitter);   @include opener($twitter_box_title_color, $open_center);  .content { div { background-color: $twitter_box_title_color; }}}
+  &.facebook	{ @include box_colors(facebook);  @include opener($facebook_box_title_color, $open_center); .content { div { background-color: $facebook_box_title_color; }}}
+  &.google    { @include box_colors(google);    @include opener($google_box_title_color, $open_center);   .content { div { background-color: $google_box_title_color; }}}
+  &.linkedin  { @include box_colors(linkedin);  @include opener($linkedin_box_title_color, $open_center); .content { div { background-color: $linkedin_box_title_color; }}}
+  &.xing      { @include box_colors(xing);      @include opener($xing_box_title_color, $open_center);     .content { div { background-color: $xing_box_title_color; }}}
   &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin, &.xing {
     color: $text;
     .identity-icon, .privacy-icon {
@@ -19,9 +16,10 @@
       .identity-icon {
         float: left;
         margin-right: $box_padding/2;
-        line-height: 90%;
+        line-height: $x_large;
         i {
           font-size: $large;
+          &.fa-user,
           &.fa-home,
           &.fa-twitter-square,
           &.fa-facebook-square,
@@ -186,7 +184,7 @@
         }
         .name   {
           top : $box_padding/2;
-          font-size: $normal
+          font-size: $normal;
         }
         .handle { 
           top : $box_padding*1.5;
@@ -213,21 +211,25 @@
     }
   }
   .box {
-    &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+    &.user {
       &.with-opener {
         &:before { margin-left: -30px; }
       }
+    }
+    &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin, &.xing {
       .header {
         .identity-icon {
+          line-height: $normal;
           i {
-            font-size: $normal;
+            font-size: $x_small;
+            &.fa-user,
             &.fa-home,
             &.fa-twitter-square,
             &.fa-facebook-square,
             &.fa-google-plus-square,
             &.fa-linkedin-square,
             &.fa-xing-square { 
-              font-size: $large;
+              font-size: $small;
             }
           }
         }

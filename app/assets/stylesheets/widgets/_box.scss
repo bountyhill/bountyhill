@@ -186,7 +186,7 @@
   .box {
     .header, .content { padding: $box_padding/2; }
     .header {
-      font-size: $large;
+      font-size: $normal;
       line-height: $large;
       .time  { font-size: $xx_small; }
       .interactions {
