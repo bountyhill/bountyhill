@@ -1,20 +1,24 @@
 # encoding: UTF-8
 
 module UsersHelper
-  def profile_box(user)
+  def profile_box(user, options={})
     expect! user => User
     
-    title = user.name
-    title ||= if current_user == user then  I18n.t("user.box.title")
-            else                            I18n.t("user.box.profile.title")
-            end
-    box(:user, user, :title => title)
+    title =   if user.commercial? then  identity_icon(:commercial, :title => I18n.t("user.box.profile.icon.commercial"))
+              else                      identity_icon(:private,    :title => I18n.t("user.box.profile.icon.private"))
+              end
+    title +=  if current_user == user then  I18n.t("user.box.title")
+              else                          I18n.t("user.box.profile.title")
+              end
+    box(:user, user, { :title => title }.merge(options))
   end
   
   def identity_box(user, identity_type)
     return unless current_user == user
 
-    box(identity_type, user.identity(identity_type), :title => I18n.t("user.box.#{identity_type}.title"))
+    title =   identity_icon(identity_type)
+    title +=  I18n.t("user.box.#{identity_type}.title")
+    box(identity_type, user.identity(identity_type), :title => title, :class => "with-opener")
   end
   
   def activities_box(user, options={})
@@ -138,7 +142,7 @@ module UsersHelper
   
   def user_statistic_boxes(user)
     [
-      user_points_statistic_box(user),
+      # user_points_statistic_box(user),
       user_quests_statistic_box(user),
       user_offers_statistic_box(user),
       user_forwards_statistic_box(user)
@@ -174,7 +178,7 @@ module UsersHelper
       link_to(awesome_icon(icon_for("identity.#{identity}")), "#",
         :id               => "identity-icon-#{identity}",
         :"data-toggle"    => "tooltip",
-        :"data-placement" => "top",
+        :"data-placement" => "right",
         :title            => options[:title] || I18n.t("user.box.#{identity}.icon"))
     end + javascript_tag("$('#identity-icon-#{identity}').tooltip();")
   end
@@ -184,7 +188,7 @@ module UsersHelper
       link_to(awesome_icon(:eye_slash), "#",
         :id               => "privacy-icon-#{identity}",
         :"data-toggle"    => "tooltip",
-        :"data-placement" => "top",
+        :"data-placement" => "left",
         :title            => I18n.t("icon.privacy"))
     end + javascript_tag("$('#privacy-icon-#{identity}').tooltip();")
   end

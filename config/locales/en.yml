@@ -399,7 +399,7 @@ en:
         one:    "Request shared"
         other:  "Requests shared"
     box:
-      title:    "Your profile"
+      title:    "Profile"
       profile:
         title:  "User profile"
         text:   "We could not find a description of you in any of your social media profiles. If you like, you can add a description on bountyhill to let other users know something about you."
@@ -414,26 +414,32 @@ en:
         title:  "Email"
         text:   "You did not provide your email address so far. We do require your email e.g. if you intend to submit offers for other user's quests."
         icon:   "Your email address."
+        label:  "Address"
       facebook:
         title:  "Facebook"
         text:   "You did not provide access to your Facebook account so far. We do require your access to your Facebook account e.g. if you want us to post quests you did select on your timeline."
-        icon:   "Your Facebook nickname."
+        icon:   "Your Facebook account."
+        label:  "Nickname"
       google:
         title:  "Google"
         text:   "You did not provide access to your Google account so far. We do require your access to your Google account e.g. if you want us to post quests you did select in your stream."
-        icon:   "Your Google user name."
+        icon:   "Your Google account."
+        label:  "User name"
       linkedin:
         title:  "LinkedIn"
         text:   "You did not provide access to your LinkedIn account so far. We do require your access to your LinkedIn account e.g. if you want us to post quests you did select as messages."
-        icon:   "Your LinkedIn user name."
+        icon:   "Your LinkedIn account."
+        label:  "User name"
       xing:
         title:  "Xing"
         text:   "You did not provide access to your Xing account so far. We do require your access to your Xing account e.g. if you want us to post quests you did select as status updates."
-        icon:   "Your Xing user name."
+        icon:   "Your Xing account."
+        label:  "User name"
       twitter:
         title:  "Twitter"
         text:   "You did not provide access to your Tswitter account so far. We do require your access to your Twitter account e.g. if you want us to tweet quests you did select."
-        icon:   "Your Twitter handle."
+        icon:   "Your Twitter account."
+        label:  "Handle"
     form:
       title:  Edit Personal Data
       profile:

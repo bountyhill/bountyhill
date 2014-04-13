@@ -400,7 +400,7 @@ de:
         one:    "Anfrage geteilt"
         other:  "Anfragen geteilt"
     box:
-      title:    "Dein Profil"
+      title:    "Profil"
       profile:
         title:  "Nutzerprofil"
         text:   "Wir konnten keine Beschreibung von Dir in Deinen Social-Media Profilen finden. Wenn Du möchtest kannst Du eine Beschreibung von Dir auf bountyhill eingeben, damit andere Nutzer etwas von Dir erfahren."
@@ -415,26 +415,32 @@ de:
         title:  "Email"
         text:   "Du hast Deine Emailadresse noch nicht angegeben. Wir benötigen diese, z.B. wenn Angebote auf Suchanfragen anderer Nutzer abgeben möchtest."
         icon:   "Die von Dir angegebene Emailadresse."
+        label:  "Adresse"
       facebook:
         title:  "Facebook"
         text:   "Du hast uns noch keinen Zugang zu Deinem Facebook-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deine Timeline posten."
-        icon:   "Dein Facebook-Nickname."
+        icon:   "Dein Facebook-Account."
+        label:  "Nickname"
       google:
         title:  "Google"
         text:   "Du hast uns noch keinen Zugang zu Deinem Google-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen in Deinen Stream posten."
-        icon:   "Dein Google-Nutzername."
+        icon:   "Dein Google-Account."
+        label:  "Nutzername"
       linkedin:
         title:  "LinkedIn"
         text:   "Du hast uns noch keinen Zugang zu Deinem LinkedIn-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen als Messages posten."
-        icon:   "Dein LinkedIn-Nutzername."
+        icon:   "Dein LinkedIn-Account."
+        label:  "Nutzername"
       xing:
         title:  "Xing"
         text:   "Du hast uns noch keinen Zugang zu Deinem Xing-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen als Status Updates posten."
-        icon:   "Dein Xing-Nutzername."
+        icon:   "Dein Xing-Account."
+        label:  "Nutzername"
       twitter:
         title:  "Twitter"
         text:   "Du hast uns noch keinen Zugang zu Deinem Twitter-Account gewährt. Wir benötigen diesen Zugang z.B. wenn Du möchtests, dass wir von Dir ausgewählte Suchanfragen Twittern."
-        icon:   "Dein Twitter-Handle."
+        icon:   "Dein Twitter-Account."
+        label:  "Handle"
     form:
       title:  Persönliche Daten Bearbeiten
       profile:

@@ -7,25 +7,48 @@
   &.google    { @include box_colors(google);    .content { div { background-color: $google_box_title_color; }}}
   &.linkedin  { @include box_colors(linkedin);  .content { div { background-color: $linkedin_box_title_color; }}}
   &.xing      { @include box_colors(xing);      .content { div { background-color: $xing_box_title_color; }}}
+  &.user {
+    @include opener($user_box_title_color, $open_left);
+  }
   &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin, &.xing {
-    .content { 
-      min-height: 52px;
-      .content-box {
-        margin: 0 -16px -16px -16px;
-        padding: 16px ;
-        color: $text;
-        text-align: center;
-        font-weight: bold;
-        font-size: $large;
-        .identity-icon { float: left; }
-        .privacy-icon  { float: right; }
-        .identity-icon, .privacy-icon {
+    color: $text;
+    .identity-icon, .privacy-icon {
+      a { color: $text; }
+    }
+    .header {
+      .identity-icon {
+        float: left;
+        margin-right: $box_padding/2;
+        line-height: 90%;
+        i {
           font-size: $large;
-          a { color: $text }
-          i { 
-            font-size: $large; 
-            &.fa-envelope, &.fa-eye, &.fa-eye-slash { font-size: $large; }
+          &.fa-home,
+          &.fa-twitter-square,
+          &.fa-facebook-square,
+          &.fa-google-plus-square,
+          &.fa-linkedin-square,
+          &.fa-xing-square { 
+            font-size: $x_large;
           }
+        }
+      }
+    }
+    .content { 
+      min-height: 36px;
+      padding-bottom: $box_padding;
+      .content-box {
+        padding: $box_padding;
+        font-size: $normal;
+        .label {
+          padding: 0;
+          margin-right: $box_padding/2;
+          font-family: $font_system;
+          font-size: $small;
+          text-shadow: none;
+        }
+        .privacy-icon { 
+          float: right; 
+          i { font-size: $normal; }
         }
       }
     }
@@ -131,15 +154,6 @@
   }
 }
 
-.sidebar {
-  img {
-    &.avatar {
-      float: right;
-      width: 50%;
-    }
-  }
-}
-
 /* ------- screen resolution adjustments ------- */
 
 @media only screen and (max-width: 1024px) {
@@ -194,6 +208,42 @@
         .text { 
           font-size: $x_small;
           line-height: $large;
+        }
+      }
+    }
+  }
+  .box {
+    &.user, &.email, &.address, &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+      &.with-opener {
+        &:before { margin-left: -30px; }
+      }
+      .header {
+        .identity-icon {
+          i {
+            font-size: $normal;
+            &.fa-home,
+            &.fa-twitter-square,
+            &.fa-facebook-square,
+            &.fa-google-plus-square,
+            &.fa-linkedin-square,
+            &.fa-xing-square { 
+              font-size: $large;
+            }
+          }
+        }
+      }
+      .content { 
+        min-height: 36px;
+        padding-bottom: $box_padding/2;
+        .content-box {
+          padding: $box_padding/2;
+          font-size: $x_small;
+          .label {
+            font-size: $xx_small;
+          }
+          .privacy-icon { 
+            i { font-size: $small; }
+          }
         }
       }
     }

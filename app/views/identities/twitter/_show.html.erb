@@ -1,8 +1,7 @@
 <% if (twitter_handle = twitter && twitter.handle).present? %>
   <div class="content-box">
-    <%= identity_icon(:twitter) %>
     <%= privacy_icon(:twitter) %>
-    <%= twitter_handle %>
+    <div class='label'><%= I18n.t("user.box.twitter.label") %>:</div> <%= twitter_handle %>
   </div>
 <% else %>
  <%= I18n.t("user.box.twitter.text") %>

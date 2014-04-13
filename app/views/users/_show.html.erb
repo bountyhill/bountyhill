@@ -1,10 +1,7 @@
-<% if user.description.present? %>
-  <div class="content-box">
-    <%= if user.commercial? then  identity_icon(:commercial, :title => I18n.t("user.box.profile.icon.commercial"))
-        else                      identity_icon(:private,    :title => I18n.t("user.box.profile.icon.private"))
-        end %>
+<div class="content-box">
+  <% if user.description.present? %>
     <%= user.description %>
-  </div>
-<% else %>
-  <%= I18n.t("user.box.profile.text") %>
-<% end %>
+  <% else %>
+    <%= I18n.t("user.box.profile.text") %>
+  <% end %>
+</div>

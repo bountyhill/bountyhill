@@ -1,6 +1,5 @@
 <% if (postal_address = address && address.postal).present? %>
   <div class="content-box">
-    <%= identity_icon(:address) %>
     <%= privacy_icon(:address) %>
     <%= postal_address.join("<br>").html_safe %>
   </div>

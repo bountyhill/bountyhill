@@ -1,16 +1,15 @@
+<div class="row-fluid">
+  <div class="main span9">
+    <%= user_bar(@user, :quest) %>
+  </div>
+  <div class="sidebar empty span3">&nbsp;</div>
+</div>
+<%= spacer %>
 <div class="row-fluid main">
   <div class="main span9">
-    <%= profile_box(@user) %>
-  </div>
-  <div class="sidebar span3">
-    <%= avatar @user, :size => 128 %>
-  </div>
-</div>
-
-<% if current_user == @user %>
-  <%= spacer %>
-  <div class="row-fluid">
-    <div class="main span9">
+    <%= profile_box(@user, :class => "with-opener") %>
+    <% if current_user == @user %>
+      <%= spacer %>
       <%= identity_box  @user, :address %>
       <%= spacer %>
       <%= identity_box  @user, :email %>
@@ -24,19 +23,11 @@
       <%= identity_box  @user, :linkedin %>
       <%= spacer %>
       <%= identity_box  @user, :xing %>
-    </div>
-    <div class="sidebar span3">
-      <%= user_statistic_boxes(@user) %>
-    </div>
-  </div>
-<% end %>
-
-<%= spacer %>
-<div class="row-fluid">
-  <div class="main span9">
+    <% end %>
+    <%= spacer %>
     <%= activities_box(@user, :per_page => @per_page) %>
   </div>
   <div class="sidebar span3">
-    <%= user_statistic_boxes(@user) unless current_user == @user %>
+    <%= user_statistic_boxes(@user) %>
   </div>
 </div>
