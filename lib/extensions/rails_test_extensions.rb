@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 module ActiveRecord::Assertions
-  A = ActiveRecord::Assertions
+  A = ActiveRecord::Assertions unless const_defined?('A')
   
   def self.invalid_attrs(object)
     return [] if object.valid?

@@ -5,7 +5,7 @@ require "geoip"
 
 class Rack::Request
   # Default parts for the :location entry.
-  LOCATION_PARTS = [ :city_name, :country_name ]
+  LOCATION_PARTS = [ :city_name, :country_name ] unless const_defined?('LOCATION_PARTS')
   
   # geo_ip looks up a given IP address, and returns an OpenStruct
   # with entries location.latitude, location.longitude, location.name

@@ -87,7 +87,7 @@ end
 # -- add a ActiveRecord::Base.money method to help set up money columns.
 
 module ActiveRecord::Base::MoneySupport
-  M = ActiveRecord::Base::MoneySupport
+  M = ActiveRecord::Base::MoneySupport unless const_defined?('M')
 
   # return the name of the cents column
   def self.cents_column(column) #:nodoc:
