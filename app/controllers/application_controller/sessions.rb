@@ -43,7 +43,7 @@ module ApplicationController::Sessions
   def signin_identity
     @signin_identity ||= begin
       if session[:signedin_with].present?
-        provider, id = session[:signedin_with].split('#')
+        provider, id = session[:signedin_with].to_s.split('#')
         "Identity::#{provider.camelize}".constantize.find(id)
       end
     end
