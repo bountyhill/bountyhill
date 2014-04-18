@@ -1,8 +1,8 @@
-<% if (email_address = email && email.email).present? %>
-  <div class="content-box">
+<div class="content-box">
+  <% if (email_address = email && email.email).present? %>
     <%= privacy_icon(:email) %>
     <div class='label'><%= I18n.t("user.box.email.label") %>:</div> <%= email_address %>
-  </div>
-<% else %>
- <%= I18n.t("user.box.email.text") %>
-<% end %>
+  <% else %>
+   <%= I18n.t("user.box.email.text") %>
+  <% end %>
+</div>

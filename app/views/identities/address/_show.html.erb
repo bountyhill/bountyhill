@@ -1,8 +1,8 @@
-<% if (postal_address = address && address.postal).present? %>
-  <div class="content-box">
+<div class="content-box">
+  <% if (postal_address = address && address.postal).present? %>
     <%= privacy_icon(:address) %>
     <%= postal_address.join("<br>").html_safe %>
-  </div>
-<% else %>
- <%= I18n.t("user.box.address.text") %>
-<% end %>
+  <% else %>
+   <%= I18n.t("user.box.address.text") %>
+  <% end %>
+</div>

@@ -1,8 +1,8 @@
-<% if (google_name = google && google.name).present? %>
-  <div class="content-box">
+<div class="content-box">
+  <% if (google_name = google && google.name).present? %>
     <%= privacy_icon(:google) %>
     <div class='label'><%= I18n.t("user.box.google.label") %>:</div> <%= google_name %>
-  </div>
-<% else %>
- <%= I18n.t("user.box.google.text") %>
-<% end %>
+  <% else %>
+   <%= I18n.t("user.box.google.text") %>
+  <% end %>
+</div>

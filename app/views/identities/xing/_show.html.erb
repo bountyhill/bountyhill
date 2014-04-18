@@ -1,8 +1,8 @@
-<% if (xing_name = xing && xing.name).present? %>
-  <div class="content-box">
+<div class="content-box">
+  <% if (xing_name = xing && xing.name).present? %>
     <%= privacy_icon(:xing) %>
     <div class='label'><%= I18n.t("user.box.xing.label") %>:</div> <%= xing_name %>
-  </div>
-<% else %>
- <%= I18n.t("user.box.xing.text") %>
-<% end %>
+  <% else %>
+   <%= I18n.t("user.box.xing.text") %>
+  <% end %>
+</div>
