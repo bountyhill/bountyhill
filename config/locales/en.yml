@@ -202,7 +202,7 @@ en:
   identity:
     required: 
       any:        "We need any contact data of you to continue."
-      online:     "You need to login to continue."
+      login:      "You need to login to continue."
       email:      "We need your email to continue."
       confirmed:  "You need to confirm your email to continue."
       address:    "We need your postal address to continue."

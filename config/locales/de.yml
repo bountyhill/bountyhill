@@ -202,7 +202,7 @@ de:
   identity:
     required: 
       any:        "Damit Du fortfahren kannst, müssen wir vorerst wissen, wie wir Dich kontaktieren können."
-      online:     "Du musst dich anmelden, um fortfahren zu können."
+      login:      "Du musst dich anmelden, um fortfahren zu können."
       email:      "Um fortfahren zu können, benötigen wir Deine Email-Adresse."
       confirmed:  "Um fortfahren zu können, musst Du Deine Email-Adresse zunächst bestätigen."
       address:    "Um fortfahren zu können, benötigen wir Deine Anschrift."
