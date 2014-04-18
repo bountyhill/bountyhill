@@ -1,6 +1,6 @@
-<%= javascript_include_tag "patches" %>
 <%- # This layout is used to render the an action into a modal dialog.
--%><%= 
+-%><%= javascript_include_tag "dialog" %>
+<%= 
   if request.xhr? 
     yield
   else
