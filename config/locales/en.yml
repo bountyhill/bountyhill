@@ -636,16 +636,15 @@ en:
       all:            All
       misc:           Miscellaneous
       jobs:           Jobs
+      flats:          Flats
       estate:         Real estate
-      service:        Service
-      lost:           Lost
-      missing:        Missing
-      crime:          Crime
-      electronics:    Electronics
-      sports:         Sports
-      entertainment:  Entertainment
+      missing:        Missing/Lost
+      crime:          Crime/Witness
       cars:           Cars
-      boats:          Boats
+      rarity:         Rarity
+      entertainment:  Entertainment
+      business:       Business
+      sports:         Sports
     form:
       field_hint:
         title:                "Enter a subject describing your quest in a few words."

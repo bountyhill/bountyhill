@@ -635,17 +635,16 @@ de:
     categories:
       all:            Alle
       misc:           Verschiedenes
-      jobs:           Arbeitsstellen
+      jobs:           Jobs
+      flats:          Mietwohnungen
       estate:         Immobilien
-      service:        Dienstleistung
-      lost:           Verloren
-      missing:        Vermisst
-      crime:          Verbrechen
-      electronics:    Elektronik
-      sports:         Sport
-      entertainment:  Unterhaltung
+      missing:        Vermisst/Verloren
+      crime:          Verbrechen/Zeugen
       cars:           Autos
-      boats:          Boote
+      rarity:         Raritäten
+      entertainment:  Unterhaltung
+      business:       Business
+      sports:         Sport
     form:
       field_hint:
         title:                "Gebe hier eine kurze Beschreibung Deiner Suchanfrage ein."

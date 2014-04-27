@@ -33,8 +33,12 @@ module Filter
 
       filters = scope.count(:group => attribute, :distinct => true).map do |group, count|
         filter_item(attribute, group, count)
-      end.sort_by do |filter| 
-        I18n.t(filter.name, :scope => "#{scope.klass.name.downcase}.#{attribute.to_s.pluralize}") 
+      end.sort_by do |filter|
+        # this sorts by order in attribute's constant definition:
+        "#{scope.klass.name}::#{attribute.to_s.pluralize.upcase}".constantize.index(filter.name).to_i
+        
+        # this sorts by alphabetic order in attribute's translation:
+        # I18n.t(filter.name, :scope => "#{scope.klass.name.downcase}.#{attribute.to_s.pluralize}")
       end
 
       # filters.unshift filter_item(attribute, "all", filters.sum(&:count))

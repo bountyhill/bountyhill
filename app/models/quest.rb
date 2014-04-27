@@ -94,7 +94,7 @@ class Quest < ActiveRecord::Base
 
   # -- CATEGORIES -----------------------------------------------------
   
-  CATEGORIES = %w(misc jobs estate service lost missing crime electronics sports entertainment cars boats)
+  CATEGORIES = %w(misc jobs flats estate missing crime cars rarity entertainment business sports)
   
   scope :with_category, lambda { |category|
     expect! category => CATEGORIES
