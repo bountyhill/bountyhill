@@ -666,7 +666,7 @@ en:
           other:  "%{count} days"
       create: 
         title:  Define a new quest
-        legend: "Please provide a detailed description about what you are looking, set up a bounty and specify your quest's run time. In addition feel free to define up to %{count} criteria to be matched for your quest."
+        legend: "Define a reward and provide a detailed description of what you are looking for. You can review your quest after you have created your search request. Finally you can decide in which social networks we should post it."
       edit: 
         title:  Edit your quest
         legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."

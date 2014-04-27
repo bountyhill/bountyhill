@@ -666,7 +666,7 @@ de:
           other:  "%{count} Tage"
       create:
         title:  Suchanfrage anlegen
-        legend: "Beschreibe detailiert was Du suchst, lobe eine Belohnung aus und lege die Laufzeit Deiner Suchanfrage fest. Du kannst in Deiner  Suchanfrage bis zu %{count} Kriterien definieren, um eingehende Angebote schneller bewerten zu können."
+        legend: "Bestimme eine Belohnung und beschreibe möglichst detailliert Dein Suchinteresse. Nachdem Du Deine Suchanfrage angelegt hast, kannst Du sie vor der Veröffentlichung noch einmal überprüfen. Anschliessend kannst du bestimmen, in welchen Soziale Netzwerken wir Deine Suchanfrage veröffentlichen sollen."
       edit: 
         title:  Suchanfrage bearbeiten
         legend: "Beschreibe detailiert was Du suchst. Du kannst in Deiner Suchanfrage bis zu %{count} Kriterien definieren, um eingehende Angebote schneller bewerten zu können."
