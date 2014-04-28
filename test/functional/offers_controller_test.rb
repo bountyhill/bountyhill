@@ -137,12 +137,12 @@ class OffersControllerTest < ActionController::TestCase
   end
   
   def test_new
-    # user is redirected if 'confirmed' email identity is not given
+    # user is redirected if no 'login' identity is given
     assert_no_difference "Offer.count" do
       get :new, :quest_id => @quest.id
     end
     assert_response :redirect
-    assert_redirected_to signin_path(:req => :confirmed)
+    assert_redirected_to signin_path(:req => :login)
     
     # assume user has 'confirmed' email identity
     @offerer.identity(:email).confirm!(true)
