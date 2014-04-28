@@ -188,7 +188,9 @@ class OfferTest < ActiveSupport::TestCase
       {:compliance=>10}])
     assert_equal 55, offer.send(:calculate_compliance)
   end
-  
+end
+
+__END__
   def test_chain
     offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
     assert_equal [], offer.chain
