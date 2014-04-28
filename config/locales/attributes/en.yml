@@ -2,8 +2,8 @@ en:
   activerecord:
     models:
       quest:
-        one:    Quest
-        other:  Quests
+        one:    Request
+        other:  Requests
       offer:
         one:    Offer
         other:  Offers
@@ -106,4 +106,4 @@ en:
       message:
         subject:  Subject
         body:     Message
-        quest_id: Quest
+        quest_id: Request

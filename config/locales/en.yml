@@ -32,7 +32,7 @@ en:
     action:
       invalid:      The action you requested cannot be performed.
     method:
-      invalid:      The action you requested cannot be performed will this request.
+      invalid:      The action you requested cannot be performed with this request.
   tweet:
     follow:
       success:  "Thank you for following @bountyhermes. We will keep you informed ..."
@@ -58,19 +58,19 @@ en:
       heading:    "%{commentable} has been commented"
       commentable:
         offer:    "Your offer"
-        quest:    "Your quest"
+        quest:    "Your request"
       intro:
         plain:    "We would like to inform you that %{commentator} has just posted this comment on %{commentable} %{link}:"
         html:     "We would like to inform you that %{commentator} has just posted this comment on %{commentable} %{link}:"
         commentable:
           offer:  "your offer"
-          quest:  "your quest"
+          quest:  "your request"
       text:
         plain:    "You can view all comments on the detail page of %{commentable}:"
         html:     "You can view all comments on the detail page of %{commentable}."
         commentable:
           offer:  "your offer"
-          quest:  "your quest"
+          quest:  "your request"
     contact_owner:
       heading:    "You received a contact inquiry"
       intro:
@@ -78,7 +78,7 @@ en:
         html:     "We would like to inform you that %{sender} has just send a contact inquiry regarding %{referable} %{reference} with the following message to you:"
       referable:
         offer:    "your offer"
-        quest:    "your quest"
+        quest:    "your request"
       text:
         plain:    "If you want to get in touch with with %{sender} you can reply to the request here:"
         html:     "If you want to get in touch with with %{sender} please %{link} to the request."
@@ -86,8 +86,8 @@ en:
     offer_received:
       subject:    "You received an offer"
       heading:    "You received an offer"
-      intro:      "We are happy to tell you that %{offerer} has submitted the offer %{offer} for your quest %{quest}."
-      compliance: "This offer fulfills your quest with a ratio of %{compliance}%."
+      intro:      "We are happy to tell you that %{offerer} has submitted the offer %{offer} for your request %{quest}."
+      compliance: "This offer fulfills your request with a ratio of %{compliance}%."
       text:
         plain:    "Please take a few minutes to review the offer. Ideally you should respond soon by either commenting, accepting or rejecting the offer:"
         html:     "Please take a few minutes to review %{link}. Ideally you should respond soon by either commenting, accepting or rejecting the %{link}."
@@ -95,17 +95,17 @@ en:
     offer_withdrawn:
       subject:    "An offer has been withdrawn"
       heading:    "An offer has been withdrawn"
-      intro:      "We are sorry to tell you that %{offerer} has withdrawn the offer %{offer} from your quest %{quest}."
+      intro:      "We are sorry to tell you that %{offerer} has withdrawn the offer %{offer} from your request %{quest}."
       reason:     "The offerer provided the following reason for withdrawning his offer:"
     offer_accepted:
       subject:    "Your offer has been accepted"
       heading:    "Your offer has been accepted"
-      intro:      "We are happy to tell you that %{searcher} has accepted your offer %{offer} for his quest %{quest}."
+      intro:      "We are happy to tell you that %{searcher} has accepted your offer %{offer} for his request %{quest}."
       reason:     "The searcher provided the following reason for accepting your offer:"
     offer_rejected:
       subject:    "Your offer has been rejected"
       heading:    "Your offer has been rejected"
-      intro:      "We are sorry to tell you that %{searcher} has rejected your offer %{offer} for his quest %{quest}."
+      intro:      "We are sorry to tell you that %{searcher} has rejected your offer %{offer} for his request %{quest}."
       reason:     "The searcher provided the following reason for rejecting your offer:"
     closing:  "Your bountyhill team"
     footer:
@@ -153,9 +153,9 @@ en:
     states:
       title:  States
   nav:
-    start_quest:  Start quest
-    quests:       List quests
-    my_quests:    My quests
+    start_quest:  Start request
+    quests:       List requests
+    my_quests:    My requests
     my_offers:    My offers
     received_offers: Received offers
     my_profile:   My profile
@@ -390,8 +390,8 @@ en:
         one:    "point collected"
         other:  "points collected"
       quests:
-        one:    "Quest created"
-        other:  "Quests created"
+        one:    "Request created"
+        other:  "Requests created"
       offers:
         one:    "Offer submitted"
         other:  "Offers submitted"
@@ -408,36 +408,36 @@ en:
           private:    "You are registered on bountyhill as a private user."
       address:
         title:  "Postal address"
-        text:   "You did not provide your postal address data so far. We do require this data e.g. for commercial users starting quests and/or submitting offers."
+        text:   "You did not provide your postal address data so far. We do require this data e.g. for commercial users starting requests and/or submitting offers."
         icon:   "The postal address you did provide."
       email:
         title:  "Email"
-        text:   "You did not provide your email address so far. We do require your email e.g. if you intend to submit offers for other user's quests."
+        text:   "You did not provide your email address so far. We do require your email e.g. if you intend to submit offers for other user's requests."
         icon:   "Your email address."
         label:  "Address"
       facebook:
         title:  "Facebook"
-        text:   "You did not provide access to your Facebook account so far. We do require your access to your Facebook account e.g. if you want us to post quests you did select on your timeline."
+        text:   "You did not provide access to your Facebook account so far. We do require your access to your Facebook account e.g. if you want us to post requests you did select on your timeline."
         icon:   "Your Facebook account."
         label:  "Nickname"
       google:
         title:  "Google"
-        text:   "You did not provide access to your Google account so far. We do require your access to your Google account e.g. if you want us to post quests you did select in your stream."
+        text:   "You did not provide access to your Google account so far. We do require your access to your Google account e.g. if you want us to post requests you did select in your stream."
         icon:   "Your Google account."
         label:  "User name"
       linkedin:
         title:  "LinkedIn"
-        text:   "You did not provide access to your LinkedIn account so far. We do require your access to your LinkedIn account e.g. if you want us to post quests you did select as messages."
+        text:   "You did not provide access to your LinkedIn account so far. We do require your access to your LinkedIn account e.g. if you want us to post requests you did select as messages."
         icon:   "Your LinkedIn account."
         label:  "User name"
       xing:
         title:  "Xing"
-        text:   "You did not provide access to your Xing account so far. We do require your access to your Xing account e.g. if you want us to post quests you did select as status updates."
+        text:   "You did not provide access to your Xing account so far. We do require your access to your Xing account e.g. if you want us to post requests you did select as status updates."
         icon:   "Your Xing account."
         label:  "User name"
       twitter:
         title:  "Twitter"
-        text:   "You did not provide access to your Tswitter account so far. We do require your access to your Twitter account e.g. if you want us to tweet quests you did select."
+        text:   "You did not provide access to your Tswitter account so far. We do require your access to your Twitter account e.g. if you want us to tweet requests you did select."
         icon:   "Your Twitter account."
         label:  "Handle"
     form:
@@ -547,11 +547,11 @@ en:
         description:  "Add a detailed description for your offer."
         images:       Add images
         acceptance:
-          offer_match:  "The offer does match my quest."
+          offer_match:  "The offer does match my request."
           other_reason: "Because of another reason."
         rejection:
-          offer_missmatch:  "The offer does not match my quest."
-          quest_invalid:    "My quest is no longer valid."
+          offer_missmatch:  "The offer does not match my request."
+          quest_invalid:    "My request is no longer valid."
           other_reason:     "Because of another reason."
         withdrawal:
           offer_invalid:  "My offer is no longer valid."
@@ -577,16 +577,16 @@ en:
       not_started:  "Not started"
       expired:      "Expired"
     action:
-      started:  "Your quest '%{quest}' was successfully started."
-      stopped:  "Your quest '%{quest}' was successfully canceled."
-      shared:   "Your quest '%{quest}' was successfully shared."
+      started:  "Your request '%{quest}' was successfully started."
+      stopped:  "Your request '%{quest}' was successfully canceled."
+      shared:   "Your request '%{quest}' was successfully shared."
     info:
       offers:
-        one:    "%{count} offer has been submitted for this quest."
-        other:  "%{count} offers have been submitted for this quest."
+        one:    "%{count} offer has been submitted for this request."
+        other:  "%{count} offers have been submitted for this request."
       comments:
-        one:    "%{count} comment was posted to this quest."
-        other:  "%{count} comments were posted to this quest."
+        one:    "%{count} comment was posted to this request."
+        other:  "%{count} comments were posted to this request."
     box:
       title:    "%{amount} bounty"
       location: "Location restriction: %{location}"
@@ -598,9 +598,9 @@ en:
         other:  "Attached images"
     list:
       title:
-        zero:   "No Quests present"
-        one:    "1 quest"
-        other:  "%{count} quests"
+        zero:   "No Requests present"
+        one:    "1 request"
+        other:  "%{count} requests"
       location: Enter a location to reduce results.
       bounty:   "%{amount} bounty"
       offers:
@@ -647,51 +647,51 @@ en:
       sports:         Sports
     form:
       field_hint:
-        description:          "Add a detailed description for your quest."
-        location:             "Enter the name of the quest's location."
-        restrict_location:    "I want to restrict my quest to a particular location."
-        bounty:               "Set up a bounty for your quest."
         title:                "Enter a short description of your search request. This abstract will serve e.g. as the request's heading."
+        description:          "Add a detailed description for your search request."
+        location:             "Enter the name of the request's location."
+        restrict_location:    "I want to restrict my request to a particular location."
+        bounty:               "Set up a bounty for your request."
         images:               Add images
         criteria:             "Define criteria to better assess incoming offers."
         message:              "You can change your message here if necessary."
-        cancellation_reason:  "Feel free to provide an explanation about your reason to stop this quest."
+        cancellation_reason:  "Feel free to provide an explanation about your reason to stop this request."
         cancellation:
-          bountyhill_success: "My quest succeeded on bountyhill."
-          other_success:      "My quest succeeded outside of bountyhill."
-          no_longer_needed:   "I don't need this quest any more."
+          bountyhill_success: "My request succeeded on bountyhill."
+          other_success:      "My request succeeded outside of bountyhill."
+          no_longer_needed:   "I don't need this request any more."
         duration:
           zero:   unlimited
           one:    "one day"
           other:  "%{count} days"
       create: 
-        title:  Define a new quest
-        legend: "Define a reward and provide a detailed description of what you are looking for. You can review your quest after you have created your search request. Finally you can decide in which social networks we should post it."
+        title:  Define a new request
+        legend: "Define a reward and provide a detailed description of what you are looking for. You can review your search request after you have created it. Finally you can decide in which social networks we should post it."
       edit: 
-        title:  Edit your quest
+        title:  Edit your request
         legend: "Provide a detailed description about what you are looking for combined with up to %{count} criteria to be matched."
       start:
-        title:  Start your quest
-        legend: "Your quest will be published in the choosen social networks with the message below. Feel free to adjust your quest's message to your needs."
+        title:  Start your request
+        legend: "Your request will be published in the choosen social networks with the message below. Feel free to adjust your request's message to your needs."
       stop:
-        title:  Stop your quest
-        legend: "Please tell us the reason why you want to stop your quest before it's expiration."
+        title:  Stop your request
+        legend: "Please tell us the reason why you want to stop your request before it's expiration."
   location:
     radius:
       unlimited: unlimited
       limited:  "%{radius} km radius"
     form:
       field_hint:
-        address: "Enter the location you want to restrict this quest to."
+        address: "Enter the location you want to restrict this request to."
         radius:  "The radius around the location."
   share:
     errors:
       identities: "No network was chosen"
     form:
-      title:        "Share this quest"
-      legend:       "Please choose the social networks you want to share this quest with your friends and followers."
+      title:        "Share this request"
+      legend:       "Please choose the social networks you want to share this request with your friends and followers."
       legend2:      "Enter the message you want to share. It will be posted as displayed below."
-      application:  "In addition we will share this quest in all social networks bountyhill is active in."
+      application:  "In addition we will share this request in all social networks bountyhill is active in."
       twitter:      "Twitter %{required}"
       facebook:     "Facebook %{required}"
       google:       "Google %{required}"
