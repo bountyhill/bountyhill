@@ -56,7 +56,7 @@ en:
         deletion:         Reason
         deletion_reason:  Explanation
       offer:
-        title:              Subject
+        title:              Abstract
         description:        Description
         compliance:         Compliance
         images:             Images

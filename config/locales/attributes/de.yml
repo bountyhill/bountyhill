@@ -56,7 +56,7 @@ de:
         deletion:         Beweggrund
         deletion_reason:  Erklärung
       offer:
-        title:              Betreff
+        title:              Kurzbeschreibung
         description:        Beschreibung
         compliance:         Erfüllungsgrad
         images:             Bilder
