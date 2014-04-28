@@ -647,11 +647,11 @@ en:
       sports:         Sports
     form:
       field_hint:
-        title:                "Enter a subject describing your quest in a few words."
         description:          "Add a detailed description for your quest."
         location:             "Enter the name of the quest's location."
         restrict_location:    "I want to restrict my quest to a particular location."
         bounty:               "Set up a bounty for your quest."
+        title:                "Enter a short description of your search request. This abstract will serve e.g. as the request's heading."
         images:               Add images
         criteria:             "Define criteria to better assess incoming offers."
         message:              "You can change your message here if necessary."

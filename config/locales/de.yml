@@ -647,7 +647,7 @@ de:
       sports:         Sport
     form:
       field_hint:
-        title:                "Gebe hier eine kurze Beschreibung Deiner Suchanfrage ein."
+        title:                "Gib hier eine kurze Beschreibung Deiner Suchanfrage ein. Diese dient u.a. als Anzeigenüberschrift."
         description:          "Hier kannst Du Deine Suchanfrage detailiert beschreiben."
         location:             "Gebe den Namen des Ortes Deiner Suchanfrage ein."
         restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
