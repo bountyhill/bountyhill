@@ -653,7 +653,7 @@ en:
         restrict_location:    "I want to restrict my request to a particular location."
         bounty:               "Set up a bounty for your request."
         images:               Add images
-        criteria:             "Define criteria to better assess incoming offers."
+        criteria:             "Define at least one criteria to better assess incoming offers."
         message:              "You can change your message here if necessary."
         cancellation_reason:  "Feel free to provide an explanation about your reason to stop this request."
         cancellation:

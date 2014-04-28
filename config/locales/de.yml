@@ -653,7 +653,7 @@ de:
         restrict_location:    "Ich möchte meine Suche auf einen bestimmten Ort beschränken."
         bounty:               "Lobe eine Belohung für Deine Suche aus."
         images:               Bilder hinzufügen
-        criteria:             "Definiere Kriterien um Angebote auf Deine Suchanfrage besser bewerten zu können."
+        criteria:             "Definiere mindestens ein Kriterium, um Angebote auf Deine Suchanfrage besser bewerten zu können."
         message:              "Falls notwendig, kannst Du Deine Nachricht hier ändern."
         cancellation_reason:  "Teile uns bitte mit, warum Du Deine Suchanfrage Suche beenden möchtest."
         cancellation:
