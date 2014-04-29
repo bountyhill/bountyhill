@@ -447,7 +447,7 @@ de:
       profile:
         title:    Nutzerprofil
         legend:   Die Angaben zu Deinem Nutzerprofil können von anderen Nutzern auf bountyhill eingesehen werden.
-        legend2:  "Beabsichtigst Du bountyhill für kommerzielle Zwecke zu nutzen? Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
+        legend2:  "Beabsichtigst Du bountyhill kommerziell zu nutzen? Bitte beachte, dass für kommerzielle Nutzer andere Nutzungsbedingungen gelten."
       delete:
         title:  Zugangskonto löschen
         legend: "Du kannst Dein bountyhill Zugangskonto jederzeit löschen. Wir würden es jedoch sehr bedauern, wenn Du uns verlässt. Falls Du Dein Konto dennoch löschen möchtest, lasse uns bitte den Grund dafür wissen."
