@@ -544,7 +544,7 @@ en:
         prefix:   "not at all"
         postfix:  "entirely"
       field_hint:
-        title:        "Enter a subject describing your offer in a few words."
+        title:        "Enter a short description of your offer. This abstract will serve e.g. as the offer's heading."
         description:  "Add a detailed description for your offer."
         images:       Add images
         acceptance:

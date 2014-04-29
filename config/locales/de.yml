@@ -544,7 +544,7 @@ de:
         prefix:   "gar nicht"
         postfix:  "völlig"
       field_hint:
-        title:        "Gebe hier eine kurze Beschreibung Deines Angebots ein."
+        title:        "Gib hier eine kurze Beschreibung Deines Angebots ein. Diese dient u.a. als Angebotsüberschrift."
         description:  "Hier kannst Du Dein Angebot detailiert beschreiben."
         images:       Bilder hinzufügen
         comment:      "Falls Du eine Anmerkung zu diesem Kriterium hast, gebe diese bitte hier ein."

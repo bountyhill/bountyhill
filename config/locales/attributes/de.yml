@@ -70,7 +70,7 @@ de:
         withdrawal_reason:  Erklärung
       quest:
         bounty:               Belohnung
-        title:                Betreff
+        title:                Kurzbeschreibung
         category:             Kategorie
         description:          Beschreibung
         location:             Ortsangabe
