@@ -94,7 +94,7 @@ module QuestsHelper
     else                  return unless User.draft.owns?(quest)
     end
     
-    modal_awesome_button(icon_for('interaction.start'), run_path(quest), options) { I18n.t("button.start") }
+    modal_awesome_button(icon_for('interaction.publish'), run_path(quest), options) { I18n.t("button.publish") }
   end
 
   def stop_quest_button(quest)

@@ -38,6 +38,7 @@ module IconHelper
       :edit     => :pencil,
       :delete   => :trash_o,
       :start    => :gear,
+      :publish  => :bullhorn,
       :stop     => :exclamation_circle,
       :offer    => :share,
       :accept   => :check_square,
