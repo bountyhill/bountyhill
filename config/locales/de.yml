@@ -662,7 +662,7 @@ de:
           other_success:      "Meine Suche hatte ausserhalb von Bountyhill Erfolg."
           no_longer_needed:   "Ich benötige diese Suche nicht mehr."
         duration:
-          zero:   unbegrenzt
+          zero:   unbegrenzte Zeit
           one:    "1 Tag"
           other:  "%{count} Tage"
       create:
@@ -692,7 +692,7 @@ de:
       title:        "Suchanfrage teilen"
       legend:       "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
       legend2:      "Gebe Deine Nachricht ein, die Du teilen möchtest. Diese wird wie unten angezeigt veröffentlicht."
-      legend3:      "Deine Suche wird %{duration_in_days} auf bountyhill aktiv sein."
+      legend3:      "Deine Suche wird für %{duration_in_days} auf bountyhill aktiv sein."
       application:  "Zusätzlich verbreiten wir Deine Suchanfrage in allen sozialen Netzwerken, in denen bountyhill aktiv ist."
       twitter:      "Twitter %{required}"
       facebook:     "Facebook %{required}"

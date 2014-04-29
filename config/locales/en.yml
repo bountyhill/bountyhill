@@ -662,7 +662,7 @@ en:
           other_success:      "My request succeeded outside of bountyhill."
           no_longer_needed:   "I don't need this request any more."
         duration:
-          zero:   unlimited
+          zero:   unlimited time
           one:    "one day"
           other:  "%{count} days"
       create: 
