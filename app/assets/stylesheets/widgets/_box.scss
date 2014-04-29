@@ -1,16 +1,16 @@
 .box {
   /* buttons */
-  &.quest,    &.quests  { @include button($small, $quest_button_color); }
-  &.offer,    &.offers  { @include button($small, $offer_button_color); }
-  &.user,     &.users   { @include button($small, $user_button_color); }
-  &.email               { @include button($small, $email_button_color); }
-  &.address             { @include button($small, $address_button_color); }
-  &.twitter             { @include button($small, $twitter_button_color); }
-  &.facebook            { @include button($small, $facebook_button_color); }
-  &.google              { @include button($small, $google_button_color); }
-  &.linkedin            { @include button($small, $linkedin_button_color); }
-  &.xing                { @include button($small, $xing_button_color); }
-  &.comments            { @include button($small, $comment_button_color); }
+  &.quest,    &.quests  { @include button($large, $quest_button_color); }
+  &.offer,    &.offers  { @include button($large, $offer_button_color); }
+  &.user,     &.users   { @include button($large, $user_button_color); }
+  &.email               { @include button($large, $email_button_color); }
+  &.address             { @include button($large, $address_button_color); }
+  &.twitter             { @include button($large, $twitter_button_color); }
+  &.facebook            { @include button($large, $facebook_button_color); }
+  &.google              { @include button($large, $google_button_color); }
+  &.linkedin            { @include button($large, $linkedin_button_color); }
+  &.xing                { @include button($large, $xing_button_color); }
+  &.comments            { @include button($large, $comment_button_color); }
  
   /* bottom border */
   &.quest     { @include box_border($quest_box_title_color); }

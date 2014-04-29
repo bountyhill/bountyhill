@@ -58,7 +58,7 @@
 /* ------- form ------- */
 form {
   .alert {
-    font-size: $large;
+    font-size: $small;
     padding: 1% 2%;
   }
   p.legend {
@@ -83,7 +83,7 @@ form {
     }
     &.error {
       .help-inline, .help-block {
-        font-size: $large;
+        font-size: $small;
         line-height: 120%;
         padding: 5px 0 0 5px;
       }
