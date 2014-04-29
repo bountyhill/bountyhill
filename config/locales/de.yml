@@ -692,6 +692,7 @@ de:
       title:        "Suchanfrage teilen"
       legend:       "Wähle bitte die sozialen Netzwerke aus, in denen Du diese Suchanfrage mit Deinen Freunden und Followern teilen möchtest."
       legend2:      "Gebe Deine Nachricht ein, die Du teilen möchtest. Diese wird wie unten angezeigt veröffentlicht."
+      legend3:      "Deine Suche wird %{duration_in_days} auf bountyhill aktiv sein."
       application:  "Zusätzlich verbreiten wir Deine Suchanfrage in allen sozialen Netzwerken, in denen bountyhill aktiv ist."
       twitter:      "Twitter %{required}"
       facebook:     "Facebook %{required}"

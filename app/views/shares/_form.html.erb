@@ -45,6 +45,12 @@
         <span class="preview"/>
       </div>
     </div>
+    
+    <% unless @share.quest.active? %>
+      <br><p><%= I18n.t("share.form.legend3",
+        :duration_in_days => I18n.t('quest.form.field_hint.duration', :count => @share.quest.duration_in_days)) %></p>
+    <% end %>
+    
   <% end %>
 
   <% modal_footer do
