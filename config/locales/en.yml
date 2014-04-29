@@ -494,8 +494,9 @@ en:
         one:    "Attached image"
         other:  "Attached images"
     activate:
-      title:  Make offer
-      legend: Please review your offer carefully. The searcher will be informed about your offer right after you sumbit it.
+      title:    Make offer
+      legend1:  Please review your offer carefully and ensure everything is correct. Potentially your offer will be a legally binding arrangement.
+      legend2:  The searcher will be informed about your offer right after you sumbit it.
     accept: 
       title:  Accept offer
       legend: Please let the offerer know why you want to accept his offer. The offerer will be informed about your approval right after you accepted his offer.

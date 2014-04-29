@@ -1,6 +1,7 @@
 <%= form_for  @offer, :url => activate_offer_url(@offer), :method => :put, :remote => true do |form| %>
   <% modal_body do %>
-    <p><%= I18n.t("offer.activate.legend") %></p>
+    <p><%= I18n.t("offer.activate.legend1") %></p>
+    <p><%= I18n.t("offer.activate.legend2") %></p>
     <%= form.error_messages %>
   <% end %>
   

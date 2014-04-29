@@ -494,8 +494,9 @@ de:
         one:    "Hinzugefügtes Bild"
         other:  "Hinzugefügte Bilder"
     activate:
-      title:  Angebot abgeben
-      legend: "Schau Dir Dein Angebot vor der Abgabe noch einmal an. Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
+      title:   Angebot abgeben
+      legend1: "Schau Dir Dein Angebot vor der Abgabe noch einmal genau an und stelle sicher, dass es korrekt ist. Möglicherweise besteht nach der Abgabe Deines Angebotes eine rechtliche Bindung."
+      legend2: "Nach der Abgabe Deines Angebots wird der Suchende darüber informiert, dass er ein neues Angebot auf seine Suchanfrage erhalten hat."
     accept: 
       title:  Angebot annehmen
       legend: "Teile bitte dem Anbieter mit, warum Du sein Angebot annehmen möchtest. Nach Deiner Annahme wird der Anbieter darüber informiert, dass sein Angebot auf Deine Suchanfrage akzeptiert wurde."
