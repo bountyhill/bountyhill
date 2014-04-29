@@ -28,8 +28,3 @@ if(typeof console === "undefined") {
     log: function() {}
   };
 }
-
-// HTML escape
-jQuery.escapeHTML = function(str) {
-  return jQuery('<div/>').text(str).html();
-};

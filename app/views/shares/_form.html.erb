@@ -60,6 +60,11 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
+// HTML escape
+jQuery.escapeHTML = function(str) {
+  return jQuery('<div/>').text(str).html();
+};
+
 
 (function($) {
   
