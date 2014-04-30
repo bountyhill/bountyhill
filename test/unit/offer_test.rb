@@ -188,6 +188,29 @@ class OfferTest < ActiveSupport::TestCase
       {:compliance=>10}])
     assert_equal 55, offer.send(:calculate_compliance)
   end
+  
+  def test_owner_contactable_by
+    user  = Factory(:user)
+    quest = Factory(:quest, :owner => user)
+    quest.start!
+    offer = Factory(:offer, :quest => quest, :owner => admin)
+    
+    assert_false offer.owner_contactable_by?(nil)
+    assert_false offer.owner_contactable_by?(admin)
+    assert_false offer.owner_contactable_by?(offer.owner)
+    
+    # active offer's owner should be contactable by quest's owner
+    offer.activate!
+    assert        offer.active?
+    assert_false  offer.accepted?
+    assert        offer.owner_contactable_by?(user)
+    
+    # accepted offer's owner should be contactable by quest's owner
+    as(user) { offer.accept! }
+    assert_false  offer.active?
+    assert        offer.accepted?
+    assert        offer.owner_contactable_by?(user)
+  end
 end
 
 __END__

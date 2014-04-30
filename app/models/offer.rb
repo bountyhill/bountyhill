@@ -316,6 +316,13 @@ class Offer < ActiveRecord::Base
     self
   end
   
+  def owner_contactable_by?(user)
+    expect! user => [User, nil]
+    return false unless user.present?
+    
+    user.owns?(self.quest) &&
+    (self.active? || self.accepted?)
+  end
 
   # -- send out emails
   

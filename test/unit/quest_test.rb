@@ -75,7 +75,30 @@ class QuestTest < ActiveSupport::TestCase
       assert_invalid quest, :owner
     end
   end
-
+  
+  def test_owner_contactable_by
+    user  = Factory(:user)
+    quest = Factory(:quest, :owner => admin)
+    
+    assert_false quest.owner_contactable_by?(nil)
+    assert_false quest.owner_contactable_by?(user)
+    assert_false quest.owner_contactable_by?(quest.owner)
+    
+    # active quest's owner should be contactable by any user
+    quest.start!
+    assert        quest.active?
+    assert_false  quest.offers.any?(&:accepted?)
+    assert        quest.owner_contactable_by?(user)
+    
+    # quest's owner should be contactable by owner of accapted offer
+    offer = Factory(:offer, :quest => quest, :owner => user, :state => 'active')
+    as(admin) { offer.accept! }
+    quest.reload.stop!
+    assert_false  quest.active?
+    assert        quest.offers.any?(&:accepted?)
+    assert        quest.owner_contactable_by?(user)
+  end
+  
   def assert_cannot_write(*objects)
     objects.each do |object|
       assert_raise(ActiveRecord::RecordInvalid) {  

@@ -287,6 +287,14 @@ class Quest < ActiveRecord::Base
     self
   end
   
+  def owner_contactable_by?(user)
+    expect! user => [User, nil]
+    return false unless user.present?
+    
+    !user.owns?(self) &&
+    (self.active? || ((offer = self.offers.detect(&:accepted?)).present? && user.owns?(offer)))
+  end
+  
   # -- quest statistics -----------------------------------------------
   
   # returns an array of top quests visible to all users.
