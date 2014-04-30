@@ -18,19 +18,6 @@ class QuestTest < ActiveSupport::TestCase
     assert_invalid Quest.new(:bounty => "12", :title => "title" * 100, :description => "description" * 1000), :title, :description
   end
   
-  def test_ownership
-    quest = Quest.create!(:bounty => "12", :title => "title", :description => "description", :category => "misc")
-    assert_valid quest
-    assert_equal(admin, Quest.find(quest.id).owner)
-
-    # needs a user. Note that the owner will be set when saving, not on #new!
-    as(nil) do
-      quest = Quest.new
-      assert_nil(quest.owner)
-      assert_invalid quest, :owner
-    end
-  end
-  
   def test_activity_logging
     quest = Quest.new(:bounty => "12", :title => "title", :description => "description", :category => "misc")
     
