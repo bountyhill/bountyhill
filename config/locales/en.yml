@@ -577,7 +577,7 @@ en:
     status:
       active:       "Active"
       not_started:  "Not started"
-      expired:      "Expired"
+      expired:      "Ended"
     action:
       started:  "Your request '%{quest}' was successfully started."
       stopped:  "Your request '%{quest}' was successfully canceled."

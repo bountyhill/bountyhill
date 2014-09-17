@@ -577,7 +577,7 @@ de:
     status:
       active:       "Aktiv"
       not_started:  "Nicht gestartet"
-      expired:      "Abgelaufen"
+      expired:      "Beendet"
     action:
       started:  "Deine Suchanfrage '%{quest}' wurde erfolgreich gestartet."
       stopped:  "Deine Suchanfrage '%{quest}' wurde erfolgreich abgebrochen."
