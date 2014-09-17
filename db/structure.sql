@@ -930,6 +930,8 @@ INSERT INTO schema_migrations (version) VALUES ('4');
 
 INSERT INTO schema_migrations (version) VALUES ('40');
 
+INSERT INTO schema_migrations (version) VALUES ('41');
+
 INSERT INTO schema_migrations (version) VALUES ('5');
 
 INSERT INTO schema_migrations (version) VALUES ('6');
