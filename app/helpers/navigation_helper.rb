@@ -92,7 +92,7 @@ module NavigationHelper
     when :footer_right
       [:twitter, :facebook, :google, :linkedin, :xing] + [ :copyright ]
     when :footer_left
-      [ :about, :contact, :imprint, :terms, :privacy ]
+      [ :info, :contact, :imprint, :terms, :privacy ]
     end
   end
   

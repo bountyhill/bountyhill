@@ -162,7 +162,7 @@ en:
     my_profile:   My profile
     signin:       Sign in/up
     signout:      Sign out
-    about:        About
+    info:         Info
     contact:      Contact
     imprint:      Imprint
     terms:        Terms
@@ -195,7 +195,7 @@ en:
       text5:      "Your searches will succeed sooner, you will receive real money for your offers and you will be rewarded for your support distributing other's searches."
   static:
     title:
-      about:    Abount bountyhill
+      info:     How does bountyhill work?
       contact:  Contact
       imprint:  Imprint
       privacy:  Privacy Policy

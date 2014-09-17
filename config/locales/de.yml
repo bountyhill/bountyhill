@@ -162,7 +162,7 @@ de:
     my_profile:   Mein Profil
     signin:       Anmelden/Registrieren
     signout:      Abmelden
-    about:        Über uns
+    info:         Info
     contact:      Kontakt
     imprint:      Impressum
     terms:        AGB
@@ -195,7 +195,7 @@ de:
       text5:      "Deine Suchen führen schneller zum Erfolg, für Deine Angebote erhälst Du bahres Geld und für Deine Hilfe, Anfragen zu verbreiten, wirst Du belohnt."
   static:
     title:
-      about:    Über bountyhill
+      info:     Wie funktioniert bountyhill?
       contact:  Kontakt
       imprint:  Impressum
       privacy:  Datenschutzerklärung
