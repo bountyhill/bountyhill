@@ -175,7 +175,7 @@ protected
   end
   
   def update_email
-    if Identity::Email.authenticate(@identity.email, @identity_params[:password])
+    if params[:reset] || Identity::Email.authenticate(@identity.email, @identity_params[:password])
       if @identity.update_attributes(
           :password               => @identity_params[:password_new],
           :password_confirmation  => @identity_params[:password_new_confirmation])

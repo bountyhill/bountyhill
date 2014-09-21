@@ -2,9 +2,13 @@
   <p><%= I18n.t("identity/email.form.edit.legend")%></p>
   <%= form.error_messages %>
 
-  <%= form.control_group :password,                   :password_field %>
-  <%= form.control_group :password_new,               :password_field %>
-  <%= form.control_group :password_new_confirmation,  :password_field %>
+  <% if params[:reset].present? %>
+    <%= hidden_field_tag :reset, params[:reset] %>
+  <% else %>
+    <%= form.control_group :password, :password_field %>
+  <% end %>
+  <%= form.control_group :password_new, :password_field %>
+  <%= form.control_group :password_new_confirmation, :password_field %>
 
   <%= form.actions "#", :"data-dismiss" => "modal" %>
 <% end %>
