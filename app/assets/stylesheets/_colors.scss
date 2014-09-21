@@ -35,6 +35,9 @@ $black:     black;
 $gray:      #E3E3E3;
 $gray_dark: #CCC;
 
+$white_transparent: rgba(255, 255, 255, $opacity);
+$black_transparent: rgba(0, 0, 0, $opacity);
+
 
 /* text */
 $content_color:           $gray;

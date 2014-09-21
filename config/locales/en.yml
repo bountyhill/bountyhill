@@ -171,17 +171,7 @@ en:
     logs:         Logs
     jobs:         Jobs
   home:
-    claim:  bountyhill - find together
-    instructions:
-      headline1:    YOU
-      text_left1:   "can publish your search requests on bountyhill ..."
-      text_right1:  "... if you are willing to set up financial reward for it."
-      headline2:    WE
-      text_left2:   "distribute your search request in popular social networks ..."
-      text_right2:  "... rewarding every forward of your search ourselves."
-      headline3:    OUR
-      text_left3:   "bounties will lead your search to a successful end ..."
-      text_right3:  "... bringing you closer to your goal click by click."
+    claim:  find.together
     explanation:
       headline1:  Whatever you're looking for
       text1:      "A new flat, a new job, a baby sitter, a run away ped...<br> No matter what it is - on bountyhill everyone will help you finding it!"
