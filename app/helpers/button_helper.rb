@@ -48,7 +48,10 @@ module ButtonHelper
     modal_awesome_button(icon_for('interaction.send'), url_for(
       :controller => :messages,
       :action     => :new,
-      :message    => { :reference_id => object.id, :reference_type => object.class.name })) { I18n.t("button.contact") }
+      :message    => {
+        :subject        => "#{I18n.t("mail.contact_owner.referable.#{object.class.name.underscore}")} '#{object.title}'",
+        :reference_id   => object.id,
+        :reference_type => object.class.name })) { I18n.t("button.contact") }
   end
 
 end

@@ -8,7 +8,8 @@ class Message < ActiveRecord::Base
   belongs_to :receiver, :class_name => User
   belongs_to :reference, :polymorphic => true
   
-  validates :sender, :receiver, :subject, :body, :presence => true
+  validates :sender, :receiver, :body, :presence => true
+  validates :subject,        :presence => true, :length => { :maximum => 255 }
   validates :reference_id,   :presence => true, :numericality => true
   validates :reference_type, :presence => true, :inclusion => %w(Quest Offer)
   
