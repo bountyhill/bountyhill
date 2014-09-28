@@ -268,7 +268,7 @@ class ActionView::Helpers::FormBuilder
     
     services  = [ "COMPUTER", "FACEBOOK", "FLICKR", "PICASA" ]
     mimetypes = [ 'image/*' ]
-    maxSize   = 1 * 1024 * 1024
+    maxSize   = 2 * 1024 * 1024
 
     {
       "fp-button-text"  => options[:placeholder],
