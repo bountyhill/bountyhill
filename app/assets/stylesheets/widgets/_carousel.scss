@@ -1,17 +1,13 @@
 .lightbox {
   .carousel {
-    margin: 0;
-    &:hover {
-      .carousel-control {
-        display: block;
-      }
+    height: 100%;
+    .item {
+      img { margin: 0 auto; }
     }
-  }
-  .carousel-control {
-    top: 50%;
-    /*
-    display:none;
-    */
+    .carousel-control { top: 50%; }
+    &:hover {
+      .carousel-control { display: block; }
+    }
   }
 }
 
