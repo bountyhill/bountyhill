@@ -11,8 +11,8 @@
       $('#myCarousel').carousel({ interval: 3000 })
       
       // re-center image in slideshow every time the carousel slides
-      $('#myCarousel').bind('slid', function() {
-        $("#myCarousel img").each(function(){
+      $('#myCarousel').bind('slide', function() {
+        $("#myCarousel .item img").each(function(){
             this.style.marginTop = ($('#myCarousel').height() - this.height) / 2 + "px";
         })
       });
