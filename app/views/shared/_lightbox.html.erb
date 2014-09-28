@@ -7,13 +7,14 @@
   <% else %>
     <%= render "shared/carousel", :images => images, :active => active %>
     <script type="text/javascript" charset="utf-8">
-    // Initializes the carousel with an optional options object and starts cycling through items.
-      $('#myCarousel').carousel({
-        interval: 3000
-      })
-    // re-center image in slideshow every time the carousel slides
+      // Initializes the carousel with an optional options object and starts cycling through items.
+      $('#myCarousel').carousel({ interval: 3000 })
+      
+      // re-center image in slideshow every time the carousel slides
       $('#myCarousel').bind('slid', function() {
-        $('#myLightbox').lightbox('centerImage');
+        $("#myCarousel img").each(function(){
+            this.style.marginTop = ($('#myCarousel').height() - this.height) / 2 + "px";
+        })
       });
     </script>
   <% end %>
