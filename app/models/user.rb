@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
   #
   # helper method to decide if on object belongs to the use
   def owns?(object)
-    self == object.owner
+    object.respond_to?(:owner) && self == object.owner
   end
 
   # -- automatic pseudo "attributes" : these methods try to return

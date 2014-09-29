@@ -4,7 +4,7 @@
   </div>
   <div class='action span8'>
     <%= I18n.t("activity.action.#{activity.action}",
-      :title  => content_tag(:span, activity.entity.respond_to?(:title) ? "'#{activity.entity.title}'" : '', :class => 'title'),
+      :title  => content_tag(:span, linked_title_of(activity), :class => 'title'),
       :item   => I18n.t("activerecord.models.#{activity.entity_type.underscore}", :count => 1)).html_safe %>
   </div>
   <div class='time span2'>
