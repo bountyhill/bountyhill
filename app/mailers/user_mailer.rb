@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   layout "../user_mailer/layout"
   
   default :from => 'info@bountyhill.com'
-  default :bcc  => 'maillog@bountyhill.com'
+  default :bcc  => "maillog-#{Bountybase.environment}@bountyhill.com"
   default :css  => 'email' # roadie option convert styles in this css file into inline styles
 
   # This is a temporary default_url_option. It will be adjusted by
