@@ -16,6 +16,13 @@ class OfferTest < ActiveSupport::TestCase
     # quest not yet started 
     assert_invalid Offer.new(:quest => quest), :description, :base
   end
+
+  def test_validation_fails_when_owner_is_owner_of_quest_as_well
+    quest.start!
+    offer = Offer.new(:quest => quest)
+    offer.owner = quest.owner
+    assert_invalid offer, :description, :base
+  end
   
   def test_validation
     quest.start!

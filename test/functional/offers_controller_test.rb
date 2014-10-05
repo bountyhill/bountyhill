@@ -147,16 +147,7 @@ class OffersControllerTest < ActionController::TestCase
     # assume user has 'confirmed' email identity
     @offerer.identity(:email).confirm!(true)
 
-    # user is redirected if address identity is not given for commercial user
-    User.any_instance.expects(:commercial?).returns(true)
-    assert_no_difference "Offer.count" do
-      get :new, :quest_id => @quest.id
-    end
-    assert_response :redirect
-    assert_redirected_to signin_path(:req => :address)
-    
     # test new succeeds
-    User.any_instance.expects(:commercial?).returns(false)
     assert_no_difference "Offer.count" do
       get :new, :quest_id => @quest.id
     end
@@ -166,7 +157,6 @@ class OffersControllerTest < ActionController::TestCase
     assert_equal @quest, assigns(:offer).quest
     
     # test new with location succeeds
-    User.any_instance.expects(:commercial?).returns(false)
     @request.stubs(:location).returns(OpenStruct.new(:name => "Berlin, Germany"))
     assert_no_difference "Offer.count" do
       get :new, :quest_id => @quest.id
@@ -175,6 +165,23 @@ class OffersControllerTest < ActionController::TestCase
     assert_template :new
     assert assigns(:offer).new_record?
     assert_equal @request.location.name, assigns(:offer).location
+
+    # user is redirected if address identity is not given for commercial user
+    User.any_instance.expects(:commercial?).returns(true)
+    assert_no_difference "Offer.count" do
+      get :new, :quest_id => @quest.id
+    end
+    assert_response :redirect
+    assert_redirected_to signin_path(:req => :address)
+    
+    # user is redirected if he owns quest to offer on
+    User.any_instance.expects(:commercial?).returns(false)
+    User.any_instance.expects(:owns?).with(@quest).returns(true)
+    assert_no_difference "Offer.count" do
+      get :new, :quest_id => @quest.id
+    end
+    assert_response :redirect
+    assert_redirected_to quest_path(@quest)
   end
   
   def test_edit
@@ -203,7 +210,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(assigns(:offer), :preview => true)
     assert !assigns(:offer).new_record?
-    assert_equal I18n.t("notice.create.success", :record => Offer.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.submit.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_update

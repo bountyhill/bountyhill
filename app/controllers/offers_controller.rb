@@ -50,6 +50,12 @@ class OffersController < ApplicationController
     request_identity! :login,   :on_cancel => @offer.quest
     request_identity! :address, :on_cancel => @offer.quest if current_user.commercial?
 
+    # owner of quest is not allowed offer on it
+    if current_user.owns?(@offer.quest)
+      flash[:error] = I18n.t("notice.action.invalid")
+      redirect_to! quest_path(@offer.quest)
+    end
+    
     # fill in location, if the server provides one.
     if location = request.location
       @offer.location = location.name

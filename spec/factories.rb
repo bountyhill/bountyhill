@@ -98,7 +98,7 @@ FactoryGirl.define do
     title       "offer title"
     description "offer description"
     association :quest, :factory => :quest
-#    association :owner, :factory => :user
+    association :owner, :factory => :user
   end
   
   factory :comment do

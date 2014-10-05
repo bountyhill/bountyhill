@@ -58,7 +58,15 @@ class Offer < ActiveRecord::Base
   
   def validate_quest_is_active
     return if quest && quest.active?
-    errors.add(:base, "quest is not active") 
+    errors.add(:base, :permission_denied) 
+  end
+
+  # Can't make an offer on a quest owned by the same owner.
+  validate :validate_quest_owner, :on => :create
+  
+  def validate_quest_owner
+    return if quest && quest.owner != owner
+    errors.add(:base, :permission_denied) 
   end
   
   # -- Initial setup -------------------------------------------------------
