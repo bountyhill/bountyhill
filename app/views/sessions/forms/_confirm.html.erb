@@ -3,7 +3,7 @@
   <%= awesome_icon(icon_for('identity.confirm'), :class => "pull-right") %>
 <% end %>
 
-<% accordion_body(:confirm) do %>
+<% accordion_body(:confirm, :collapse => :in) do %>
   <% form_for identity?(:email) || Identity::Email.new, :url => "/confirm", :remote => true do |form| %>
     <p><%= I18n.t("identity/confirm.form.legend")%></p>
 

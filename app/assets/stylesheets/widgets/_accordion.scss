@@ -37,7 +37,7 @@
           border: 1px solid $signin_highlight;
         };
       }
-      &.email {
+      &.email, &.confirm {
         background-color: $email;
         border: 1px solid $email;
         &:hover { 

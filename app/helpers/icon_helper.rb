@@ -21,7 +21,7 @@ module IconHelper
     :identity => {
       :commercial => :group,
       :private    => :user,
-      :confirm    => :check,
+      :confirm    => :envelope_o,
       :signup     => :user,
       :delete     => :trash_o,
       :password   => :lock,

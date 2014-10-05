@@ -75,10 +75,14 @@ module ApplicationController::RequiredIdentity
       return
     end
 
-    # Ask for email, if we need a *confirmed* email, but don't even have
-    # an unconfirmed yet.
+    # Ask for email, if we need a *confirmed* email, but don't even have an unconfirmed yet.
     if kind == :confirmed && !identity?(:email)
       kind = :email
+    end
+    
+    # Ask for confirmed, if we need a *login* identity, but have just an unconfirmed email yet
+    if kind == :login && (email = identity?(:email)).present? && !email.confirmed?
+      kind = :confirmed
     end
 
     # -- fetch notice text --------------------------------------------

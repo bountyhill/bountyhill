@@ -37,6 +37,8 @@ module AccordionHelper
   def collapse(partial, options={})
     expect! partial => Symbol
     expect! options => Hash
+    
+    return options[:collapse] if options[:collapse].present?
 
     @partial ||= @partials.first
     File.basename(@partial).to_s == partial.to_s ? 'in' : 'out'
