@@ -11,7 +11,7 @@ en:
     base_error:     "%{base_error}: please review your input."
     create:
       success:      "%{record} was successfully created."
-    offer:
+    submit:
       success:      "%{record} was successfully submitted."
     update:
       success:      "%{record} was successfully updated."

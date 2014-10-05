@@ -11,7 +11,7 @@ de:
     base_error:     "%{base_error}: Bitte überprüfe Deine Eingaben."
     create:
       success:      "%{record} wurde erfolgreich angelegt."
-    offer:
+    submit:
       success:      "%{record} wurde erfolgreich abgegeben."
     update:
       success:      "%{record} wurde erfolgreich aktualisiert."

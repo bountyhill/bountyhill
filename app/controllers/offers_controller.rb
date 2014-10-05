@@ -73,7 +73,7 @@ class OffersController < ApplicationController
 
     # Activate the offer after saving.
     if @offer.save
-      flash[:success] = I18n.t("notice.create.success", :record => Offer.model_name.human)
+      flash[:success] = I18n.t("notice.submit.success", :record => Offer.model_name.human)
       redirect_to! offer_path(@offer, :preview => true)
     end
     
