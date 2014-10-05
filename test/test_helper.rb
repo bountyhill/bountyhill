@@ -59,7 +59,7 @@ require 'ruby-debug'
 
 require 'test/unit'
 require 'test/unit/ui/console/testrunner'   
-require 'mocha'
+require 'mocha/setup'
 
 class Test::Unit::UI::Console::TestRunner
   def guess_color_availability; true; end
