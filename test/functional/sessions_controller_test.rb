@@ -57,8 +57,10 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   def test_signin_post_mode_signup
-    assert_difference("Identity::Email.count") do
-      post :signin_post, :do_signup => true, :identity_email => { :email => 'bar.foo@sample.com', :password => 'barfoo', :commercial => 1 }
+    assert_difference("User.count") do
+      assert_difference("Identity::Email.count") do
+        post :signin_post, :do_signup => true, :identity_email => { :email => 'bar.foo@sample.com', :password => 'barfoo', :commercial => 1 }
+      end
     end
     assert_response :redirect
     assert_redirected_to root_path
@@ -68,6 +70,23 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal :signup, assigns(:mode)
     assert_equal I18n.t("identity.form.success.signup", :name => assigns(:identity).name), flash[:success]
   end
+  
+  def test_signin_post_mode_signup_with_current_user
+    login (user = Factory(:user))
+    
+    assert_no_difference("User.count") do
+      assert_difference("Identity::Email.count") do
+        post :signin_post, :do_signup => true, :identity_email => { :email => 'foo.bar@sample.com', :password => 'foobar' }
+      end
+    end
+    assert_response :redirect
+    assert_redirected_to root_path
+    assert !assigns(:identity).new_record?
+    assert assigns(:identity).email == 'foo.bar@sample.com'
+    assert assigns(:identity).user == user
+    assert_equal :signup, assigns(:mode)
+    assert_equal I18n.t("identity.form.success.signup", :name => assigns(:identity).name), flash[:success]
+  end  
   
   def test_signin_post_mode_signin_fails
     xhr :post, :signin_post, :do_signin => true, :identity_email => { :email => 'unknown@sample.com', :password => '' }
@@ -143,7 +162,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   def test_set_partial
-    partials = {
+    {
       Factory(:email_identity)    => "sessions/forms/signin",
       Factory(:twitter_identity)  => "sessions/forms/twitter",
       Factory(:facebook_identity) => "sessions/forms/facebook",

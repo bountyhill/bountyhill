@@ -8,7 +8,7 @@ class Identity::Email < Identity
   with_metrics! "accounts.email"
   after_create :send_confirmation_email
    
-  attr_accessible :name, :email, :password, :password_confirmation, :newsletter_subscription
+  attr_accessible :user, :name, :email, :password, :password_confirmation, :newsletter_subscription
   has_secure_password
   
   # -- validation -----------------------------------------------------

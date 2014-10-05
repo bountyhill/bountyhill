@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
     email, password = @identity_params.values_at(:email, :password)
     @identity = case @mode
       when :signin  then Identity::Email.authenticate(email, password)
-      when :signup  then Identity::Email.create(@identity_params)
+      when :signup  then Identity::Email.create(@identity_params.merge(:user => current_user || Identity.find_user(@identity_params)))
       when :reset   then Identity::Email.where("lower(email)=?", email.downcase).first
       end || Identity::Email.new(@identity_params)
       
