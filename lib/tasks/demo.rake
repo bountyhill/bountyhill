@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 IMAGE_URLS = %w(
   http://farm3.staticflickr.com/2030/2449885430_193e200881_b_d.jpg
   http://farm3.staticflickr.com/2588/3965047781_608a867df8_b_d.jpg

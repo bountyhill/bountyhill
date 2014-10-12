@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 namespace :bountyhill do
   task :setup => :environment do
     Bountybase::Metrics.in_background = false

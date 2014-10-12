@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 namespace :assets do
   desc "Rebuild assets"
   task :rebuild => %W(clean precompile remove_jquery)

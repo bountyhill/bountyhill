@@ -1,4 +1,5 @@
-# 
+# encoding: UTF-8
+
 require 'rdoc/task'
 
 RDoc::Task.new do |rdoc|

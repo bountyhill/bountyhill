@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class AddSharedAtToShares < ActiveRecord::Migration
   def change
     add_column :shares, :application, :boolean

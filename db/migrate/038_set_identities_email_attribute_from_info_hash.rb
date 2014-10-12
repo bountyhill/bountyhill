@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class SetIdentitiesEmailAttributeFromInfoHash < ActiveRecord::Migration
   def up
     Identity.oauth_identities.each do |id|

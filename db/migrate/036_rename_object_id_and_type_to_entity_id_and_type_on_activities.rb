@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class RenameObjectIdAndTypeToEntityIdAndTypeOnActivities < ActiveRecord::Migration
   def up
     rename_column :activities, :object_id,    :entity_id

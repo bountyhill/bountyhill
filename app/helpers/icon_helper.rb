@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module IconHelper
   
   # definition of each and every icon

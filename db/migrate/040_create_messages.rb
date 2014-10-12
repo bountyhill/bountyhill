@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class CreateMessages < ActiveRecord::Migration
   def change
     create_table "messages", :force => true do |t|

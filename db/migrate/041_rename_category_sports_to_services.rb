@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class RenameCategorySportsToServices < ActiveRecord::Migration
   def up
     Quest.update_all({ :category => 'services' }, { :category => 'sports' })

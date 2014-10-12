@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 namespace :bountybase do
   desc "Sync bountybase 'gem'"
   task :release => %W(push pull commit)

@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 namespace :git do
   desc "Tag and push repository"
   task :push do
