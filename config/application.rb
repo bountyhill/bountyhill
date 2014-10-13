@@ -84,7 +84,10 @@ module Bountyhill
     # Fetch the I18n.locale from the Browser.
     config.middleware.use Rack::Locale
     
-    # AutoTitleMiddleware: determines the page title from the first <h1> or <h2> 
+    # Utf8Sanitizer does not accept requests with invalid byte sequence
+    config.middleware.use ::Utf8SanitizerMiddleware
+
+    # AutoTitleMiddleware: determines the page title from the first <h1> or <h2>
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end
   
