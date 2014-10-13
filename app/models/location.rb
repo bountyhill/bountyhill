@@ -45,4 +45,12 @@ class Location < ActiveRecord::Base
     radius.to_s == 'unlimited'
   end
 
+  def address
+    self[:address].force_encoding("UTF-8")
+  end
+  
+  def address=(value)
+    self[:address] = value.force_encoding("UTF-8")
+  end
+
 end
