@@ -25,7 +25,7 @@ class Location < ActiveRecord::Base
     super
     
     if (location = attributes.delete(:location))
-      self.address    = location.name.to_s.encode('UTF-8')
+      self.address    = location.name.to_s.force_encoding("UTF-8")
       self.latitude   = location.latitude
       self.longitude  = location.longitude
     end
