@@ -127,7 +127,7 @@ GEM
     font-awesome-rails (4.0.1.0)
       railties (>= 3.2, < 5.0)
     fssm (0.2.10)
-    geocoder (1.1.6)
+    geocoder (1.2.5)
     geoip (1.1.2)
     girl_friday (0.11.1)
       connection_pool (~> 0.9.0)
