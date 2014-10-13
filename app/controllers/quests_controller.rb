@@ -14,12 +14,7 @@ class QuestsController < ApplicationController
             end
     
     # init location
-    location_params = if params[:location] then params[:location]
-                      elsif current_user   then { :radius => 'unlimited', :address => current_user.location }
-                      elsif request        then { :radius => 'unlimited', :address => request.location && request.location.name }
-                      else                      {}
-                      end
-    @location = Location.new(location_params)
+    @location = Location.new(location_attrs)
     
     # set additional location scope
     scope = scope.nearby(@location.address, @location.radius) unless @location.unlimited?
@@ -50,7 +45,7 @@ class QuestsController < ApplicationController
   def new
     @quest ||= Quest.new
     @quest.bounty_in_cents = Quest::DEFAULT_BOUNTY
-    @quest.build_location(:location => request.location)
+    @quest.build_location(location_attrs)
   end
 
   def edit
@@ -58,7 +53,7 @@ class QuestsController < ApplicationController
 
     # init location
     if @quest.location.present? then  @quest.restrict_location = true
-    else                              @quest.build_location(:location => request.location)
+    else                              @quest.build_location(location_attrs)
     end
     
     render :action => "new"
@@ -113,4 +108,16 @@ private
     @owner = User.find(params[:owner_id]) if params[:owner_id]
   end
 
+  def location_attrs
+    # when user filters by location, :location param is present
+    return params[:location] if params[:location].present?
+
+    # if user has a location as an address given we consider this one
+    # otherwise we try to get the location from the current request
+    address = if    current_user && current_user.location then  current_user.location
+              elsif request && request.location           then  request.location.name
+              end.to_s
+
+    { :radius => 'unlimited', :address => address }
+  end
 end

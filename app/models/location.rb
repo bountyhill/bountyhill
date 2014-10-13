@@ -21,18 +21,6 @@ class Location < ActiveRecord::Base
   validates :longitude, :presence => true
 #  validates :radius,    :presence => true, :inclusion => RADIUS
 
-  def initialize(attributes={}, options={})
-    super
-    
-    if (location = attributes.delete(:location))
-      self.address    = location.name
-      self.latitude   = location.latitude
-      self.longitude  = location.longitude
-    end
-    
-    self
-  end
-
   def geocode?
     address_changed? and (latitude.blank? or longitude.blank?)
   end
@@ -45,14 +33,13 @@ class Location < ActiveRecord::Base
     radius.to_s == 'unlimited'
   end
 
-  def address
-    value = self[:address].to_s.force_encoding("UTF-8")
-    return value if value.valid_encoding?
-  end
-  
+  #
+  # when initializing location with request's location OpenStruct, given address ('name' attribute) might be 'ISO-8859-1' encoded
+  # request.location: #<OpenStruct request="46.114.33.192", ip="46.114.33.192", country_code2="DE", country_code3="DEU", country_name="Germany", continent_code="EU", region_name="06", city_name="Georgsmarienh\xFCtte", postal_code="", latitude=52.19999999999999, longitude=8.050000000000011, dma_code=nil, area_code=nil, timezone="Europe/Berlin", name="Georgsmarienh\xFCtte, Germany">
   def address=(value)
-    value = value.to_s.force_encoding("UTF-8")
-    self[:address] = value unless value.valid_encoding?
+    self[:address] =  if (_value = value.to_s).encode('utf-8').valid_encoding? then _value.encode('utf-8')
+                      else                                                          _value.force_encoding("ISO-8859-1").encode('utf-8')
+                      end
   end
 
 end
