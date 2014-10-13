@@ -4,7 +4,7 @@
     <%= hidden_field_tag param, value %>
   <% end %>
   
-  <%#= form.control_group :address, :text_field, :label => false, :placeholder => I18n.t("quest.list.location"), :type => "search", :id => 'location_search' %>
+  <%= form.control_group :address, :text_field, :label => false, :placeholder => I18n.t("quest.list.location"), :type => "search", :id => 'location_search' %>
   <%= form.control_group :radius,  :select, :select_options => location_radius_select_options(location.radius), :label => false %>
 <% end %>
 
