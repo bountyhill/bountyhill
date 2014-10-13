@@ -14,11 +14,13 @@ class QuestsController < ApplicationController
             end
     
     # init location
-    @location = if params[:location] then Location.new(params[:location])
-                elsif request        then Location.new(:radius => 'unlimited', :address => request.location && request.location.name)
-                else                      Location.new(:radius => 'unlimited', :address => current_user.location)
-                end
-
+    location_params = if params[:location] then params[:location]
+                      elsif current_user   then { :radius => 'unlimited', :address => current_user.location }
+                      elsif request        then { :radius => 'unlimited', :address => request.location && request.location.name }
+                      else                      {}
+                      end
+    @location = Location.new(location_params)
+    
     # set additional location scope
     scope = scope.nearby(@location.address, @location.radius) unless @location.unlimited?
     
