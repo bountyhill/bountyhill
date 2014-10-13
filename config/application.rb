@@ -81,12 +81,12 @@ module Bountyhill
       load file
     end
 
+    # Cean invalid UTF8 characters in request URI and headers.
+    config.middleware.use Rack::UTF8Sanitizer
+
     # Fetch the I18n.locale from the Browser.
     config.middleware.use Rack::Locale
     
-    # Utf8Sanitizer does not accept requests with invalid byte sequence
-    config.middleware.use ::Utf8SanitizerMiddleware
-
     # AutoTitleMiddleware: determines the page title from the first <h1> or <h2>
     config.middleware.use ::AutoTitleMiddleware, :prefix => "Bountyhill"
   end

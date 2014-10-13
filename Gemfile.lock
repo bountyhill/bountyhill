@@ -243,6 +243,8 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rack-utf8_sanitizer (1.2.3)
+      rack (~> 1.0)
     rails (3.2.17)
       actionmailer (= 3.2.17)
       actionpack (= 3.2.17)
@@ -403,6 +405,7 @@ DEPENDENCIES
   opinio
   psych
   rack-contrib
+  rack-utf8_sanitizer
   rails (~> 3.2)
   rdiscount
   roadie

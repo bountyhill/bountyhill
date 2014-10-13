@@ -51,7 +51,8 @@ class Location < ActiveRecord::Base
   end
   
   def address=(value)
-    self[:address] = value.to_s.force_encoding("UTF-8")
+    value = value.to_s.force_encoding("UTF-8")
+    self[:address] = value unless value.valid_encoding?
   end
 
 end

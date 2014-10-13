@@ -31,6 +31,7 @@ gem 'rack-contrib'
 gem 'sentry-raven'
 gem 'newrelic_rpm'
 gem 'roadie'
+gem 'rack-utf8_sanitizer'
 
 # Gems used only for assets and not required in production environments by default.
 group :assets do
