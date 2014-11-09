@@ -171,7 +171,7 @@ class OfferTest < ActiveSupport::TestCase
   
   def test_calculate_compliance
     offer = Offer.create(:quest => quest.start!, :title => "Test title", :description => "This is a description")
-    assert_equal 50, offer.compliance
+    assert_equal 100, offer.compliance
     
     offer.expects(:criteria).returns([{:compliance=>0}])
     assert_equal 0, offer.send(:calculate_compliance)

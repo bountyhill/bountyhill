@@ -50,7 +50,7 @@
     sliders.each(function() { sum += parseInt($(this).val()); });
     
     // adjust main progress bar
-    var compliance_sum = Math.round(sliders.length > 0 ? (sum * 100) / (10 * sliders.length) : 50);
+    var compliance_sum = Math.round(sliders.length > 0 ? (sum * 100) / (10 * sliders.length) : 100);
     mainValue.innerHTML = compliance_sum;
     mainBar.setAttribute('style', 'width:' + compliance_sum + '%');
     

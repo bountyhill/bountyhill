@@ -229,7 +229,7 @@ class Offer < ActiveRecord::Base
   # calculate the compliance in % (an integer in the range of 0..100)
   def calculate_compliance
     criteria = self.criteria
-    return 50 if criteria.blank?
+    return 100 if criteria.blank?
 
     sum = criteria.inject(0) { |s, criterium| s + criterium[:compliance].to_i }
     (sum * 100.0 / (criteria.length * 10)).round
