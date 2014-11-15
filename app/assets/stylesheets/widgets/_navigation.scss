@@ -291,6 +291,31 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .navbar {
+    &.navbar-fixed-bottom {
+      .navbar-inner {
+        .nav { font-size: $normal; }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .navbar {
+    .nav { font-size: $normal; }
+    &.navbar-fixed-bottom {
+      .navbar-inner {
+        .copyright {
+          ul.nav {
+            li:last-child { display: none; }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 320px) {
   /* ------- bottom nav ------- */
   
@@ -307,16 +332,6 @@
       }
       .nav-user {
         min-width: 146px;
-      }
-    }
-    
-    &.navbar-fixed-bottom {
-      .navbar-inner {
-        .copyright {
-          ul.nav {
-            li:last-child { display: none; }
-          }
-        }
       }
     }
   }

@@ -26,11 +26,9 @@
       color: $navigation_text;
       .main {
         font-size: $hero;
-        line-height: 150%;
+        line-height: 140%;
       }
-      .sub { 
-        font-size: $xx_large; 
-      }
+      .sub { font-size: $xxx_large; }
     }
   }
 }
@@ -89,6 +87,18 @@
       .item {
         .headline { bottom: 90px; }
         .text     { bottom: 26px; }
+        &.item2, &.item4 {
+          .text { left: 12%; }
+        }
+      }
+    }
+    .claim {
+      border-width: 14px;
+      height: (1024px / 4);
+      width: (1024px / 4);
+      .logo {
+        .main { font-size: $xxxxx_large; }
+        .sub  { font-size: $xx_large; }
       }
     }
   }
@@ -99,20 +109,20 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 80px;
-          font-size: $xxx_large; ;
+          bottom: 85px;
+          font-size: $xxxx_large; ;
         }
         .text {
-          bottom: 23px;
-          max-width: 700px;
-          font-size: $large;
+          bottom: 24px;
+          max-width: 780px;
+          font-size: $xx_large;
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 854px) {
   .home {
     .explanation {
       .item {
@@ -129,10 +139,10 @@
     }
     .claim {
       border-width: 12px;
-      height: (1024px / 4);
-      width: (1024px / 4);
+      height: (1024px / 5);
+      width: (1024px / 5);
       .logo {
-        .main { font-size: $xxxxx_large; }
+        .main { font-size: $xxxx_large; }
         .sub { font-size: $x_large; }
       }
     }
@@ -166,18 +176,22 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 683px) {
   .home {
     .explanation {
       .item {
         .headline { 
-          bottom: 50px;
-          font-size: $xx_large;
+          bottom: 58px; 
         }
         .text {
-          bottom: 14px;
-          font-size: $small;
-          max-width: 500px;
+          bottom: 18px;
+          font-size: $normal;
+        }
+        &.item1 {
+          .text { left: 18%; }
+        }
+        &.item2, &.item4 {
+          .text { left: 10%; }
         }
       }
     }
@@ -193,6 +207,53 @@
   }
 }
 
+@media only screen and (max-width: 640px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 50px;
+          font-size: $xx_large;
+        }
+        .text {
+          bottom: 14px;
+          font-size: $small;
+          max-width: 500px;
+        }
+        &.item1 {
+          .text { left: 16%; }
+        }
+        &.item2, &.item4 {
+          .text { left: 16%; }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 50px;
+          font-size: $xx_large;
+        }
+        .text {
+          bottom: 14px;
+          font-size: $small;
+          max-width: 500px;
+        }
+        &.item1 {
+          .text { left: 16%; }
+        }
+        &.item2, &.item4 {
+          .text { left: 16%; }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 568px) {
   .home {
@@ -203,6 +264,40 @@
         &.item2, &.item4 {
           .headline { left: 30%; }
           .text     { left: 18%; }
+        }
+      }
+    }
+    .claim {
+      border-width: 9px;
+      height: (1024px / 7);
+      width: (1024px / 7);
+      .logo {
+        .main { font-size: $xxx_large; }
+        .sub { font-size: $small; }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 40px; 
+          font-size: $xx_large;
+        }
+        .text { 
+          bottom: 6px; 
+          font-size: $small;
+        }
+        &.item1 {
+          .headline { left: 28%; }
+          .text     { left: 14%; }
+        }
+        &.item2, &.item4 {
+          .headline { left: 30%; }
+          .text     { left: 12%; }
         }
       }
     }
@@ -239,6 +334,87 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 28px;
+          font-size: $large;
+        }
+        .text {
+          bottom: 0px;
+          font-size: $x_small;
+        }
+        &.item1 {
+          .headline { left: 28%; }
+          .text { left: 4%; }
+        }
+        &.item2 {
+          .text { left: -2%; }
+        }
+        &.item3 {
+          .text { left: -1%; }
+        }
+        &.item4 {
+          .text { left: -2%; width: 386px; }
+        }
+        &.item5 {
+          .text { left: 0%; }
+        }
+      }
+    }
+    .claim {
+      border-width: 7px;
+      height: (1024px / 9);
+      width: (1024px / 9);
+      .logo {
+        .main { font-size: $x_large; }
+        .sub { font-size: $xx_small; }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .home {
+    .explanation {
+      .item {
+        .headline { 
+          bottom: 26px;
+          font-size: $normal;
+        }
+        .text {
+          bottom: 0px;
+          font-size: $xx_small;
+        }
+        &.item1 {
+          .headline { left: 29%; }
+        }
+        &.item2 {
+          .text { left: 0%; }
+        }
+        &.item3 {
+        }
+        &.item4 {
+          .text { left: -2%; width: 349px; }
+        }
+        &.item5 {
+        }
+      }
+    }
+    .claim {
+      border-width: 7px;
+      height: (1024px / 11);
+      width: (1024px / 11);
+      .logo {
+        .main { font-size: $x_large; line-height: 110%; }
+        .sub { font-size: $xxx_small; }
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 320px) {
   .home {
     .explanation {
@@ -252,19 +428,16 @@
           font-size: $xxx_small;
         }
         &.item1 {
-          .text { left: 4%; }
         }
         &.item2 {
           .text { left: -2%; }
         }
         &.item3 {
-          .text { left: -1%; }
         }
         &.item4 {
           .text { left: -2%; width: 310px; }
         }
         &.item5 {
-          .text { left: 0%; }
         }
       }
     }
