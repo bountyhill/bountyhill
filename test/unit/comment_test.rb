@@ -23,12 +23,12 @@ class ShareTest < ActiveSupport::TestCase
     create_comment(:commentable => commentable, :owner => commentable.owner, :body => "Foo Bar")
   end
   
-  def test_reward_commentor
-    commentable = Factory(:quest)
-    # TODO: commentable.owner.expects(:reward_for).with(commentable, :comment)
-    User.any_instance.expects(:reward_for).with(commentable, :comment)
-    Factory(:comment, :commentable => commentable)
-  end
+  # def test_reward_commentor
+  #   commentable = Factory(:quest)
+  #   # TODO: commentable.owner.expects(:reward_for).with(commentable, :comment)
+  #   User.any_instance.expects(:reward_for).with(commentable, :comment)
+  #   Factory(:comment, :commentable => commentable)
+  # end
   
   def test_writable?
     comment = Factory(:comment)

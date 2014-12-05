@@ -194,12 +194,12 @@ class Quest < ActiveRecord::Base
     self.number_of_criteria = criteria.count
   end
   
-  after_create :reward_creator
-  
-  def reward_creator
-    return if owner.draft?
-    owner.reward_for(self)
-  end
+  # after_create :reward_creator
+  #
+  # def reward_creator
+  #   return if owner.draft?
+  #   owner.reward_for(self)
+  # end
   
   
   public

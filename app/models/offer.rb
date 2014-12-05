@@ -235,11 +235,11 @@ class Offer < ActiveRecord::Base
     (sum * 100.0 / (criteria.length * 10)).round
   end
   
-  after_create :reward_creator
-  
-  def reward_creator
-    owner.reward_for(self)
-  end
+  # after_create :reward_creator
+  #
+  # def reward_creator
+  #   owner.reward_for(self)
+  # end
 
   public
   
@@ -309,6 +309,7 @@ class Offer < ActiveRecord::Base
     end
 
     quest.owner.reward_for(self, :accept)
+    self.owner.reward_for(self, :accept)
     self
   end
   
@@ -320,7 +321,6 @@ class Offer < ActiveRecord::Base
       update_attributes! attributes.slice(:rejection, :rejection_reason).merge(:state => "rejected")
     end
     
-    quest.owner.reward_for(self, :reject)
     self
   end
   

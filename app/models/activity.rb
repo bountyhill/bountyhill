@@ -8,41 +8,19 @@ class Activity < ActiveRecord::Base
   
   GRADING = {
     :quest => {
-      :create  =>  1,
       :start   =>  5,
-      :share   =>  3,
-      :comment =>  1,
+      :share   =>  1,
       :stop    => -5
     },
     :offer => {
-      :create   =>  1,
-      :activate =>  3,
-      :accept   =>  5,
-      :reject   =>  1,
-      :comment  =>  1,
+      :activate =>  5,
+      :accept   =>  3,
       :withdraw => -5
     },
-    :"identity/twitter" => {
-      :create => 1
+    :"identity" => {
+      :create =>  3,
+      :delete => -3
     },
-    :"identity/facebook" => {
-      :create => 1
-    },
-    :"identity/google" => {
-      :create => 1
-    },
-    :"identity/linkedin" => {
-      :create => 1
-    },
-    :"identity/xing" => {
-      :create => 1
-    },
-    :"identity/email" => {
-      :create => 2
-    },
-    :"identity/address" => {
-      :create => 2
-    }
   }.with_indifferent_access
 
   def self.actions
@@ -57,14 +35,14 @@ class Activity < ActiveRecord::Base
   validates :points, :presence => true, :numericality => true
   
   def self.log(user, action, entity)
-    klass = entity.class.name.underscore
+    klass = entity.class.base_class.name.underscore
     
     unless Activity::GRADING[klass].present?
       raise ArgumentError, "Cannot handle entity class: #{klass}! Allowed are only: #{Activity::GRADING.keys.to_sentence}."
     end
     
     unless (points = Activity::GRADING[klass][action])
-      raise ArgumentError, "Cannot handle action: #{action}! Allowed are only: #{Activity.actions.to_sentence}."
+      raise ArgumentError, "Cannot handle action: #{action} for entity class: #{klass}! Allowed are only: #{Activity::GRADING[klass].keys.to_sentence}."
     end
     
     activity = user.activities.create!(

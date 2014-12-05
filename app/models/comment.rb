@@ -9,14 +9,14 @@ class Comment < ActiveRecord::Base
     10
   end
 
-  after_create :reward_commentor
+  # after_create :reward_commentor
 
   validates :commentable, :presence => true
   validates :owner,       :presence => true
   
-  def reward_commentor
-    owner.reward_for(self.commentable, :comment)
-  end
+  # def reward_commentor
+  #   owner.reward_for(self.commentable, :comment)
+  # end
   
   def writable?(user = ActiveRecord::AccessControl.current_user)
     return false unless user

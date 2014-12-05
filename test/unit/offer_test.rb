@@ -58,8 +58,12 @@ class OfferTest < ActiveSupport::TestCase
     offer = Offer.new(:quest => quest.start!, :title => "Test title", :description => "This is a description")
 
     quest.stubs(:active?).returns(true)
-    assert_activity_logged(:create,   offer)  { offer.save! }
-    assert_activity_logged(:comment,  offer)  { Factory(:comment, :commentable => offer, :owner => offer.owner) }
+    offer.save!
+    offer.stubs(:active?).returns(true)
+
+    quest.owner.expects(:reward_for).with(offer, :accept).once
+    offer.owner.expects(:reward_for).with(offer, :accept).once
+    as(quest.owner) { offer.accept! }
   end
   
   def test_status
@@ -136,6 +140,7 @@ class OfferTest < ActiveSupport::TestCase
       # active offer can be accepted
       offer.expects(:active?).returns(true)
       offer.quest.owner.expects(:reward_for).with(offer, :accept)
+      offer.owner.expects(:reward_for).with(offer, :accept)
       offer.accept!(:acceptance => "other_reason", :acceptance_reason => "Foo Bar")
       assert_equal "accepted", offer.state
       assert_equal "other_reason", offer.acceptance
@@ -161,7 +166,6 @@ class OfferTest < ActiveSupport::TestCase
     
       # active offer can be accepted
       offer.expects(:active?).returns(true)
-      offer.quest.owner.expects(:reward_for).with(offer, :reject)
       offer.reject!(:rejection => "other_reason", :rejection_reason => "Foo Bar")
       assert_equal "rejected", offer.state
       assert_equal "other_reason", offer.rejection
