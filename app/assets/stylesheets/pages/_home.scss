@@ -47,33 +47,21 @@
         line-height: 120%;
       }
       .headline {
-        bottom: 100px;
         font-size: $xxxx_large;
+        bottom: 100px;
       }
       .text {
-        bottom: 30px;
         font-size: $xx_large;
-        max-width: 800px;
+        bottom: 30px;
+        max-width: 85%;
       }
-      &.item1 {
-        .headline { left: 31%; }
+      &.item1, &.item3, &.item5 {
+        .headline { left: 34%; }
         .text     { left:  8%; }
       }
-      &.item2 {
-        .headline { left: 35%; }
-        .text     { left: 24%; }
-      }
-      &.item3 {
-        .headline { left: 33%; }
-        .text     { left:  8%; }
-      }
-      &.item4 {
-        .headline { left: 33%; }
+      &.item2, &.item4 {
+        .headline { left: 40%; }
         .text     { left: 22%; }
-      }
-      &.item5 {
-        .headline { left: 33%; }
-        .text     { left:  8%; }
       }
     }
   }
@@ -88,7 +76,8 @@
         .headline { bottom: 90px; }
         .text     { bottom: 26px; }
         &.item2, &.item4 {
-          .text { left: 12%; }
+          .headline { left: 38%; }
+          .text     { left: 12%; }
         }
       }
     }
@@ -112,11 +101,7 @@
           bottom: 85px;
           font-size: $xxxx_large; ;
         }
-        .text {
-          bottom: 24px;
-          max-width: 780px;
-          font-size: $xx_large;
-        }
+        .text { bottom: 24px; }
       }
     }
   }
@@ -131,9 +116,8 @@
           font-size: $xxx_large;
         }
         .text { 
-          bottom: 20px;
-          font-size: $large;
-          max-width: 600px;
+          bottom: 18px;
+          font-size: $x_large;
         }
       }
     }
@@ -154,13 +138,12 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 65px;
           font-size: $xxx_large;
+          bottom: 65px;
         }
         .text { 
-          bottom: 18px;
           font-size: $large;
-          max-width: 580px;
+          bottom: 18px;
         }
       }
     }
@@ -184,14 +167,16 @@
           bottom: 58px; 
         }
         .text {
-          bottom: 18px;
           font-size: $normal;
+          bottom: 14px;
         }
-        &.item1 {
-          .text { left: 18%; }
+        &.item1, &.item3, &.item5 {
+          .headline { left: 30%; }
+          .text     { left: 6%; }
         }
         &.item2, &.item4 {
-          .text { left: 10%; }
+          .headline { left: 34%; }
+          .text     { left: 8%; }
         }
       }
     }
@@ -212,20 +197,10 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 50px;
           font-size: $xx_large;
+          bottom: 54px;
         }
-        .text {
-          bottom: 14px;
-          font-size: $small;
-          max-width: 500px;
-        }
-        &.item1 {
-          .text { left: 16%; }
-        }
-        &.item2, &.item4 {
-          .text { left: 16%; }
-        }
+        .text { bottom: 10px; }
       }
     }
   }
@@ -237,18 +212,11 @@
       .item {
         .headline { 
           bottom: 50px;
-          font-size: $xx_large;
         }
         .text {
-          bottom: 14px;
           font-size: $small;
-          max-width: 500px;
-        }
-        &.item1 {
-          .text { left: 16%; }
-        }
-        &.item2, &.item4 {
-          .text { left: 16%; }
+          bottom: 14px;
+          max-width: 90%;
         }
       }
     }
@@ -261,10 +229,6 @@
       .item {
         .headline { bottom: 45px; }
         .text     { bottom: 10px; }
-        &.item2, &.item4 {
-          .headline { left: 30%; }
-          .text     { left: 18%; }
-        }
       }
     }
     .claim {
@@ -284,20 +248,11 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 40px; 
-          font-size: $xx_large;
-        }
-        .text { 
-          bottom: 6px; 
+          font-size: $x_large;
+          bottom: 42px; }
+        .text {
           font-size: $small;
-        }
-        &.item1 {
-          .headline { left: 28%; }
-          .text     { left: 14%; }
-        }
-        &.item2, &.item4 {
-          .headline { left: 30%; }
-          .text     { left: 12%; }
+          bottom: 6px; 
         }
       }
     }
@@ -310,15 +265,12 @@
       margin: 0 auto 6px auto;
       .item {
         .headline { 
-          bottom: 40px;
-          font-size: $x_large;
+          font-size: $large;
+          bottom: 38px;
         }
         .text {
-          bottom: 5px;
           font-size: $x_small;
-        }
-        &.item2, &.item4 {
-          .text  { left: 10%; }
+          bottom: 5px;
         }
       }
     }
@@ -338,29 +290,14 @@
   .home {
     .explanation {
       .item {
-        .headline { 
-          bottom: 28px;
-          font-size: $large;
+        .headline {
+          font-size: $normal;
+          bottom: 30px; 
         }
-        .text {
-          bottom: 0px;
-          font-size: $x_small;
-        }
-        &.item1 {
-          .headline { left: 28%; }
-          .text { left: 4%; }
-        }
-        &.item2 {
-          .text { left: -2%; }
-        }
-        &.item3 {
-          .text { left: -1%; }
-        }
-        &.item4 {
-          .text { left: -2%; width: 386px; }
-        }
-        &.item5 {
-          .text { left: 0%; }
+        .text     { 
+          font-size: $xx_small;
+          bottom: 3px;
+          max-width: 95%;
         }
       }
     }
@@ -381,25 +318,11 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 26px;
-          font-size: $normal;
+          font-size: $small;
+          bottom: 28px;
         }
         .text {
-          bottom: 0px;
-          font-size: $xx_small;
-        }
-        &.item1 {
-          .headline { left: 29%; }
-        }
-        &.item2 {
-          .text { left: 0%; }
-        }
-        &.item3 {
-        }
-        &.item4 {
-          .text { left: -2%; width: 349px; }
-        }
-        &.item5 {
+          font-size: $xxx_small;
         }
       }
     }
@@ -420,24 +343,11 @@
     .explanation {
       .item {
         .headline { 
-          bottom: 25px;
-          font-size: $small;
+          font-size: $x_small;
+          bottom: 24px;
         }
         .text {
-          bottom: 0px;
-          font-size: $xxx_small;
-        }
-        &.item1 {
-        }
-        &.item2 {
-          .text { left: -2%; }
-        }
-        &.item3 {
-        }
-        &.item4 {
-          .text { left: -2%; width: 310px; }
-        }
-        &.item5 {
+          font-size: $xxxx_small;
         }
       }
     }
