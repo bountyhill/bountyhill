@@ -344,10 +344,12 @@
       .item {
         .headline { 
           font-size: $x_small;
-          bottom: 24px;
         }
         .text {
-          font-size: $xxxx_small;
+          max-width: 99%;
+        }
+        &.item1, &.item2, &.item3, &.item4, &.item5 {
+         .text { left: 0; }
         }
       }
     }

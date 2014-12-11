@@ -65,5 +65,8 @@ a { &:hover { text-decoration: none; }}
 }
 
 @media only screen and (max-width: 320px) {
+  .main-content {
+    padding: 24px $page_padding/2 12px $page_padding/2;
+  }
 }
 
