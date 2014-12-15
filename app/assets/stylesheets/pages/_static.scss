@@ -14,8 +14,7 @@
     
     p {
       & > a {
-        float: right;
-        margin-bottom: 10px;
+        font-style: italic;
         color: $text_inverse_highlight;
         &:visited { color: $text_inverse_highlight; }
       }
