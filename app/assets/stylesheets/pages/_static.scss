@@ -2,9 +2,14 @@
   &.static {
     @include box_colors(static);
     
+    .content {
+      h2 { margin-top: 0; }
+    }
+
     a {
       color: $text_inverse;
-      &:hover, &:visited { color: $text_inverse_highlight; };
+      &:hover   { color: $text_inverse_highlight; }
+      &:visited { color: $text_inverse; }
     }
     
     dl {

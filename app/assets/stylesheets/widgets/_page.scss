@@ -29,6 +29,13 @@ body {
 
 a { &:hover { text-decoration: none; }}
 
+.target:before {
+  content: '';
+  display: block;
+  height: $body_top_margin;
+  margin: -$body_top_margin 0 0;
+}
+
 /* ------- screen resolution adjustments ------- */
 
 @media only screen and (max-width: 1024px) {
