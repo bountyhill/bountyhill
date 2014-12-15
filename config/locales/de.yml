@@ -167,7 +167,7 @@ de:
     info:         Info
     contact:      Kontakt
     imprint:      Impressum
-    terms:        AGB
+    terms:        AGBs
     privacy:      Datenschutz
     stats:        Stats
     logs:         Logs
@@ -191,7 +191,7 @@ de:
       contact:  Kontakt
       imprint:  Impressum
       privacy:  Datenschutzerklärung
-      terms:    AGBs
+      terms:    Allgemeine Geschäftsbedingungen der bountyhill UG (haftungsbeschränkt) & Co. KG
   identity:
     required: 
       any:        "Damit Du fortfahren kannst, müssen wir vorerst wissen, wie wir Dich kontaktieren können."

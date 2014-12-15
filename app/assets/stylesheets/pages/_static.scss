@@ -12,6 +12,17 @@
       &:visited { color: $text_inverse; }
     }
     
+    p {
+      & > a {
+        float: right;
+        margin-bottom: 10px;
+        color: $text_inverse_highlight;
+        &:visited { color: $text_inverse_highlight; }
+      }
+    }
+    
+    hr { clear: both; }
+    
     dl {
       dt { float: left; }
       dd { font-weight: bold; }
