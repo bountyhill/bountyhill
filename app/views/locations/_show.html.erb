@@ -4,7 +4,7 @@
 
 <script type="text/javascript">
 <!--
-  var defaultZoom = 15; // Why zoomed in? Because it looks good.
+  var defaultZoom = 10; // Why zoomed in? Because it looks good.
 
   var lat = <%= location.latitude %>;
   var lng = <%= location.longitude %>;
@@ -14,10 +14,11 @@
     center: new google.maps.LatLng(lat, lng),
     zoom: defaultZoom,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    scrollwheel: true,
     zoomControl: true,
     scaleControl: true,
+    scrollwheel: false,
     panControl: false,
+    mapTypeControl: false,
     streetViewControl: false
   };
   var map = new google.maps.Map(document.getElementById('map'),mapOptions);
