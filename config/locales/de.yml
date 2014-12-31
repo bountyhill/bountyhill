@@ -510,7 +510,7 @@ de:
         one:    "%{count} Bild"
         other:  "%{count} Bilder"
     states:
-      all:        Alle
+      all:        Jeder Status
       new:        Vorbereitet
       active:     Aktiv
       withdrawn:  Zurückgezogen
@@ -627,7 +627,7 @@ de:
         one:      "Tag zuvor angelegt"
         other:    "Tage zuvor angelegt"
     categories:
-      all:            Alle
+      all:            Alle Kategorien
       misc:           Verschiedenes
       jobs:           Jobs
       flats:          Mietwohnungen

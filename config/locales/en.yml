@@ -510,7 +510,7 @@ en:
         one:    "%{count} image"
         other:  "%{count} images"
     states:
-      all:        All
+      all:        All states
       new:        Prepared
       active:     Active
       withdrawn:  Withdrawn
@@ -627,7 +627,7 @@ en:
         one:      "day ago created"
         other:    "days ago created"
     categories:
-      all:            All
+      all:            All categories
       misc:           Miscellaneous
       jobs:           Jobs
       flats:          Flats
