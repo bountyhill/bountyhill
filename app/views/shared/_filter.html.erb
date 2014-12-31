@@ -1,0 +1,26 @@
+<form class="form-horizontal">
+  <fieldset> 
+    <div class="control-group select">
+      <div class="controls">
+        <select class="selectpicker" id=<%= "#{type.to_s.pluralize}_#{attribute}" -%> >
+          <%= filters.map do |f|
+            content_tag :option, I18n.t(f.name, :scope => "#{type}.#{attribute}") + " (#{f.count})",
+              :value => f.url,
+              :selected => f.active?(options[:active]) || filters.size == 1
+          end.join.html_safe %>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+<script type="text/javascript">
+  $('#<%= "#{type.to_s.pluralize}_#{attribute}" -%>').change(function(event) {
+    window.location.href = event.target.selectedOptions[0].value;
+  });
+
+  $('#<%= "#{type.to_s.pluralize}_#{attribute}" -%>').keydown(function(event){
+  if(event.keyCode == 13)
+    window.location.href = event.target.selectedOptions[0].value;
+  }); 
+</script>

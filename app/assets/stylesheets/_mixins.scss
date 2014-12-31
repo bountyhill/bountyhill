@@ -35,7 +35,7 @@
     }
   }
   
-  @media only screen and (max-width: 568px) {
+  @media only screen and (max-width: 683px) {
     &.with-opener {
       &:before {
         border-width: 0 $box_spacing/2 $box_spacing/2 $box_spacing/2;
@@ -153,9 +153,35 @@
   @else if  $box_type == quest-filter { 
     background-color: $quests_box_title_color;
     .header { background-color: $quests_box_color; }
+    .content {
+      form {
+        .buttons, .controls { 
+          .btn-group {
+            .dropdown-menu {
+              li > a {
+                &:hover { background-color: $quests_box_title_color; }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   @else if  $box_type == offer-filter { 
     background-color: $offers_box_title_color;
     .header { background-color: $offers_box_color;}
+    .content {
+      form {
+        .buttons, .controls { 
+          .btn-group {
+            .dropdown-menu {
+              li > a {
+                &:hover { background-color: $offers_box_title_color; }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

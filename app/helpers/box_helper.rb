@@ -70,7 +70,8 @@ module BoxHelper
       div(options[:title], :class => "pull-left")
     end
     
-    content = div :class => "content" do
+    # filter list for larger devices
+    filter_list = div :class => "content filter-list" do
       ul :class => "btn-group" do
         filters.map do |f|
           css_class =  "btn btn-link btn-small"
@@ -82,8 +83,13 @@ module BoxHelper
       end
     end
     
+    # filter select box for smaller devices
+    filter_select = div :class => "content filter-select" do
+      partial("shared/filter", :type => type, :attribute => attribute, :filters => filters, :options => options)
+    end
+    
     div :class => "#{type} #{options[:class]} filter box row-fluid" do
-      header + content
+      header + filter_list + filter_select
     end
   end
   

@@ -1,9 +1,12 @@
 .box {
   &.filter {
     margin-bottom: $box-padding;
+    &.quest, &.offer {
+      .content { border-bottom: none; }
+    }
     .content { 
-      padding: $box-padding;
       min-height: 24px;
+      padding: $box-padding;
     }
     &.quest {
       @include box_colors(quest-filter);
@@ -20,8 +23,8 @@
       }
     }
     
-    /* ------- kategory/status filter ------- */  
-    &.category, &.states {
+    /* ------- filter list ------- */  
+    .filter-list {
       ul {
         margin: 0;
         width: 100%;
@@ -29,29 +32,29 @@
           margin-bottom: 8px;
           .filtername  { float: left; }
           .filtercount { float: right; }
-          &:last-child { margin-bottom: 16px; }
+          &:last-child { margin-bottom: 0; }
         }
       }
     }
     
-    /* ------- location filter ------- */  
-    &.location {
-      form {
-         margin: -3px 0 0 0;
-        .control-group { 
-          margin-bottom: 8px;
-          .controls { 
-            margin: 0; 
-            input[type="search"] {
-              @include border-radius(0);  /* remove border radius */
-              background-color: $content_color;
-            }
+    /* ------- filter dropdowns ------- */
+    .filter-select  { display: none; }
+    form {
+       margin: 0;
+      .control-group { 
+        margin-bottom: 8px;
+        &:last-child { margin-bottom: 0; }
+        .controls { 
+          margin: 0; 
+          input[type="search"] {
+            @include border-radius(0);  /* remove border radius */
+            background-color: $content_color;
           }
-          .btn-group {
-            outline: none;
-            width: 100%;
-            .dropdown-menue { border-top: none; }
-          }
+        }
+        .btn-group {
+          outline: none;
+          width: 100%;
+          .dropdown-menue { border-top: none; }
         }
       }
     }
@@ -60,25 +63,23 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
 @media only screen and (max-width: 800px) {
+  .box {
+    &.filter {
+      .filter-list    { display: none; }
+      .filter-select  { display: block; }
+    }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
-  .sidebar {
-    .filter {
-      &.category, &.states {
-        &.box  { 
-          display: none;
-        }
+@media only screen and (max-width: 683px) {
+  .box {
+    &.filter {
+      margin-bottom: 0;
+      .header { display: none; }
+      .content { 
+        padding: $box-padding/2; 
+        form { min-height: 30px; }
       }
       &.location {
         .control-group {
@@ -97,18 +98,4 @@
       }
     }
   }
-}
-
-@media only screen and (max-width: 568px) {
-  .box {
-    &.filter {
-      .content { padding: $box-padding/2; }
-    }
-  }
-}
-
-@media only screen and (max-width: 480px) {
-}
-
-@media only screen and (max-width: 320px) {
 }
