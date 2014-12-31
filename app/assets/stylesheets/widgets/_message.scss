@@ -79,28 +79,20 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 683px) {
   .message-container {
     height: auto;
+    font-size: $small;
+    .message-box, .message-stats {
+      padding: $message_padding/2;
+    }
     .message-box {
       .avatar-container {
-        width: 15%;
+        width: 14%;
         float: left;
       }
       .text-container {
-        width: 80%;
+        width: 84%;
         float: left;
         .message-head {
           padding-right: $message_padding;
@@ -110,35 +102,6 @@
           }
           .owner { float: left; }
         }
-      }
-    }
-    .message-stats {
-      padding-bottom: 28px;
-      .stats-list { min-height: 32px; }
-      .btn-group  { 
-        display: block;
-        position: relative;
-        float: right;
-        right: 0px;
-      }
-      .responses  { right: 8px; }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  .message-container {
-    font-size: $small;
-    .message-box, .message-stats { 
-      padding: $message_padding/2;
-    }
-    .message-stats {
-      padding-bottom: 28px;
-      .responses  { top: 8px; }
-    }
-    .message-box {
-      .text-container {
-        .message-head { margin-bottom: 4px; }
         .message-body {
           font-size: $x_small;
           line-height: $small;
@@ -146,8 +109,18 @@
       }
     }
     .message-stats {
-      .btn-group {
-        .btn { font-size: $x_small; }
+      font-size: $x_small;
+      padding-bottom: 28px;
+      .stats-list { min-height: 30px; }
+      .btn-group  {
+        display: block;
+        position: relative;
+        float: right;
+        right: 0px;
+      }
+      .responses {
+        top: 8px;
+        right: 8px;
       }
     }
   }
@@ -157,7 +130,7 @@
   .message-container {
     .message-box {
       .avatar-container { margin-right: 3%; }
-      .text-container   { width: 77%; }
+      .text-container   { width: 80%; }
     }
   }
 }

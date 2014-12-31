@@ -38,3 +38,11 @@
     }
   }
 }
+
+/* ------- screen resolution adjustments ------- */
+
+@media only screen and (max-width: 683px) {
+  .box {
+    &.statistic { display: none; }
+  }
+}

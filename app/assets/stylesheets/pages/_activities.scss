@@ -40,33 +40,7 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width:979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
-  .box {
-    &.activities {
-      ul.activities {
-        li.activity {
-          .action {
-            padding: $box-padding/2 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 683px) {
   .box {
     &.activities {
       ul.activities {
@@ -79,6 +53,7 @@
             line-height: $x_large;
           }
           .action {
+            padding: $box-padding/4 0;
             font-size: $x_small;
             line-height: $small;
             .title {
@@ -93,10 +68,4 @@
       }
     }
   }
-}
-
-@media only screen and (max-width: 480px) {
-}
-
-@media only screen and (max-width: 320px) {
 }

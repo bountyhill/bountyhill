@@ -33,39 +33,18 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
-  .box {
-    &.comments {
-      .message-container {
-        .message-box {
-          .message-head { padding-right: 0;}
-          .text-container { width: 85%; }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 683px) {
   .box {
     &.comments {
       form {
         margin-bottom: 42px;
       }
       .message-container {
-        .message-box { padding: $message_padding/2; }
+        .message-box { 
+          padding: $message_padding/2; 
+          .message-head { padding-right: 0;}
+          .text-container { width: 85%; }
+        }
       }
     }
   }
@@ -81,7 +60,4 @@
       }
     }
   }
-}
-
-@media only screen and (max-width: 320px) {
 }

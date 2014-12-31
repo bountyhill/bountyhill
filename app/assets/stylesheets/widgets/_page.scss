@@ -39,47 +39,24 @@ a { &:hover { text-decoration: none; }}
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width:979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
-  body { 
-    padding: 46px 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
-  }
-  .sidebar {
-    &.empty { display: none;}
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  body { 
+@media only screen and (max-width: 683px) {
+  body {
     font-size: $x_small;
     line-height: 16px;
     padding: 46px 0;  // navbar-fixed-top breaks when using responsive css - see: https://github.com/twitter/bootstrap/issues/1570
   }
   .spacer  { min-height: $box_spacing/2; }
-}
-
-@media only screen and (max-width: 480px) {
+  .sidebar {
+    &.empty { display: none;}
+  }
 }
 
 @media only screen and (max-width: 320px) {
   .main-content {
     padding: 24px $page_padding/2 12px $page_padding/2;
   }
-  
   .target:before {
     height: $body_top_margin/2;
     margin: -$body_top_margin/2 0 0;
   }
 }
-

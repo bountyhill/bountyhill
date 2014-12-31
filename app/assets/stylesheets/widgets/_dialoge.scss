@@ -49,11 +49,7 @@
 
 /* ------- screen resolution adjustments for screen width! ------- */
 
-@media only screen and (max-width: 600px) {
-  #myModal { top: $top_navigation_min_height; }
-}
-
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 683px) {
   #myModal { top: $page_padding; }
   .modal {
     .modal-header{

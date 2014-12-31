@@ -258,29 +258,21 @@ form {
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
 @media only screen and (max-width: 800px) {
   .box {
     &.form { padding: 0 10%; }
   }
 }
 
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 683px) {
   .box {
     &.form  { 
       padding: 0 5%;
       .header { 
+        padding-bottom: 4px;
         .step-indicator {
           li {
-            font-size: $small;
+            font-size: $x_small;
             line-height: 36px;
             &::before {
               line-height: 20px;
@@ -289,19 +281,6 @@ form {
               margin: 0 0.15em;
             }
           }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  .box {
-    &.form {
-      .header { 
-        padding-bottom: 4px;
-        .step-indicator { 
-          li { font-size: $x_small; }
         }
       }
     }

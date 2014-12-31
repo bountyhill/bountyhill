@@ -127,22 +127,7 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
-@media only screen and (max-width: 768px) {
-}
-
-@media only screen and (max-width: 600px) {
-}
-
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 683px) {
   .accordion-group {
     .accordion-heading .accordion-toggle  { padding: $box_padding/8 $box_padding/2; }
     .accordion-body .accordion-inner      { padding: $box_padding/2; }
@@ -158,10 +143,4 @@
       h4 { font-size: $x_small; }
     }
   }
-}
-
-@media only screen and (max-width: 480px) {
-}
-
-@media only screen and (max-width: 320px) {
 }

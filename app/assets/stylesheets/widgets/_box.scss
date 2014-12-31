@@ -45,8 +45,7 @@
   }
   .content {
     min-height: 80px;
-    padding: $box_padding;
-    padding-bottom: $box_padding*2;
+    padding: $box_padding $box_padding ($box_padding*2) $box_padding;
     clear: both;
     h1, h2, h3, h4  { line-height: 100%; }
     h2, h3, h4      { font-family: $font_system; }
@@ -129,15 +128,6 @@
 
 /* ------- screen resolution adjustments ------- */
 
-@media only screen and (max-width: 1024px) {
-}
-
-@media only screen and (max-width: 979px) {
-}
-
-@media only screen and (max-width: 800px) {
-}
-
 @media only screen and (max-width: 768px) {
   .box {
     .header { 
@@ -151,26 +141,26 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 683px) {
   .box {
-    &.statistic { display: none; }
+    .header, .content { padding: $box_padding/2; }
     .header {
       height: 20px;
       position: relative;
-      .title { width: 70%; }
+      font-size: $normal;
       .time  {
         width: 30%;
         display: block;
-        font-size: $small;
+        font-size: $x_small;
         font-style: italic;
         float: right;
         text-align: right;
       }
       .interactions {
         position: absolute;
-        right: $box_padding;
-        bottom: $box_padding/2;
-        .btn { font-size: $small; }
+        right: $box_padding/2;
+        bottom: 0;
+        .btn { font-size: $x_small; }
       }
     }
     &.quest, &.offer {
@@ -178,22 +168,6 @@
     }
     &.form, &.filter {
       .header { height: 24px; }
-    }
-  }
-}
-
-@media only screen and (max-width: 568px) {
-  .box {
-    .header, .content { padding: $box_padding/2; }
-    .header {
-      font-size: $normal;
-      line-height: $large;
-      .time  { font-size: $xx_small; }
-      .interactions {
-        right: 8px;
-        bottom: 6px;
-        .btn { font-size: $xx_small; }
-      }
     }
     .content {
       h1 {
@@ -218,8 +192,14 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
-}
-
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 568px) {
+  .box {
+    .header {
+      .time  { font-size: $xx_small; }
+      .interactions {
+        right: $box_padding/4;
+        .btn { font-size: $xx_small; }
+      }
+    }
+  }
 }
