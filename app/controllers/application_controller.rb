@@ -26,6 +26,15 @@ class ApplicationController < ActionController::Base
     ActiveRecord.as(current_user, &block)
   end
 
+  before_filter :set_locale_from_param
+  
+  def set_locale_from_param
+    return unless (l = params[:locale]).present?
+    return unless I18n.available_locales.include?(l.to_sym)
+    
+    I18n.locale = l
+  end
+
   # The locale is already set by a Rack::Locale middle-ware. See:  
   # https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
   #
