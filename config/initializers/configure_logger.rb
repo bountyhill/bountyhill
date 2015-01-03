@@ -18,7 +18,7 @@ class Formatter
   end
 end
 
-if Rails.env.production? || Rails.env.staging?
+if Rails.env.production? || Rails.env.live? || Rails.env.staging?
   STDERR.puts "[#{Rails.env}] Activating Event logging."
   Rails.logger.formatter = Formatter.new
 else

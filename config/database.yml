@@ -10,6 +10,10 @@ development:
   <<: *common
   database: bountyhill
 
+live:
+  <<: *common
+  database: bountyhill
+  
 staging:
   <<: *common
   database: bountyhill
