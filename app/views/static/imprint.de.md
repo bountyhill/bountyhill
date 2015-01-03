@@ -1,12 +1,12 @@
 #bountyhill UG (haftungsbeschränkt) & CO. KG
-**Berliner Strasse 12**  
-**13187 Berlin**  
-**Deutschland**  
+**Berliner Strasse 12**
+**13187 Berlin**
+**Deutschland**
 
 ## 
 
-Vertreten durch **bountyhill Verwaltungs UG (haftungsbeschränkt)**,  
-eingetragen im Handelsregister des AG Charlottenburg unter der Registernummer HRB 144077 B,  
+Vertreten durch **bountyhill Verwaltungs UG (haftungsbeschränkt)**,
+eingetragen im Handelsregister des AG Charlottenburg unter der Registernummer HRB 144077 B,
 vertreten durch den Geschäftsführer Torsten Graf-Oettel
 
 ##Kontakt
@@ -33,3 +33,6 @@ vertreten durch den Geschäftsführer Torsten Graf-Oettel
   <dd>DE 285070281</dd>
 </dl>
 gemäß §27 a Umsatzsteuergesetz
+
+
+Der Nutzung der im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung oder Informationsmaterialien wird hiermit ausdrücklich widersprochen. Wir behalten uns ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.

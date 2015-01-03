@@ -33,3 +33,6 @@ represented by the managing director Torsten Graf-Oettel
   <dd>DE 285070281</dd>
 </dl>
 corresponding §27 Value Added Tax Act
+
+
+The usage of contact data published under the imprint obligation by a third party for sending unsolicited advertisements or information material is strictly prohibited. We reserve the right to take legal action in case of unsolicited advertising information, such as spam e-mails.
