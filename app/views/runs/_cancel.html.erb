@@ -12,10 +12,7 @@
         end.join.html_safe
     end %>
     <%= form.control_group :cancellation_reason, :text_area, :rows => 3, :hint => false %>
-  <% end %>
 
-  <% modal_footer do %>
     <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.stop") %>
   <% end %>
-  
 <% end %>

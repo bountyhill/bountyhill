@@ -13,9 +13,6 @@
     end %>
     <%= form.control_group :acceptance_reason, :text_area, :rows => 3, :hint => false %>
 
-  <% end %>
-  
-  <% modal_footer do %>
-  <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.accept") %>
+    <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.accept") %>
   <% end %>
 <% end %>

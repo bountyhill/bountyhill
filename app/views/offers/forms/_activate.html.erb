@@ -3,9 +3,7 @@
     <p><%= I18n.t("offer.activate.legend1") %></p>
     <p><%= I18n.t("offer.activate.legend2") %></p>
     <%= form.error_messages %>
-  <% end %>
-  
-  <% modal_footer do %>
+
     <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.offer") %>
   <% end %>
 <% end %>

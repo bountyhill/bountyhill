@@ -13,9 +13,6 @@
     end %>
     <%= form.control_group :withdrawal_reason, :text_area, :rows => 3, :hint => false %>
     
-  <% end %>
-  
-  <% modal_footer do %>
-  <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.withdraw") %>
+    <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.withdraw") %>
   <% end %>
 <% end %>

@@ -50,13 +50,10 @@
       <br><p><%= I18n.t("share.form.legend3",
         :duration_in_days => I18n.t('quest.form.field_hint.duration', :count => @share.quest.duration_in_days.to_i)) %></p>
     <% end %>
-    
-  <% end %>
 
-  <% modal_footer do
-    form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.#{@share.quest.active? ? 'share' : 'start'}"), :class => "btn btn-primary btn-inverse"
-  end %>
-  
+    <br>
+    <%= form.actions "#", :"data-dismiss" => "modal", :label => I18n.t("button.#{@share.quest.active? ? 'share' : 'start'}"), :class => "btn btn-primary btn-inverse" %>
+  <% end %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
