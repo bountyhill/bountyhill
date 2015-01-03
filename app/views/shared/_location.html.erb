@@ -8,7 +8,7 @@
   <%= form.control_group :radius,  :select, :select_options => location_radius_select_options(location.radius), :label => false %>
 <% end %>
 
-<script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
 
 <script type="text/javascript">
   $("select#location_radius").change(function() {
