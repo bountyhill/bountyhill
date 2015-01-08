@@ -11,7 +11,7 @@ class StaticControllerTest < ActionController::TestCase
     super
   end
   
-  %w(info contact imprint terms privacy).each do |static_page|
+  %w(faq contact imprint terms privacy).each do |static_page|
     define_method "test_#{static_page}" do
       get static_page
       assert_response :success

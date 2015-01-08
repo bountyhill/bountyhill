@@ -164,7 +164,7 @@ en:
     my_profile:   My profile
     signin:       Sign in/up
     signout:      Sign out
-    info:         Info
+    faq:          Faq
     contact:      Contact
     imprint:      Imprint
     terms:        Terms
@@ -187,7 +187,7 @@ en:
       text5:      "Your searches will succeed faster. You will receive real money for your offers. For distributing other's searches you will be rewarded fairly."
   static:
     title:
-      info:     Frequently Asked Questions
+      faq:      Frequently Asked Questions
       contact:  Contact
       imprint:  Imprint
       privacy:  Privacy Policy

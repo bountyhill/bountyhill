@@ -9,7 +9,7 @@ describe "Static pages" do
     it { should have_selector('h1',     text: I18n.t("home")) }
   end
 
-  %w(info help privacy terms).each do |static_page|
+  %w(faq help privacy terms).each do |static_page|
     describe "visit #{static_page} page" do
       before { visit send("#{static_page}_path") }
       it { should have_selector('title', text: "bountyhill | #{I18n.t(static_page)}") }

@@ -13,7 +13,7 @@ Bountyhill::Application.routes.draw do
   mount app, :at => "/jobs"
 
   # static pages routes
-  %w(info contact imprint terms privacy).each do |static_page|
+  %w(faq contact imprint terms privacy).each do |static_page|
     match static_page => "static##{static_page}", :via => :get
   end
 
