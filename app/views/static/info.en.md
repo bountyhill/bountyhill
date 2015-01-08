@@ -34,43 +34,45 @@ Of course you can also offer on published search requests of other users on boun
 
 ---
 <a name='advantages' class='target'></a>
-##What are the advantages bountyhill?
-Anyone can simply publish a search ad on bountyhill quickly and easily. All you need is an email address or an authentication via a known social network. As a private user you do not even have to specify any personal data at this bountyhill. For commercial purposes you can use all the benefits of bountyhill for free as well <zunächst>.
+##What are the advantages of bountyhill?
+Anyone can publish a search ad on bountyhill quick and easy. All you need to provide upfront is an email address or an authentication via a known social network. As a private user you do not even have to  pay for it nor to specify any personal data. But even when you intend to use bountyhill for commercial purposes, you will be able to use all of our services for free for now.
 
-To reach more readers, bountyhill publishs your search not only in the Internet, but in well-known social networks such as Twitter, Facebook, Xing, LinkedIn and Google+ as well. Since users will share your search within these social networks it's reach increases even more.
+To reach more readers, bountyhill will publish your search ad not only in the Internet, but in well-known social networks such as Twitter, Facebook, Xing, LinkedIn and Google+ as well. Since users share your request within these social networks it's reach increases even more.
 
-In bountyhill search ads of all types are summarized sorted by category. Time-consuming list printing and distribution falls off, your inquiry notice is instead present online and at the same time in the largest social networks.
+In bountyhill search ads of all types are summarized sorted by category. Time-consuming list printing and distribution falls off. Instead your inquiry notice is presented online and in the largest social networks at the same time.
 
-After your registration you participate for free in our monetary rewards program BountyPoints. Find out below about [BountyPoints](#bountypoints).
+After your registration you participate in our monetary rewards program BountyPoints for free. Find out below about [BountyPoints](#bountypoints).
 
 [to top](#top)
 
 ---
 <a name='register' class='target'></a>
 ##Why do I have to register at bountyhill?
-Did you just try to publish a search request and now you have to register? Do not worry - the information you did enter about your search will is not lost.
-To use bountyhill you need to register once, providing one valid email address as well as a password chosen by you. Alternatively, a fairly quick login is possible via the social networks supported by bpuntyhill.
+Did you just try to publish a search request and now you have to register? Do not worry - the information you did enter about your search didn’t get lost. 
+To use bountyhill you need to register once, providing a valid email address as well as a password freely chosen by you. Alternatively, a fairly quick login is possible via the social networks supported by bountyhill.
 
-Would you like to use bountyhill for business purposes? Please select the appropriate option on the registration form. This will allow you to enter information about your corporation.
+Would you like to use bountyhill for business purposes? Please select the appropriate option on the registration form. Afterwards you have to enter some information about your corporation.
 
-After you did regsiter we send you a confirmation email to the email address provided by you. After you have confirmed your email (klick on the link in the sent email) your registration is complete. Your can now login using your email address with password or via a supported social network.
+After your registration we will send you a confirmation link to the email address provided by you. To confirm your email and complete the registration simply click on the link sent to you. Afterwards you will be able to login with your email and password.
 
-Didn't you received a confirmation email from bountyhill? Look in the spam folder of your email account. You can also let the platform send you a new confirmation email anytime. Just click on the appropriate link on the website.
+Didn't you receive a confirmation email from bountyhill? Look for it in the spam folder of your email account. You can also let the platform send you a new confirmation email anytime. Just click on the appropriate link on the website.
 
 [to top](#top)
 
 ---
 <a name='post_quest' class='target'></a>
 ##How do I post a search request?
-Our form for creating and publishing a search request is easy to understand and just as easy to use. For the very best offer describe your search as detailed as possible and limit it with criteria. You can also specify a duration for your request. After the defined expiration it is no longer listed on bounthill. Regardless, you can withdraw your search easily even after it's publication.
-Before publishing your quest you have the opportunity to review it.
+Our form for creating and publishing a search request is easy to understand and just as easy to use. For the very best offer describe your search as detailed as possible and limit it with criteria. You can also specify a duration for your request. Before publishing your quest you of course have the opportunity to review it.
+
+After the chosen expiration period your inquiry will no longer be listed on bountyhill. Regardless of this automated de-publishing, you can easily withdraw your search at anytime.
 
 [to top](#top)
 
 ---
 <a name='social_networks' class='target'></a>
 ##How does the integration of social networks work?
-bountyhill has its own accounts in all known social networks such as Twitter, Facebook, LinkedIn, Google+ and LinkedIn. Your search is shared within these networks automatically after the publication of it.
+bountyhill has its own accounts in all known social networks such as Twitter, Facebook, LinkedIn, Google+ and LinkedIn. Your search is shared within these networks automatically after its publication.
+
 In addition, you can decide whether we should post your search via your account on your own networks. Your to bountyhill known networks are preselected in the publishing form to do so. The selection of other networks (with subsequent authentication) is unproblematically just like the deselection of the pre-selected ones.
 
 [to top](#top)
@@ -82,7 +84,7 @@ Please answer with the bountyhill offer form as detailed as possible and specify
 
 Once you have posted your offer, we will inform the searcher about it. In addition, he will find your offer in his personal area of the website. Now it is up to the searcher whether he'll accepted, rejected, or comment your offer or if he'll contact you via our contact option. For the later we will arrange the exchange of your email addresses by mutual agreement.
 
-If the searcher accepts your offer you might commit yourself legally binding to it. Therefor only make offers you can satisfy.
+If the searcher accepts your offer you might commit yourself legally binding to it. Therefore you should only make offers you can satisfy.
 
 [to top](#top)
 
@@ -91,7 +93,7 @@ If the searcher accepts your offer you might commit yourself legally binding to 
 ##How do I respond to an offer?
 If an offer is published you will be notified by email. In addition, you will see the offer in your personal area "Received offers". Verify a received offer carefully. Any acceptance of an offer may require a payment of the promised reward. Of course you can also reject or comment an offer. Would you prefer receiving further information from the offerer? If so, please use the contact option. With mutual agreement you are free to negotiate the offer via email.
 
-Please Respond to every offer in a short period of time - the offerer may withdraw his offer at any time!
+Please respond to every offer in a short period of time - the offerer may withdraw his offer at any time!
 
 [to top](#top)
 
@@ -105,16 +107,15 @@ If an offer has been accepted, searcher and offerer should get in contact as soo
 ---
 <a name='privacy' class='target'></a>
 ##What about my privacy?
-We are eager to deal with your data very seriously. Personal information, such as your e-mail address will only be eposed to other users after you have authorized to do so. Please find out more about our privacy practices in our [Privacy Policy](/privacy) as well as in our [Terms and Conditions](/terms).
+We are eager to deal with your personal data very seriously. E.g. your e-mail address will only be disclosed to other users after you have given your prior authorization to do so. Please find out more about our privacy practices in our [Privacy Policy](/privacy) as well as in our [Terms and Conditions](/terms).
 
 [to top](#top)
 
 ---
 <a name='bountypoints' class='target'></a>
 ##What are "BountyPoints"?
-bountyhill is a startup from Berlin, we are part of the social network community.
-Whether or not bountyhill will be successful depends mainly on you, our users. Therefor we have launched our free rewarding program "BountyPoints" ti let our most active users perticipate in our success.
-Each registered user is automatically added to our rewards program. With each activity on bountyhill BountyPoints are credited to your account. The following actions are credited with the corresponding number of BountyPoints:
+bountyhill is a startup from Berlin, we are part of the social network community. Whether or not bountyhill will be successful depends mainly on you, our users. Therefore we have launched our free rewarding program "BountyPoints" to let our most active users participate in our success. 
+Each registered user is automatically added to our rewards program. Almost any  activity on bountyhill results in BountyPoints being credited to your account. The following actions will be credited with the corresponding number of BountyPoints:
 
 ** Interaction **               | ** Points **
 :-------------------------------| ------:
@@ -130,8 +131,8 @@ Search/offer withdrawn          | -5
 
 On your profile page you can find a list of the BountyPoints collected by you so far.
 
-We would like to thank our most active users and reward their support. After the closing of each fiscal year bountyhill will therefore distribute 10% of it's net profit to it's 100 most active users. This reward will be payed proportionately according to the number of collected BountyPoints by these users.
+We would like to thank our most active users and reward their support. After the closing of each fiscal year bountyhill will therefore distribute 10% of its net profit to its 100 most active users. This reward will be paid proportionately according to the number of collected BountyPoints by these users.
 
-Until we can report a net profit for a fiscal year, we will collect your BountyPoints on your account for you. So they will stay valuable until the first dividend can be payed out.
+Until we can report a net profit for a fiscal year, we will collect your BountyPoints on your account for you. So they will stay valuable until the first dividend can be paid out.
 
 [to top](#top)
