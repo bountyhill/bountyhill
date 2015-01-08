@@ -24,8 +24,11 @@ Here you will find frequently asked questions concerning the usage of the bounty
 <a name='bountyhill' class='target'></a>
 ##What is bountyhill?
 
-Everyone knows the pieces of paper hanging on trees, traffic lights and lanterns, on which someone is offering a reward while looking for an apartment, a stolen bicycle, or even a witness.
-Many of these search ads are unsuccessful because they remain unnoticed.
+Everyone knows the pieces of paper sticking at trees, traffic lights and lanterns, on which someone offers a reward while looking for an apartment, a stolen bicycle or even a witness. Many of these search ads are unsuccessful because they remain unnoticed.
+
+On bountyhill we offer you a service to publish your personal search request in the internet without any hassle. In addition you can post your request into several social networks to increase the reach of your search even further.
+
+Of course you can also offer on published search requests of other users on bountyhill. Since these requests are always associated with a reward for a successful fulfillment, you can earn real money with a matching offer.
 
 [to top](#top)
 

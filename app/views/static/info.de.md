@@ -24,8 +24,11 @@ Hier findest du häufig gestellte Fragen zur Benutzung der bountyhill Webseite. 
 <a name='bountyhill' class='target'></a>
 ## Worum geht es bei bountyhill?
 
-Jeder kennt die Zettel, die an Bäumen, Ampeln und Laternen  hängen und auf denen jemand eine Wohnung, ein gestohlenes Fahrrad, oder auch einen Zeugen sucht und dafür eine Belohnung bietet.
-Viele dieser Suchanzeigen bleiben erfolglos, weil sie unbeachtet bleiben.
+Jeder kennt die Zettel, die an Bäumen, Ampeln und Laternen  hängen und auf denen jemand eine Wohnung, ein gestohlenes Fahrrad, oder auch einen Zeugen sucht und dafür eine Belohnung bietet. Viele dieser Suchanzeigen bleiben erfolglos, weil sie unbeachtet bleiben.
+
+Wir geben dir bei bountyhill die Möglichkeit, deine ganz persönliche Suchanfrage schnell und einfach online im Internet zu veröffentlichen. Zudem kannst Du sie in verschiedene Soziale Netzwerke publizieren, was die Reichweite deiner Anzeige zusätzlich erhöht.
+
+Natürlich kannst du auf bountyhill auch Angebote auf vorhandene Suchanfragen anderer abgeben. Da Anfragen stets mit einer Belohnung für deren erfolgreiche Erfüllung verbunden sind, kannst du mit einem passenden Angebot bares Geld verdienen.
 
 [nach oben](#top)
 
