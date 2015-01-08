@@ -1,4 +1,4 @@
-We do receive many questions about our website on a daily basis. Here we would like to answer the most frequently asked questions clear and brief. If you have any other question to us, please send it via email to <a href="mailto:info@bountyhill.com">**info@bountyhill.com**</a> or contact us via one of our social media channels.
+Here you will find frequently asked questions concerning the usage of the bountyhill website. If you have a question for us which is not answered below, please send it via email to <a href="mailto:info@bountyhill.com">**info@bountyhill.com**</a> or contact us via our social media channels.
 
 > [What is bountyhill?](#bountyhill)
 

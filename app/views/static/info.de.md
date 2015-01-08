@@ -1,4 +1,4 @@
-Täglich erreichen uns viele Fragen rund um unsere Suchplatform. Nachfolgend möchten wir die am häufigsten gestellten Fragen kurz und bündig beantworten. Falls Du weitere Fragen an uns hast, sende diese einfach per Email an <a href="mailto:info@bountyhill.com">**info@bountyhill.com**</a> oder kontaktiere uns über einen unserer Social Media Channels.
+Hier findest du häufig gestellte Fragen zur Benutzung der bountyhill Webseite. Falls du eine Frage an uns hast, die nachfolgend nicht beantwortet sein sollte, sende diese uns einfach per Email an <a href="mailto:info@bountyhill.com">**info@bountyhill.com**</a> oder kontaktiere uns über einen unserer Social Media Channels.
 
 > [Worum geht es bei bountyhill?](#bountyhill)
 
