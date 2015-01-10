@@ -16,6 +16,7 @@ Bountyhill::Application.configure do
   # config.serve_static_assets = false
   # But heroku needs that. (https://devcenter.heroku.com/articles/http-routing)
   config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=#{1.month.to_i}"
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
