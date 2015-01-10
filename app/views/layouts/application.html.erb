@@ -12,19 +12,18 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="keywords" content="wanted search ads reward bounty recommendation advise hint job car appartment twitter facebook linkedin xing google+ tweet social network">
     
+  <!-- security -->
+  <%= csrf_meta_tags %>
+    
   <!-- stylesheets -->
   <%= stylesheet_link_tag "application", :media => "all" %>
+
+  <!-- fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:600italic,600|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
   
   <!-- javascripts -->
   <%= javascript_include_tag "application" %>
   <%= filepicker_tags %>
-
-  <!-- security -->
-  <%= csrf_meta_tags %>
-  
-  <!-- fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:600italic,600|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
-  
 </head>
 <body itemscope itemtype="https://schema.org/Thing" class="<%= controller.controller_name %>">
   <!-- modal placeholders -->
