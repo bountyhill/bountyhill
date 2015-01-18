@@ -49,7 +49,7 @@ module ApplicationController::RequiredIdentity
   #
   #   def do_start
   #     request_identity! :twitter, :on_cancel => root_path
-  #     share.post(:twitter)
+  #     share.post!(:twitter)
   #   end
   
   REQUESTBALE_IDENTITIES = [ :confirmed, :email, :twitter, :facebook, :google, :linkedin, :xing, :address, :login, :any ]

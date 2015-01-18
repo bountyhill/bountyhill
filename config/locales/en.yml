@@ -686,7 +686,7 @@ en:
       legend:       "Please choose the social networks you want to share this request with your friends and followers."
       legend2:      "Enter the message you want to share. It will be posted as displayed below."
       legend3:      "Your search request will be active on bountyhill for %{duration_in_days}."
-      application:  "In addition we will share this request in all social networks bountyhill is active in."
+      application:  "In addition we will share your request in all of bountyhill's corresponding social network accounts."
       twitter:      "Twitter %{required}"
       facebook:     "Facebook %{required}"
       google:       "Google %{required}"

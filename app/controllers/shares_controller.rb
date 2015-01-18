@@ -36,9 +36,6 @@ class SharesController < ApplicationController
     @share = Share.find(params[:id])
     @quest = Quest.find(@share.quest_id)
     
-    # share quest within all bountyhill social networks
-    @share.post_all
-    
     # share quest with user identities he did choose to post in
     @share.identities.each do |identity, post|
       next if post.kind_of?(Time) # quest was already posted with this identity
@@ -46,8 +43,14 @@ class SharesController < ApplicationController
 
       # request identity user wants to share with
       request_identity! identity.to_sym, :on_cancel => @share.quest
-      @share.post(identity.to_sym)
+      @share.post!(identity.to_sym)
     end
+
+    # mark share as 'posted'
+    @share.update_attribute(:shared_at, Time.now)
+
+    # reward user for sharing
+    @share.owner.reward_for(@quest, :share) if @share.identities.any?
 
     # 
     # if the quest is alreday active we are done if not,

@@ -42,28 +42,20 @@ class Share < ActiveRecord::Base
     end
   end
   
-  #
-  # triggers the posting of a share within
-  # all bountyhill social networks
-  def post_all
-    return unless application
-    
-    Share::IDENTITIES.each{ |identity| "Identity::#{identity.camelize}".constantize.post(get_message, :object => quest) }
-    self.shared_at = Time.now
-    save!
-  end
   
   #
   # triggers the posting of a share with the 
   # given identity and stores the time the
   # share was posted in the identities hash
-  def post(identity)
+  def post!(identity)
     expect! identity => [Symbol]
     
-    owner.identity(identity).post(get_message, :object => quest)
-    owner.reward_for(quest, :share)
+    # triggers the posting of a share within bountyhill's social network
+    "Identity::#{identity.to_s.camelize}".constantize.post(get_message, :object => quest)
     
-    identities[identity] = Time.now
+    # triggers the posting of a share within user's social network
+    owner.identity(identity).post(get_message, :object => quest)
+    identities.update(identity.to_s => Time.now)
     save!
   end
 
@@ -76,12 +68,11 @@ private
   end
 
   def validate_identities
-    # if we share the object within bounthill's social networks,
-    # we do not require any user social networks to be present
     return if application
+    return if shared_at.present?
 
     # if we do not share the object within bounthill's social networks,
-    # we do rewuire at least one network to share in to be choosen
+    # we do require at least one network to share in to be choosen
     return if identities.keys.any?{ |identity| Share::IDENTITIES.include?(identity) }
     
     self.errors.add :base, I18n.t("share.errors.identities")

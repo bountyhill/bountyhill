@@ -36,25 +36,19 @@ class ShareTest < ActiveSupport::TestCase
     share   = Factory(:share)
     owner   = share.owner
     
-    Factory(:twitter_identity, :user => owner)
-    Identity::Twitter.any_instance.expects(:post).with("#{share.message}", :object => share.quest)
-    owner.expects(:reward_for).with(share.quest, :share).once
-    
-    share.post(:twitter)
-    assert share.identities[:twitter].kind_of?(Time)
-  end
-  
-  def test_post_all
-    share = Factory(:share, :application => true)
-    owner = share.owner
-    
+    # owner.expects(:reward_for).with(share.quest, :share)
     Share::IDENTITIES.each do |identity|
       Factory("#{identity}_identity".to_sym, :user => owner)
+      share.owner.reload
+      
+      # test share within bountyhill's social network
       "Identity::#{identity.camelize}".constantize.expects(:post).with("#{share.message}", :object => share.quest)
+      # test share within user's social network
+      "Identity::#{identity.camelize}".constantize.any_instance.expects(:post).with("#{share.message}", :object => share.quest)
+      
+      share.post!(identity.to_sym)
+      assert share.identities[identity].kind_of?(Time)
     end
-    
-    share.post_all
-    assert share.shared_at.kind_of?(Time)
   end
   
 end

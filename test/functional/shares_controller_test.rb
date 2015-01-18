@@ -61,8 +61,8 @@ class SharesControllerTest < ActionController::TestCase
   def test_show
     # TODO: @quest.expects(:active?).once.returns(true)
     Quest.any_instance.expects(:active?).once.returns(true)
-    # TODO: @share.expects(:post).with(:twitter).once
-    Share.any_instance.expects(:post).with(:twitter).once
+    # TODO: @share.expects(:post!).with(:twitter).once
+    Share.any_instance.expects(:post!).with(:twitter).once
     
     assert_no_difference "Share.count" do
       get :show, :id => @share.id
@@ -71,6 +71,7 @@ class SharesControllerTest < ActionController::TestCase
     assert_redirected_to quest_path(@quest)
     assert_equal @share, assigns(:share)
     assert_equal @quest, assigns(:quest)
+    assert @share.reload.shared_at.kind_of?(Time)
   end
   
   #
@@ -80,8 +81,8 @@ class SharesControllerTest < ActionController::TestCase
     Quest.any_instance.expects(:active?).once.returns(false)
     # TODO @quest.expects(:start!).once
     Quest.any_instance.expects(:start!).once
-    # TODO: @share.expects(:post).with(:twitter).once
-    Share.any_instance.expects(:post).with(:twitter).once
+    # TODO: @share.expects(:post!).with(:twitter).once
+    Share.any_instance.expects(:post!).with(:twitter).once
     
     assert_no_difference "Share.count" do
       get :show, :id => @share.id
@@ -90,6 +91,7 @@ class SharesControllerTest < ActionController::TestCase
     assert_redirected_to quest_path(@quest)
     assert_equal @share, assigns(:share)
     assert_equal @quest, assigns(:quest)
+    assert @share.reload.shared_at.kind_of?(Time)
   end
 
   #
@@ -104,5 +106,6 @@ class SharesControllerTest < ActionController::TestCase
     assert_redirected_to signin_path(:req => 'facebook')
     assert_equal @share, assigns(:share)
     assert_equal @quest, assigns(:quest)
+    assert @share.reload.shared_at.nil?
   end 
 end
