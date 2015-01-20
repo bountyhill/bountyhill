@@ -101,6 +101,8 @@ protected
   def the_awesome_icon(name, *args, &block)
     options = args.extract_options!
     size = options.delete(:size) if options
+    spin = options.delete(:spin) if options
+    
     content = args.first unless args.blank?
     content ||= capture(&block) if block_given?
     content ||= ''
@@ -110,6 +112,7 @@ protected
 
     clazz = "fa fa-#{name}"
     clazz << " fa-#{size}" if size
+    clazz << " fa-spin"    if spin
     clazz << " " << options.delete(:class) if options[:class]
 
     options.merge!(:class => clazz)

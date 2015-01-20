@@ -4,7 +4,7 @@ module ApplicationHelper
   def endless_scroll_loader(type)
     expect! type => Symbol
     div :class => "loader" do
-      link_to(awesome_icon(icon_for('other.load_indicator')) + "&nbsp;".html_safe + I18n.t("link.loading"),
+      link_to(awesome_icon(icon_for('other.load_indicator'), :spin => true) + "&nbsp;".html_safe + I18n.t("link.loading"),
         send("#{type}_path", params.merge(:page => (params[:page].to_i || 1)+1)),
         :class => 'endless_scroll_hook',
         :remote => true)
