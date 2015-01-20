@@ -397,6 +397,7 @@ de:
       profile:
         title:  "Nutzerprofil"
         text:   "Wir konnten keine Beschreibung von Dir in Deinen Social-Media Profilen finden. Wenn Du möchtest kannst Du eine Beschreibung von Dir auf bountyhill eingeben, damit andere Nutzer etwas von Dir erfahren."
+        empty:  "%{user} hat noch keine Beschreibung über sich sich hinterlegt."
         icon:
           commercial: "Du bist als kommerzieller Nutzer bei bountyhill registriert und handelst im Namen Deines Unternehmens."
           private:    "Du bist als privater Nutzer bei bountyhill registriert."

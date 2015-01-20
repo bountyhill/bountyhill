@@ -50,7 +50,8 @@ module UsersHelper
   end
   
   def follow_user_button(user)
-    return if personal_page? || user.identities(:twitter).blank?
+    return if personal_page? 
+    return unless user.identities(:twitter).present?
 
     awesome_button(icon_for('interaction.follow'), url_for_follow_twitter_account(:account => user.twitter_handle),
       :html => { :target => :blank, :rel => "nofollow" }) { I18n.t("button.follow") }

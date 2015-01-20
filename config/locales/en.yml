@@ -396,6 +396,7 @@ en:
       profile:
         title:  "User profile"
         text:   "We could not find a description of you in any of your social media profiles. If you like, you can add a description on bountyhill to let other users know something about you."
+        empty:  "%{user} did not provide a description of himself so far."
         icon:
           commercial: "You are registered on bountyhill as a commercial user acting on behalf of your company."
           private:    "You are registered on bountyhill as a private user."

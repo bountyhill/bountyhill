@@ -1,7 +1,9 @@
 <div class="content-box">
   <% if user.description.present? %>
     <%= user.description %>
-  <% else %>
+  <% elsif current_user == user %>
     <%= I18n.t("user.box.profile.text") %>
+  <% else %>
+    <%= I18n.t("user.box.profile.empty", :user => user.name) %>
   <% end %>
 </div>
