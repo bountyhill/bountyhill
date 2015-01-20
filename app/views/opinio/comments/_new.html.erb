@@ -7,10 +7,7 @@
       <div class="control-group">
         <%= f.text_area :body, :rows => 5 %>
       </div>
-      <div class="buttons">
-        <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-link btn-cancel" %>
-        <%= f.submit I18n.t('button.post'), :class => "btn btn-link" %>
-      </div>
+      <%= f.actions "#", :label => I18n.t("button.post") %>
     <% end %>
   <% else %>
     <p><%= I18n.t('comment.messages.must_be_logged_in_to_comment') %></p>

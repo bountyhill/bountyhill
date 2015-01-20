@@ -205,13 +205,19 @@ class ActionView::Helpers::FormBuilder
     expect! html_options => Hash
 
     div :class => "buttons" do
-      label = html_options.delete(:label) || (object.new_record? ? I18n.t("button.create") : I18n.t("button.update"))
-      css   = html_options.delete(:class) || "btn btn-primary btn-inverse"
+      label         = html_options.delete(:label)         || (object.new_record? ? I18n.t("button.create") : I18n.t("button.update"))
+      disable_with  = html_options.delete(:disable_with)  || label
+      id            = html_options.delete(:id)            || ""
+      name          = html_options.delete(:name)          || ""
+      css           = html_options.delete(:class)         || "btn btn-primary btn-inverse"
       # 
-      save_btn   = submit(label, :class => css)
+      options = { :id => id, :name => name, :class => css, :data => { :disable_with => disable_with } }
+      options.merge!(:disabled => "disabled") if html_options.delete(:disabled)
+      
+      submit_btn = submit(label, options)
       cancel_btn = link_to(I18n.t("button.cancel"), url, { :class => "btn btn-cancel" }.merge(html_options))
 
-      "#{cancel_btn}&nbsp;#{save_btn}"
+      "#{cancel_btn}&nbsp;#{submit_btn}"
     end
   end
   

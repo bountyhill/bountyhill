@@ -26,11 +26,7 @@
       <p><%= terms_of_use_legend %></p>
       <%= form.control_group :accept_terms, :check_box %>
     <% end %>
-
-    <div class="buttons">
-      <%= link_to_cancel_signin %>
-      <%= form.submit I18n.t("button.register"), submit_button_options %>
-    </div>
+    <%= form.actions "/sessions/cancel", :label => I18n.t("button.register"), :method => :post %>
   <% end %>
   
 <% end %>

@@ -21,10 +21,13 @@
     <%= form.control_group :deletion_reason, :text_area, :rows => 3, :hint => false %>
     <%= form.control_group :delete_me, :check_box %>
     
-    <div class="buttons">
-      <%= link_to I18n.t("button.cancel"), "#", :class => "btn btn-cancel", :"data-dismiss" => "modal" %>
-      <%= form.submit I18n.t("button.delete"), :name => "delete_user", :id => "delete_user", :class => "btn btn-danger", :disabled => "disabled" %>
-    </div>
+    <%= form.actions "#", 
+      :label          => I18n.t("button.delete"),
+      :name           => "delete_user",
+      :id             => "delete_user",
+      :class          => "btn btn-danger",
+      :disabled       => "disabled",
+      :"data-dismiss" => "modal" %>
   <% end %>
 <% end %>
 
