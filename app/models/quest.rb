@@ -81,11 +81,8 @@ class Quest < ActiveRecord::Base
       # Verify that this quest is actually a draft or a quest which belongs
       # the the current_user (which is available here as previous_user). 
       if !previous_user || !previous_user.owns?(quest)
-        if !quest.owner.draft?
-          raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" 
-        elsif quest.created_at < Time.now - 1.hour
-          raise ActiveRecord::RecordNotFound, "#{quest.uid} is too old" 
-        end
+        raise ActiveRecord::RecordNotFound, "#{quest.uid} is not a draft" if !quest.owner.draft?
+        # raise ActiveRecord::RecordNotFound, "#{quest.uid} is too old"     if quest.created_at < Time.now - 1.hour
       end
 
       quest
