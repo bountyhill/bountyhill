@@ -5,7 +5,7 @@
 
 class ActionView::Helpers::FormBuilder
   extend Forwardable
-  delegate [:link_to, :image_for, :javascript_tag] => :@template
+  delegate [:link_to, :image_for, :javascript_tag, :awesome_icon, :icon_for] => :@template
 
   # content_tag reimplementation for FormBuilder.
   #
