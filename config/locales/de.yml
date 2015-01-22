@@ -584,7 +584,7 @@ de:
         other:  "%{count} Kommentare wurden zu dieser Suchanfrage gepostet."
     box:
       title:    "%{amount} Belohnung"
-      location: "Ortsbeschränkung: %{location}"
+      location: "Ortsbeschränkung"
       criteria: 
         one:    "Aufgestelltes Kriterium"
         other:  "Aufgestellte Kriterien"

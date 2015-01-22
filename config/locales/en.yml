@@ -584,7 +584,7 @@ en:
         other:  "%{count} comments were posted to this request."
     box:
       title:    "%{amount} bounty"
-      location: "Location restriction: %{location}"
+      location: "Location restriction"
       criteria: 
         one:    "Defined Criteria"
         other:  "Defined Criteria"

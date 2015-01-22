@@ -13,7 +13,7 @@
 <% end %>
 
 <% if quest.location.present? %>
-  <h2><%= I18n.t("quest.box.location", :location => quest.location.address) %></h2>
+  <h2><%= I18n.t("quest.box.location") %></h2>
   <%= partial "locations/show", :location => quest.location %>
 <% end %>
 
