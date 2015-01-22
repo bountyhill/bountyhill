@@ -41,7 +41,7 @@ module AccordionHelper
     return options[:collapse] if options[:collapse].present?
 
     @partial ||= @partials.first
-    File.basename(@partial).to_s == partial.to_s ? 'in' : 'out'
+    ( @partials.size == 1 || File.basename(@partial).to_s == partial.to_s) ? 'in' : 'out'
   end
   
 end
