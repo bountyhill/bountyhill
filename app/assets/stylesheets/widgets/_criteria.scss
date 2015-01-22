@@ -2,39 +2,23 @@
   list-style: none;
   margin: 0;
   li {
-    margin: 0 0 8px 0;
-    line-height: 18px;
-    /* TODO: style criteria bullet points here...
-          &:before {
-            content: counter(item);
-            counter-increment: item;
-            display: inline-block;
-            width: 36px;
-            height: 36px;
-            background-color: $offers_box_title_color;
-            text-align: center;
-            color: $text;
-            font-family: $font_system;
-            font-size: $x_large;
-            font-weight: bold;
-            margin: auto .5em auto .5em;
-          }
-    */
+    margin: 0;
+    line-height: 14px;
     .index {
       float: left;
       text-align: center;
       font-family: $font_system;
       color: $text;
-      padding: 8px;
-      width: 16px;
-      height: 16px;
-      font-size: $large;
-      line-height: $small;
+      padding: 6px;
+      width: 14px;
+      height: 14px;
+      font-size: $normal;
+      line-height: $x_small;
     }
     .title {
-      margin: 4px 0 20px 40px;
-      font-size: $normal;
-      line-height: $x_large;
+      margin: 4px 0 16px 36px;
+      font-size: $small;
+      line-height: $normal;
     }
     .complience { margin-bottom: 16px; }
   }
@@ -72,8 +56,6 @@
 @media only screen and (max-width: 683px) {
   .criteria {
     li {
-      margin: 0 0 4px 0;
-      line-height: 14px;
       .index {
         padding: 4px;
         width: 12px;

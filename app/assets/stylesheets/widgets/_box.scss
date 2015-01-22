@@ -65,8 +65,11 @@
       margin: 0;
       font-size: $normal;
     }
-    .description, .criteria-section, .image-section {
+    .description, .image-section {
       margin: $section_top_margin 0 0 0;
+    }
+    .criteria-section {
+      margin: $section_top_margin+($section_top_margin/2) 0 0 0;;
     }
     .description {
       p { margin: 0; }
