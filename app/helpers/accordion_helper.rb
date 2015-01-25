@@ -39,8 +39,9 @@ module AccordionHelper
     expect! options => Hash
     
     return options[:collapse] if options[:collapse].present?
-
-    @partial ||= @partials.first
+    
+    @partials ||= []
+    @partial  ||= @partials.first
     ( @partials.size == 1 || File.basename(@partial).to_s == partial.to_s) ? 'in' : 'out'
   end
   
