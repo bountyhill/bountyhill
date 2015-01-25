@@ -716,3 +716,13 @@ de:
       field_hint:
         subject:  "Der Betreff Deiner Kontaktanfrage"
         body:     "Gebe hier eine Nachricht für Deine Kontaktanfrage ein."
+  errors:
+    not_found:
+      title:  Seite nicht gefunden
+      text:   Die angefragte Seite existiert nicht. Möglicherweise hast Du die Adresse der Seite falsch eingegeben.
+    unprocessable_entity:
+      title:  Änderung nicht durchführbar
+      text:   "Die Änderung, die Du vornehmen wolltest kann nicht durchgeführt werden. Möglicherweise wolltest Du etwas ändern, für das die nicht die erforderliche Berechtigung hast."
+    internal_server_error:
+      title:  Fehler in der Verabeitung
+      text:   "Bei der Verabeitung Deiner Anfrage ist ein Fehler aufgetreten, was wir sehr bedauern. Versuche es einfach noch einmal."

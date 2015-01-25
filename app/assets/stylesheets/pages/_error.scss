@@ -1,0 +1,12 @@
+.box {
+  &.error {
+    @include box_colors(error);
+    
+    .content {
+      color: $text;
+      padding: $box_padding;
+      img { max-height:  256px; }
+      p { margin-top: $box_padding; }
+    }
+  }
+}

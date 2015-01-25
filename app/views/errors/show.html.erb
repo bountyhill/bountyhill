@@ -1,0 +1,27 @@
+<div class="row-fluid main">
+  <div class="span2">&nbsp;</div>
+  <div class="main span8">
+    <div class="error box row-fluid">
+      <div class="content">
+        <div class="error-container row-fluid">
+          <div class="text-container span8">
+            <h1><%= I18n.t("errors.#{@error}.title")%></h1>
+            <p><%= I18n.t("errors.#{@error}.text")%></p>
+          </div>
+          <div class="image-container span4">
+            <%= image_tag asset_path("errors/#{@error}.png") %>
+          </div>
+        </div>
+        <% if Rails.env.development? %>
+          <div class="row-fluid">
+            <div class="text-container span12">
+              <h2><%= @exception.class.name %>: <%= @exception.message %></h2>
+              <p><%= @exception.backtrace.join('<br>').html_safe %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="span2">&nbsp;</div>
+</div>

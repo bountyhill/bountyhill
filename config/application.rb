@@ -74,6 +74,9 @@ module Bountyhill
 
     # Precompile *all* assets, except those that start with underscore
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+    
+    # send exceptions through routes.rb to handle them in designated controller
+    config.exceptions_app = self.routes
 
     # -- middleware ---------------------------------------------------
 

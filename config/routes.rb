@@ -88,6 +88,12 @@ Bountyhill::Application.routes.draw do
   match 'confirm'         => 'deferred_actions#confirm'
   match 'reset_password'  => 'deferred_actions#reset_password'
   
+  
+  # exeption handling routes
+  match '/404' => 'errors#not_found'
+  match '/422' => 'errors#unprocessable_entity'
+  match '/500' => 'errors#internal_server_error'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

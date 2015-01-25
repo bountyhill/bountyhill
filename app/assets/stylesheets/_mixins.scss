@@ -150,6 +150,10 @@
     background-color: $static_box_color;
     .header { background-color: $static_box_title_color;}
   }
+  @else if  $box_type == error { 
+    background-color: $error_box_color;
+    .header { background-color: $error_box_title_color;}
+  }
   @else if  $box_type == quest-filter { 
     background-color: $quests_box_title_color;
     .header { background-color: $quests_box_color; }
