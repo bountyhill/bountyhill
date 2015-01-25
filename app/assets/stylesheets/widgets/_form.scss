@@ -101,41 +101,50 @@ form {
     }
   }
   .checkbox-group {
-    &.twitter, &.facebook, &.google, &.linkedin, &.xing {
-      position: relative;
-      margin: 4px 0;
-      padding: 0px 10px;
-      color: $text;
-      label { padding-top: 3px; }
-      i {
-        font-size: $large;
-        position: absolute;
-        right: 10px;
-        bottom: 6px;
+    list-style: none;
+    margin: $box-padding 0;
+    .control-group { margin-bottom: 0px; }
+    li {
+      &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+        float: left;
+        width: 56px;
+        margin: 0 $box-padding $box-padding 0;
+        padding: $box-padding/2 $box-padding;
+        color: $text;
+        input, i { font-size: $xxx_large; }
+        input { 
+          margin-top: 5px;
+          margin-right: 12px;
+        }
+        label {
+          margin: 0;
+          padding-top: 2px;
+        }
       }
-    }
-    &.twitter  { 
-      background-color: $twitter; 
-      &:hover {background-color: $twitter_highlight; }
-    }
-    &.facebook { 
-      background-color: $facebook; 
-      &:hover {background-color: $facebook_highlight; }
-    }
-    &.google { 
-      background-color: $google; 
-      &:hover {background-color: $google_highlight; }
-    }
-    &.linkedin { 
-      background-color: $linkedin; 
-      &:hover {background-color: $linkedin_highlight; }
-    }
-    &.xing { 
-      background-color: $xing; 
-      &:hover {background-color: $xing_highlight; }
+      &.twitter  { 
+        background-color: $twitter; 
+        &:hover {background-color: $twitter_highlight; }
+      }
+      &.facebook { 
+        background-color: $facebook; 
+        &:hover {background-color: $facebook_highlight; }
+      }
+      &.google { 
+        background-color: $google; 
+        &:hover {background-color: $google_highlight; }
+      }
+      &.linkedin { 
+        background-color: $linkedin; 
+        &:hover {background-color: $linkedin_highlight; }
+      }
+      &.xing { 
+        background-color: $xing; 
+        &:hover {background-color: $xing_highlight; }
+      }
     }
   }
   .tweet-message {
+    clear: both;
     margin-top: 18px;
     .controls { margin-left: 0; }
   }
@@ -168,14 +177,6 @@ form {
         top: 15px;
       }
       &:before { left: 50px; }
-    }
-  }
-  .checkbox-group {
-    margin: 18px 0;
-    .checkbox {
-      .control-group {
-        margin-bottom: 0;
-      }
     }
   }
   .buttons {
@@ -318,6 +319,18 @@ form {
       font-size: $x_small;
       margin-bottom: 8px;
     }
+    .checkbox-group {
+      margin: $box-padding/2 0;
+      .control-group { margin-bottom: 0px; }
+      li {
+        &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+//          width: 48px;
+          margin: 0 $box-padding/2 $box-padding/2 0;
+          padding: $box-padding/4 $box-padding/2;
+          input, i { font-size: $xx_large; }
+        }
+      }
+    }
   }
   .mceContentBody {
     p { 
@@ -361,6 +374,34 @@ form {
     }
   }
 }
+@media only screen and (max-width: 400px) {
+  form {
+    .checkbox-group {
+      li {
+        &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+          width: 48px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 360px) {
+  form {
+    .checkbox-group {
+      li {
+        &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+          width: 40px;
+          padding: $box-padding/4 $box-padding/2;
+          input, i { font-size: $x_large; }
+          input { 
+            margin-top: 3px;
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 320px) {
   .box {
@@ -371,6 +412,16 @@ form {
             margin-right: 3px;
             font-size: $xxx_small;
           }
+        }
+      }
+    }
+  }
+  form {
+    .checkbox-group {
+      li {
+        &.twitter, &.facebook, &.google, &.linkedin, &.xing {
+          width: 36px;
+          margin: 0 $box-padding/4 $box-padding/4 0;
         }
       }
     }

@@ -24,14 +24,16 @@
     <%= form.control_group :application,  :hidden_field %>
     <%= hidden_field_tag :bounty_with_unit, number_to_currency(@share.bounty, :precision => 0, :unit => '€') %>
     
-    <% Share::IDENTITIES.each do |identity| %>
-      <div class="checkbox-group <%= identity %>">
-        <%= form.share_with identity,
-          :checked  => @share.identities[identity],
-          :required => !@share.identities[identity] %>
-        <%= awesome_icon(icon_for("identity.#{identity}")) %>
-      </div>
-    <% end %>
+    <ul class="checkbox-group">
+      <% Share::IDENTITIES.each do |identity| %>
+        <li class="<%= identity %>">
+          <%= form.share_with identity,
+            :checked  => @share.identities[identity],
+            :required => !@share.identities[identity],
+            :label    => awesome_icon(icon_for("identity.#{identity}")) %>
+        </li>
+      <% end %>
+    </ul>
     
     <div class="tweet-message">
       <p><%= I18n.t("share.form.legend2") %></p>
