@@ -111,8 +111,9 @@ form {
         margin: 0 $box-padding $box-padding 0;
         padding: $box-padding/2 $box-padding;
         color: $text;
-        input, i { font-size: $xxx_large; }
-        input { 
+        i { font-size: $xxx_large; }
+        input[type="checkbox"] { 
+          font-size: $large;
           margin-top: 5px;
           margin-right: 12px;
         }
@@ -327,7 +328,7 @@ form {
 //          width: 48px;
           margin: 0 $box-padding/2 $box-padding/2 0;
           padding: $box-padding/4 $box-padding/2;
-          input, i { font-size: $xx_large; }
+          i { font-size: $xx_large; }
         }
       }
     }
@@ -379,7 +380,10 @@ form {
     .checkbox-group {
       li {
         &.twitter, &.facebook, &.google, &.linkedin, &.xing {
-          width: 48px;
+          width: 44px;
+          input[type="checkbox"] { 
+            margin-right: 6px;
+          }
         }
       }
     }
@@ -392,10 +396,10 @@ form {
         &.twitter, &.facebook, &.google, &.linkedin, &.xing {
           width: 40px;
           padding: $box-padding/4 $box-padding/2;
-          input, i { font-size: $x_large; }
-          input { 
+          i { font-size: $x_large; }
+          input[type="checkbox"] { 
             margin-top: 3px;
-            margin-right: 6px;
+            margin-right: 4px;
           }
         }
       }
