@@ -210,7 +210,7 @@ class OffersControllerTest < ActionController::TestCase
     assert_response :redirect
     assert_redirected_to offer_path(assigns(:offer), :preview => true)
     assert !assigns(:offer).new_record?
-    assert_equal I18n.t("notice.submit.success", :record => Offer.model_name.human), flash[:success]
+    assert_equal I18n.t("notice.create.success", :record => Offer.model_name.human), flash[:success]
   end
   
   def test_update

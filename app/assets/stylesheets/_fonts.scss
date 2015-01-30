@@ -2,10 +2,14 @@
 
 $font_system: 'Open Sans Condensed', arial, sans-serif;
 $font_user:   'Open Sans', arial, sans-serif;
+$font_form:   'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 body {
   font-family: $font_user;
   .btn, .nav { font-family: $font_system; }
+}
+body.mceContentBody {
+  font-family: $font_form;
 }
 
 /* font sizes */

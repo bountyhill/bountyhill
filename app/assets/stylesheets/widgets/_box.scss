@@ -88,7 +88,7 @@
     }
     .button-section {
       float: right;
-      margin: ($section_top_margin*2) 0 $section_bottom_margin 0;
+      margin: ($section_top_margin*3) 0 (-$section_top_margin*2) 0;
     }
   }
   
@@ -190,6 +190,13 @@
       }
       #map { 
         height: 240px;
+      }
+      .button-section {
+        margin: ($section_top_margin*2) 0 0 0;
+        .btn { 
+          font-size: 12px; 
+          padding: ($section_top_margin/2) $section_top_margin;
+        }
       }
     }
   }

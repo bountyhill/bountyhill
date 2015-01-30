@@ -333,11 +333,11 @@ form {
       }
     }
   }
-  .mceContentBody {
+  body.mceContentBody {
+    font-size: $small;
     p { 
       margin: 0 0 5px;
-      line-height: 1.2em;
-      font-size: $x_small;
+      line-height: 1em;
     }
   }
 }
@@ -387,6 +387,9 @@ form {
         }
       }
     }
+  }
+  body.mceContentBody {
+    font-size: $x_small;
   }
 }
 @media only screen and (max-width: 360px) {
