@@ -381,9 +381,8 @@ form {
       li {
         &.twitter, &.facebook, &.google, &.linkedin, &.xing {
           width: 44px;
-          input[type="checkbox"] { 
-            margin-right: 6px;
-          }
+          input[type="checkbox"], i { font-size: $x_large; }
+          input[type="checkbox"] { margin-right: 6px; }
         }
       }
     }
@@ -429,6 +428,7 @@ form {
         &.twitter, &.facebook, &.google, &.linkedin, &.xing {
           width: 36px;
           margin: 0 $box-padding/4 $box-padding/4 0;
+          input[type="checkbox"] { font-size: $small;}
         }
       }
     }
