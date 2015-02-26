@@ -39,7 +39,7 @@ class DeferredActionsController < ApplicationController
     Deferred.mail UserMailer.confirm_email(current_user)
     flash[:success] = I18n.t("sessions.email.confirmation.sent")
     
-    redirect_to request.env["HTTP_REFERER"] || root_path
+    identity_cancelled!
   end
 
   protected

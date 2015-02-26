@@ -147,6 +147,7 @@ en:
     confirm:  Confirm
     contact:  Contact
     send:     Send
+    resend:   Resend
   filter:
     filter_by: "for %{filter}"
     location:
@@ -237,6 +238,7 @@ en:
         title:  Sign in with email
         legend: If you already have a bountyhill account please sing in with your email and password.
       field_hint:
+        name:                       Enter your name.
         email:                      Enter your email address.
         password:                   Enter your password.
         password_confirmation:      Confirm your password.
@@ -368,6 +370,8 @@ en:
     form:
       title:    Confirm email
       legend:   You have to confirm your email address first.
+      legend2:  After you registration we've sent you an email to confirm your email address. If you did not receive this email you can re-send it to you by clicking the 'Resend' button below.
+      legend3:  Please check the spam folder of your email program as well. The confirmation email we did sent to you might by wrongly calssified as spam.
   comment:
     messages:
       must_be_logged_in_to_comment: You have to be logged in to post a comment.

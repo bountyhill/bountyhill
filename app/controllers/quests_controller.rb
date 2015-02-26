@@ -38,8 +38,7 @@ class QuestsController < ApplicationController
     # when current user is not known, it could be also a draft quest
     @quest = Quest.find_by_id(params[:id]) || Quest.draft(params[:id])
 
-    # intending to be started (preview param is passed in this case)
-    render :action => "preview" if params[:preview]
+    return render :action => "preview" if params[:preview] # intending to be started (preview param is passed in this case)
   end
 
   def new

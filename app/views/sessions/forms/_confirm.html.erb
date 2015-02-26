@@ -6,6 +6,7 @@
 <% accordion_body(:confirm, :collapse => :in) do %>
   <% form_for identity?(:email) || Identity::Email.new, :url => "/confirm", :remote => true do |form| %>
     <p><%= I18n.t("identity/confirm.form.legend")%></p>
-    <%= form.actions "/sessions/cancel", :label => I18n.t("button.confirm"), :method => :post %>
+    <p><%= I18n.t("identity/confirm.form.legend2")%></p>
+    <%= form.actions "/sessions/cancel", :label => I18n.t("button.resend"), :method => :post %>
   <% end %>
 <% end %>

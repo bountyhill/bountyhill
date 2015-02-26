@@ -147,6 +147,7 @@ de:
     confirm:  Bestätigen
     contact:  Kontaktieren
     send:     Abschicken
+    resend:   Erneut senden
   filter:
     filter_by: "nach %{filter}"
     location:
@@ -237,6 +238,7 @@ de:
         title:  Anmelden via Email
         legend: "Melde Dich mit Deiner Email-Adresse an, wenn Du bereits ein bounthill Konto besitzt."
       field_hint:
+        name:                       Gebe Deinen Namen ein.
         email:                      Gebe Deine Email-Adresse ein.
         password:                   Gebe Dein Passwort ein.
         password_confirmation:      Bestätige Dein Passwort.
@@ -367,8 +369,10 @@ de:
         delete_me:    "Ich möchte meinen Xing-Account von meinem bountyhill Profil entfernen."
   identity/confirm:
     form:
-      title:    Email bestätigen
+      title:    Emailadresse bestätigen
       legend:   Du musst die von Dir angegebene Emailadresse zuerst bestätigen.
+      legend2:  "Bei Deiner Anmeldung haben wir Dir eine Email zugesand, in der beschrieben ist, wie Du Deine Emailadresse bestätigen kannst. Falls Du diese Email nicht erhalten hast, kannst Du Dir sie mit Klick auf 'Erneut senden' noch einmal zuschicken lassen."
+      legend3:  Bitte prüfe auch den Spam-Ordner Deines Emailprogrammes. Möglicherweise wurde die Dir zugesandte Bestätigungsemail fälschlich als Spam klassifiziert.
   comment:
     messages:
       must_be_logged_in_to_comment: "Du musst Dich Anmelden, um einen Kommentar abzugeben."
