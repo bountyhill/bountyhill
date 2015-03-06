@@ -41,7 +41,8 @@
     .image-container {
       float: left;
       width: $avatar_size;
-      img { height: $avatar_size; }
+      height: $avatar_size;
+      img { max-height: $avatar_size; }
     }
     .bar-box {
       display: block;
@@ -128,7 +129,8 @@
       min-height: 42px;
       .image-container {
         width: $avatar_size/1.5;
-        img { height: $avatar_size/1.5; }
+        height: $avatar_size/1.5;
+        img { max-height: $avatar_size/1.5; }
       }
       .bar-box {
         margin-left:  $avatar_size/1.5 + $box_padding/2;

@@ -69,7 +69,8 @@
       width: 75%;
       .image-container {
         width: $avatar_size;
-        img { height: 64px; }
+        height: $avatar_size;
+        img { max-height: $avatar_size; }
       }
       .name, .handle {
         position: absolute;
@@ -120,7 +121,8 @@
       .profile {
         .image-container {
           width: $avatar_size/1.5;
-          img { height: $avatar_size/1.5; }
+          height: $avatar_size/1.5;
+          img { max-height: $avatar_size/1.5; }
         }
         .name, .handle {
           left: $avatar_size/1.5 + $box_padding;
