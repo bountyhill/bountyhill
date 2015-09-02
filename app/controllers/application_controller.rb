@@ -179,4 +179,15 @@ class ApplicationController < ActionController::Base
       response.content_type = "text/javascript"
     end
   end 
+  
+  # 
+  # expire Strict Transport Security Header (HSTS)
+  # which is valid for one year after setting config.force_ssl = true in production
+  # see: http://stackoverflow.com/questions/17776530/disabling-ssl-for-a-heroku-app
+  after_filter :expire_hsts
+
+  def expire_hsts
+    response.headers["Strict-Transport-Security"] = 'max-age=0'
+  end
+  
 end
